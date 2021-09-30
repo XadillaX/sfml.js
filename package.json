@@ -1,0 +1,29 @@
+{
+  "name": "sfml",
+  "version": "1.0.0",
+  "description": "SFML's Node.js binding.",
+  "main": "index.js",
+  "scripts": {
+    "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
+    "clang-format": "clang-format --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/node-sfml.git"
+  },
+  "author": "XadillaX <i@2333.moe>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XadillaX/node-sfml/issues"
+  },
+  "homepage": "https://github.com/XadillaX/node-sfml#readme",
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "devDependencies": {
+    "clang-format": "^1.4.0",
+    "eslint": "^8.0.0",
+    "eslint-config-egg": "^9.0.0",
+    "node-gyp": "^8.2.0"
+  }
+}

@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+build
+src/gen/*.cc
+.clangd
+core
+.DS_Store
