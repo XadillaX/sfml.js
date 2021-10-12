@@ -4,6 +4,7 @@
 #include "color.h"
 #include "keyboard.h"
 #include "mouse.h"
+#include "rect.h"
 #include "render_window.h"
 #include "time.h"
 #include "video_mode.h"
@@ -24,6 +25,10 @@ void Init(v8::Local<v8::Object> target) {
 
   // drawable
   drawable::CircleShape::Init(target);
+
+  // rect
+  rect::IntRect::Init(target);
+  rect::FloatRect::Init(target);
 }
 
 }  // namespace node_sfml

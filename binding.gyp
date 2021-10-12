@@ -82,6 +82,7 @@
       "./src/keyboard.cc",
       "./src/mouse.cc",
       "./src/poll_event.cc",
+      "./src/rect.cc",
       "./src/render_window.cc",
       "./src/time.cc",
       "./src/video_mode.cc",
