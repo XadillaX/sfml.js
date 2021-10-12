@@ -17,6 +17,8 @@ class Time : public Nan::ObjectWrap {
 
  public:
   static NAN_MODULE_INIT(Init);
+  static v8::MaybeLocal<v8::Object> NewInstance(v8::Isolate* isolate,
+                                                const sf::Time& src);
 
  private:
   static NAN_METHOD(New);

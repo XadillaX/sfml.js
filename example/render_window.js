@@ -1,6 +1,6 @@
 'use strict';
 
-const { CircleShape, Color, RenderWindow, VideoMode } = require('../lib/sfml');
+const { CircleShape, Clock, Color, RenderWindow, VideoMode } = require('../lib/sfml');
 
 console.log(RenderWindow.Style);
 
@@ -8,13 +8,14 @@ const mode = VideoMode.getFullscreenModes()[3];
 const window = new RenderWindow(mode, 'hello');
 const circle = new CircleShape(100, 1000);
 
-let last = Date.now();
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
+const clock = new Clock();
 function frame() {
-  console.log('Delta time:', Date.now() - last);
-  last = Date.now();
   if (!window.isOpen()) return;
+  const delta = clock.getElapsedTime();
+  clock.restart();
+  console.log(delta, delta.asSeconds(), delta.asMilliseconds(), delta.asMicroseconds());
 
   let event;
   while ((event = window.pollEvent())) {
@@ -36,7 +37,7 @@ function frame() {
   window.draw(circle);
   window.display();
 
-  setTimeout(frame, 1000 / 120);
+  setTimeout(frame, 1000 / 60);
 }
 
 frame();

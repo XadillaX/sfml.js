@@ -1,5 +1,6 @@
 #include <nan.h>
 
+#include "clock.h"
 #include "color.h"
 #include "keyboard.h"
 #include "mouse.h"
@@ -15,6 +16,7 @@ void Init(v8::Local<v8::Object> target) {
   keyboard::Init(target);
   mouse::Init(target);
 
+  clock::Clock::Init(target);
   color::Color::Init(target);
   render_window::RenderWindow::Init(target);
   time::Time::Init(target);

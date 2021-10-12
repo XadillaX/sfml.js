@@ -77,6 +77,7 @@
     "sources": [
       "./src/sfml.cc",
 
+      "./src/clock.cc",
       "./src/color.cc",
       "./src/keyboard.cc",
       "./src/mouse.cc",

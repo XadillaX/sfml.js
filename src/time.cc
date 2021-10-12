@@ -5,9 +5,12 @@ namespace time {
 
 using v8::BigInt;
 using v8::Context;
+using v8::EscapableHandleScope;
 using v8::Function;
 using v8::FunctionTemplate;
+using v8::Isolate;
 using v8::Local;
+using v8::MaybeLocal;
 using v8::Number;
 using v8::Object;
 using v8::String;
@@ -51,6 +54,23 @@ NAN_MODULE_INIT(Time::Init) {
 
     Nan::Set(func, Nan::New("NewTimeType").ToLocalChecked(), new_time_type);
   }
+}
+
+MaybeLocal<Object> Time::NewInstance(Isolate* isolate, const sf::Time& src) {
+  EscapableHandleScope scope(isolate);
+
+  Local<Function> cons = constructor.Get(isolate);
+  MaybeLocal<Object> maybe_time =
+      cons->NewInstance(isolate->GetCurrentContext(), 0, nullptr);
+  if (maybe_time.IsEmpty()) {
+    return maybe_time;
+  }
+
+  Local<Object> time = maybe_time.ToLocalChecked();
+  Time* time_wrap = Nan::ObjectWrap::Unwrap<Time>(time);
+  memcpy(&time_wrap->_time, &src, sizeof(sf::Time));
+
+  return time;
 }
 
 NAN_METHOD(Time::New) {

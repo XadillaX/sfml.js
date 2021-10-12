@@ -4,12 +4,10 @@ class Time {
   asMicroseconds(): BigInt;
 }
 
-function seconds(val: number | BigInt): Time;
-function milliseconds(val: number | BigInt): Time;
-function microseconds(val: number | BigInt): Time;
+export function seconds(val: number | BigInt): Time;
+export function milliseconds(val: number | BigInt): Time;
+export function microseconds(val: number | BigInt): Time;
 
-export = {
-  seconds,
-  milliseconds,
-  microseconds,
-};
+export const zero = new Time();
+
+export { Time as _Time };
