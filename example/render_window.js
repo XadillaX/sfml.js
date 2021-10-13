@@ -45,6 +45,16 @@ function frame() {
   console.log('position:', pos);
   circle.setPosition(pos);
   circle.setPointCount(circle.getPointCount() % 100 + 1);
+
+  circle.setRotation(circle.getRotation() % 360 + 1);
+  console.log('rotation:', circle.getRotation());
+
+  const scale = circle.getScale();
+  scale.x = (scale.x + 1) % 5;
+  scale.y = (scale.y + 1) % 5;
+  console.log('scale:', scale);
+  circle.setScale(scale);
+
   window.draw(circle);
   window.display();
 

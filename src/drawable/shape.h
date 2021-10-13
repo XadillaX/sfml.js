@@ -33,6 +33,15 @@ class Shape : public Drawable<sf::Shape> {
   static NAN_METHOD(SetPosition);
   static NAN_METHOD(GetPosition);
 
+  static NAN_METHOD(SetRotation);
+  static NAN_METHOD(GetRotation);
+
+  static NAN_METHOD(SetScale);
+  static NAN_METHOD(GetScale);
+
+  static NAN_METHOD(SetOrigin);
+  static NAN_METHOD(GetOrigin);
+
   // TODO(XadillaX): More methods.
 
  protected:

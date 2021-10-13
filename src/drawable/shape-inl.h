@@ -31,6 +31,15 @@ void Shape<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
 
   Nan::SetPrototypeMethod(tpl, "setPosition", SetPosition);
   Nan::SetPrototypeMethod(tpl, "getPosition", GetPosition);
+
+  Nan::SetPrototypeMethod(tpl, "setRotation", SetRotation);
+  Nan::SetPrototypeMethod(tpl, "getRotation", GetRotation);
+
+  Nan::SetPrototypeMethod(tpl, "setScale", SetScale);
+  Nan::SetPrototypeMethod(tpl, "getScale", GetScale);
+
+  Nan::SetPrototypeMethod(tpl, "setOrigin", SetScale);
+  Nan::SetPrototypeMethod(tpl, "getOrigin", GetScale);
 }
 
 template <class T>
@@ -122,45 +131,66 @@ NAN_METHOD(Shape<T>::GetPoint) {
   info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
 }
 
+#define VECTOR2F_GETTER_SETTER(name)                                           \
+  template <class T>                                                           \
+  NAN_METHOD(Shape<T>::Set##name) {                                            \
+    Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());        \
+    sf::Shape& raw = shape->raw();                                             \
+                                                                               \
+    switch (info.Length()) {                                                   \
+      case 1: {                                                                \
+        vector2::Vector2F* val = Nan::ObjectWrap::Unwrap<vector2::Vector2F>(   \
+            info[0].As<v8::Object>());                                         \
+        raw.set##name(*val);                                                   \
+        break;                                                                 \
+      }                                                                        \
+                                                                               \
+      case 2:                                                                  \
+      default: {                                                               \
+        float x = static_cast<float>(Nan::To<double>(info[0]).FromJust());     \
+        float y = static_cast<float>(Nan::To<double>(info[1]).FromJust());     \
+        raw.set##name(x, y);                                                   \
+        break;                                                                 \
+      }                                                                        \
+    }                                                                          \
+  }                                                                            \
+                                                                               \
+  template <class T>                                                           \
+  NAN_METHOD(Shape<T>::Get##name) {                                            \
+    Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());        \
+    sf::Shape& raw = shape->raw();                                             \
+                                                                               \
+    const sf::Vector2f& val = raw.get##name();                                 \
+                                                                               \
+    Nan::TryCatch try_catch;                                                   \
+    v8::MaybeLocal<v8::Object> maybe_vec =                                     \
+        vector2::Vector2F::NewRealInstance(info.GetIsolate(), val);            \
+    if (maybe_vec.IsEmpty()) {                                                 \
+      try_catch.ReThrow();                                                     \
+      return;                                                                  \
+    }                                                                          \
+                                                                               \
+    info.GetReturnValue().Set(maybe_vec.ToLocalChecked());                     \
+  }
+
+VECTOR2F_GETTER_SETTER(Position);
+VECTOR2F_GETTER_SETTER(Scale);
+VECTOR2F_GETTER_SETTER(Origin);
+
 template <class T>
-NAN_METHOD(Shape<T>::SetPosition) {
+NAN_METHOD(Shape<T>::SetRotation) {
   Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
   sf::Shape& raw = shape->raw();
-
-  switch (info.Length()) {
-    case 1: {
-      vector2::Vector2F* pos =
-          Nan::ObjectWrap::Unwrap<vector2::Vector2F>(info[0].As<v8::Object>());
-      raw.setPosition(*pos);
-      break;
-    }
-
-    case 2:
-    default: {
-      float x = static_cast<float>(Nan::To<double>(info[0]).FromJust());
-      float y = static_cast<float>(Nan::To<double>(info[1]).FromJust());
-      raw.setPosition(x, y);
-      break;
-    }
-  }
+  float rotation = static_cast<float>(Nan::To<double>(info[0]).FromJust());
+  raw.setRotation(rotation);
 }
 
 template <class T>
-NAN_METHOD(Shape<T>::GetPosition) {
+NAN_METHOD(Shape<T>::GetRotation) {
   Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
   sf::Shape& raw = shape->raw();
-
-  const sf::Vector2f& pos = raw.getPosition();
-
-  Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> maybe_vec =
-      vector2::Vector2F::NewRealInstance(info.GetIsolate(), pos);
-  if (maybe_vec.IsEmpty()) {
-    try_catch.ReThrow();
-    return;
-  }
-
-  info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
+  float rotation = raw.getRotation();
+  info.GetReturnValue().Set(static_cast<double>(rotation));
 }
 
 #define GET_BOUNDS_IMPL(type)                                                  \
