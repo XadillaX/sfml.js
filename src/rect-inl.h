@@ -6,12 +6,6 @@
 namespace node_sfml {
 namespace rect {
 
-template <typename T, typename NAN_T, class V8_T>
-Nan::Persistent<v8::Function> Rect<T, NAN_T, V8_T>::constructor;
-
-template <typename T, typename NAN_T, class V8_T>
-Nan::Persistent<v8::Function> Rect<T, NAN_T, V8_T>::real_constructor;
-
 #define TEMPLATE_INNER T, NAN_T, V8_T
 
 template <typename T, typename NAN_T, class V8_T>
@@ -31,6 +25,16 @@ bool ParseParameters(Nan::NAN_METHOD_ARGS_TYPE info,
   }
 
   return true;
+}
+
+template <typename T, typename NAN_T, class V8_T>
+v8::MaybeLocal<v8::Object> Rect<TEMPLATE_INNER>::NewRealInstance(
+    v8::Isolate* isolate, size_t argc, v8::Local<v8::Value>* argv) {
+  v8::Local<v8::Function> cons = real_constructor.Get(isolate);
+
+  v8::MaybeLocal<v8::Object> maybe_ret =
+      cons->NewInstance(isolate->GetCurrentContext(), argc, argv);
+  return maybe_ret;
 }
 
 template <typename T, typename NAN_T, class V8_T>

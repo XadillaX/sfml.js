@@ -4,6 +4,7 @@
 namespace node_sfml {
 namespace drawable {
 
+using v8::FunctionTemplate;
 using v8::Local;
 using v8::Number;
 
@@ -14,6 +15,13 @@ Nan::Persistent<v8::Function> Drawable<T>::constructor;
 
 NAN_MODULE_INIT(CircleShape::Init) {
   Drawable<sf::Shape>::Init<CircleShape, circle_shape_name>(target);
+}
+
+void CircleShape::SetPrototype(Local<FunctionTemplate>* _tpl) {
+  Shape<sf::CircleShape>::SetPrototype(_tpl);
+
+  v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
+  Nan::SetPrototypeMethod(tpl, "setPointCount", SetPointCount);
 }
 
 NAN_METHOD(CircleShape::New) {
@@ -54,6 +62,13 @@ NAN_METHOD(CircleShape::New) {
 
   circle_shape->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
+}
+
+NAN_METHOD(CircleShape::SetPointCount) {
+  CircleShape* shape = Nan::ObjectWrap::Unwrap<CircleShape>(info.Holder());
+  sf::CircleShape& raw = shape->real_raw();
+  sf::Uint32 point_count = Nan::To<sf::Uint32>(info[0]).FromJust();
+  raw.setPointCount(point_count);
 }
 
 CircleShape::CircleShape(float radius, size_t point_count)

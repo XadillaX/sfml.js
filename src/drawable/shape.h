@@ -14,9 +14,19 @@ class Shape : public Drawable<sf::Shape> {
  protected:
   inline T& real_raw() { return BaseDrawable::raw<T>(); }
 
-  // TODO(XadillaX): Use `Color` class as parameter.
   static NAN_METHOD(SetFillColor);
   static NAN_METHOD(GetFillColor);
+
+  static NAN_METHOD(SetOutlineColor);
+  static NAN_METHOD(GetOutlineColor);
+
+  static NAN_METHOD(SetOutlineThickness);
+  static NAN_METHOD(GetOutlineThickness);
+
+  static NAN_METHOD(GetPointCount);
+
+  static NAN_METHOD(GetLocalBounds);
+  static NAN_METHOD(GetGlobalBounds);
 
   // TODO(XadillaX): More methods.
 

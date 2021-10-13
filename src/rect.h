@@ -14,7 +14,7 @@ namespace rect {
   V(Height, height)
 
 template <typename T, typename NAN_T, class V8_T>
-class Rect : public Nan::ObjectWrap, sf::Rect<T> {
+class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
  public:
   static Nan::Persistent<v8::Function> constructor;
   static Nan::Persistent<v8::Function> real_constructor;
@@ -51,6 +51,11 @@ class Rect : public Nan::ObjectWrap, sf::Rect<T> {
         Nan::GetFunction(Nan::New<v8::FunctionTemplate>(SetRealConstructor))
             .ToLocalChecked());
   }
+
+  static v8::MaybeLocal<v8::Object> NewRealInstance(
+      v8::Isolate* isolate,
+      size_t argc = 0,
+      v8::Local<v8::Value>* argv = nullptr);
 
  protected:
   static NAN_METHOD(New);

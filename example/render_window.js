@@ -6,7 +6,8 @@ console.log(RenderWindow.Style);
 
 const mode = VideoMode.getFullscreenModes()[3];
 const window = new RenderWindow(mode, 'hello');
-const circle = new CircleShape(100, 1000);
+const circle = new CircleShape(100, 1);
+circle.setOutlineThickness(1.6);
 
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
@@ -31,9 +32,13 @@ function frame() {
 
   window.clear(red);
   circleColor = (circleColor + 1) % 256;
-  const color = (circleColor << 16) + 0xff;  // eslint-disable-line
+  let color = (circleColor << 16) + 0xff;  // eslint-disable-line
   circle.setFillColor(color);
-  console.log(circle.getFillColor());
+  color = (circleColor << 8) + 0xff;  // eslint-disable-line
+  circle.setOutlineColor(color);
+  console.log(circle.getOutlineThickness(), circle.getFillColor(), circle.getOutlineColor());
+  console.log(circle.getPointCount(), circle.getLocalBounds(), circle.getGlobalBounds());
+  circle.setPointCount(circle.getPointCount() % 100 + 1);
   window.draw(circle);
   window.display();
 
