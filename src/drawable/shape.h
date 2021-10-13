@@ -28,6 +28,11 @@ class Shape : public Drawable<sf::Shape> {
   static NAN_METHOD(GetLocalBounds);
   static NAN_METHOD(GetGlobalBounds);
 
+  static NAN_METHOD(GetPoint);
+
+  static NAN_METHOD(SetPosition);
+  static NAN_METHOD(GetPosition);
+
   // TODO(XadillaX): More methods.
 
  protected:

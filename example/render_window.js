@@ -38,6 +38,12 @@ function frame() {
   circle.setOutlineColor(color);
   console.log(circle.getOutlineThickness(), circle.getFillColor(), circle.getOutlineColor());
   console.log(circle.getPointCount(), circle.getLocalBounds(), circle.getGlobalBounds());
+  console.log(`point ${circle.getPointCount() - 1}:`, circle.getPoint(circle.getPointCount() - 1));
+  const pos = circle.getPosition();
+  pos.x = (pos.x + 1) % 1000;
+  pos.y = (pos.y + 1) % 1000;
+  console.log('position:', pos);
+  circle.setPosition(pos);
   circle.setPointCount(circle.getPointCount() % 100 + 1);
   window.draw(circle);
   window.display();

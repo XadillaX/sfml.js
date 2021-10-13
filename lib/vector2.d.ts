@@ -1,3 +1,5 @@
+export type PointType<Vector_T> = { x: number, y: number } | Vector_T;
+
 export class Vector2I {
   constructor(x: number, y: number);
   constructor(vec: Vector2I);

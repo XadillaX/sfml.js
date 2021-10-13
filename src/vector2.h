@@ -51,6 +51,8 @@ class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
       v8::Isolate* isolate,
       size_t argc = 0,
       v8::Local<v8::Value>* argv = nullptr);
+  static v8::MaybeLocal<v8::Object> NewRealInstance(v8::Isolate* isolate,
+                                                    const sf::Vector2<T>& src);
 
  protected:
   static NAN_METHOD(New);

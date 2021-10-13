@@ -1,6 +1,4 @@
-import { Vector2I, Vector2F } from './vector2';
-
-type PointType<Vector_T> = { x: number, y: number } | Vector_T;
+import { PointType, Vector2I, Vector2F } from './vector2';
 
 class Rect<Vector_T> {
   constructor(left: number, top: number, width: number, height: number);

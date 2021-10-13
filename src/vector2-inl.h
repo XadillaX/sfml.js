@@ -20,6 +20,22 @@ v8::MaybeLocal<v8::Object> Vector2<TEMPLATE_INNER>::NewRealInstance(
 }
 
 template <typename T, typename NAN_T, class V8_T>
+v8::MaybeLocal<v8::Object> Vector2<TEMPLATE_INNER>::NewRealInstance(
+    v8::Isolate* isolate, const sf::Vector2<T>& src) {
+  v8::MaybeLocal<v8::Object> maybe =
+      Vector2<TEMPLATE_INNER>::NewRealInstance(isolate);
+  if (maybe.IsEmpty()) return maybe;
+
+  v8::Local<v8::Object> vec = maybe.ToLocalChecked();
+  Vector2<TEMPLATE_INNER>* vec_wrapper =
+      Nan::ObjectWrap::Unwrap<Vector2<TEMPLATE_INNER>>(vec);
+  vec_wrapper->x = src.x;
+  vec_wrapper->y = src.y;
+
+  return vec;
+}
+
+template <typename T, typename NAN_T, class V8_T>
 NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
   Vector2<T, NAN_T, V8_T>* rect = nullptr;
   if (info.Length() == 0) {

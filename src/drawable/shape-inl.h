@@ -3,6 +3,7 @@
 
 #include "../color.h"
 #include "../rect-inl.h"
+#include "../vector2-inl.h"
 #include "shape.h"
 
 namespace node_sfml {
@@ -25,6 +26,11 @@ void Shape<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
 
   Nan::SetPrototypeMethod(tpl, "getLocalBounds", GetLocalBounds);
   Nan::SetPrototypeMethod(tpl, "getGlobalBounds", GetGlobalBounds);
+
+  Nan::SetPrototypeMethod(tpl, "getPoint", GetPoint);
+
+  Nan::SetPrototypeMethod(tpl, "setPosition", SetPosition);
+  Nan::SetPrototypeMethod(tpl, "getPosition", GetPosition);
 }
 
 template <class T>
@@ -93,6 +99,68 @@ NAN_METHOD(Shape<T>::GetPointCount) {
   sf::Shape& raw = shape->raw();
   sf::Uint32 point_count = raw.getPointCount();
   info.GetReturnValue().Set(point_count);
+}
+
+template <class T>
+NAN_METHOD(Shape<T>::GetPoint) {
+  Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
+  sf::Shape& raw = shape->raw();
+  if (!info[0]->IsUint32()) {
+    Nan::ThrowTypeError("`idx` should be unsigned integer.");
+    return;
+  }
+
+  sf::Vector2f point = raw.getPoint(Nan::To<sf::Uint32>(info[0]).FromJust());
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> maybe_vec =
+      vector2::Vector2F::NewRealInstance(info.GetIsolate(), point);
+  if (maybe_vec.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+  info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
+}
+
+template <class T>
+NAN_METHOD(Shape<T>::SetPosition) {
+  Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
+  sf::Shape& raw = shape->raw();
+
+  switch (info.Length()) {
+    case 1: {
+      vector2::Vector2F* pos =
+          Nan::ObjectWrap::Unwrap<vector2::Vector2F>(info[0].As<v8::Object>());
+      raw.setPosition(*pos);
+      break;
+    }
+
+    case 2:
+    default: {
+      float x = static_cast<float>(Nan::To<double>(info[0]).FromJust());
+      float y = static_cast<float>(Nan::To<double>(info[1]).FromJust());
+      raw.setPosition(x, y);
+      break;
+    }
+  }
+}
+
+template <class T>
+NAN_METHOD(Shape<T>::GetPosition) {
+  Shape<T>* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
+  sf::Shape& raw = shape->raw();
+
+  const sf::Vector2f& pos = raw.getPosition();
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> maybe_vec =
+      vector2::Vector2F::NewRealInstance(info.GetIsolate(), pos);
+  if (maybe_vec.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
 }
 
 #define GET_BOUNDS_IMPL(type)                                                  \
