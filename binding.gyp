@@ -85,6 +85,7 @@
       "./src/rect.cc",
       "./src/render_window.cc",
       "./src/time.cc",
+      "./src/vector2.cc",
       "./src/video_mode.cc",
 
       "./src/drawable/circle_shape.cc",

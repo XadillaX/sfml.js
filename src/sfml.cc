@@ -7,6 +7,7 @@
 #include "rect.h"
 #include "render_window.h"
 #include "time.h"
+#include "vector2.h"
 #include "video_mode.h"
 
 #include "drawable/circle_shape.h"
@@ -29,6 +30,11 @@ void Init(v8::Local<v8::Object> target) {
   // rect
   rect::IntRect::Init(target);
   rect::FloatRect::Init(target);
+
+  // vector2
+  vector2::Vector2I::Init(target);
+  vector2::Vector2U::Init(target);
+  vector2::Vector2F::Init(target);
 }
 
 }  // namespace node_sfml

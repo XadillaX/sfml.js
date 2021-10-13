@@ -1,9 +1,14 @@
-export class IntRect {
+import { Vector2I, Vector2F } from './vector2';
+
+type PointType<Vector_T> = { x: number, y: number } | Vector_T;
+
+class Rect<Vector_T> {
   constructor(left: number, top: number, width: number, height: number);
-  constructor(position: { x: number, y: number }, size: { x: number, y: number });
+  constructor(position: PointType<Vector2I>, size: PointType<Vector2I>);
 
   contains(x: number, y: number): boolean;
-  intersects(rect: IntRect): false | IntRect;
+  contains(point: PointType<Vector_T>): boolean;
+  intersects(rect: Rect<Vector_T>): false | Rect<Vector_T>;
 
   left: number;
   top: number;
@@ -11,15 +16,5 @@ export class IntRect {
   height: number;
 }
 
-export class FloatRect {
-  constructor(left: number, top: number, width: number, height: number);
-  constructor(position: { x: number, y: number }, size: { x: number, y: number });
-
-  contains(x: number, y: number): boolean;
-  intersects(rect: FloatRect): false | FloatRect;
-
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-}
+export class IntRect extends Rect<Vector2I> {}
+export class FloatRect extends Rect<Vector2F> {}

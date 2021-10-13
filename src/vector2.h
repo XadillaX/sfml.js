@@ -1,22 +1,18 @@
-#ifndef SRC_RECT_H_
-#define SRC_RECT_H_
+#ifndef SRC_VECTOR2_H_
+#define SRC_VECTOR2_H_
 
 #include <nan.h>
 #include <SFML/Graphics.hpp>
 
-#include "vector2.h"
-
 namespace node_sfml {
-namespace rect {
+namespace vector2 {
 
-#define RECT_PROPERTIES(V)                                                     \
-  V(Left, left)                                                                \
-  V(Top, top)                                                                  \
-  V(Width, width)                                                              \
-  V(Height, height)
+#define VECTOR2_PROPERTIES(V)                                                  \
+  V(X, x)                                                                      \
+  V(Y, y)
 
 template <typename T, typename NAN_T, class V8_T>
-class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
+class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
  public:
   static Nan::Persistent<v8::Function> constructor;
   static Nan::Persistent<v8::Function> real_constructor;
@@ -26,9 +22,6 @@ class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
     v8::Local<v8::String> name = Nan::New(class_name).ToLocalChecked();
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
 
-    Nan::SetPrototypeMethod(tpl, "contains", Contains);
-    Nan::SetPrototypeMethod(tpl, "intersects", Intersects);
-
 #define V(name, lowercase)                                                     \
   tpl->PrototypeTemplate()->SetAccessorProperty(                               \
       Nan::New(#lowercase).ToLocalChecked(),                                   \
@@ -36,7 +29,7 @@ class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
       Nan::New<v8::FunctionTemplate>(name##Setter),                            \
       v8::PropertyAttribute::DontDelete);
 
-    RECT_PROPERTIES(V);
+    VECTOR2_PROPERTIES(V);
 #undef V
 
     tpl->SetClassName(name);
@@ -61,43 +54,48 @@ class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
 
  protected:
   static NAN_METHOD(New);
-  static NAN_METHOD(Contains);
-  static NAN_METHOD(Intersects);
 
 #define V(name, lowercase)                                                     \
   static NAN_METHOD(name##Getter);                                             \
   static NAN_METHOD(name##Setter);
 
-  RECT_PROPERTIES(V);
+  VECTOR2_PROPERTIES(V);
 #undef V
 
   static NAN_METHOD(SetRealConstructor);
 
  protected:
-  Rect();
-  Rect(T rect_left, T rect_top, T rect_width, T rect_height);
-  Rect(const vector2::Vector2<T, NAN_T, V8_T>& pos,
-       const vector2::Vector2<T, NAN_T, V8_T>& size);
-  virtual ~Rect();
+  Vector2();
+  Vector2(T x, T y);
+  Vector2(const Vector2<T, NAN_T, V8_T>& vec);
+  virtual ~Vector2();
 };
 
-class IntRect : public Rect<int, int, v8::Int32> {
+class Vector2I : public Vector2<int, int, v8::Int32> {
  public:
   static NAN_MODULE_INIT(Init);
 
  private:
-  ~IntRect();
+  ~Vector2I();
 };
 
-class FloatRect : public Rect<float, double, v8::Number> {
+class Vector2U : public Vector2<sf::Uint32, sf::Uint32, v8::Uint32> {
  public:
   static NAN_MODULE_INIT(Init);
 
  private:
-  ~FloatRect();
+  ~Vector2U();
 };
 
-}  // namespace rect
+class Vector2F : public Vector2<float, double, v8::Number> {
+ public:
+  static NAN_MODULE_INIT(Init);
+
+ private:
+  ~Vector2F();
+};
+
+}  // namespace vector2
 }  // namespace node_sfml
 
-#endif  // SRC_RECT_H_
+#endif  // SRC_VECTOR2_H_

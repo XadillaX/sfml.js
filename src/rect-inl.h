@@ -2,30 +2,12 @@
 #define SRC_RECT_INL_H_
 
 #include "rect.h"
+#include "utils-inl.h"
 
 namespace node_sfml {
 namespace rect {
 
 #define TEMPLATE_INNER T, NAN_T, V8_T
-
-template <typename T, typename NAN_T, class V8_T>
-bool ParseParameters(Nan::NAN_METHOD_ARGS_TYPE info,
-                     size_t parameter_count,
-                     T* val) {
-  v8::MaybeLocal<V8_T> maybe;
-  for (size_t i = 0; i < parameter_count; i++) {
-    maybe = Nan::To<V8_T>(info[i]);
-    if (maybe.IsEmpty()) {
-      Nan::ThrowError("Invalid parameter type.");
-      return false;
-    }
-
-    NAN_T v = Nan::To<NAN_T>(maybe.ToLocalChecked()).FromJust();
-    val[i] = static_cast<T>(v);
-  }
-
-  return true;
-}
 
 template <typename T, typename NAN_T, class V8_T>
 v8::MaybeLocal<v8::Object> Rect<TEMPLATE_INNER>::NewRealInstance(
@@ -47,6 +29,19 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::New) {
     return;
   }
 
+  if (info.Length() == 2) {
+    vector2::Vector2<T, NAN_T, V8_T>* pos =
+        Nan::ObjectWrap::Unwrap<vector2::Vector2<T, NAN_T, V8_T>>(
+            info[0].As<v8::Object>());
+    vector2::Vector2<T, NAN_T, V8_T>* size =
+        Nan::ObjectWrap::Unwrap<vector2::Vector2<T, NAN_T, V8_T>>(
+            info[1].As<v8::Object>());
+    rect = new Rect<T, NAN_T, V8_T>(*pos, *size);
+    rect->Wrap(info.This());
+    info.GetReturnValue().Set(info.This());
+    return;
+  }
+
   if (info.Length() < 4) {
     Nan::ThrowError("Rect's constructor should have 4 parameters.");
     return;
@@ -62,12 +57,19 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::New) {
 
 template <typename T, typename NAN_T, class V8_T>
 NAN_METHOD(Rect<TEMPLATE_INNER>::Contains) {
-  T val[2];
-  if (!ParseParameters<T, NAN_T, V8_T>(info, 2, val)) return;
-
   Rect<T, NAN_T, V8_T>* rect =
       Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.Holder());
-  info.GetReturnValue().Set(rect->contains(val[0], val[1]));
+
+  if (info.Length() == 1) {
+    vector2::Vector2<T, NAN_T, V8_T>* point =
+        Nan::ObjectWrap::Unwrap<vector2::Vector2<T, NAN_T, V8_T>>(
+            info[0].As<v8::Object>());
+    info.GetReturnValue().Set(rect->contains(*point));
+  } else {
+    T val[2];
+    if (!ParseParameters<T, NAN_T, V8_T>(info, 2, val)) return;
+    info.GetReturnValue().Set(rect->contains(val[0], val[1]));
+  }
 }
 
 template <typename T, typename NAN_T, class V8_T>
@@ -130,6 +132,11 @@ Rect<T, NAN_T, V8_T>::Rect() : sf::Rect<T>() {}
 template <typename T, typename NAN_T, class V8_T>
 Rect<T, NAN_T, V8_T>::Rect(T rect_left, T rect_top, T rect_width, T rect_height)
     : sf::Rect<T>(rect_left, rect_top, rect_width, rect_height) {}
+
+template <typename T, typename NAN_T, class V8_T>
+Rect<T, NAN_T, V8_T>::Rect(const vector2::Vector2<T, NAN_T, V8_T>& pos,
+                           const vector2::Vector2<T, NAN_T, V8_T>& size)
+    : sf::Rect<T>(pos, size) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Rect<T, NAN_T, V8_T>::~Rect() {}
