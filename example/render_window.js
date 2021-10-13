@@ -1,12 +1,13 @@
 'use strict';
 
-const { CircleShape, Clock, Color, RenderWindow, VideoMode } = require('../lib/sfml');
+const { CircleShape, Clock, Color, RectangleShape, RenderWindow, VideoMode } = require('../lib/sfml');
 
 console.log(RenderWindow.Style);
 
 const mode = VideoMode.getFullscreenModes()[3];
 const window = new RenderWindow(mode, 'hello');
 const circle = new CircleShape(100, 1);
+const rectangle = new RectangleShape({ x: 20, y: 20 });
 circle.setOutlineThickness(1.6);
 
 let circleColor = 0;
@@ -56,6 +57,7 @@ function frame() {
   circle.setScale(scale);
 
   window.draw(circle);
+  window.draw(rectangle);
   window.display();
 
   setTimeout(frame, 1000 / 60);
