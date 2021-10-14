@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.3",
+  "version": "0.0.1-preview.4",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "node-gyp": "^8.2.0"
   },
   "files": [
+    "binding.gyp",
     "lib/**/*",
     "src/**/*",
     "third_party/SFML-2.5.1/include/**/*",
