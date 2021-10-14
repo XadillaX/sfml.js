@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.8",
+  "version": "0.0.1-preview.9",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
@@ -46,9 +46,21 @@
     "third_party/SFML-2.5.1/lib/libsfml-window.so",
     "third_party/SFML-2.5.1/lib/libsfml-network.so",
     "third_party/SFML-2.5.1/lib/libsfml-graphics.so",
-    "third_party/SFML-2.5.1/macOS/lib/*.dylib",
-    "third_party/SFML-2.5.1/macOS/lib/*.dylib.2.5.1",
-    "third_party/SFML-2.5.1/macOS/lib/*.dylib.2.5",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-audio.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-system.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-window.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-network.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-audio.2.5.1.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-system.2.5.1.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-window.2.5.1.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-network.2.5.1.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.2.5.1.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-audio.2.5.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-system.2.5.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-window.2.5.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-network.2.5.dylib",
+    "third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.2.5.dylib",
     "third_party/SFML-2.5.1/macOS/Frameworks/**/*",
     "tools/*"
   ]
