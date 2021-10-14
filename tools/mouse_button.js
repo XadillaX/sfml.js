@@ -4,7 +4,7 @@ const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const mouseHpp = fs.readFileSync(path.join(__dirname, '../third_party/SFML-2.5.1/include/SFML/Window/Mouse.hpp'));
+const mouseHpp = fs.readFileSync(path.join(__dirname, '../third_party/sfml/include/SFML/Window/Mouse.hpp'));
 
 let current = -1;
 const extracted = /enum Button\W+{([\w\W]*)ButtonCount/.exec(mouseHpp)[1].trim().split('\n').map(line => {
@@ -46,14 +46,14 @@ std::map<int, std::string> mouse_wheel_itoa;
 std::map<std::string, int> mouse_wheel_atoi;
 
 void InitMouseButton() {
-${extracted.map(([ key, code ]) => {
-  return `mouse_button_itoa[${code}] = "${key}";
-  mouse_button_atoi["${key}"] = ${code};`;
-}).join('')}
-${extracted2.map(([ key, code ]) => {
-  return `mouse_wheel_itoa[${code}] = "${key}";
-  mouse_wheel_atoi["${key}"] = ${code};`;
-}).join('')}
+  ${extracted.map(([ key, code ]) => {
+    return `mouse_button_itoa[${code}] = "${key}";
+    mouse_button_atoi["${key}"] = ${code};`;
+  }).join('')}
+  ${extracted2.map(([ key, code ]) => {
+    return `mouse_wheel_itoa[${code}] = "${key}";
+    mouse_wheel_atoi["${key}"] = ${code};`;
+  }).join('')}
 }
 
 }  // namespace node_sfml

@@ -4,7 +4,7 @@ const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const keyboardHpp = fs.readFileSync(path.join(__dirname, '../third_party/SFML-2.5.1/include/SFML/Window/Keyboard.hpp'));
+const keyboardHpp = fs.readFileSync(path.join(__dirname, '../third_party/sfml/include/SFML/Window/Keyboard.hpp'));
 
 let current = 0;
 const extracted = /enum Key\W+{([\w\W]*)KeyCount,/.exec(keyboardHpp)[1].trim().split('\n').map(line => {
@@ -18,7 +18,7 @@ const extracted = /enum Key\W+{([\w\W]*)KeyCount,/.exec(keyboardHpp)[1].trim().s
   }
 
   return [ arr[0], current ];
-})
+});
 
 const str = `#include <map>
 #include <string>
@@ -30,10 +30,10 @@ std::map<int, std::string> keycode_itoa;
 std::map<std::string, int> keycode_atoi;
 
 void InitKeyCode() {
-${extracted.map(([ key, code ]) => {
-  return `keycode_itoa[${code}] = "${key}";
-  keycode_atoi["${key}"] = ${code};`;
-}).join('')}
+  ${extracted.map(([ key, code ]) => {
+    return `keycode_itoa[${code}] = "${key}";
+    keycode_atoi["${key}"] = ${code};`;
+  }).join('')}
 }
 
 }  // namespace node_sfml

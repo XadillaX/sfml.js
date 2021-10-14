@@ -108,3 +108,12 @@ src/gen/*.cc
 .clangd
 core
 .DS_Store
+
+*.so
+*.so.2.5
+*.2.5.dylib
+third_party/sfml/platform/macOS/lib/libsfml-audio.dylib
+third_party/sfml/platform/macOS/lib/libsfml-graphics.dylib
+third_party/sfml/platform/macOS/lib/libsfml-network.dylib
+third_party/sfml/platform/macOS/lib/libsfml-system.dylib
+third_party/sfml/platform/macOS/lib/libsfml-window.dylib

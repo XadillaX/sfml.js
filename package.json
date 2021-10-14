@@ -1,11 +1,12 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.10",
+  "version": "0.0.1-preview.12",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
-    "clang-format": "clang-format --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h"
+    "clang-format": "clang-format --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h",
+    "preinstall": "node tools/symlinks.js"
   },
   "repository": {
     "type": "git",
@@ -30,18 +31,18 @@
     "binding.gyp",
     "lib/**/*",
     "src/**/*",
-    "third_party/SFML-2.5.1/include/**/*",
-    "third_party/SFML-2.5.1/lib/libsfml-audio.so.2.5.1",
-    "third_party/SFML-2.5.1/lib/libsfml-system.so.2.5.1",
-    "third_party/SFML-2.5.1/lib/libsfml-window.so.2.5.1",
-    "third_party/SFML-2.5.1/lib/libsfml-network.so.2.5.1",
-    "third_party/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1",
-    "third_party/SFML-2.5.1/macOS/lib/libsfml-audio.2.5.1.dylib",
-    "third_party/SFML-2.5.1/macOS/lib/libsfml-system.2.5.1.dylib",
-    "third_party/SFML-2.5.1/macOS/lib/libsfml-window.2.5.1.dylib",
-    "third_party/SFML-2.5.1/macOS/lib/libsfml-network.2.5.1.dylib",
-    "third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.2.5.1.dylib",
-    "third_party/SFML-2.5.1/macOS/Frameworks/**/*",
+    "third_party/sfml/include/**/*",
+    "third_party/sfml/platform/linux/lib/libsfml-audio.so.2.5.1",
+    "third_party/sfml/platform/linux/lib/libsfml-system.so.2.5.1",
+    "third_party/sfml/platform/linux/lib/libsfml-window.so.2.5.1",
+    "third_party/sfml/platform/linux/lib/libsfml-network.so.2.5.1",
+    "third_party/sfml/platform/linux/lib/libsfml-graphics.so.2.5.1",
+    "third_party/sfml/platform/macOS/lib/libsfml-audio.2.5.1.dylib",
+    "third_party/sfml/platform/macOS/lib/libsfml-system.2.5.1.dylib",
+    "third_party/sfml/platform/macOS/lib/libsfml-window.2.5.1.dylib",
+    "third_party/sfml/platform/macOS/lib/libsfml-network.2.5.1.dylib",
+    "third_party/sfml/platform/macOS/lib/libsfml-graphics.2.5.1.dylib",
+    "third_party/sfml/platform/macOS/Frameworks/**/*",
     "tools/*"
   ]
 }

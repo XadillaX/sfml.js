@@ -3,13 +3,13 @@
     "target_name": "mouse_button.cc",
     "type": "none",
     "sources": [
-      "./third_party/SFML-2.5.1/include/SFML/Window/Mouse.hpp",
+      "./third_party/sfml/include/SFML/Window/Mouse.hpp",
       "./tools/mouse_button.js"
     ],
     "actions": [{
       "action_name": "gen_mouse_button",
       "inputs": [
-        "./third_party/SFML-2.5.1/include/SFML/Window/Mouse.hpp",
+        "./third_party/sfml/include/SFML/Window/Mouse.hpp",
         "./tools/mouse_button.js"
       ],
       "outputs": [
@@ -24,13 +24,13 @@
     "target_name": "keycode.cc",
     "type": "none",
     "sources": [
-      "./third_party/SFML-2.5.1/include/SFML/Window/Keyboard.hpp",
+      "./third_party/sfml/include/SFML/Window/Keyboard.hpp",
       "./tools/keycode.js"
     ],
     "actions": [{
       "action_name": "gen_keycode",
       "inputs": [
-        "./third_party/SFML-2.5.1/include/SFML/Window/Keyboard.hpp",
+        "./third_party/sfml/include/SFML/Window/Keyboard.hpp",
         "./tools/keycode.js"
       ],
       "outputs": [
@@ -44,32 +44,32 @@
   }, {
     "target_name": "binding",
     "include_dirs": [
-      "./third_party/SFML-2.5.1/include",
+      "./third_party/sfml/include",
       "<!(node -e \"require('nan')\")"
     ],
     "conditions": [
       ["OS==\"linux\"", {
         "libraries": [
-          "../third_party/SFML-2.5.1/lib/libsfml-audio.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-system.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-window.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-network.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1"
+          "../third_party/sfml/platform/linux/lib/libsfml-audio.so",
+          "../third_party/sfml/platform/linux/lib/libsfml-system.so",
+          "../third_party/sfml/platform/linux/lib/libsfml-window.so",
+          "../third_party/sfml/platform/linux/lib/libsfml-network.so",
+          "../third_party/sfml/platform/linux/lib/libsfml-graphics.so"
         ]
       }],
       ["OS==\"mac\"", {
         "libraries": [
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-audio.2.5.1.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-system.2.5.1.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-window.2.5.1.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-network.2.5.1.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.2.5.1.dylib"
+          "../third_party/sfml/platform/macOS/lib/libsfml-audio.dylib",
+          "../third_party/sfml/platform/macOS/lib/libsfml-system.dylib",
+          "../third_party/sfml/platform/macOS/lib/libsfml-window.dylib",
+          "../third_party/sfml/platform/macOS/lib/libsfml-network.dylib",
+          "../third_party/sfml/platform/macOS/lib/libsfml-graphics.dylib"
         ],
         "link_settings": {
           "libraries": [
             "-Wl,-rpath,@loader_path",
             "-Wl,-rpath,@loader_path/..",
-            "-Wl,-rpath,@loader_path/../../third_party/SFML-2.5.1/macOS/lib"
+            "-Wl,-rpath,@loader_path/../../third_party/sfml/platform/macOS/lib"
           ]
         }
       }]
