@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.1",
+  "version": "0.0.1-preview.2",
   "description": "SFML's Node.js binding.",
   "main": "index.js",
   "scripts": {
@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/XadillaX/node-sfml#readme",
   "dependencies": {
+    "clang-format": "^1.4.0",
     "nan": "^2.15.0"
   },
   "devDependencies": {
-    "clang-format": "^1.4.0",
     "eslint": "^8.0.0",
     "eslint-config-egg": "^9.0.0",
     "node-gyp": "^8.2.0"
