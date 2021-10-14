@@ -50,11 +50,11 @@
     "conditions": [
       ["OS==\"linux\"", {
         "libraries": [
-          "../third_party/SFML-2.5.1/lib/libsfml-audio.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-system.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-window.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-network.so.2.5.1",
-          "../third_party/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1"
+          "../third_party/SFML-2.5.1/lib/libsfml-audio.so",
+          "../third_party/SFML-2.5.1/lib/libsfml-system.so",
+          "../third_party/SFML-2.5.1/lib/libsfml-window.so",
+          "../third_party/SFML-2.5.1/lib/libsfml-network.so",
+          "../third_party/SFML-2.5.1/lib/libsfml-graphics.so"
         ]
       }],
       ["OS==\"mac\"", {
