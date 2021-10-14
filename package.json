@@ -1,8 +1,8 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.2",
+  "version": "0.0.1-preview.3",
   "description": "SFML's Node.js binding.",
-  "main": "index.js",
+  "main": "lib/sfml.js",
   "scripts": {
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
     "clang-format": "clang-format --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h"
@@ -25,5 +25,14 @@
     "eslint": "^8.0.0",
     "eslint-config-egg": "^9.0.0",
     "node-gyp": "^8.2.0"
-  }
+  },
+  "files": [
+    "lib/**/*",
+    "src/**/*",
+    "third_party/SFML-2.5.1/include/**/*",
+    "third_party/SFML-2.5.1/lib/*.so",
+    "third_party/SFML-2.5.1/macOS/lib/*.dylib",
+    "third_party/SFML-2.5.1/macOS/Frameworks/**/*",
+    "tools/*"
+  ]
 }
