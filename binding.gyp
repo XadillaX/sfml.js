@@ -50,20 +50,20 @@
     "conditions": [
       ["OS==\"linux\"", {
         "libraries": [
-          "../third_party/SFML-2.5.1/lib/libsfml-audio.so",
-          "../third_party/SFML-2.5.1/lib/libsfml-system.so",
-          "../third_party/SFML-2.5.1/lib/libsfml-window.so",
-          "../third_party/SFML-2.5.1/lib/libsfml-network.so",
-          "../third_party/SFML-2.5.1/lib/libsfml-graphics.so"
+          "../third_party/SFML-2.5.1/lib/libsfml-audio.so.2.5.1",
+          "../third_party/SFML-2.5.1/lib/libsfml-system.so.2.5.1",
+          "../third_party/SFML-2.5.1/lib/libsfml-window.so.2.5.1",
+          "../third_party/SFML-2.5.1/lib/libsfml-network.so.2.5.1",
+          "../third_party/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1"
         ]
       }],
       ["OS==\"mac\"", {
         "libraries": [
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-audio.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-system.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-window.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-network.dylib",
-          "../third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.dylib"
+          "../third_party/SFML-2.5.1/macOS/lib/libsfml-audio.2.5.1.dylib",
+          "../third_party/SFML-2.5.1/macOS/lib/libsfml-system.2.5.1.dylib",
+          "../third_party/SFML-2.5.1/macOS/lib/libsfml-window.2.5.1.dylib",
+          "../third_party/SFML-2.5.1/macOS/lib/libsfml-network.2.5.1.dylib",
+          "../third_party/SFML-2.5.1/macOS/lib/libsfml-graphics.2.5.1.dylib"
         ],
         "link_settings": {
           "libraries": [
