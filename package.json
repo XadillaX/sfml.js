@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.6",
+  "version": "0.0.1-preview.7",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
@@ -36,16 +36,6 @@
     "third_party/SFML-2.5.1/lib/libsfml-window.so.2.5.1",
     "third_party/SFML-2.5.1/lib/libsfml-network.so.2.5.1",
     "third_party/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1",
-    "third_party/SFML-2.5.1/lib/libsfml-audio.so.2.5",
-    "third_party/SFML-2.5.1/lib/libsfml-system.so.2.5",
-    "third_party/SFML-2.5.1/lib/libsfml-window.so.2.5",
-    "third_party/SFML-2.5.1/lib/libsfml-network.so.2.5",
-    "third_party/SFML-2.5.1/lib/libsfml-graphics.so.2.5",
-    "third_party/SFML-2.5.1/lib/libsfml-audio.so",
-    "third_party/SFML-2.5.1/lib/libsfml-system.so",
-    "third_party/SFML-2.5.1/lib/libsfml-window.so",
-    "third_party/SFML-2.5.1/lib/libsfml-network.so",
-    "third_party/SFML-2.5.1/lib/libsfml-graphics.so",
     "third_party/SFML-2.5.1/macOS/lib/*.dylib",
     "third_party/SFML-2.5.1/macOS/Frameworks/**/*",
     "tools/*"
