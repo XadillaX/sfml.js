@@ -2,6 +2,7 @@
 
 #include "clock.h"
 #include "color.h"
+#include "font.h"
 #include "keyboard.h"
 #include "mouse.h"
 #include "rect.h"
@@ -22,6 +23,7 @@ void Init(v8::Local<v8::Object> target) {
 
   clock::Clock::Init(target);
   color::Color::Init(target);
+  font::Font::Init(target);
   render_window::RenderWindow::Init(target);
   time::Time::Init(target);
   video_mode::VideoMode::Init(target);

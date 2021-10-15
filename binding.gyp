@@ -79,6 +79,7 @@
 
       "./src/clock.cc",
       "./src/color.cc",
+      "./src/font.cc",
       "./src/keyboard.cc",
       "./src/mouse.cc",
       "./src/poll_event.cc",
