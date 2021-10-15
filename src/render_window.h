@@ -7,9 +7,11 @@
 namespace node_sfml {
 namespace render_window {
 
-class RenderWindow : public Nan::ObjectWrap, public sf::RenderWindow {
+class RenderWindow : public Nan::ObjectWrap {
  public:
   static NAN_MODULE_INIT(Init);
+
+  inline sf::RenderWindow* window() { return _window; }
 
  private:
   static NAN_METHOD(New);

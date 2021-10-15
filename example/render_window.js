@@ -6,17 +6,14 @@ const {
   Color,
   ConvexShape,
   Keyboard,
+  Mouse,
   RectangleShape,
   RenderWindow,
   VideoMode,
 } = require('../lib/sfml');
 
-console.log = () => {};
-
-console.log(RenderWindow.Style);
-
 const mode = VideoMode.getFullscreenModes()[3];
-const window = new RenderWindow(mode, 'hello');
+const window = new RenderWindow(mode, 'hello', 5);
 const circle = new CircleShape(100, 1);
 const convex = new ConvexShape(3);
 const rectangle = new RectangleShape({ x: 20, y: 20 });
@@ -31,12 +28,11 @@ const clock = new Clock();
 function frame() {
   if (!window.isOpen()) return;
   const delta = clock.getElapsedTime();
+  console.log('dt:', delta);
   clock.restart();
-  console.log(delta, delta.asSeconds(), delta.asMilliseconds(), delta.asMicroseconds());
 
   let event;
   while ((event = window.pollEvent())) {
-    console.log(event);
     if (event.type === 'Closed') {
       window.close();
     } else if (event.type === 'KeyPressed') {
@@ -62,31 +58,46 @@ function frame() {
   circle.setFillColor(color);
   color = (circleColor << 8) + 0xff;  // eslint-disable-line
   circle.setOutlineColor(color);
-  console.log(circle.getOutlineThickness(), circle.getFillColor(), circle.getOutlineColor());
-  console.log(circle.getPointCount(), circle.getLocalBounds(), circle.getGlobalBounds());
-  console.log(`point ${circle.getPointCount() - 1}:`, circle.getPoint(circle.getPointCount() - 1));
   const pos = circle.getPosition();
   pos.x = (pos.x + 1) % 1000;
   pos.y = (pos.y + 1) % 1000;
-  console.log('position:', pos);
   circle.setPosition(pos);
   circle.setPointCount(circle.getPointCount() % 100 + 1);
 
   circle.setRotation(circle.getRotation() % 360 + 1);
-  console.log('rotation:', circle.getRotation());
 
   const scale = circle.getScale();
   scale.x = (scale.x + 1) % 5;
   scale.y = (scale.y + 1) % 5;
-  console.log('scale:', scale);
   circle.setScale(scale);
+
+  const mousePos = {
+    desktop: Mouse.getPosition(),
+    window: Mouse.getPosition(window),
+  };
+  console.log('Mouse:', mousePos);
+
+  if (mousePos.window.x < 0) {
+    mousePos.window.x = Math.abs(mousePos.window.x);
+  }
+  if (mousePos.window.x > mode.width) {
+    mousePos.window.x = mode.width;
+  }
+  if (mousePos.window.y < 0) {
+    mousePos.window.y = Math.abs(mousePos.window.y);
+  }
+  if (mousePos.window.y > mode.height) {
+    mousePos.window.y = mode.height;
+  }
+  console.log(mousePos.window);
+  Mouse.setPosition(mousePos.window, window);
 
   window.draw(circle);
   window.draw(rectangle);
   window.draw(convex);
   window.display();
 
-  setTimeout(frame, 1000 / 120);
+  setTimeout(frame, 1000 / 30);
 }
 
 frame();

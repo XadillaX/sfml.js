@@ -16,6 +16,10 @@ namespace mouse {
 
 NAN_MODULE_INIT(Init);
 
+NAN_METHOD(IsButtonPressed);
+NAN_METHOD(GetPosition);
+NAN_METHOD(SetPosition);
+
 }  // namespace mouse
 }  // namespace node_sfml
 
