@@ -89,6 +89,7 @@
       "./src/video_mode.cc",
 
       "./src/drawable/circle_shape.cc",
+      "./src/drawable/convex_shape.cc",
       "./src/drawable/rectangle_shape.cc",
 
       "./src/gen/keycode.cc",

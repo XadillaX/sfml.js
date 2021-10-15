@@ -1,14 +1,20 @@
 'use strict';
 
-const { CircleShape, Clock, Color, RectangleShape, RenderWindow, VideoMode } = require('../lib/sfml');
+const { CircleShape, Clock, Color, RectangleShape, RenderWindow, ConvexShape, VideoMode } = require('../lib/sfml');
+
+console.log = () => {};
 
 console.log(RenderWindow.Style);
 
 const mode = VideoMode.getFullscreenModes()[3];
 const window = new RenderWindow(mode, 'hello');
 const circle = new CircleShape(100, 1);
+const convex = new ConvexShape(3);
 const rectangle = new RectangleShape({ x: 20, y: 20 });
 circle.setOutlineThickness(1.6);
+convex.setPoint(0, { x: 20, y: 30 });
+convex.setPoint(1, { y: 30, x: 40 });
+convex.setPoint(2, { x: 0, y: 0 });
 
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
@@ -58,9 +64,10 @@ function frame() {
 
   window.draw(circle);
   window.draw(rectangle);
+  window.draw(convex);
   window.display();
 
-  setTimeout(frame, 1000 / 60);
+  setTimeout(frame, 1000 / 120);
 }
 
 frame();

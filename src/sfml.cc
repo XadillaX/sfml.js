@@ -11,6 +11,7 @@
 #include "video_mode.h"
 
 #include "drawable/circle_shape.h"
+#include "drawable/convex_shape.h"
 #include "drawable/rectangle_shape.h"
 
 namespace node_sfml {
@@ -27,6 +28,7 @@ void Init(v8::Local<v8::Object> target) {
 
   // drawable
   drawable::CircleShape::Init(target);
+  drawable::ConvexShape::Init(target);
   drawable::RectangleShape::Init(target);
 
   // rect
