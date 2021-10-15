@@ -14,6 +14,9 @@ namespace keyboard {
 
 NAN_MODULE_INIT(Init);
 
+NAN_METHOD(IsKeyPressed);
+NAN_METHOD(SetVirtualKeyboardVisible);
+
 }  // namespace keyboard
 }  // namespace node_sfml
 

@@ -1,6 +1,15 @@
 'use strict';
 
-const { CircleShape, Clock, Color, RectangleShape, RenderWindow, ConvexShape, VideoMode } = require('../lib/sfml');
+const {
+  CircleShape,
+  Clock,
+  Color,
+  ConvexShape,
+  Keyboard,
+  RectangleShape,
+  RenderWindow,
+  VideoMode,
+} = require('../lib/sfml');
 
 console.log = () => {};
 
@@ -31,10 +40,20 @@ function frame() {
     if (event.type === 'Closed') {
       window.close();
     } else if (event.type === 'KeyPressed') {
-      if (event.key.codeStr === 'Escape') {
-        window.close();
-      }
+      // if (event.key.codeStr === 'Escape') {
+      //   window.close();
+      // }
     }
+  }
+
+  if (Keyboard.isKeyPressed('Escape')) {
+    window.close();
+  }
+
+  if (Keyboard.isKeyPressed('S')) {
+    Keyboard.setVirtualKeyboardVisible(true);
+  } else {
+    Keyboard.setVirtualKeyboardVisible(false);
   }
 
   window.clear(red);
