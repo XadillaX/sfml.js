@@ -28,6 +28,7 @@ class Drawable : public Nan::ObjectWrap {
     Nan::Set(target, name, func);
   }
 
+  Drawable() : _raw(nullptr) {}
   explicit Drawable(sf::Drawable* raw) : _raw(raw) {}
   ~Drawable() {
     if (_raw != nullptr) {
@@ -45,7 +46,7 @@ class Drawable : public Nan::ObjectWrap {
 
   // TODO(XadillaX): `virtual void draw(...)`, etc.
 
- private:
+ protected:
   sf::Drawable* _raw = nullptr;
 };
 

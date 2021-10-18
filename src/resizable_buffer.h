@@ -47,7 +47,7 @@ class ResizableBuffer {
       posix_memalign(
           reinterpret_cast<void**>(&_buff), _page_size, _byte_length);
     } else {
-      _buff = static_cast<T*>(malloc(_byte_length));
+      _buff = static_cast<T*>(valloc(_byte_length));
     }
 
     memset(_buff, 0, _byte_length);

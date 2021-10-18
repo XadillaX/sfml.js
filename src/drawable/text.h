@@ -35,6 +35,7 @@ class Text : public CommonDrawable<sf::Text> {
 
  private:
   Nan::Persistent<v8::Object> _font;
+  sf::String _string;
 };
 
 }  // namespace drawable

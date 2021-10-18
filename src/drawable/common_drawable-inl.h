@@ -191,6 +191,9 @@ GET_BOUNDS_IMPL(Local);
 GET_BOUNDS_IMPL(Global);
 
 template <class T>
+CommonDrawable<T>::CommonDrawable() : Drawable() {}
+
+template <class T>
 CommonDrawable<T>::CommonDrawable(T* raw) : Drawable(raw) {}
 
 }  // namespace drawable

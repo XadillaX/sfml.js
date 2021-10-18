@@ -51,6 +51,8 @@ void Text::SetPrototype(Local<FunctionTemplate>* _tpl) {
   Shape<sf::Text>::SetPrototype(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
+  Nan::SetPrototypeMethod(tpl, "setFont", SetFont);
+  Nan::SetPrototypeMethod(tpl, "setString", SetString);
   Nan::SetPrototypeMethod(tpl, "setCharacterSize", SetCharacterSize);
   Nan::SetPrototypeMethod(tpl, "setLineSpacing", SetLineSpacing);
   Nan::SetPrototypeMethod(tpl, "setLetterSpacing", SetLetterSpacing);
@@ -80,9 +82,8 @@ NAN_METHOD(Text::New) {
 NAN_METHOD(Text::SetString) {
   Text* text = Nan::ObjectWrap::Unwrap<Text>(info.Holder());
   sf::Text& raw = text->raw<sf::Text>();
-  sf::String str;
-  V8StringToSFString(info.GetIsolate(), info[0].As<String>(), &str);
-  raw.setString(str);
+  V8StringToSFString(info.GetIsolate(), info[0].As<String>(), &text->_string);
+  raw.setString(text->_string);
 }
 
 NAN_METHOD(Text::SetFont) {
@@ -116,10 +117,10 @@ Text::Text() : CommonDrawable<sf::Text>(new sf::Text()) {}
 Text::Text(const sf::String& string,
            Local<Object> font,
            unsigned int character_size)
-    : CommonDrawable<sf::Text>(
-          new sf::Text(string,
-                       *(Nan::ObjectWrap::Unwrap<font::Font>(font)),
-                       character_size)) {
+    : CommonDrawable<sf::Text>() {
+  _string = string;
+  _raw = new sf::Text(
+      _string, *(Nan::ObjectWrap::Unwrap<font::Font>(font)), character_size);
   _font.Reset(font);
 }
 

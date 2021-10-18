@@ -39,6 +39,7 @@ class CommonDrawable : public Drawable {
   // TODO(XadillaX): More methods.
 
  protected:
+  CommonDrawable();
   explicit CommonDrawable(T* raw);
 };
 

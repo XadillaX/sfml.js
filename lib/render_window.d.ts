@@ -17,11 +17,11 @@ declare class RenderWindow {
 declare namespace RenderWindow {
   enum Style {
     None = 0,
-    Titlebar = 1,
-    Resize = 2,
-    Close = 3,
-    Fullscreen = 4,
-    Default = 7,
+    Titlebar = 1 << 0,
+    Resize = 1 << 1,
+    Close = 1 << 2,
+    Fullscreen = 1 << 3,
+    Default = Titlebar | Resize | Close,
   }
 }
 
