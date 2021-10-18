@@ -1,14 +1,18 @@
 'use strict';
 
+const path = require('path');
+
 const {
   CircleShape,
   Clock,
   Color,
   ConvexShape,
+  Font,
   Keyboard,
   Mouse,
   RectangleShape,
   RenderWindow,
+  Text,
   VideoMode,
 } = require('../lib/sfml');
 
@@ -22,9 +26,18 @@ convex.setPoint(0, { x: 20, y: 30 });
 convex.setPoint(1, { y: 30, x: 40 });
 convex.setPoint(2, { x: 0, y: 0 });
 
+const font = new Font();
+font.loadFromFile(path.join(__dirname, 'font.ttf'));
+const text = new Text('你好', font);
+text.setPosition(200, 300);
+console.log(Text, RenderWindow);
+
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
 const clock = new Clock();
+
+console.log = () => {};
+
 function frame() {
   if (!window.isOpen()) return;
   const delta = clock.getElapsedTime();
@@ -95,9 +108,10 @@ function frame() {
   window.draw(circle);
   window.draw(rectangle);
   window.draw(convex);
+  window.draw(text);
   window.display();
 
-  setTimeout(frame, 1000 / 30);
+  setTimeout(frame, 1000 / 120);
 }
 
 frame();

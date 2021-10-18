@@ -11,11 +11,10 @@ using v8::Object;
 
 const char rectangle_shape_name[] = "ConvexShape";
 
-template <class T>
-Nan::Persistent<v8::Function> Drawable<T>::constructor;
+Nan::Persistent<v8::Function> ConvexShape::constructor;
 
 NAN_MODULE_INIT(ConvexShape::Init) {
-  Drawable<sf::Shape>::Init<ConvexShape, rectangle_shape_name>(target);
+  Shape<sf::ConvexShape>::Init<ConvexShape, rectangle_shape_name>(target);
 }
 
 void ConvexShape::SetPrototype(Local<FunctionTemplate>* _tpl) {
@@ -35,14 +34,14 @@ NAN_METHOD(ConvexShape::New) {
 
 NAN_METHOD(ConvexShape::SetPointCount) {
   ConvexShape* shape = Nan::ObjectWrap::Unwrap<ConvexShape>(info.Holder());
-  sf::ConvexShape& raw = shape->real_raw();
+  sf::ConvexShape& raw = shape->raw<sf::ConvexShape>();
   sf::Uint32 point_count = Nan::To<sf::Uint32>(info[0]).FromJust();
   raw.setPointCount(point_count);
 }
 
 NAN_METHOD(ConvexShape::SetPoint) {
   ConvexShape* shape = Nan::ObjectWrap::Unwrap<ConvexShape>(info.Holder());
-  sf::ConvexShape& raw = shape->real_raw();
+  sf::ConvexShape& raw = shape->raw<sf::ConvexShape>();
   sf::Uint32 idx = Nan::To<sf::Uint32>(info[0]).FromJust();
   Local<Object> point_object = info[1].As<Object>();
   vector2::Vector2F* point =

@@ -11,11 +11,10 @@ using v8::Object;
 
 const char rectangle_shape_name[] = "RectangleShape";
 
-template <class T>
-Nan::Persistent<v8::Function> Drawable<T>::constructor;
+Nan::Persistent<v8::Function> RectangleShape::constructor;
 
 NAN_MODULE_INIT(RectangleShape::Init) {
-  Drawable<sf::Shape>::Init<RectangleShape, rectangle_shape_name>(target);
+  Shape<sf::RectangleShape>::Init<RectangleShape, rectangle_shape_name>(target);
 }
 
 NAN_METHOD(RectangleShape::New) {

@@ -8,6 +8,8 @@ namespace drawable {
 
 class RectangleShape : public Shape<sf::RectangleShape> {
  public:
+  static Nan::Persistent<v8::Function> constructor;
+
   static NAN_MODULE_INIT(Init);
 
  public:

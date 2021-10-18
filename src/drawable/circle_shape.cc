@@ -10,11 +10,10 @@ using v8::Number;
 
 const char circle_shape_name[] = "CircleShape";
 
-template <class T>
-Nan::Persistent<v8::Function> Drawable<T>::constructor;
+Nan::Persistent<v8::Function> CircleShape::constructor;
 
 NAN_MODULE_INIT(CircleShape::Init) {
-  Drawable<sf::Shape>::Init<CircleShape, circle_shape_name>(target);
+  Shape<sf::CircleShape>::Init<CircleShape, circle_shape_name>(target);
 }
 
 void CircleShape::SetPrototype(Local<FunctionTemplate>* _tpl) {
@@ -66,7 +65,7 @@ NAN_METHOD(CircleShape::New) {
 
 NAN_METHOD(CircleShape::SetPointCount) {
   CircleShape* shape = Nan::ObjectWrap::Unwrap<CircleShape>(info.Holder());
-  sf::CircleShape& raw = shape->real_raw();
+  sf::CircleShape& raw = shape->raw<sf::CircleShape>();
   sf::Uint32 point_count = Nan::To<sf::Uint32>(info[0]).FromJust();
   raw.setPointCount(point_count);
 }

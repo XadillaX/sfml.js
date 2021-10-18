@@ -128,8 +128,8 @@ NAN_METHOD(RenderWindow::Display) {
 
 NAN_METHOD(RenderWindow::DrawDrawable) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
-  drawable::BaseDrawable* drawable =
-      Nan::ObjectWrap::Unwrap<drawable::BaseDrawable>(info[0].As<Object>());
+  drawable::Drawable* drawable =
+      Nan::ObjectWrap::Unwrap<drawable::Drawable>(info[0].As<Object>());
   window->_window->draw(drawable->raw<sf::Drawable>());
 }
 
@@ -155,9 +155,11 @@ NAN_METHOD(RenderWindow::PollEvent) {
 }
 
 RenderWindow::RenderWindow() : _window(new sf::RenderWindow()) {}
+
 RenderWindow::~RenderWindow() {
   delete _window;
 }
+
 RenderWindow::RenderWindow(sf::VideoMode mode,
                            v8::Local<v8::String> title,
                            sf::Uint32 style) {

@@ -8,6 +8,8 @@ namespace drawable {
 
 class ConvexShape : public Shape<sf::ConvexShape> {
  public:
+  static Nan::Persistent<v8::Function> constructor;
+
   static NAN_MODULE_INIT(Init);
   static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
