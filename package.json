@@ -1,12 +1,13 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.14",
+  "version": "0.0.1-preview.15",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
-    "clang-format": "clang-format --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h",
-    "preinstall": "node tools/symlinks.js"
+    "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h",
+    "preinstall": "node tools/symlinks.js",
+    "install": "node-gyp rebuild"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,12 @@
   "homepage": "https://github.com/XadillaX/node-sfml#readme",
   "dependencies": {
     "clang-format": "^1.4.0",
-    "nan": "^2.15.0"
+    "nan": "^2.15.0",
+    "node-gyp": "^8.2.0"
   },
   "devDependencies": {
     "eslint": "^8.0.0",
-    "eslint-config-egg": "^9.0.0",
-    "node-gyp": "^8.2.0"
+    "eslint-config-egg": "^9.0.0"
   },
   "files": [
     "binding.gyp",

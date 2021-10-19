@@ -117,3 +117,5 @@ third_party/sfml/platform/macOS/lib/libsfml-graphics.dylib
 third_party/sfml/platform/macOS/lib/libsfml-network.dylib
 third_party/sfml/platform/macOS/lib/libsfml-system.dylib
 third_party/sfml/platform/macOS/lib/libsfml-window.dylib
+
+package-lock.json
