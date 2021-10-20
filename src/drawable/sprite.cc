@@ -73,7 +73,7 @@ NAN_METHOD(Sprite::GetTexture) {
 NAN_METHOD(Sprite::SetTextureRect) {
   Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
   rect::IntRect* rect =
-      Nan::ObjectWrap::Unwrap<rect::IntRect>(info[1].As<Object>());
+      Nan::ObjectWrap::Unwrap<rect::IntRect>(info[0].As<Object>());
   sprite->raw<sf::Sprite>().setTextureRect(*rect);
 }
 

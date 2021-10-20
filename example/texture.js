@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-const { Texture, IntRect } = require('../lib/sfml');
+const { Sprite, Texture, IntRect } = require('../lib/sfml');
 
 (async () => {
   const texture = new Texture();
@@ -23,4 +23,8 @@ const { Texture, IntRect } = require('../lib/sfml');
   console.log(texture2.getSize());
 
   texture.updateByTexture(texture2);
+
+  const sprite = new Sprite();
+  sprite.setTexture(texture);
+  sprite.setTextureRect(new IntRect(0, 0, 10, 10));
 })();
