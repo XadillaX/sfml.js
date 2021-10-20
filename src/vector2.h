@@ -59,12 +59,7 @@ class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
 
     Nan::Set(target, name, func);
 
-    Nan::Set(
-        func,
-        Nan::New("setRealConstructor").ToLocalChecked(),
-        Nan::GetFunction(Nan::New<v8::FunctionTemplate>(SetRealConstructor))
-            .ToLocalChecked());
-
+    Nan::SetMethod(func, "setRealConstructor", SetRealConstructor);
     Nan::SetMethod(func, "subtract", Subtract<Self>);
     Nan::SetMethod(func, "add", Add<Self>);
     Nan::SetMethod(func, "multiply", Multiply<Self, T, NAN_T>);

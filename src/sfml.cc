@@ -7,6 +7,7 @@
 #include "mouse.h"
 #include "rect.h"
 #include "render_window.h"
+#include "texture.h"
 #include "time.h"
 #include "vector2.h"
 #include "video_mode.h"
@@ -26,6 +27,7 @@ void Init(v8::Local<v8::Object> target) {
   color::Color::Init(target);
   font::Font::Init(target);
   render_window::RenderWindow::Init(target);
+  texture::Texture::Init(target);
   time::Time::Init(target);
   video_mode::VideoMode::Init(target);
 

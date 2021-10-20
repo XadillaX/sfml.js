@@ -19,7 +19,7 @@ Vector2I::~Vector2I() {}
 
 const char uint_name[] = "Vector2U";
 NAN_MODULE_INIT(Vector2U::Init) {
-  Vector2<sf::Uint32, sf::Uint32, v8::Number>::Init<Vector2U, uint_name>(
+  Vector2<sf::Uint32, sf::Uint32, v8::Uint32>::Init<Vector2U, uint_name>(
       target);
 }
 

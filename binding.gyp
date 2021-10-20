@@ -85,6 +85,7 @@
       "./src/poll_event.cc",
       "./src/rect.cc",
       "./src/render_window.cc",
+      "./src/texture.cc",
       "./src/time.cc",
       "./src/vector2.cc",
       "./src/video_mode.cc",

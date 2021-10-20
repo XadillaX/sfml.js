@@ -91,6 +91,10 @@ template <typename T, typename NAN_T, class V8_T>
 v8::MaybeLocal<v8::Object> Vector2<TEMPLATE_INNER>::NewRealInstance(
     v8::Isolate* isolate, size_t argc, v8::Local<v8::Value>* argv) {
   v8::Local<v8::Function> cons = real_constructor.Get(isolate);
+  if (cons.IsEmpty()) {
+    Nan::ThrowError("`real_constructor` is not set.");
+    return v8::MaybeLocal<v8::Object>();
+  }
 
   v8::MaybeLocal<v8::Object> maybe_ret =
       cons->NewInstance(isolate->GetCurrentContext(), argc, argv);
