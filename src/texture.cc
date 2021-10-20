@@ -10,7 +10,6 @@ using v8::Function;
 using v8::FunctionTemplate;
 using v8::Local;
 using v8::MaybeLocal;
-using v8::Number;
 using v8::Object;
 using v8::String;
 using v8::Value;
@@ -36,7 +35,7 @@ class LoadFromFileWorker : public Nan::AsyncWorker {
   }
 
   virtual void Execute() {
-    _loaded = _texture->texture().loadFromFile(this->_filename);
+    _loaded = _texture->mutable_texture().loadFromFile(this->_filename);
     if (!_loaded) {
       char error[1024];
       snprintf(

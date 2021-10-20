@@ -16,7 +16,7 @@ const char text_name[] = "Text";
 Nan::Persistent<v8::Function> Text::constructor;
 
 NAN_MODULE_INIT(Text::Init) {
-  CommonDrawable<sf::Text>::Init<Text, text_name>(target);
+  CommonDrawable2<sf::Text>::Init<Text, text_name>(target);
 
   // Set Text's styles enumerations
   {
@@ -48,7 +48,7 @@ NAN_MODULE_INIT(Text::Init) {
 }
 
 void Text::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  Shape<sf::Text>::SetPrototype(_tpl);
+  CommonDrawable2<sf::Text>::SetPrototype(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setFont", SetFont);
@@ -109,15 +109,15 @@ NAN_METHOD(Text::SetColor) {
   sf::Text& raw = text->raw<sf::Text>();
   color::Color* color =
       Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
-  raw.setFillColor(*color);
+  raw.setColor(*color);
 }
 
-Text::Text() : CommonDrawable<sf::Text>(new sf::Text()) {}
+Text::Text() : CommonDrawable2<sf::Text>(new sf::Text()) {}
 
 Text::Text(const sf::String& string,
            Local<Object> font,
            unsigned int character_size)
-    : CommonDrawable<sf::Text>() {
+    : CommonDrawable2<sf::Text>() {
   _string = string;
   _raw = new sf::Text(
       _string, *(Nan::ObjectWrap::Unwrap<font::Font>(font)), character_size);

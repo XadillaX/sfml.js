@@ -11,6 +11,9 @@ class Text extends CommonDrawable {
   setLetterSpacing(letterSpacing: number): void;
   setStyle(style: Text.Style): void;
   setColor(color: number | Color): void;
+
+  setPoint: void;
+  setPointCount: void;
 }
 
 declare namespace Text {

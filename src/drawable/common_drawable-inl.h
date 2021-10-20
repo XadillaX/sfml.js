@@ -11,17 +11,8 @@ namespace node_sfml {
 namespace drawable {
 
 template <class T>
-void CommonDrawable<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
+void CommonDrawable1<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
-
-  Nan::SetPrototypeMethod(tpl, "setFillColor", SetFillColor);
-  Nan::SetPrototypeMethod(tpl, "getFillColor", GetFillColor);
-
-  Nan::SetPrototypeMethod(tpl, "setOutlineColor", SetOutlineColor);
-  Nan::SetPrototypeMethod(tpl, "getOutlineColor", GetOutlineColor);
-
-  Nan::SetPrototypeMethod(tpl, "setOutlineThickness", SetOutlineThickness);
-  Nan::SetPrototypeMethod(tpl, "getOutlineThickness", GetOutlineThickness);
 
   Nan::SetPrototypeMethod(tpl, "getLocalBounds", GetLocalBounds);
   Nan::SetPrototypeMethod(tpl, "getGlobalBounds", GetGlobalBounds);
@@ -39,71 +30,11 @@ void CommonDrawable<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
   Nan::SetPrototypeMethod(tpl, "getOrigin", GetScale);
 }
 
-template <class T>
-NAN_METHOD(CommonDrawable<T>::SetFillColor) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
-  color::Color* color =
-      Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
-  shape->raw<T>().setFillColor(*color);
-}
-
-template <class T>
-NAN_METHOD(CommonDrawable<T>::GetFillColor) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
-  const sf::Color color = shape->raw<T>().getFillColor();
-
-  v8::MaybeLocal<v8::Object> ret =
-      color::Color::NewRealColorInstance(info.GetIsolate(), color.toInteger());
-  if (ret.IsEmpty()) return;
-
-  info.GetReturnValue().Set(ret.ToLocalChecked());
-}
-
-template <class T>
-NAN_METHOD(CommonDrawable<T>::SetOutlineColor) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
-  color::Color* color =
-      Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
-  shape->raw<T>().setOutlineColor(*color);
-}
-
-template <class T>
-NAN_METHOD(CommonDrawable<T>::GetOutlineColor) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
-  const sf::Color color = shape->raw<T>().getOutlineColor();
-
-  v8::MaybeLocal<v8::Object> ret =
-      color::Color::NewRealColorInstance(info.GetIsolate(), color.toInteger());
-  if (ret.IsEmpty()) return;
-
-  info.GetReturnValue().Set(ret.ToLocalChecked());
-}
-
-template <class T>
-NAN_METHOD(CommonDrawable<T>::SetOutlineThickness) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
-  float thickness = static_cast<float>(Nan::To<double>(info[0]).FromJust());
-  shape->raw<T>().setOutlineThickness(thickness);
-}
-
-template <class T>
-NAN_METHOD(CommonDrawable<T>::GetOutlineThickness) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
-  float thickness = shape->raw<T>().getOutlineThickness();
-  info.GetReturnValue().Set(static_cast<double>(thickness));
-}
-
 #define VECTOR2F_GETTER_SETTER(name)                                           \
   template <class T>                                                           \
-  NAN_METHOD(CommonDrawable<T>::Set##name) {                                   \
-    CommonDrawable<T>* shape =                                                 \
-        Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());             \
+  NAN_METHOD(CommonDrawable1<T>::Set##name) {                                  \
+    CommonDrawable1<T>* shape =                                                \
+        Nan::ObjectWrap::Unwrap<CommonDrawable1<T>>(info.Holder());            \
                                                                                \
     switch (info.Length()) {                                                   \
       case 1: {                                                                \
@@ -124,9 +55,9 @@ NAN_METHOD(CommonDrawable<T>::GetOutlineThickness) {
   }                                                                            \
                                                                                \
   template <class T>                                                           \
-  NAN_METHOD(CommonDrawable<T>::Get##name) {                                   \
-    CommonDrawable<T>* shape =                                                 \
-        Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());             \
+  NAN_METHOD(CommonDrawable1<T>::Get##name) {                                  \
+    CommonDrawable1<T>* shape =                                                \
+        Nan::ObjectWrap::Unwrap<CommonDrawable1<T>>(info.Holder());            \
                                                                                \
     const sf::Vector2f& val = shape->raw<T>().get##name();                     \
                                                                                \
@@ -146,26 +77,26 @@ VECTOR2F_GETTER_SETTER(Scale);
 VECTOR2F_GETTER_SETTER(Origin);
 
 template <class T>
-NAN_METHOD(CommonDrawable<T>::SetRotation) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
+NAN_METHOD(CommonDrawable1<T>::SetRotation) {
+  CommonDrawable1<T>* shape =
+      Nan::ObjectWrap::Unwrap<CommonDrawable1<T>>(info.Holder());
   float rotation = static_cast<float>(Nan::To<double>(info[0]).FromJust());
   shape->raw<T>().setRotation(rotation);
 }
 
 template <class T>
-NAN_METHOD(CommonDrawable<T>::GetRotation) {
-  CommonDrawable<T>* shape =
-      Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());
+NAN_METHOD(CommonDrawable1<T>::GetRotation) {
+  CommonDrawable1<T>* shape =
+      Nan::ObjectWrap::Unwrap<CommonDrawable1<T>>(info.Holder());
   float rotation = shape->raw<T>().getRotation();
   info.GetReturnValue().Set(static_cast<double>(rotation));
 }
 
 #define GET_BOUNDS_IMPL(type)                                                  \
   template <class T>                                                           \
-  NAN_METHOD(CommonDrawable<T>::Get##type##Bounds) {                           \
-    CommonDrawable<T>* shape =                                                 \
-        Nan::ObjectWrap::Unwrap<CommonDrawable<T>>(info.Holder());             \
+  NAN_METHOD(CommonDrawable1<T>::Get##type##Bounds) {                          \
+    CommonDrawable1<T>* shape =                                                \
+        Nan::ObjectWrap::Unwrap<CommonDrawable1<T>>(info.Holder());            \
     sf::FloatRect rect = shape->raw<T>().get##type##Bounds();                  \
                                                                                \
     Nan::TryCatch try_catch;                                                   \
@@ -191,10 +122,85 @@ GET_BOUNDS_IMPL(Local);
 GET_BOUNDS_IMPL(Global);
 
 template <class T>
-CommonDrawable<T>::CommonDrawable() : Drawable() {}
+CommonDrawable1<T>::CommonDrawable1() : Drawable() {}
 
 template <class T>
-CommonDrawable<T>::CommonDrawable(T* raw) : Drawable(raw) {}
+CommonDrawable1<T>::CommonDrawable1(T* raw) : Drawable(raw) {}
+
+template <class T>
+void CommonDrawable2<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
+  CommonDrawable1<T>::SetPrototype(_tpl);
+
+  v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
+  Nan::SetPrototypeMethod(tpl, "setFillColor", SetFillColor);
+  Nan::SetPrototypeMethod(tpl, "getFillColor", GetFillColor);
+
+  Nan::SetPrototypeMethod(tpl, "setOutlineColor", SetOutlineColor);
+  Nan::SetPrototypeMethod(tpl, "getOutlineColor", GetOutlineColor);
+
+  Nan::SetPrototypeMethod(tpl, "setOutlineThickness", SetOutlineThickness);
+  Nan::SetPrototypeMethod(tpl, "getOutlineThickness", GetOutlineThickness);
+}
+
+template <class T>
+NAN_METHOD(CommonDrawable2<T>::SetFillColor) {
+  Drawable* shape = Nan::ObjectWrap::Unwrap<Drawable>(info.Holder());
+  color::Color* color =
+      Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
+  shape->raw<T>().setFillColor(*color);
+}
+
+template <class T>
+NAN_METHOD(CommonDrawable2<T>::GetFillColor) {
+  Drawable* shape = Nan::ObjectWrap::Unwrap<Drawable>(info.Holder());
+  const sf::Color color = shape->raw<T>().getFillColor();
+
+  v8::MaybeLocal<v8::Object> ret =
+      color::Color::NewRealColorInstance(info.GetIsolate(), color.toInteger());
+  if (ret.IsEmpty()) return;
+
+  info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
+template <class T>
+NAN_METHOD(CommonDrawable2<T>::SetOutlineColor) {
+  Drawable* shape = Nan::ObjectWrap::Unwrap<Drawable>(info.Holder());
+  color::Color* color =
+      Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
+  shape->raw<T>().setOutlineColor(*color);
+}
+
+template <class T>
+NAN_METHOD(CommonDrawable2<T>::GetOutlineColor) {
+  Drawable* shape = Nan::ObjectWrap::Unwrap<Drawable>(info.Holder());
+  const sf::Color color = shape->raw<T>().getOutlineColor();
+
+  v8::MaybeLocal<v8::Object> ret =
+      color::Color::NewRealColorInstance(info.GetIsolate(), color.toInteger());
+  if (ret.IsEmpty()) return;
+
+  info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
+template <class T>
+NAN_METHOD(CommonDrawable2<T>::SetOutlineThickness) {
+  Drawable* shape = Nan::ObjectWrap::Unwrap<Drawable>(info.Holder());
+  float thickness = static_cast<float>(Nan::To<double>(info[0]).FromJust());
+  shape->raw<T>().setOutlineThickness(thickness);
+}
+
+template <class T>
+NAN_METHOD(CommonDrawable2<T>::GetOutlineThickness) {
+  Drawable* shape = Nan::ObjectWrap::Unwrap<Drawable>(info.Holder());
+  float thickness = shape->raw<T>().getOutlineThickness();
+  info.GetReturnValue().Set(static_cast<double>(thickness));
+}
+
+template <class T>
+CommonDrawable2<T>::CommonDrawable2() : CommonDrawable1<T>() {}
+
+template <class T>
+CommonDrawable2<T>::CommonDrawable2(T* raw) : CommonDrawable1<T>(raw) {}
 
 }  // namespace drawable
 }  // namespace node_sfml

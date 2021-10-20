@@ -19,7 +19,8 @@ class Texture : public Nan::ObjectWrap {
   // Update family
   static NAN_METHOD(UpdateByTexture);
 
-  inline sf::Texture& texture() { return _texture; }
+  inline const sf::Texture& texture() const { return _texture; }
+  inline sf::Texture& mutable_texture() { return _texture; }
   inline void SetLoading(bool loading) { _loading = loading; }
 
  private:

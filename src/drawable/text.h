@@ -6,7 +6,7 @@
 namespace node_sfml {
 namespace drawable {
 
-class Text : public CommonDrawable<sf::Text> {
+class Text : public CommonDrawable2<sf::Text> {
  public:
   static Nan::Persistent<v8::Function> constructor;
 

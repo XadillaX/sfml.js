@@ -7,7 +7,7 @@ namespace node_sfml {
 namespace drawable {
 
 template <class T>
-class Shape : public CommonDrawable<T> {
+class Shape : public CommonDrawable2<T> {
  public:
   static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 

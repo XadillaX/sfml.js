@@ -12,7 +12,9 @@ const {
   Mouse,
   RectangleShape,
   RenderWindow,
+  Sprite,
   Text,
+  Texture,
   VideoMode,
 } = require('../lib/sfml');
 
@@ -31,6 +33,9 @@ font.loadFromFile(path.join(__dirname, 'font.ttf'));
 const text = new Text('你好', font);
 text.setPosition(200, 300);
 console.log(Text, RenderWindow);
+
+let sprite;
+const texture = new Texture();
 
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
@@ -111,9 +116,16 @@ function frame() {
   window.draw(rectangle);
   window.draw(convex);
   window.draw(text);
+  window.draw(sprite);
   window.display();
 
   setTimeout(frame, 1000 / 120);
 }
 
-frame();
+(async () => {
+  await texture.loadFromFile(path.join(__dirname, 'avatar.gif'));
+  sprite = new Sprite(texture);
+  sprite.setPosition(300, 400);
+
+  frame();
+})();

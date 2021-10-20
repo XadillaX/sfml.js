@@ -7,20 +7,11 @@ namespace node_sfml {
 namespace drawable {
 
 template <class T>
-class CommonDrawable : public Drawable {
+class CommonDrawable1 : public Drawable {
  public:
   static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
  protected:
-  static NAN_METHOD(SetFillColor);
-  static NAN_METHOD(GetFillColor);
-
-  static NAN_METHOD(SetOutlineColor);
-  static NAN_METHOD(GetOutlineColor);
-
-  static NAN_METHOD(SetOutlineThickness);
-  static NAN_METHOD(GetOutlineThickness);
-
   static NAN_METHOD(GetLocalBounds);
   static NAN_METHOD(GetGlobalBounds);
 
@@ -39,8 +30,28 @@ class CommonDrawable : public Drawable {
   // TODO(XadillaX): More methods.
 
  protected:
-  CommonDrawable();
-  explicit CommonDrawable(T* raw);
+  CommonDrawable1();
+  explicit CommonDrawable1(T* raw);
+};
+
+template <class T>
+class CommonDrawable2 : public CommonDrawable1<T> {
+ public:
+  static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
+
+ protected:
+  static NAN_METHOD(SetFillColor);
+  static NAN_METHOD(GetFillColor);
+
+  static NAN_METHOD(SetOutlineColor);
+  static NAN_METHOD(GetOutlineColor);
+
+  static NAN_METHOD(SetOutlineThickness);
+  static NAN_METHOD(GetOutlineThickness);
+
+ protected:
+  CommonDrawable2();
+  explicit CommonDrawable2(T* raw);
 };
 
 }  // namespace drawable

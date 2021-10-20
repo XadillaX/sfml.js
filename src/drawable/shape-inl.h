@@ -12,7 +12,7 @@ namespace drawable {
 
 template <class T>
 void Shape<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
-  CommonDrawable<T>::SetPrototype(_tpl);
+  CommonDrawable2<T>::SetPrototype(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
 
@@ -50,7 +50,7 @@ NAN_METHOD(Shape<T>::GetPoint) {
 }
 
 template <class T>
-Shape<T>::Shape(T* raw) : CommonDrawable<T>(raw) {}
+Shape<T>::Shape(T* raw) : CommonDrawable2<T>(raw) {}
 
 }  // namespace drawable
 }  // namespace node_sfml
