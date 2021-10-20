@@ -52,4 +52,15 @@ console.log('========================');
   console.log(vec3);
   vec3.x = -1;
   console.log(vec3);
+
+  console.log(Vector2F.subtract(vec, vec3));
+  console.log(Vector2F.add(vec, vec3));
+  console.log(Vector2F.multiply(vec, 2));
+  console.log(Vector2F.div(vec, 2));
+
+  const vec4 = new Vector2F(vec);
+  console.log(Vector2F.equals(vec4, vec));
+  console.log(Vector2F.notEquals(vec4, vec));
+  console.log(Vector2F.equals(vec4, vec3));
+  console.log(Vector2F.notEquals(vec4, vec3));
 }

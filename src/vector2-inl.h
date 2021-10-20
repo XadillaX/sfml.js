@@ -7,6 +7,84 @@
 namespace node_sfml {
 namespace vector2 {
 
+template <class T>
+NAN_METHOD(Subtract) {
+  T* left = Nan::ObjectWrap::Unwrap<T>(info[0].As<v8::Object>());
+  T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> ret =
+      T::NewRealInstance(info.GetIsolate(), *left - *right);
+  if (ret.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
+template <class T>
+NAN_METHOD(Add) {
+  T* left = Nan::ObjectWrap::Unwrap<T>(info[0].As<v8::Object>());
+  T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> ret =
+      T::NewRealInstance(info.GetIsolate(), *left + *right);
+  if (ret.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
+template <class Self, typename T, typename NAN_T>
+NAN_METHOD(Multiply) {
+  Self* left = Nan::ObjectWrap::Unwrap<Self>(info[0].As<v8::Object>());
+  T right = static_cast<T>(Nan::To<NAN_T>(info[1]).FromJust());
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> ret =
+      Self::NewRealInstance(info.GetIsolate(), *left * right);
+  if (ret.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
+template <class Self, typename T, typename NAN_T>
+NAN_METHOD(Div) {
+  Self* left = Nan::ObjectWrap::Unwrap<Self>(info[0].As<v8::Object>());
+  T right = static_cast<T>(Nan::To<NAN_T>(info[1]).FromJust());
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> ret =
+      Self::NewRealInstance(info.GetIsolate(), *left / right);
+  if (ret.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(ret.ToLocalChecked());
+}
+
+template <class T>
+NAN_METHOD(Equals) {
+  T* left = Nan::ObjectWrap::Unwrap<T>(info[0].As<v8::Object>());
+  T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
+  info.GetReturnValue().Set(*left == *right);
+}
+
+template <class T>
+NAN_METHOD(NotEquals) {
+  T* left = Nan::ObjectWrap::Unwrap<T>(info[0].As<v8::Object>());
+  T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
+  info.GetReturnValue().Set(*left != *right);
+}
+
 #define TEMPLATE_INNER T, NAN_T, V8_T
 
 template <typename T, typename NAN_T, class V8_T>
@@ -101,7 +179,7 @@ Vector2<T, NAN_T, V8_T>::Vector2(T x, T y) : sf::Vector2<T>(x, y) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Vector2<T, NAN_T, V8_T>::Vector2(const Vector2<T, NAN_T, V8_T>& vec)
-    : sf::Vector2<T>(vec) {}
+    : Nan::ObjectWrap(), sf::Vector2<T>(vec) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Vector2<T, NAN_T, V8_T>::~Vector2() {}

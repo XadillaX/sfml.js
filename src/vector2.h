@@ -11,13 +11,32 @@ namespace vector2 {
   V(X, x)                                                                      \
   V(Y, y)
 
+template <class T>
+NAN_METHOD(Subtract);
+
+template <class T>
+NAN_METHOD(Add);
+
+template <class Self, typename T, typename NAN_T>
+NAN_METHOD(Multiply);
+
+template <class Self, typename T, typename NAN_T>
+NAN_METHOD(Div);
+
+template <class T>
+NAN_METHOD(Equals);
+
+template <class T>
+NAN_METHOD(NotEquals);
+
+// TODO(XadillaX): Pure JavaScript vertion for performance.
 template <typename T, typename NAN_T, class V8_T>
 class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
  public:
   static Nan::Persistent<v8::Function> constructor;
   static Nan::Persistent<v8::Function> real_constructor;
 
-  template <const char* class_name>
+  template <class Self, const char* class_name>
   static NAN_MODULE_INIT(Init) {
     v8::Local<v8::String> name = Nan::New(class_name).ToLocalChecked();
     v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
@@ -45,6 +64,14 @@ class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
         Nan::New("setRealConstructor").ToLocalChecked(),
         Nan::GetFunction(Nan::New<v8::FunctionTemplate>(SetRealConstructor))
             .ToLocalChecked());
+
+    Nan::SetMethod(func, "subtract", Subtract<Self>);
+    Nan::SetMethod(func, "add", Add<Self>);
+    Nan::SetMethod(func, "multiply", Multiply<Self, T, NAN_T>);
+    Nan::SetMethod(func, "div", Div<Self, T, NAN_T>);
+
+    Nan::SetMethod(func, "equals", Equals<Self>);
+    Nan::SetMethod(func, "notEquals", NotEquals<Self>);
   }
 
   static v8::MaybeLocal<v8::Object> NewRealInstance(
@@ -69,7 +96,7 @@ class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
  protected:
   Vector2();
   Vector2(T x, T y);
-  Vector2(const Vector2<T, NAN_T, V8_T>& vec);
+  explicit Vector2(const Vector2<T, NAN_T, V8_T>& vec);
   virtual ~Vector2();
 };
 
