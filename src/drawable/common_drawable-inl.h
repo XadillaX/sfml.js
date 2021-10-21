@@ -29,6 +29,8 @@ inline void CommonDrawable1::SetPrototype(
 
   Nan::SetPrototypeMethod(tpl, "setOrigin", SetScale<T>);
   Nan::SetPrototypeMethod(tpl, "getOrigin", GetScale<T>);
+
+  Nan::SetPrototypeMethod(tpl, "move", Move<T>);
 }
 
 #define VECTOR2F_GETTER_SETTER(name)                                           \
@@ -91,6 +93,23 @@ inline NAN_METHOD(CommonDrawable1::GetRotation) {
       Nan::ObjectWrap::Unwrap<CommonDrawable1>(info.Holder());
   float rotation = drawable->raw<T>().getRotation();
   info.GetReturnValue().Set(static_cast<double>(rotation));
+}
+
+template <class T>
+inline NAN_METHOD(CommonDrawable1::Move) {
+  CommonDrawable1* drawable =
+      Nan::ObjectWrap::Unwrap<CommonDrawable1>(info.Holder());
+
+  if (info.Length() == 1) {
+    vector2::Vector2F* offset =
+        Nan::ObjectWrap::Unwrap<vector2::Vector2F>(info[0].As<v8::Object>());
+    drawable->raw<T>().move(offset->vector2());
+    return;
+  }
+
+  float offset_x = static_cast<float>(Nan::To<double>(info[0]).FromJust());
+  float offset_y = static_cast<float>(Nan::To<double>(info[1]).FromJust());
+  drawable->raw<T>().move(offset_x, offset_y);
 }
 
 #define GET_BOUNDS_IMPL(type)                                                  \

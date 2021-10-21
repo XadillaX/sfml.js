@@ -30,4 +30,7 @@ export = class CommonDrawable extends BaseDrawable {
   setOrigin(x: number, y: number): void;
   setOrigin(origin: PointType<Vector2F>): void;
   getOrigin(): Vector2F;
+
+  move(x: number, y: number): void;
+  move(offset: PointType<Vector2F>): void;
 }

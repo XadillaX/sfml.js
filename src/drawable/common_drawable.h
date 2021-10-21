@@ -37,6 +37,9 @@ class CommonDrawable1 : public Drawable {
   template <class T>
   inline static NAN_METHOD(GetOrigin);
 
+  template <class T>
+  inline static NAN_METHOD(Move);
+
   // TODO(XadillaX): More methods.
 
  protected:
