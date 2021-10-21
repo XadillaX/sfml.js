@@ -6,7 +6,7 @@
 namespace node_sfml {
 namespace drawable {
 
-class RectangleShape : public Shape<sf::RectangleShape> {
+class RectangleShape : public Shape {
  public:
   static Nan::Persistent<v8::Function> constructor;
 
@@ -17,6 +17,7 @@ class RectangleShape : public Shape<sf::RectangleShape> {
 
  private:
   explicit RectangleShape(const sf::Vector2f& size);
+  inline virtual ~RectangleShape() {}
 };
 
 }  // namespace drawable

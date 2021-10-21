@@ -27,12 +27,12 @@ inline bool ParseParameters(Nan::NAN_METHOD_ARGS_TYPE info,
 
 inline void V8StringToSFString(v8::Isolate* isolate,
                                v8::Local<v8::String> v8_string,
-                               sf::String* sf_string) {
+                               sf::String& sf_string) {  // NOLINT
   ResizableBuffer<char> utf8_string(v8_string->Utf8Length(isolate));
   ResizableBuffer<wchar_t> wstr(v8_string->Utf8Length(isolate));
   int wrote = v8_string->WriteUtf8(isolate, *utf8_string);
   sf::Utf<8>::toWide(*utf8_string, *utf8_string + wrote, *wstr);
-  *sf_string = sf::String(*wstr);
+  sf_string = sf::String(*wstr);
 }
 
 }  // namespace node_sfml

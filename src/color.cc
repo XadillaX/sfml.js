@@ -146,13 +146,13 @@ NAN_METHOD(Color::New) {
 
 NAN_METHOD(Color::ToInteger) {
   Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());
-  info.GetReturnValue().Set(color->toInteger());
+  info.GetReturnValue().Set(color->_color.toInteger());
 }
 
 #define V(name, lowercase)                                                     \
   NAN_METHOD(Color::name##Getter) {                                            \
     Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());              \
-    info.GetReturnValue().Set(color->lowercase);                               \
+    info.GetReturnValue().Set(color->_color.lowercase);                        \
   }                                                                            \
                                                                                \
   NAN_METHOD(Color::name##Setter) {                                            \
@@ -168,16 +168,16 @@ NAN_METHOD(Color::ToInteger) {
     }                                                                          \
                                                                                \
     Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());              \
-    color->lowercase = val;                                                    \
+    color->_color.lowercase = val;                                             \
   }
 
 RGBAProperties(V);
 #undef V
 
-Color::Color() : sf::Color() {}
-Color::Color(sf::Uint32 color) : sf::Color(color) {}
+Color::Color() : _color() {}
+Color::Color(sf::Uint32 color) : _color(color) {}
 Color::Color(sf::Uint8 red, sf::Uint8 green, sf::Uint8 blue, sf::Uint8 alpha)
-    : sf::Color(red, green, blue, alpha) {}
+    : _color(red, green, blue, alpha) {}
 Color::~Color() {}
 
 }  // namespace color

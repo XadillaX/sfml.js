@@ -29,6 +29,13 @@ NAN_MODULE_INIT(RenderWindow::Init) {
   Nan::SetPrototypeMethod(tpl, "isOpen", IsOpen);
   Nan::SetPrototypeMethod(tpl, "pollEvent", PollEvent);
 
+#define PRIMITIVE_VALUE_PROTOTYPE_METHOD(name, _)                              \
+  Nan::SetPrototypeMethod(tpl, "set" #name, Set##name);
+
+  PRIMITIVE_VALUES(PRIMITIVE_VALUE_PROTOTYPE_METHOD);
+
+#undef PRIMITIVE_VALUE_PROTOTYPE_METHOD
+
   tpl->SetClassName(name);
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
@@ -98,10 +105,10 @@ NAN_METHOD(RenderWindow::New) {
 
   if (window == nullptr) {
     if (style.IsEmpty()) {
-      window = new RenderWindow(*mode, title);
+      window = new RenderWindow(mode->mode(), title);
     } else {
-      window =
-          new RenderWindow(*mode, title, Nan::To<sf::Uint32>(style).FromJust());
+      window = new RenderWindow(
+          mode->mode(), title, Nan::To<sf::Uint32>(style).FromJust());
     }
   }
 
@@ -113,7 +120,7 @@ NAN_METHOD(RenderWindow::Clear) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
   color::Color* color =
       Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
-  window->_window->clear(*color);
+  window->_window->clear(color->color());
 }
 
 NAN_METHOD(RenderWindow::Close) {
@@ -153,6 +160,18 @@ NAN_METHOD(RenderWindow::PollEvent) {
 
   info.GetReturnValue().Set(v8_event.ToLocalChecked());
 }
+
+#define SET_PRIMITIVE_VALUE(name, type)                                        \
+  NAN_METHOD(RenderWindow::Set##name) {                                        \
+    RenderWindow* window =                                                     \
+        Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());                  \
+    type val = Nan::To<type>(info[0]).FromJust();                              \
+    window->_window->set##name(val);                                           \
+  }
+
+PRIMITIVE_VALUES(SET_PRIMITIVE_VALUE);
+
+#undef SET_PRIMITIVE_VALUE
 
 RenderWindow::RenderWindow() : _window(new sf::RenderWindow()) {}
 

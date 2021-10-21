@@ -119,7 +119,7 @@ NAN_METHOD(VideoMode::New) {
 
 NAN_METHOD(VideoMode::IsValid) {
   VideoMode* mode = Nan::ObjectWrap::Unwrap<VideoMode>(info.Holder());
-  info.GetReturnValue().Set(mode->isValid());
+  info.GetReturnValue().Set(mode->_mode.isValid());
 }
 
 NAN_METHOD(VideoMode::SetProperty) {
@@ -132,13 +132,13 @@ NAN_METHOD(VideoMode::SetProperty) {
 
   switch (idx) {
     case PropertyIndex::kWidth:
-      mode->width = val;
+      mode->_mode.width = val;
       break;
     case PropertyIndex::kHeight:
-      mode->height = val;
+      mode->_mode.height = val;
       break;
     case PropertyIndex::kBitsPerPixel:
-      mode->bitsPerPixel = val;
+      mode->_mode.bitsPerPixel = val;
       break;
     default:
       Nan::ThrowRangeError("Invalid property index.");
@@ -155,13 +155,13 @@ NAN_METHOD(VideoMode::GetProperty) {
   sf::Uint32 val = 0;
   switch (idx) {
     case PropertyIndex::kWidth:
-      val = mode->width;
+      val = mode->_mode.width;
       break;
     case PropertyIndex::kHeight:
-      val = mode->height;
+      val = mode->_mode.height;
       break;
     case PropertyIndex::kBitsPerPixel:
-      val = mode->bitsPerPixel;
+      val = mode->_mode.bitsPerPixel;
       break;
     default:
       Nan::ThrowRangeError("Invalid property index.");
@@ -171,12 +171,12 @@ NAN_METHOD(VideoMode::GetProperty) {
   info.GetReturnValue().Set(val);
 }
 
-VideoMode::VideoMode() {}
+VideoMode::VideoMode() : _mode() {}
 
 VideoMode::VideoMode(sf::Uint32 mode_width,
                      sf::Uint32 mode_height,
                      sf::Uint32 mode_bits_per_pixel)
-    : sf::VideoMode(mode_width, mode_height, mode_bits_per_pixel) {}
+    : _mode(mode_width, mode_height, mode_bits_per_pixel) {}
 
 VideoMode::~VideoMode() {}
 

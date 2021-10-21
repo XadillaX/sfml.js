@@ -14,7 +14,7 @@ NAN_METHOD(Subtract) {
 
   Nan::TryCatch try_catch;
   v8::MaybeLocal<v8::Object> ret =
-      T::NewRealInstance(info.GetIsolate(), *left - *right);
+      T::NewRealInstance(info.GetIsolate(), left->vector2() - right->vector2());
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
     return;
@@ -30,7 +30,7 @@ NAN_METHOD(Add) {
 
   Nan::TryCatch try_catch;
   v8::MaybeLocal<v8::Object> ret =
-      T::NewRealInstance(info.GetIsolate(), *left + *right);
+      T::NewRealInstance(info.GetIsolate(), left->vector2() + right->vector2());
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
     return;
@@ -46,7 +46,7 @@ NAN_METHOD(Multiply) {
 
   Nan::TryCatch try_catch;
   v8::MaybeLocal<v8::Object> ret =
-      Self::NewRealInstance(info.GetIsolate(), *left * right);
+      Self::NewRealInstance(info.GetIsolate(), left->vector2() * right);
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
     return;
@@ -62,7 +62,7 @@ NAN_METHOD(Div) {
 
   Nan::TryCatch try_catch;
   v8::MaybeLocal<v8::Object> ret =
-      Self::NewRealInstance(info.GetIsolate(), *left / right);
+      Self::NewRealInstance(info.GetIsolate(), left->vector2() / right);
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
     return;
@@ -75,14 +75,14 @@ template <class T>
 NAN_METHOD(Equals) {
   T* left = Nan::ObjectWrap::Unwrap<T>(info[0].As<v8::Object>());
   T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
-  info.GetReturnValue().Set(*left == *right);
+  info.GetReturnValue().Set(left->vector2() == right->vector2());
 }
 
 template <class T>
 NAN_METHOD(NotEquals) {
   T* left = Nan::ObjectWrap::Unwrap<T>(info[0].As<v8::Object>());
   T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
-  info.GetReturnValue().Set(*left != *right);
+  info.GetReturnValue().Set(left->vector2() != right->vector2());
 }
 
 #define TEMPLATE_INNER T, NAN_T, V8_T
@@ -111,8 +111,9 @@ v8::MaybeLocal<v8::Object> Vector2<TEMPLATE_INNER>::NewRealInstance(
   v8::Local<v8::Object> vec = maybe.ToLocalChecked();
   Vector2<TEMPLATE_INNER>* vec_wrapper =
       Nan::ObjectWrap::Unwrap<Vector2<TEMPLATE_INNER>>(vec);
-  vec_wrapper->x = src.x;
-  vec_wrapper->y = src.y;
+  sf::Vector2<T>& v = vec_wrapper->vector2();
+  v.x = src.x;
+  v.y = src.y;
 
   return vec;
 }
@@ -148,9 +149,10 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
 #define V(name, lowercase)                                                     \
   template <typename T, typename NAN_T, class V8_T>                            \
   NAN_METHOD(Vector2<TEMPLATE_INNER>::name##Getter) {                          \
-    Vector2<T, NAN_T, V8_T>* rect =                                            \
+    Vector2<T, NAN_T, V8_T>* vec =                                             \
         Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.Holder());       \
-    v8::Local<V8_T> ret = Nan::New<V8_T>(static_cast<NAN_T>(rect->lowercase)); \
+    v8::Local<V8_T> ret =                                                      \
+        Nan::New<V8_T>(static_cast<NAN_T>(vec->vector2().lowercase));          \
     info.GetReturnValue().Set(ret);                                            \
   }                                                                            \
                                                                                \
@@ -162,9 +164,9 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
     }                                                                          \
                                                                                \
     NAN_T val = maybe_value.ToLocalChecked()->Value();                         \
-    Vector2<T, NAN_T, V8_T>* rect =                                            \
+    Vector2<T, NAN_T, V8_T>* vec =                                             \
         Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.Holder());       \
-    rect->lowercase = static_cast<T>(val);                                     \
+    vec->vector2().lowercase = static_cast<T>(val);                            \
   }
 
 VECTOR2_PROPERTIES(V);
@@ -176,14 +178,14 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::SetRealConstructor) {
 }
 
 template <typename T, typename NAN_T, class V8_T>
-Vector2<T, NAN_T, V8_T>::Vector2() : sf::Vector2<T>() {}
+Vector2<T, NAN_T, V8_T>::Vector2() : Nan::ObjectWrap(), _vec() {}
 
 template <typename T, typename NAN_T, class V8_T>
-Vector2<T, NAN_T, V8_T>::Vector2(T x, T y) : sf::Vector2<T>(x, y) {}
+Vector2<T, NAN_T, V8_T>::Vector2(T x, T y) : Nan::ObjectWrap(), _vec(x, y) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Vector2<T, NAN_T, V8_T>::Vector2(const Vector2<T, NAN_T, V8_T>& vec)
-    : Nan::ObjectWrap(), sf::Vector2<T>(vec) {}
+    : Nan::ObjectWrap(), _vec(vec.vector2()) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Vector2<T, NAN_T, V8_T>::~Vector2() {}

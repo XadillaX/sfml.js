@@ -80,13 +80,13 @@ NAN_METHOD(SetPosition) {
       Nan::ObjectWrap::Unwrap<vector2::Vector2I>(info[0].As<Object>());
 
   if (info.Length() <= 1) {
-    sf::Mouse::setPosition(*pos);
+    sf::Mouse::setPosition(pos->vector2());
   } else {
     Local<Object> window_object = info[1].As<Object>();
     render_window::RenderWindow* render_window =
         Nan::ObjectWrap::Unwrap<render_window::RenderWindow>(window_object);
     sf::RenderWindow* window = render_window->window();
-    sf::Mouse::setPosition(*pos, *window);
+    sf::Mouse::setPosition(pos->vector2(), *window);
   }
 }
 

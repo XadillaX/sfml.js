@@ -1,5 +1,7 @@
 #include "sprite.h"
-#include "shape-inl.h"
+#include "../color.h"
+#include "common_drawable-inl.h"
+#include "drawable-inl.h"
 
 namespace node_sfml {
 namespace drawable {
@@ -11,15 +13,14 @@ using v8::Object;
 using v8::Value;
 
 const char sprite_name[] = "Sprite";
-
 Nan::Persistent<v8::Function> Sprite::constructor;
 
 NAN_MODULE_INIT(Sprite::Init) {
-  CommonDrawable1<sf::Sprite>::Init<Sprite, sprite_name>(target);
+  CommonDrawable1::Init<Sprite, sprite_name>(target);
 }
 
 void Sprite::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  CommonDrawable1<sf::Sprite>::SetPrototype(_tpl);
+  CommonDrawable1::SetPrototype<sf::Sprite>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setTexture", SetTexture);
@@ -74,7 +75,7 @@ NAN_METHOD(Sprite::SetTextureRect) {
   Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
   rect::IntRect* rect =
       Nan::ObjectWrap::Unwrap<rect::IntRect>(info[0].As<Object>());
-  sprite->raw<sf::Sprite>().setTextureRect(*rect);
+  sprite->raw<sf::Sprite>().setTextureRect(rect->rect());
 }
 
 NAN_METHOD(Sprite::GetTextureRect) {
@@ -95,7 +96,7 @@ NAN_METHOD(Sprite::SetColor) {
   sf::Sprite& raw = sprite->raw<sf::Sprite>();
   color::Color* color =
       Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
-  raw.setColor(*color);
+  raw.setColor(color->color());
 }
 
 NAN_METHOD(Sprite::GetColor) {
@@ -114,17 +115,17 @@ NAN_METHOD(Sprite::GetColor) {
   info.GetReturnValue().Set(ret.ToLocalChecked());
 }
 
-Sprite::Sprite() : CommonDrawable1<sf::Sprite>(new sf::Sprite()) {}
+Sprite::Sprite() : CommonDrawable1(new sf::Sprite()) {}
 
 Sprite::Sprite(Local<Object> texture_object, const texture::Texture& texture)
-    : CommonDrawable1<sf::Sprite>(new sf::Sprite(texture.texture())) {
+    : CommonDrawable1(new sf::Sprite(texture.texture())) {
   _texture.Reset(texture_object);
 }
 
 Sprite::Sprite(Local<Object> texture_object,
                const texture::Texture& texture,
                const rect::IntRect& rect)
-    : CommonDrawable1<sf::Sprite>(new sf::Sprite(texture.texture(), rect)) {
+    : CommonDrawable1(new sf::Sprite(texture.texture(), rect.rect())) {
   _texture.Reset(texture_object);
 }
 

@@ -1,7 +1,8 @@
 #include "text.h"
 #include "../font.h"
 #include "../utils-inl.h"
-#include "shape-inl.h"
+#include "common_drawable-inl.h"
+#include "drawable-inl.h"
 
 namespace node_sfml {
 namespace drawable {
@@ -12,11 +13,10 @@ using v8::Object;
 using v8::String;
 
 const char text_name[] = "Text";
-
 Nan::Persistent<v8::Function> Text::constructor;
 
 NAN_MODULE_INIT(Text::Init) {
-  CommonDrawable2<sf::Text>::Init<Text, text_name>(target);
+  CommonDrawable2::Init<Text, text_name>(target);
 
   // Set Text's styles enumerations
   {
@@ -48,7 +48,7 @@ NAN_MODULE_INIT(Text::Init) {
 }
 
 void Text::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  CommonDrawable2<sf::Text>::SetPrototype(_tpl);
+  CommonDrawable2::SetPrototype<sf::Text>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setFont", SetFont);
@@ -57,7 +57,6 @@ void Text::SetPrototype(Local<FunctionTemplate>* _tpl) {
   Nan::SetPrototypeMethod(tpl, "setLineSpacing", SetLineSpacing);
   Nan::SetPrototypeMethod(tpl, "setLetterSpacing", SetLetterSpacing);
   Nan::SetPrototypeMethod(tpl, "setStyle", SetStyle);
-  Nan::SetPrototypeMethod(tpl, "setColor", SetColor);
 }
 
 NAN_METHOD(Text::New) {
@@ -70,7 +69,7 @@ NAN_METHOD(Text::New) {
 
   sf::String sf_string;
 
-  V8StringToSFString(info.GetIsolate(), info[0].As<String>(), &sf_string);
+  V8StringToSFString(info.GetIsolate(), info[0].As<String>(), sf_string);
   Local<Object> font_object = info[1].As<Object>();
   sf::Uint32 character_size = Nan::To<sf::Uint32>(info[2]).FromJust();
 
@@ -82,8 +81,8 @@ NAN_METHOD(Text::New) {
 NAN_METHOD(Text::SetString) {
   Text* text = Nan::ObjectWrap::Unwrap<Text>(info.Holder());
   sf::Text& raw = text->raw<sf::Text>();
-  V8StringToSFString(info.GetIsolate(), info[0].As<String>(), &text->_string);
-  raw.setString(text->_string);
+  V8StringToSFString(info.GetIsolate(), info[0].As<String>(), text->_string);
+  raw.setString(text->string());
 }
 
 NAN_METHOD(Text::SetFont) {
@@ -104,23 +103,16 @@ SET_META_VALUE(SetLineSpacing, setLineSpacing, float, double);
 SET_META_VALUE(SetLetterSpacing, setLetterSpacing, float, double);
 SET_META_VALUE(SetStyle, setStyle, sf::Text::Style, sf::Uint32);
 
-NAN_METHOD(Text::SetColor) {
-  Text* text = Nan::ObjectWrap::Unwrap<Text>(info.Holder());
-  sf::Text& raw = text->raw<sf::Text>();
-  color::Color* color =
-      Nan::ObjectWrap::Unwrap<color::Color>(info[0].As<v8::Object>());
-  raw.setColor(*color);
-}
-
-Text::Text() : CommonDrawable2<sf::Text>(new sf::Text()) {}
+Text::Text() : CommonDrawable2(new sf::Text()) {}
 
 Text::Text(const sf::String& string,
            Local<Object> font,
            unsigned int character_size)
-    : CommonDrawable2<sf::Text>() {
+    : CommonDrawable2() {
   _string = string;
-  _raw = new sf::Text(
-      _string, *(Nan::ObjectWrap::Unwrap<font::Font>(font)), character_size);
+  _raw = new sf::Text(_string,
+                      Nan::ObjectWrap::Unwrap<font::Font>(font)->font(),
+                      character_size);
   _font.Reset(font);
 }
 
@@ -130,7 +122,7 @@ Text::~Text() {
 
 void Text::SetFont(Local<Object> font) {
   font::Font* font_wrap = Nan::ObjectWrap::Unwrap<font::Font>(font);
-  raw<sf::Text>().setFont(*font_wrap);
+  raw<sf::Text>().setFont(font_wrap->font());
   _font.Reset(font);
 }
 

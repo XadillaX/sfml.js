@@ -49,7 +49,7 @@ function frame() {
   console.log('dt:', delta);
   clock.restart();
 
-  text.setString(`FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
+  // text.setString(`FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
 
   let event;
   while ((event = window.pollEvent())) {
@@ -119,7 +119,7 @@ function frame() {
   window.draw(sprite);
   window.display();
 
-  setTimeout(frame, 1000 / 120);
+  setImmediate(frame);
 }
 
 (async () => {
@@ -127,5 +127,6 @@ function frame() {
   sprite = new Sprite(texture);
   sprite.setPosition(300, 400);
 
+  window.setFramerateLimit(60);
   frame();
 })();

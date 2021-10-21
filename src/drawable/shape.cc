@@ -1,18 +1,18 @@
 #ifndef SRC_DRAWABLE_SHAPE_INL_H_
 #define SRC_DRAWABLE_SHAPE_INL_H_
 
+#include "shape.h"
 #include "../color.h"
 #include "../rect-inl.h"
 #include "../vector2-inl.h"
 #include "common_drawable-inl.h"
-#include "shape.h"
+#include "drawable-inl.h"
 
 namespace node_sfml {
 namespace drawable {
 
-template <class T>
-void Shape<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
-  CommonDrawable2<T>::SetPrototype(_tpl);
+void Shape::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
+  CommonDrawable2::SetPrototype<sf::Shape>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
 
@@ -20,17 +20,15 @@ void Shape<T>::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
   Nan::SetPrototypeMethod(tpl, "getPoint", GetPoint);
 }
 
-template <class T>
-NAN_METHOD(Shape<T>::GetPointCount) {
-  drawable::Drawable* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
+NAN_METHOD(Shape::GetPointCount) {
+  Shape* shape = Nan::ObjectWrap::Unwrap<Shape>(info.Holder());
   sf::Shape& raw = shape->raw<sf::Shape>();
   sf::Uint32 point_count = raw.getPointCount();
   info.GetReturnValue().Set(point_count);
 }
 
-template <class T>
-NAN_METHOD(Shape<T>::GetPoint) {
-  drawable::Drawable* shape = Nan::ObjectWrap::Unwrap<Shape<T>>(info.Holder());
+NAN_METHOD(Shape::GetPoint) {
+  Shape* shape = Nan::ObjectWrap::Unwrap<Shape>(info.Holder());
   sf::Shape& raw = shape->raw<sf::Shape>();
   if (!info[0]->IsUint32()) {
     Nan::ThrowTypeError("`idx` should be unsigned integer.");
@@ -49,8 +47,7 @@ NAN_METHOD(Shape<T>::GetPoint) {
   info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
 }
 
-template <class T>
-Shape<T>::Shape(T* raw) : CommonDrawable2<T>(raw) {}
+Shape::Shape(sf::Shape* raw) : CommonDrawable2(raw) {}
 
 }  // namespace drawable
 }  // namespace node_sfml

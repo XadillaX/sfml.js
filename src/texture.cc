@@ -113,7 +113,7 @@ NAN_METHOD(Texture::LoadFromFile) {
   sf::IntRect area;
 
   if (!info[1]->IsUndefined()) {
-    area = *Nan::ObjectWrap::Unwrap<rect::IntRect>(info[1].As<Object>());
+    area = Nan::ObjectWrap::Unwrap<rect::IntRect>(info[1].As<Object>())->rect();
   }
 
   LoadFromFileWorker* worker =

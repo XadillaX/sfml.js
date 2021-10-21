@@ -38,7 +38,7 @@ NAN_METHOD(Clock::New) {
 
 NAN_METHOD(Clock::GetElapsedTime) {
   Clock* clock = Nan::ObjectWrap::Unwrap<Clock>(info.Holder());
-  sf::Time time = clock->getElapsedTime();
+  sf::Time time = clock->_clock.getElapsedTime();
   Nan::TryCatch try_catch;
   MaybeLocal<Object> time_wrap =
       time::Time::NewInstance(info.GetIsolate(), time);
@@ -52,10 +52,10 @@ NAN_METHOD(Clock::GetElapsedTime) {
 
 NAN_METHOD(Clock::Restart) {
   Clock* clock = Nan::ObjectWrap::Unwrap<Clock>(info.Holder());
-  clock->restart();
+  clock->_clock.restart();
 }
 
-Clock::Clock() {}
+Clock::Clock() : _clock() {}
 Clock::~Clock() {}
 
 }  // namespace clock

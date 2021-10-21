@@ -7,7 +7,7 @@
 namespace node_sfml {
 namespace clock {
 
-class Clock : public Nan::ObjectWrap, sf::Clock {
+class Clock : public Nan::ObjectWrap {
  public:
   static NAN_MODULE_INIT(Init);
 
@@ -19,6 +19,9 @@ class Clock : public Nan::ObjectWrap, sf::Clock {
  private:
   Clock();
   ~Clock();
+
+ private:
+  sf::Clock _clock;
 };
 
 }  // namespace clock

@@ -1,4 +1,3 @@
-import * as Color from '../color';
 import * as CommonDrawable from './common_drawable';
 import * as Font from '../font';
 
@@ -10,7 +9,6 @@ class Text extends CommonDrawable {
   setLineSpacing(lineSpacing: number): void;
   setLetterSpacing(letterSpacing: number): void;
   setStyle(style: Text.Style): void;
-  setColor(color: number | Color): void;
 
   setPoint: void;
   setPointCount: void;

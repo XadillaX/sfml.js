@@ -16,10 +16,13 @@ namespace rect {
   V(Height, height)
 
 template <typename T, typename NAN_T, class V8_T>
-class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
+class Rect : public Nan::ObjectWrap {
  public:
   static Nan::Persistent<v8::Function> constructor;
   static Nan::Persistent<v8::Function> real_constructor;
+
+  inline const sf::Rect<T>& rect() const { return _rect; }
+  inline sf::Rect<T>& rect() { return _rect; }
 
   template <const char* class_name>
   static NAN_MODULE_INIT(Init) {
@@ -46,12 +49,7 @@ class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
     constructor.Reset(func);
 
     Nan::Set(target, name, func);
-
-    Nan::Set(
-        func,
-        Nan::New("setRealConstructor").ToLocalChecked(),
-        Nan::GetFunction(Nan::New<v8::FunctionTemplate>(SetRealConstructor))
-            .ToLocalChecked());
+    Nan::SetMethod(func, "setRealConstructor", SetRealConstructor);
   }
 
   static v8::MaybeLocal<v8::Object> NewRealInstance(
@@ -79,6 +77,9 @@ class Rect : public Nan::ObjectWrap, public sf::Rect<T> {
   Rect(const vector2::Vector2<T, NAN_T, V8_T>& pos,
        const vector2::Vector2<T, NAN_T, V8_T>& size);
   virtual ~Rect();
+
+ protected:
+  sf::Rect<T> _rect;
 };
 
 class IntRect : public Rect<int, int, v8::Int32> {

@@ -6,7 +6,7 @@
 namespace node_sfml {
 namespace drawable {
 
-class ConvexShape : public Shape<sf::ConvexShape> {
+class ConvexShape : public Shape {
  public:
   static Nan::Persistent<v8::Function> constructor;
 
@@ -20,6 +20,7 @@ class ConvexShape : public Shape<sf::ConvexShape> {
 
  private:
   explicit ConvexShape(std::size_t point_count);
+  inline virtual ~ConvexShape() {}
 };
 
 }  // namespace drawable

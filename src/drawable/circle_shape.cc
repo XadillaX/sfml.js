@@ -1,5 +1,6 @@
 #include "circle_shape.h"
-#include "shape-inl.h"
+#include "common_drawable-inl.h"
+#include "drawable-inl.h"
 
 namespace node_sfml {
 namespace drawable {
@@ -8,18 +9,17 @@ using v8::FunctionTemplate;
 using v8::Local;
 using v8::Number;
 
+Nan::Persistent<v8::Function> CircleShape::constructor;
 const char circle_shape_name[] = "CircleShape";
 
-Nan::Persistent<v8::Function> CircleShape::constructor;
-
 NAN_MODULE_INIT(CircleShape::Init) {
-  Shape<sf::CircleShape>::Init<CircleShape, circle_shape_name>(target);
+  Shape::Init<CircleShape, circle_shape_name>(target);
 }
 
 void CircleShape::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  Shape<sf::CircleShape>::SetPrototype(_tpl);
+  Shape::SetPrototype(_tpl);
 
-  v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
+  v8::Local<FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setPointCount", SetPointCount);
 }
 
@@ -71,7 +71,7 @@ NAN_METHOD(CircleShape::SetPointCount) {
 }
 
 CircleShape::CircleShape(float radius, size_t point_count)
-    : Shape<sf::CircleShape>(new sf::CircleShape(radius, point_count)) {}
+    : Shape(new sf::CircleShape(radius, point_count)) {}
 
 }  // namespace drawable
 }  // namespace node_sfml

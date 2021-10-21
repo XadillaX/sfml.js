@@ -31,8 +31,11 @@ NAN_METHOD(NotEquals);
 
 // TODO(XadillaX): Pure JavaScript vertion for performance.
 template <typename T, typename NAN_T, class V8_T>
-class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
+class Vector2 : public Nan::ObjectWrap {
  public:
+  inline const sf::Vector2<T>& vector2() const { return _vec; }
+  inline sf::Vector2<T>& vector2() { return _vec; }
+
   static Nan::Persistent<v8::Function> constructor;
   static Nan::Persistent<v8::Function> real_constructor;
 
@@ -93,6 +96,9 @@ class Vector2 : public Nan::ObjectWrap, public sf::Vector2<T> {
   Vector2(T x, T y);
   explicit Vector2(const Vector2<T, NAN_T, V8_T>& vec);
   virtual ~Vector2();
+
+ protected:
+  sf::Vector2<T> _vec;
 };
 
 class Vector2I : public Vector2<int, int, v8::Int32> {

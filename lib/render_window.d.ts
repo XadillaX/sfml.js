@@ -12,6 +12,14 @@ declare class RenderWindow {
   isOpen(): boolean;
 
   pollEvent(): Event;
+
+  setVisible(visible: boolean): void;
+  setVerticalSyncEnabled(enabled: boolean): void;
+  setMouseCursorVisible(visible: boolean): void;
+  setMouseCursorGrabbed(grabbed: boolean): void;
+  setKeyRepeatEnabled(enabled: boolean): void;
+  setFramerateLimit(limit: number): void;
+  setActive(active?: boolean = true): void;
 }
 
 declare namespace RenderWindow {

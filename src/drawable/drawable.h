@@ -9,33 +9,12 @@ namespace drawable {
 
 class Drawable : public Nan::ObjectWrap {
  public:
-  static Nan::Persistent<v8::Function> constructor;
-
   template <class Self, const char* class_name>
-  static NAN_MODULE_INIT(Init) {
-    v8::Local<v8::String> name = Nan::New(class_name).ToLocalChecked();
-    v8::Local<v8::FunctionTemplate> tpl =
-        Nan::New<v8::FunctionTemplate>(Self::New);
+  inline static NAN_MODULE_INIT(Init);
 
-    Self::SetPrototype(&tpl);
-
-    tpl->SetClassName(name);
-    tpl->InstanceTemplate()->SetInternalFieldCount(1);
-
-    v8::Local<v8::Function> func = Nan::GetFunction(tpl).ToLocalChecked();
-    Self::constructor.Reset(func);
-
-    Nan::Set(target, name, func);
-  }
-
-  Drawable() : _raw(nullptr) {}
-  explicit Drawable(sf::Drawable* raw) : _raw(raw) {}
-  ~Drawable() {
-    if (_raw != nullptr) {
-      delete _raw;
-      _raw = nullptr;
-    }
-  }
+  Drawable();
+  explicit Drawable(sf::Drawable* raw);
+  virtual ~Drawable();
 
   template <class TT>
   inline TT& raw() {

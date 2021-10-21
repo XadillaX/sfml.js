@@ -7,9 +7,11 @@
 namespace node_sfml {
 namespace font {
 
-class Font : public Nan::ObjectWrap, public sf::Font {
+class Font : public Nan::ObjectWrap {
  public:
   static NAN_MODULE_INIT(Init);
+
+  inline const sf::Font& font() const { return *_font; }
 
  private:
   static NAN_METHOD(New);
@@ -25,6 +27,9 @@ class Font : public Nan::ObjectWrap, public sf::Font {
   Font();
   explicit Font(const sf::Font& copy);
   virtual ~Font();
+
+ private:
+  sf::Font* _font;
 };
 
 }  // namespace font

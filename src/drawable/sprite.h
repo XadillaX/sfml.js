@@ -8,7 +8,7 @@
 namespace node_sfml {
 namespace drawable {
 
-class Sprite : public CommonDrawable1<sf::Sprite> {
+class Sprite : public CommonDrawable1 {
  public:
   static Nan::Persistent<v8::Function> constructor;
 

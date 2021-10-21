@@ -64,11 +64,11 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Contains) {
     vector2::Vector2<T, NAN_T, V8_T>* point =
         Nan::ObjectWrap::Unwrap<vector2::Vector2<T, NAN_T, V8_T>>(
             info[0].As<v8::Object>());
-    info.GetReturnValue().Set(rect->contains(*point));
+    info.GetReturnValue().Set(rect->_rect.contains(point->vector2()));
   } else {
     T val[2];
     if (!ParseParameters<T, NAN_T, V8_T>(info, 2, val)) return;
-    info.GetReturnValue().Set(rect->contains(val[0], val[1]));
+    info.GetReturnValue().Set(rect->_rect.contains(val[0], val[1]));
   }
 }
 
@@ -88,7 +88,7 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
   Rect<T, NAN_T, V8_T>* ret_rect =
       Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(ret);
 
-  bool succ = rect->intersects(*another, *ret_rect);
+  bool succ = rect->_rect.intersects(another->_rect, ret_rect->_rect);
   if (succ) {
     info.GetReturnValue().Set(ret);
   } else {
@@ -101,7 +101,8 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
   NAN_METHOD(Rect<TEMPLATE_INNER>::name##Getter) {                             \
     Rect<T, NAN_T, V8_T>* rect =                                               \
         Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.Holder());          \
-    v8::Local<V8_T> ret = Nan::New<V8_T>(static_cast<NAN_T>(rect->lowercase)); \
+    v8::Local<V8_T> ret =                                                      \
+        Nan::New<V8_T>(static_cast<NAN_T>(rect->_rect.lowercase));             \
     info.GetReturnValue().Set(ret);                                            \
   }                                                                            \
                                                                                \
@@ -115,7 +116,7 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
     NAN_T val = maybe_value.ToLocalChecked()->Value();                         \
     Rect<T, NAN_T, V8_T>* rect =                                               \
         Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.Holder());          \
-    rect->lowercase = static_cast<T>(val);                                     \
+    rect->_rect.lowercase = static_cast<T>(val);                               \
   }
 
 RECT_PROPERTIES(V);
@@ -127,16 +128,16 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::SetRealConstructor) {
 }
 
 template <typename T, typename NAN_T, class V8_T>
-Rect<T, NAN_T, V8_T>::Rect() : sf::Rect<T>() {}
+Rect<T, NAN_T, V8_T>::Rect() : _rect() {}
 
 template <typename T, typename NAN_T, class V8_T>
 Rect<T, NAN_T, V8_T>::Rect(T rect_left, T rect_top, T rect_width, T rect_height)
-    : sf::Rect<T>(rect_left, rect_top, rect_width, rect_height) {}
+    : _rect(rect_left, rect_top, rect_width, rect_height) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Rect<T, NAN_T, V8_T>::Rect(const vector2::Vector2<T, NAN_T, V8_T>& pos,
                            const vector2::Vector2<T, NAN_T, V8_T>& size)
-    : sf::Rect<T>(pos, size) {}
+    : _rect(pos.vector2(), size.vector2()) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Rect<T, NAN_T, V8_T>::~Rect() {}

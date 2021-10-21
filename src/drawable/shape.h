@@ -6,8 +6,7 @@
 namespace node_sfml {
 namespace drawable {
 
-template <class T>
-class Shape : public CommonDrawable2<T> {
+class Shape : public CommonDrawable2 {
  public:
   static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
@@ -18,7 +17,8 @@ class Shape : public CommonDrawable2<T> {
   // TODO(XadillaX): More methods.
 
  protected:
-  explicit Shape(T* raw);
+  explicit Shape(sf::Shape* raw);
+  inline virtual ~Shape() {}
 };
 
 }  // namespace drawable

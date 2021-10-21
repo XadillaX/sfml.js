@@ -23,6 +23,22 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_METHOD(IsOpen);
   static NAN_METHOD(PollEvent);
 
+#define PRIMITIVE_VALUES(V)                                                    \
+  V(Visible, bool)                                                             \
+  V(VerticalSyncEnabled, bool)                                                 \
+  V(MouseCursorVisible, bool)                                                  \
+  V(MouseCursorGrabbed, bool)                                                  \
+  V(KeyRepeatEnabled, bool)                                                    \
+  V(FramerateLimit, sf::Uint32)                                                \
+  V(Active, bool)
+
+#define DECLARE_PRIMITIVE_VALUE_NAN_METHOD(name, _)                            \
+  static NAN_METHOD(Set##name);
+
+  PRIMITIVE_VALUES(DECLARE_PRIMITIVE_VALUE_NAN_METHOD);
+
+#undef DECLARE_PRIMITIVE_VALUE_NAN_METHOD
+
  private:
   RenderWindow();
   ~RenderWindow();

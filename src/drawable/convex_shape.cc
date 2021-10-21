@@ -1,6 +1,7 @@
 #include "convex_shape.h"
 #include "../vector2.h"
-#include "shape-inl.h"
+#include "common_drawable-inl.h"
+#include "drawable-inl.h"
 
 namespace node_sfml {
 namespace drawable {
@@ -10,15 +11,14 @@ using v8::Local;
 using v8::Object;
 
 const char rectangle_shape_name[] = "ConvexShape";
-
 Nan::Persistent<v8::Function> ConvexShape::constructor;
 
 NAN_MODULE_INIT(ConvexShape::Init) {
-  Shape<sf::ConvexShape>::Init<ConvexShape, rectangle_shape_name>(target);
+  Shape::Init<ConvexShape, rectangle_shape_name>(target);
 }
 
 void ConvexShape::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  Shape<sf::ConvexShape>::SetPrototype(_tpl);
+  Shape::SetPrototype(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setPointCount", SetPointCount);
@@ -46,11 +46,11 @@ NAN_METHOD(ConvexShape::SetPoint) {
   Local<Object> point_object = info[1].As<Object>();
   vector2::Vector2F* point =
       Nan::ObjectWrap::Unwrap<vector2::Vector2F>(point_object);
-  raw.setPoint(idx, *point);
+  raw.setPoint(idx, point->vector2());
 }
 
 ConvexShape::ConvexShape(std::size_t point_count)
-    : Shape<sf::ConvexShape>(new sf::ConvexShape(point_count)) {}
+    : Shape(new sf::ConvexShape(point_count)) {}
 
 }  // namespace drawable
 }  // namespace node_sfml

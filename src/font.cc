@@ -47,12 +47,12 @@ NAN_METHOD(Font::LoadFromFile) {
   Nan::Utf8String filename(info[0].As<String>());
 
   // TODO(XadillaX): asyncify.
-  info.GetReturnValue().Set(font->loadFromFile(*filename));
+  info.GetReturnValue().Set(font->_font->loadFromFile(*filename));
 }
 
 NAN_METHOD(Font::GetInfo) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
-  sf::Font::Info font_info = font->getInfo();
+  sf::Font::Info font_info = font->_font->getInfo();
 
   Local<Object> ret = Nan::New<Object>();
   Nan::Set(ret,
@@ -69,8 +69,8 @@ NAN_METHOD(Font::GetGlyph) {
   float outline_thickness =
       static_cast<float>(Nan::To<double>(info[3]).FromJust());
 
-  sf::Glyph glyph =
-      font->getGlyph(code_point, character_size, bold, outline_thickness);
+  sf::Glyph glyph = font->_font->getGlyph(
+      code_point, character_size, bold, outline_thickness);
 
   Local<Object> ret = Nan::New<Object>();
   Nan::Set(ret,
@@ -87,10 +87,11 @@ NAN_METHOD(Font::GetGlyph) {
   Local<Object> float_rect_object = maybe_float_rect_object.ToLocalChecked();
   rect::FloatRect* float_rect =
       Nan::ObjectWrap::Unwrap<rect::FloatRect>(float_rect_object);
-  float_rect->top = glyph.bounds.top;
-  float_rect->left = glyph.bounds.left;
-  float_rect->width = glyph.bounds.width;
-  float_rect->height = glyph.bounds.height;
+  sf::FloatRect& float_rect_inner = float_rect->rect();
+  float_rect_inner.top = glyph.bounds.top;
+  float_rect_inner.left = glyph.bounds.left;
+  float_rect_inner.width = glyph.bounds.width;
+  float_rect_inner.height = glyph.bounds.height;
   Nan::Set(ret, Nan::New<String>("bounds").ToLocalChecked(), float_rect_object);
 
   MaybeLocal<Object> maybe_int_rect_object =
@@ -102,10 +103,11 @@ NAN_METHOD(Font::GetGlyph) {
   Local<Object> int_rect_object = maybe_int_rect_object.ToLocalChecked();
   rect::IntRect* int_rect =
       Nan::ObjectWrap::Unwrap<rect::IntRect>(int_rect_object);
-  int_rect->top = glyph.textureRect.top;
-  int_rect->left = glyph.textureRect.left;
-  int_rect->width = glyph.textureRect.width;
-  int_rect->height = glyph.textureRect.height;
+  sf::IntRect& int_rect_inner = int_rect->rect();
+  int_rect_inner.top = glyph.textureRect.top;
+  int_rect_inner.left = glyph.textureRect.left;
+  int_rect_inner.width = glyph.textureRect.width;
+  int_rect_inner.height = glyph.textureRect.height;
   Nan::Set(
       ret, Nan::New<String>("textureRect").ToLocalChecked(), int_rect_object);
 
@@ -118,7 +120,7 @@ NAN_METHOD(Font::GetKerning) {
   sf::Uint32 second = Nan::To<sf::Uint32>(info[1]).FromJust();
   sf::Uint32 character_size = Nan::To<sf::Uint32>(info[2]).FromJust();
 
-  float kerning = font->getKerning(first, second, character_size);
+  float kerning = font->_font->getKerning(first, second, character_size);
   info.GetReturnValue().Set(static_cast<double>(kerning));
 }
 
@@ -126,7 +128,7 @@ NAN_METHOD(Font::GetLineSpacing) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
   sf::Uint32 character_size = Nan::To<sf::Uint32>(info[0]).FromJust();
 
-  float line_spacing = font->getLineSpacing(character_size);
+  float line_spacing = font->_font->getLineSpacing(character_size);
   info.GetReturnValue().Set(static_cast<double>(line_spacing));
 }
 
@@ -134,7 +136,7 @@ NAN_METHOD(Font::GetUnderlinePosition) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
   sf::Uint32 character_size = Nan::To<sf::Uint32>(info[0]).FromJust();
 
-  float underline_position = font->getUnderlinePosition(character_size);
+  float underline_position = font->_font->getUnderlinePosition(character_size);
   info.GetReturnValue().Set(static_cast<double>(underline_position));
 }
 
@@ -142,13 +144,19 @@ NAN_METHOD(Font::GetUnderlineThickness) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
   sf::Uint32 character_size = Nan::To<sf::Uint32>(info[0]).FromJust();
 
-  float underline_thickness = font->getUnderlinePosition(character_size);
+  float underline_thickness = font->_font->getUnderlinePosition(character_size);
   info.GetReturnValue().Set(static_cast<double>(underline_thickness));
 }
 
-Font::Font() {}
-Font::Font(const sf::Font& copy) : sf::Font(copy) {}
-Font::~Font() {}
+Font::Font() : _font(new sf::Font()) {}
+Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)) {}
+
+Font::~Font() {
+  if (_font != nullptr) {
+    delete _font;
+    _font = nullptr;
+  }
+}
 
 }  // namespace font
 }  // namespace node_sfml

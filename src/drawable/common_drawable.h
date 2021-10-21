@@ -6,52 +6,70 @@
 namespace node_sfml {
 namespace drawable {
 
-template <class T>
 class CommonDrawable1 : public Drawable {
  public:
-  static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
+  template <class T>
+  inline static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
  protected:
-  static NAN_METHOD(GetLocalBounds);
-  static NAN_METHOD(GetGlobalBounds);
+  template <class T>
+  inline static NAN_METHOD(GetLocalBounds);
+  template <class T>
+  inline static NAN_METHOD(GetGlobalBounds);
 
-  static NAN_METHOD(SetPosition);
-  static NAN_METHOD(GetPosition);
+  template <class T>
+  inline static NAN_METHOD(SetPosition);
+  template <class T>
+  inline static NAN_METHOD(GetPosition);
 
-  static NAN_METHOD(SetRotation);
-  static NAN_METHOD(GetRotation);
+  template <class T>
+  inline static NAN_METHOD(SetRotation);
+  template <class T>
+  inline static NAN_METHOD(GetRotation);
 
-  static NAN_METHOD(SetScale);
-  static NAN_METHOD(GetScale);
+  template <class T>
+  inline static NAN_METHOD(SetScale);
+  template <class T>
+  inline static NAN_METHOD(GetScale);
 
-  static NAN_METHOD(SetOrigin);
-  static NAN_METHOD(GetOrigin);
+  template <class T>
+  inline static NAN_METHOD(SetOrigin);
+  template <class T>
+  inline static NAN_METHOD(GetOrigin);
 
   // TODO(XadillaX): More methods.
 
  protected:
   CommonDrawable1();
-  explicit CommonDrawable1(T* raw);
+  explicit CommonDrawable1(sf::Drawable* raw);
+  inline virtual ~CommonDrawable1() {}
 };
 
-template <class T>
-class CommonDrawable2 : public CommonDrawable1<T> {
+class CommonDrawable2 : public CommonDrawable1 {
  public:
-  static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
+  template <class T>
+  inline static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
  protected:
-  static NAN_METHOD(SetFillColor);
-  static NAN_METHOD(GetFillColor);
+  template <class T>
+  inline static NAN_METHOD(SetFillColor);
+  template <class T>
+  inline static NAN_METHOD(GetFillColor);
 
-  static NAN_METHOD(SetOutlineColor);
-  static NAN_METHOD(GetOutlineColor);
+  template <class T>
+  inline static NAN_METHOD(SetOutlineColor);
+  template <class T>
+  inline static NAN_METHOD(GetOutlineColor);
 
-  static NAN_METHOD(SetOutlineThickness);
-  static NAN_METHOD(GetOutlineThickness);
+  template <class T>
+  inline static NAN_METHOD(SetOutlineThickness);
+  template <class T>
+  inline static NAN_METHOD(GetOutlineThickness);
 
  protected:
   CommonDrawable2();
-  explicit CommonDrawable2(T* raw);
+  explicit CommonDrawable2(sf::Drawable* raw);
+  inline virtual ~CommonDrawable2() {}
 };
 
 }  // namespace drawable

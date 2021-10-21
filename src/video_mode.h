@@ -7,9 +7,12 @@
 namespace node_sfml {
 namespace video_mode {
 
-class VideoMode : public Nan::ObjectWrap, public sf::VideoMode {
+class VideoMode : public Nan::ObjectWrap {
  public:
   static NAN_MODULE_INIT(Init);
+
+  inline const sf::VideoMode& mode() const { return _mode; }
+  inline sf::VideoMode& mode() { return _mode; }
 
  private:
   static NAN_METHOD(New);
@@ -23,6 +26,9 @@ class VideoMode : public Nan::ObjectWrap, public sf::VideoMode {
             sf::Uint32 mode_height,
             sf::Uint32 mode_bits_per_pixel = 32);
   ~VideoMode();
+
+ private:
+  sf::VideoMode _mode;
 };
 
 }  // namespace video_mode

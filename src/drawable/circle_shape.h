@@ -6,7 +6,7 @@
 namespace node_sfml {
 namespace drawable {
 
-class CircleShape : public Shape<sf::CircleShape> {
+class CircleShape : public Shape {
  public:
   static Nan::Persistent<v8::Function> constructor;
 
@@ -19,6 +19,7 @@ class CircleShape : public Shape<sf::CircleShape> {
 
  private:
   explicit CircleShape(float radius = 0, size_t point_count = 30);
+  virtual inline ~CircleShape() {}
 };
 
 }  // namespace drawable
