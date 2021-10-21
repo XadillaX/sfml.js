@@ -1,6 +1,7 @@
 #ifndef SRC_RESIZABLE_BUFFER_H_
 #define SRC_RESIZABLE_BUFFER_H_
 
+#include <stdio.h>
 #include <unistd.h>
 
 namespace node_sfml {

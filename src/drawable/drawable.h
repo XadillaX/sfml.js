@@ -26,7 +26,7 @@ class Drawable : public Nan::ObjectWrap {
   // TODO(XadillaX): `virtual void draw(...)`, etc.
 
  protected:
-  sf::Drawable* _raw = nullptr;
+  sf::Drawable* _raw;
 };
 
 }  // namespace drawable

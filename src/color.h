@@ -19,7 +19,7 @@ class Color : public Nan::ObjectWrap {
   static v8::MaybeLocal<v8::Object> NewRealColorInstance(v8::Isolate* isolate,
                                                          sf::Uint32 val);
 
-  inline const sf::Color& color() const { return _color; }
+  inline const sf::Color& color() const { return *_color; }
 
  private:
   static NAN_METHOD(New);
@@ -36,10 +36,10 @@ class Color : public Nan::ObjectWrap {
   Color();
   explicit Color(sf::Uint32 color);
   Color(sf::Uint8 red, sf::Uint8 green, sf::Uint8 blue, sf::Uint8 alpha = 255);
-  ~Color();
+  virtual ~Color();
 
  private:
-  sf::Color _color;
+  sf::Color* _color;
 };
 
 }  // namespace color

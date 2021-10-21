@@ -49,7 +49,7 @@ function frame() {
   console.log('dt:', delta);
   clock.restart();
 
-  // text.setString(`FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
+  text.setString(`FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
 
   let event;
   while ((event = window.pollEvent())) {

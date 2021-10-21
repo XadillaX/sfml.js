@@ -146,13 +146,13 @@ NAN_METHOD(Color::New) {
 
 NAN_METHOD(Color::ToInteger) {
   Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());
-  info.GetReturnValue().Set(color->_color.toInteger());
+  info.GetReturnValue().Set(color->_color->toInteger());
 }
 
 #define V(name, lowercase)                                                     \
   NAN_METHOD(Color::name##Getter) {                                            \
     Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());              \
-    info.GetReturnValue().Set(color->_color.lowercase);                        \
+    info.GetReturnValue().Set(color->_color->lowercase);                       \
   }                                                                            \
                                                                                \
   NAN_METHOD(Color::name##Setter) {                                            \
@@ -168,17 +168,24 @@ NAN_METHOD(Color::ToInteger) {
     }                                                                          \
                                                                                \
     Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());              \
-    color->_color.lowercase = val;                                             \
+    color->_color->lowercase = val;                                            \
   }
 
 RGBAProperties(V);
 #undef V
 
-Color::Color() : _color() {}
-Color::Color(sf::Uint32 color) : _color(color) {}
+Color::Color() : _color(new sf::Color()) {}
+Color::Color(sf::Uint32 color) : _color(new sf::Color(color)) {}
+
 Color::Color(sf::Uint8 red, sf::Uint8 green, sf::Uint8 blue, sf::Uint8 alpha)
-    : _color(red, green, blue, alpha) {}
-Color::~Color() {}
+    : _color(new sf::Color(red, green, blue, alpha)) {}
+
+Color::~Color() {
+  if (_color != nullptr) {
+    delete _color;
+    _color = nullptr;
+  }
+}
 
 }  // namespace color
 }  // namespace node_sfml
