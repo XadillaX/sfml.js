@@ -1,6 +1,6 @@
 import { _Time } from './time';
 
-class Clock {
+declare class Clock {
   constructor();
 
   getElapsedTime(): _Time;

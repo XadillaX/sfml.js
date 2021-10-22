@@ -2,22 +2,25 @@
 #define SRC_DRAWABLE_SHAPE_INL_H_
 
 #include "shape.h"
-#include "../color.h"
-#include "../rect-inl.h"
-#include "../vector2-inl.h"
-#include "common_drawable-inl.h"
-#include "drawable-inl.h"
+#include "../plugins/transformable_plugin-inl.h"
+#include "package_plugin-inl.h"
 
 namespace node_sfml {
 namespace drawable {
 
-void Shape::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
-  CommonDrawable2::SetPrototype<sf::Shape>(_tpl);
+using v8::Local;
+using v8::Object;
 
+void Shape::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
 
   Nan::SetPrototypeMethod(tpl, "getPointCount", GetPointCount);
   Nan::SetPrototypeMethod(tpl, "getPoint", GetPoint);
+
+  transformable::SetPrototype<Shape>(_tpl);
+  pacekage_plugin_bounds::SetPrototype<sf::Shape>(_tpl);
+  pacekage_plugin_color_and_thickness::SetPrototype<sf::Shape>(_tpl);
+  pacekage_plugin_texture::SetPrototype<Shape, sf::Shape>(_tpl);
 }
 
 NAN_METHOD(Shape::GetPointCount) {
@@ -47,7 +50,14 @@ NAN_METHOD(Shape::GetPoint) {
   info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
 }
 
-Shape::Shape(sf::Shape* raw) : CommonDrawable2(raw) {}
+Shape::Shape(sf::Shape* raw) : DrawableWithTexture(raw) {}
+
+void Shape::SetTexture(Local<Object> texture_object, bool reset_rect) {
+  texture::Texture* texture =
+      Nan::ObjectWrap::Unwrap<texture::Texture>(texture_object);
+  raw<sf::Shape>().setTexture(&texture->texture());
+  DrawableWithTexture::SetTexture(texture_object);
+}
 
 }  // namespace drawable
 }  // namespace node_sfml

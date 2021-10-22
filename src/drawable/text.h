@@ -1,12 +1,12 @@
 #ifndef SRC_DRAWABLE_TEXT_H_
 #define SRC_DRAWABLE_TEXT_H_
 
-#include "common_drawable.h"
+#include "drawable.h"
 
 namespace node_sfml {
 namespace drawable {
 
-class Text : public CommonDrawable2 {
+class Text : public Drawable {
  public:
   static Nan::Persistent<v8::Function> constructor;
 
@@ -14,6 +14,12 @@ class Text : public CommonDrawable2 {
   static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
   inline const sf::String& string() const { return _string; }
+
+  const sf::Text& transformable() const {
+    return *reinterpret_cast<sf::Text*>(_raw);
+  }
+
+  sf::Text& transformable() { return *reinterpret_cast<sf::Text*>(_raw); }
 
  public:
   static NAN_METHOD(New);

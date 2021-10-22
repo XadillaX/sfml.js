@@ -1,5 +1,4 @@
 #include "circle_shape.h"
-#include "common_drawable-inl.h"
 #include "drawable-inl.h"
 
 namespace node_sfml {

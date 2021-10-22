@@ -3,26 +3,30 @@
 
 #include "../rect.h"
 #include "../texture.h"
-#include "common_drawable.h"
+#include "drawable.h"
 
 namespace node_sfml {
 namespace drawable {
 
-class Sprite : public CommonDrawable1 {
+class Sprite : public DrawableWithTexture {
  public:
   static Nan::Persistent<v8::Function> constructor;
 
   static NAN_MODULE_INIT(Init);
   static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
+  const sf::Sprite& transformable() const {
+    return *reinterpret_cast<sf::Sprite*>(_raw);
+  }
+
+  sf::Sprite& transformable() { return *reinterpret_cast<sf::Sprite*>(_raw); }
+
+  virtual void SetTexture(v8::Local<v8::Object> texture_object,
+                          bool reset_rect = false);
+
  public:
   static NAN_METHOD(New);
-  static NAN_METHOD(SetTexture);
-  static NAN_METHOD(SetTextureRect);
   static NAN_METHOD(SetColor);
-
-  static NAN_METHOD(GetTexture);
-  static NAN_METHOD(GetTextureRect);
   static NAN_METHOD(GetColor);
 
  private:
@@ -32,8 +36,6 @@ class Sprite : public CommonDrawable1 {
          const texture::Texture& texture,
          const rect::IntRect& rect);
   virtual ~Sprite();
-
-  void SetTexture(v8::Local<v8::Object> texture_object);
 
  private:
   Nan::Persistent<v8::Object> _texture;

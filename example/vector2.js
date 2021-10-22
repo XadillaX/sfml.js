@@ -1,6 +1,6 @@
 'use strict';
 
-const { Vector2I, Vector2U, Vector2F } = require('../lib/sfml');
+const { Vector2F, Vector2I, Vector2U } = require('../lib/sfml');
 
 {
   const vec = new Vector2I();

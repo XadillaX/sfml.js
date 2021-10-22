@@ -1,11 +1,11 @@
-import * as VideoMode from './video_mode';
 import * as Drawable from './drawable/base';
 import * as Event from './poll_event';
+import * as VideoMode from './video_mode';
 
 declare class RenderWindow {
   constructor(videoMode?: VideoMode, title?: string, style?: RenderWindow.Style);
 
-  clear(color: number = 0): void;
+  clear(color: number): void;
   close(): void;
   draw(content: Drawable): void;
   display(): void;
@@ -19,7 +19,7 @@ declare class RenderWindow {
   setMouseCursorGrabbed(grabbed: boolean): void;
   setKeyRepeatEnabled(enabled: boolean): void;
   setFramerateLimit(limit: number): void;
-  setActive(active?: boolean = true): void;
+  setActive(active?: boolean): void;
 }
 
 declare namespace RenderWindow {

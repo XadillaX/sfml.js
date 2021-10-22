@@ -1,6 +1,6 @@
 'use strict';
 
-const { Time: { seconds, milliseconds, microseconds } } = require('../lib/sfml');
+const { Time: { microseconds, milliseconds, seconds } } = require('../lib/sfml');
 const { Time } = require('../lib/sfml');
 
 console.log(seconds(101213).asSeconds());

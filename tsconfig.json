@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "lib": [ "es2020", "ES2020.BigInt" ],
+    "target": "es2019"
+  }
+}

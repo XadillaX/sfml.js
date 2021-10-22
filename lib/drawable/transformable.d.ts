@@ -1,21 +1,6 @@
-import * as BaseDrawable from './base';
-import * as Color from '../color';
-import { FloatRect } from '../rect';
 import { PointType, Vector2F } from '../vector2';
 
-export = class CommonDrawable extends BaseDrawable {
-  setFillColor(color: number | Color): void;
-  getFillColor(): Color;
-
-  setOutlineColor(color: number | Color): void;
-  getOutlineColor(): Color;
-
-  setOutlineThickness(thickness: number): void;
-  getOutlineThickness(): number;
-
-  getLocalBounds(): FloatRect;
-  getGlobalBounds(): FloatRect;
-
+export interface Transformable {
   setPosition(x: number, y: number): void;
   setPosition(pos: PointType<Vector2F>): void;
   getPosition(): Vector2F;
@@ -33,4 +18,11 @@ export = class CommonDrawable extends BaseDrawable {
 
   move(x: number, y: number): void;
   move(offset: PointType<Vector2F>): void;
+
+  scale(x: number, y: number): void;
+  scale(offset: PointType<Vector2F>): void;
+
+  rotate(angle: number): void;
 }
+
+export function setTransformable(proto: any): void;

@@ -1,4 +1,4 @@
-class Time {
+declare class Time {
   asSeconds(): number;
   asMilliseconds(): number;
   asMicroseconds(): BigInt;

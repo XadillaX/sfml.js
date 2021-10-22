@@ -1,5 +1,5 @@
-import * as RenderWindow from './render_window';
 import { PointType, Vector2I } from './vector2';
+import * as RenderWindow from './render_window';
 
 export function isButtonPressed(button: number | string): boolean;
 export function getPosition(window?: RenderWindow): Vector2I;

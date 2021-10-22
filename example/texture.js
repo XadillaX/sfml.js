@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-const { Sprite, Texture, IntRect } = require('../lib/sfml');
+const { IntRect, Sprite, Texture } = require('../lib/sfml');
 
 (async () => {
   const texture = new Texture();

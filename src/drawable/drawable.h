@@ -29,6 +29,20 @@ class Drawable : public Nan::ObjectWrap {
   sf::Drawable* _raw;
 };
 
+class DrawableWithTexture : public Drawable {
+ public:
+  DrawableWithTexture();
+  explicit DrawableWithTexture(sf::Drawable* raw);
+  virtual ~DrawableWithTexture();
+
+  virtual void SetTexture(v8::Local<v8::Object> texture_object,
+                          bool reset_rect = false);
+  v8::MaybeLocal<v8::Object> GetTexture();
+
+ private:
+  Nan::Persistent<v8::Object> _texture;
+};
+
 }  // namespace drawable
 }  // namespace node_sfml
 

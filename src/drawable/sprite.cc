@@ -1,14 +1,15 @@
 #include "sprite.h"
 #include "../color.h"
-#include "common_drawable-inl.h"
+#include "../plugins/transformable_plugin-inl.h"
 #include "drawable-inl.h"
+#include "package_plugin-inl.h"
 
 namespace node_sfml {
 namespace drawable {
 
 using v8::FunctionTemplate;
-using v8::Int32;
 using v8::Local;
+using v8::MaybeLocal;
 using v8::Object;
 using v8::Value;
 
@@ -16,19 +17,17 @@ const char sprite_name[] = "Sprite";
 Nan::Persistent<v8::Function> Sprite::constructor;
 
 NAN_MODULE_INIT(Sprite::Init) {
-  CommonDrawable1::Init<Sprite, sprite_name>(target);
+  Drawable::Init<Sprite, sprite_name>(target);
 }
 
 void Sprite::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  CommonDrawable1::SetPrototype<sf::Sprite>(_tpl);
+  transformable::SetPrototype<Sprite>(_tpl);
+  pacekage_plugin_bounds::SetPrototype<sf::Sprite>(_tpl);
+  pacekage_plugin_texture::SetPrototype<Sprite, sf::Sprite>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
-  Nan::SetPrototypeMethod(tpl, "setTexture", SetTexture);
-  Nan::SetPrototypeMethod(tpl, "setTextureRect", SetTextureRect);
   Nan::SetPrototypeMethod(tpl, "setColor", SetColor);
-
-  Nan::SetPrototypeMethod(tpl, "getTexture", GetTexture);
-  Nan::SetPrototypeMethod(tpl, "getTextureRect", GetTextureRect);
+  Nan::SetPrototypeMethod(tpl, "getColor", GetColor);
 }
 
 NAN_METHOD(Sprite::New) {
@@ -56,41 +55,6 @@ NAN_METHOD(Sprite::New) {
   return;
 }
 
-NAN_METHOD(Sprite::SetTexture) {
-  Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
-  sprite->SetTexture(info[0].As<Object>());
-}
-
-NAN_METHOD(Sprite::GetTexture) {
-  Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
-  if (sprite->_texture.IsEmpty()) {
-    info.GetReturnValue().Set(Nan::Null());
-    return;
-  }
-
-  info.GetReturnValue().Set(sprite->_texture.Get(info.GetIsolate()));
-}
-
-NAN_METHOD(Sprite::SetTextureRect) {
-  Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
-  rect::IntRect* rect =
-      Nan::ObjectWrap::Unwrap<rect::IntRect>(info[0].As<Object>());
-  sprite->raw<sf::Sprite>().setTextureRect(rect->rect());
-}
-
-NAN_METHOD(Sprite::GetTextureRect) {
-  Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
-  sf::IntRect rect = sprite->raw<sf::Sprite>().getTextureRect();
-  int argc = 4;
-  Local<Value> argv[] = {
-      Nan::New<Int32>(rect.left),
-      Nan::New<Int32>(rect.top),
-      Nan::New<Int32>(rect.width),
-      Nan::New<Int32>(rect.height),
-  };
-  rect::IntRect::NewRealInstance(info.GetIsolate(), argc, argv);
-}
-
 NAN_METHOD(Sprite::SetColor) {
   Sprite* sprite = Nan::ObjectWrap::Unwrap<Sprite>(info.Holder());
   sf::Sprite& raw = sprite->raw<sf::Sprite>();
@@ -115,28 +79,27 @@ NAN_METHOD(Sprite::GetColor) {
   info.GetReturnValue().Set(ret.ToLocalChecked());
 }
 
-Sprite::Sprite() : CommonDrawable1(new sf::Sprite()) {}
+Sprite::Sprite() : DrawableWithTexture(new sf::Sprite()) {}
 
 Sprite::Sprite(Local<Object> texture_object, const texture::Texture& texture)
-    : CommonDrawable1(new sf::Sprite(texture.texture())) {
-  _texture.Reset(texture_object);
+    : DrawableWithTexture(new sf::Sprite(texture.texture())) {
+  DrawableWithTexture::SetTexture(texture_object);
 }
 
 Sprite::Sprite(Local<Object> texture_object,
                const texture::Texture& texture,
                const rect::IntRect& rect)
-    : CommonDrawable1(new sf::Sprite(texture.texture(), rect.rect())) {
-  _texture.Reset(texture_object);
+    : DrawableWithTexture(new sf::Sprite(texture.texture(), rect.rect())) {
+  DrawableWithTexture::SetTexture(texture_object);
 }
 
-Sprite::~Sprite() {
-  _texture.Reset();
-}
+Sprite::~Sprite() {}
 
-void Sprite::SetTexture(Local<Object> texture_object) {
+void Sprite::SetTexture(v8::Local<v8::Object> texture_object, bool reset_rect) {
   texture::Texture* texture =
       Nan::ObjectWrap::Unwrap<texture::Texture>(texture_object);
-  this->raw<sf::Sprite>().setTexture(texture->texture());
+  raw<sf::Sprite>().setTexture(texture->texture(), reset_rect);
+  DrawableWithTexture::SetTexture(texture_object);
 }
 
 }  // namespace drawable

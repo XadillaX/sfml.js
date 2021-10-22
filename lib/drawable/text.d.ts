@@ -1,7 +1,12 @@
-import * as CommonDrawable from './common_drawable';
+import * as Drawable from './drawable';
+import { PluginPackageBound, PluginPackageColorAndThickness } from './plugin_package';
+import { Transformable } from './transformable';
 import * as Font from '../font';
 
-class Text extends CommonDrawable {
+type TextPluginPackage = Transformable & PluginPackageColorAndThickness & PluginPackageBound;
+
+declare interface Text extends TextPluginPackage {}
+declare class Text extends Drawable implements PluginPackage {
   constructor(str?: string, font?: Font, characterSize?: number = 30);
   setString(str: string): void;
   setFont(font: Font): void;
@@ -9,9 +14,6 @@ class Text extends CommonDrawable {
   setLineSpacing(lineSpacing: number): void;
   setLetterSpacing(letterSpacing: number): void;
   setStyle(style: Text.Style): void;
-
-  setPoint: void;
-  setPointCount: void;
 }
 
 declare namespace Text {

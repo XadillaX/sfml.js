@@ -91,7 +91,6 @@
       "./src/video_mode.cc",
 
       "./src/drawable/circle_shape.cc",
-      "./src/drawable/common_drawable.cc",
       "./src/drawable/convex_shape.cc",
       "./src/drawable/drawable.cc",
       "./src/drawable/rectangle_shape.cc",

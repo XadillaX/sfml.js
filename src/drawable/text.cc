@@ -1,8 +1,9 @@
 #include "text.h"
 #include "../font.h"
+#include "../plugins/transformable_plugin-inl.h"
 #include "../utils-inl.h"
-#include "common_drawable-inl.h"
 #include "drawable-inl.h"
+#include "package_plugin-inl.h"
 
 namespace node_sfml {
 namespace drawable {
@@ -16,7 +17,7 @@ const char text_name[] = "Text";
 Nan::Persistent<v8::Function> Text::constructor;
 
 NAN_MODULE_INIT(Text::Init) {
-  CommonDrawable2::Init<Text, text_name>(target);
+  Drawable::Init<Text, text_name>(target);
 
   // Set Text's styles enumerations
   {
@@ -48,7 +49,8 @@ NAN_MODULE_INIT(Text::Init) {
 }
 
 void Text::SetPrototype(Local<FunctionTemplate>* _tpl) {
-  CommonDrawable2::SetPrototype<sf::Text>(_tpl);
+  transformable::SetPrototype<Text>(_tpl);
+  pacekage_plugin_bounds::SetPrototype<sf::Text>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setFont", SetFont);
@@ -103,12 +105,12 @@ SET_META_VALUE(SetLineSpacing, setLineSpacing, float, double);
 SET_META_VALUE(SetLetterSpacing, setLetterSpacing, float, double);
 SET_META_VALUE(SetStyle, setStyle, sf::Text::Style, sf::Uint32);
 
-Text::Text() : CommonDrawable2(new sf::Text()) {}
+Text::Text() : Drawable(new sf::Text()) {}
 
 Text::Text(const sf::String& string,
            Local<Object> font,
            unsigned int character_size)
-    : CommonDrawable2() {
+    : Drawable() {
   _string = string;
   _raw = new sf::Text(_string,
                       Nan::ObjectWrap::Unwrap<font::Font>(font)->font(),

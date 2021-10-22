@@ -2,7 +2,7 @@ declare class VideoMode {
   static getDesktopMode(): VideoMode;
   static getFullscreenModes(): VideoMode[];
 
-  constructor(modeWidth?: number, modeHeight?: number, modeBitsPerPixel: number = 32);
+  constructor(modeWidth?: number, modeHeight?: number, modeBitsPerPixel?: number);
 
   isValid(): boolean;
 

@@ -32,7 +32,6 @@ const font = new Font();
 font.loadFromFile(path.join(__dirname, 'font.ttf'));
 const text = new Text('你好', font);
 text.setPosition(200, 300);
-console.log(Text, RenderWindow);
 
 let sprite;
 const texture = new Texture();
@@ -41,12 +40,9 @@ let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
 const clock = new Clock();
 
-console.log = () => {};
-
 function frame() {
   if (!window.isOpen()) return;
   const delta = clock.getElapsedTime();
-  console.log('dt:', delta);
   clock.restart();
 
   text.setString(`FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
@@ -95,7 +91,6 @@ function frame() {
     desktop: Mouse.getPosition(),
     window: Mouse.getPosition(window),
   };
-  console.log('Mouse:', mousePos);
 
   if (mousePos.window.x < 0) {
     mousePos.window.x = Math.abs(mousePos.window.x);
@@ -109,7 +104,6 @@ function frame() {
   if (mousePos.window.y > mode.height) {
     mousePos.window.y = mode.height;
   }
-  console.log(mousePos.window);
   Mouse.setPosition(mousePos.window, window);
 
   window.draw(circle);
