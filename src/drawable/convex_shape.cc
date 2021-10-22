@@ -1,5 +1,7 @@
-#include "convex_shape.h"
+#include <SFML/Graphics/ConvexShape.hpp>
+
 #include "../vector2.h"
+#include "convex_shape.h"
 #include "drawable-inl.h"
 
 namespace node_sfml {

@@ -2,7 +2,7 @@
 #define SRC_FONT_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 namespace node_sfml {
 namespace font {

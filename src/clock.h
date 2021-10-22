@@ -2,7 +2,7 @@
 #define SRC_CLOCK_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 
 namespace node_sfml {
 namespace clock {

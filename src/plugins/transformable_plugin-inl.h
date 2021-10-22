@@ -1,8 +1,8 @@
-#ifndef SRC_TRANSFORMABLE_PLUGIN_INL_H_
-#define SRC_TRANSFORMABLE_PLUGIN_INL_H_
+#ifndef SRC_PLUGINS_TRANSFORMABLE_PLUGIN_INL_H_
+#define SRC_PLUGINS_TRANSFORMABLE_PLUGIN_INL_H_
 
-#include "transformable_plugin.h"
 #include "../vector2.h"
+#include "transformable_plugin.h"
 
 namespace node_sfml {
 namespace transformable {
@@ -118,4 +118,4 @@ VECTOR2F_GETTER_SETTER(Origin);
 }  // namespace transformable
 }  // namespace node_sfml
 
-#endif  // SRC_TRANSFORMABLE_PLUGIN_INL_H_
+#endif  // SRC_PLUGINS_TRANSFORMABLE_PLUGIN_INL_H_

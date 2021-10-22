@@ -46,6 +46,5 @@
     "third_party/sfml/platform/macOS/lib/libsfml-graphics.2.5.1.dylib",
     "third_party/sfml/platform/macOS/Frameworks/**/*",
     "tools/*"
-  ],
-  "__npminstall_done": false
+  ]
 }

@@ -2,7 +2,8 @@
 #define SRC_VIDEO_MODE_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Window/VideoMode.hpp>
 
 namespace node_sfml {
 namespace video_mode {

@@ -1,6 +1,7 @@
 #include "sprite.h"
 #include "../color.h"
 #include "../plugins/transformable_plugin-inl.h"
+#include "../rect-inl.h"
 #include "drawable-inl.h"
 #include "package_plugin-inl.h"
 
@@ -22,8 +23,8 @@ NAN_MODULE_INIT(Sprite::Init) {
 
 void Sprite::SetPrototype(Local<FunctionTemplate>* _tpl) {
   transformable::SetPrototype<Sprite>(_tpl);
-  pacekage_plugin_bounds::SetPrototype<sf::Sprite>(_tpl);
-  pacekage_plugin_texture::SetPrototype<Sprite, sf::Sprite>(_tpl);
+  package_plugin_bounds::SetPrototype<sf::Sprite>(_tpl);
+  package_plugin_texture::SetPrototype<Sprite, sf::Sprite>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setColor", SetColor);

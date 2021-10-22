@@ -1,7 +1,9 @@
 #ifndef SRC_DRAWABLE_SHAPE_H_
 #define SRC_DRAWABLE_SHAPE_H_
 
+#include <SFML/Graphics/Shape.hpp>
 #include <SFML/Graphics/Transformable.hpp>
+
 #include "drawable.h"
 
 namespace node_sfml {

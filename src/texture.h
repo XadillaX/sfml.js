@@ -2,7 +2,8 @@
 #define SRC_TEXTURE_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Graphics/Texture.hpp>
 
 namespace node_sfml {
 namespace texture {

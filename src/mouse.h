@@ -2,7 +2,11 @@
 #define SRC_MOUSE_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <map>
+#include <string>
+
+#include <SFML/Window/Mouse.hpp>
 
 namespace node_sfml {
 namespace gen {

@@ -2,6 +2,7 @@
 #define SRC_UTILS_H_
 
 #include <nan.h>
+
 #include <SFML/System/String.hpp>
 
 namespace node_sfml {

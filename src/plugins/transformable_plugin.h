@@ -1,5 +1,5 @@
-#ifndef SRC_TRANSFORMABLE_PLUGIN_H_
-#define SRC_TRANSFORMABLE_PLUGIN_H_
+#ifndef SRC_PLUGINS_TRANSFORMABLE_PLUGIN_H_
+#define SRC_PLUGINS_TRANSFORMABLE_PLUGIN_H_
 
 #include <nan.h>
 
@@ -39,4 +39,4 @@ inline static NAN_METHOD(Rotate);
 }  // namespace transformable
 }  // namespace node_sfml
 
-#endif  // SRC_TRANSFORMABLE_PLUGIN_H_
+#endif  // SRC_PLUGINS_TRANSFORMABLE_PLUGIN_H_

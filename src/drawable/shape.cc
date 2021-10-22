@@ -18,9 +18,9 @@ void Shape::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
   Nan::SetPrototypeMethod(tpl, "getPoint", GetPoint);
 
   transformable::SetPrototype<Shape>(_tpl);
-  pacekage_plugin_bounds::SetPrototype<sf::Shape>(_tpl);
-  pacekage_plugin_color_and_thickness::SetPrototype<sf::Shape>(_tpl);
-  pacekage_plugin_texture::SetPrototype<Shape, sf::Shape>(_tpl);
+  package_plugin_bounds::SetPrototype<sf::Shape>(_tpl);
+  package_plugin_color_and_thickness::SetPrototype<sf::Shape>(_tpl);
+  package_plugin_texture::SetPrototype<Shape, sf::Shape>(_tpl);
 }
 
 NAN_METHOD(Shape::GetPointCount) {

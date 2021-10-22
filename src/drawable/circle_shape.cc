@@ -1,3 +1,5 @@
+#include <SFML/Graphics/CircleShape.hpp>
+
 #include "circle_shape.h"
 #include "drawable-inl.h"
 

@@ -5,7 +5,7 @@
 
 namespace node_sfml {
 namespace drawable {
-namespace pacekage_plugin_texture {
+namespace package_plugin_texture {
 
 template <class T, class RAW_T>
 inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
@@ -19,9 +19,9 @@ inline static NAN_METHOD(GetTexture);
 template <class T>
 inline static NAN_METHOD(GetTextureRect);
 
-}  // namespace pacekage_plugin_texture
+}  // namespace package_plugin_texture
 
-namespace pacekage_plugin_bounds {
+namespace package_plugin_bounds {
 
 template <class T>
 inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
@@ -31,9 +31,9 @@ inline static NAN_METHOD(GetLocalBounds);
 template <class T>
 inline static NAN_METHOD(GetGlobalBounds);
 
-}  // namespace pacekage_plugin_bounds
+}  // namespace package_plugin_bounds
 
-namespace pacekage_plugin_color_and_thickness {
+namespace package_plugin_color_and_thickness {
 
 template <class T>
 inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
@@ -53,7 +53,7 @@ inline static NAN_METHOD(SetOutlineThickness);
 template <class T>
 inline static NAN_METHOD(GetOutlineThickness);
 
-}  // namespace pacekage_plugin_color_and_thickness
+}  // namespace package_plugin_color_and_thickness
 }  // namespace drawable
 }  // namespace node_sfml
 

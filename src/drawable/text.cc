@@ -50,7 +50,8 @@ NAN_MODULE_INIT(Text::Init) {
 
 void Text::SetPrototype(Local<FunctionTemplate>* _tpl) {
   transformable::SetPrototype<Text>(_tpl);
-  pacekage_plugin_bounds::SetPrototype<sf::Text>(_tpl);
+  package_plugin_bounds::SetPrototype<sf::Text>(_tpl);
+  package_plugin_color_and_thickness::SetPrototype<sf::Text>(_tpl);
 
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
   Nan::SetPrototypeMethod(tpl, "setFont", SetFont);

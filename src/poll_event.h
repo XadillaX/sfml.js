@@ -2,7 +2,8 @@
 #define SRC_POLL_EVENT_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Window/Event.hpp>
 
 namespace node_sfml {
 namespace poll_event {

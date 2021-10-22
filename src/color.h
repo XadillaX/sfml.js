@@ -2,7 +2,7 @@
 #define SRC_COLOR_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 namespace node_sfml {
 namespace color {

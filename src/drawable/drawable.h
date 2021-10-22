@@ -2,7 +2,7 @@
 #define SRC_DRAWABLE_DRAWABLE_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Drawable.hpp>
 
 namespace node_sfml {
 namespace drawable {

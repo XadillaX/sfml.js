@@ -2,7 +2,8 @@
 #define SRC_TIME_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/System/Time.hpp>
 
 namespace node_sfml {
 namespace time {

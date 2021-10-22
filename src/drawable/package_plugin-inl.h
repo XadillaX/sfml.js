@@ -2,14 +2,14 @@
 #define SRC_DRAWABLE_PACKAGE_PLUGIN_INL_H_
 
 #include "../color.h"
-#include "../rect.h"
+#include "../rect-inl.h"
 #include "../texture.h"
 #include "drawable.h"
 #include "package_plugin.h"
 
 namespace node_sfml {
 namespace drawable {
-namespace pacekage_plugin_texture {
+namespace package_plugin_texture {
 
 template <class T, class RAW_T>
 inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
@@ -60,9 +60,9 @@ inline static NAN_METHOD(GetTextureRect) {
   rect::IntRect::NewRealInstance(info.GetIsolate(), argc, argv);
 }
 
-}  // namespace pacekage_plugin_texture
+}  // namespace package_plugin_texture
 
-namespace pacekage_plugin_bounds {
+namespace package_plugin_bounds {
 
 template <class T>
 inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
@@ -102,9 +102,9 @@ GET_BOUNDS_IMPL(Global);
 
 #undef GET_BOUNDS_IMPL
 
-}  // namespace pacekage_plugin_bounds
+}  // namespace package_plugin_bounds
 
-namespace pacekage_plugin_color_and_thickness {
+namespace package_plugin_color_and_thickness {
 
 template <class T>
 inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
@@ -174,7 +174,7 @@ inline NAN_METHOD(GetOutlineThickness) {
   info.GetReturnValue().Set(static_cast<double>(thickness));
 }
 
-}  // namespace pacekage_plugin_color_and_thickness
+}  // namespace package_plugin_color_and_thickness
 }  // namespace drawable
 }  // namespace node_sfml
 

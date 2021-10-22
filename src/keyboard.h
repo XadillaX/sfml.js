@@ -2,7 +2,11 @@
 #define SRC_KEYBOARD_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <map>
+#include <string>
+
+#include <SFML/Window/Keyboard.hpp>
 
 namespace node_sfml {
 namespace gen {

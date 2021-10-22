@@ -2,7 +2,9 @@
 #define SRC_RENDER_WINDOW_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
 
 namespace node_sfml {
 namespace render_window {

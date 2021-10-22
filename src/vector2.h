@@ -2,7 +2,9 @@
 #define SRC_VECTOR2_H_
 
 #include <nan.h>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Config.hpp>
+#include <SFML/System/Vector2.hpp>
 
 namespace node_sfml {
 namespace vector2 {

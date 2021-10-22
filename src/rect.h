@@ -2,6 +2,7 @@
 #define SRC_RECT_H_
 
 #include <nan.h>
+
 #include <SFML/Graphics.hpp>
 
 #include "vector2.h"

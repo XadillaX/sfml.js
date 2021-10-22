@@ -1,6 +1,9 @@
 #ifndef SRC_DRAWABLE_TEXT_H_
 #define SRC_DRAWABLE_TEXT_H_
 
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/System/String.hpp>
+
 #include "drawable.h"
 
 namespace node_sfml {

@@ -1,6 +1,8 @@
-#include "rectangle_shape.h"
+#include <SFML/Graphics/RectangleShape.hpp>
+
 #include "../vector2.h"
 #include "drawable-inl.h"
+#include "rectangle_shape.h"
 
 namespace node_sfml {
 namespace drawable {
