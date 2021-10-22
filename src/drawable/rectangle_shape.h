@@ -11,9 +11,12 @@ class RectangleShape : public Shape {
   static Nan::Persistent<v8::Function> constructor;
 
   static NAN_MODULE_INIT(Init);
+  static void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
  public:
   static NAN_METHOD(New);
+  static NAN_METHOD(SetSize);
+  static NAN_METHOD(GetSize);
 
  private:
   explicit RectangleShape(const sf::Vector2f& size);
