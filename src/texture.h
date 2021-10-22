@@ -17,6 +17,8 @@ class Texture : public Nan::ObjectWrap {
   static NAN_METHOD(LoadFromFile);
   static NAN_METHOD(GetSize);
 
+  static NAN_METHOD(SetSmooth);
+
   // Update family
   static NAN_METHOD(UpdateByTexture);
 

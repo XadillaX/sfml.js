@@ -81,6 +81,8 @@ NAN_MODULE_INIT(Texture::Init) {
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
   Nan::SetPrototypeMethod(tpl, "updateByTexture", UpdateByTexture);
 
+  Nan::SetPrototypeMethod(tpl, "setSmooth", SetSmooth);
+
   tpl->SetClassName(name);
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
@@ -141,6 +143,12 @@ NAN_METHOD(Texture::GetSize) {
   }
 
   info.GetReturnValue().Set(size_obj.ToLocalChecked());
+}
+
+NAN_METHOD(Texture::SetSmooth) {
+  Texture* texture = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
+  bool smooth = Nan::To<bool>(info[0]).FromJust();
+  texture->_texture.setSmooth(smooth);
 }
 
 NAN_METHOD(Texture::UpdateByTexture) {
