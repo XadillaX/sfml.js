@@ -2,6 +2,7 @@
 #include "color.h"
 #include "drawable/drawable.h"
 #include "poll_event.h"
+#include "vector2-inl.h"
 #include "video_mode.h"
 
 namespace node_sfml {
@@ -28,6 +29,7 @@ NAN_MODULE_INIT(RenderWindow::Init) {
   Nan::SetPrototypeMethod(tpl, "drawDrawable", DrawDrawable);
   Nan::SetPrototypeMethod(tpl, "isOpen", IsOpen);
   Nan::SetPrototypeMethod(tpl, "pollEvent", PollEvent);
+  Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
 
 #define PRIMITIVE_VALUE_PROTOTYPE_METHOD(name, _)                              \
   Nan::SetPrototypeMethod(tpl, "set" #name, Set##name);
@@ -159,6 +161,21 @@ NAN_METHOD(RenderWindow::PollEvent) {
   if (v8_event.IsEmpty()) return;
 
   info.GetReturnValue().Set(v8_event.ToLocalChecked());
+}
+
+NAN_METHOD(RenderWindow::GetSize) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  sf::Vector2u vec = window->_window->getSize();
+
+  Nan::TryCatch try_catch;
+  MaybeLocal<Object> maybe_vec =
+      vector2::Vector2U::NewRealInstance(info.GetIsolate(), vec);
+  if (maybe_vec.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
 }
 
 #define SET_PRIMITIVE_VALUE(name, type)                                        \

@@ -1,6 +1,7 @@
 import * as Drawable from './drawable/base';
 import * as Event from './poll_event';
 import * as VideoMode from './video_mode';
+import { Vector2U } from './vector2';
 
 declare class RenderWindow {
   constructor(videoMode?: VideoMode, title?: string, style?: RenderWindow.Style);
@@ -20,6 +21,8 @@ declare class RenderWindow {
   setKeyRepeatEnabled(enabled: boolean): void;
   setFramerateLimit(limit: number): void;
   setActive(active?: boolean): void;
+
+  getSize(): Vector2U;
 }
 
 declare namespace RenderWindow {

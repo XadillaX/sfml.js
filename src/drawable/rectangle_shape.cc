@@ -37,11 +37,13 @@ NAN_METHOD(RectangleShape::New) {
 }
 
 NAN_METHOD(RectangleShape::GetSize) {
-  RectangleShape* shape = Nan::ObjectWrap::Unwrap<RectangleShape>(info.Holder());
+  RectangleShape* shape =
+      Nan::ObjectWrap::Unwrap<RectangleShape>(info.Holder());
   sf::Vector2f vec = shape->raw<sf::RectangleShape>().getSize();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_vec = vector2::Vector2F::NewRealInstance(info.GetIsolate(), vec);
+  MaybeLocal<Object> maybe_vec =
+      vector2::Vector2F::NewRealInstance(info.GetIsolate(), vec);
   if (maybe_vec.IsEmpty()) {
     try_catch.ReThrow();
     return;
@@ -51,8 +53,10 @@ NAN_METHOD(RectangleShape::GetSize) {
 }
 
 NAN_METHOD(RectangleShape::SetSize) {
-  RectangleShape* shape = Nan::ObjectWrap::Unwrap<RectangleShape>(info.Holder());
-  vector2::Vector2F* vec = Nan::ObjectWrap::Unwrap<vector2::Vector2F>(info[0].As<Object>());
+  RectangleShape* shape =
+      Nan::ObjectWrap::Unwrap<RectangleShape>(info.Holder());
+  vector2::Vector2F* vec =
+      Nan::ObjectWrap::Unwrap<vector2::Vector2F>(info[0].As<Object>());
 
   shape->raw<sf::RectangleShape>().setSize(vec->vector2());
 }
