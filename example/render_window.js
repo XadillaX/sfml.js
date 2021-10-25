@@ -8,6 +8,7 @@ const {
   Color,
   ConvexShape,
   Font,
+  Image,
   Keyboard,
   Mouse,
   RectangleShape,
@@ -112,6 +113,8 @@ function frame() {
   window.draw(text);
   window.draw(sprite);
   window.display();
+
+  new Image();
 
   setImmediate(frame);
 }

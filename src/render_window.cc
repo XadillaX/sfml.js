@@ -1,3 +1,4 @@
+#include "image.h"
 #include "render_window.h"
 #include "color.h"
 #include "drawable/drawable.h"
@@ -23,6 +24,7 @@ NAN_MODULE_INIT(RenderWindow::Init) {
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(New);
 
+  Nan::SetPrototypeMethod(tpl, "capture", Capture);
   Nan::SetPrototypeMethod(tpl, "clear", Clear);
   Nan::SetPrototypeMethod(tpl, "close", Close);
   Nan::SetPrototypeMethod(tpl, "display", Display);
@@ -116,6 +118,24 @@ NAN_METHOD(RenderWindow::New) {
 
   window->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
+}
+
+NAN_METHOD(RenderWindow::Capture) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  sf::Image img = window->_window->capture();
+
+  Nan::TryCatch try_catch;
+  MaybeLocal<Object> maybe_img = image::Image::NewRealInstance(info.GetIsolate());
+  if (maybe_img.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  Local<Object> img_obj = maybe_img.ToLocalChecked();
+  image::Image* node_sfml_img = Nan::ObjectWrap::Unwrap<image::Image>(img_obj);
+  node_sfml_img->SetInnerImage(img);
+
+  info.GetReturnValue().Set(img_obj);
 }
 
 NAN_METHOD(RenderWindow::Clear) {

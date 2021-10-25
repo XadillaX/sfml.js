@@ -1,4 +1,5 @@
 import * as Drawable from './drawable/base';
+import * as Image from './image';
 import * as Event from './poll_event';
 import * as VideoMode from './video_mode';
 import { Vector2U } from './vector2';
@@ -6,6 +7,7 @@ import { Vector2U } from './vector2';
 declare class RenderWindow {
   constructor(videoMode?: VideoMode, title?: string, style?: RenderWindow.Style);
 
+  capture(): Image;
   clear(color: number): void;
   close(): void;
   draw(content: Drawable): void;

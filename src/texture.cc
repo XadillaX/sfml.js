@@ -1,3 +1,4 @@
+#include "image.h"
 #include "texture.h"
 #include "rect.h"
 #include "vector2.h"
@@ -77,8 +78,11 @@ NAN_MODULE_INIT(Texture::Init) {
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(New);
 
+  Nan::SetPrototypeMethod(tpl, "create", Create);
   Nan::SetPrototypeMethod(tpl, "loadFromFile", LoadFromFile);
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
+
+  Nan::SetPrototypeMethod(tpl, "updateByImage", UpdateByImage);
   Nan::SetPrototypeMethod(tpl, "updateByTexture", UpdateByTexture);
 
   Nan::SetPrototypeMethod(tpl, "setSmooth", SetSmooth);
@@ -96,6 +100,13 @@ NAN_METHOD(Texture::New) {
   Texture* Texture = new class Texture();
   Texture->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
+}
+
+NAN_METHOD(Texture::Create) {
+  Texture* texture = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
+  sf::Uint32 w = Nan::To<sf::Uint32>(info[0]).FromJust();
+  sf::Uint32 h = Nan::To<sf::Uint32>(info[1]).FromJust();
+  texture->_texture.create(w, h);
 }
 
 // TODO(XadillaX): more Node.js-styled `LoadFromFile`
@@ -167,6 +178,24 @@ NAN_METHOD(Texture::UpdateByTexture) {
   sf::Uint32 x = Nan::To<sf::Uint32>(info[1]).FromJust();
   sf::Uint32 y = Nan::To<sf::Uint32>(info[2]).FromJust();
   texture->_texture.update(another->_texture, x, y);
+}
+
+NAN_METHOD(Texture::UpdateByImage) {
+  Texture* texture = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
+  if (texture->_loading) {
+    Nan::ThrowError("Texture is loading.");
+    return;
+  }
+
+  image::Image* img = Nan::ObjectWrap::Unwrap<image::Image>(info[0].As<Object>());
+  if (info.Length() <= 1) {
+    texture->_texture.update(img->image());
+    return;
+  }
+
+  sf::Uint32 x = Nan::To<sf::Uint32>(info[1]).FromJust();
+  sf::Uint32 y = Nan::To<sf::Uint32>(info[2]).FromJust();
+  texture->_texture.update(img->image(), x, y);
 }
 
 Texture::Texture() : _texture(), _loading(false) {}

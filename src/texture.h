@@ -14,12 +14,14 @@ class Texture : public Nan::ObjectWrap {
 
  public:
   static NAN_METHOD(New);
+  static NAN_METHOD(Create);
   static NAN_METHOD(LoadFromFile);
   static NAN_METHOD(GetSize);
 
   static NAN_METHOD(SetSmooth);
 
   // Update family
+  static NAN_METHOD(UpdateByImage);
   static NAN_METHOD(UpdateByTexture);
 
   inline const sf::Texture& texture() const { return _texture; }

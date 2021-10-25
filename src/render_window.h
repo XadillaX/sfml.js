@@ -18,6 +18,7 @@ class RenderWindow : public Nan::ObjectWrap {
  private:
   static NAN_METHOD(New);
 
+  static NAN_METHOD(Capture);
   static NAN_METHOD(Clear);
   static NAN_METHOD(Close);
   static NAN_METHOD(Display);
