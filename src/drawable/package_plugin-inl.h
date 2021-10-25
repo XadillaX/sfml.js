@@ -57,7 +57,16 @@ inline static NAN_METHOD(GetTextureRect) {
       Nan::New<v8::Int32>(rect.width),
       Nan::New<v8::Int32>(rect.height),
   };
-  rect::IntRect::NewRealInstance(info.GetIsolate(), argc, argv);
+
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Object> maybe_rect =
+      rect::IntRect::NewRealInstance(info.GetIsolate(), argc, argv);
+  if (maybe_rect.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(maybe_rect.ToLocalChecked());
 }
 
 }  // namespace package_plugin_texture
