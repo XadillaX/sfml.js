@@ -6,7 +6,6 @@
 #include "image.h"
 #include "keyboard.h"
 #include "mouse.h"
-#include "music.h"
 #include "rect.h"
 #include "render_window.h"
 #include "texture.h"
@@ -20,6 +19,8 @@
 #include "drawable/sprite.h"
 #include "drawable/text.h"
 
+#include "sound/music.h"
+
 namespace node_sfml {
 
 void Init(v8::Local<v8::Object> target) {
@@ -30,7 +31,6 @@ void Init(v8::Local<v8::Object> target) {
   color::Color::Init(target);
   font::Font::Init(target);
   image::Image::Init(target);
-  music::Music::Init(target);
   render_window::RenderWindow::Init(target);
   texture::Texture::Init(target);
   time::Time::Init(target);
@@ -42,6 +42,9 @@ void Init(v8::Local<v8::Object> target) {
   drawable::RectangleShape::Init(target);
   drawable::Sprite::Init(target);
   drawable::Text::Init(target);
+
+  // sound
+  sound::Music::Init(target);
 
   // rect
   rect::IntRect::Init(target);

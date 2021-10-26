@@ -55,7 +55,7 @@ function frame() {
   while ((event = window.pollEvent())) {
     if (event.type === 'Closed') {
       window.close();
-      music.stop();
+      // music.stop();
     } else if (event.type === 'KeyPressed') {
       // if (event.key.codeStr === 'Escape') {
       //   window.close();
@@ -65,7 +65,7 @@ function frame() {
 
   if (Keyboard.isKeyPressed('Escape')) {
     window.close();
-    music.stop();
+    // music.stop();
   }
 
   if (Keyboard.isKeyPressed('S')) {
@@ -140,5 +140,6 @@ function frame() {
 
   window.setFramerateLimit(60);
   music.play();
+  music.setLoop(true);
   frame();
 })();

@@ -179,8 +179,8 @@ NAN_METHOD(Font::GetUnderlineThickness) {
   info.GetReturnValue().Set(static_cast<double>(underline_thickness));
 }
 
-Font::Font() : _font(new sf::Font()), _loading(false) {}
-Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)), _loading(false) {}
+Font::Font() : _font(new sf::Font()) {}
+Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)) {}
 
 Font::~Font() {
   if (_font != nullptr) {

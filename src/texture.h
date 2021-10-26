@@ -5,10 +5,12 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
+#include "base_class_with_loading.h"
+
 namespace node_sfml {
 namespace texture {
 
-class Texture : public Nan::ObjectWrap {
+class Texture : public Nan::ObjectWrap, public BaseClassWithLoading {
  public:
   static NAN_MODULE_INIT(Init);
 
@@ -27,7 +29,6 @@ class Texture : public Nan::ObjectWrap {
 
   inline const sf::Texture& texture() const { return _texture; }
   inline sf::Texture& mutable_texture() { return _texture; }
-  inline void SetLoading(bool loading) { _loading = loading; }
 
  private:
   Texture();
@@ -36,7 +37,6 @@ class Texture : public Nan::ObjectWrap {
 
  private:
   sf::Texture _texture;
-  bool _loading;
 };
 
 }  // namespace texture

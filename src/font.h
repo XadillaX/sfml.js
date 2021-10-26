@@ -4,16 +4,17 @@
 #include <nan.h>
 #include <SFML/Graphics/Font.hpp>
 
+#include "base_class_with_loading.h"
+
 namespace node_sfml {
 namespace font {
 
-class Font : public Nan::ObjectWrap {
+class Font : public Nan::ObjectWrap, public BaseClassWithLoading {
  public:
   static NAN_MODULE_INIT(Init);
 
   inline const sf::Font& font() const { return *_font; }
   inline sf::Font& font() { return *_font; }
-  inline void SetLoading(bool loading) { _loading = loading; }
 
  private:
   static NAN_METHOD(New);
@@ -33,7 +34,6 @@ class Font : public Nan::ObjectWrap {
 
  private:
   sf::Font* _font;
-  bool _loading;
 };
 
 }  // namespace font

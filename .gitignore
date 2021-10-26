@@ -120,3 +120,4 @@ third_party/sfml/platform/macOS/lib/libsfml-window.dylib
 
 package-lock.json
 compile_commands.json
+.vscode

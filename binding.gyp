@@ -83,7 +83,6 @@
       "./src/image.cc",
       "./src/keyboard.cc",
       "./src/mouse.cc",
-      "./src/music.cc",
       "./src/poll_event.cc",
       "./src/rect.cc",
       "./src/render_window.cc",
@@ -101,7 +100,10 @@
       "./src/drawable/text.cc",
 
       "./src/gen/keycode.cc",
-      "./src/gen/mouse_button.cc"
+      "./src/gen/mouse_button.cc",
+
+      "./src/sound/music.cc",
+      "./src/sound/sound_source.cc"
     ],
     "dependencies": [
       "keycode.cc",
