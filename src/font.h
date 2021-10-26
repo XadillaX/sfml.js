@@ -12,10 +12,13 @@ class Font : public Nan::ObjectWrap {
   static NAN_MODULE_INIT(Init);
 
   inline const sf::Font& font() const { return *_font; }
+  inline sf::Font& font() { return *_font; }
+  inline void SetLoading(bool loading) { _loading = loading; }
 
  private:
   static NAN_METHOD(New);
   static NAN_METHOD(LoadFromFile);
+  static NAN_METHOD(LoadFromFileSync);
   static NAN_METHOD(GetInfo);
   static NAN_METHOD(GetGlyph);
   static NAN_METHOD(GetKerning);
@@ -30,6 +33,7 @@ class Font : public Nan::ObjectWrap {
 
  private:
   sf::Font* _font;
+  bool _loading;
 };
 
 }  // namespace font

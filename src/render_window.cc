@@ -1,7 +1,7 @@
-#include "image.h"
 #include "render_window.h"
 #include "color.h"
 #include "drawable/drawable.h"
+#include "image.h"
 #include "poll_event.h"
 #include "vector2-inl.h"
 #include "video_mode.h"
@@ -125,7 +125,8 @@ NAN_METHOD(RenderWindow::Capture) {
   sf::Image img = window->_window->capture();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_img = image::Image::NewRealInstance(info.GetIsolate());
+  MaybeLocal<Object> maybe_img =
+      image::Image::NewRealInstance(info.GetIsolate());
   if (maybe_img.IsEmpty()) {
     try_catch.ReThrow();
     return;

@@ -8,6 +8,7 @@ declare class Texture {
   create(x: number, y: number): void;
 
   loadFromFile(filename: string, area?: IntRect): Promise<void>;
+  loadFromFileSync(filename: string, area?: IntRect): boolean;
   update(texture: Texture): void;
   update(texture: Texture, x: number, y: number): void;
   update(image: Image): void;

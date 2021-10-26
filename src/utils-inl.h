@@ -28,7 +28,13 @@ inline bool ParseParameters(Nan::NAN_METHOD_ARGS_TYPE info,
 inline void V8StringToSFString(v8::Isolate* isolate,
                                v8::Local<v8::String> v8_string,
                                sf::String& sf_string) {  // NOLINT
-  ResizableBuffer<char> utf8_string(v8_string->Utf8Length(isolate));
+  int string_utf8_length = v8_string->Utf8Length(isolate);
+  if (!string_utf8_length) {
+    sf_string = sf::String("");
+    return;
+  }
+
+  ResizableBuffer<char> utf8_string(string_utf8_length);
   int wrote = v8_string->WriteUtf8(isolate, *utf8_string);
 
   // TODO(XadillaX): Real length?

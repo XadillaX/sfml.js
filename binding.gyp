@@ -83,6 +83,7 @@
       "./src/image.cc",
       "./src/keyboard.cc",
       "./src/mouse.cc",
+      "./src/music.cc",
       "./src/poll_event.cc",
       "./src/rect.cc",
       "./src/render_window.cc",

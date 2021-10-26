@@ -8,6 +8,7 @@
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
     "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h",
     "preinstall": "node tools/symlinks.js",
+    "cpplint": "./third_party/cpplint/cpplint.py src/**/*",
     "install": "node-gyp rebuild"
   },
   "repository": {
@@ -46,5 +47,6 @@
     "third_party/sfml/platform/macOS/lib/libsfml-graphics.2.5.1.dylib",
     "third_party/sfml/platform/macOS/Frameworks/**/*",
     "tools/*"
-  ]
+  ],
+  "__npminstall_done": false
 }

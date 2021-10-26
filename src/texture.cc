@@ -1,5 +1,6 @@
-#include "image.h"
 #include "texture.h"
+#include "image.h"
+#include "load_from_file_worker.h"
 #include "rect.h"
 #include "vector2.h"
 
@@ -15,62 +16,6 @@ using v8::Object;
 using v8::String;
 using v8::Value;
 
-class LoadFromFileWorker : public Nan::AsyncWorker {
- public:
-  LoadFromFileWorker(Local<Object> texture,
-                     const string& filename,
-                     const sf::IntRect& rect,
-                     Nan::Callback* callback)
-      : Nan::AsyncWorker(callback),
-        _texture(Nan::ObjectWrap::Unwrap<Texture>(texture)),
-        _filename(filename),
-        _loaded(false),
-        _async_resource("texture_load_from_file"),
-        _area(rect) {
-    _texture_object.Reset(texture);
-  }
-
-  ~LoadFromFileWorker() {
-    _texture_object.Reset();
-    _texture = nullptr;
-  }
-
-  virtual void Execute() {
-    _loaded = _texture->mutable_texture().loadFromFile(this->_filename);
-    if (!_loaded) {
-      char error[1024];
-      snprintf(
-          error, sizeof error, "Failed to load %s.", this->_filename.c_str());
-      SetErrorMessage(error);
-    }
-  }
-
-  virtual void HandleOKCallback() {
-    _texture->SetLoading(false);
-
-    Nan::HandleScope scope;
-    callback->Call(0, nullptr, &_async_resource);
-  }
-
-  virtual void HandleErrorCallback() {
-    _texture->SetLoading(false);
-
-    Nan::HandleScope scope;
-    Local<Value> argv[1] = {Nan::Error(ErrorMessage())};
-    callback->Call(1, argv, &_async_resource);
-  }
-
-  inline Nan::AsyncResource* async_resource() { return &_async_resource; }
-
- private:
-  Texture* _texture;
-  Nan::Persistent<Object> _texture_object;
-  string _filename;
-  bool _loaded;
-  Nan::AsyncResource _async_resource;
-  sf::IntRect _area;
-};
-
 Nan::Persistent<Function> constructor;
 
 NAN_MODULE_INIT(Texture::Init) {
@@ -80,6 +25,7 @@ NAN_MODULE_INIT(Texture::Init) {
 
   Nan::SetPrototypeMethod(tpl, "create", Create);
   Nan::SetPrototypeMethod(tpl, "loadFromFile", LoadFromFile);
+  Nan::SetPrototypeMethod(tpl, "loadFromFileSync", LoadFromFileSync);
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
 
   Nan::SetPrototypeMethod(tpl, "updateByImage", UpdateByImage);
@@ -109,6 +55,14 @@ NAN_METHOD(Texture::Create) {
   texture->_texture.create(w, h);
 }
 
+inline bool LoadFromFileFunction(void* target,
+                                 const std::string& filename,
+                                 void* context) {
+  sf::IntRect* rect = static_cast<sf::IntRect*>(context);
+  Texture* texture = static_cast<Texture*>(target);
+  return texture->mutable_texture().loadFromFile(filename, *rect);
+}
+
 // TODO(XadillaX): more Node.js-styled `LoadFromFile`
 NAN_METHOD(Texture::LoadFromFile) {
   Texture* texture = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
@@ -123,16 +77,38 @@ NAN_METHOD(Texture::LoadFromFile) {
   Local<String> v8_filename = info[0].As<String>();
   Nan::Utf8String utf8_filename(v8_filename);
   Nan::Callback* callback = new Nan::Callback(info[2].As<Function>());
-  sf::IntRect area;
+  std::shared_ptr<sf::IntRect> area = std::make_shared<sf::IntRect>();
 
+  if (!info[1]->IsUndefined()) {
+    *area.get() =
+        Nan::ObjectWrap::Unwrap<rect::IntRect>(info[1].As<Object>())->rect();
+  }
+
+  load_from_file_worker::LoadFromFileWorker<Texture, sf::IntRect>* worker =
+      new load_from_file_worker::LoadFromFileWorker<Texture, sf::IntRect>(
+          info.Holder(), *utf8_filename, LoadFromFileFunction, area, callback);
+  Nan::AsyncQueueWorker(worker);
+}
+
+NAN_METHOD(Texture::LoadFromFileSync) {
+  Texture* texture = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
+  if (texture->_loading) {
+    Local<Value> err = Nan::Error("Texture is loading.");
+    info.GetReturnValue().Set(err);
+
+    return;
+  }
+
+  Local<String> v8_filename = info[0].As<String>();
+  Nan::Utf8String utf8_filename(v8_filename);
+
+  sf::IntRect area;
   if (!info[1]->IsUndefined()) {
     area = Nan::ObjectWrap::Unwrap<rect::IntRect>(info[1].As<Object>())->rect();
   }
 
-  LoadFromFileWorker* worker =
-      new LoadFromFileWorker(info.Holder(), *utf8_filename, area, callback);
-
-  Nan::AsyncQueueWorker(worker);
+  info.GetReturnValue().Set(
+      texture->_texture.loadFromFile(*utf8_filename, area));
 }
 
 NAN_METHOD(Texture::GetSize) {
@@ -187,7 +163,8 @@ NAN_METHOD(Texture::UpdateByImage) {
     return;
   }
 
-  image::Image* img = Nan::ObjectWrap::Unwrap<image::Image>(info[0].As<Object>());
+  image::Image* img =
+      Nan::ObjectWrap::Unwrap<image::Image>(info[0].As<Object>());
   if (info.Length() <= 1) {
     texture->_texture.update(img->image());
     return;

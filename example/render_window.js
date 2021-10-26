@@ -11,6 +11,7 @@ const {
   Image,
   Keyboard,
   Mouse,
+  Music,
   RectangleShape,
   RenderWindow,
   Sprite,
@@ -29,13 +30,15 @@ convex.setPoint(0, { x: 20, y: 30 });
 convex.setPoint(1, { y: 30, x: 40 });
 convex.setPoint(2, { x: 0, y: 0 });
 
+const music = new Music();
+music.openFromFileSync(path.join(__dirname, './game.wav'));
 const font = new Font();
-font.loadFromFile(path.join(__dirname, 'font.ttf'));
-const text = new Text('你好', font);
-text.setPosition(200, 300);
+let text;
 
 let sprite;
+let sprite2;
 const texture = new Texture();
+const texture2 = new Texture();
 
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
@@ -46,12 +49,13 @@ function frame() {
   const delta = clock.getElapsedTime();
   clock.restart();
 
-  text.setString(`FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
+  text.setString(`你好 FPS: ${(1000 / delta.asMilliseconds()).toFixed(2)}`);
 
   let event;
   while ((event = window.pollEvent())) {
     if (event.type === 'Closed') {
       window.close();
+      music.stop();
     } else if (event.type === 'KeyPressed') {
       // if (event.key.codeStr === 'Escape') {
       //   window.close();
@@ -61,6 +65,7 @@ function frame() {
 
   if (Keyboard.isKeyPressed('Escape')) {
     window.close();
+    music.stop();
   }
 
   if (Keyboard.isKeyPressed('S')) {
@@ -112,6 +117,7 @@ function frame() {
   window.draw(convex);
   window.draw(text);
   window.draw(sprite);
+  window.draw(sprite2);
   window.display();
 
   new Image();
@@ -120,10 +126,19 @@ function frame() {
 }
 
 (async () => {
+  await font.loadFromFile(path.join(__dirname, 'font.ttf'));
+  text = new Text('你好', font);
+  text.setPosition(200, 300);
+
   await texture.loadFromFile(path.join(__dirname, 'avatar.gif'));
   sprite = new Sprite(texture);
   sprite.setPosition(300, 400);
 
+  texture2.loadFromFileSync(path.join(__dirname, 'avatar.gif'));
+  sprite2 = new Sprite(texture2);
+  sprite2.setPosition(500, 600);
+
   window.setFramerateLimit(60);
+  music.play();
   frame();
 })();

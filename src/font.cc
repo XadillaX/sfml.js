@@ -1,4 +1,5 @@
 #include "font.h"
+#include "load_from_file_worker.h"
 #include "rect-inl.h"
 
 namespace node_sfml {
@@ -11,6 +12,7 @@ using v8::MaybeLocal;
 using v8::Number;
 using v8::Object;
 using v8::String;
+using v8::Value;
 
 Nan::Persistent<Function> constructor;
 
@@ -19,6 +21,7 @@ NAN_MODULE_INIT(Font::Init) {
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(New);
 
+  Nan::SetPrototypeMethod(tpl, "loadFromFileSync", LoadFromFileSync);
   Nan::SetPrototypeMethod(tpl, "loadFromFile", LoadFromFile);
   Nan::SetPrototypeMethod(tpl, "getInfo", GetInfo);
   Nan::SetPrototypeMethod(tpl, "getGlyph", GetGlyph);
@@ -42,11 +45,39 @@ NAN_METHOD(Font::New) {
   info.GetReturnValue().Set(info.This());
 }
 
+inline bool LoadFromFileFunction(void* target,
+                                 const std::string& filename,
+                                 void* _) {
+  return static_cast<Font*>(target)->font().loadFromFile(filename);
+}
+
 NAN_METHOD(Font::LoadFromFile) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
-  Nan::Utf8String filename(info[0].As<String>());
+  if (font->_loading) {
+    Local<Value> err = Nan::Error("Font is loading.");
+    info.GetReturnValue().Set(err);
 
-  // TODO(XadillaX): asyncify.
+    return;
+  }
+
+  font->_loading = true;
+  Local<String> v8_filename = info[0].As<String>();
+  Nan::Utf8String utf8_filename(v8_filename);
+  Nan::Callback* callback = new Nan::Callback(info[1].As<Function>());
+
+  load_from_file_worker::LoadFromFileWorker<Font, void>* worker =
+      new load_from_file_worker::LoadFromFileWorker<Font, void>(
+          info.Holder(),
+          *utf8_filename,
+          LoadFromFileFunction,
+          nullptr,
+          callback);
+  Nan::AsyncQueueWorker(worker);
+}
+
+NAN_METHOD(Font::LoadFromFileSync) {
+  Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
+  Nan::Utf8String filename(info[0].As<String>());
   info.GetReturnValue().Set(font->_font->loadFromFile(*filename));
 }
 
@@ -148,8 +179,8 @@ NAN_METHOD(Font::GetUnderlineThickness) {
   info.GetReturnValue().Set(static_cast<double>(underline_thickness));
 }
 
-Font::Font() : _font(new sf::Font()) {}
-Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)) {}
+Font::Font() : _font(new sf::Font()), _loading(false) {}
+Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)), _loading(false) {}
 
 Font::~Font() {
   if (_font != nullptr) {

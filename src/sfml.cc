@@ -6,6 +6,7 @@
 #include "image.h"
 #include "keyboard.h"
 #include "mouse.h"
+#include "music.h"
 #include "rect.h"
 #include "render_window.h"
 #include "texture.h"
@@ -29,6 +30,7 @@ void Init(v8::Local<v8::Object> target) {
   color::Color::Init(target);
   font::Font::Init(target);
   image::Image::Init(target);
+  music::Music::Init(target);
   render_window::RenderWindow::Init(target);
   texture::Texture::Init(target);
   time::Time::Init(target);

@@ -10,13 +10,16 @@ interface Glyph {
   textureRect: IntRect;
 }
 
-export = class Font {
+declare class Font {
   constructor();
-  loadFromFile(filename: string): boolean;
+  loadFromFileSync(filename: string): boolean;
+  loadFromFile(filename: string): Promise<void>;
   getInfo(): Info;
-  getGlyph(codePoint: number, characterSize: number, bold: boolean, outlineThickness: number = 0): Glyph;
+  getGlyph(codePoint: number, characterSize: number, bold: boolean, outlineThickness?: number): Glyph;
   getKerning(first: number, second: number, characterSize: number): number;
   getLineSpacing(characterSize: number): number;
   getUnderlinePosition(characterSize: number): number;
   getUnderlineThickness(characterSize: number): number;
-};
+}
+
+export = Font;
