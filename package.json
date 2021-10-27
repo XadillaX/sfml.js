@@ -27,6 +27,7 @@
     "node-gyp": "^8.2.0"
   },
   "devDependencies": {
+    "@types/node": "^16.11.6",
     "eslint": "^8.0.0",
     "eslint-config-egg": "^9.0.0"
   },

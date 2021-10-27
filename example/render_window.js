@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 
 const {
@@ -14,6 +15,7 @@ const {
   Music,
   RectangleShape,
   RenderWindow,
+  Sound,
   Sprite,
   Text,
   Texture,
@@ -30,6 +32,7 @@ convex.setPoint(0, { x: 20, y: 30 });
 convex.setPoint(1, { y: 30, x: 40 });
 convex.setPoint(2, { x: 0, y: 0 });
 
+const sound = new Sound(fs.readFileSync(path.join(__dirname, './game.wav')));
 const music = new Music();
 music.openFromFileSync(path.join(__dirname, './game.wav'));
 const font = new Font();
@@ -139,7 +142,8 @@ function frame() {
   sprite2.setPosition(500, 600);
 
   window.setFramerateLimit(60);
-  music.play();
-  music.setLoop(true);
+  sound.play();
+  // music.play();
+  // music.setLoop(true);
   frame();
 })();

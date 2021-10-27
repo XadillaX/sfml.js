@@ -12,8 +12,9 @@ using v8::Object;
 using v8::String;
 using v8::Value;
 
+namespace {
 Nan::Persistent<Function> constructor;
-Nan::Persistent<Function> real_constructor;
+}
 
 NAN_MODULE_INIT(Music::Init) {
   Local<String> name = Nan::New("Music").ToLocalChecked();

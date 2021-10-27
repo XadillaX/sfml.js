@@ -20,6 +20,7 @@
 #include "drawable/text.h"
 
 #include "sound/music.h"
+#include "sound/sound.h"
 
 namespace node_sfml {
 
@@ -45,6 +46,7 @@ void Init(v8::Local<v8::Object> target) {
 
   // sound
   sound::Music::Init(target);
+  sound::Sound::Init(target);
 
   // rect
   rect::IntRect::Init(target);

@@ -176,8 +176,7 @@ NAN_METHOD(Texture::UpdateByImage) {
 }
 
 Texture::Texture() : _texture() {}
-Texture::Texture(const Texture& texture)
-    : _texture(texture._texture) {}
+Texture::Texture(const Texture& texture) : _texture(texture._texture) {}
 Texture::~Texture() {}
 
 }  // namespace texture

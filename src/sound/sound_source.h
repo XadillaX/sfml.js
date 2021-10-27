@@ -9,6 +9,12 @@ namespace node_sfml {
 namespace sound {
 
 class SoundSource : public Nan::ObjectWrap {
+  struct SimpleActions {
+    void (*play)(SoundSource*);
+    void (*pause)(SoundSource*);
+    void (*stop)(SoundSource*);
+  };
+
  public:
   static void SetCommonPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
 
@@ -34,7 +40,8 @@ class SoundSource : public Nan::ObjectWrap {
   // TODO(XadillaX): SetPosition / GetPosition
 
  public:
-  explicit SoundSource(sf::SoundSource* sound_source);
+  explicit SoundSource(sf::SoundSource* sound_source,
+                       SimpleActions = {nullptr, nullptr, nullptr});
   ~SoundSource();
 
   template <class T>
@@ -48,6 +55,7 @@ class SoundSource : public Nan::ObjectWrap {
 
  protected:
   std::unique_ptr<sf::SoundSource> _sound_source;
+  SimpleActions _simple_actions;
 };
 
 }  // namespace sound

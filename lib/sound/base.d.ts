@@ -1,5 +1,5 @@
 declare class SoundSource {
-  constructor(innerName: string);
+  constructor(innerName: string, ...args: any);
 
   play(): void;
   pause(): void;

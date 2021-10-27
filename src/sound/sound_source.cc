@@ -34,7 +34,11 @@ NAN_METHOD(SoundSource::GetStatus) {
 #define SIMPLE_ACTION(name, call)                                              \
   NAN_METHOD(SoundSource::name) {                                              \
     SoundSource* ss = Nan::ObjectWrap::Unwrap<SoundSource>(info.Holder());     \
-    ss->sound_source<sf::SoundSource>().call();                                \
+    if (ss->_simple_actions.call != nullptr) {                                 \
+      ss->_simple_actions.call(ss);                                            \
+    } else {                                                                   \
+      ss->sound_source<sf::SoundSource>().call();                              \
+    }                                                                          \
   }
 
 SIMPLE_ACTION(Play, play);
@@ -61,8 +65,9 @@ SIMPLE_ACTION(Stop, stop);
 SOUND_SOURCE_SIMPLE_SETTER_AND_GETTERS(SIMPLE_SETTER_GETTER);
 #undef SIMPLE_SETTER_GETTER
 
-SoundSource::SoundSource(sf::SoundSource* sound_source)
-    : _sound_source(sound_source) {}
+SoundSource::SoundSource(sf::SoundSource* sound_source,
+                         SimpleActions simple_actions)
+    : _sound_source(sound_source), _simple_actions(simple_actions) {}
 
 SoundSource::~SoundSource() {}
 
