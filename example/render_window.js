@@ -144,6 +144,8 @@ function frame() {
   window.setFramerateLimit(60);
   sound.play();
   // music.play();
-  // music.setLoop(true);
+  music.setLoop(true);
+  console.log(sound);
+  console.log(music);
   frame();
 })();
