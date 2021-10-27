@@ -39,4 +39,4 @@ class Sound : public SoundSource {
 }  // namespace sound
 }  // namespace node_sfml
 
-#endif  // SRC_SOUND_H_
+#endif  // SRC_SOUND_SOUND_H_

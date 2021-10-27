@@ -5,6 +5,8 @@ export class SoundSource {
   pause(): void;
   stop(): void;
 
+  getStatus(): SoundSource.Status;
+
   setPitch(pitch: number): void;
   getPitch(): number;
 
@@ -20,4 +22,12 @@ export class SoundSource {
   setRelativeToListener(relative: boolean): void;
   getRelativeToListener(): boolean;
   isRelativeToListener(): boolean;
+}
+
+export namespace SoundSource {
+  enum Status {
+    Stopped = 0,
+    Paused = 1,
+    Playing = 2,
+  }
 }
