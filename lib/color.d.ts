@@ -1,4 +1,4 @@
-declare class Color {
+export class Color {
   constructor(color: number);
   constructor(red: number, green: number, blue: number, alpha?: number);
 
@@ -9,5 +9,3 @@ declare class Color {
 
   toInteger(): number;
 }
-
-export = Color;

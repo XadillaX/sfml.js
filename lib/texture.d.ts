@@ -1,8 +1,8 @@
-import * as Image from './image';
+import { Image } from './image';
 import { IntRect } from './rect';
 import { Vector2F } from './vector2';
 
-declare class Texture {
+export class Texture {
   constructor();
 
   create(x: number, y: number): void;
@@ -17,5 +17,3 @@ declare class Texture {
   getSize(): Vector2F;
   setSmooth(smooth?: boolean): void;
 }
-
-export = Texture;

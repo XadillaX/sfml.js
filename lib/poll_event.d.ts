@@ -70,7 +70,5 @@ interface MouseWheelScrollEvent {
   };
 }
 
-type Event = OtherEvent | SizeEvent | KeyEvent | TextEvent | MouseMoveEvent | MouseButtonEvent | MouseWheelEvent |
-  MouseWheelScrollEvent;
-
-export = Event;
+export type Event = OtherEvent | SizeEvent | KeyEvent | TextEvent | MouseMoveEvent | MouseButtonEvent |
+  MouseWheelEvent | MouseWheelScrollEvent;

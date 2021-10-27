@@ -1,5 +1,3 @@
-declare class Image {
+export class Image {
   constructor();
 }
-
-export = Image;

@@ -1,4 +1,4 @@
-declare class VideoMode {
+export class VideoMode {
   static getDesktopMode(): VideoMode;
   static getFullscreenModes(): VideoMode[];
 
@@ -10,5 +10,3 @@ declare class VideoMode {
   height: number;
   bitsPerPixel: number;
 }
-
-export = VideoMode;

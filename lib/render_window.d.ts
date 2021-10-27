@@ -1,14 +1,15 @@
-import * as Drawable from './drawable/base';
-import * as Image from './image';
-import * as Event from './poll_event';
-import * as VideoMode from './video_mode';
+import { Color } from './color';
+import { Drawable } from './drawable/drawable';
+import { Event } from './poll_event';
+import { Image } from './image';
+import { VideoMode } from './video_mode';
 import { Vector2U } from './vector2';
 
-declare class RenderWindow {
+export class RenderWindow {
   constructor(videoMode?: VideoMode, title?: string, style?: RenderWindow.Style);
 
   capture(): Image;
-  clear(color: number): void;
+  clear(color: number | Color): void;
   close(): void;
   draw(content: Drawable): void;
   display(): void;
@@ -26,8 +27,7 @@ declare class RenderWindow {
 
   getSize(): Vector2U;
 }
-
-declare namespace RenderWindow {
+export namespace RenderWindow {
   enum Style {
     None = 0,
     Titlebar = 1 << 0,
@@ -37,5 +37,3 @@ declare namespace RenderWindow {
     Default = Titlebar | Resize | Close,
   }
 }
-
-export = RenderWindow;

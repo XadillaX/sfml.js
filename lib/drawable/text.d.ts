@@ -1,13 +1,13 @@
-import * as Drawable from './drawable';
+import { Drawable } from './drawable';
 import { PluginPackageBound, PluginPackageColorAndThickness } from './plugin_package';
 import { Transformable } from './transformable';
-import * as Font from '../font';
+import { Font } from '../font';
 
 type TextPluginPackage = Transformable & PluginPackageColorAndThickness & PluginPackageBound;
 
-declare interface Text extends TextPluginPackage {}
-declare class Text extends Drawable implements PluginPackage {
-  constructor(str?: string, font?: Font, characterSize?: number = 30);
+export interface Text extends TextPluginPackage {}
+export class Text extends Drawable implements TextPluginPackage {
+  constructor(str?: string, font?: Font, characterSize?: number);
   setString(str: string): void;
   setFont(font: Font): void;
   setCharacterSize(characterSize: number): void;
@@ -15,15 +15,12 @@ declare class Text extends Drawable implements PluginPackage {
   setLetterSpacing(letterSpacing: number): void;
   setStyle(style: Text.Style): void;
 }
-
-declare namespace Text {
+export namespace Text {
   enum Style {
     Regular = 0,
     Bold = 1 << 0,
     Italic = 1 << 1,
     Underlined = 1 << 2,
     StrikeThrough = 1 << 3,
-  };
+  }
 }
-
-export = Text;

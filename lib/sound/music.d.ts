@@ -1,6 +1,6 @@
-import * as SoundSource from './base';
+import { SoundSource } from './base';
 
-declare class Music extends SoundSource {
+export class Music extends SoundSource {
   constructor();
   openFromFileSync(filename: string): boolean;
   openFromFile(filename: string): Promise<void>;
@@ -8,5 +8,3 @@ declare class Music extends SoundSource {
   setLoop(loop: boolean): void;
   getLoop(): boolean;
 }
-
-export = Music;

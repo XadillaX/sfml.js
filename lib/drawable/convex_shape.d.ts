@@ -1,7 +1,5 @@
-import * as Shape from './shape';
+import { Shape } from './shape';
 
-declare class CircleShape extends Shape {
+export class ConvexShape extends Shape {
   constructor(pointCount?: number);
 }
-
-export = CircleShape;

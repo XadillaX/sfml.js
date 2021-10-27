@@ -1,4 +1,4 @@
-declare class SoundSource {
+export class SoundSource {
   constructor(innerName: string, ...args: any);
 
   play(): void;
@@ -21,5 +21,3 @@ declare class SoundSource {
   getRelativeToListener(): boolean;
   isRelativeToListener(): boolean;
 }
-
-export = SoundSource;

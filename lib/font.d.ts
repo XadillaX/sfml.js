@@ -10,7 +10,7 @@ interface Glyph {
   textureRect: IntRect;
 }
 
-declare class Font {
+export class Font {
   constructor();
   loadFromFileSync(filename: string): boolean;
   loadFromFile(filename: string): Promise<void>;
@@ -21,5 +21,3 @@ declare class Font {
   getUnderlinePosition(characterSize: number): number;
   getUnderlineThickness(characterSize: number): number;
 }
-
-export = Font;

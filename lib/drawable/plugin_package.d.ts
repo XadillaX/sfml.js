@@ -1,6 +1,6 @@
-import * as Color from '../color';
+import { Color } from '../color';
 import { FloatRect } from '../rect';
-import * as Texture from '../texture';
+import { Texture } from '../texture';
 
 export interface PluginPackageTexture {
   setTexture(texture: Texture): void;
