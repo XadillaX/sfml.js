@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.25",
+  "version": "0.0.1-preview.26",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
@@ -33,6 +33,7 @@
   },
   "files": [
     "binding.gyp",
+    "index.d.ts",
     "lib/**/*",
     "src/**/*",
     "third_party/sfml/include/**/*",
@@ -47,6 +48,7 @@
     "third_party/sfml/platform/macOS/lib/libsfml-network.2.5.1.dylib",
     "third_party/sfml/platform/macOS/lib/libsfml-graphics.2.5.1.dylib",
     "third_party/sfml/platform/macOS/Frameworks/**/*",
-    "tools/*"
+    "tools/*",
+    "tsconfig.json"
   ]
 }
