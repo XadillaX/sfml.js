@@ -93,10 +93,8 @@ NAN_METHOD(Music::OpenFromFileSync) {
   info.GetReturnValue().Set(music->music().openFromFile(*filename));
 }
 
-Music::Music() : SoundSource(new sf::Music()) {}
-Music::~Music() {
-  music().stop();
-}
+Music::Music() : SoundSource(SoundSource::SoundType::kMusic, new sf::Music()) {}
+Music::~Music() {}
 
 }  // namespace sound
 }  // namespace node_sfml

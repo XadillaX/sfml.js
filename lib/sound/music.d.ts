@@ -8,3 +8,7 @@ export class Music extends SoundSource {
   setLoop(loop: boolean): void;
   getLoop(): boolean;
 }
+
+export namespace Music {
+  type Status = SoundSource.Status;
+}

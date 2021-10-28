@@ -1,12 +1,48 @@
 #include "sound_source.h"
 
+#include "music.h"
+#include "sound.h"
+
 namespace node_sfml {
 namespace sound {
 
 using v8::Boolean;
 using v8::FunctionTemplate;
+using v8::Isolate;
 using v8::Local;
 using v8::Number;
+
+std::map<SoundSource*, SoundSource::SoundType> SoundSource::registered_sounds;
+
+void SoundSource::Stop(SoundType type, SoundSource* source, bool delete_ptr) {
+#define CASE(camel_case)                                                       \
+  case SoundType::k##camel_case: {                                             \
+    if (delete_ptr) {                                                          \
+      sf::camel_case* val =                                                    \
+          reinterpret_cast<sf::camel_case*>(source->_sound_source.release());  \
+      val->stop();                                                             \
+      delete val;                                                              \
+    } else {                                                                   \
+      (reinterpret_cast<sf::camel_case*>(source->_sound_source.get()))         \
+          ->stop();                                                            \
+    }                                                                          \
+    break;                                                                     \
+  }
+
+  switch (type) {
+    CASE(Music)
+    CASE(Sound)
+  }
+}
+
+void SoundSource::AtExit(void* argv) {
+  for (auto it = registered_sounds.begin(); it != registered_sounds.end();
+       it++) {
+    SoundSource::Stop(it->second, it->first, true);
+  }
+
+  registered_sounds.clear();
+}
 
 void SoundSource::SetCommonPrototype(Local<FunctionTemplate>* _tpl) {
   Local<FunctionTemplate>& tpl = *_tpl;
@@ -65,11 +101,24 @@ SIMPLE_ACTION(Stop, stop);
 SOUND_SOURCE_SIMPLE_SETTER_AND_GETTERS(SIMPLE_SETTER_GETTER);
 #undef SIMPLE_SETTER_GETTER
 
-SoundSource::SoundSource(sf::SoundSource* sound_source,
+SoundSource::SoundSource(SoundType type,
+                         sf::SoundSource* sound_source,
                          SimpleActions simple_actions)
-    : _sound_source(sound_source), _simple_actions(simple_actions) {}
+    : _sound_source(sound_source),
+      _simple_actions(simple_actions),
+      _type(type) {
+  registered_sounds[this] = type;
+}
 
-SoundSource::~SoundSource() {}
+SoundSource::~SoundSource() {
+  auto it = registered_sounds.find(this);
+  if (it == registered_sounds.end()) {
+    return;
+  }
+
+  SoundSource::Stop(it->second, this);
+  registered_sounds.erase(it);
+}
 
 }  // namespace sound
 }  // namespace node_sfml

@@ -4,6 +4,7 @@
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 
+#include "sound_buffer.h"
 #include "sound_source.h"
 
 namespace node_sfml {
@@ -19,21 +20,19 @@ class Sound : public SoundSource {
   static NAN_METHOD(New);
   static NAN_METHOD(SetLoop);
   static NAN_METHOD(GetLoop);
+  static NAN_METHOD(SetBuffer);
 
   inline const sf::Sound& sound() const { return sound_source<sf::Sound>(); }
   inline sf::Sound& sound() { return sound_source<sf::Sound>(); }
 
  private:
   Sound();
-  explicit Sound(const std::shared_ptr<sf::SoundBuffer>& sound_buffer);
+  explicit Sound(SoundBuffer* sound_buffer);
   virtual ~Sound();
 
  private:
-  // Should store sound buffer by self because `sf::Sound` only holds its
-  // pointer.
-  std::shared_ptr<sf::SoundBuffer> _sfml_sound_buffer;
-  // TODO(XadillaX): SoundBuffer object of JavaScript should be attached here
-  // also.
+  SoundBuffer* _sound_buffer;
+  Nan::Persistent<v8::Object> _sound_buffer_object;
 };
 
 }  // namespace sound

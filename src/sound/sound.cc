@@ -23,6 +23,8 @@ NAN_MODULE_INIT(Sound::Init) {
   Nan::SetPrototypeMethod(tpl, "setLoop", SetLoop);
   Nan::SetPrototypeMethod(tpl, "getLoop", GetLoop);
 
+  Nan::SetPrototypeMethod(tpl, "setBuffer", SetBuffer);
+
   sound::SoundSource::SetCommonPrototype(&tpl);
 
   tpl->SetClassName(name);
@@ -38,19 +40,10 @@ NAN_METHOD(Sound::New) {
   Sound* sound = nullptr;
   if (info.Length() == 0 || info[0]->IsNullOrUndefined()) {
     sound = new Sound();
-  } else if (info.Length() == 1) {
-    node::Buffer::HasInstance(info[0].As<Object>());
-    if (node::Buffer::HasInstance(info[0])) {
-      char* buf = node::Buffer::Data(info[0]);
-      int len = node::Buffer::Length(info[0]);
-
-      std::shared_ptr<sf::SoundBuffer> sound_buffer =
-          std::make_shared<sf::SoundBuffer>();
-      sound_buffer.get()->loadFromMemory(buf, len);
-      sound = new Sound(sound_buffer);
-    }
-
-    // TODO(XadillaX): SoundBuffer
+  } else if (info.Length() >= 1) {
+    SoundBuffer* sb =
+        Nan::ObjectWrap::Unwrap<SoundBuffer>(info[0].As<Object>());
+    sound = new Sound(sb);
   }
 
   if (!sound) {
@@ -60,6 +53,15 @@ NAN_METHOD(Sound::New) {
 
   sound->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
+}
+
+NAN_METHOD(Sound::SetBuffer) {
+  Sound* sound = Nan::ObjectWrap::Unwrap<Sound>(info.Holder());
+  SoundBuffer* sb = Nan::ObjectWrap::Unwrap<SoundBuffer>(info[0].As<Object>());
+  sound->sound().setBuffer(sb->sound_buffer());
+
+  sound->_sound_buffer = sb;
+  sound->_sound_buffer_object.Reset(sb->handle());
 }
 
 NAN_METHOD(Sound::SetLoop) {
@@ -94,15 +96,20 @@ inline void SoundStop(SoundSource* ss) {
 }
 
 Sound::Sound()
-    : SoundSource(new sf::Sound(), {SoundPlay, SoundPause, SoundStop}) {}
-
-Sound::Sound(const std::shared_ptr<sf::SoundBuffer>& sound_buffer)
-    : SoundSource(new sf::Sound(*sound_buffer.get()),
+    : SoundSource(SoundSource::SoundType::kSound,
+                  new sf::Sound(),
                   {SoundPlay, SoundPause, SoundStop}),
-      _sfml_sound_buffer(sound_buffer) {}
+      _sound_buffer(nullptr) {}
+
+Sound::Sound(SoundBuffer* sound_buffer)
+    : SoundSource(SoundSource::SoundType::kSound,
+                  new sf::Sound(sound_buffer->sound_buffer()),
+                  {SoundPlay, SoundPause, SoundStop}),
+      _sound_buffer(sound_buffer),
+      _sound_buffer_object(sound_buffer->handle()) {}
 
 Sound::~Sound() {
-  sound().stop();
+  _sound_buffer_object.Reset();
 }
 
 }  // namespace sound

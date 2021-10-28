@@ -22,6 +22,7 @@
 #include "sound/music.h"
 #include "sound/sound.h"
 #include "sound/sound_buffer.h"
+#include "sound/sound_source.h"
 
 namespace node_sfml {
 
@@ -58,6 +59,9 @@ void Init(v8::Local<v8::Object> target) {
   vector2::Vector2I::Init(target);
   vector2::Vector2U::Init(target);
   vector2::Vector2F::Init(target);
+
+  node::AddEnvironmentCleanupHook(
+      target->GetIsolate(), sound::SoundSource::AtExit, nullptr);
 }
 
 }  // namespace node_sfml

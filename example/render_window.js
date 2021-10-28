@@ -58,17 +58,15 @@ function frame() {
   while ((event = window.pollEvent())) {
     if (event.type === 'Closed') {
       window.close();
-      // music.stop();
     } else if (event.type === 'KeyPressed') {
-      // if (event.key.codeStr === 'Escape') {
-      //   window.close();
-      // }
+      if (event.key.codeStr === 'Escape') {
+        window.close();
+      }
     }
   }
 
   if (Keyboard.isKeyPressed('Escape')) {
     window.close();
-    // music.stop();
   }
 
   if (Keyboard.isKeyPressed('S')) {

@@ -2,6 +2,7 @@
 #define SRC_SOUND_SOUND_SOURCE_H_
 
 #include <nan.h>
+#include <map>
 
 #include <SFML/Audio/SoundSource.hpp>
 
@@ -9,14 +10,20 @@ namespace node_sfml {
 namespace sound {
 
 class SoundSource : public Nan::ObjectWrap {
+ public:
   struct SimpleActions {
     void (*play)(SoundSource*);
     void (*pause)(SoundSource*);
     void (*stop)(SoundSource*);
   };
 
- public:
+  enum SoundType {
+    kMusic,
+    kSound,
+  };
+
   static void SetCommonPrototype(v8::Local<v8::FunctionTemplate>* _tpl);
+  static void AtExit(void* argv);
 
  public:
   static NAN_METHOD(Play);
@@ -40,7 +47,8 @@ class SoundSource : public Nan::ObjectWrap {
   // TODO(XadillaX): SetPosition / GetPosition
 
  public:
-  explicit SoundSource(sf::SoundSource* sound_source,
+  explicit SoundSource(SoundType type,
+                       sf::SoundSource* sound_source,
                        SimpleActions = {nullptr, nullptr, nullptr});
   ~SoundSource();
 
@@ -53,9 +61,17 @@ class SoundSource : public Nan::ObjectWrap {
     return *reinterpret_cast<T*>(_sound_source.get());
   }
 
+ private:
+  static void Stop(SoundType type,
+                   SoundSource* source,
+                   bool delete_ptr = false);
+
  protected:
   std::unique_ptr<sf::SoundSource> _sound_source;
   SimpleActions _simple_actions;
+  SoundType _type;
+
+  static std::map<SoundSource*, SoundType> registered_sounds;
 };
 
 }  // namespace sound
