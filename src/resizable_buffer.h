@@ -9,8 +9,8 @@ namespace node_sfml {
 template <typename T>
 struct ReleasedResizableBuffer {
   T* buffer;
-  int length;
-  int byte_length;
+  size_t length;
+  size_t byte_length;
 };
 
 template <typename T>
