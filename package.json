@@ -50,5 +50,6 @@
     "third_party/sfml/platform/macOS/Frameworks/**/*",
     "tools/*",
     "tsconfig.json"
-  ]
+  ],
+  "__npminstall_done": false
 }

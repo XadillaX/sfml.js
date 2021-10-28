@@ -36,7 +36,7 @@ NAN_MODULE_INIT(Sound::Init) {
 
 NAN_METHOD(Sound::New) {
   Sound* sound = nullptr;
-  if (info.Length() == 0) {
+  if (info.Length() == 0 || info[0]->IsNullOrUndefined()) {
     sound = new Sound();
   } else if (info.Length() == 1) {
     node::Buffer::HasInstance(info[0].As<Object>());

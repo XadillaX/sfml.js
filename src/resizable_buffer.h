@@ -71,7 +71,7 @@ class ResizableBuffer {
     size_t byte_length = _byte_length;
 
     _buff = nullptr;
-    length = byte_length = 0;
+    _length = _byte_length = 0;
 
     return {buffer, length, byte_length};
   }

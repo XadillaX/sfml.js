@@ -104,6 +104,7 @@
 
       "./src/sound/music.cc",
       "./src/sound/sound.cc",
+      "./src/sound/sound_buffer.cc",
       "./src/sound/sound_source.cc"
     ],
     "dependencies": [

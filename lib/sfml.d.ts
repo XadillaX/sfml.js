@@ -21,3 +21,4 @@ export * from './drawable/text';
 
 export * from './sound/music';
 export * from './sound/sound';
+export * from './sound/sound_buffer';

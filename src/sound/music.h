@@ -31,4 +31,4 @@ class Music : public SoundSource, public BaseClassWithLoading {
 }  // namespace sound
 }  // namespace node_sfml
 
-#endif  // SRC_MUSIC_H_
+#endif  // SRC_SOUND_MUSIC_H_

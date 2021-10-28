@@ -21,6 +21,7 @@
 
 #include "sound/music.h"
 #include "sound/sound.h"
+#include "sound/sound_buffer.h"
 
 namespace node_sfml {
 
@@ -47,6 +48,7 @@ void Init(v8::Local<v8::Object> target) {
   // sound
   sound::Music::Init(target);
   sound::Sound::Init(target);
+  sound::SoundBuffer::Init(target);
 
   // rect
   rect::IntRect::Init(target);
