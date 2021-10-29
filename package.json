@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.30",
+  "version": "0.0.1-preview.31",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
@@ -50,6 +50,5 @@
     "third_party/sfml/platform/macOS/Frameworks/**/*",
     "tools/*",
     "tsconfig.json"
-  ],
-  "__npminstall_done": false
+  ]
 }
