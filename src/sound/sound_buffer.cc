@@ -1,5 +1,6 @@
 #include "sound_buffer.h"
 #include "../resizable_buffer.h"
+#include "../workers/save_to_file_worker.h"
 
 namespace node_sfml {
 namespace sound {
@@ -20,54 +21,6 @@ using v8::Value;
 
 namespace {
 Nan::Persistent<Function> constructor;
-
-class SaveToFileWorker : public Nan::AsyncWorker {
- public:
-  SaveToFileWorker(SoundBuffer* sound_buffer,
-                   const string& filename,
-                   Nan::Callback* callback)
-      : Nan::AsyncWorker(callback),
-        _filename(filename),
-        _saved(false),
-        _sound_buffer(sound_buffer),
-        _async_resource("save_to_file_worker") {
-    _object.Reset(sound_buffer->handle());
-  }
-
-  ~SaveToFileWorker() { _object.Reset(); }
-
-  inline virtual void Execute() {
-    _saved = _sound_buffer->sound_buffer().saveToFile(_filename);
-    if (!_saved) {
-      char error[1024];
-      snprintf(error,
-               sizeof error,
-               "Failed to save SoundBuffer to %s.",
-               this->_filename.c_str());
-      SetErrorMessage(error);
-    }
-  }
-
-  inline virtual void HandleOKCallback() {
-    Nan::HandleScope scope;
-    callback->Call(0, nullptr, &_async_resource);
-  }
-
-  inline virtual void HandleErrorCallback() {
-    Nan::HandleScope scope;
-    v8::Local<v8::Value> argv[1] = {Nan::Error(ErrorMessage())};
-    callback->Call(1, argv, &_async_resource);
-  }
-
-  inline Nan::AsyncResource* async_resource() { return &_async_resource; }
-
- private:
-  string _filename;
-  bool _saved;
-  Nan::Persistent<v8::Object> _object;
-  SoundBuffer* _sound_buffer;
-  Nan::AsyncResource _async_resource;
-};
 }  // namespace
 
 NAN_MODULE_INIT(SoundBuffer::Init) {
@@ -119,6 +72,9 @@ NAN_METHOD(SoundBuffer::New) {
 
 NAN_METHOD(SoundBuffer::LoadFromMemory) {
   SoundBuffer* sb = Nan::ObjectWrap::Unwrap<SoundBuffer>(info.Holder());
+  if (sb->_saving) {
+    Nan::ThrowError("SoundBuffer is saving to file.");
+  }
 
   char* buf = node::Buffer::Data(info[0]);
   int len = node::Buffer::Length(info[0]);
@@ -128,6 +84,10 @@ NAN_METHOD(SoundBuffer::LoadFromMemory) {
 
 NAN_METHOD(SoundBuffer::LoadFromSamples) {
   SoundBuffer* sb = Nan::ObjectWrap::Unwrap<SoundBuffer>(info.Holder());
+  if (sb->_saving) {
+    Nan::ThrowError("SoundBuffer is saving to file.");
+    return;
+  }
 
   ResizableBuffer<sf::Int16> buff;
   if (info[0]->IsInt16Array()) {
@@ -238,8 +198,17 @@ NAN_METHOD(SoundBuffer::SaveToFile) {
   Nan::Utf8String utf8_filename(v8_filename);
   Nan::Callback* callback = new Nan::Callback(info[1].As<Function>());
 
-  SoundBuffer* sb = Nan::ObjectWrap::Unwrap<SoundBuffer>(info.Holder());
-  SaveToFileWorker* worker = new SaveToFileWorker(sb, *utf8_filename, callback);
+  Nan::ObjectWrap::Unwrap<SoundBuffer>(info.Holder())->SetSaving(true);
+  save_to_file_worker::SaveToFileWorker<SoundBuffer, void>* worker =
+      new save_to_file_worker::SaveToFileWorker<SoundBuffer, void>(
+          info.Holder(),
+          *utf8_filename,
+          [](void* target, const string& filename, void* _) {
+            SoundBuffer* sb = reinterpret_cast<SoundBuffer*>(target);
+            return sb->sound_buffer().saveToFile(filename);
+          },
+          nullptr,
+          callback);
   Nan::AsyncQueueWorker(worker);
 }
 

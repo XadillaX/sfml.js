@@ -1,5 +1,5 @@
 #include "music.h"
-#include "../load_from_file_worker.h"
+#include "../workers/load_from_file_worker.h"
 
 namespace node_sfml {
 namespace sound {

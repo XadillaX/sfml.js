@@ -10,6 +10,7 @@ const {
   ConvexShape,
   Font,
   Image,
+  IntRect,
   Keyboard,
   Mouse,
   Music,
@@ -46,6 +47,53 @@ const texture2 = new Texture();
 let circleColor = 0;
 const red = new Color(255, 0, 0, 255);
 const clock = new Clock();
+
+const redImg = new Image();
+redImg.create(10, 10, 0xff0099ff);
+const redTexture = new Texture();
+redTexture.create(10, 10);
+redTexture.update(redImg);
+const redSprite = new Sprite(redTexture);
+redSprite.setPosition(80, 90);
+
+const xxxImg = new Image();
+const buf = Buffer.alloc(300 * 300 * 4, 0);
+for (let i = 0; i < 300 * 300; i++) {
+  buf.writeUInt32BE((i << 8) + 0xff, i * 4);  // eslint-disable-line
+}
+xxxImg.create(300, 300, buf);
+const xxxTexture = new Texture();
+xxxTexture.create(300, 300);
+xxxTexture.update(xxxImg);
+const xxxSprite = new Sprite(xxxTexture);
+xxxSprite.setPosition(100, 150);
+console.log(xxxImg.duplicatePixels());
+
+const yyyImg = new Image();
+yyyImg.create(100, 100, 0);
+yyyImg.copy(xxxImg, 0, 0, new IntRect(100, 100, 100, 100), true);
+const yyyTexture = new Texture();
+yyyTexture.create(100, 100);
+yyyTexture.update(yyyImg);
+const yyySprite = new Sprite(yyyTexture);
+yyySprite.setPosition(400, 450);
+
+const zzzImg = new Image();
+zzzImg.loadFromFileSync(path.join(__dirname, 'avatar.gif'));
+zzzImg.createMaskFromColor(0xffffffff, 0);
+for (let i = 10; i < 50; i++) {
+  for (let j = 10; j < 50; j++) {
+    zzzImg.setPixel(i, j, 0x000000ff);
+  }
+}
+console.log(zzzImg.getPixel(100, 100));
+zzzImg.flipHorizontally();
+// zzzImg.setPixel(1000, 2000, 0);
+const zzzTexture = new Texture();
+zzzTexture.create(zzzImg.getSize().x, zzzImg.getSize().y);
+zzzTexture.update(zzzImg);
+const zzzSprite = new Sprite(zzzTexture);
+zzzSprite.setPosition(700, 550);
 
 function frame() {
   if (!window.isOpen()) return;
@@ -113,6 +161,10 @@ function frame() {
   }
   Mouse.setPosition(mousePos.window, window);
 
+  window.draw(xxxSprite);
+  window.draw(yyySprite);
+  window.draw(zzzSprite);
+  window.draw(redSprite);
   window.draw(circle);
   window.draw(rectangle);
   window.draw(convex);
@@ -130,6 +182,8 @@ function frame() {
   await font.loadFromFile(path.join(__dirname, 'font.ttf'));
   text = new Text('你好', font);
   text.setPosition(200, 300);
+
+  xxxImg.saveToFile('/tmp/xxx.png');
 
   await texture.loadFromFile(path.join(__dirname, 'avatar.gif'));
   sprite = new Sprite(texture);

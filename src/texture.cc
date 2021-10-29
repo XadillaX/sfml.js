@@ -1,8 +1,8 @@
 #include "texture.h"
 #include "image.h"
-#include "load_from_file_worker.h"
 #include "rect.h"
 #include "vector2.h"
+#include "workers/load_from_file_worker.h"
 
 namespace node_sfml {
 namespace texture {

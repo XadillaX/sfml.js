@@ -4,10 +4,12 @@
 #include <nan.h>
 #include <SFML/Audio/SoundBuffer.hpp>
 
+#include "../base_class_with_loading.h"
+
 namespace node_sfml {
 namespace sound {
 
-class SoundBuffer : public Nan::ObjectWrap {
+class SoundBuffer : public Nan::ObjectWrap, public BaseClassWithLoading {
  public:
   static NAN_MODULE_INIT(Init);
 
