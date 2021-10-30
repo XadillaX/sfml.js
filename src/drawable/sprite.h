@@ -31,14 +31,12 @@ class Sprite : public DrawableWithTexture {
 
  private:
   Sprite();
+  Sprite(Sprite* sprite, v8::MaybeLocal<v8::Object> texture_object);
   Sprite(v8::Local<v8::Object> texture_object, const texture::Texture& texture);
   Sprite(v8::Local<v8::Object> texture_object,
          const texture::Texture& texture,
          const rect::IntRect& rect);
   virtual ~Sprite();
-
- private:
-  Nan::Persistent<v8::Object> _texture;
 };
 
 }  // namespace drawable

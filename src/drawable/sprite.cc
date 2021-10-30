@@ -39,6 +39,15 @@ NAN_METHOD(Sprite::New) {
     return;
   }
 
+  if (info.Length() == 2 && info[0]->IsString()) {
+    Sprite* src = Nan::ObjectWrap::Unwrap<Sprite>(info[1].As<Object>());
+    MaybeLocal<Object> texture_object = src->GetTexture();
+    Sprite* sprite = new Sprite(src, texture_object);
+    sprite->Wrap(info.This());
+    info.GetReturnValue().Set(info.This());
+    return;
+  }
+
   texture::Texture* texture =
       Nan::ObjectWrap::Unwrap<texture::Texture>(info[0].As<Object>());
   if (info.Length() == 1) {
@@ -81,6 +90,12 @@ NAN_METHOD(Sprite::GetColor) {
 }
 
 Sprite::Sprite() : DrawableWithTexture(new sf::Sprite()) {}
+
+Sprite::Sprite(Sprite* sprite, MaybeLocal<Object> texture_object)
+    : DrawableWithTexture(new sf::Sprite(sprite->raw<sf::Sprite>())) {
+  if (!texture_object.IsEmpty())
+    DrawableWithTexture::SetTexture(texture_object.ToLocalChecked());
+}
 
 Sprite::Sprite(Local<Object> texture_object, const texture::Texture& texture)
     : DrawableWithTexture(new sf::Sprite(texture.texture())) {

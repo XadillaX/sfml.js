@@ -10,6 +10,8 @@ type SpritePluginPackage = Transformable & PluginPackageTexture & PluginPackageB
 export interface Sprite extends SpritePluginPackage {}
 export class Sprite extends Drawable {
   constructor(texture?: Texture, rect?: IntRect);
+  constructor(srcSprite: Sprite);
+
   setColor(color: number | Color): void;
   getColor(): Color;
 }

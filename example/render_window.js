@@ -95,6 +95,9 @@ zzzTexture.update(zzzImg);
 const zzzSprite = new Sprite(zzzTexture);
 zzzSprite.setPosition(700, 550);
 
+const oooSprite = new Sprite(zzzSprite);
+oooSprite.setPosition(750, 550);
+
 function frame() {
   if (!window.isOpen()) return;
   const delta = clock.getElapsedTime();
@@ -164,6 +167,7 @@ function frame() {
   window.draw(xxxSprite);
   window.draw(yyySprite);
   window.draw(zzzSprite);
+  window.draw(oooSprite);
   window.draw(redSprite);
   window.draw(circle);
   window.draw(rectangle);
