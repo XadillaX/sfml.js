@@ -26,6 +26,8 @@ export class RenderWindow {
   setActive(active?: boolean): void;
 
   getSize(): Vector2U;
+
+  hasFocus(): boolean;
 }
 export namespace RenderWindow {
   enum Style {

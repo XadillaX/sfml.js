@@ -10,6 +10,7 @@ namespace keyboard {
 using std::map;
 using std::string;
 using v8::Local;
+using v8::Object;
 using v8::String;
 
 NAN_MODULE_INIT(Init) {
@@ -18,6 +19,16 @@ NAN_MODULE_INIT(Init) {
   Nan::SetMethod(target, "isKeyPressed", IsKeyPressed);
   Nan::SetMethod(
       target, "setVirtualKeyboardVisible", SetVirtualKeyboardVisible);
+
+  Local<Object> key_codes = Nan::New<Object>();
+  for (auto it = gen::keycode_atoi.begin(); it != gen::keycode_atoi.end();
+       it++) {
+    Nan::Set(key_codes,
+             Nan::New<String>(it->first).ToLocalChecked(),
+             Nan::New(it->second));
+  }
+
+  Nan::Set(target, Nan::New<String>("Keys").ToLocalChecked(), key_codes);
 }
 
 NAN_METHOD(IsKeyPressed) {

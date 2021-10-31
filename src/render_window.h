@@ -26,6 +26,7 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_METHOD(IsOpen);
   static NAN_METHOD(PollEvent);
   static NAN_METHOD(GetSize);
+  static NAN_METHOD(HasFocus);
 
 #define PRIMITIVE_VALUES(V)                                                    \
   V(Visible, bool)                                                             \

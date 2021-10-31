@@ -32,6 +32,7 @@ NAN_MODULE_INIT(RenderWindow::Init) {
   Nan::SetPrototypeMethod(tpl, "isOpen", IsOpen);
   Nan::SetPrototypeMethod(tpl, "pollEvent", PollEvent);
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
+  Nan::SetPrototypeMethod(tpl, "hasFocus", HasFocus);
 
 #define PRIMITIVE_VALUE_PROTOTYPE_METHOD(name, _)                              \
   Nan::SetPrototypeMethod(tpl, "set" #name, Set##name);
@@ -197,6 +198,11 @@ NAN_METHOD(RenderWindow::GetSize) {
   }
 
   info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
+}
+
+NAN_METHOD(RenderWindow::HasFocus) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  info.GetReturnValue().Set(window->_window->hasFocus());
 }
 
 #define SET_PRIMITIVE_VALUE(name, type)                                        \
