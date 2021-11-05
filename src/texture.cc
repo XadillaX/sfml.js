@@ -25,6 +25,7 @@ NAN_MODULE_INIT(Texture::Init) {
 
   Nan::SetPrototypeMethod(tpl, "create", Create);
   Nan::SetPrototypeMethod(tpl, "loadFromFile", LoadFromFile);
+  Nan::SetPrototypeMethod(tpl, "loadFromMemory", LoadFromMemory);
   Nan::SetPrototypeMethod(tpl, "loadFromFileSync", LoadFromFileSync);
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
 
@@ -88,6 +89,24 @@ NAN_METHOD(Texture::LoadFromFile) {
       new load_from_file_worker::LoadFromFileWorker<Texture, sf::IntRect>(
           info.Holder(), *utf8_filename, LoadFromFileFunction, area, callback);
   Nan::AsyncQueueWorker(worker);
+}
+
+NAN_METHOD(Texture::LoadFromMemory) {
+  Texture* txt = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
+  if (txt->_loading) {
+    Nan::ThrowError("Texture is loading.");
+    return;
+  }
+
+  const char* buff = node::Buffer::Data(info[0]);
+  size_t length = node::Buffer::Length(info[0]);
+
+  sf::IntRect area;
+  if (!info[1]->IsUndefined()) {
+    area = Nan::ObjectWrap::Unwrap<rect::IntRect>(info[1].As<Object>())->rect();
+  }
+
+  info.GetReturnValue().Set(txt->_texture.loadFromMemory(buff, length, area));
 }
 
 NAN_METHOD(Texture::LoadFromFileSync) {

@@ -26,6 +26,7 @@ NAN_MODULE_INIT(Music::Init) {
 
   Nan::SetPrototypeMethod(tpl, "openFromFileSync", OpenFromFileSync);
   Nan::SetPrototypeMethod(tpl, "openFromFile", OpenFromFile);
+  Nan::SetPrototypeMethod(tpl, "openFromMemory", OpenFromMemory);
 
   sound::SoundSource::SetCommonPrototype(&tpl);
 
@@ -91,6 +92,18 @@ NAN_METHOD(Music::OpenFromFileSync) {
   Music* music = Nan::ObjectWrap::Unwrap<Music>(info.Holder());
   Nan::Utf8String filename(info[0].As<String>());
   info.GetReturnValue().Set(music->music().openFromFile(*filename));
+}
+
+NAN_METHOD(Music::OpenFromMemory) {
+  Music* msc = Nan::ObjectWrap::Unwrap<Music>(info.Holder());
+  if (msc->_loading) {
+    Nan::ThrowError("Music is loading.");
+    return;
+  }
+
+  const char* buff = node::Buffer::Data(info[0]);
+  size_t length = node::Buffer::Length(info[0]);
+  info.GetReturnValue().Set(msc->music().openFromMemory(buff, length));
 }
 
 Music::Music() : SoundSource(SoundSource::SoundType::kMusic, new sf::Music()) {}

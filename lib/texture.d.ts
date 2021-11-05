@@ -7,6 +7,7 @@ export class Texture {
 
   create(x: number, y: number): void;
 
+  loadFromMemory(buff: Buffer, area?: IntRect): boolean;
   loadFromFile(filename: string, area?: IntRect): Promise<void>;
   loadFromFileSync(filename: string, area?: IntRect): boolean;
   update(texture: Texture): void;

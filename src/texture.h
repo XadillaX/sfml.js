@@ -18,6 +18,7 @@ class Texture : public Nan::ObjectWrap, public BaseClassWithLoading {
   static NAN_METHOD(New);
   static NAN_METHOD(Create);
   static NAN_METHOD(LoadFromFile);
+  static NAN_METHOD(LoadFromMemory);
   static NAN_METHOD(LoadFromFileSync);
   static NAN_METHOD(GetSize);
 

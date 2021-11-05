@@ -142,7 +142,6 @@ NAN_METHOD(Image::SaveToFile) {
   Nan::Utf8String utf8_filename(v8_filename);
   Nan::Callback* callback = new Nan::Callback(info[1].As<Function>());
 
-  Image* img = Nan::ObjectWrap::Unwrap<Image>(info.Holder());
   save_to_file_worker::SaveToFileWorker<Image, void>* worker =
       new save_to_file_worker::SaveToFileWorker<Image, void>(
           info.Holder(),

@@ -21,6 +21,7 @@ NAN_MODULE_INIT(Font::Init) {
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(New);
 
+  Nan::SetPrototypeMethod(tpl, "loadFromMemory", LoadFromMemory);
   Nan::SetPrototypeMethod(tpl, "loadFromFileSync", LoadFromFileSync);
   Nan::SetPrototypeMethod(tpl, "loadFromFile", LoadFromFile);
   Nan::SetPrototypeMethod(tpl, "getInfo", GetInfo);
@@ -79,6 +80,18 @@ NAN_METHOD(Font::LoadFromFileSync) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
   Nan::Utf8String filename(info[0].As<String>());
   info.GetReturnValue().Set(font->_font->loadFromFile(*filename));
+}
+
+NAN_METHOD(Font::LoadFromMemory) {
+  Font* fnt = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
+  if (fnt->_loading) {
+    Nan::ThrowError("Font is loading.");
+    return;
+  }
+
+  const char* buff = node::Buffer::Data(info[0]);
+  size_t length = node::Buffer::Length(info[0]);
+  info.GetReturnValue().Set(fnt->_font->loadFromMemory(buff, length));
 }
 
 NAN_METHOD(Font::GetInfo) {

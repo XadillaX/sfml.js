@@ -14,6 +14,7 @@ export class Font {
   constructor();
   loadFromFileSync(filename: string): boolean;
   loadFromFile(filename: string): Promise<void>;
+  loadFromMemory(buff: Buffer): boolean;
   getInfo(): Info;
   getGlyph(codePoint: number, characterSize: number, bold: boolean, outlineThickness?: number): Glyph;
   getKerning(first: number, second: number, characterSize: number): number;

@@ -15,6 +15,7 @@ class Music : public SoundSource, public BaseClassWithLoading {
 
  public:
   static NAN_METHOD(New);
+  static NAN_METHOD(OpenFromMemory);
   static NAN_METHOD(OpenFromFile);
   static NAN_METHOD(OpenFromFileSync);
   static NAN_METHOD(SetLoop);
