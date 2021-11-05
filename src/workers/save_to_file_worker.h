@@ -76,4 +76,4 @@ class SaveToFileWorker : public Nan::AsyncWorker {
 }  // namespace save_to_file_worker
 }  // namespace node_sfml
 
-#endif  // SRC_SAVE_TO_FILE_WORKER_H_
+#endif  // SRC_WORKERS_SAVE_TO_FILE_WORKER_H_

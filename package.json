@@ -9,6 +9,7 @@
     "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h ./src/sound/*.cc ./src/sound/*.h ./src/workers/*.h",
     "preinstall": "node tools/symlinks.js",
     "cpplint": "./third_party/cpplint/cpplint.py src/**/*",
+    "jslint": "eslint .",
     "install": "node-gyp rebuild"
   },
   "repository": {
@@ -28,8 +29,10 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.6",
-    "eslint": "^8.0.0",
-    "eslint-config-egg": "^9.0.0"
+    "eslint": "^6.0.0",
+    "eslint-config-egg": "^9.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "typescript": "~4.0.0"
   },
   "files": [
     "binding.gyp",

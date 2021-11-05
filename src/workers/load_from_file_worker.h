@@ -76,4 +76,4 @@ class LoadFromFileWorker : public Nan::AsyncWorker {
 }  // namespace load_from_file_worker
 }  // namespace node_sfml
 
-#endif  // SRC_LOAD_FROM_FILE_WORKER_H_
+#endif  // SRC_WORKERS_LOAD_FROM_FILE_WORKER_H_
