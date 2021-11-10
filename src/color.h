@@ -20,6 +20,7 @@ class Color : public Nan::ObjectWrap {
                                                          sf::Uint32 val);
 
   inline const sf::Color& color() const { return *_color; }
+  inline sf::Color& color() { return *_color; }
 
  private:
   static NAN_METHOD(New);

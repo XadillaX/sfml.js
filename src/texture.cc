@@ -44,8 +44,8 @@ NAN_MODULE_INIT(Texture::Init) {
 }
 
 NAN_METHOD(Texture::New) {
-  Texture* Texture = new class Texture();
-  Texture->Wrap(info.This());
+  Texture* texture = new Texture();
+  texture->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
 }
 

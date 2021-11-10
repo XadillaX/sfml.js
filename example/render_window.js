@@ -20,6 +20,7 @@ const {
   Sprite,
   Text,
   Texture,
+  VertexArray,
   VideoMode,
 } = require('../lib/sfml');
 
@@ -32,6 +33,16 @@ circle.setOutlineThickness(1.6);
 convex.setPoint(0, { x: 20, y: 30 });
 convex.setPoint(1, { y: 30, x: 40 });
 convex.setPoint(2, { x: 0, y: 0 });
+
+const lines = new VertexArray(VertexArray.PrimitiveType.LineStrip, 4);
+lines.setPosition(0, { x: 10, y: 0 });
+lines.setPosition(1, { x: 20, y: 0 });
+lines.setPosition(2, { x: 30, y: 5 });
+lines.setPosition(3, { x: 40, y: 2 });
+lines.setColor(0, 0x00ff00ff);
+lines.setColor(1, 0x00ff00ff);
+lines.setColor(2, 0x00ff00ff);
+lines.setColor(3, 0x00ff00ff);
 
 const sound = new Sound(fs.readFileSync(path.join(__dirname, './game.wav')));
 const music = new Music();
@@ -175,6 +186,7 @@ function frame() {
   window.draw(text);
   window.draw(sprite);
   window.draw(sprite2);
+  window.draw(lines);
   window.display();
 
   new Image();

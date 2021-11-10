@@ -11,6 +11,7 @@ export * from './texture';
 export * as Time from './time';
 
 export * from './vector2';
+export * from './vertex';
 export * from './video_mode';
 
 export * from './drawable/circle_shape';
@@ -18,9 +19,10 @@ export * from './drawable/convex_shape';
 export * from './drawable/rectangle_shape';
 export * from './drawable/sprite';
 export * from './drawable/text';
+export * from './drawable/vertex_array';
 
 export * from './sound/music';
 export * from './sound/sound';
 export * from './sound/sound_buffer';
 
-export * from './poll_event';
+export * from './poll_event.d';

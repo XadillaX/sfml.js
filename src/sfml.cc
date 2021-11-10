@@ -11,6 +11,7 @@
 #include "texture.h"
 #include "time.h"
 #include "vector2.h"
+#include "vertex.h"
 #include "video_mode.h"
 
 #include "drawable/circle_shape.h"
@@ -18,6 +19,7 @@
 #include "drawable/rectangle_shape.h"
 #include "drawable/sprite.h"
 #include "drawable/text.h"
+#include "drawable/vertex_array.h"
 
 #include "sound/music.h"
 #include "sound/sound.h"
@@ -37,6 +39,7 @@ void Init(v8::Local<v8::Object> target) {
   render_window::RenderWindow::Init(target);
   texture::Texture::Init(target);
   time::Time::Init(target);
+  vertex::Vertex::Init(target);
   video_mode::VideoMode::Init(target);
 
   // drawable
@@ -45,6 +48,7 @@ void Init(v8::Local<v8::Object> target) {
   drawable::RectangleShape::Init(target);
   drawable::Sprite::Init(target);
   drawable::Text::Init(target);
+  drawable::VertexArray::Init(target);
 
   // sound
   sound::Music::Init(target);

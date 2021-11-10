@@ -89,6 +89,7 @@
       "./src/texture.cc",
       "./src/time.cc",
       "./src/vector2.cc",
+      "./src/vertex.cc",
       "./src/video_mode.cc",
 
       "./src/drawable/circle_shape.cc",
@@ -98,6 +99,7 @@
       "./src/drawable/shape.cc",
       "./src/drawable/sprite.cc",
       "./src/drawable/text.cc",
+      "./src/drawable/vertex_array.cc",
 
       "./src/gen/keycode.cc",
       "./src/gen/mouse_button.cc",
