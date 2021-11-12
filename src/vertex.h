@@ -52,8 +52,6 @@ class Vertex : public Nan::ObjectWrap {
         _vtx->texCoords = *_tex_coords;
         break;
     }
-
-    printf("%d synced.\n", type);
   }
 
   inline void SyncToJS(SyncType type = kAll) {
