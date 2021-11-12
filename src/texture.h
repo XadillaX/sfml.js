@@ -27,6 +27,7 @@ class Texture : public Nan::ObjectWrap, public BaseClassWithLoading {
   // Update family
   static NAN_METHOD(UpdateByImage);
   static NAN_METHOD(UpdateByTexture);
+  static NAN_METHOD(UpdateByPixels);
 
   inline const sf::Texture& texture() const { return _texture; }
   inline sf::Texture& mutable_texture() { return _texture; }

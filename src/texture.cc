@@ -30,6 +30,7 @@ NAN_MODULE_INIT(Texture::Init) {
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
 
   Nan::SetPrototypeMethod(tpl, "updateByImage", UpdateByImage);
+  Nan::SetPrototypeMethod(tpl, "updateByPixels", UpdateByPixels);
   Nan::SetPrototypeMethod(tpl, "updateByTexture", UpdateByTexture);
 
   Nan::SetPrototypeMethod(tpl, "setSmooth", SetSmooth);
@@ -173,6 +174,49 @@ NAN_METHOD(Texture::UpdateByTexture) {
   sf::Uint32 x = Nan::To<sf::Uint32>(info[1]).FromJust();
   sf::Uint32 y = Nan::To<sf::Uint32>(info[2]).FromJust();
   texture->_texture.update(another->_texture, x, y);
+}
+
+NAN_METHOD(Texture::UpdateByPixels) {
+  Texture* texture = Nan::ObjectWrap::Unwrap<Texture>(info.Holder());
+  if (texture->_loading) {
+    Nan::ThrowError("Texture is loading.");
+    return;
+  }
+
+  sf::Vector2u texture_size = texture->_texture.getSize();
+  size_t width = texture_size.x;
+  size_t height = texture_size.y;
+  size_t x = 0;
+  size_t y = 0;
+  if (!info[1]->IsUndefined()) {
+    width = Nan::To<sf::Uint32>(info[0]).FromJust();
+  }
+  if (!info[2]->IsUndefined()) {
+    height = Nan::To<sf::Uint32>(info[1]).FromJust();
+  }
+  if (!info[3]->IsUndefined()) {
+    x = Nan::To<sf::Uint32>(info[2]).FromJust();
+  }
+  if (!info[4]->IsUndefined()) {
+    y = Nan::To<sf::Uint32>(info[3]).FromJust();
+  }
+
+  Local<Object> buffer_object = info[0].As<Object>();
+  size_t len = node::Buffer::Length(buffer_object);
+
+  if (len < ((width * height) << 2)) {
+    Nan::ThrowError("Buffer's length is too short.");
+    return;
+  }
+
+  if (width + x > texture_size.x || height + y > texture_size.y) {
+    Nan::ThrowError("width / height / x / y out of range.");
+    return;
+  }
+
+  sf::Uint8* buff =
+      reinterpret_cast<sf::Uint8*>(node::Buffer::Data(buffer_object));
+  texture->_texture.update(buff, width, height, x, y);
 }
 
 NAN_METHOD(Texture::UpdateByImage) {

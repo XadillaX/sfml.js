@@ -14,6 +14,7 @@ export class Texture {
   update(texture: Texture, x: number, y: number): void;
   update(image: Image): void;
   update(image: Image, x: number, y: number): void;
+  update(buffer: Buffer, width?: number, height?: number, x?: number, y?: number): void;
 
   getSize(): Vector2F;
   setSmooth(smooth?: boolean): void;
