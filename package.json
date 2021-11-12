@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1-preview.37",
+  "version": "0.0.1-preview.38",
   "description": "SFML's Node.js binding.",
   "main": "lib/sfml.js",
   "scripts": {
