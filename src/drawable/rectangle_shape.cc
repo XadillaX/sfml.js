@@ -11,6 +11,7 @@ using v8::FunctionTemplate;
 using v8::Local;
 using v8::MaybeLocal;
 using v8::Object;
+using v8::Value;
 
 const char rectangle_shape_name[] = "RectangleShape";
 
@@ -42,7 +43,7 @@ NAN_METHOD(RectangleShape::GetSize) {
   sf::Vector2f vec = shape->raw<sf::RectangleShape>().getSize();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_vec =
+  MaybeLocal<Value> maybe_vec =
       vector2::Vector2F::NewRealInstance(info.GetIsolate(), vec);
   if (maybe_vec.IsEmpty()) {
     try_catch.ReThrow();

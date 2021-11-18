@@ -199,7 +199,9 @@ function frame() {
   text = new Text('你好', font);
   text.setPosition(200, 300);
 
-  xxxImg.saveToFile('/tmp/xxx.png');
+  if (process.platform !== 'win32') {
+    xxxImg.saveToFile('/tmp/xxx.png');
+  }
 
   await texture.loadFromFile(path.join(__dirname, 'avatar.gif'));
   sprite = new Sprite(texture);

@@ -26,10 +26,9 @@ NAN_METHOD(SetRealConstructor) {
   real_constructor.Reset(info[0].As<v8::Function>());
 }
 
-MaybeLocal<Object> Image::NewRealInstance(Isolate* isolate) {
-  v8::Local<v8::Function> cons = real_constructor.Get(isolate);
-  v8::MaybeLocal<v8::Object> maybe_ret =
-      cons->NewInstance(isolate->GetCurrentContext());
+MaybeLocal<Value> Image::NewRealInstance(Isolate* isolate) {
+  Local<Function> cons = real_constructor.Get(isolate);
+  MaybeLocal<Value> maybe_ret = Nan::Call(cons, cons, 0, nullptr);
   return maybe_ret;
 }
 
@@ -160,7 +159,7 @@ NAN_METHOD(Image::GetSize) {
   sf::Vector2u size = image->_image.getSize();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> size_obj =
+  MaybeLocal<Value> size_obj =
       vector2::Vector2<sf::Uint32, sf::Uint32, v8::Uint32>::NewRealInstance(
           info.GetIsolate(), size);
   if (size_obj.IsEmpty()) {

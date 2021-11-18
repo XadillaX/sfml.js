@@ -53,7 +53,7 @@ class Rect : public Nan::ObjectWrap {
     Nan::SetMethod(func, "setRealConstructor", SetRealConstructor);
   }
 
-  static v8::MaybeLocal<v8::Object> NewRealInstance(
+  static v8::MaybeLocal<v8::Value> NewRealInstance(
       v8::Isolate* isolate,
       size_t argc = 0,
       v8::Local<v8::Value>* argv = nullptr);

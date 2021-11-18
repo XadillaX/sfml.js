@@ -74,11 +74,11 @@ class Vector2 : public Nan::ObjectWrap {
     Nan::SetMethod(func, "notEquals", NotEquals<Self>);
   }
 
-  static v8::MaybeLocal<v8::Object> NewRealInstance(
+  static v8::MaybeLocal<v8::Value> NewRealInstance(
       v8::Isolate* isolate,
       size_t argc = 0,
       v8::Local<v8::Value>* argv = nullptr);
-  static v8::MaybeLocal<v8::Object> NewRealInstance(v8::Isolate* isolate,
+  static v8::MaybeLocal<v8::Value> NewRealInstance(v8::Isolate* isolate,
                                                     const sf::Vector2<T>& src);
 
  protected:

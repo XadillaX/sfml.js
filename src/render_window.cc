@@ -16,6 +16,7 @@ using v8::Local;
 using v8::MaybeLocal;
 using v8::Object;
 using v8::String;
+using v8::Value;
 
 Nan::Persistent<Function> constructor;
 
@@ -126,14 +127,14 @@ NAN_METHOD(RenderWindow::Capture) {
   sf::Image img = window->_window->capture();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_img =
+  MaybeLocal<Value> maybe_img =
       image::Image::NewRealInstance(info.GetIsolate());
   if (maybe_img.IsEmpty()) {
     try_catch.ReThrow();
     return;
   }
 
-  Local<Object> img_obj = maybe_img.ToLocalChecked();
+  Local<Object> img_obj = maybe_img.ToLocalChecked().As<Object>();
   image::Image* node_sfml_img = Nan::ObjectWrap::Unwrap<image::Image>(img_obj);
   node_sfml_img->SetInnerImage(img);
 
@@ -190,7 +191,7 @@ NAN_METHOD(RenderWindow::GetSize) {
   sf::Vector2u vec = window->_window->getSize();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_vec =
+  MaybeLocal<Value> maybe_vec =
       vector2::Vector2U::NewRealInstance(info.GetIsolate(), vec);
   if (maybe_vec.IsEmpty()) {
     try_catch.ReThrow();

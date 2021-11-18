@@ -88,6 +88,21 @@ switch (os.platform()) {
     break;
   }
 
+  case 'win32': {
+    switch (process.arch) {
+      case 'x64': {
+        files = [];
+        break;
+      }
+      default: {
+        console.error(`win32_${process.arch} is not supported yet.`);
+        process.exit(4);
+      }
+    }
+
+    break;
+  }
+
   default: {
     console.error(`${os.platform()} is not supported yet.`);
     process.exit(4);

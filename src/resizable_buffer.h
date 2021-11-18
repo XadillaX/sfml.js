@@ -2,7 +2,10 @@
 #define SRC_RESIZABLE_BUFFER_H_
 
 #include <stdio.h>
+
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 
 namespace node_sfml {
 
@@ -19,8 +22,12 @@ class ResizableBuffer {
   inline ResizableBuffer()
       : _buff(nullptr),
         _length(0),
-        _byte_length(0),
-        _page_size(getpagesize()) {}
+        _byte_length(0)
+#ifndef _WIN32
+        ,
+        _page_size(getpagesize())
+#endif
+  {}
 
   explicit inline ResizableBuffer(size_t length) : ResizableBuffer() {
     this->Realloc(length);
@@ -44,12 +51,16 @@ class ResizableBuffer {
     _byte_length = _length * sizeof(T);
     if (!_length) return;
 
+#ifndef _WIN32
     if (_byte_length >= _page_size) {
       posix_memalign(
           reinterpret_cast<void**>(&_buff), _page_size, _byte_length);
     } else {
       _buff = static_cast<T*>(valloc(_byte_length));
     }
+#else
+  _buff = static_cast<T*>(malloc(_byte_length));
+#endif
 
     memset(_buff, 0, _byte_length);
   }
@@ -80,7 +91,10 @@ class ResizableBuffer {
   T* _buff;
   size_t _length;
   size_t _byte_length;
+
+#ifndef _WIN32
   size_t _page_size;
+#endif
 };
 
 }  // namespace node_sfml

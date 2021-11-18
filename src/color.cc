@@ -151,7 +151,7 @@ NAN_METHOD(Color::ToInteger) {
 
 #define V(name, lowercase)                                                     \
   NAN_METHOD(Color::name##Getter) {                                            \
-    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());              \
+    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.This());              \
     info.GetReturnValue().Set(color->_color->lowercase);                       \
   }                                                                            \
                                                                                \
@@ -167,7 +167,7 @@ NAN_METHOD(Color::ToInteger) {
       return;                                                                  \
     }                                                                          \
                                                                                \
-    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.Holder());              \
+    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.This());              \
     color->_color->lowercase = val;                                            \
   }
 

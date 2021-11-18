@@ -122,13 +122,13 @@ NAN_METHOD(Font::GetGlyph) {
            Nan::New<Number>(static_cast<double>(glyph.advance)));
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_float_rect_object =
+  MaybeLocal<Value> maybe_float_rect_object =
       rect::FloatRect::NewRealInstance(info.GetIsolate());
   if (maybe_float_rect_object.IsEmpty()) {
     try_catch.ReThrow();
     return;
   }
-  Local<Object> float_rect_object = maybe_float_rect_object.ToLocalChecked();
+  Local<Object> float_rect_object = maybe_float_rect_object.ToLocalChecked().As<Object>();
   rect::FloatRect* float_rect =
       Nan::ObjectWrap::Unwrap<rect::FloatRect>(float_rect_object);
   sf::FloatRect& float_rect_inner = float_rect->rect();
@@ -138,13 +138,13 @@ NAN_METHOD(Font::GetGlyph) {
   float_rect_inner.height = glyph.bounds.height;
   Nan::Set(ret, Nan::New<String>("bounds").ToLocalChecked(), float_rect_object);
 
-  MaybeLocal<Object> maybe_int_rect_object =
+  MaybeLocal<Value> maybe_int_rect_object =
       rect::IntRect::NewRealInstance(info.GetIsolate());
   if (maybe_int_rect_object.IsEmpty()) {
     try_catch.ReThrow();
     return;
   }
-  Local<Object> int_rect_object = maybe_int_rect_object.ToLocalChecked();
+  Local<Object> int_rect_object = maybe_int_rect_object.ToLocalChecked().As<Object>();
   rect::IntRect* int_rect =
       Nan::ObjectWrap::Unwrap<rect::IntRect>(int_rect_object);
   sf::IntRect& int_rect_inner = int_rect->rect();

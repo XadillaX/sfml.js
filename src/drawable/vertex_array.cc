@@ -127,14 +127,14 @@ NAN_METHOD(VertexArray::GetBounds) {
   sf::FloatRect rect = va->raw<sf::VertexArray>().getBounds();
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> maybe_rect =
+  v8::MaybeLocal<v8::Value> maybe_rect =
       rect::FloatRect::NewRealInstance(info.GetIsolate());
   if (try_catch.HasCaught()) {
     try_catch.ReThrow();
     return;
   }
 
-  v8::Local<v8::Object> node_rect = maybe_rect.ToLocalChecked();
+  v8::Local<v8::Object> node_rect = maybe_rect.ToLocalChecked().As<Object>();
   sf::FloatRect& ret =
       Nan::ObjectWrap::Unwrap<rect::FloatRect>(node_rect)->rect();
   ret.top = rect.top;
@@ -167,7 +167,7 @@ NAN_METHOD(VertexArray::DuplicateVertex) {
   const sf::Vertex& vertex = raw[idx];
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> maybe_ret =
+  MaybeLocal<Value> maybe_ret =
       vertex::Vertex::NewRealInstance(info.GetIsolate(), vertex);
   if (maybe_ret.IsEmpty()) {
     try_catch.ReThrow();

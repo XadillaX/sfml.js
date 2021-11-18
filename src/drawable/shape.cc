@@ -9,7 +9,9 @@ namespace node_sfml {
 namespace drawable {
 
 using v8::Local;
+using v8::MaybeLocal;
 using v8::Object;
+using v8::Value;
 
 void Shape::SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
   v8::Local<v8::FunctionTemplate>& tpl = *_tpl;
@@ -41,7 +43,7 @@ NAN_METHOD(Shape::GetPoint) {
   sf::Vector2f point = raw.getPoint(Nan::To<sf::Uint32>(info[0]).FromJust());
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> maybe_vec =
+  MaybeLocal<Value> maybe_vec =
       vector2::Vector2F::NewRealInstance(info.GetIsolate(), point);
   if (maybe_vec.IsEmpty()) {
     try_catch.ReThrow();

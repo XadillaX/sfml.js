@@ -44,14 +44,14 @@ NAN_MODULE_INIT(Vertex::Init) {
   Nan::Set(target, name, func);
 }
 
-MaybeLocal<Object> Vertex::NewRealInstance(v8::Isolate* isolate,
+MaybeLocal<Value> Vertex::NewRealInstance(v8::Isolate* isolate,
                                            const sf::Vertex& vertex) {
   Nan::HandleScope scope;
 
   v8::Local<v8::Function> cons = real_constructor.Get(isolate);
   if (cons.IsEmpty()) {
     Nan::ThrowError("`real_constructor` is not set.");
-    return v8::MaybeLocal<v8::Object>();
+    return v8::MaybeLocal<v8::Value>();
   }
 
   sf::Uint32 temp = reinterpret_cast<sf::Uint64>(&vertex);
@@ -60,8 +60,7 @@ MaybeLocal<Object> Vertex::NewRealInstance(v8::Isolate* isolate,
       Nan::New(temp),
   };
 
-  v8::MaybeLocal<v8::Object> maybe_ret =
-      cons->NewInstance(isolate->GetCurrentContext(), 2, argv);
+  v8::MaybeLocal<v8::Value> maybe_ret = Nan::Call(cons, cons, 2, argv);
   return maybe_ret;
 }
 
@@ -121,7 +120,7 @@ Vertex::Vertex(sf::Vertex* src) {
 
   Local<Object> temp =
       vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->position)
-          .ToLocalChecked();
+          .ToLocalChecked().As<Object>();
   _position_wrap.Reset(temp);
   _position = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 
@@ -133,7 +132,7 @@ Vertex::Vertex(sf::Vertex* src) {
 
   temp =
       vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->texCoords)
-          .ToLocalChecked();
+          .ToLocalChecked().As<Object>();
   _tex_coords_wrap.Reset(temp);
   _tex_coords = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 }
@@ -173,7 +172,7 @@ Vertex::Vertex(Local<Value> position,
 
   Local<Object> temp =
       vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->position)
-          .ToLocalChecked();
+          .ToLocalChecked().As<Object>();
   _position_wrap.Reset(temp);
   _position = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 
@@ -185,7 +184,7 @@ Vertex::Vertex(Local<Value> position,
 
   temp =
       vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->texCoords)
-          .ToLocalChecked();
+          .ToLocalChecked().As<Object>();
   _tex_coords_wrap.Reset(temp);
   _tex_coords = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 }

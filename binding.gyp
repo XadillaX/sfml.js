@@ -57,6 +57,37 @@
           "../third_party/sfml/platform/linux/lib/libsfml-graphics.so"
         ]
       }],
+      ["OS==\"win\"", {
+        "defines": [
+          "NOMINMAX"
+        ],
+        "copies": [{
+          "destination": "<(module_root_dir)/build/Release/",
+          "files": [
+            "<(module_root_dir)/third_party/sfml/platform/win64/bin/openal32.dll",
+            "<(module_root_dir)/third_party/sfml/platform/win64/bin/sfml-audio-2.dll",
+            "<(module_root_dir)/third_party/sfml/platform/win64/bin/sfml-graphics-2.dll",
+            "<(module_root_dir)/third_party/sfml/platform/win64/bin/sfml-network-2.dll",
+            "<(module_root_dir)/third_party/sfml/platform/win64/bin/sfml-system-2.dll",
+            "<(module_root_dir)/third_party/sfml/platform/win64/bin/sfml-window-2.dll"
+          ]
+        }],
+        "libraries": [
+          "../third_party/sfml/platform/win64/lib/flac.lib",
+          "../third_party/sfml/platform/win64/lib/freetype.lib",
+          "../third_party/sfml/platform/win64/lib/ogg.lib",
+          "../third_party/sfml/platform/win64/lib/openal32.lib",
+          "../third_party/sfml/platform/win64/lib/sfml-audio.lib",
+          "../third_party/sfml/platform/win64/lib/sfml-graphics.lib",
+          "../third_party/sfml/platform/win64/lib/sfml-main.lib",
+          "../third_party/sfml/platform/win64/lib/sfml-network.lib",
+          "../third_party/sfml/platform/win64/lib/sfml-system.lib",
+          "../third_party/sfml/platform/win64/lib/sfml-window.lib",
+          "../third_party/sfml/platform/win64/lib/vorbis.lib",
+          "../third_party/sfml/platform/win64/lib/vorbisenc.lib",
+          "../third_party/sfml/platform/win64/lib/vorbisfile.lib",
+        ],
+      }],
       ["OS==\"mac\"", {
         "libraries": [
           "../third_party/sfml/platform/macOS/lib/libsfml-audio.dylib",

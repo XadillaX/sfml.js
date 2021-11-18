@@ -15,6 +15,7 @@ using v8::Local;
 using v8::MaybeLocal;
 using v8::Object;
 using v8::String;
+using v8::Value;
 
 NAN_MODULE_INIT(Init) {
   gen::InitMouseButton();
@@ -65,7 +66,7 @@ NAN_METHOD(GetPosition) {
   }
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> ret =
+  MaybeLocal<Value> ret =
       vector2::Vector2I::NewRealInstance(info.GetIsolate(), pos);
   if (ret.IsEmpty()) {
     try_catch.ReThrow();

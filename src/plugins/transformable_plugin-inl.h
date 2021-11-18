@@ -96,7 +96,7 @@ inline NAN_METHOD(Rotate) {
     const sf::Vector2f& vec = target->transformable().get##name();             \
                                                                                \
     Nan::TryCatch try_catch;                                                   \
-    v8::MaybeLocal<v8::Object> maybe_vec =                                     \
+    v8::MaybeLocal<v8::Value> maybe_vec =                                     \
         vector2::Vector2F::NewRealInstance(info.GetIsolate(), vec);            \
     if (maybe_vec.IsEmpty()) {                                                 \
       try_catch.ReThrow();                                                     \

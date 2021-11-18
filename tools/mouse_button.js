@@ -62,8 +62,11 @@ void InitMouseButton() {
 
 fs.writeFileSync(path.join(__dirname, '../src/gen/mouse_button.cc'), str);
 
-cp.execFileSync(
-  path.join(__dirname, 'clang_format.js'),
-  [ '-style=file', '-i', path.join(__dirname, '../src/gen/mouse_button.cc') ]);
+if (process.platform !== 'win32') {
+  cp.execFileSync(
+    path.join(__dirname, 'clang_format.js'),
+    [ '-style=file', '-i', path.join(__dirname, '../src/gen/mouse_button.cc') ]);
+}
+
 
 console.log('./src/gen/mouse_button.cc generated.');

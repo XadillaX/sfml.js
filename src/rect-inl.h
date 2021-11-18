@@ -10,12 +10,11 @@ namespace rect {
 #define TEMPLATE_INNER T, NAN_T, V8_T
 
 template <typename T, typename NAN_T, class V8_T>
-v8::MaybeLocal<v8::Object> Rect<TEMPLATE_INNER>::NewRealInstance(
+v8::MaybeLocal<v8::Value> Rect<TEMPLATE_INNER>::NewRealInstance(
     v8::Isolate* isolate, size_t argc, v8::Local<v8::Value>* argv) {
   v8::Local<v8::Function> cons = real_constructor.Get(isolate);
 
-  v8::MaybeLocal<v8::Object> maybe_ret =
-      cons->NewInstance(isolate->GetCurrentContext(), argc, argv);
+  v8::MaybeLocal<v8::Value> maybe_ret = Nan::Call(cons, cons, argc, argv);
   return maybe_ret;
 }
 
@@ -82,9 +81,14 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
       Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info[0].As<v8::Object>());
 
   v8::Local<v8::Function> cons = real_constructor.Get(info.GetIsolate());
-  v8::Local<v8::Object> ret =
-      cons->NewInstance(info.GetIsolate()->GetCurrentContext())
-          .ToLocalChecked();
+  Nan::TryCatch try_catch;
+  v8::MaybeLocal<v8::Value> maybe_ret = Nan::Call(cons, cons, 0, nullptr);
+  if (maybe_ret.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  v8::Local<v8::Object> ret = maybe_ret.ToLocalChecked().As<v8::Object>();
   Rect<T, NAN_T, V8_T>* ret_rect =
       Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(ret);
 
@@ -100,7 +104,7 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
   template <typename T, typename NAN_T, class V8_T>                            \
   NAN_METHOD(Rect<TEMPLATE_INNER>::name##Getter) {                             \
     Rect<T, NAN_T, V8_T>* rect =                                               \
-        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.Holder());          \
+        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.This());          \
     v8::Local<V8_T> ret =                                                      \
         Nan::New<V8_T>(static_cast<NAN_T>(rect->_rect.lowercase));             \
     info.GetReturnValue().Set(ret);                                            \
@@ -115,7 +119,7 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
                                                                                \
     NAN_T val = maybe_value.ToLocalChecked()->Value();                         \
     Rect<T, NAN_T, V8_T>* rect =                                               \
-        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.Holder());          \
+        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.This());          \
     rect->_rect.lowercase = static_cast<T>(val);                               \
   }
 

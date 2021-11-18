@@ -59,7 +59,7 @@ inline static NAN_METHOD(GetTextureRect) {
   };
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> maybe_rect =
+  v8::MaybeLocal<v8::Value> maybe_rect =
       rect::IntRect::NewRealInstance(info.GetIsolate(), argc, argv);
   if (maybe_rect.IsEmpty()) {
     try_catch.ReThrow();
@@ -88,14 +88,14 @@ inline void SetPrototype(v8::Local<v8::FunctionTemplate>* _tpl) {
     sf::FloatRect rect = drawable->raw<T>().get##type##Bounds();               \
                                                                                \
     Nan::TryCatch try_catch;                                                   \
-    v8::MaybeLocal<v8::Object> maybe_rect =                                    \
+    v8::MaybeLocal<v8::Value> maybe_rect =                                    \
         rect::FloatRect::NewRealInstance(info.GetIsolate());                   \
     if (try_catch.HasCaught()) {                                               \
       try_catch.ReThrow();                                                     \
       return;                                                                  \
     }                                                                          \
                                                                                \
-    v8::Local<v8::Object> node_rect = maybe_rect.ToLocalChecked();             \
+    v8::Local<v8::Object> node_rect = maybe_rect.ToLocalChecked().As<Object>();             \
     sf::FloatRect& ret =                                                       \
         Nan::ObjectWrap::Unwrap<rect::FloatRect>(node_rect)->rect();           \
     ret.top = rect.top;                                                        \

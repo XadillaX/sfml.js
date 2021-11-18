@@ -141,7 +141,7 @@ NAN_METHOD(Texture::GetSize) {
   sf::Vector2u size = texture->_texture.getSize();
 
   Nan::TryCatch try_catch;
-  MaybeLocal<Object> size_obj =
+  MaybeLocal<Value> size_obj =
       vector2::Vector2<sf::Uint32, sf::Uint32, v8::Uint32>::NewRealInstance(
           info.GetIsolate(), size);
   if (size_obj.IsEmpty()) {

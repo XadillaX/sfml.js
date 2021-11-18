@@ -42,8 +42,10 @@ void InitKeyCode() {
 
 fs.writeFileSync(path.join(__dirname, '../src/gen/keycode.cc'), str);
 
-cp.execFileSync(
-  path.join(__dirname, 'clang_format.js'),
-  [ '-style=file', '-i', path.join(__dirname, '../src/gen/keycode.cc') ]);
+if (process.platform !== 'win32') {
+  cp.execFileSync(
+    path.join(__dirname, 'clang_format.js'),
+    [ '-style=file', '-i', path.join(__dirname, '../src/gen/keycode.cc') ]);
+}
 
 console.log('./src/gen/keyboard.cc generated.');

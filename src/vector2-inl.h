@@ -13,7 +13,7 @@ NAN_METHOD(Subtract) {
   T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> ret =
+  v8::MaybeLocal<v8::Value> ret =
       T::NewRealInstance(info.GetIsolate(), left->vector2() - right->vector2());
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
@@ -29,7 +29,7 @@ NAN_METHOD(Add) {
   T* right = Nan::ObjectWrap::Unwrap<T>(info[1].As<v8::Object>());
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> ret =
+  v8::MaybeLocal<v8::Value> ret =
       T::NewRealInstance(info.GetIsolate(), left->vector2() + right->vector2());
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
@@ -45,7 +45,7 @@ NAN_METHOD(Multiply) {
   T right = static_cast<T>(Nan::To<NAN_T>(info[1]).FromJust());
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> ret =
+  v8::MaybeLocal<v8::Value> ret =
       Self::NewRealInstance(info.GetIsolate(), left->vector2() * right);
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
@@ -61,7 +61,7 @@ NAN_METHOD(Div) {
   T right = static_cast<T>(Nan::To<NAN_T>(info[1]).FromJust());
 
   Nan::TryCatch try_catch;
-  v8::MaybeLocal<v8::Object> ret =
+  v8::MaybeLocal<v8::Value> ret =
       Self::NewRealInstance(info.GetIsolate(), left->vector2() / right);
   if (ret.IsEmpty()) {
     try_catch.ReThrow();
@@ -88,27 +88,27 @@ NAN_METHOD(NotEquals) {
 #define TEMPLATE_INNER T, NAN_T, V8_T
 
 template <typename T, typename NAN_T, class V8_T>
-v8::MaybeLocal<v8::Object> Vector2<TEMPLATE_INNER>::NewRealInstance(
+v8::MaybeLocal<v8::Value> Vector2<TEMPLATE_INNER>::NewRealInstance(
     v8::Isolate* isolate, size_t argc, v8::Local<v8::Value>* argv) {
   v8::Local<v8::Function> cons = real_constructor.Get(isolate);
   if (cons.IsEmpty()) {
     Nan::ThrowError("`real_constructor` is not set.");
-    return v8::MaybeLocal<v8::Object>();
+    return v8::MaybeLocal<v8::Value>();
   }
 
-  v8::MaybeLocal<v8::Object> maybe_ret =
+  v8::MaybeLocal<v8::Value> maybe_ret = Nan::Call(cons, cons, argc, argv);
       cons->NewInstance(isolate->GetCurrentContext(), argc, argv);
   return maybe_ret;
 }
 
 template <typename T, typename NAN_T, class V8_T>
-v8::MaybeLocal<v8::Object> Vector2<TEMPLATE_INNER>::NewRealInstance(
+v8::MaybeLocal<v8::Value> Vector2<TEMPLATE_INNER>::NewRealInstance(
     v8::Isolate* isolate, const sf::Vector2<T>& src) {
-  v8::MaybeLocal<v8::Object> maybe =
+  v8::MaybeLocal<v8::Value> maybe =
       Vector2<TEMPLATE_INNER>::NewRealInstance(isolate);
   if (maybe.IsEmpty()) return maybe;
 
-  v8::Local<v8::Object> vec = maybe.ToLocalChecked();
+  v8::Local<v8::Object> vec = maybe.ToLocalChecked().As<v8::Object>();
   Vector2<TEMPLATE_INNER>* vec_wrapper =
       Nan::ObjectWrap::Unwrap<Vector2<TEMPLATE_INNER>>(vec);
   sf::Vector2<T>& v = vec_wrapper->vector2();
@@ -150,7 +150,7 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
   template <typename T, typename NAN_T, class V8_T>                            \
   NAN_METHOD(Vector2<TEMPLATE_INNER>::name##Getter) {                          \
     Vector2<T, NAN_T, V8_T>* vec =                                             \
-        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.Holder());       \
+        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.This());       \
     v8::Local<V8_T> ret =                                                      \
         Nan::New<V8_T>(static_cast<NAN_T>(vec->vector2().lowercase));          \
     info.GetReturnValue().Set(ret);                                            \
@@ -165,7 +165,7 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
                                                                                \
     NAN_T val = maybe_value.ToLocalChecked()->Value();                         \
     Vector2<T, NAN_T, V8_T>* vec =                                             \
-        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.Holder());       \
+        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.This());       \
     vec->vector2().lowercase = static_cast<T>(val);                            \
   }
 

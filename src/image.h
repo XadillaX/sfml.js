@@ -15,7 +15,7 @@ namespace image {
 class Image : public Nan::ObjectWrap, public BaseClassWithLoading {
  public:
   static NAN_MODULE_INIT(Init);
-  static v8::MaybeLocal<v8::Object> NewRealInstance(v8::Isolate* isolate);
+  static v8::MaybeLocal<v8::Value> NewRealInstance(v8::Isolate* isolate);
 
  public:
   static NAN_METHOD(New);
