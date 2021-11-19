@@ -3,7 +3,6 @@
 namespace node_sfml {
 namespace color {
 
-using v8::Context;
 using v8::EscapableHandleScope;
 using v8::Function;
 using v8::FunctionTemplate;
@@ -28,18 +27,17 @@ MaybeLocal<Object> Color::NewRealColorInstance(Isolate* isolate,
   }
 
   Local<Function> func = real_constructor.Get(isolate);
-  Local<Context> context = isolate->GetCurrentContext();
   Local<Value> argv[] = {Nan::New(val)};
 
   Nan::TryCatch try_catch;
-  ret = func->NewInstance(context, 1, argv).ToLocalChecked();
+  MaybeLocal<Value> maybe = Nan::Call(func, func, 1, argv);
   if (try_catch.HasCaught()) {
     try_catch.ReThrow();
     Local<Object> empty;
     return scope.Escape(empty);
   }
 
-  return scope.Escape(ret);
+  return scope.Escape(maybe.ToLocalChecked().As<Object>());
 }
 
 NAN_METHOD(SetRealColorConstructor) {
@@ -151,7 +149,7 @@ NAN_METHOD(Color::ToInteger) {
 
 #define V(name, lowercase)                                                     \
   NAN_METHOD(Color::name##Getter) {                                            \
-    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.This());              \
+    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.This());                \
     info.GetReturnValue().Set(color->_color->lowercase);                       \
   }                                                                            \
                                                                                \
@@ -167,7 +165,7 @@ NAN_METHOD(Color::ToInteger) {
       return;                                                                  \
     }                                                                          \
                                                                                \
-    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.This());              \
+    Color* color = Nan::ObjectWrap::Unwrap<Color>(info.This());                \
     color->_color->lowercase = val;                                            \
   }
 

@@ -97,7 +97,7 @@ v8::MaybeLocal<v8::Value> Vector2<TEMPLATE_INNER>::NewRealInstance(
   }
 
   v8::MaybeLocal<v8::Value> maybe_ret = Nan::Call(cons, cons, argc, argv);
-      cons->NewInstance(isolate->GetCurrentContext(), argc, argv);
+  cons->NewInstance(isolate->GetCurrentContext(), argc, argv);
   return maybe_ret;
 }
 
@@ -150,7 +150,7 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
   template <typename T, typename NAN_T, class V8_T>                            \
   NAN_METHOD(Vector2<TEMPLATE_INNER>::name##Getter) {                          \
     Vector2<T, NAN_T, V8_T>* vec =                                             \
-        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.This());       \
+        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.This());         \
     v8::Local<V8_T> ret =                                                      \
         Nan::New<V8_T>(static_cast<NAN_T>(vec->vector2().lowercase));          \
     info.GetReturnValue().Set(ret);                                            \
@@ -165,7 +165,7 @@ NAN_METHOD(Vector2<TEMPLATE_INNER>::New) {
                                                                                \
     NAN_T val = maybe_value.ToLocalChecked()->Value();                         \
     Vector2<T, NAN_T, V8_T>* vec =                                             \
-        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.This());       \
+        Nan::ObjectWrap::Unwrap<Vector2<T, NAN_T, V8_T>>(info.This());         \
     vec->vector2().lowercase = static_cast<T>(val);                            \
   }
 

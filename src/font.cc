@@ -128,7 +128,8 @@ NAN_METHOD(Font::GetGlyph) {
     try_catch.ReThrow();
     return;
   }
-  Local<Object> float_rect_object = maybe_float_rect_object.ToLocalChecked().As<Object>();
+  Local<Object> float_rect_object =
+      maybe_float_rect_object.ToLocalChecked().As<Object>();
   rect::FloatRect* float_rect =
       Nan::ObjectWrap::Unwrap<rect::FloatRect>(float_rect_object);
   sf::FloatRect& float_rect_inner = float_rect->rect();
@@ -144,7 +145,8 @@ NAN_METHOD(Font::GetGlyph) {
     try_catch.ReThrow();
     return;
   }
-  Local<Object> int_rect_object = maybe_int_rect_object.ToLocalChecked().As<Object>();
+  Local<Object> int_rect_object =
+      maybe_int_rect_object.ToLocalChecked().As<Object>();
   rect::IntRect* int_rect =
       Nan::ObjectWrap::Unwrap<rect::IntRect>(int_rect_object);
   sf::IntRect& int_rect_inner = int_rect->rect();

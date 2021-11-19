@@ -1,7 +1,7 @@
 #include "texture.h"
 #include "image.h"
 #include "rect.h"
-#include "vector2.h"
+#include "vector2-inl.h"
 #include "workers/load_from_file_worker.h"
 
 namespace node_sfml {

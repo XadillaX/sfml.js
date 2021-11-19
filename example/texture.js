@@ -16,7 +16,9 @@ const { IntRect, Sprite, Texture } = require('../lib/sfml');
 
   await Promise.all([
     texture.loadFromFile(path.join(__dirname, 'avatar.gif')),
-    texture2.loadFromFile(path.join(__dirname, 'avatar.gif'), new IntRect(0, 0, 10, 10)),
+    texture2.loadFromFile(
+      path.join(__dirname, 'avatar.gif'),
+      new IntRect(0, 0, 10, 10)),
   ]);
 
   console.log(texture.getSize());

@@ -5,6 +5,7 @@
 namespace node_sfml {
 namespace vertex {
 
+using v8::BigInt;
 using v8::Function;
 using v8::FunctionTemplate;
 using v8::Isolate;
@@ -45,7 +46,7 @@ NAN_MODULE_INIT(Vertex::Init) {
 }
 
 MaybeLocal<Value> Vertex::NewRealInstance(v8::Isolate* isolate,
-                                           const sf::Vertex& vertex) {
+                                          const sf::Vertex& vertex) {
   Nan::HandleScope scope;
 
   v8::Local<v8::Function> cons = real_constructor.Get(isolate);
@@ -54,10 +55,10 @@ MaybeLocal<Value> Vertex::NewRealInstance(v8::Isolate* isolate,
     return v8::MaybeLocal<v8::Value>();
   }
 
-  sf::Uint32 temp = reinterpret_cast<sf::Uint64>(&vertex);
+  sf::Uint64 temp = reinterpret_cast<sf::Uint64>(&vertex);
   Local<Value> argv[] = {
       Nan::New(vertex::Vertex::new_from_pointer_magic_number),
-      Nan::New(temp),
+      BigInt::NewFromUnsigned(isolate, temp),
   };
 
   v8::MaybeLocal<v8::Value> maybe_ret = Nan::Call(cons, cons, 2, argv);
@@ -68,7 +69,8 @@ NAN_METHOD(Vertex::New) {
   if (info[0]->IsNumber()) {
     sf::Int32 magic_number = Nan::To<sf::Int32>(info[0]).FromJust();
     if (magic_number == new_from_pointer_magic_number) {
-      sf::Uint32 ptr = Nan::To<sf::Int32>(info[1]).FromJust();
+      Local<BigInt> big_int = info[1].As<BigInt>();
+      sf::Uint64 ptr = big_int->Uint64Value();
       sf::Vertex* vertex = reinterpret_cast<sf::Vertex*>(ptr);
       Vertex* ret = new Vertex(vertex);
       ret->Wrap(info.This());
@@ -96,7 +98,7 @@ NAN_METHOD(Vertex::SyncFromJS) {
 
 #define V(name, lowercase, snake_case, unwrap_type, inner_func)                \
   NAN_METHOD(Vertex::name##Getter) {                                           \
-    Vertex* vertex = Nan::ObjectWrap::Unwrap<Vertex>(info.Holder());           \
+    Vertex* vertex = Nan::ObjectWrap::Unwrap<Vertex>(info.This());             \
     info.GetReturnValue().Set(Nan::New<Object>(vertex->_##lowercase##_wrap));  \
     vertex->_vtx->snake_case = *vertex->_##lowercase;                          \
   }                                                                            \
@@ -105,7 +107,7 @@ NAN_METHOD(Vertex::SyncFromJS) {
     Local<Object> obj = info[0].As<Object>();                                  \
     unwrap_type* obj_unwrapped = Nan::ObjectWrap::Unwrap<unwrap_type>(obj);    \
                                                                                \
-    Vertex* vertex = Nan::ObjectWrap::Unwrap<Vertex>(info.Holder());           \
+    Vertex* vertex = Nan::ObjectWrap::Unwrap<Vertex>(info.This());             \
     vertex->_##lowercase = &obj_unwrapped->inner_func();                       \
     vertex->_##lowercase##_wrap.Reset(obj);                                    \
     vertex->SyncFromJS(k##name);                                               \
@@ -118,21 +120,40 @@ Vertex::Vertex(sf::Vertex* src) {
   _vtx =
       std::make_unique<sf::Vertex>(src->position, src->color, src->texCoords);
 
-  Local<Object> temp =
-      vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->position)
-          .ToLocalChecked().As<Object>();
+  MaybeLocal<Value> maybe_temp;
+  Local<Object> temp;
+
+  Nan::TryCatch try_catch;
+  maybe_temp =
+      vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->position);
+  if (maybe_temp.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  temp = maybe_temp.ToLocalChecked().As<Object>();
   _position_wrap.Reset(temp);
   _position = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 
-  temp = color::Color::NewRealColorInstance(Isolate::GetCurrent(),
-                                            _vtx->color.toInteger())
-             .ToLocalChecked();
+  MaybeLocal<Object> maybe_color = color::Color::NewRealColorInstance(
+      Isolate::GetCurrent(), _vtx->color.toInteger());
+  if (maybe_color.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  temp = maybe_color.ToLocalChecked();
   _color_wrap.Reset(temp);
   _color = &Nan::ObjectWrap::Unwrap<color::Color>(temp)->color();
 
-  temp =
-      vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->texCoords)
-          .ToLocalChecked().As<Object>();
+  maybe_temp = vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(),
+                                                  _vtx->texCoords);
+  if (maybe_temp.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  temp = maybe_temp.ToLocalChecked().As<Object>();
   _tex_coords_wrap.Reset(temp);
   _tex_coords = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 }
@@ -170,21 +191,39 @@ Vertex::Vertex(Local<Value> position,
     }
   }
 
-  Local<Object> temp =
-      vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->position)
-          .ToLocalChecked().As<Object>();
+  Nan::TryCatch try_catch;
+  MaybeLocal<Value> maybe_temp;
+  Local<Object> temp;
+  maybe_temp =
+      vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->position);
+  if (maybe_temp.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  temp = maybe_temp.ToLocalChecked().As<Object>();
   _position_wrap.Reset(temp);
   _position = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 
-  temp = color::Color::NewRealColorInstance(Isolate::GetCurrent(),
-                                            _vtx->color.toInteger())
-             .ToLocalChecked();
+  MaybeLocal<Object> maybe_color = color::Color::NewRealColorInstance(
+      Isolate::GetCurrent(), _vtx->color.toInteger());
+  if (maybe_color.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  temp = maybe_color.ToLocalChecked().As<Object>();
   _color_wrap.Reset(temp);
   _color = &Nan::ObjectWrap::Unwrap<color::Color>(temp)->color();
 
-  temp =
-      vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(), _vtx->texCoords)
-          .ToLocalChecked().As<Object>();
+  maybe_temp = vector2::Vector2F::NewRealInstance(Isolate::GetCurrent(),
+                                                  _vtx->texCoords);
+  if (maybe_temp.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  temp = maybe_temp.ToLocalChecked().As<Object>();
   _tex_coords_wrap.Reset(temp);
   _tex_coords = &Nan::ObjectWrap::Unwrap<vector2::Vector2F>(temp)->vector2();
 }

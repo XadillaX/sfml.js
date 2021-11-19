@@ -2,6 +2,12 @@
   "extends": [
     "eslint-config-egg"
   ],
+  "rules": {
+    "max-len": [
+      "error",
+      { "code": 80 }
+    ]
+  },
   "overrides": [
     {
       "files": [

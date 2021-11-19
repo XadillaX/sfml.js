@@ -1,6 +1,6 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 
-#include "../vector2.h"
+#include "../vector2-inl.h"
 #include "drawable-inl.h"
 #include "rectangle_shape.h"
 

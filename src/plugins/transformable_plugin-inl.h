@@ -1,7 +1,7 @@
 #ifndef SRC_PLUGINS_TRANSFORMABLE_PLUGIN_INL_H_
 #define SRC_PLUGINS_TRANSFORMABLE_PLUGIN_INL_H_
 
-#include "../vector2.h"
+#include "../vector2-inl.h"
 #include "transformable_plugin.h"
 
 namespace node_sfml {

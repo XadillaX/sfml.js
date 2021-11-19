@@ -27,7 +27,8 @@ class ResizableBuffer {
         ,
         _page_size(getpagesize())
 #endif
-  {}
+  {
+  }
 
   explicit inline ResizableBuffer(size_t length) : ResizableBuffer() {
     this->Realloc(length);
@@ -59,7 +60,7 @@ class ResizableBuffer {
       _buff = static_cast<T*>(valloc(_byte_length));
     }
 #else
-  _buff = static_cast<T*>(malloc(_byte_length));
+    _buff = static_cast<T*>(malloc(_byte_length));
 #endif
 
     memset(_buff, 0, _byte_length);

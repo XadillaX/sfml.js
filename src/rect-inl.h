@@ -104,7 +104,7 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
   template <typename T, typename NAN_T, class V8_T>                            \
   NAN_METHOD(Rect<TEMPLATE_INNER>::name##Getter) {                             \
     Rect<T, NAN_T, V8_T>* rect =                                               \
-        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.This());          \
+        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.This());            \
     v8::Local<V8_T> ret =                                                      \
         Nan::New<V8_T>(static_cast<NAN_T>(rect->_rect.lowercase));             \
     info.GetReturnValue().Set(ret);                                            \
@@ -119,7 +119,7 @@ NAN_METHOD(Rect<TEMPLATE_INNER>::Intersects) {
                                                                                \
     NAN_T val = maybe_value.ToLocalChecked()->Value();                         \
     Rect<T, NAN_T, V8_T>* rect =                                               \
-        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.This());          \
+        Nan::ObjectWrap::Unwrap<Rect<T, NAN_T, V8_T>>(info.This());            \
     rect->_rect.lowercase = static_cast<T>(val);                               \
   }
 

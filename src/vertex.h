@@ -26,7 +26,7 @@ class Vertex : public Nan::ObjectWrap {
   };
 
   static v8::MaybeLocal<v8::Value> NewRealInstance(v8::Isolate* isolate,
-                                                    const sf::Vertex& vertex);
+                                                   const sf::Vertex& vertex);
 
  public:
   static NAN_MODULE_INIT(Init);
