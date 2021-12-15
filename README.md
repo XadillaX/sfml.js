@@ -2,7 +2,7 @@
 
 ![](https://www.sfml-dev.org/images/logo.png)
 
-SFML's Node.js binding.
+A cross-platform SFML's Node.js binding.
 
 > Under developing.
 
@@ -11,5 +11,3 @@ SFML's Node.js binding.
 ```bash
 $ node-gyp rebuild
 ```
-
-> Current only support Linux and macOS.

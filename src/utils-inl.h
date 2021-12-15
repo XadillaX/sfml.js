@@ -34,11 +34,11 @@ inline void V8StringToSFString(v8::Isolate* isolate,
     return;
   }
 
-  ResizableBuffer<char> utf8_string(string_utf8_length);
+  ResizableBuffer<char> utf8_string(string_utf8_length + 1);
   int wrote = v8_string->WriteUtf8(isolate, *utf8_string);
 
   // TODO(XadillaX): Real length?
-  ResizableBuffer<wchar_t> wstr(wrote << 1);
+  ResizableBuffer<wchar_t> wstr((wrote << 1) + 1);
   sf::Utf<8>::toWide(*utf8_string, *utf8_string + wrote, *wstr);
   sf_string = sf::String(*wstr);
 }
