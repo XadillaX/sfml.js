@@ -55,6 +55,9 @@
           "../third_party/sfml/platform/linux/lib/libsfml-window.so",
           "../third_party/sfml/platform/linux/lib/libsfml-network.so",
           "../third_party/sfml/platform/linux/lib/libsfml-graphics.so"
+        ],
+        "ldflags": [
+          "-Wl,-rpath='$$ORIGIN/../../third_party/sfml/platform/linux/lib'"
         ]
       }],
       ["OS==\"win\"", {
