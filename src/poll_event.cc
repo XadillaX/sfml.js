@@ -2,6 +2,8 @@
 
 #include "keyboard.h"
 #include "mouse.h"
+#include "joystick.h"
+#include "sensor.h"
 #include "poll_event.h"
 
 namespace node_sfml {
@@ -225,7 +227,96 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
       break;
     }
 
-      // TODO(XadillaX): Joystick / Touch / Sensor events.
+    case sf::Event::JoystickButtonPressed:
+    case sf::Event::JoystickButtonReleased: {
+      Local<Object> joystickButton = Nan::New<Object>();
+      Nan::Set(joystickButton,
+               GetCachedColumn(isolate, "joystickId"),
+               Nan::New(event.joystickButton.joystickId));
+      Nan::Set(joystickButton,
+               GetCachedColumn(isolate, "button"),
+               Nan::New(event.joystickButton.button));
+      Nan::Set(ret,
+               GetCachedColumn(isolate, "joystickButton"),
+               joystickButton);
+      break;
+    }
+
+    case sf::Event::JoystickConnected:
+    case sf::Event::JoystickDisconnected: {
+      Local<Object> joystickConnect = Nan::New<Object>();
+      Nan::Set(joystickConnect,
+               GetCachedColumn(isolate, "joystickId"),
+               Nan::New(event.joystickConnect.joystickId));
+      Nan::Set(ret,
+               GetCachedColumn(isolate, "joystickConnect"),
+               joystickConnect);
+      break;
+    }
+
+    case sf::Event::JoystickMoved: {
+      Local<Object> joystickMove = Nan::New<Object>();
+      Nan::Set(joystickMove,
+               GetCachedColumn(isolate, "joystickId"),
+               Nan::New(event.joystickMove.joystickId));
+      Nan::Set(joystickMove,
+               GetCachedColumn(isolate, "axis"),
+               Nan::New(event.joystickMove.axis));
+      Nan::Set(joystickMove,
+               GetCachedColumn(isolate, "axisStr"),
+               Nan::New(gen::joystick_axis_itoa[event.joystickMove.axis])
+                   .ToLocalChecked());
+      Nan::Set(joystickMove,
+               GetCachedColumn(isolate, "position"),
+               Nan::New(event.joystickMove.position));
+      Nan::Set(ret,
+               GetCachedColumn(isolate, "joystickMove"),
+               joystickMove);
+      break;
+    }
+
+    case sf::Event::TouchBegan:
+    case sf::Event::TouchMoved:
+    case sf::Event::TouchEnded: {
+      Local<Object> touch = Nan::New<Object>();
+      Nan::Set(touch,
+               GetCachedColumn(isolate, "finger"),
+               Nan::New(event.touch.finger));
+      Nan::Set(touch,
+               GetCachedColumn(isolate, "x"),
+               Nan::New(event.touch.x));
+      Nan::Set(touch,
+               GetCachedColumn(isolate, "y"),
+               Nan::New(event.touch.y));
+      Nan::Set(ret,
+               GetCachedColumn(isolate, "touch"),
+               touch);
+      break;
+    }
+
+    case sf::Event::SensorChanged: {
+      Local<Object> sensor = Nan::New<Object>();
+      Nan::Set(sensor,
+               GetCachedColumn(isolate, "type"),
+               Nan::New(event.sensor.type));
+      Nan::Set(sensor,
+               GetCachedColumn(isolate, "typeStr"),
+               Nan::New(gen::sensor_type_itoa[event.sensor.type])
+                   .ToLocalChecked());
+      Nan::Set(sensor,
+               GetCachedColumn(isolate, "x"),
+               Nan::New(event.sensor.x));
+      Nan::Set(sensor,
+               GetCachedColumn(isolate, "y"),
+               Nan::New(event.sensor.x));
+      Nan::Set(sensor,
+               GetCachedColumn(isolate, "z"),
+               Nan::New(event.sensor.x));
+      Nan::Set(ret,
+               GetCachedColumn(isolate, "sensor"),
+               sensor);
+      break;
+    }
 
     default:
       break;
