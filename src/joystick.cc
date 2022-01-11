@@ -21,7 +21,7 @@ NAN_MODULE_INIT(Init) {
   Nan::SetMethod(target, "isConnected", IsConnected);
   Nan::SetMethod(target, "getButtonCount", GetButtonCount);
   Nan::SetMethod(target, "hasAxis", HasAxis);
-  Nan::SetMethod(target, "isButtonPressed", IsButtonPressed);
+  Nan::SetMethod(target, "isJoystickButtonPressed", IsButtonPressed);
   Nan::SetMethod(target, "getAxisPosition", GetAxisPosition);
   Nan::SetMethod(target, "getIdentification", GetIdentification);
   Nan::SetMethod(target, "update", Update);

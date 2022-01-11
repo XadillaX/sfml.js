@@ -4,6 +4,7 @@ export * from './font';
 export * from './image';
 export * as Keyboard from './keyboard';
 export * as Mouse from './mouse';
+export * as Joystick from './joystick';
 export * from './rect';
 export * from './render_window';
 export * from './texture';

@@ -6,6 +6,7 @@
 #include "image.h"
 #include "keyboard.h"
 #include "mouse.h"
+#include "joystick.h"
 #include "rect.h"
 #include "render_window.h"
 #include "texture.h"
@@ -31,6 +32,7 @@ namespace node_sfml {
 void Init(v8::Local<v8::Object> target) {
   keyboard::Init(target);
   mouse::Init(target);
+  joystick::Init(target);
 
   clock::Clock::Init(target);
   color::Color::Init(target);
