@@ -15,12 +15,12 @@ extern std::map<std::string, int> sensor_type_atoi;
 }  // namespace gen
 
 namespace sensor {
-/*
+
 NAN_MODULE_INIT(Init);
 
-NAN_METHOD(IsButtonPressed);
-NAN_METHOD(GetPosition);
-NAN_METHOD(SetPosition);*/
+NAN_METHOD(IsAvailable);
+NAN_METHOD(SetEnabled);
+NAN_METHOD(GetValue);
 
 }  // namespace sensor
 }  // namespace node_sfml

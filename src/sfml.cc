@@ -7,11 +7,13 @@
 #include "keyboard.h"
 #include "mouse.h"
 #include "joystick.h"
+#include "sensor.h"
 #include "rect.h"
 #include "render_window.h"
 #include "texture.h"
 #include "time.h"
 #include "vector2.h"
+#include "vector3.h"
 #include "vertex.h"
 #include "video_mode.h"
 
@@ -33,6 +35,7 @@ void Init(v8::Local<v8::Object> target) {
   keyboard::Init(target);
   mouse::Init(target);
   joystick::Init(target);
+  sensor::Init(target);
 
   clock::Clock::Init(target);
   color::Color::Init(target);
@@ -65,6 +68,11 @@ void Init(v8::Local<v8::Object> target) {
   vector2::Vector2I::Init(target);
   vector2::Vector2U::Init(target);
   vector2::Vector2F::Init(target);
+
+  // vector3
+  vector3::Vector3I::Init(target);
+  vector3::Vector3U::Init(target);
+  vector3::Vector3F::Init(target);
 
   node::AddEnvironmentCleanupHook(
       target->GetIsolate(), sound::SoundSource::AtExit, nullptr);

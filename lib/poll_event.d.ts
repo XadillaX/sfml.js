@@ -1,4 +1,5 @@
-import { Axis, AxisStr } from './joystick';
+import { Sensor } from './sensor';
+import { Joystick } from './joystick';
 import { Keys, KeysStr } from './keyboard';
 
 interface OtherEvent {
@@ -95,8 +96,8 @@ interface JoystickMoveEvent {
   type: 'JoystickMoved',
   joystickMove: {
     joystickId: number;
-    axis: Axis;
-    axisStr: AxisStr;
+    axis: Joystick.Axis;
+    axisStr: Joystick.AxisStr;
     position: number;
   }
 }
@@ -113,8 +114,8 @@ interface TouchEvent {
 interface SensorEvent {
   type: 'SensorChanged',
   sensor: {
-    type: number;
-    typeStr: 'Accelerometer' | 'Gyroscope' | 'Magnetometer' | 'Gravity' | 'UserAcceleration' | 'Orientation';
+    type: Sensor.Type;
+    typeStr: Sensor.TypeStr;
     x: number;
     y: number;
     z: number;

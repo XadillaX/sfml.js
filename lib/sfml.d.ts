@@ -5,6 +5,7 @@ export * from './image';
 export * as Keyboard from './keyboard';
 export * as Mouse from './mouse';
 export * as Joystick from './joystick';
+export * as Sensor from './sensor';
 export * from './rect';
 export * from './render_window';
 export * from './texture';
@@ -12,6 +13,7 @@ export * from './texture';
 export * as Time from './time';
 
 export * from './vector2';
+export * from './vector3';
 export * from './vertex';
 export * from './video_mode';
 
