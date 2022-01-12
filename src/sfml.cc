@@ -8,6 +8,7 @@
 #include "mouse.h"
 #include "joystick.h"
 #include "sensor.h"
+#include "touch.h"
 #include "rect.h"
 #include "render_window.h"
 #include "texture.h"
@@ -36,6 +37,7 @@ void Init(v8::Local<v8::Object> target) {
   mouse::Init(target);
   joystick::Init(target);
   sensor::Init(target);
+  touch::Init(target);
 
   clock::Clock::Init(target);
   color::Color::Init(target);

@@ -1,12 +1,12 @@
-#ifndef SRC_sensor_H_
-#define SRC_sensor_H_
+#ifndef SRC_SENSOR_H_
+#define SRC_SENSOR_H_
 
 #include <nan.h>
 
 #include <map>
 #include <string>
 
-#include <SFML/Window/sensor.hpp>
+#include <SFML/Window/Sensor.hpp>
 
 namespace node_sfml {
 namespace gen {
