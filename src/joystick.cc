@@ -44,8 +44,8 @@ NAN_METHOD(IsConnected) {
     return;
   }
 
-  sf::Uint32 joystick_id = Nan::To<sf::Uint32>(
-    info[0].As<v8::Uint32>()).FromJust();
+  sf::Uint32 joystick_id =
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   info.GetReturnValue().Set(sf::Joystick::isConnected(joystick_id));
 }
 
@@ -55,8 +55,8 @@ NAN_METHOD(GetButtonCount) {
     return;
   }
 
-  sf::Uint32 joystick_id = Nan::To<sf::Uint32>(
-    info[0].As<v8::Uint32>()).FromJust();
+  sf::Uint32 joystick_id =
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   info.GetReturnValue().Set(sf::Joystick::getButtonCount(joystick_id));
 }
 
@@ -66,10 +66,10 @@ NAN_METHOD(HasAxis) {
     return;
   }
 
-  sf::Uint32 joystick_id = Nan::To<sf::Uint32>(
-    info[0].As<v8::Uint32>()).FromJust();
+  sf::Uint32 joystick_id =
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   sf::Joystick::Axis axis = static_cast<sf::Joystick::Axis>(
-    Nan::To<sf::Int32>(info[1].As<v8::Int32>()).FromJust());
+      Nan::To<sf::Int32>(info[1].As<v8::Int32>()).FromJust());
   info.GetReturnValue().Set(sf::Joystick::hasAxis(joystick_id, axis));
 }
 
@@ -79,8 +79,8 @@ NAN_METHOD(IsButtonPressed) {
     return;
   }
 
-  sf::Uint32 joystick_id = Nan::To<sf::Uint32>(
-    info[0].As<v8::Uint32>()).FromJust();
+  sf::Uint32 joystick_id =
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   sf::Uint32 button = Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   info.GetReturnValue().Set(sf::Joystick::isButtonPressed(joystick_id, button));
 }
@@ -91,10 +91,10 @@ NAN_METHOD(GetAxisPosition) {
     return;
   }
 
-  sf::Uint32 joystick_id = Nan::To<sf::Uint32>(
-    info[0].As<v8::Uint32>()).FromJust();
+  sf::Uint32 joystick_id =
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   sf::Joystick::Axis axis = static_cast<sf::Joystick::Axis>(
-    Nan::To<sf::Int32>(info[1].As<v8::Int32>()).FromJust());
+      Nan::To<sf::Int32>(info[1].As<v8::Int32>()).FromJust());
   info.GetReturnValue().Set(sf::Joystick::getAxisPosition(joystick_id, axis));
 }
 
@@ -104,10 +104,10 @@ NAN_METHOD(GetIdentification) {
     return;
   }
 
-  sf::Uint32 joystick_id = Nan::To<sf::Uint32>(
-    info[0].As<v8::Uint32>()).FromJust();
+  sf::Uint32 joystick_id =
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust();
   sf::Joystick::Identification identification =
-    sf::Joystick::getIdentification(joystick_id);
+      sf::Joystick::getIdentification(joystick_id);
 
   Local<Object> ret = Nan::New<Object>();
   Nan::Set(ret,

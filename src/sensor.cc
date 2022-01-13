@@ -42,7 +42,7 @@ NAN_METHOD(IsAvailable) {
   }
 
   sf::Sensor::Type sensor_type = static_cast<sf::Sensor::Type>(
-    Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
   info.GetReturnValue().Set(sf::Sensor::isAvailable(sensor_type));
 }
 
@@ -53,7 +53,7 @@ NAN_METHOD(SetEnabled) {
   }
 
   sf::Sensor::Type sensor_type = static_cast<sf::Sensor::Type>(
-    Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
   bool enabled = Nan::To<bool>(info[1].As<v8::Boolean>()).FromJust();
   sf::Sensor::setEnabled(sensor_type, enabled);
 }
@@ -65,13 +65,12 @@ NAN_METHOD(GetValue) {
   }
 
   sf::Sensor::Type sensor_type = static_cast<sf::Sensor::Type>(
-    Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
+      Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
   sf::Vector3f value = sf::Sensor::getValue(sensor_type);
 
   MaybeLocal<Value> maybe_temp;
   Nan::TryCatch try_catch;
-  maybe_temp =
-      vector3::Vector3F::NewRealInstance(info.GetIsolate(), value);
+  maybe_temp = vector3::Vector3F::NewRealInstance(info.GetIsolate(), value);
   if (maybe_temp.IsEmpty()) {
     try_catch.ReThrow();
     return;

@@ -1,10 +1,10 @@
 #include <map>
 
+#include "joystick.h"
 #include "keyboard.h"
 #include "mouse.h"
-#include "joystick.h"
-#include "sensor.h"
 #include "poll_event.h"
+#include "sensor.h"
 
 namespace node_sfml {
 namespace poll_event {
@@ -236,9 +236,8 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
       Nan::Set(joystick_button,
                GetCachedColumn(isolate, "button"),
                Nan::New(event.joystickButton.button));
-      Nan::Set(ret,
-               GetCachedColumn(isolate, "joystickButton"),
-               joystick_button);
+      Nan::Set(
+          ret, GetCachedColumn(isolate, "joystickButton"), joystick_button);
       break;
     }
 
@@ -248,9 +247,8 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
       Nan::Set(joystick_connect,
                GetCachedColumn(isolate, "joystickId"),
                Nan::New(event.joystickConnect.joystickId));
-      Nan::Set(ret,
-               GetCachedColumn(isolate, "joystickConnect"),
-               joystick_connect);
+      Nan::Set(
+          ret, GetCachedColumn(isolate, "joystickConnect"), joystick_connect);
       break;
     }
 
@@ -269,9 +267,7 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
       Nan::Set(joystick_move,
                GetCachedColumn(isolate, "position"),
                Nan::New(event.joystickMove.position));
-      Nan::Set(ret,
-               GetCachedColumn(isolate, "joystickMove"),
-               joystick_move);
+      Nan::Set(ret, GetCachedColumn(isolate, "joystickMove"), joystick_move);
       break;
     }
 
@@ -282,15 +278,9 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
       Nan::Set(touch,
                GetCachedColumn(isolate, "finger"),
                Nan::New(event.touch.finger));
-      Nan::Set(touch,
-               GetCachedColumn(isolate, "x"),
-               Nan::New(event.touch.x));
-      Nan::Set(touch,
-               GetCachedColumn(isolate, "y"),
-               Nan::New(event.touch.y));
-      Nan::Set(ret,
-               GetCachedColumn(isolate, "touch"),
-               touch);
+      Nan::Set(touch, GetCachedColumn(isolate, "x"), Nan::New(event.touch.x));
+      Nan::Set(touch, GetCachedColumn(isolate, "y"), Nan::New(event.touch.y));
+      Nan::Set(ret, GetCachedColumn(isolate, "touch"), touch);
       break;
     }
 
@@ -299,22 +289,14 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
       Nan::Set(sensor,
                GetCachedColumn(isolate, "type"),
                Nan::New(event.sensor.type));
-      Nan::Set(sensor,
-               GetCachedColumn(isolate, "typeStr"),
-               Nan::New(gen::sensor_type_itoa[event.sensor.type])
-                   .ToLocalChecked());
-      Nan::Set(sensor,
-               GetCachedColumn(isolate, "x"),
-               Nan::New(event.sensor.x));
-      Nan::Set(sensor,
-               GetCachedColumn(isolate, "y"),
-               Nan::New(event.sensor.x));
-      Nan::Set(sensor,
-               GetCachedColumn(isolate, "z"),
-               Nan::New(event.sensor.x));
-      Nan::Set(ret,
-               GetCachedColumn(isolate, "sensor"),
-               sensor);
+      Nan::Set(
+          sensor,
+          GetCachedColumn(isolate, "typeStr"),
+          Nan::New(gen::sensor_type_itoa[event.sensor.type]).ToLocalChecked());
+      Nan::Set(sensor, GetCachedColumn(isolate, "x"), Nan::New(event.sensor.x));
+      Nan::Set(sensor, GetCachedColumn(isolate, "y"), Nan::New(event.sensor.x));
+      Nan::Set(sensor, GetCachedColumn(isolate, "z"), Nan::New(event.sensor.x));
+      Nan::Set(ret, GetCachedColumn(isolate, "sensor"), sensor);
       break;
     }
 

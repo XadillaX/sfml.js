@@ -21,8 +21,7 @@ NAN_MODULE_INIT(Init) {
 NAN_METHOD(IsDown) {
   sf::Uint32 finger = Nan::To<sf::Uint32>(info[0]).FromJust();
 
-  info.GetReturnValue().Set(
-      sf::Touch::isDown(finger));
+  info.GetReturnValue().Set(sf::Touch::isDown(finger));
   return;
 }
 
