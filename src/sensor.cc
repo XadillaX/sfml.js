@@ -24,14 +24,15 @@ NAN_MODULE_INIT(Init) {
   Nan::SetMethod(target, "sensorGetValue", GetValue);
 
   Local<Object> type = Nan::New<Object>();
-  for (auto it = gen::sensor_type_atoi.begin(); it != gen::sensor_type_atoi.end();
+  for (auto it = gen::sensor_type_atoi.begin();
+       it != gen::sensor_type_atoi.end();
        it++) {
     Nan::Set(type,
              Nan::New<String>(it->first).ToLocalChecked(),
              Nan::New(it->second));
   }
 
-  Nan::Set(target, Nan::New<String>("SensorType").ToLocalChecked(), type);
+  Nan::Set(target, Nan::New<String>("sensorType").ToLocalChecked(), type);
 }
 
 NAN_METHOD(IsAvailable) {
@@ -39,9 +40,10 @@ NAN_METHOD(IsAvailable) {
     Nan::ThrowError("Invalid arguments count.");
     return;
   }
-  
-  auto sensorType = static_cast<sf::Sensor::Type>(Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
-  info.GetReturnValue().Set(sf::Sensor::isAvailable(sensorType));
+
+  sf::Sensor::Type sensor_type = static_cast<sf::Sensor::Type>(
+    Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
+  info.GetReturnValue().Set(sf::Sensor::isAvailable(sensor_type));
 }
 
 NAN_METHOD(SetEnabled) {
@@ -49,10 +51,11 @@ NAN_METHOD(SetEnabled) {
     Nan::ThrowError("Invalid arguments count.");
     return;
   }
-  
-  auto sensorType = static_cast<sf::Sensor::Type>(Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
-  auto enabled = Nan::To<bool>(info[1].As<v8::Boolean>()).FromJust();
-  sf::Sensor::setEnabled(sensorType, enabled);
+
+  sf::Sensor::Type sensor_type = static_cast<sf::Sensor::Type>(
+    Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
+  bool enabled = Nan::To<bool>(info[1].As<v8::Boolean>()).FromJust();
+  sf::Sensor::setEnabled(sensor_type, enabled);
 }
 
 NAN_METHOD(GetValue) {
@@ -60,10 +63,11 @@ NAN_METHOD(GetValue) {
     Nan::ThrowError("Invalid arguments count.");
     return;
   }
-  
-  auto sensorType = static_cast<sf::Sensor::Type>(Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
-  auto value = sf::Sensor::getValue(sensorType);
-  
+
+  sf::Sensor::Type sensor_type = static_cast<sf::Sensor::Type>(
+    Nan::To<sf::Uint32>(info[0].As<v8::Uint32>()).FromJust());
+  sf::Vector3f value = sf::Sensor::getValue(sensor_type);
+
   MaybeLocal<Value> maybe_temp;
   Nan::TryCatch try_catch;
   maybe_temp =
@@ -75,5 +79,5 @@ NAN_METHOD(GetValue) {
   info.GetReturnValue().Set(maybe_temp.ToLocalChecked());
 }
 
-}  // namespace mouse
+}  // namespace sensor
 }  // namespace node_sfml

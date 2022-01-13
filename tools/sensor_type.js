@@ -38,7 +38,8 @@ void InitSensorType() {
   ${extracted
     .map(([ key, code ]) => {
       return `sensor_type_itoa[${code}] = "${key}";
-              sensor_type_atoi["${key}"] = ${code};`;
+  sensor_type_atoi["${key}"] = ${code};
+  `;
     })
     .join('')}
 }

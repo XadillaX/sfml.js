@@ -229,49 +229,49 @@ MaybeLocal<Object> EventToV8Object(Isolate* isolate, const sf::Event& event) {
 
     case sf::Event::JoystickButtonPressed:
     case sf::Event::JoystickButtonReleased: {
-      Local<Object> joystickButton = Nan::New<Object>();
-      Nan::Set(joystickButton,
+      Local<Object> joystick_button = Nan::New<Object>();
+      Nan::Set(joystick_button,
                GetCachedColumn(isolate, "joystickId"),
                Nan::New(event.joystickButton.joystickId));
-      Nan::Set(joystickButton,
+      Nan::Set(joystick_button,
                GetCachedColumn(isolate, "button"),
                Nan::New(event.joystickButton.button));
       Nan::Set(ret,
                GetCachedColumn(isolate, "joystickButton"),
-               joystickButton);
+               joystick_button);
       break;
     }
 
     case sf::Event::JoystickConnected:
     case sf::Event::JoystickDisconnected: {
-      Local<Object> joystickConnect = Nan::New<Object>();
-      Nan::Set(joystickConnect,
+      Local<Object> joystick_connect = Nan::New<Object>();
+      Nan::Set(joystick_connect,
                GetCachedColumn(isolate, "joystickId"),
                Nan::New(event.joystickConnect.joystickId));
       Nan::Set(ret,
                GetCachedColumn(isolate, "joystickConnect"),
-               joystickConnect);
+               joystick_connect);
       break;
     }
 
     case sf::Event::JoystickMoved: {
-      Local<Object> joystickMove = Nan::New<Object>();
-      Nan::Set(joystickMove,
+      Local<Object> joystick_move = Nan::New<Object>();
+      Nan::Set(joystick_move,
                GetCachedColumn(isolate, "joystickId"),
                Nan::New(event.joystickMove.joystickId));
-      Nan::Set(joystickMove,
+      Nan::Set(joystick_move,
                GetCachedColumn(isolate, "axis"),
                Nan::New(event.joystickMove.axis));
-      Nan::Set(joystickMove,
+      Nan::Set(joystick_move,
                GetCachedColumn(isolate, "axisStr"),
                Nan::New(gen::joystick_axis_itoa[event.joystickMove.axis])
                    .ToLocalChecked());
-      Nan::Set(joystickMove,
+      Nan::Set(joystick_move,
                GetCachedColumn(isolate, "position"),
                Nan::New(event.joystickMove.position));
       Nan::Set(ret,
                GetCachedColumn(isolate, "joystickMove"),
-               joystickMove);
+               joystick_move);
       break;
     }
 

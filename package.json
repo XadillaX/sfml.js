@@ -8,7 +8,7 @@
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
     "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h ./src/sound/*.cc ./src/sound/*.h ./src/workers/*.h",
     "preinstall": "node tools/symlinks.js",
-    "cpplint": "./third_party/cpplint/cpplint.py src/**/*",
+    "cpplint": "./third_party/cpplint/cpplint.py src/*.* src/**/*",
     "jslint": "./node_modules/.bin/eslint ./**/*.js",
     "install": "node-gyp rebuild"
   },

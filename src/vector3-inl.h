@@ -182,7 +182,8 @@ template <typename T, typename NAN_T, class V8_T>
 Vector3<T, NAN_T, V8_T>::Vector3() : Nan::ObjectWrap(), _vec() {}
 
 template <typename T, typename NAN_T, class V8_T>
-Vector3<T, NAN_T, V8_T>::Vector3(T x, T y, T z) : Nan::ObjectWrap(), _vec(x, y, z) {}
+Vector3<T, NAN_T, V8_T>::Vector3(T x, T y, T z)
+    : Nan::ObjectWrap(), _vec(x, y, z) {}
 
 template <typename T, typename NAN_T, class V8_T>
 Vector3<T, NAN_T, V8_T>::Vector3(const Vector3<T, NAN_T, V8_T>& vec)

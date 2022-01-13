@@ -38,7 +38,8 @@ void InitKeyCode() {
   ${extracted
     .map(([ key, code ]) => {
       return `keycode_itoa[${code}] = "${key}";
-              keycode_atoi["${key}"] = ${code};`;
+  keycode_atoi["${key}"] = ${code};
+  `;
     })
     .join('')}
 }

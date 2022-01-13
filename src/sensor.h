@@ -25,4 +25,4 @@ NAN_METHOD(GetValue);
 }  // namespace sensor
 }  // namespace node_sfml
 
-#endif  // SRC_sensor_H_
+#endif  // SRC_SENSOR_H_

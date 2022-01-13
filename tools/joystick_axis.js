@@ -38,7 +38,8 @@ void InitJoystickAxis() {
   ${extracted
     .map(([ key, code ]) => {
       return `joystick_axis_itoa[${code}] = "${key}";
-              joystick_axis_atoi["${key}"] = ${code};`;
+  joystick_axis_atoi["${key}"] = ${code};
+  `;
     })
     .join('')}
 }

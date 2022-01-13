@@ -51,5 +51,5 @@ NAN_METHOD(GetPosition) {
   info.GetReturnValue().Set(ret.ToLocalChecked());
 }
 
-}  // namespace mouse
+}  // namespace touch
 }  // namespace node_sfml
