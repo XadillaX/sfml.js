@@ -39,13 +39,14 @@ void InitSensorType() {
     .map(([ key, code ]) => {
       return `sensor_type_itoa[${code}] = "${key}";
   sensor_type_atoi["${key}"] = ${code};
-  `;
+`;
     })
-    .join('')}
+    .join('  ')
+    .trim()}
 }
 
-}  // namespace node_sfml
 }  // namespace gen
+}  // namespace node_sfml
 `;
 
 fs.writeFileSync(path.join(__dirname, '../src/gen/sensor_type.cc'), str);

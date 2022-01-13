@@ -59,20 +59,22 @@ void InitMouseButton() {
     .map(([ key, code ]) => {
       return `mouse_button_itoa[${code}] = "${key}";
   mouse_button_atoi["${key}"] = ${code};
-  `;
+`;
     })
-    .join('')}
+    .join('  ')
+    .trim()}
   ${extracted2
     .map(([ key, code ]) => {
       return `mouse_wheel_itoa[${code}] = "${key}";
-  mouse_wheel_atoi["${key}"] = ${code};
+mouse_wheel_atoi["${key}"] = ${code};
   `;
     })
-    .join('')}
+    .join('  ')
+    .trim()}
 }
 
-}  // namespace node_sfml
 }  // namespace gen
+}  // namespace node_sfml
 `;
 
 fs.writeFileSync(path.join(__dirname, '../src/gen/mouse_button.cc'), str);

@@ -39,13 +39,14 @@ void InitJoystickAxis() {
     .map(([ key, code ]) => {
       return `joystick_axis_itoa[${code}] = "${key}";
   joystick_axis_atoi["${key}"] = ${code};
-  `;
+`;
     })
-    .join('')}
+    .join('  ')
+    .trim()}
 }
 
-}  // namespace node_sfml
 }  // namespace gen
+}  // namespace node_sfml
 `;
 
 fs.writeFileSync(path.join(__dirname, '../src/gen/joystick_axis.cc'), str);

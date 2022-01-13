@@ -39,13 +39,14 @@ void InitKeyCode() {
     .map(([ key, code ]) => {
       return `keycode_itoa[${code}] = "${key}";
   keycode_atoi["${key}"] = ${code};
-  `;
+`;
     })
-    .join('')}
+    .join('  ')
+    .trim()}
 }
 
-}  // namespace node_sfml
 }  // namespace gen
+}  // namespace node_sfml
 `;
 
 fs.writeFileSync(path.join(__dirname, '../src/gen/keycode.cc'), str);
