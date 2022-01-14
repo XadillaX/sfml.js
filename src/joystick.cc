@@ -109,10 +109,12 @@ NAN_METHOD(GetIdentification) {
   sf::Joystick::Identification identification =
       sf::Joystick::getIdentification(joystick_id);
 
+  std::basic_string<sf::Uint16> name = identification.name.toUtf16();
+  Local<String> v8_name =
+      Nan::New<String>(name.c_str(), name.size()).ToLocalChecked();
+
   Local<Object> ret = Nan::New<Object>();
-  Nan::Set(ret,
-           Nan::New<String>("name").ToLocalChecked(),
-           Nan::New<String>(identification.name).ToLocalChecked());
+  Nan::Set(ret, Nan::New<String>("name").ToLocalChecked(), v8_name);
   Nan::Set(ret,
            Nan::New<String>("vendorId").ToLocalChecked(),
            Nan::New(identification.vendorId));
