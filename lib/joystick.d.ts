@@ -4,6 +4,7 @@ export enum Axis {
 }
 
 export type AxisStr = keyof typeof Axis;
+type UnsignedInteger = number;
 
 type Identification = {
   name: string;
@@ -11,10 +12,10 @@ type Identification = {
   productId: number;
 };
 
-export function isConnected(joystickId: number): boolean;
-export function getButtonCount(joystickId: number): number;
-export function hasAxis(joystickId: number, axis: Axis): boolean;
-export function isButtonPressed(joystickId: number, button: number): boolean;
-export function getAxisPosition(joystickId: number, axis: Axis): number;
-export function getIdentification(joystickId: number): Identification;
+export function isConnected(joystickId: UnsignedInteger): boolean;
+export function getButtonCount(joystickId: UnsignedInteger): number;
+export function hasAxis(joystickId: UnsignedInteger, axis: Axis): boolean;
+export function isButtonPressed(joystickId: UnsignedInteger, button: UnsignedInteger): boolean;
+export function getAxisPosition(joystickId: UnsignedInteger, axis: Axis): number;
+export function getIdentification(joystickId: UnsignedInteger): Identification;
 export function update(): void;
