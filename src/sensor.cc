@@ -1,5 +1,5 @@
 #include "sensor.h"
-#include "vector3.h"
+#include "vector3-inl.h"
 
 namespace node_sfml {
 namespace gen {
