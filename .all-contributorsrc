@@ -25,6 +25,7 @@
       ]
     }
   ],
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#contributors-)",
   "contributorsPerLine": 7,
   "projectName": "node-sfml",
   "projectOwner": "XadillaX",
