@@ -1,7 +1,14 @@
+import { Sensor } from './sensor';
+import { Joystick } from './joystick';
+import { Keys, KeysStr } from './keyboard';
+
 interface OtherEvent {
-  type: 'Closed' | 'LostFocus' | 'GainedFocus' | 'MouseLeft' | 'JoystickButtonPressed' | 'JoystickButtonReleased' |
-    'JoystickMoved' | 'JoystickConnected' | 'JoystickDisconnected' | 'TouchBegan' | 'TouchMoved' | 'TouchEnded' |
-    'SensorChanged';
+  type:
+  | 'Closed'
+  | 'LostFocus'
+  | 'GainedFocus'
+  | 'MouseLeft'
+  | 'MouseEntered';
 }
 
 interface SizeEvent {
@@ -15,8 +22,8 @@ interface SizeEvent {
 interface KeyEvent {
   type: 'KeyPressed' | 'KeyReleased';
   key: {
-    code: number;
-    codeStr: string;
+    code: Keys;
+    codeStr: KeysStr;
     alt: boolean;
     shift: boolean;
     control: boolean;
@@ -46,7 +53,7 @@ interface MouseButtonEvent {
     x: number;
     y: number;
     button: number;
-    buttonStr: string;
+    buttonStr: 'Left' | 'Right' | 'Middle' | 'XButton1' | 'XButton2';
   };
 }
 
@@ -66,9 +73,66 @@ interface MouseWheelScrollEvent {
     y: number;
     delta: number;
     wheel: number;
-    wheelStr: string;
+    wheelStr: 'VerticalWheel' | 'HorizontalWheel';
   };
 }
 
-export type Event = OtherEvent | SizeEvent | KeyEvent | TextEvent | MouseMoveEvent | MouseButtonEvent |
-  MouseWheelEvent | MouseWheelScrollEvent;
+interface JoystickButtonEvent {
+  type: 'JoystickButtonPressed' | 'JoystickButtonReleased';
+  joystickButton: {
+    joystickId: number;
+    button: number;
+  }
+}
+
+interface JoystickConnectEvent {
+  type: 'JoystickConnected' | 'JoystickDisconnected';
+  joystickConnect: {
+    joystickId: number;
+  }
+}
+
+interface JoystickMoveEvent {
+  type: 'JoystickMoved',
+  joystickMove: {
+    joystickId: number;
+    axis: Joystick.Axis;
+    axisStr: Joystick.AxisStr;
+    position: number;
+  }
+}
+
+interface TouchEvent {
+  type: 'TouchBegan' | 'TouchMoved' | 'TouchEnded';
+  touch: {
+    finger: number;
+    x: number;
+    y: number;
+  }
+}
+
+interface SensorEvent {
+  type: 'SensorChanged',
+  sensor: {
+    type: Sensor.Type;
+    typeStr: Sensor.TypeStr;
+    x: number;
+    y: number;
+    z: number;
+  }
+}
+
+export type Event =
+  | OtherEvent
+  | SizeEvent
+  | KeyEvent
+  | TextEvent
+  | MouseMoveEvent
+  | MouseButtonEvent
+  | MouseWheelEvent
+  | MouseWheelScrollEvent
+  | JoystickButtonEvent
+  | JoystickConnectEvent
+  | JoystickMoveEvent
+  | TouchEvent
+  | SensorEvent;

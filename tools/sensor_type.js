@@ -4,12 +4,12 @@ const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const keyboardHpp = fs.readFileSync(
-  path.join(__dirname, '../third_party/sfml/include/SFML/Window/Keyboard.hpp'));
+const sensorHpp = fs.readFileSync(
+  path.join(__dirname, '../third_party/sfml/include/SFML/Window/Sensor.hpp'));
 
-let current = 0;
-const extracted = /enum Key\W+{([\w\W]*)KeyCount,/
-  .exec(keyboardHpp)[1]
+let current = -1;
+const extracted = /enum Type\W+{([\w\W]*)Count/
+  .exec(sensorHpp)[1]
   .trim()
   .split('\n')
   .map(line => {
@@ -31,14 +31,14 @@ const str = `#include <map>
 namespace node_sfml {
 namespace gen {
 
-std::map<int, std::string> keycode_itoa;
-std::map<std::string, int> keycode_atoi;
+std::map<int, std::string> sensor_type_itoa;
+std::map<std::string, int> sensor_type_atoi;
 
-void InitKeyCode() {
+void InitSensorType() {
   ${extracted
     .map(([ key, code ]) => {
-      return `keycode_itoa[${code}] = "${key}";
-  keycode_atoi["${key}"] = ${code};
+      return `sensor_type_itoa[${code}] = "${key}";
+  sensor_type_atoi["${key}"] = ${code};
 `;
     })
     .join('  ')
@@ -49,14 +49,14 @@ void InitKeyCode() {
 }  // namespace node_sfml
 `;
 
-fs.writeFileSync(path.join(__dirname, '../src/gen/keycode.cc'), str);
+fs.writeFileSync(path.join(__dirname, '../src/gen/sensor_type.cc'), str);
 
 if (process.platform !== 'win32') {
   cp.execFileSync(path.join(__dirname, 'clang_format.js'), [
     '-style=file',
     '-i',
-    path.join(__dirname, '../src/gen/keycode.cc'),
+    path.join(__dirname, '../src/gen/sensor_type.cc'),
   ]);
 }
 
-console.log('./src/gen/keyboard.cc generated.');
+console.log('./src/gen/sensor_type.cc generated.');

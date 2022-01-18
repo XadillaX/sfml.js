@@ -4,16 +4,16 @@ const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const keyboardHpp = fs.readFileSync(
-  path.join(__dirname, '../third_party/sfml/include/SFML/Window/Keyboard.hpp'));
+const joystickHpp = fs.readFileSync(
+  path.join(__dirname, '../third_party/sfml/include/SFML/Window/Joystick.hpp'));
 
-let current = 0;
-const extracted = /enum Key\W+{([\w\W]*)KeyCount,/
-  .exec(keyboardHpp)[1]
+let current = -1;
+const extracted = /enum Axis\W+{([^}]*)\};/
+  .exec(joystickHpp)[1]
   .trim()
   .split('\n')
   .map(line => {
-    line = line.trim().replace(/,\W*\/\/\/.+/, '');
+    line = line.trim().replace(/(,|)\W*\/\/\/.+/, '');
 
     const arr = line.split('=').map(c => c.trim());
     if (arr.length >= 2) {
@@ -31,14 +31,14 @@ const str = `#include <map>
 namespace node_sfml {
 namespace gen {
 
-std::map<int, std::string> keycode_itoa;
-std::map<std::string, int> keycode_atoi;
+std::map<int, std::string> joystick_axis_itoa;
+std::map<std::string, int> joystick_axis_atoi;
 
-void InitKeyCode() {
+void InitJoystickAxis() {
   ${extracted
     .map(([ key, code ]) => {
-      return `keycode_itoa[${code}] = "${key}";
-  keycode_atoi["${key}"] = ${code};
+      return `joystick_axis_itoa[${code}] = "${key}";
+  joystick_axis_atoi["${key}"] = ${code};
 `;
     })
     .join('  ')
@@ -49,14 +49,14 @@ void InitKeyCode() {
 }  // namespace node_sfml
 `;
 
-fs.writeFileSync(path.join(__dirname, '../src/gen/keycode.cc'), str);
+fs.writeFileSync(path.join(__dirname, '../src/gen/joystick_axis.cc'), str);
 
 if (process.platform !== 'win32') {
   cp.execFileSync(path.join(__dirname, 'clang_format.js'), [
     '-style=file',
     '-i',
-    path.join(__dirname, '../src/gen/keycode.cc'),
+    path.join(__dirname, '../src/gen/joystick_axis.cc'),
   ]);
 }
 
-console.log('./src/gen/keyboard.cc generated.');
+console.log('./src/gen/joystick_axis.cc generated.');

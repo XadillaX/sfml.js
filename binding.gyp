@@ -42,6 +42,48 @@
       ]
     }]
   }, {
+    "target_name": "joystick_axis.cc",
+    "type": "none",
+    "sources": [
+      "./third_party/sfml/include/SFML/Window/Joystick.hpp",
+      "./tools/joystick_axis.js"
+    ],
+    "actions": [{
+      "action_name": "gen_joystick_axis",
+      "inputs": [
+        "./third_party/sfml/include/SFML/Window/Joystick.hpp",
+        "./tools/joystick_axis.js"
+      ],
+      "outputs": [
+        "./src/gen/joystick_axis.cc"
+      ],
+      "action": [
+        "node",
+        "./tools/joystick_axis.js"
+      ]
+    }]
+  }, {
+    "target_name": "sensor_type.cc",
+    "type": "none",
+    "sources": [
+      "./third_party/sfml/include/SFML/Window/Sensor.hpp",
+      "./tools/sensor_type.js"
+    ],
+    "actions": [{
+      "action_name": "gen_sensor_type",
+      "inputs": [
+        "./third_party/sfml/include/SFML/Window/Sensor.hpp",
+        "./tools/sensor_type.js"
+      ],
+      "outputs": [
+        "./src/gen/sensor_type.cc"
+      ],
+      "action": [
+        "node",
+        "./tools/sensor_type.js"
+      ]
+    }]
+  }, {
     "target_name": "binding",
     "include_dirs": [
       "./third_party/sfml/include",
@@ -115,14 +157,18 @@
       "./src/color.cc",
       "./src/font.cc",
       "./src/image.cc",
+      "./src/joystick.cc",
       "./src/keyboard.cc",
       "./src/mouse.cc",
       "./src/poll_event.cc",
       "./src/rect.cc",
       "./src/render_window.cc",
+      "./src/sensor.cc",
+      "./src/touch.cc",
       "./src/texture.cc",
       "./src/time.cc",
       "./src/vector2.cc",
+      "./src/vector3.cc",
       "./src/vertex.cc",
       "./src/video_mode.cc",
 
@@ -135,8 +181,10 @@
       "./src/drawable/text.cc",
       "./src/drawable/vertex_array.cc",
 
+      "./src/gen/joystick_axis.cc",
       "./src/gen/keycode.cc",
       "./src/gen/mouse_button.cc",
+      "./src/gen/sensor_type.cc",
 
       "./src/sound/music.cc",
       "./src/sound/sound.cc",
@@ -145,6 +193,8 @@
     ],
     "dependencies": [
       "keycode.cc",
+      "joystick_axis.cc",
+      "sensor_type.cc",
       "mouse_button.cc"
     ]
   }]

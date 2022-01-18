@@ -104,3 +104,4 @@ export enum Keys {
   Y = 24,
   Z = 25,
 }
+export type KeysStr = keyof typeof Keys;
