@@ -6,6 +6,16 @@
   "commit": false,
   "contributors": [
     {
+      "login": "XadillaX",
+      "name": "Khaidi Chu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2842176?v=4",
+      "profile": "https://xcoder.in/",
+      "contributions": [
+        "maintenance",
+        "code"
+      ]
+    },
+    {
       "login": "NuriYuri",
       "name": "NuriYuri",
       "avatar_url": "https://avatars.githubusercontent.com/u/7335788?v=4",
