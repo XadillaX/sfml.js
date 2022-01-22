@@ -153,6 +153,11 @@ function frame() {
     }
   }
 
+  if (Keyboard.isKeyPressed('LControl')) {
+    window.create(new VideoMode(800, 600, 32), 'New title');
+    window.setVerticalSyncEnabled(true);
+  }
+
   if (Keyboard.isKeyPressed('Escape')) {
     window.close();
   }
