@@ -22,6 +22,7 @@ const {
   Texture,
   VertexArray,
   VideoMode,
+  Vector2I,
 } = require('../lib/sfml');
 
 const mode = VideoMode.getFullscreenModes()[3];
@@ -109,6 +110,17 @@ zzzSprite.setPosition(700, 550);
 const oooSprite = new Sprite(zzzSprite);
 oooSprite.setPosition(750, 550);
 
+const icnBuff = Buffer.alloc(32 * 32 * 4, 0);
+for (let i = 10; i < 20; i++) {
+  for (let j = 0; j < 32; j++) {
+    icnBuff.writeUInt8(Math.random() * 255, j * 32 * 4 + i * 4 + 0);
+    icnBuff.writeUInt8(Math.random() * 255, j * 32 * 4 + i * 4 + 1);
+    icnBuff.writeUInt8(Math.random() * 255, j * 32 * 4 + i * 4 + 2);
+    icnBuff.writeUInt8(255, j * 32 * 4 + i * 4 + 3);
+  }
+}
+window.setIcon(32, 32, icnBuff);
+
 function frame() {
   if (!window.isOpen()) return;
   const delta = clock.getElapsedTime();
@@ -121,8 +133,22 @@ function frame() {
     if (event.type === 'Closed') {
       window.close();
     } else if (event.type === 'KeyPressed') {
-      if (event.key.codeStr === 'Escape') {
-        window.close();
+      switch (event.key.codeStr) {
+        case 'Escape':
+          window.close();
+          break;
+        case 'Left':
+          window.setPosition(
+            Vector2I.add(window.getPosition(), new Vector2I(1, 1))
+          );
+          break;
+        case 'RAlt':
+          window.setTitle('No alt key...');
+          break;
+        case 'LAlt':
+          console.log(window.getSettings());
+          break;
+        default:
       }
     }
   }

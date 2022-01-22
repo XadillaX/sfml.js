@@ -25,6 +25,7 @@ NAN_MODULE_INIT(RenderWindow::Init) {
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(New);
 
+  Nan::SetPrototypeMethod(tpl, "create", Create);
   Nan::SetPrototypeMethod(tpl, "capture", Capture);
   Nan::SetPrototypeMethod(tpl, "clear", Clear);
   Nan::SetPrototypeMethod(tpl, "close", Close);
@@ -34,6 +35,13 @@ NAN_MODULE_INIT(RenderWindow::Init) {
   Nan::SetPrototypeMethod(tpl, "pollEvent", PollEvent);
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
   Nan::SetPrototypeMethod(tpl, "hasFocus", HasFocus);
+  Nan::SetPrototypeMethod(tpl, "setJoystickThreshold", SetJoystickThreshold);
+  Nan::SetPrototypeMethod(tpl, "getPosition", GetPosition);
+  Nan::SetPrototypeMethod(tpl, "setPosition", SetPosition);
+  Nan::SetPrototypeMethod(tpl, "setTitle", SetTitle);
+  Nan::SetPrototypeMethod(tpl, "setIcon", SetIcon);
+  Nan::SetPrototypeMethod(tpl, "getSettings", GetSettings);
+  Nan::SetPrototypeMethod(tpl, "requestFocus", RequestFocus);
 
 #define PRIMITIVE_VALUE_PROTOTYPE_METHOD(name, _)                              \
   Nan::SetPrototypeMethod(tpl, "set" #name, Set##name);
@@ -122,6 +130,49 @@ NAN_METHOD(RenderWindow::New) {
   info.GetReturnValue().Set(info.This());
 }
 
+NAN_METHOD(RenderWindow::Create) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  VideoMode* mode = nullptr;
+  Local<v8::Uint32> style;
+  Local<v8::Uint32> handle;
+  Local<String> title;
+
+  switch (info.Length()) {
+    case 1:
+      handle = info[0].As<v8::Uint32>();
+
+      window->_window->create(
+          (sf::WindowHandle)(Nan::To<sf::Uint32>(handle).FromJust()));
+      break;
+
+    case 3: {
+      style = info[2].As<v8::Uint32>();
+      // fallthrough
+    }
+
+    case 2: {
+      mode = Nan::ObjectWrap::Unwrap<VideoMode>(info[0].As<Object>());
+      title = info[1].As<String>();
+      break;
+    }
+
+    default: {
+      Nan::ThrowError("Invalid arguments count.");
+      return;
+    }
+  }
+
+  Nan::Utf8String utf8_title(title);
+  std::string std_title(*utf8_title, utf8_title.length());
+  if (style.IsEmpty()) {
+    window->_window->create(mode->mode(), sf::String(std_title));
+  } else {
+    window->_window->create(mode->mode(),
+                            sf::String(std_title),
+                            Nan::To<sf::Uint32>(style).FromJust());
+  }
+}
+
 NAN_METHOD(RenderWindow::Capture) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
   sf::Image img = window->_window->capture();
@@ -201,9 +252,94 @@ NAN_METHOD(RenderWindow::GetSize) {
   info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
 }
 
+NAN_METHOD(RenderWindow::GetPosition) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  sf::Vector2i vec = window->_window->getPosition();
+
+  Nan::TryCatch try_catch;
+  MaybeLocal<Value> maybe_vec =
+      vector2::Vector2I::NewRealInstance(info.GetIsolate(), vec);
+  if (maybe_vec.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(maybe_vec.ToLocalChecked());
+}
+
+NAN_METHOD(RenderWindow::SetPosition) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  vector2::Vector2I* position =
+      Nan::ObjectWrap::Unwrap<vector2::Vector2I>(info[0].As<v8::Object>());
+
+  window->_window->setPosition(position->vector2());
+}
+
+NAN_METHOD(RenderWindow::SetTitle) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  Local<String> title = info[0].As<String>();
+  Nan::Utf8String utf8_title(title);
+  std::string std_title(*utf8_title, utf8_title.length());
+
+  window->_window->setTitle(sf::String(std_title));
+}
+
+NAN_METHOD(RenderWindow::SetIcon) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  sf::Uint32 width = Nan::To<sf::Uint32>(info[0]).FromJust();
+  sf::Uint32 height = Nan::To<sf::Uint32>(info[1]).FromJust();
+  v8::Local<v8::Object> pixels = info[2].As<Object>();
+
+  if (node::Buffer::HasInstance(pixels)) {
+    const sf::Uint8* buf =
+        reinterpret_cast<sf::Uint8*>(node::Buffer::Data(pixels));
+    return window->_window->setIcon(width, height, buf);
+  }
+}
+
 NAN_METHOD(RenderWindow::HasFocus) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
   info.GetReturnValue().Set(window->_window->hasFocus());
+}
+
+NAN_METHOD(RenderWindow::RequestFocus) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  window->_window->requestFocus();
+}
+
+NAN_METHOD(RenderWindow::GetSettings) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  const sf::ContextSettings settings = window->_window->getSettings();
+
+  Local<Object> ret = Nan::New<Object>();
+  Nan::Set(ret,
+           Nan::New<String>("depthBits").ToLocalChecked(),
+           Nan::New(settings.depthBits));
+  Nan::Set(ret,
+           Nan::New<String>("stencilBits").ToLocalChecked(),
+           Nan::New(settings.stencilBits));
+  Nan::Set(ret,
+           Nan::New<String>("antialiasingLevel").ToLocalChecked(),
+           Nan::New(settings.antialiasingLevel));
+  Nan::Set(ret,
+           Nan::New<String>("majorVersion").ToLocalChecked(),
+           Nan::New(settings.majorVersion));
+  Nan::Set(ret,
+           Nan::New<String>("minorVersion").ToLocalChecked(),
+           Nan::New(settings.minorVersion));
+  Nan::Set(ret,
+           Nan::New<String>("attributeFlags").ToLocalChecked(),
+           Nan::New(settings.attributeFlags));
+  Nan::Set(ret,
+           Nan::New<String>("sRgbCapable").ToLocalChecked(),
+           Nan::New(settings.sRgbCapable));
+  info.GetReturnValue().Set(ret);
+}
+
+NAN_METHOD(RenderWindow::SetJoystickThreshold) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  float threshold = static_cast<float>(Nan::To<double>(info[0]).FromJust());
+  window->_window->setJoystickThreshold(threshold);
 }
 
 #define SET_PRIMITIVE_VALUE(name, type)                                        \

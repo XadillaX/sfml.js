@@ -18,6 +18,7 @@ class RenderWindow : public Nan::ObjectWrap {
  private:
   static NAN_METHOD(New);
 
+  static NAN_METHOD(Create);
   static NAN_METHOD(Capture);
   static NAN_METHOD(Clear);
   static NAN_METHOD(Close);
@@ -27,6 +28,13 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_METHOD(PollEvent);
   static NAN_METHOD(GetSize);
   static NAN_METHOD(HasFocus);
+  static NAN_METHOD(GetPosition);
+  static NAN_METHOD(SetPosition);
+  static NAN_METHOD(SetTitle);
+  static NAN_METHOD(SetJoystickThreshold);
+  static NAN_METHOD(SetIcon);
+  static NAN_METHOD(GetSettings);
+  static NAN_METHOD(RequestFocus);
 
 #define PRIMITIVE_VALUES(V)                                                    \
   V(Visible, bool)                                                             \
