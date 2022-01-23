@@ -31,8 +31,11 @@ const test = async () => {
     await window.displayAsync();
   }
 
-  window.close();
   clearInterval(requestId);
+
+  window.close();
+  window.displayAsync()
+    .catch(e => console.log(`Did rightfully caught: ${e.message}`));
 };
 
 test();
