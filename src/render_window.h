@@ -23,6 +23,7 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_METHOD(Clear);
   static NAN_METHOD(Close);
   static NAN_METHOD(Display);
+  static NAN_METHOD(DisplayAsync);
   static NAN_METHOD(DrawDrawable);
   static NAN_METHOD(IsOpen);
   static NAN_METHOD(PollEvent);
@@ -66,6 +67,17 @@ class RenderWindow : public Nan::ObjectWrap {
  private:
   sf::RenderWindow* _window;
   sf::Event _event;
+};
+
+class AsyncRenderWindowDisplay : public Nan::AsyncWorker {
+  public:
+  AsyncRenderWindowDisplay(sf::RenderWindow* window, Nan::Callback *callback);
+  void Execute();
+  void HandleOKCallback();
+  void HandleErrorCallback();
+
+  private:
+  sf::RenderWindow* window;
 };
 
 }  // namespace render_window

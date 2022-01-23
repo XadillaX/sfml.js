@@ -26,6 +26,7 @@ export class RenderWindow {
   close(): void;
   draw(content: Drawable): void;
   display(): void;
+  displayAsync(): Promise<void>;
 
   getPosition(): Vector2I;
   getSettings(): ContextSettings;

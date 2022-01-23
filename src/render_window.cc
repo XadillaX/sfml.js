@@ -30,6 +30,7 @@ NAN_MODULE_INIT(RenderWindow::Init) {
   Nan::SetPrototypeMethod(tpl, "clear", Clear);
   Nan::SetPrototypeMethod(tpl, "close", Close);
   Nan::SetPrototypeMethod(tpl, "display", Display);
+  Nan::SetPrototypeMethod(tpl, "displayAsync", DisplayAsync);
   Nan::SetPrototypeMethod(tpl, "drawDrawable", DrawDrawable);
   Nan::SetPrototypeMethod(tpl, "isOpen", IsOpen);
   Nan::SetPrototypeMethod(tpl, "pollEvent", PollEvent);
@@ -207,6 +208,16 @@ NAN_METHOD(RenderWindow::Close) {
 NAN_METHOD(RenderWindow::Display) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
   window->_window->display();
+}
+
+NAN_METHOD(RenderWindow::DisplayAsync) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  if(!info[0]->IsFunction()) {    
+    return Nan::ThrowError(Nan::New("expected function callback").ToLocalChecked());
+  }
+
+  window->_window->setActive(false);
+  Nan::AsyncQueueWorker(new  AsyncRenderWindowDisplay(window->_window, new   Nan::Callback(info[0].As<v8::Function>())));
 }
 
 NAN_METHOD(RenderWindow::DrawDrawable) {

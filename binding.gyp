@@ -163,6 +163,7 @@
       "./src/poll_event.cc",
       "./src/rect.cc",
       "./src/render_window.cc",
+      "./src/render_window_async_display.cc",
       "./src/sensor.cc",
       "./src/touch.cc",
       "./src/texture.cc",
