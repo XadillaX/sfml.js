@@ -70,13 +70,13 @@ class RenderWindow : public Nan::ObjectWrap {
 };
 
 class AsyncRenderWindowDisplay : public Nan::AsyncWorker {
-  public:
-  AsyncRenderWindowDisplay(sf::RenderWindow* window, Nan::Callback *callback);
+ public:
+  AsyncRenderWindowDisplay(sf::RenderWindow* window, Nan::Callback* callback);
   void Execute();
   void HandleOKCallback();
   void HandleErrorCallback();
 
-  private:
+ private:
   sf::RenderWindow* window;
 };
 

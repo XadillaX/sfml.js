@@ -212,12 +212,14 @@ NAN_METHOD(RenderWindow::Display) {
 
 NAN_METHOD(RenderWindow::DisplayAsync) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
-  if(!info[0]->IsFunction()) {    
-    return Nan::ThrowError(Nan::New("expected function callback").ToLocalChecked());
+  if (!info[0]->IsFunction()) {
+    return Nan::ThrowError(
+        Nan::New("expected function callback").ToLocalChecked());
   }
 
   window->_window->setActive(false);
-  Nan::AsyncQueueWorker(new  AsyncRenderWindowDisplay(window->_window, new   Nan::Callback(info[0].As<v8::Function>())));
+  Nan::AsyncQueueWorker(new AsyncRenderWindowDisplay(
+      window->_window, new Nan::Callback(info[0].As<v8::Function>())));
 }
 
 NAN_METHOD(RenderWindow::DrawDrawable) {
