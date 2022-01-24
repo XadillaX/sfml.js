@@ -77,7 +77,7 @@ class AsyncRenderWindowDisplay : public Nan::AsyncWorker {
   void HandleErrorCallback();
 
  private:
-  sf::RenderWindow* window;
+  sf::RenderWindow* _window;
 };
 
 }  // namespace render_window

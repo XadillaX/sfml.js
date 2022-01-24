@@ -6,22 +6,22 @@ namespace render_window {
 AsyncRenderWindowDisplay::AsyncRenderWindowDisplay(sf::RenderWindow* window,
                                                    Nan::Callback* callback)
     : Nan::AsyncWorker(callback) {
-  this->window = window;
+  this->_window = window;
 }
 
 void AsyncRenderWindowDisplay::Execute() {
-  if (this->window == nullptr) {
+  if (this->_window == nullptr) {
     this->SetErrorMessage("No window provided!");
     return;
   }
-  if (!this->window->isOpen()) {
+  if (!this->_window->isOpen()) {
     this->SetErrorMessage("Closed window.");
     return;
   }
 
-  this->window->setActive(true);
-  this->window->display();
-  this->window->setActive(false);
+  this->_window->setActive(true);
+  this->_window->display();
+  this->_window->setActive(false);
 }
 
 void AsyncRenderWindowDisplay::HandleOKCallback() {
