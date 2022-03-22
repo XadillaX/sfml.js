@@ -209,14 +209,19 @@ NAN_METHOD(RenderWindow::Close) {
 
 NAN_METHOD(RenderWindow::Display) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  window->_displayDrawMutex->lock();
   window->_window->display();
+  window->_displayDrawMutex->unlock();
 }
 
 NAN_METHOD(RenderWindow::DrawDrawable) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
   drawable::Drawable* drawable =
       Nan::ObjectWrap::Unwrap<drawable::Drawable>(info[0].As<Object>());
+
+  window->_displayDrawMutex->lock();
   window->_window->draw(drawable->raw<sf::Drawable>());
+  window->_displayDrawMutex->unlock();
 }
 
 NAN_METHOD(RenderWindow::DisplayAsync) {
