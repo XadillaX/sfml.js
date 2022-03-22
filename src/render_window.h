@@ -4,6 +4,7 @@
 #include <nan.h>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Mutex.hpp>
 #include <SFML/Window/Event.hpp>
 
 namespace node_sfml {
@@ -14,6 +15,7 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_MODULE_INIT(Init);
 
   inline sf::RenderWindow* window() { return _window; }
+  inline sf::Mutex* displayDrawMutex() { return _displayDrawMutex; }
 
  private:
   static NAN_METHOD(New);
@@ -25,6 +27,7 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_METHOD(Display);
   static NAN_METHOD(DisplayAsync);
   static NAN_METHOD(DrawDrawable);
+  static NAN_METHOD(DrawDrawableAsync);
   static NAN_METHOD(IsOpen);
   static NAN_METHOD(PollEvent);
   static NAN_METHOD(GetSize);
@@ -66,18 +69,40 @@ class RenderWindow : public Nan::ObjectWrap {
 
  private:
   sf::RenderWindow* _window;
+  sf::Mutex* _displayDrawMutex;
   sf::Event _event;
 };
 
 class AsyncRenderWindowDisplay : public Nan::AsyncWorker {
  public:
-  AsyncRenderWindowDisplay(sf::RenderWindow* window, Nan::Callback* callback);
+  AsyncRenderWindowDisplay(sf::RenderWindow* window,
+                           sf::Mutex* displayDrawMutex,
+                           Nan::Callback* callback);
   void Execute();
   void HandleOKCallback();
   void HandleErrorCallback();
 
- private:
+ protected:
   sf::RenderWindow* _window;
+  sf::Mutex* _displayDrawMutex;
+};
+
+class AsyncRenderWindowDraw : public Nan::AsyncWorker {
+ public:
+  AsyncRenderWindowDraw(sf::RenderWindow* window,
+                        sf::Mutex* displayDrawMutex,
+                        sf::Drawable* drawable,
+                        sf::RenderStates* renderStates,
+                        Nan::Callback* callback);
+  void Execute();
+  void HandleOKCallback();
+  void HandleErrorCallback();
+
+ protected:
+  sf::RenderWindow* _window;
+  sf::Mutex* _displayDrawMutex;
+  sf::Drawable* _drawable;
+  sf::RenderStates* _renderStates;
 };
 
 }  // namespace render_window

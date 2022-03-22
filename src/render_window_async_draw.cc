@@ -3,15 +3,19 @@
 namespace node_sfml {
 namespace render_window {
 
-AsyncRenderWindowDisplay::AsyncRenderWindowDisplay(sf::RenderWindow* window,
-                                                   sf::Mutex* displayDrawMutex,
-                                                   Nan::Callback* callback)
+AsyncRenderWindowDraw::AsyncRenderWindowDraw(sf::RenderWindow* window,
+                                             sf::Mutex* displayDrawMutex,
+                                             sf::Drawable* drawable,
+                                             sf::RenderStates* renderStates,
+                                             Nan::Callback* callback)
     : Nan::AsyncWorker(callback) {
   this->_window = window;
   this->_displayDrawMutex = displayDrawMutex;
+  this->_drawable = drawable;
+  this->_renderStates = renderStates;
 }
 
-void AsyncRenderWindowDisplay::Execute() {
+void AsyncRenderWindowDraw::Execute() {
   if (this->_window == nullptr) {
     this->SetErrorMessage("No window provided!");
     return;
@@ -23,12 +27,16 @@ void AsyncRenderWindowDisplay::Execute() {
 
   this->_displayDrawMutex->lock();
   this->_window->setActive(true);
-  this->_window->display();
+  if (this->_renderStates == nullptr) {
+    this->_window->draw(*this->_drawable);
+  } else {
+    this->_window->draw(*this->_drawable, *this->_renderStates);
+  }
   this->_window->setActive(false);
   this->_displayDrawMutex->unlock();
 }
 
-void AsyncRenderWindowDisplay::HandleOKCallback() {
+void AsyncRenderWindowDraw::HandleOKCallback() {
   Nan::HandleScope scope;
   v8::Local<v8::Value> argv[] = {Nan::Null(),  // no error occured
                                  Nan::Null()};
@@ -36,7 +44,7 @@ void AsyncRenderWindowDisplay::HandleOKCallback() {
       callback->GetFunction(), Nan::GetCurrentContext()->Global(), 2, argv);
 }
 
-void AsyncRenderWindowDisplay::HandleErrorCallback() {
+void AsyncRenderWindowDraw::HandleErrorCallback() {
   Nan::HandleScope scope;
   v8::Local<v8::Value> argv[] = {
       Nan::New(this->ErrorMessage()).ToLocalChecked(),  // return error message

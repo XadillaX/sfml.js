@@ -17,7 +17,11 @@ type ContextSettings = {
 };
 
 export class RenderWindow {
-  constructor(videoMode?: VideoMode, title?: string, style?: RenderWindow.Style);
+  constructor(
+    videoMode?: VideoMode,
+    title?: string,
+    style?: RenderWindow.Style
+  );
 
   create(windowHandle: number): void;
   create(videoMode: VideoMode, title: string, style?: RenderWindow.Style): void;
@@ -25,6 +29,7 @@ export class RenderWindow {
   clear(color: number | Color): void;
   close(): void;
   draw(content: Drawable): void;
+  drawAsync(content: Drawable): Promise<void>;
   display(): void;
   displayAsync(): Promise<void>;
 

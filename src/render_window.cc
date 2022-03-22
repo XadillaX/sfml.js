@@ -32,6 +32,7 @@ NAN_MODULE_INIT(RenderWindow::Init) {
   Nan::SetPrototypeMethod(tpl, "display", Display);
   Nan::SetPrototypeMethod(tpl, "displayAsync", DisplayAsync);
   Nan::SetPrototypeMethod(tpl, "drawDrawable", DrawDrawable);
+  Nan::SetPrototypeMethod(tpl, "drawDrawableAsync", DrawDrawableAsync);
   Nan::SetPrototypeMethod(tpl, "isOpen", IsOpen);
   Nan::SetPrototypeMethod(tpl, "pollEvent", PollEvent);
   Nan::SetPrototypeMethod(tpl, "getSize", GetSize);
@@ -127,6 +128,7 @@ NAN_METHOD(RenderWindow::New) {
     }
   }
 
+  window->_displayDrawMutex = new sf::Mutex();
   window->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
 }
@@ -210,6 +212,13 @@ NAN_METHOD(RenderWindow::Display) {
   window->_window->display();
 }
 
+NAN_METHOD(RenderWindow::DrawDrawable) {
+  RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  drawable::Drawable* drawable =
+      Nan::ObjectWrap::Unwrap<drawable::Drawable>(info[0].As<Object>());
+  window->_window->draw(drawable->raw<sf::Drawable>());
+}
+
 NAN_METHOD(RenderWindow::DisplayAsync) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
   if (!info[0]->IsFunction()) {
@@ -219,14 +228,28 @@ NAN_METHOD(RenderWindow::DisplayAsync) {
 
   window->_window->setActive(false);
   Nan::AsyncQueueWorker(new AsyncRenderWindowDisplay(
-      window->_window, new Nan::Callback(info[0].As<v8::Function>())));
+      window->_window,
+      window->_displayDrawMutex,
+      new Nan::Callback(info[0].As<v8::Function>())));
 }
 
-NAN_METHOD(RenderWindow::DrawDrawable) {
+NAN_METHOD(RenderWindow::DrawDrawableAsync) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
+  if (!info[0]->IsFunction()) {
+    return Nan::ThrowError(
+        Nan::New("expected function callback").ToLocalChecked());
+  }
+
   drawable::Drawable* drawable =
-      Nan::ObjectWrap::Unwrap<drawable::Drawable>(info[0].As<Object>());
-  window->_window->draw(drawable->raw<sf::Drawable>());
+      Nan::ObjectWrap::Unwrap<drawable::Drawable>(info[1].As<Object>());
+
+  window->_window->setActive(false);
+  Nan::AsyncQueueWorker(
+      new AsyncRenderWindowDraw(window->_window,
+                                window->_displayDrawMutex,
+                                &drawable->raw<sf::Drawable>(),
+                                nullptr,
+                                new Nan::Callback(info[0].As<v8::Function>())));
 }
 
 NAN_METHOD(RenderWindow::IsOpen) {
