@@ -30,7 +30,7 @@ $ npm install --save sfml.js
 
 ## Usage
 
-- Refer to TypeDoc: [https://xadillax.github.io/node-sfml/](https://xadillax.github.io/node-sfml/);
+- Refer to TypeDoc: [https://sfml.js.org/](https://sfml.js.org/);
 - Refer to Typing Definitions: [https://github.com/XadillaX/node-sfml/blob/main/index.d.ts](https://github.com/XadillaX/node-sfml/blob/main/index.d.ts);
 - And SFML's official documentation: [https://www.sfml-dev.org/documentation/2.5.1/](https://www.sfml-dev.org/documentation/2.5.1/).
 
