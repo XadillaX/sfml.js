@@ -21,6 +21,7 @@ jobs:
       - run: git checkout gh-pages
       - run: rm -rf docs
       - run: mv docs.new docs
+      - run: cp CNAME docs/
       - run: git add docs
       - run: git config --global user.name 'XadillaX'
       - run: git config --global user.email 'XadillaX@users.noreply.github.com'
