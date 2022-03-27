@@ -15,7 +15,7 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_MODULE_INIT(Init);
 
   inline sf::RenderWindow* window() { return _window; }
-  inline sf::Mutex* displayDrawMutex() { return _displayDrawMutex; }
+  inline sf::Mutex* display_draw_mutex() { return _display_draw_mutex; }
 
  private:
   static NAN_METHOD(New);
@@ -69,40 +69,40 @@ class RenderWindow : public Nan::ObjectWrap {
 
  private:
   sf::RenderWindow* _window;
-  sf::Mutex* _displayDrawMutex;
+  sf::Mutex* _display_draw_mutex;
   sf::Event _event;
 };
 
 class AsyncRenderWindowDisplay : public Nan::AsyncWorker {
  public:
   AsyncRenderWindowDisplay(sf::RenderWindow* window,
-                           sf::Mutex* displayDrawMutex,
+                           sf::Mutex* display_draw_mutex,
                            Nan::Callback* callback);
   void Execute();
   void HandleOKCallback();
   void HandleErrorCallback();
 
- protected:
+ private:
   sf::RenderWindow* _window;
-  sf::Mutex* _displayDrawMutex;
+  sf::Mutex* _display_draw_mutex;
 };
 
 class AsyncRenderWindowDraw : public Nan::AsyncWorker {
  public:
   AsyncRenderWindowDraw(sf::RenderWindow* window,
-                        sf::Mutex* displayDrawMutex,
+                        sf::Mutex* display_draw_mutex,
                         sf::Drawable* drawable,
-                        sf::RenderStates* renderStates,
+                        sf::RenderStates* render_states,
                         Nan::Callback* callback);
   void Execute();
   void HandleOKCallback();
   void HandleErrorCallback();
 
- protected:
+ private:
   sf::RenderWindow* _window;
-  sf::Mutex* _displayDrawMutex;
+  sf::Mutex* _display_draw_mutex;
   sf::Drawable* _drawable;
-  sf::RenderStates* _renderStates;
+  sf::RenderStates* _render_states;
 };
 
 }  // namespace render_window

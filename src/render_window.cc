@@ -128,7 +128,7 @@ NAN_METHOD(RenderWindow::New) {
     }
   }
 
-  window->_displayDrawMutex = new sf::Mutex();
+  window->_display_draw_mutex = new sf::Mutex();
   window->Wrap(info.This());
   info.GetReturnValue().Set(info.This());
 }
@@ -209,9 +209,9 @@ NAN_METHOD(RenderWindow::Close) {
 
 NAN_METHOD(RenderWindow::Display) {
   RenderWindow* window = Nan::ObjectWrap::Unwrap<RenderWindow>(info.Holder());
-  window->_displayDrawMutex->lock();
+  window->_display_draw_mutex->lock();
   window->_window->display();
-  window->_displayDrawMutex->unlock();
+  window->_display_draw_mutex->unlock();
 }
 
 NAN_METHOD(RenderWindow::DrawDrawable) {
@@ -219,9 +219,9 @@ NAN_METHOD(RenderWindow::DrawDrawable) {
   drawable::Drawable* drawable =
       Nan::ObjectWrap::Unwrap<drawable::Drawable>(info[0].As<Object>());
 
-  window->_displayDrawMutex->lock();
+  window->_display_draw_mutex->lock();
   window->_window->draw(drawable->raw<sf::Drawable>());
-  window->_displayDrawMutex->unlock();
+  window->_display_draw_mutex->unlock();
 }
 
 NAN_METHOD(RenderWindow::DisplayAsync) {
@@ -234,7 +234,7 @@ NAN_METHOD(RenderWindow::DisplayAsync) {
   window->_window->setActive(false);
   Nan::AsyncQueueWorker(new AsyncRenderWindowDisplay(
       window->_window,
-      window->_displayDrawMutex,
+      window->_display_draw_mutex,
       new Nan::Callback(info[0].As<v8::Function>())));
 }
 
@@ -251,7 +251,7 @@ NAN_METHOD(RenderWindow::DrawDrawableAsync) {
   window->_window->setActive(false);
   Nan::AsyncQueueWorker(
       new AsyncRenderWindowDraw(window->_window,
-                                window->_displayDrawMutex,
+                                window->_display_draw_mutex,
                                 &drawable->raw<sf::Drawable>(),
                                 nullptr,
                                 new Nan::Callback(info[0].As<v8::Function>())));

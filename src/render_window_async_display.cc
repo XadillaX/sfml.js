@@ -3,12 +3,13 @@
 namespace node_sfml {
 namespace render_window {
 
-AsyncRenderWindowDisplay::AsyncRenderWindowDisplay(sf::RenderWindow* window,
-                                                   sf::Mutex* displayDrawMutex,
-                                                   Nan::Callback* callback)
+AsyncRenderWindowDisplay::AsyncRenderWindowDisplay(
+    sf::RenderWindow* window,
+    sf::Mutex* display_draw_mutex,
+    Nan::Callback* callback)
     : Nan::AsyncWorker(callback) {
   this->_window = window;
-  this->_displayDrawMutex = displayDrawMutex;
+  this->_display_draw_mutex = display_draw_mutex;
 }
 
 void AsyncRenderWindowDisplay::Execute() {
@@ -21,11 +22,11 @@ void AsyncRenderWindowDisplay::Execute() {
     return;
   }
 
-  this->_displayDrawMutex->lock();
+  this->_display_draw_mutex->lock();
   this->_window->setActive(true);
   this->_window->display();
   this->_window->setActive(false);
-  this->_displayDrawMutex->unlock();
+  this->_display_draw_mutex->unlock();
 }
 
 void AsyncRenderWindowDisplay::HandleOKCallback() {
