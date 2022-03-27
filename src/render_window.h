@@ -15,7 +15,7 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_MODULE_INIT(Init);
 
   inline sf::RenderWindow* window() { return _window; }
-  inline sf::Mutex* display_draw_mutex() { return _display_draw_mutex; }
+  inline sf::Mutex* displayDrawMutex() { return _display_draw_mutex; }
 
  private:
   static NAN_METHOD(New);
