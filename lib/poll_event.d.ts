@@ -1,9 +1,6 @@
-import Sensor from './sensor';
-import Joystick from './joystick';
-import * as Sensor from './sensor';
-import * as Joystick from './joystick';
-
 import { Keys, KeysStr } from './keyboard';
+import * as Joystick from './joystick';
+import * as Sensor from './sensor';
 
 interface OtherEvent {
   type:
