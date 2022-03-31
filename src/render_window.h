@@ -4,6 +4,7 @@
 #include <nan.h>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Mutex.hpp>
 #include <SFML/Window/Event.hpp>
 
 namespace node_sfml {
@@ -14,19 +15,30 @@ class RenderWindow : public Nan::ObjectWrap {
   static NAN_MODULE_INIT(Init);
 
   inline sf::RenderWindow* window() { return _window; }
+  inline sf::Mutex* displayDrawMutex() { return _display_draw_mutex; }
 
  private:
   static NAN_METHOD(New);
 
+  static NAN_METHOD(Create);
   static NAN_METHOD(Capture);
   static NAN_METHOD(Clear);
   static NAN_METHOD(Close);
   static NAN_METHOD(Display);
+  static NAN_METHOD(DisplayAsync);
   static NAN_METHOD(DrawDrawable);
+  static NAN_METHOD(DrawDrawableAsync);
   static NAN_METHOD(IsOpen);
   static NAN_METHOD(PollEvent);
   static NAN_METHOD(GetSize);
   static NAN_METHOD(HasFocus);
+  static NAN_METHOD(GetPosition);
+  static NAN_METHOD(SetPosition);
+  static NAN_METHOD(SetTitle);
+  static NAN_METHOD(SetJoystickThreshold);
+  static NAN_METHOD(SetIcon);
+  static NAN_METHOD(GetSettings);
+  static NAN_METHOD(RequestFocus);
 
 #define PRIMITIVE_VALUES(V)                                                    \
   V(Visible, bool)                                                             \
@@ -57,7 +69,40 @@ class RenderWindow : public Nan::ObjectWrap {
 
  private:
   sf::RenderWindow* _window;
+  sf::Mutex* _display_draw_mutex;
   sf::Event _event;
+};
+
+class AsyncRenderWindowDisplay : public Nan::AsyncWorker {
+ public:
+  AsyncRenderWindowDisplay(sf::RenderWindow* window,
+                           sf::Mutex* display_draw_mutex,
+                           Nan::Callback* callback);
+  void Execute();
+  void HandleOKCallback();
+  void HandleErrorCallback();
+
+ private:
+  sf::RenderWindow* _window;
+  sf::Mutex* _display_draw_mutex;
+};
+
+class AsyncRenderWindowDraw : public Nan::AsyncWorker {
+ public:
+  AsyncRenderWindowDraw(sf::RenderWindow* window,
+                        sf::Mutex* display_draw_mutex,
+                        sf::Drawable* drawable,
+                        sf::RenderStates* render_states,
+                        Nan::Callback* callback);
+  void Execute();
+  void HandleOKCallback();
+  void HandleErrorCallback();
+
+ private:
+  sf::RenderWindow* _window;
+  sf::Mutex* _display_draw_mutex;
+  sf::Drawable* _drawable;
+  sf::RenderStates* _render_states;
 };
 
 }  // namespace render_window

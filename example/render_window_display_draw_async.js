@@ -71,7 +71,7 @@ redSprite.setPosition(80, 90);
 const xxxImg = new Image();
 const buf = Buffer.alloc(300 * 300 * 4, 0);
 for (let i = 0; i < 300 * 300; i++) {
-  buf.writeUInt32BE((i << 8) + 0xff, i * 4);  // eslint-disable-line
+  buf.writeUInt32BE((i << 8) + 0xff, i * 4); // eslint-disable-line
 }
 xxxImg.create(300, 300, buf);
 const xxxTexture = new Texture();
@@ -121,7 +121,7 @@ for (let i = 10; i < 20; i++) {
 }
 window.setIcon(32, 32, icnBuff);
 
-function frame() {
+async function frame() {
   if (!window.isOpen()) return;
   const delta = clock.getElapsedTime();
   clock.restart();
@@ -170,17 +170,17 @@ function frame() {
 
   window.clear(red);
   circleColor = (circleColor + 1) % 256;
-  let color = (circleColor << 16) + 0xff;  // eslint-disable-line
+  let color = (circleColor << 16) + 0xff; // eslint-disable-line
   circle.setFillColor(color);
-  color = (circleColor << 8) + 0xff;  // eslint-disable-line
+  color = (circleColor << 8) + 0xff; // eslint-disable-line
   circle.setOutlineColor(color);
   const pos = circle.getPosition();
   pos.x = (pos.x + 1) % 1000;
   pos.y = (pos.y + 1) % 1000;
   circle.setPosition(pos);
-  circle.setPointCount(circle.getPointCount() % 100 + 1);
+  circle.setPointCount((circle.getPointCount() % 100) + 1);
 
-  circle.setRotation(circle.getRotation() % 360 + 1);
+  circle.setRotation((circle.getRotation() % 360) + 1);
 
   const scale = circle.getScale();
   scale.x = (scale.x + 1) % 5;
@@ -206,19 +206,19 @@ function frame() {
   }
   Mouse.setPosition(mousePos.window, window);
 
-  window.draw(xxxSprite);
-  window.draw(yyySprite);
-  window.draw(zzzSprite);
-  window.draw(oooSprite);
-  window.draw(redSprite);
-  window.draw(circle);
-  window.draw(rectangle);
-  window.draw(convex);
-  window.draw(text);
-  window.draw(sprite);
-  window.draw(sprite2);
-  window.draw(lines);
-  window.display();
+  await window.drawAsync(xxxSprite);
+  await window.drawAsync(yyySprite);
+  await window.drawAsync(zzzSprite);
+  await window.drawAsync(oooSprite);
+  await window.drawAsync(redSprite);
+  await window.drawAsync(circle);
+  await window.drawAsync(rectangle);
+  await window.drawAsync(convex);
+  await window.drawAsync(text);
+  await window.drawAsync(sprite);
+  await window.drawAsync(sprite2);
+  await window.drawAsync(lines);
+  await window.displayAsync();
 
   new Image();
 
