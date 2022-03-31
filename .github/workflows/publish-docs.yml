@@ -1,0 +1,30 @@
+name: Publish Docs
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npx typedoc --theme ./node_modules/typedoc-deno-theme/ index.d.ts
+      - run: mv docs docs.new
+      - run: git fetch --depth=1 origin gh-pages
+      - run: git checkout gh-pages
+      - run: rm -rf docs
+      - run: mv docs.new docs
+      - run: cp CNAME docs/
+      - run: git add docs
+      - run: git config --global user.name 'XadillaX'
+      - run: git config --global user.email 'XadillaX@users.noreply.github.com'
+      - run: "git commit -m 'docs: update'"
+      - run: git push origin gh-pages
+      - run: git checkout main

@@ -122,3 +122,4 @@ package-lock.json
 compile_commands.json
 .vscode
 .prettierrc
+docs

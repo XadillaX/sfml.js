@@ -1,15 +1,26 @@
-# sfml.js
+<p align="center">
+  <img src="https://github.com/XadillaX/node-sfml/blob/main/assets/sfml.js.png?raw=true" />
+</p>
+
+<p align="center">
+Node.js binding for <a href="https://www.sfml-dev.org/">SFML</a> - a Simple and Fast cross-platform Multimedia Library.
+</p>
+
+<p align="center">
+<a href="https://www.npmjs.org/package/sfml.js">
+  <img src="http://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=NPM" />
+</a>
+<a href="https://www.npmjs.org/package/sfml.js">
+  <img src="http://img.shields.io/npm/dm/sfml.js.svg?style=for-the-badge&colorA=5DDB61&colorB=4BC74F&label=DOWNLOADS" />
+</a>
+<!-- [![License](https://img.shields.io/npm/l/sfml.js.svg?style=flat)](https://www.npmjs.org/package/sfml.js) -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#contributors-)
+<a href="#contributors-"><img src="https://img.shields.io/badge/2-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![sfml.js](http://img.shields.io/npm/v/sfml.js.svg)](https://www.npmjs.org/package/sfml.js)
-[![sfml.js](http://img.shields.io/npm/dm/sfml.js.svg)](https://www.npmjs.org/package/sfml.js)
-[![License](https://img.shields.io/npm/l/sfml.js.svg?style=flat)](https://www.npmjs.org/package/sfml.js)
-[![Star at GitHub](https://img.shields.io/github/stars/XadillaX/node-sfml.svg?style=social&label=Star)](https://github.com/XadillaX/node-sfml)
-
-![](https://www.sfml-dev.org/images/logo.png)
-
-A cross-platform SFML's Node.js binding.
+<a href="https://github.com/XadillaX/node-sfml">
+  <img src="https://img.shields.io/github/stars/XadillaX/node-sfml.svg?style=for-the-badge&colorA=FBBD30&colorB=F2AA08&label=STAR" />
+</a>
+</p>
 
 ## Installation
 
@@ -19,9 +30,9 @@ $ npm install --save sfml.js
 
 ## Usage
 
-Refer to Typing Definitions: [https://github.com/XadillaX/node-sfml/blob/main/index.d.ts](https://github.com/XadillaX/node-sfml/blob/main/index.d.ts).
-
-And SFML's official documentation: [https://www.sfml-dev.org/documentation/2.5.1/](https://www.sfml-dev.org/documentation/2.5.1/).
+- Refer to TypeDoc: [https://sfml.js.org/](https://sfml.js.org/);
+- Refer to Typing Definitions: [https://github.com/XadillaX/node-sfml/blob/main/index.d.ts](https://github.com/XadillaX/node-sfml/blob/main/index.d.ts);
+- And SFML's official documentation: [https://www.sfml-dev.org/documentation/2.5.1/](https://www.sfml-dev.org/documentation/2.5.1/).
 
 ## Examples
 
