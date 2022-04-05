@@ -21,8 +21,10 @@ jobs:
       - run: git checkout gh-pages
       - run: rm -rf docs
       - run: mv docs.new docs
+      - run: rm -f stamp
+      - run: date > stamp.txt
       - run: cp CNAME docs/
-      - run: git add docs
+      - run: git add docs stamp.txt
       - run: git config --global user.name 'XadillaX'
       - run: git config --global user.email 'XadillaX@users.noreply.github.com'
       - run: "git commit -m 'docs: update'"
