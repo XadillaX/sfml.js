@@ -93,6 +93,10 @@ async function downloadTarball(url) {
       copier = require('./copier/macos');
       break;
 
+    case 'linux':
+      copier = require('./copier/linux');
+      break;
+
     default:
       throw new Error('Unsupported platform: ' + platform);
   }
