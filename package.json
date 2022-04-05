@@ -8,10 +8,9 @@
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
     "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h ./src/sound/*.cc ./src/sound/*.h ./src/workers/*.h",
     "postinstall": "rm -f package-lock.json",
-    "preinstall": "node tools/symlinks.js",
     "cpplint": "./third_party/cpplint/cpplint.py src/*.* src/**/*",
     "jslint": "./node_modules/.bin/eslint ./**/*.js",
-    "install": "node-gyp rebuild"
+    "install": "node tools/lib_downloader.js && node-gyp rebuild"
   },
   "repository": {
     "type": "git",
@@ -25,8 +24,10 @@
   "homepage": "https://github.com/XadillaX/node-sfml#readme",
   "dependencies": {
     "clang-format": "^1.4.0",
+    "download-cli": "^1.1.1",
     "nan": "^2.15.0",
-    "node-gyp": "^8.2.0"
+    "node-gyp": "^8.2.0",
+    "tiny-spinner": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",
@@ -47,19 +48,7 @@
     "lib/**/*",
     "src/**/*",
     "third_party/sfml/include/**/*",
-    "third_party/sfml/platform/linux/lib/libsfml-audio.so.2.5.1",
-    "third_party/sfml/platform/linux/lib/libsfml-system.so.2.5.1",
-    "third_party/sfml/platform/linux/lib/libsfml-window.so.2.5.1",
-    "third_party/sfml/platform/linux/lib/libsfml-network.so.2.5.1",
-    "third_party/sfml/platform/linux/lib/libsfml-graphics.so.2.5.1",
-    "third_party/sfml/platform/macOS/lib/libsfml-audio.2.5.1.dylib",
-    "third_party/sfml/platform/macOS/lib/libsfml-system.2.5.1.dylib",
-    "third_party/sfml/platform/macOS/lib/libsfml-window.2.5.1.dylib",
-    "third_party/sfml/platform/macOS/lib/libsfml-network.2.5.1.dylib",
-    "third_party/sfml/platform/macOS/lib/libsfml-graphics.2.5.1.dylib",
-    "third_party/sfml/platform/macOS/Frameworks/**/*",
-    "third_party/sfml/platform/win64/lib/*.lib",
-    "third_party/sfml/platform/win64/bin/*.dll",
+    "third_party/sfm/platform/.gitkeep",
     "tools/*",
     "tsconfig.json"
   ]
