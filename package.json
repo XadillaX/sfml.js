@@ -27,6 +27,7 @@
     "download-cli": "^1.1.1",
     "nan": "^2.15.0",
     "node-gyp": "^8.2.0",
+    "spidex": "^2.2.1",
     "tiny-spinner": "^1.1.0"
   },
   "devDependencies": {

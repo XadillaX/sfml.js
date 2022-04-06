@@ -90,7 +90,7 @@ async function downloadTarball(url) {
     path.join(__dirname, '../third_party/sfml/platform/win'),
     { recursive: true, force: true });
 
-  await downloadTarball(urls[type]);
+  await downloadTarball((await urls.get())[type]);
   let copier;
   switch (type) {
     case 'macOS':
