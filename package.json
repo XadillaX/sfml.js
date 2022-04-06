@@ -24,7 +24,7 @@
   "homepage": "https://github.com/XadillaX/node-sfml#readme",
   "dependencies": {
     "clang-format": "^1.4.0",
-    "download-cli": "^1.1.1",
+    "download": "^8.0.0",
     "nan": "^2.15.0",
     "node-gyp": "^8.2.0",
     "spidex": "^2.2.1",

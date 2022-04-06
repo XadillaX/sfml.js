@@ -3,7 +3,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const baseDir = path.join(__dirname, '../../dest/SFML-2.5.1');
+const baseDir = path.join(__dirname, '../../dest');
 const targetDir = path.join(__dirname, '../../third_party/sfml/platform/win');
 
 exports.move = async function move(spinner) {

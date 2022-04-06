@@ -1,10 +1,10 @@
 'use strict';
 
-const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
+const download = require('download');
 const Spinner = require('tiny-spinner');
 
 const urls = require('./lib_downloader_urls');
@@ -54,26 +54,12 @@ switch (platform) {
 }
 
 async function downloadTarball(url) {
-  let resolve;
-  let reject;
-  const promise = new Promise((res, rej) => {
-    resolve = res;
-    reject = rej;
-  });
-
   spinner.start(`Downloading and extracting ${url}...`);
 
-  cp.execFile(
-    path.join(__dirname, '../node_modules/download-cli/cli.js'),
-    [ '--extract', '--out', path.join(__dirname, '../dest'), url ], err => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-
-  await promise;
+  await download(url, path.join(__dirname, '../dest'), {
+    extract: true,
+    strip: 1,
+  });
 
   spinner.stop(`[sfml.js] ${url} Downloaded.`);
 }
