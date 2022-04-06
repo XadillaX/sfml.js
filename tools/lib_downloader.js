@@ -7,9 +7,10 @@ const os = require('os');
 
 const Spinner = require('tiny-spinner');
 
+const urls = require('./lib_downloader_urls');
+
 const spinner = new Spinner();
 const platform = os.platform();
-let tarballURL;
 let type;
 
 switch (platform) {
@@ -18,7 +19,6 @@ switch (platform) {
       throw new Error('Unsupported architecture: ' + process.arch);
     }
 
-    tarballURL = 'https://www.sfml-dev.org/files/SFML-2.5.1-macOS-clang.tar.gz';
     type = 'macOS';
     break;
   }
@@ -33,20 +33,14 @@ switch (platform) {
       throw new Error('Unsupported architecture: ' + process.arch);
     }
 
-    tarballURL =
-      'https://www.sfml-dev.org/files/SFML-2.5.1-linux-gcc-64-bit.tar.gz';
     type = 'linux';
     break;
   }
 
   case 'win32': {
     if (process.arch === 'x64') {
-      tarballURL =
-        'https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc15-64-bit.zip';
       type = 'win64';
     } else if (process.arch === 'ia32') {
-      tarballURL =
-        'https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc15-32-bit.zip';
       type = 'win32';
     } else {
       throw new Error('Unsupported architecture: ' + process.arch);
@@ -86,7 +80,17 @@ async function downloadTarball(url) {
 
 (async () => {
   fs.rmSync(path.join(__dirname, '../dest'), { recursive: true, force: true });
-  await downloadTarball(tarballURL);
+  fs.rmSync(
+    path.join(__dirname, '../third_party/sfml/platform/macOS'),
+    { recursive: true, force: true });
+  fs.rmSync(
+    path.join(__dirname, '../third_party/sfml/platform/linux'),
+    { recursive: true, force: true });
+  fs.rmSync(
+    path.join(__dirname, '../third_party/sfml/platform/win'),
+    { recursive: true, force: true });
+
+  await downloadTarball(urls[type]);
   let copier;
   switch (type) {
     case 'macOS':
@@ -95,6 +99,11 @@ async function downloadTarball(url) {
 
     case 'linux':
       copier = require('./copier/linux');
+      break;
+
+    case 'win64':
+    case 'win32':
+      copier = require('./copier/windows');
       break;
 
     default:
