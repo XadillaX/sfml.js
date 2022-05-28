@@ -7,7 +7,6 @@
     "build-dummy-debug": "node-gyp rebuild --debug && mv build/Debug build/Release",
     "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
     "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h ./src/sound/*.cc ./src/sound/*.h ./src/workers/*.h",
-    "postinstall": "rm -f package-lock.json",
     "cpplint": "./third_party/cpplint/cpplint.py src/*.* src/**/*",
     "jslint": "./node_modules/.bin/eslint ./**/*.js",
     "install": "node tools/lib_downloader.js && node-gyp rebuild"
