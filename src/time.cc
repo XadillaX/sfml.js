@@ -70,7 +70,7 @@ MaybeLocal<Object> Time::NewInstance(Isolate* isolate, const sf::Time& src) {
   Time* time_wrap = Nan::ObjectWrap::Unwrap<Time>(time);
   memcpy(&time_wrap->_time, &src, sizeof(sf::Time));
 
-  return time;
+  return scope.Escape(time);
 }
 
 NAN_METHOD(Time::New) {
