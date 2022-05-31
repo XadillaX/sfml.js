@@ -189,16 +189,16 @@ NAN_METHOD(Texture::UpdateByPixels) {
   size_t x = 0;
   size_t y = 0;
   if (!info[1]->IsUndefined()) {
-    width = Nan::To<sf::Uint32>(info[0]).FromJust();
+    width = Nan::To<sf::Uint32>(info[1]).FromJust();
   }
   if (!info[2]->IsUndefined()) {
-    height = Nan::To<sf::Uint32>(info[1]).FromJust();
+    height = Nan::To<sf::Uint32>(info[2]).FromJust();
   }
   if (!info[3]->IsUndefined()) {
-    x = Nan::To<sf::Uint32>(info[2]).FromJust();
+    x = Nan::To<sf::Uint32>(info[3]).FromJust();
   }
   if (!info[4]->IsUndefined()) {
-    y = Nan::To<sf::Uint32>(info[3]).FromJust();
+    y = Nan::To<sf::Uint32>(info[4]).FromJust();
   }
 
   Local<Object> buffer_object = info[0].As<Object>();
