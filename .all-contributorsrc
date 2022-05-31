@@ -23,6 +23,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "HanzCEO",
+      "name": "Hanz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40712686?v=4",
+      "profile": "https://godot.id",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "badgeTemplate": "<a href=\"#contributors-\"><img src=\"https://img.shields.io/badge/<%= contributors.length %>-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS\" />",
