@@ -4,5 +4,5 @@ export class Clock {
   constructor();
 
   getElapsedTime(): _Time;
-  restart(): void;
+  restart(): _Time;
 }
