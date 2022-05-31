@@ -52,7 +52,16 @@ NAN_METHOD(Clock::GetElapsedTime) {
 
 NAN_METHOD(Clock::Restart) {
   Clock* clock = Nan::ObjectWrap::Unwrap<Clock>(info.Holder());
-  clock->_clock.restart();
+  sf::Time time = clock->_clock.restart();
+  Nan::TryCatch try_catch;
+  MaybeLocal<Object> time_wrap =
+      time::Time::NewInstance(info.GetIsolate(), time);
+  if (time_wrap.IsEmpty()) {
+    try_catch.ReThrow();
+    return;
+  }
+
+  info.GetReturnValue().Set(time_wrap.ToLocalChecked());
 }
 
 Clock::Clock() : _clock() {}
