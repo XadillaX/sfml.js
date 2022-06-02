@@ -1,0 +1,1 @@
+export { Clock } from './binding';
