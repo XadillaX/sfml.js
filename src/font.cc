@@ -61,6 +61,7 @@ NAN_METHOD(Font::LoadFromFile) {
     return;
   }
 
+  font->_related_buffer.Reset();
   font->_loading = true;
   Local<String> v8_filename = info[0].As<String>();
   Nan::Utf8String utf8_filename(v8_filename);
@@ -78,6 +79,7 @@ NAN_METHOD(Font::LoadFromFile) {
 
 NAN_METHOD(Font::LoadFromFileSync) {
   Font* font = Nan::ObjectWrap::Unwrap<Font>(info.Holder());
+  font->_related_buffer.Reset();
   Nan::Utf8String filename(info[0].As<String>());
   info.GetReturnValue().Set(font->_font->loadFromFile(*filename));
 }
@@ -89,6 +91,7 @@ NAN_METHOD(Font::LoadFromMemory) {
     return;
   }
 
+  fnt->_related_buffer.Reset(info[0].As<Object>());
   const char* buff = node::Buffer::Data(info[0]);
   size_t length = node::Buffer::Length(info[0]);
   info.GetReturnValue().Set(fnt->_font->loadFromMemory(buff, length));
@@ -195,9 +198,12 @@ NAN_METHOD(Font::GetUnderlineThickness) {
 }
 
 Font::Font() : _font(new sf::Font()) {}
-Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)) {}
+Font::Font(const sf::Font& copy) : _font(new sf::Font(copy)) {
+  _related_buffer.Reset();
+}
 
 Font::~Font() {
+  _related_buffer.Reset();
   if (_font != nullptr) {
     delete _font;
     _font = nullptr;

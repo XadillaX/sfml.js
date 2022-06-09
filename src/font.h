@@ -35,6 +35,7 @@ class Font : public Nan::ObjectWrap, public BaseClassWithLoading {
 
  private:
   sf::Font* _font;
+  Nan::Persistent<v8::Object> _related_buffer;
 };
 
 }  // namespace font
