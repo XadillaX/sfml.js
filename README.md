@@ -38,6 +38,7 @@ $ npm install --save sfml.js
 
 + [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos): Several small example games;
 + [play-nes](https://github.com/XadillaX/play-nes): A cross-platform desktop NES emulator powered by OpenGL in Node.js.
++ [suilib](https://github.com/dot-six/suilib): Actively developing cross-platform UI framework. Proudly a fork of sfml.js.
 
 > PR is welcomed. You can add your own sfml.js example.
 
