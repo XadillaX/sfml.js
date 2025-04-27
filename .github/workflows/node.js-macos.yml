@@ -14,7 +14,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [20.x, 22.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -24,6 +24,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     # - run: sudo apt-get update -y
     # - run: sudo apt-get install -y libopenal-dev
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
     - run: npm install
     - name: Run headless test
       uses: GabrielBB/xvfb-action@v1
