@@ -1,7 +1,6 @@
 'use strict';
 
 const spidex = require('spidex');
-const os = require('os');
 
 const urls = {
   macOS:
@@ -44,9 +43,7 @@ exports.get = async function get() {
           continue;
         }
 
-        urls[key] = urls[key].replace(
-          'https://github.com/',
-          'https://download.fastgit.org/');
+        urls[key] = `https://hub.gitmirror.com/${urls[key]}`;
       }
     }
 
