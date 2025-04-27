@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -72,9 +72,22 @@ public:
     /// \param sizeInBytes Number of bytes to append
     ///
     /// \see clear
+    /// \see getReadPosition
     ///
     ////////////////////////////////////////////////////////////
     void append(const void* data, std::size_t sizeInBytes);
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Get the current reading position in the packet
+    ///
+    /// The next read operation will read data from this position
+    ///
+    /// \return The byte offset of the current read position
+    ///
+    /// \see append
+    ///
+    ////////////////////////////////////////////////////////////
+    std::size_t getReadPosition() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Clear the packet
@@ -400,10 +413,10 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    std::vector<char> m_data;    ///< Data stored in the packet
-    std::size_t       m_readPos; ///< Current reading position in the packet
-    std::size_t       m_sendPos; ///< Current send position in the packet (for handling partial sends)
-    bool              m_isValid; ///< Reading state of the packet
+    std::vector<char> m_data;    //!< Data stored in the packet
+    std::size_t       m_readPos; //!< Current reading position in the packet
+    std::size_t       m_sendPos; //!< Current send position in the packet (for handling partial sends)
+    bool              m_isValid; //!< Reading state of the packet
 };
 
 } // namespace sf

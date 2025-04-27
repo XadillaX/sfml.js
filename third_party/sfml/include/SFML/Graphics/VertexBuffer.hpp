@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -59,9 +59,9 @@ public:
     ////////////////////////////////////////////////////////////
     enum Usage
     {
-        Stream,  ///< Constantly changing data
-        Dynamic, ///< Occasionally changing data
-        Static   ///< Rarely changing data
+        Stream,  //!< Constantly changing data
+        Dynamic, //!< Occasionally changing data
+        Static   //!< Rarely changing data
     };
 
     ////////////////////////////////////////////////////////////
@@ -334,10 +334,10 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    unsigned int  m_buffer;        ///< Internal buffer identifier
-    std::size_t   m_size;          ///< Size in Vertexes of the currently allocated buffer
-    PrimitiveType m_primitiveType; ///< Type of primitives to draw
-    Usage         m_usage;         ///< How this vertex buffer is to be used
+    unsigned int  m_buffer;        //!< Internal buffer identifier
+    std::size_t   m_size;          //!< Size in Vertexes of the currently allocated buffer
+    PrimitiveType m_primitiveType; //!< Type of primitives to draw
+    Usage         m_usage;         //!< How this vertex buffer is to be used
 };
 
 } // namespace sf

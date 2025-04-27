@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -62,11 +62,11 @@ In Utf<8>::decode(In begin, In end, Uint32& output, Uint32 replacement)
         output = 0;
         switch (trailingBytes)
         {
-            case 5: output += static_cast<Uint8>(*begin++); output <<= 6;
-            case 4: output += static_cast<Uint8>(*begin++); output <<= 6;
-            case 3: output += static_cast<Uint8>(*begin++); output <<= 6;
-            case 2: output += static_cast<Uint8>(*begin++); output <<= 6;
-            case 1: output += static_cast<Uint8>(*begin++); output <<= 6;
+            case 5: output += static_cast<Uint8>(*begin++); output <<= 6; // fallthrough
+            case 4: output += static_cast<Uint8>(*begin++); output <<= 6; // fallthrough
+            case 3: output += static_cast<Uint8>(*begin++); output <<= 6; // fallthrough
+            case 2: output += static_cast<Uint8>(*begin++); output <<= 6; // fallthrough
+            case 1: output += static_cast<Uint8>(*begin++); output <<= 6; // fallthrough
             case 0: output += static_cast<Uint8>(*begin++);
         }
         output -= offsets[trailingBytes];
@@ -97,7 +97,7 @@ Out Utf<8>::encode(Uint32 input, Out output, Uint8 replacement)
     {
         // Invalid character
         if (replacement)
-            *output++ = replacement;
+            output = std::copy(&replacement, &replacement + 1, output);
     }
     else
     {
@@ -114,9 +114,9 @@ Out Utf<8>::encode(Uint32 input, Out output, Uint8 replacement)
         Uint8 bytes[4];
         switch (bytestoWrite)
         {
-            case 4: bytes[3] = static_cast<Uint8>((input | 0x80) & 0xBF); input >>= 6;
-            case 3: bytes[2] = static_cast<Uint8>((input | 0x80) & 0xBF); input >>= 6;
-            case 2: bytes[1] = static_cast<Uint8>((input | 0x80) & 0xBF); input >>= 6;
+            case 4: bytes[3] = static_cast<Uint8>((input | 0x80) & 0xBF); input >>= 6; // fallthrough
+            case 3: bytes[2] = static_cast<Uint8>((input | 0x80) & 0xBF); input >>= 6; // fallthrough
+            case 2: bytes[1] = static_cast<Uint8>((input | 0x80) & 0xBF); input >>= 6; // fallthrough
             case 1: bytes[0] = static_cast<Uint8> (input | firstBytes[bytestoWrite]);
         }
 
@@ -293,7 +293,7 @@ In Utf<16>::decode(In begin, In end, Uint32& output, Uint32 replacement)
             if ((second >= 0xDC00) && (second <= 0xDFFF))
             {
                 // The second element is valid: convert the two elements to a UTF-32 character
-                output = static_cast<Uint32>(((first - 0xD800) << 10) + (second - 0xDC00) + 0x0010000);
+                output = ((first - 0xD800u) << 10) + (second - 0xDC00) + 0x0010000;
             }
             else
             {
@@ -675,7 +675,7 @@ Uint32 Utf<32>::decodeWide(In input)
     // In both cases, a simple copy is enough (UCS-2 is a subset of UCS-4,
     // and UCS-4 *is* UTF-32).
 
-    return input;
+    return static_cast<Uint32>(input);
 }
 
 

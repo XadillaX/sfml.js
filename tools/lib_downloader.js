@@ -15,11 +15,15 @@ let type;
 
 switch (platform) {
   case 'darwin': {
-    if (process.arch !== 'x64') {
+    if (process.arch === 'x64') {
+      type = 'macOS';
+      console.log('[sfml.js] Detected macOS Intel (x64) architecture');
+    } else if (process.arch === 'arm64') {
+      type = 'macOSArm';
+      console.log('[sfml.js] Detected macOS ARM (arm64) architecture');
+    } else {
       throw new Error('Unsupported architecture: ' + process.arch);
     }
-
-    type = 'macOS';
     break;
   }
 
@@ -80,6 +84,7 @@ async function downloadTarball(url) {
   let copier;
   switch (type) {
     case 'macOS':
+    case 'macOSArm':
       copier = require('./copier/macos');
       break;
 

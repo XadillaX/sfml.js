@@ -206,19 +206,28 @@ async function frame() {
   }
   Mouse.setPosition(mousePos.window, window);
 
-  await window.drawAsync(xxxSprite);
-  await window.drawAsync(yyySprite);
-  await window.drawAsync(zzzSprite);
-  await window.drawAsync(oooSprite);
-  await window.drawAsync(redSprite);
-  await window.drawAsync(circle);
-  await window.drawAsync(rectangle);
-  await window.drawAsync(convex);
-  await window.drawAsync(text);
-  await window.drawAsync(sprite);
-  await window.drawAsync(sprite2);
-  await window.drawAsync(lines);
-  await window.displayAsync();
+  try {
+    await window.drawAsync(xxxSprite);
+    await window.drawAsync(yyySprite);
+    await window.drawAsync(zzzSprite);
+    await window.drawAsync(oooSprite);
+    await window.drawAsync(redSprite);
+    await window.drawAsync(circle);
+    await window.drawAsync(rectangle);
+    await window.drawAsync(convex);
+    await window.drawAsync(text);
+    await window.drawAsync(sprite);
+    await window.drawAsync(sprite2);
+    await window.drawAsync(lines);
+    await window.displayAsync();
+  } catch (err) {
+    if (window.isOpen()) {
+      console.error('绘制错误:', err.message);
+    } else {
+      // 窗口已关闭，不需要继续尝试绘制
+      return;
+    }
+  }
 
   new Image();
 

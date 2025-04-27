@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -52,8 +52,8 @@ public:
     ////////////////////////////////////////////////////////////
     struct Chunk
     {
-        const Int16* samples;     ///< Pointer to the audio samples
-        std::size_t  sampleCount; ///< Number of samples pointed by Samples
+        const Int16* samples;     //!< Pointer to the audio samples
+        std::size_t  sampleCount; //!< Number of samples pointed by Samples
     };
 
     ////////////////////////////////////////////////////////////
@@ -182,7 +182,7 @@ protected:
 
     enum
     {
-        NoLoop = -1 ///< "Invalid" endSeeks value, telling us to continue uninterrupted
+        NoLoop = -1 //!< "Invalid" endSeeks value, telling us to continue uninterrupted
     };
 
     ////////////////////////////////////////////////////////////
@@ -251,6 +251,20 @@ protected:
     ////////////////////////////////////////////////////////////
     virtual Int64 onLoop();
 
+    ////////////////////////////////////////////////////////////
+    /// \brief Set the processing interval
+    ///
+    /// The processing interval controls the period at which the
+    /// audio buffers are filled by calls to onGetData. A smaller
+    /// interval may be useful for low-latency streams. Note that
+    /// the given period is only a hint and the actual period may
+    /// vary. The default processing interval is 10 ms.
+    ///
+    /// \param interval Processing interval
+    ///
+    ////////////////////////////////////////////////////////////
+    void setProcessingInterval(Time interval);
+
 private:
 
     ////////////////////////////////////////////////////////////
@@ -299,24 +313,25 @@ private:
 
     enum
     {
-        BufferCount = 3,    ///< Number of audio buffers used by the streaming loop
-        BufferRetries = 2   ///< Number of retries (excluding initial try) for onGetData()
+        BufferCount = 3,    //!< Number of audio buffers used by the streaming loop
+        BufferRetries = 2   //!< Number of retries (excluding initial try) for onGetData()
     };
 
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    Thread        m_thread;                   ///< Thread running the background tasks
-    mutable Mutex m_threadMutex;              ///< Thread mutex
-    Status        m_threadStartState;         ///< State the thread starts in (Playing, Paused, Stopped)
-    bool          m_isStreaming;              ///< Streaming state (true = playing, false = stopped)
-    unsigned int  m_buffers[BufferCount];     ///< Sound buffers used to store temporary audio data
-    unsigned int  m_channelCount;             ///< Number of channels (1 = mono, 2 = stereo, ...)
-    unsigned int  m_sampleRate;               ///< Frequency (samples / second)
-    Uint32        m_format;                   ///< Format of the internal sound buffers
-    bool          m_loop;                     ///< Loop flag (true to loop, false to play once)
-    Uint64        m_samplesProcessed;         ///< Number of buffers processed since beginning of the stream
-    Int64         m_bufferSeeks[BufferCount]; ///< If buffer is an "end buffer", holds next seek position, else NoLoop. For play offset calculation.
+    Thread        m_thread;                   //!< Thread running the background tasks
+    mutable Mutex m_threadMutex;              //!< Thread mutex
+    Status        m_threadStartState;         //!< State the thread starts in (Playing, Paused, Stopped)
+    bool          m_isStreaming;              //!< Streaming state (true = playing, false = stopped)
+    unsigned int  m_buffers[BufferCount];     //!< Sound buffers used to store temporary audio data
+    unsigned int  m_channelCount;             //!< Number of channels (1 = mono, 2 = stereo, ...)
+    unsigned int  m_sampleRate;               //!< Frequency (samples / second)
+    Int32         m_format;                   //!< Format of the internal sound buffers
+    bool          m_loop;                     //!< Loop flag (true to loop, false to play once)
+    Uint64        m_samplesProcessed;         //!< Number of samples processed since beginning of the stream
+    Int64         m_bufferSeeks[BufferCount]; //!< If buffer is an "end buffer", holds next seek position, else NoLoop. For play offset calculation.
+    Time          m_processingInterval;       //!< Interval for checking and filling the internal sound buffers.
 };
 
 } // namespace sf
@@ -387,12 +402,12 @@ private:
 ///         return true;
 ///     }
 ///
-///     virtual void onSeek(Uint32 timeOffset)
+///     virtual void onSeek(sf::Time timeOffset)
 ///     {
 ///         // Change the current position in the stream source
 ///         ...
 ///     }
-/// }
+/// };
 ///
 /// // Usage
 /// CustomStream stream;

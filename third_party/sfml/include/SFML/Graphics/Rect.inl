@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -139,6 +139,18 @@ bool Rect<T>::intersects(const Rect<T>& rectangle, Rect<T>& intersection) const
         intersection = Rect<T>(0, 0, 0, 0);
         return false;
     }
+}
+
+template <typename T>
+sf::Vector2<T> Rect<T>::getPosition() const
+{
+    return sf::Vector2<T>(left, top);
+}
+
+template <typename T>
+sf::Vector2<T> Rect<T>::getSize() const
+{
+    return sf::Vector2<T>(width, height);
 }
 
 

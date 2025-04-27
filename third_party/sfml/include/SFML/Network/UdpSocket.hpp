@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -51,7 +51,7 @@ public:
     ////////////////////////////////////////////////////////////
     enum
     {
-        MaxDatagramSize = 65507 ///< The maximum number of bytes that can be sent in a single UDP datagram
+        MaxDatagramSize = 65507 //!< The maximum number of bytes that can be sent in a single UDP datagram
     };
 
     ////////////////////////////////////////////////////////////
@@ -78,9 +78,10 @@ public:
     ///
     /// Binding the socket to a port is necessary for being
     /// able to receive data on that port.
-    /// You can use the special value Socket::AnyPort to tell the
-    /// system to automatically pick an available port, and then
-    /// call getLocalPort to retrieve the chosen port.
+    ///
+    /// When providing sf::Socket::AnyPort as port, the listener
+    /// will request an available port from the system.
+    /// The chosen port can be retrieved by calling getLocalPort().
     ///
     /// Since the socket can only be bound to a single port at
     /// any given moment, if it is already bound when this
@@ -193,7 +194,7 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    std::vector<char> m_buffer; ///< Temporary buffer holding the received data in Receive(Packet)
+    std::vector<char> m_buffer; //!< Temporary buffer holding the received data in Receive(Packet)
 };
 
 } // namespace sf

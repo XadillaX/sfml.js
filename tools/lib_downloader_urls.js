@@ -1,20 +1,24 @@
 'use strict';
 
 const spidex = require('spidex');
+const os = require('os');
 
 const urls = {
   macOS:
-    'https://github.com/SFML/SFML/releases/download/2.5.1/SFML-2.5.1-' +
-    'macOS-clang.tar.gz',
+    'https://github.com/SFML/SFML/releases/download/2.6.2/SFML-2.6.2-' +
+    'macOS-clang-64-bit.tar.gz',
+  macOSArm:
+    'https://github.com/SFML/SFML/releases/download/2.6.2/SFML-2.6.2-' +
+    'macOS-clang-arm64.tar.gz',
   linux:
-    'https://github.com/SFML/SFML/releases/download/2.5.1/SFML-2.5.1-linux-' +
+    'https://github.com/SFML/SFML/releases/download/2.6.2/SFML-2.6.2-linux-' +
     'gcc-64-bit.tar.gz',
   win32:
-    'https://github.com/SFML/SFML/releases/download/2.5.1/SFML-2.5.1-' +
-    'windows-vc15-32-bit.zip',
+    'https://github.com/SFML/SFML/releases/download/2.6.2/SFML-2.6.2-' +
+    'windows-vc17-32-bit.zip',
   win64:
-    'https://github.com/SFML/SFML/releases/download/2.5.1/SFML-2.5.1-' +
-    'windows-vc15-64-bit.zip',
+    'https://github.com/SFML/SFML/releases/download/2.6.2/SFML-2.6.2-' +
+    'windows-vc17-64-bit.zip',
 };
 
 exports.get = async function get() {

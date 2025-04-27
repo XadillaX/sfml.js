@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -49,13 +49,13 @@ public:
     ////////////////////////////////////////////////////////////
     // Types
     ////////////////////////////////////////////////////////////
-    typedef std::basic_string<Uint32>::iterator       Iterator;      ///< Iterator type
-    typedef std::basic_string<Uint32>::const_iterator ConstIterator; ///< Read-only iterator type
+    typedef std::basic_string<Uint32>::iterator       Iterator;      //!< Iterator type
+    typedef std::basic_string<Uint32>::const_iterator ConstIterator; //!< Read-only iterator type
 
     ////////////////////////////////////////////////////////////
     // Static member data
     ////////////////////////////////////////////////////////////
-    static const std::size_t InvalidPos; ///< Represents an invalid position in the string
+    static const std::size_t InvalidPos; //!< Represents an invalid position in the string
 
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
@@ -524,7 +524,7 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    std::basic_string<Uint32> m_string; ///< Internal string of UTF-32 characters
+    std::basic_string<Uint32> m_string; //!< Internal string of UTF-32 characters
 };
 
 ////////////////////////////////////////////////////////////

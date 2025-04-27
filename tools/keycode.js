@@ -7,13 +7,15 @@ const path = require('path');
 const keyboardHpp = fs.readFileSync(
   path.join(__dirname, '../third_party/sfml/include/SFML/Window/Keyboard.hpp'));
 
+// Extract main key value definitions
 let current = 0;
 const extracted = /enum Key\W+{([\w\W]*)KeyCount,/
   .exec(keyboardHpp)[1]
   .trim()
   .split('\n')
   .map(line => {
-    line = line.trim().replace(/,\W*\/\/\/.+/, '');
+    // Match both ///< and //!< comment formats
+    line = line.trim().replace(/,\W*(\/\/\/|\/\/!).+/, '');
 
     const arr = line.split('=').map(c => c.trim());
     if (arr.length >= 2) {
@@ -24,6 +26,18 @@ const extracted = /enum Key\W+{([\w\W]*)KeyCount,/
 
     return [ arr[0], current ];
   });
+
+// Extract deprecated key mappings
+// eslint-disable-next-line
+const deprecatedKeysRegex = /(\w+)\s*=\s*(\w+),\s*\/\/!<\s*\\deprecated\s*Use\s*(\w+)\s*instead/g;
+const keyboardHppContent = keyboardHpp.toString();
+const deprecatedKeys = [];
+let match;
+
+while ((match = deprecatedKeysRegex.exec(keyboardHppContent)) !== null) {
+  const [ , deprecated, current ] = match;
+  deprecatedKeys.push([ deprecated, current ]);
+}
 
 const str = `#include <map>
 #include <string>
@@ -43,6 +57,22 @@ void InitKeyCode() {
     })
     .join('  ')
     .trim()}
+
+  // Add deprecated key mappings
+  ${deprecatedKeys
+    .map(([ deprecated, current ]) => {
+      // Find the code corresponding to the current key
+      const currentKeyPair = extracted.find(([ key ]) => key === current);
+      if (currentKeyPair) {
+        const [ , code ] = currentKeyPair;
+
+        // Map deprecated key name to corresponding key value`;
+        return `keycode_atoi["${deprecated}"] = ${code};`;
+      }
+      return '';
+    })
+    .filter(line => line) // Filter out empty lines
+    .join('\n  ')}
 }
 
 }  // namespace gen

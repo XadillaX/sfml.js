@@ -13,7 +13,8 @@ const extracted = /enum Type\W+{([\w\W]*)Count/
   .trim()
   .split('\n')
   .map(line => {
-    line = line.trim().replace(/,\W*\/\/\/.+/, '');
+    // 同时支持 /// 和 //!< 两种注释格式
+    line = line.trim().replace(/,\W*\/\/(\/|!<).+/, '');
 
     const arr = line.split('=').map(c => c.trim());
     if (arr.length >= 2) {

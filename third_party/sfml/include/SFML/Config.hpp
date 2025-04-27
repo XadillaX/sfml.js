@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -30,13 +30,13 @@
 // Define the SFML version
 ////////////////////////////////////////////////////////////
 #define SFML_VERSION_MAJOR 2
-#define SFML_VERSION_MINOR 5
-#define SFML_VERSION_PATCH 1
+#define SFML_VERSION_MINOR 6
+#define SFML_VERSION_PATCH 2
 
 
 ////////////////////////////////////////////////////////////
 // Identify the operating system
-// see http://nadeausoftware.com/articles/2012/01/c_c_tip_how_use_compiler_predefined_macros_detect_operating_system
+// see https://sourceforge.net/p/predef/wiki/Home/
 ////////////////////////////////////////////////////////////
 #if defined(_WIN32)
 
@@ -90,6 +90,11 @@
 
         // OpenBSD
         #define SFML_SYSTEM_OPENBSD
+
+    #elif defined(__NetBSD__)
+
+        // NetBSD
+        #define SFML_SYSTEM_NETBSD
 
     #else
 
@@ -226,8 +231,15 @@ namespace sf
         typedef signed   __int64 Int64;
         typedef unsigned __int64 Uint64;
     #else
+        #if defined(__clang__)
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Wc++11-long-long"
+        #endif
         typedef signed   long long Int64;
         typedef unsigned long long Uint64;
+        #if defined(__clang__)
+            #pragma clang diagnostic pop
+        #endif
     #endif
 
 } // namespace sf

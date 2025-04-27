@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -90,8 +90,8 @@ public:
     /// \brief Load the image from a file on disk
     ///
     /// The supported image formats are bmp, png, tga, jpg, gif,
-    /// psd, hdr and pic. Some format options are not supported,
-    /// like progressive jpeg.
+    /// psd, hdr, pic and pnm. Some format options are not supported,
+    /// like jpeg with arithmetic coding or ASCII pnm.
     /// If this function fails, the image is left unchanged.
     ///
     /// \param filename Path of the image file to load
@@ -107,8 +107,8 @@ public:
     /// \brief Load the image from a file in memory
     ///
     /// The supported image formats are bmp, png, tga, jpg, gif,
-    /// psd, hdr and pic. Some format options are not supported,
-    /// like progressive jpeg.
+    /// psd, hdr, pic and pnm. Some format options are not supported,
+    /// like jpeg with arithmetic coding or ASCII pnm.
     /// If this function fails, the image is left unchanged.
     ///
     /// \param data Pointer to the file data in memory
@@ -125,8 +125,8 @@ public:
     /// \brief Load the image from a custom stream
     ///
     /// The supported image formats are bmp, png, tga, jpg, gif,
-    /// psd, hdr and pic. Some format options are not supported,
-    /// like progressive jpeg.
+    /// psd, hdr, pic and pnm. Some format options are not supported,
+    /// like jpeg with arithmetic coding or ASCII pnm.
     /// If this function fails, the image is left unchanged.
     ///
     /// \param stream Source stream to read from
@@ -154,6 +154,24 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     bool saveToFile(const std::string& filename) const;
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Save the image to a buffer in memory
+    ///
+    /// The format of the image must be specified.
+    /// The supported image formats are bmp, png, tga and jpg.
+    /// This function fails if the image is empty, or if
+    /// the format was invalid.
+    ///
+    /// \param output Buffer to fill with encoded data
+    /// \param format Encoding format to use
+    ///
+    /// \return True if saving was successful
+    ///
+    /// \see create, loadFromFile, loadFromMemory, saveToFile
+    ///
+    ////////////////////////////////////////////////////////////
+    bool saveToMemory(std::vector<sf::Uint8>& output, const std::string& format) const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the size (width and height) of the image
@@ -185,9 +203,13 @@ public:
     /// kind of feature in real-time you'd better use sf::RenderTexture.
     ///
     /// If \a sourceRect is empty, the whole image is copied.
-    /// If \a applyAlpha is set to true, the transparency of
-    /// source pixels is applied. If it is false, the pixels are
-    /// copied unchanged with their alpha value.
+    /// If \a applyAlpha is set to true, alpha blending is
+    /// applied from the source pixels to the destination pixels
+    /// using the \b over operator. If it is false, the source
+    /// pixels are copied unchanged with their alpha value.
+    ///
+    /// See https://en.wikipedia.org/wiki/Alpha_compositing for
+    /// details on the \b over operator.
     ///
     /// \param source     Source image to copy
     /// \param destX      X coordinate of the destination position
@@ -263,8 +285,8 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    Vector2u           m_size;   ///< Image size
-    std::vector<Uint8> m_pixels; ///< Pixels of the image
+    Vector2u           m_size;   //!< Image size
+    std::vector<Uint8> m_pixels; //!< Pixels of the image
 };
 
 } // namespace sf

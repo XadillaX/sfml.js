@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2023 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -152,12 +152,32 @@ public:
     bool intersects(const Rect<T>& rectangle, Rect<T>& intersection) const;
 
     ////////////////////////////////////////////////////////////
+    /// \brief Get the position of the rectangle's top-left corner
+    ///
+    /// \return Position of rectangle
+    ///
+    /// \see getSize
+    ///
+    ////////////////////////////////////////////////////////////
+    sf::Vector2<T> getPosition() const;
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Get the size of the rectangle
+    ///
+    /// \return Size of rectangle
+    ///
+    /// \see getPosition
+    ///
+    ////////////////////////////////////////////////////////////
+    sf::Vector2<T> getSize() const;
+
+    ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    T left;   ///< Left coordinate of the rectangle
-    T top;    ///< Top coordinate of the rectangle
-    T width;  ///< Width of the rectangle
-    T height; ///< Height of the rectangle
+    T left;   //!< Left coordinate of the rectangle
+    T top;    //!< Top coordinate of the rectangle
+    T width;  //!< Width of the rectangle
+    T height; //!< Height of the rectangle
 };
 
 ////////////////////////////////////////////////////////////
