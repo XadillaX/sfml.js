@@ -123,15 +123,9 @@ using v8::Object;
 using v8::String;
 using v8::Uint8Array;
 using v8::Value;
+using v8::Uint32;
 
 Nan::Persistent<Function> Color::constructor;
-
-// 验证 SFML 类型的内存布局
-static_assert(sizeof(sf::Color) == 4, "sf::Color must be 4 bytes");
-static_assert(offsetof(sf::Color, r) == 0, "sf::Color::r must be at offset 0");
-static_assert(offsetof(sf::Color, g) == 1, "sf::Color::g must be at offset 1");
-static_assert(offsetof(sf::Color, b) == 2, "sf::Color::b must be at offset 2");
-static_assert(offsetof(sf::Color, a) == 3, "sf::Color::a must be at offset 3");
 
 NAN_MODULE_INIT(Color::Init) {
   Local<String> name = Nan::New("Color").ToLocalChecked();
@@ -148,6 +142,23 @@ NAN_MODULE_INIT(Color::Init) {
 
   Local<Function> func = Nan::GetFunction(tpl).ToLocalChecked();
   constructor.Reset(func);
+
+  // 导出内存布局信息（供 JS 侧适配）
+  Local<Object> layout = Nan::New<Object>();
+  Nan::Set(layout, Nan::New("r").ToLocalChecked(),
+           Nan::New<Uint32>(offsetof(sf::Color, r)));
+  Nan::Set(layout, Nan::New("g").ToLocalChecked(),
+           Nan::New<Uint32>(offsetof(sf::Color, g)));
+  Nan::Set(layout, Nan::New("b").ToLocalChecked(),
+           Nan::New<Uint32>(offsetof(sf::Color, b)));
+  Nan::Set(layout, Nan::New("a").ToLocalChecked(),
+           Nan::New<Uint32>(offsetof(sf::Color, a)));
+  Nan::Set(layout, Nan::New("size").ToLocalChecked(),
+           Nan::New<Uint32>(sizeof(sf::Color)));
+  Nan::Set(layout, Nan::New("componentSize").ToLocalChecked(),
+           Nan::New<Uint32>(sizeof(sf::Uint8)));
+
+  Nan::Set(func, Nan::New("LAYOUT").ToLocalChecked(), layout);
 
   // 导出预定义颜色
   Local<Object> colors = Nan::New<Object>();
@@ -256,7 +267,7 @@ NAN_METHOD(Color::New) {
   Isolate* isolate = info.GetIsolate();
 
   void* data = reinterpret_cast<void*>(color->color_);
-  size_t byte_length = 4;
+  size_t byte_length = sizeof(sf::Color);  // 不假设大小，使用实际值
 
   // 创建不拥有内存的 BackingStore
   std::unique_ptr<BackingStore> backing_store =
@@ -274,8 +285,8 @@ NAN_METHOD(Color::New) {
   Local<ArrayBuffer> array_buffer =
     ArrayBuffer::New(isolate, std::move(backing_store));
 
-  // 创建 Uint8Array 视图
-  Local<Uint8Array> typed_array = Uint8Array::New(array_buffer, 0, 4);
+  // 创建 Uint8Array 视图（覆盖整个结构）
+  Local<Uint8Array> typed_array = Uint8Array::New(array_buffer, 0, byte_length);
 
   // 将 TypedArray 设置为对象的属性
   Nan::Set(info.This(), Nan::New("_data").ToLocalChecked(), typed_array);
@@ -474,6 +485,19 @@ NAN_MODULE_INIT(Vector2f::Init) {
 
   Local<Function> func = Nan::GetFunction(tpl).ToLocalChecked();
   constructor.Reset(func);
+
+  // 导出内存布局信息
+  Local<Object> layout = Nan::New<Object>();
+  Nan::Set(layout, Nan::New("x").ToLocalChecked(),
+           Nan::New<Uint32>(offsetof(sf::Vector2f, x)));
+  Nan::Set(layout, Nan::New("y").ToLocalChecked(),
+           Nan::New<Uint32>(offsetof(sf::Vector2f, y)));
+  Nan::Set(layout, Nan::New("size").ToLocalChecked(),
+           Nan::New<Uint32>(sizeof(sf::Vector2f)));
+  Nan::Set(layout, Nan::New("componentSize").ToLocalChecked(),
+           Nan::New<Uint32>(sizeof(float)));
+
+  Nan::Set(func, Nan::New("LAYOUT").ToLocalChecked(), layout);
   Nan::Set(target, name, func);
 }
 
@@ -521,7 +545,7 @@ NAN_METHOD(Vector2f::New) {
   // 创建共享内存
   Isolate* isolate = info.GetIsolate();
   void* data = reinterpret_cast<void*>(vec->vector_);
-  size_t byte_length = 8;
+  size_t byte_length = sizeof(sf::Vector2f);
 
   std::unique_ptr<BackingStore> backing_store =
     ArrayBuffer::NewBackingStore(
@@ -532,7 +556,8 @@ NAN_METHOD(Vector2f::New) {
 
   Local<ArrayBuffer> array_buffer =
     ArrayBuffer::New(isolate, std::move(backing_store));
-  Local<Float32Array> typed_array = Float32Array::New(array_buffer, 0, 2);
+  Local<Float32Array> typed_array =
+    Float32Array::New(array_buffer, 0, byte_length / sizeof(float));
 
   Nan::Set(info.This(), Nan::New("_data").ToLocalChecked(), typed_array);
   vec->typed_array_.Reset(typed_array);
@@ -676,9 +701,23 @@ export class Color {
     this._data = this._native._data;
 
     // 验证共享内存
-    if (!(this._data instanceof Uint8Array) || this._data.length !== 4) {
+    if (!(this._data instanceof Uint8Array)) {
       throw new Error('Invalid Color internal data structure');
     }
+
+    if (this._data.length < Color._layout.size) {
+      throw new Error(
+        `Color data size mismatch: expected ${Color._layout.size} bytes, ` +
+        `got ${this._data.length}`
+      );
+    }
+  }
+
+  /**
+   * 获取内存布局信息（用于调试和验证）
+   */
+  static getLayout(): Readonly<ColorLayout> {
+    return { ...Color._layout };
   }
 
   /**
@@ -696,46 +735,47 @@ export class Color {
    * 红色分量 (0-255)
    *
    * 直接读写 C++ 内存，零拷贝！
+   * 使用布局信息计算正确的偏移量
    */
   get r(): number {
-    return this._data[0];
+    return this._data[Color._layout.r];
   }
 
   set r(value: number) {
-    this._data[0] = this._clamp(value);
+    this._data[Color._layout.r] = this._clamp(value);
   }
 
   /**
    * 绿色分量 (0-255)
    */
   get g(): number {
-    return this._data[1];
+    return this._data[Color._layout.g];
   }
 
   set g(value: number) {
-    this._data[1] = this._clamp(value);
+    this._data[Color._layout.g] = this._clamp(value);
   }
 
   /**
    * 蓝色分量 (0-255)
    */
   get b(): number {
-    return this._data[2];
+    return this._data[Color._layout.b];
   }
 
   set b(value: number) {
-    this._data[2] = this._clamp(value);
+    this._data[Color._layout.b] = this._clamp(value);
   }
 
   /**
    * Alpha 通道 (0-255)
    */
   get a(): number {
-    return this._data[3];
+    return this._data[Color._layout.a];
   }
 
   set a(value: number) {
-    this._data[3] = this._clamp(value);
+    this._data[Color._layout.a] = this._clamp(value);
   }
 
   /**
