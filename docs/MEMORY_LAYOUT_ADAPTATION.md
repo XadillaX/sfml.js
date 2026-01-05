@@ -232,7 +232,12 @@ interface ColorLayout {
  * 颜色类 - 使用共享内存
  */
 export class Color {
-  /** 静态布局信息 - 运行时从 C++ 获取 */
+  /**
+   * 静态布局信息 - 只在类加载时从 C++ 获取一次
+   *
+   * 重要：这是类级别的静态属性，所有 Color 实例共享
+   * 内存布局由平台决定，但同一进程中所有 sf::Color 实例布局相同
+   */
   private static readonly _layout: ColorLayout = NativeColor.LAYOUT;
 
   private readonly _native: any;
@@ -275,9 +280,10 @@ export class Color {
   }
 
   // 属性访问 - 使用布局信息计算偏移量
+  // 注意：Color._layout 是静态的，访问它没有额外开销
 
   get r(): number {
-    return this._data[Color._layout.r];
+    return this._data[Color._layout.r];  // _layout.r 在编译时已知，JIT 可以优化
   }
 
   set r(value: number) {
@@ -586,13 +592,21 @@ Windows x64:  Color { r@0, g@2, b@4, a@6, size=8 }  ✓ (假设有 padding)
 ### ✅ 零运行时开销
 
 ```typescript
-// 布局查询只在类加载时发生一次
+// 1. 布局查询只在类加载时发生一次（模块初始化）
 private static readonly _layout = NativeColor.LAYOUT;
+// ↑ 这行代码只执行一次，不是每次 new Color() 都执行
 
-// 每次访问仍然是直接内存操作
+// 2. 每次访问仍然是直接内存操作
 get r() {
   return this._data[Color._layout.r];  // 单次数组访问
+  // Color._layout.r 是常量，V8/JIT 会优化成直接偏移量
+  // 相当于: return this._data[0];
 }
+
+// 3. 创建实例时不重新查询布局
+const color1 = new Color(255, 0, 0);  // ✓ 不查询布局
+const color2 = new Color(0, 255, 0);  // ✓ 不查询布局
+// 布局信息已经在 Color._layout 中
 ```
 
 ### ✅ 调试友好
