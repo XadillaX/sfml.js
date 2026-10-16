@@ -77,7 +77,7 @@ const std::uint8_t* Pixels(v8::Local<v8::Value> value, sf::Vector2u size) {
       bytes->Buffer()->GetBackingStore()->Data()) + bytes->ByteOffset();
 }
 
-NAN_METHOD(CreateWindow) {
+NAN_METHOD(CreateSfmlWindow) {
   info.GetReturnValue().Set(
       sfmljs::MakeWindowHandle(std::make_shared<OwnedWindow>()));
 }
@@ -361,7 +361,7 @@ NAN_METHOD(DisplayWindow) {
 }  // namespace
 
 NAN_MODULE_INIT(InitializeWindow) {
-  sfmljs::SetMethod<CreateWindow>(target, "createWindow");
+  sfmljs::SetMethod<CreateSfmlWindow>(target, "createWindow");
   sfmljs::SetMethod<OpenWindow>(target, "openWindow");
   sfmljs::SetMethod<OpenWindowHandle>(target, "openWindowHandle");
   sfmljs::SetMethod<CloseWindow>(target, "closeWindow");

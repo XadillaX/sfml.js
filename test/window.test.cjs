@@ -260,6 +260,8 @@ test('demo presents offscreen pixels without consuming the JS event queue',
       window.handleEvents(() => {});
       const before = window.getSize();
       window.setSize(new V(before.x + 20, before.y + 20));
+      // GLX 在交换缓冲区时更新缩放后的后备缓冲区；此调用不消费窗口事件。
+      window.display();
       native.drawWindowTexture(window[graphicsNative],
         target.getTexture()[graphicsNative]);
       const size = window.getSize();

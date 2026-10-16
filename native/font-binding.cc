@@ -26,7 +26,7 @@ v8::Local<v8::Object> MapFont(const std::shared_ptr<FontData>& owner) {
   return result;
 }
 
-NAN_METHOD(CreateFont) {
+NAN_METHOD(CreateSfmlFont) {
   auto* context = sfmljs::SharedHandle<sfmljs::GraphicsContext>::From(info[0]);
   if (!context) return;
   try {
@@ -196,7 +196,7 @@ NAN_METHOD(GetTextureInfo) {
 }  // namespace
 
 NAN_MODULE_INIT(InitializeFont) {
-  sfmljs::SetMethod<CreateFont>(target, "createFont");
+  sfmljs::SetMethod<CreateSfmlFont>(target, "createFont");
   sfmljs::SetMethod<OpenFont>(target, "openFont");
   sfmljs::SetMethod<CommitFont>(target, "commitFont");
   sfmljs::SetMethod<GetFontGlyph>(target, "getFontGlyph");

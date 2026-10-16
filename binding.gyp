@@ -80,7 +80,8 @@
           "-lsfml-graphics",
           "-lsfml-audio",
           "-lsfml-window",
-          "-lsfml-system"
+          "-lsfml-system",
+          "-lGL"
         ],
         "ldflags": ["-Wl,-rpath,'$$ORIGIN/../../third_party/sfml/lib'"]
       }],
@@ -96,7 +97,8 @@
           "<(module_root_dir)/third_party/sfml/lib/sfml-graphics.lib",
           "<(module_root_dir)/third_party/sfml/lib/sfml-audio.lib",
           "<(module_root_dir)/third_party/sfml/lib/sfml-window.lib",
-          "<(module_root_dir)/third_party/sfml/lib/sfml-system.lib"
+          "<(module_root_dir)/third_party/sfml/lib/sfml-system.lib",
+          "opengl32.lib"
         ],
         "copies": [{
           "destination": "<(PRODUCT_DIR)",
