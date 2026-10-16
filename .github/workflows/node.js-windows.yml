@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI <Windows>
 
 on:
@@ -12,16 +9,29 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      GALLIUM_DRIVER: llvmpipe
     strategy:
       matrix:
         node-version: [20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-    - uses: microsoft/setup-msbuild@v1.1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: node example/render_window_display_async.js # TODO(XadillaX): Do unit tests.
+        cache: npm
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - uses: microsoft/setup-msbuild@v2
+    - name: Install software OpenGL
+      uses: ssciwr/setup-mesa-dist-win@v3
+      with:
+        version: "26.0.3"
+    - run: npm ci
+    - run: npm run lint
+    - run: npm run test:types
+    - run: npm run test:runtime
+    - run: npm run test:ported
