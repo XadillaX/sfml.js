@@ -5,6 +5,36 @@ const path = require('node:path');
 const download = require('download');
 const urls = require('./lib_downloader_urls.cjs');
 
+/**
+ * 校验实际版本及代码生成所需头文件，避免复用切换分支后残缺的安装目录。
+ * @param {string} directory SFML 安装或解压目录。
+ * @param {string} library 当前平台的系统库相对路径。
+ */
+async function validateInstallation(directory, library) {
+  const config = await fs.readFile(
+    path.join(directory, 'include/SFML/Config.hpp'), 'utf8'
+  );
+  const version = [ 'MAJOR', 'MINOR', 'PATCH' ]
+    .map(part => {
+      const pattern = new RegExp(`#define\\s+SFML_VERSION_${part}\\s+(\\d+)`);
+      return config.match(pattern)?.[1];
+    })
+    .join('.');
+  if (version !== urls.version) {
+    throw new Error(`Unexpected SFML headers: ${version}`);
+  }
+  const headers = [
+    'Window/WindowEnums', 'Window/Cursor', 'Window/Keyboard', 'Window/Mouse',
+    'Window/Joystick', 'Window/Sensor', 'Network/Ftp', 'Network/Sftp',
+  ];
+  await Promise.all([
+    fs.access(path.join(directory, library)),
+    ...headers.map(header => fs.access(
+      path.join(directory, 'include/SFML', `${header}.hpp`)
+    )),
+  ]);
+}
+
 async function main() {
   const url = urls.get();
   const parent = path.join(__dirname, '../third_party');
@@ -19,8 +49,7 @@ async function main() {
 
   try {
     if ((await fs.readFile(marker, 'utf8')) === identity) {
-      await fs.access(path.join(target, 'include/SFML/Config.hpp'));
-      await fs.access(path.join(target, library));
+      await validateInstallation(target, library);
       console.log(`[sfml.js] Using SFML ${identity}`);
       return;
     }
@@ -47,19 +76,7 @@ async function main() {
       const source = file.linkname.split('/').slice(1).join('/');
       await fs.link(path.join(staging, source), path.join(staging, file.path));
     }
-    const config = await fs.readFile(
-      path.join(staging, 'include/SFML/Config.hpp'), 'utf8'
-    );
-    const version = [ 'MAJOR', 'MINOR', 'PATCH' ]
-      .map(part => {
-        const pattern = new RegExp(`#define\\s+SFML_VERSION_${part}\\s+(\\d+)`);
-        return config.match(pattern)?.[1];
-      })
-      .join('.');
-    if (version !== urls.version) {
-      throw new Error(`Unexpected SFML headers: ${version}`);
-    }
-    await fs.access(path.join(staging, library));
+    await validateInstallation(staging, library);
     await fs.writeFile(path.join(staging, '.installed'), identity);
     await fs.rm(target, { recursive: true, force: true });
     await fs.rename(staging, target);

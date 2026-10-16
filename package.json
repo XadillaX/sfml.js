@@ -22,14 +22,16 @@
     }
   },
   "scripts": {
-    "install": "npm run download:sfml && npm run build:native",
+    "install": "npm run build:native",
     "prepare": "npm run build:ts",
     "download:sfml": "node tools/lib_downloader.cjs",
     "generate:window": "node tools/generate-window-constants.cjs",
     "generate:network": "node tools/generate-network-constants.cjs",
+    "prebuild:native": "npm run download:sfml",
     "build:native": "npm run generate:window && node-gyp rebuild",
     "postbuild:native": "npm run configure:lsp",
     "configure:lsp": "node tools/configure-lsp.cjs",
+    "prebuild:ts": "npm run download:sfml",
     "build:ts": "npm run generate:window && npm run generate:network && tsc -p tsconfig.json",
     "build": "npm run build:native && npm run build:ts",
     "build:docs": "typedoc",
