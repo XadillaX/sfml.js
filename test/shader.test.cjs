@@ -135,8 +135,11 @@ test('three-stage load overloads and geometry capability', async t => {
   assert.equal(await program.loadFromFile(...paths), expected);
   assert.equal(await program.loadFromStream(...sources.map(
     code => new sf.MemoryInputStream(Buffer.from(code)))), expected);
+  // 几何阶段必须与顶点阶段链接；硬件支持不代表单独加载即可形成程序。
+  const handle = program.getNativeHandle();
   assert.equal(await program.loadFromMemory(
-    sources[1], sf.ShaderType.Geometry), expected);
+    sources[1], sf.ShaderType.Geometry), false);
+  assert.equal(program.getNativeHandle(), handle);
 });
 
 test('failed loads preserve uniforms and program; stream failures propagate',

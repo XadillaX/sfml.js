@@ -11,7 +11,11 @@ const native = require('../build/Release/sfml.node');
 
 async function fixture(t) {
   const directory = await mkdtemp(join(tmpdir(), 'sfml-audio-subclass-'));
-  t.after(() => rm(directory, { recursive: true, force: true }));
+  const resources = [];
+  t.after(async () => {
+    for (const music of resources) await music.close();
+    await rm(directory, { recursive: true, force: true, maxRetries: 5 });
+  });
   assert.equal(sf.PlaybackDevice.setDeviceToNull(), true);
   const samples = Int16Array.from({ length: 4096 }, (_, i) => i - 2048);
   const buffer = new sf.SoundBuffer();
@@ -19,12 +23,15 @@ async function fixture(t) {
     [ sf.SoundChannel.Mono ]), true);
   const filename = join(directory, 'source.wav');
   assert.equal(await buffer.saveToFile(filename), true);
-  return { filename, samples, bytes: await readFile(filename) };
+  return {
+    filename, samples, bytes: await readFile(filename),
+    own(music) { resources.push(music); return music; },
+  };
 }
 
 test('Music subclasses transform decoded PCM through super on their JS thread',
   async t => {
-    const { filename, samples, bytes } = await fixture(t);
+    const { filename, samples, bytes, own } = await fixture(t);
     const queues = [];
     const open = native.openAudioMusicStream;
     t.mock.method(native, 'openAudioMusicStream', (...args) => {
@@ -50,8 +57,7 @@ test('Music subclasses transform decoded PCM through super on their JS thread',
         await super.onSeek(offset);
       }
     }
-    const music = new Filtered();
-    t.after(() => music.close());
+    const music = own(new Filtered());
     for (const load of [
       () => music.openFromFile(filename),
       () => music.openFromMemory(bytes),
@@ -72,16 +78,15 @@ test('Music subclasses transform decoded PCM through super on their JS thread',
 
 test('Music without overridden callbacks keeps its direct native path',
   async t => {
-    const { filename } = await fixture(t);
-    const music = new sf.Music();
-    t.after(() => music.close());
+    const { filename, own } = await fixture(t);
+    const music = own(new sf.Music());
     assert.equal(await music.openFromFile(filename), true);
     assert.equal(music.getWorkerStats(), undefined);
   });
 
 test('Music subclass seek and loop defaults preserve loop points',
   async t => {
-    const { filename } = await fixture(t);
+    const { filename, own } = await fixture(t);
     class Observed extends sf.Music {
       seeks = [];
       loops = [];
@@ -95,8 +100,7 @@ test('Music subclass seek and loop defaults preserve loop points',
         return sample;
       }
     }
-    const music = new Observed();
-    t.after(() => music.close());
+    const music = own(new Observed());
     assert.equal(await music.openFromFile(filename), true);
     music.setLoopPoints({ offset: sf.milliseconds(128),
       length: sf.milliseconds(128) });
@@ -134,7 +138,7 @@ test('Music subclass errors reject open and remain observable through close',
 
 test('Music closes a pending callback before allowing a new session',
   async t => {
-    const { filename } = await fixture(t);
+    const { filename, own } = await fixture(t);
     let enter;
     let release;
     const entered = new Promise(resolve => { enter = resolve; });
@@ -150,8 +154,7 @@ test('Music closes a pending callback before allowing a new session',
         return await super.onGetData(chunk);
       }
     }
-    const music = new Pending();
-    t.after(() => music.close());
+    const music = own(new Pending());
     const opening = music.openFromFile(filename);
     await entered;
     let done = false;
@@ -167,7 +170,7 @@ test('Music closes a pending callback before allowing a new session',
 
 test('Music callback can await close without waiting for itself',
   async t => {
-    const { filename } = await fixture(t);
+    const { filename, own } = await fixture(t);
     class SelfClosing extends sf.Music {
       completed = false;
       async onGetData(chunk) {
@@ -177,8 +180,7 @@ test('Music callback can await close without waiting for itself',
         return false;
       }
     }
-    const music = new SelfClosing();
-    t.after(() => music.close());
+    const music = own(new SelfClosing());
     assert.equal(await music.openFromFile(filename), false);
     assert.equal(music.completed, true);
     await music.close();
@@ -186,7 +188,7 @@ test('Music callback can await close without waiting for itself',
 
 test('Music callback rejects recursive open without deadlocking the session',
   async t => {
-    const { filename } = await fixture(t);
+    const { filename, own } = await fixture(t);
     class Recursive extends sf.Music {
       async onGetData(chunk) {
         await assert.rejects(this.openFromFile(filename),
@@ -194,8 +196,7 @@ test('Music callback rejects recursive open without deadlocking the session',
         return await super.onGetData(chunk);
       }
     }
-    const music = new Recursive();
-    t.after(() => music.close());
+    const music = own(new Recursive());
     assert.equal(await music.openFromFile(filename), true);
   });
 

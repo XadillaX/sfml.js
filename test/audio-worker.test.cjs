@@ -90,9 +90,10 @@ test('Effect Worker processes native float slots with partial consumption',
       await until(() => effect.session.getStats().processed === 64n);
       result = native.audioQueueProbe(effect.handle, 2, null, 64, 1);
       assert.deepEqual(new Float32Array(result.samples), input.map(x => x / 4));
-      await delay(15);
-      result = native.audioQueueProbe(effect.handle, 2, null, 64, 1);
-      assert.equal(result.outputFrames, 0);
+      await until(() => {
+        result = native.audioQueueProbe(effect.handle, 2, null, 64, 1);
+        return result.outputFrames === 0;
+      });
     } finally { await effect.session.close(); }
   });
 

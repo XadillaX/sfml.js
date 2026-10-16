@@ -9,13 +9,14 @@ const native = require('../build/Release/sfml.node');
 const { graphicsNative, graphicsContext } =
   require('../dist/internal/graphics-state');
 const { writeView } = require('../dist/graphics/view');
+const windowHost = require('./fixtures/window-host.cjs');
 const V = sf.Vector2u;
 const F = sf.Vector2f;
 const I = sf.Vector2i;
 
 function windowFixture(t, options = {}) {
   const window = new sf.RenderWindow(new V(80, 60),
-    'RenderWindow test', options);
+    'RenderWindow test', { style: sf.Style.None, ...options });
   window.setVerticalSyncEnabled(false);
   t.after(() => window.close());
   return window;
@@ -239,6 +240,7 @@ test('RenderWindow recreation resets views and supports external handles',
     window.setView(new sf.View(new F(2, 3), new F(4, 5)));
     window.clear(sf.Color.Red);
     window.create(new sf.VideoMode(new V(96, 64)), 'Recreated', {
+      style: sf.Style.None,
       settings: { depthBits: 24, stencilBits: 8 },
     });
     assert.equal(window.getDefaultView(), defaultView);
@@ -247,18 +249,20 @@ test('RenderWindow recreation resets views and supports external handles',
     window.clear(sf.Color.Cyan, 0);
     window.clearStencil(1);
     assert.equal(colorAt(capture(window)), sf.Color.Cyan.toInteger());
-    const embedded = new sf.RenderWindow(window.getNativeHandle());
+    const host = windowHost(window);
+    const embedded = new sf.RenderWindow(host.handle);
     try {
       assert.equal(embedded.isOpen(), true);
-      assert.equal(embedded.getNativeHandle(), window.getNativeHandle());
+      assert.equal(embedded.getNativeHandle(), host.handle);
       embedded.clear(sf.Color.Yellow);
       assert.equal(colorAt(capture(embedded)), sf.Color.Yellow.toInteger());
     } finally {
       embedded.close();
+      host.close();
     }
     window.close();
     window.clear(sf.Color.Red);
-    window.create(new V(64, 48), 'Reopened');
+    window.create(new V(64, 48), 'Reopened', { style: sf.Style.None });
     window.clear(sf.Color.Blue);
     assert.equal(colorAt(capture(window)), sf.Color.Blue.toInteger());
   });

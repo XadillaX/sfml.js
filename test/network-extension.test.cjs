@@ -136,6 +136,8 @@ test('TCP rebuild cancels queued and pending reads and a backpressured write',
     t.after(() => socket.shutdown());
     const first = await pair(t);
     first.client.pause();
+    // 阻止操作系统缓冲区提前接收整次写入，保证重建时仍有待完成的写操作。
+    first.accepted.cork();
     socket.open(first.accepted);
     const reads = [ socket.receive(Buffer.alloc(1)),
       socket.receive(Buffer.alloc(1)) ];

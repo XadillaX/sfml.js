@@ -7,6 +7,7 @@ const sf = require('..');
 const native = require('../build/Release/sfml.node');
 const { graphicsNative } = require('../dist/internal/graphics-state');
 const { windowEvent } = require('../dist/window/event');
+const windowHost = require('./fixtures/window-host.cjs');
 const V = sf.Vector2u;
 const I = sf.Vector2i;
 
@@ -229,13 +230,15 @@ test('real window resize, settings, wait timeout and recreation', () => {
     window.display();
     window.create(new V(96, 64), 'recreated');
     assert.equal(window.isOpen(), true);
-    const embedded = new sf.Window(window.getNativeHandle());
+    const host = windowHost(window);
+    const embedded = new sf.Window(host.handle);
     try {
       assert.equal(embedded.isOpen(), true);
-      assert.equal(embedded.getNativeHandle(), window.getNativeHandle());
+      assert.equal(embedded.getNativeHandle(), host.handle);
       assert.equal(sf.equal(embedded.getSize(), window.getSize()), true);
     } finally {
       embedded.close();
+      host.close();
     }
     assert.equal(window.setActive(), true);
   } finally {

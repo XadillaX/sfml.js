@@ -13,6 +13,38 @@ namespace {
 
 std::weak_ptr<sf::Cursor> watchedCursor;
 
+#ifdef _WIN32
+// Use a genuine external control: wrapping an SFML HWND twice recursively
+// chains SFML's Win32 window procedure back to itself.
+struct WindowHost {
+  HWND handle{};
+  ~WindowHost() { if (handle) DestroyWindow(handle); }
+};
+
+NAN_METHOD(CreateWindowHost) {
+  auto owner = std::make_shared<WindowHost>();
+  owner->handle = CreateWindowExW(0, L"STATIC", L"SFML external host",
+      WS_POPUP | WS_VISIBLE, 0, 0, Nan::To<int>(info[0]).FromJust(),
+      Nan::To<int>(info[1]).FromJust(), nullptr, nullptr,
+      GetModuleHandleW(nullptr), nullptr);
+  if (!owner->handle) return Nan::ThrowError("Cannot create external window");
+  auto result = Nan::New<v8::Object>();
+  Nan::Set(result, Nan::New("handle").ToLocalChecked(),
+      v8::BigInt::NewFromUnsigned(info.GetIsolate(),
+          reinterpret_cast<std::uintptr_t>(owner->handle))).FromJust();
+  Nan::Set(result, Nan::New("owner").ToLocalChecked(),
+      sfmljs::SharedHandle<WindowHost>::Create(owner)).FromJust();
+  info.GetReturnValue().Set(result);
+}
+
+NAN_METHOD(CloseWindowHost) {
+  auto* host = sfmljs::SharedHandle<WindowHost>::From(info[0]);
+  if (!host || !host->owner()->handle) return;
+  DestroyWindow(host->owner()->handle);
+  host->owner()->handle = nullptr;
+}
+#endif
+
 NAN_METHOD(WatchCursor) {
   auto* cursor = sfmljs::SharedHandle<sf::Cursor>::From(info[0]);
   if (cursor) watchedCursor = cursor->owner();
@@ -128,6 +160,10 @@ NAN_METHOD(DrawWindowTexture) {
 }  // namespace
 
 NAN_MODULE_INIT(InitializeWindowProbes) {
+#ifdef _WIN32
+  Nan::SetMethod(target, "createWindowHost", CreateWindowHost);
+  Nan::SetMethod(target, "closeWindowHost", CloseWindowHost);
+#endif
   Nan::SetMethod(target, "drawWindowTexture", DrawWindowTexture);
   Nan::SetMethod(target, "watchCursor", WatchCursor);
   Nan::SetMethod(target, "isWatchedCursorAlive", IsWatchedCursorAlive);

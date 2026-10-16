@@ -149,7 +149,8 @@ test('default output and restoration affect SFML without redirecting stderr',
       sf.err().write('restored\\n');
     `);
     assert.equal(result.stdout, 'captured\n');
-    assert.equal(result.stderr, 'default\nordinary stderr\nrestored\n');
+    assert.equal(result.stderr.replace(/\r\n/g, '\n'),
+      'default\nordinary stderr\nrestored\n');
   });
 
 test('an idle redirect does not keep Node alive and beforeExit drains logs',
@@ -266,19 +267,20 @@ test('termination releases a Worker-owned route back to the original output',
       const sf = require(${entry});
       (async () => {
         const worker = new Worker(\`
-          const { parentPort } = require('node:worker_threads');
-          const sf = require(${entry});
+          const { parentPort, workerData } = require('node:worker_threads');
+          const sf = require(workerData);
           sf.setErrorOutput(null);
           parentPort.postMessage('ready');
           setInterval(() => {}, 1000);
-        \`, { eval: true });
+        \`, { eval: true, workerData: ${entry} });
         await once(worker, 'message');
         sf.err().write('hidden');
         await worker.terminate();
         sf.err().write('restored after worker\\n');
       })();
     `);
-    assert.equal(result.stderr, 'restored after worker\n');
+    assert.equal(result.stderr.replace(/\r\n/g, '\n'),
+      'restored after worker\n');
   });
 
 test('redirected streams stay alive until reset and are then released',

@@ -7,6 +7,7 @@ const native = require('../build/Release/sfml.node');
 const { graphicsNative } = require('../dist/internal/graphics-state');
 const V = sf.Vector2u;
 const F = sf.Vector2f;
+const options = { style: sf.Style.None };
 
 // Model only the notification boundary; windows and views remain real.
 // This suite checks JS dispatch, not whether SFML emitted a notification.
@@ -56,13 +57,13 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         calls.push('hook');
       }
     }
-    const window = new Child(new V(80, 60), 'JS construction');
+    const window = new Child(new V(80, 60), 'JS construction', options);
     t.after(() => window.close());
     assert.deepEqual(calls, []);
-    window.create(new V(96, 64), 'JS explicit');
+    window.create(new V(96, 64), 'JS explicit', options);
     assert.deepEqual(calls, [ 'create', 'hook' ]);
     window.onCreate = () => calls.push('replacement');
-    window.create(new V(80, 60), 'JS dynamic override');
+    window.create(new V(80, 60), 'JS dynamic override', options);
     assert.deepEqual(calls, [ 'create', 'hook', 'create', 'replacement' ]);
   });
 
@@ -76,7 +77,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
           this.calls.push('resize');
         }
       }
-      const window = new Child(new V(80, 60), 'JS sizes');
+      const window = new Child(new V(80, 60), 'JS sizes', options);
       t.after(() => window.close());
       for (const [ method, argument ] of [
         [ 'setSize', new V(90, 70) ],
@@ -151,11 +152,11 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         super.onResize();
         this.calls.push('resize');
         this.close();
-        this.create(new V(96, 64), 'Nested generation');
+        this.create(new V(96, 64), 'Nested generation', options);
         assert.deepEqual(this.calls, [ 'resize', 'create' ]);
       }
     }
-    const window = new Child(new V(80, 60), 'Initial generation');
+    const window = new Child(new V(80, 60), 'Initial generation', options);
     t.after(() => window.close());
     emit(window, 'resize', 'resize');
     window.setMinimumSize(undefined);
@@ -176,16 +177,16 @@ test('RenderWindow JS view initialization precedes hooks and nested creation',
           new F(this.getSize().x, this.getSize().y)), true);
         this.setView(new sf.View(new F(7, 9), new F(40, 30)));
         if (this.calls === 1) {
-          this.create(new V(96, 64), 'Nested view');
+          this.create(new V(96, 64), 'Nested view', options);
         }
       }
     }
-    const window = new Child(new V(80, 60), 'Base views');
+    const window = new Child(new V(80, 60), 'Base views', options);
     t.after(() => window.close());
     assert.equal(sf.equal(window.getDefaultView().getSize(), new F(80, 60)),
       true);
     assert.equal(window.calls, 0);
-    window.create(new V(80, 60), 'View hooks');
+    window.create(new V(80, 60), 'View hooks', options);
     assert.equal(window.calls, 2);
     assert.equal(sf.equal(window.getDefaultView().getSize(), new F(96, 64)),
       true);

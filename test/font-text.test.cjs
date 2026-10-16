@@ -201,16 +201,20 @@ test('Font atlas metadata follows growth and smoothing', async () => {
 
 test('Font relative paths are captured before async work', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'sfml-font-'));
+  const font = new sf.Font();
   try {
     await copyFile(filename, join(dir, 'font.ttf'));
     const previous = process.cwd();
     let pending;
     try {
       process.chdir(dir);
-      pending = new sf.Font().openFromFile('font.ttf');
+      pending = font.openFromFile('font.ttf');
     } finally { process.chdir(previous); }
     assert.equal(await pending, true);
-  } finally { await rm(dir, { recursive: true, force: true }); }
+  } finally {
+    await font.openFromMemory(await readFile(filename));
+    await rm(dir, { recursive: true, force: true, maxRetries: 5 });
+  }
 });
 
 test('Text defaults, options, copy and unloaded font validation', async () => {

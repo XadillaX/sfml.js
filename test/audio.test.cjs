@@ -113,6 +113,7 @@ test('Sound control fields execute SFML and result vectors are independent',
 test('Audio WAV read/write, seek, memory loading and Music share SFML codecs',
   async () => {
     const directory = await mkdtemp(join(tmpdir(), 'sfml-audio-'));
+    const music = new sf.Music();
     try {
       const path = join(directory, 'samples.wav');
       const { buffer, samples } = makeBuffer();
@@ -141,7 +142,6 @@ test('Audio WAV read/write, seek, memory loading and Music share SFML codecs',
       await Promise.all([ first, second, output.close() ]);
       assert.equal(await memory.loadFromFile(written), true);
       assert.deepEqual(memory.getSamples(), samples);
-      const music = new sf.Music();
       assert.equal(await music.openFromFile(path), true);
       assert.equal(music.getSampleRate(), 44100);
       assert.equal(music.getChannelCount(), 1);
@@ -154,7 +154,10 @@ test('Audio WAV read/write, seek, memory loading and Music share SFML codecs',
       music.play();
       await sf.sleep(sf.milliseconds(20));
       music.stop();
-    } finally { await rm(directory, { recursive: true, force: true }); }
+    } finally {
+      await music.close();
+      await rm(directory, { recursive: true, force: true });
+    }
   });
 
 test('Listener fields and playback device queries use native state', () => {

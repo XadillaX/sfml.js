@@ -6,8 +6,10 @@ const { setImmediate: nextTurn } = require('node:timers/promises');
 const sf = require('..');
 const native = require('../build/Release/sfml.node');
 const { graphicsNative } = require('../dist/internal/graphics-state');
+const windowHost = require('./fixtures/window-host.cjs');
 const V = sf.Vector2u;
 const F = sf.Vector2f;
+const options = { style: sf.Style.None };
 
 for (const Base of [ sf.Window, sf.RenderWindow ]) {
   test(`${Base.name} constructors never enter derived private fields`, () => {
@@ -30,7 +32,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         super.onResize();
       }
     }
-    const window = new Child(new V(80, 60), 'Constructor hooks');
+    const window = new Child(new V(80, 60), 'Constructor hooks', options);
     try {
       assert.equal(window.isOpen(), true);
       assert.deepEqual(calls, []);
@@ -38,10 +40,13 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         assert.equal(sf.equal(window.getView().getSize(), new F(80, 60)),
           true);
       }
-      const embedded = new Child(window.getNativeHandle());
-      embedded.close();
+      const host = windowHost(window);
+      try {
+        const embedded = new Child(host.handle);
+        embedded.close();
+      } finally { host.close(); }
       assert.deepEqual(calls, []);
-      window.create(new V(96, 64), 'Explicit hooks');
+      window.create(new V(96, 64), 'Explicit hooks', options);
       assert.deepEqual(calls, [ 'create override', 'onCreate' ]);
     } finally {
       window.close();
@@ -54,7 +59,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         #calls = [];
         constructor() {
           super();
-          this.create(new V(80, 60), 'Ready fields');
+          this.create(new V(80, 60), 'Ready fields', options);
         }
         onCreate() {
           super.onCreate();
@@ -65,18 +70,21 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
       }
       const window = new Child();
       const embedded = new Child();
+      let host;
       try {
         assert.deepEqual(window.calls, [ 'create' ]);
-        window.create(new V(96, 64), 'Recreated');
+        window.create(new V(96, 64), 'Recreated', options);
         assert.deepEqual(window.calls, [ 'create', 'create' ]);
-        embedded.create(window.getNativeHandle());
+        host = windowHost(window);
+        embedded.create(host.handle);
         assert.deepEqual(embedded.calls, [ 'create', 'create' ]);
         embedded.close();
         window.close();
-        window.create(new V(80, 60), 'Reopened');
+        window.create(new V(80, 60), 'Reopened', options);
         assert.deepEqual(window.calls, [ 'create', 'create', 'create' ]);
       } finally {
         embedded.close();
+        host?.close();
         window.close();
       }
     });
@@ -90,7 +98,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
           this.calls.push('resize');
         }
       }
-      const window = new Child(new V(80, 60), 'Resize hooks');
+      const window = new Child(new V(80, 60), 'Resize hooks', options);
       try {
         window.handleEvents(() => {});
         for (const method of [ 'pollEvent', 'waitEvent', 'handleEvents' ]) {
@@ -137,11 +145,11 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
       }
       const window = new Child();
       try {
-        assert.throws(() => window.create(new V(80, 60), 'Throwing hook'),
+        assert.throws(() => window.create(new V(80, 60), 'Throwing', options),
           error => error === failure);
         window.pollEvent();
         assert.equal(window.calls, 1);
-        window.create(new V(96, 64), 'Recovered');
+        window.create(new V(96, 64), 'Recovered', options);
         assert.equal(window.calls, 2);
       } finally {
         window.close();
@@ -157,7 +165,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
           this.calls.push('resize');
         }
       }
-      const window = new Child(new V(80, 60), 'Constraint notices');
+      const window = new Child(new V(80, 60), 'Constraint notices', options);
       t.after(() => window.close());
       window.handleEvents(() => {});
       const expected = [];
@@ -196,7 +204,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
           this.close();
         }
       }
-      const window = new Child(new V(80, 60), 'Queued notices');
+      const window = new Child(new V(80, 60), 'Queued notices', options);
       try {
         // Native-only calls leave two real SFML resize notices pending.
         native.windowCommand(window[graphicsNative], 'size', 90, 70);
@@ -204,7 +212,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         window.setMinimumSize(undefined);
         assert.deepEqual(window.calls, [ 'resize' ]);
         assert.equal(window.isOpen(), false);
-        window.create(new V(80, 60), 'New generation');
+        window.create(new V(80, 60), 'New generation', options);
         assert.deepEqual(window.calls, [ 'resize', 'create' ]);
       } finally {
         window.close();
@@ -222,7 +230,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
           if (this.calls === 1) throw failure;
         }
       }
-      const window = new Child(new V(80, 60), 'Resize failure');
+      const window = new Child(new V(80, 60), 'Resize failure', options);
       try {
         native.windowCommand(window[graphicsNative], 'size', 90, 70);
         native.windowCommand(window[graphicsNative], 'size', 100, 80);
@@ -246,14 +254,14 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
         this.calls.push(this.getSize().x);
         if (this.calls.length === 1) {
           this.close();
-          this.create(new V(96, 64), 'Nested create');
+          this.create(new V(96, 64), 'Nested create', options);
           assert.deepEqual(this.calls, [ 80, 96 ]);
         }
       }
     }
     const window = new Child();
     try {
-      window.create(new V(80, 60), 'Outer create');
+      window.create(new V(80, 60), 'Outer create', options);
       assert.deepEqual(window.calls, [ 80, 96 ]);
       assert.equal(window.getSize().x, 96);
     } finally {
@@ -266,7 +274,7 @@ for (const Base of [ sf.Window, sf.RenderWindow ]) {
       class Child extends Base {
         onCreate() { super.onCreate(); }
       }
-      let window = new Child(new V(80, 60), 'Collect hooks');
+      let window = new Child(new V(80, 60), 'Collect hooks', options);
       const weak = new WeakRef(window);
       window.close();
       window = null;
@@ -300,7 +308,7 @@ test('RenderWindow initializes views before hooks without overwriting setView',
     const window = new Child();
     try {
       for (const width of [ 80, 96 ]) {
-        window.create(new V(width, 60), 'View hook');
+        window.create(new V(width, 60), 'View hook', options);
         assert.equal(sf.equal(window.getView().getCenter(), new F(7, 9)),
           true);
         window.clear(sf.Color.Green);
