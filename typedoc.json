@@ -1,0 +1,14 @@
+{
+  "name": "sfml.js",
+  "entryPoints": [
+    "src/index.ts"
+  ],
+  "tsconfig": "tsconfig.json",
+  "out": "build/docs",
+  "plugin": [
+    "typedoc-material-theme"
+  ],
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeInternal": true
+}

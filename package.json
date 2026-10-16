@@ -1,16 +1,7 @@
 {
   "name": "sfml.js",
-  "version": "0.0.1",
+  "version": "1.0.0-rc.1",
   "description": "SFML's Node.js binding.",
-  "main": "lib/sfml.js",
-  "scripts": {
-    "build-dummy-debug": "node-gyp rebuild --debug && mv build/Debug build/Release",
-    "generate_compile_commands": "node-gyp -- configure -f=gyp.generator.compile_commands_json.py && mv Release/compile_commands.json compile_commands.json && rm -rf Release && rm -rf Debug",
-    "clang-format": "./tools/clang_format.js --style=file -i ./src/*.cc ./src/*.h ./src/drawable/*.cc ./src/drawable/*.h ./src/sound/*.cc ./src/sound/*.h ./src/workers/*.h",
-    "cpplint": "./third_party/cpplint/cpplint.py src/*.* src/**/*",
-    "jslint": "./node_modules/.bin/eslint ./**/*.js",
-    "install": "node tools/lib_downloader.js && node-gyp rebuild"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/XadillaX/node-sfml.git"
@@ -21,35 +12,84 @@
     "url": "https://github.com/XadillaX/node-sfml/issues"
   },
   "homepage": "https://github.com/XadillaX/node-sfml#readme",
-  "dependencies": {
-    "clang-format": "^1.4.0",
-    "download": "^8.0.0",
-    "nan": "^2.15.0",
-    "node-gyp": "^8.2.0",
-    "spidex": "^2.2.1",
-    "tiny-spinner": "^1.1.0"
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "all-contributors-cli": "^6.20.0",
-    "eslint": "^7.0.0",
-    "eslint-config-egg": "^9.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jsdoc": "^37.0.3",
-    "eslint-plugin-node": "^11.1.0",
-    "typedoc": "0.28.3",
-    "typedoc-material-theme": "1.4.0",
-    "typescript": "~5.0.0"
+  "scripts": {
+    "install": "npm run download:sfml && npm run build:native",
+    "prepare": "npm run build:ts",
+    "download:sfml": "node tools/lib_downloader.cjs",
+    "generate:window": "node tools/generate-window-constants.cjs",
+    "generate:network": "node tools/generate-network-constants.cjs",
+    "build:native": "npm run generate:window && node-gyp rebuild",
+    "postbuild:native": "npm run configure:lsp",
+    "configure:lsp": "node tools/configure-lsp.cjs",
+    "build:ts": "npm run generate:window && npm run generate:network && tsc -p tsconfig.json",
+    "build": "npm run build:native && npm run build:ts",
+    "build:docs": "typedoc",
+    "demo": "npm run build && node examples/sprites.cjs",
+    "demo:types": "npm run build && node examples/all-types.cjs",
+    "demo:image": "npm run build && node examples/image.cjs",
+    "demo:texture": "npm run build && node examples/texture.cjs",
+    "demo:sprite": "npm run build && node examples/sprite.cjs",
+    "demo:render-texture": "npm run build && node examples/render-texture.cjs",
+    "demo:drawable": "npm run build && node examples/drawable.cjs",
+    "demo:vertices": "npm run build && node examples/vertex-array.cjs",
+    "demo:text": "npm run build && node examples/text.cjs",
+    "demo:window": "npm run build && node examples/window.cjs",
+    "demo:system-window": "npm run build && node examples/system-window.cjs",
+    "demo:sleep-err": "npm run build && node examples/sleep-err.cjs",
+    "demo:audio": "npm run build && node examples/audio.cjs",
+    "demo:network": "npm run build:ts && node examples/network.cjs",
+    "demo:ported": "npm run build:ts && node examples/ported/render_window.cjs",
+    "test:ported": "npm run build:ts && node tools/test-ported-examples.cjs",
+    "lint": "eslint --ext .ts,.cjs src tools test examples .eslintrc.cjs",
+    "jslint": "npm run lint",
+    "test:types": "tsc -p test/tsconfig.json",
+    "test:runtime": "node tools/run-tests.cjs",
+    "test": "npm run lint && npm run build && npm run test:types && npm run test:runtime"
   },
   "files": [
     "binding.gyp",
-    "index.d.ts",
-    "lib/**/*",
-    "src/**/*",
-    "third_party/sfml/include/**/*",
-    "third_party/sfm/platform/.gitkeep",
-    "tools/*",
-    "tsconfig.json"
-  ]
+    "dist/",
+    "native/",
+    "src/",
+    "test/native/",
+    "tools/lib_downloader*.cjs",
+    "tools/generate-*-constants.cjs",
+    "tools/configure-lsp.cjs",
+    "tsconfig.json",
+    "docs/"
+  ],
+  "engines": {
+    "node": "^18.19.0 || >=20.5.0"
+  },
+  "dependencies": {
+    "basic-ftp": "6.2.1",
+    "download": "8.0.0",
+    "ipaddr.js": "2.5.0",
+    "nan": "2.29.0",
+    "node-gyp": "11.5.0",
+    "ssh2": "1.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "@types/ssh2": "1.15.6",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "typedoc": "0.28.3",
+    "typedoc-material-theme": "1.4.0",
+    "typescript": "5.0.4"
+  }
 }

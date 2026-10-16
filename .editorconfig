@@ -8,14 +8,11 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[vcbuild.bat]
-end_of_line = crlf
-
 [Makefile]
 indent_size = 8
 indent_style = tab
 
-[{deps}/**]
+[{node_modules,third_party,build,dist}/**]
 charset = unset
 end_of_line = unset
 indent_size = unset

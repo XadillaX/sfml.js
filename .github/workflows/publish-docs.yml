@@ -1,34 +1,41 @@
 name: Publish Docs
+
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-docs
+  cancel-in-progress: false
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      - run: npm install
-      - run: npx typedoc --plugin typedoc-material-theme index.d.ts
-      - run: mv docs docs.new
-      - run: git fetch --depth=1 origin gh-pages
-      - run: git checkout gh-pages
-      - run: rm -rf docs
-      - run: mv docs.new docs
-      - run: rm -f stamp
-      - run: date > stamp.txt
-      - run: cp CNAME docs/
-      - run: git add docs stamp.txt
-      - run: git config --global user.name 'XadillaX'
-      - run: git config --global user.email 'XadillaX@users.noreply.github.com'
-      - run: "git commit -m 'docs: update'"
-      - run: git push origin gh-pages
-      - run: git checkout main
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build:docs
+      - name: Publish to gh-pages
+        run: |
+          git fetch --depth=1 origin gh-pages
+          git worktree add --detach build/gh-pages FETCH_HEAD
+          cp build/gh-pages/CNAME build/docs/CNAME
+          touch build/docs/.nojekyll
+          rm -rf build/gh-pages/docs
+          cp -R build/docs build/gh-pages/docs
+          git -C build/gh-pages config user.name 'github-actions[bot]'
+          git -C build/gh-pages config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C build/gh-pages add docs
+          if git -C build/gh-pages diff --cached --quiet; then
+            exit 0
+          fi
+          git -C build/gh-pages commit -m 'docs: update'
+          git -C build/gh-pages push origin HEAD:gh-pages
