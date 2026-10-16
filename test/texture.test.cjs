@@ -353,17 +353,18 @@ test('Texture async decoding yields to the event loop and retains its owner',
     const encoded = await fixture(1024, 1024).saveToMemory('png');
     let texture = new sf.Texture();
     const reference = new WeakRef(texture);
+    // Observe a loop turn without depending on the platform's timer precision.
+    let yielded = false;
+    const turn = setImmediate().then(() => { yielded = true; });
     const pending = Array.from({ length: 4 },
       () => texture.loadFromMemory(encoded));
     texture = null;
-    let ticks = 0;
-    const timer = setInterval(() => ticks++, 1);
     try {
       assert.deepEqual(await Promise.all(pending), [ true, true, true, true ]);
+      assert.equal(yielded, true, 'Decoding must not block the event loop');
     } finally {
-      clearInterval(timer);
+      await turn;
     }
-    assert.ok(ticks > 0, 'Decoding must not block the event loop');
     for (let i = 0; i < 80; i++) {
       await setImmediate();
       global.gc();
