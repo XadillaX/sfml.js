@@ -2,7 +2,10 @@
 
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const download = require('download');
+const { Readable } = require('node:stream');
+const { pipeline } = require('node:stream/promises');
+const tar = require('tar');
+const unzipper = require('unzipper');
 const urls = require('./lib_downloader_urls.cjs');
 
 /**
@@ -61,25 +64,28 @@ async function main() {
   const staging = await fs.mkdtemp(path.join(parent, '.sfml-download-'));
   try {
     console.log(`[sfml.js] Downloading ${url}`);
-    const hardLinks = [];
-    await download(url, staging, {
-      extract: true,
-      strip: 1,
-      filter(file) {
-        if (file.type !== 'link') return true;
-        hardLinks.push(file);
-        return false;
-      },
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(300000),
     });
-    // decompress 仅裁剪条目路径；硬链接需在目标文件写入后同步裁剪并还原。
-    for (const file of hardLinks) {
-      const source = file.linkname.split('/').slice(1).join('/');
-      await fs.link(path.join(staging, source), path.join(staging, file.path));
+    if (!response.ok) {
+      await response.body?.cancel();
+      throw new Error(`SFML download failed: HTTP ${response.status}`);
     }
-    await validateInstallation(staging, library);
-    await fs.writeFile(path.join(staging, '.installed'), identity);
+    const archive = Buffer.from(await response.arrayBuffer());
+    if (archive[0] === 0x50 && archive[1] === 0x4b) {
+      const zip = await unzipper.Open.buffer(archive);
+      await zip.extract({ path: staging });
+    } else {
+      await pipeline(
+        Readable.from([ archive ]), tar.x({ cwd: staging, strict: true })
+      );
+    }
+    // 保留归档根目录完成解压，使硬链接和符号链接由解压库正确还原。
+    const extracted = path.join(staging, `SFML-${urls.version}`);
+    await validateInstallation(extracted, library);
+    await fs.writeFile(path.join(extracted, '.installed'), identity);
     await fs.rm(target, { recursive: true, force: true });
-    await fs.rename(staging, target);
+    await fs.rename(extracted, target);
     console.log(`[sfml.js] Installed SFML ${identity}`);
   } finally {
     await fs.rm(staging, { recursive: true, force: true });

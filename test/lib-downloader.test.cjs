@@ -8,6 +8,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { test } = require('node:test');
 const { promisify } = require('node:util');
+const { gunzipSync } = require('node:zlib');
 
 // 包含生成器所需头文件、库文件和指向归档根目录内库文件的三个硬链接。
 const archive = Buffer.from(
@@ -16,14 +17,27 @@ const archive = Buffer.from(
   'base64'
 );
 
+// 与 tar 夹具内容相同的 ZIP，额外 gzip 压缩以减小测试源码体积。
+const zipArchive = gunzipSync(Buffer.from(
+  // eslint-disable-next-line max-len
+  'H4sIAAAAAAAC/wvwZmYRYWBg4GAo2BMQm7FxiqkhkBcOxEpAHOzm66NrrGeoZ6CfmZecU5qSqg8S0nfOz0vLTNfLKCgI9vP0PX3GO5Sj7PPXTv5iXq5vX753fy/98ok/yOBZ0DGtly/Zp5gc0ZN8IPHozcKEA6wMASgWuhS0GIsBeSARMVQLczKT9AsSK3PyE1O0/U6fvXj2pI+Wl86qK76n12ho6nqhm7Ra7MdRSSBPHIj18Dg9PDMvJb8cSrnmleYWg7xx+Xo4yAeBJzx8fTx1gzwgdjxlwmOJJmFLnEuLivOLyDRfm7D53qmVSfmJRSlk2qBB2Abf/NLiVNp5wCu/srgkMzmbdlEQnJpHfhSo4zHfL7WkPL8oW9+tpIAGwQ8zPTiNJOORs5MCZnYC4uK03BzdYmCop+bqFecTk7GQzVQmaGZKJVCAVGPlMI1FNhOPiYxMIsy4iy8YaGBkIKowQzcPvXRCmFeIs6xCNwO9XEKYsZvkUgqf2ZooZiswklA44TNWG8XYBkaSyiR8BmugGPyIkfiiiHjnOjKRVAIRH7yLmUgoePAZq45iLDMz0eUN8UGbyEx8MYMvAyigmHqAmXDpgs80ZRTTRFiIKlfwGSiHYmA2C6ESJcCblQ2klhcIbYCq97KAeAC2UwLZDwkAAA==',
+  'base64'
+));
+
 /**
- * 在隔离目录中通过本地 HTTP 归档执行真实安装脚本。
+ * 使用自动清理的小型临时夹具，通过本地 HTTP 归档执行真实安装脚本。
  * @param {import('node:test').TestContext} t 注册临时资源清理的测试上下文。
+ * @param {Buffer} payload 本地服务器返回的归档内容。
+ * @param {number} statusCode 本地服务器返回的 HTTP 状态码。
  */
-async function installer(t) {
+async function installer(t, payload = archive, statusCode = 200) {
   const root = path.resolve(__dirname, '..');
   const temporary = await fs.mkdtemp(path.join(os.tmpdir(), 'sfml-installer-'));
   t.after(() => fs.rm(temporary, { recursive: true, force: true }));
+  await fs.symlink(
+    path.join(root, 'node_modules'), path.join(temporary, 'node_modules'),
+    process.platform === 'win32' ? 'junction' : 'dir'
+  );
   const tools = path.join(temporary, 'tools');
   await fs.mkdir(tools);
   for (const file of [ 'lib_downloader.cjs', 'lib_downloader_urls.cjs' ]) {
@@ -32,7 +46,8 @@ async function installer(t) {
   let requests = 0;
   const server = http.createServer((_request, response) => {
     requests++;
-    response.end(archive);
+    response.statusCode = statusCode;
+    response.end(payload);
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(() => new Promise(resolve => server.close(resolve)));
@@ -41,7 +56,6 @@ async function installer(t) {
     cwd: temporary,
     env: {
       ...process.env,
-      NODE_PATH: path.join(root, 'node_modules'),
       SFML_DOWNLOAD_MIRROR: `http://127.0.0.1:${server.address().port}`,
     },
     timeout: 15000,
@@ -74,6 +88,32 @@ test('SFML installer reuses a complete matching installation', async t => {
   await fixture.run();
   assert.equal(fixture.requests(), 1);
 });
+
+test('SFML installer extracts ZIP archives and removes staging files',
+  async t => {
+    const { run, installed } = await installer(t, zipArchive);
+    await run();
+    assert.equal(
+      await fs.readFile(path.join(installed, 'lib/sfml-system.lib'), 'utf8'),
+      'sfml-library-fixture'
+    );
+    assert.deepEqual(await fs.readdir(path.dirname(installed)), [ 'sfml' ]);
+  });
+
+for (const [ payload, statusCode, message ] of [
+  [ archive, 503, /HTTP 503/ ],
+  [ Buffer.from('invalid archive'), 200, /TAR_BAD_ARCHIVE/ ],
+]) {
+  test(`SFML installer preserves existing files on ${message}`, async t => {
+    const { run, installed } = await installer(t, payload, statusCode);
+    await fs.mkdir(installed, { recursive: true });
+    const sentinel = path.join(installed, 'existing');
+    await fs.writeFile(sentinel, 'preserved');
+    await assert.rejects(run(), message);
+    assert.equal(await fs.readFile(sentinel, 'utf8'), 'preserved');
+    assert.deepEqual(await fs.readdir(path.dirname(installed)), [ 'sfml' ]);
+  });
+}
 
 for (const header of [
   'Config.hpp', 'Window/Cursor.hpp', 'Network/Sftp.hpp',
