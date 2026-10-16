@@ -32,7 +32,21 @@ async function main() {
   const staging = await fs.mkdtemp(path.join(parent, '.sfml-download-'));
   try {
     console.log(`[sfml.js] Downloading ${url}`);
-    await download(url, staging, { extract: true, strip: 1 });
+    const hardLinks = [];
+    await download(url, staging, {
+      extract: true,
+      strip: 1,
+      filter(file) {
+        if (file.type !== 'link') return true;
+        hardLinks.push(file);
+        return false;
+      },
+    });
+    // decompress 仅裁剪条目路径；硬链接需在目标文件写入后同步裁剪并还原。
+    for (const file of hardLinks) {
+      const source = file.linkname.split('/').slice(1).join('/');
+      await fs.link(path.join(staging, source), path.join(staging, file.path));
+    }
     const config = await fs.readFile(
       path.join(staging, 'include/SFML/Config.hpp'), 'utf8'
     );

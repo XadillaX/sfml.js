@@ -6,32 +6,42 @@ const { test } = require('node:test');
 const sf = require('..');
 const native = require('../build/Release/sfml.node');
 const {
-  createScene, comparePanels, paneSize,
+  createScene, paneSize,
 } = require('../examples/all-types-scene.cjs');
 const {
   vector3Native, transformNative, transformStorage,
 } = require('../dist/internal/value-storage');
 const { glslNative } = require('../dist/internal/glsl-value');
+const { graphicsNative } = require('../dist/internal/graphics-state');
 
 async function setup() {
-  const left = [ 0, 0 ];
-  const right = [ paneSize[0], 0 ];
-  const cold = createScene(left);
-  const warm = createScene(right, true);
+  // 相同坐标和视口隔离存储路径，避免 GPU 在平移后产生光栅化舍入差异。
+  const cold = createScene([ 0, 0 ]);
+  const warm = createScene([ 0, 0 ], true);
   await Promise.all([ cold.ready, warm.ready ]);
-  const target = new sf.RenderTexture(
-    new sf.Vector2u(paneSize[0] * 2, paneSize[1]));
+  const target = new sf.RenderTexture(new sf.Vector2u(...paneSize));
+  const warmTarget = new sf.RenderTexture(new sf.Vector2u(...paneSize));
   function frame(time, beforeDraw = () => {}) {
     cold.prepare(time);
     warm.prepare(time);
     beforeDraw();
     target.clear(new sf.Color(13, 18, 27));
+    warmTarget.clear(new sf.Color(13, 18, 27));
     cold.draw(target);
-    warm.draw(target);
+    warm.draw(warmTarget);
     global.gc();
     target.display();
+    warmTarget.display();
   }
-  return { left, right, cold, warm, target, frame };
+  function compare() {
+    const pixels = native.readRenderTexturePixels(target[graphicsNative]);
+    const warmPixels =
+      native.readRenderTexturePixels(warmTarget[graphicsNative]);
+    assert.ok(Buffer.from(pixels).equals(Buffer.from(warmPixels)),
+      'pixels differ between storage paths');
+    return pixels;
+  }
+  return { cold, warm, target, frame, compare };
 }
 
 // Audio and Network constructors have separate runtime and protocol tests.
@@ -49,7 +59,7 @@ const nonSceneTypes = new Set([
 
 test('all scene types render identically before/after native wrapping',
   async t => {
-    const { left, right, cold, warm, target, frame } = await setup();
+    const { cold, warm, target, frame, compare } = await setup();
     const expected = Object.keys(sf)
       .filter(name => /^[A-Z]/.test(name) && typeof sf[name] === 'function' &&
         !nonSceneTypes.has(name))
@@ -70,7 +80,7 @@ test('all scene types render identically before/after native wrapping',
       frame(sf.milliseconds(ms));
       cold.verify();
       warm.verify();
-      const pixels = comparePanels(target, left, right);
+      const pixels = compare();
       const hash = createHash('sha256').update(pixels).digest('hex');
       assert.notEqual(hash, previous, 'Animation must actually change pixels');
       previous = hash;
@@ -95,29 +105,29 @@ test('all scene types render identically before/after native wrapping',
 
 test('C++ mutation affects rendered geometry and the pixel check detects it',
   async () => {
-    const { left, right, cold, warm, target, frame } = await setup();
+    const { cold, warm, frame, compare } = await setup();
     const axis = warm.values.Vector3f;
     const time = sf.seconds(1);
     frame(time, () => native.swapVector3(axis[vector3Native]));
     cold.verify();
     warm.verify();
-    assert.throws(() => comparePanels(target, left, right), /pixels differ/);
+    assert.throws(compare, /pixels differ/);
     native.swapVector3(axis[vector3Native]);
     frame(time);
-    comparePanels(target, left, right);
+    compare();
     const transform = warm.values.Transform;
     const original = transform[transformStorage].slice();
     frame(time, () => native.translateTransform(
       transform[transformNative], 13, 5));
     warm.verify();
-    assert.throws(() => comparePanels(target, left, right), /pixels differ/);
+    assert.throws(compare, /pixels differ/);
     transform[transformStorage].set(original);
     frame(time);
-    comparePanels(target, left, right);
+    compare();
   });
 
 test('paused Clock/Time renders the same frame across GC', async () => {
-  const { left, right, cold, warm, target, frame } = await setup();
+  const { cold, warm, frame, compare } = await setup();
   cold.clock.stop();
   const elapsed = cold.clock.getElapsedTime().asMicroseconds();
   const hashes = [];
@@ -127,7 +137,7 @@ test('paused Clock/Time renders the same frame across GC', async () => {
     cold.verify();
     warm.verify();
     hashes.push(createHash('sha256')
-      .update(comparePanels(target, left, right)).digest('hex'));
+      .update(compare()).digest('hex'));
   }
   assert.equal(hashes[0], hashes[1]);
   cold.clock.start();
@@ -136,7 +146,7 @@ test('paused Clock/Time renders the same frame across GC', async () => {
 
 test('native GLSL matrix changes affect real geometry and uploaded color',
   async () => {
-    const { left, right, cold, warm, target, frame } = await setup();
+    const { cold, warm, frame, compare } = await setup();
     const time = sf.seconds(1);
     for (const [ name, index, value ] of [
       [ 'Mat3', 6, 30 ], [ 'Mat4', 0, 0.25 ],
@@ -147,9 +157,9 @@ test('native GLSL matrix changes affect real geometry and uploaded color',
       frame(time);
       cold.verify();
       warm.verify();
-      assert.throws(() => comparePanels(target, left, right), /pixels differ/);
+      assert.throws(compare, /pixels differ/);
       matrix.array = original;
       frame(time);
-      comparePanels(target, left, right);
+      compare();
     }
   });
