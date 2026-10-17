@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "SFML's Node.js binding.",
   "repository": {
     "type": "git",
@@ -73,7 +73,11 @@
     "tools/constant-docs.json",
     "tools/configure-lsp.cjs",
     "tsconfig.json",
-    "docs/"
+    "docs/",
+    "assets/branding/sfml-js-symbol-pentagon.svg",
+    "assets/branding/sfml-js-wordmark.svg",
+    "assets/branding/sfml-js-wordmark-dark.svg",
+    "assets/breakout.png"
   ],
   "engines": {
     "node": "^18.19.0 || >=20.5.0"

@@ -171,8 +171,7 @@ test('Effect attachment preserves playback and rejects concurrent sharing',
       sound.setEffectProcessor(effect);
       assert.equal(sound.getStatus(), sf.SoundStatus.Playing);
       assert.throws(() => other.setEffectProcessor(effect), /one source/);
-      await delay(35);
-      assert.ok(effect.getWorkerStats().processed > 0n);
+      await until(() => effect.getWorkerStats().processed > 0n);
       const copy = new sf.Sound(sound);
       sound.stop();
       sound.setEffectProcessor();
