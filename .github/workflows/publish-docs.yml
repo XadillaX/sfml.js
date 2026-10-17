@@ -21,16 +21,25 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            site/package-lock.json
       - run: npm ci --ignore-scripts
+      - run: npm ci --prefix site
+      - run: npm --prefix site test
       - run: npm run build:docs
       - name: Publish to gh-pages
         run: |
           git fetch --depth=1 origin gh-pages
           git worktree add --detach build/gh-pages FETCH_HEAD
-          cp build/gh-pages/CNAME build/docs/CNAME
-          touch build/docs/.nojekyll
+          if [ -f build/gh-pages/CNAME ]; then
+            cp build/gh-pages/CNAME build/site/CNAME
+          elif [ -f build/gh-pages/docs/CNAME ]; then
+            cp build/gh-pages/docs/CNAME build/site/CNAME
+          fi
+          touch build/site/.nojekyll
           rm -rf build/gh-pages/docs
-          cp -R build/docs build/gh-pages/docs
+          cp -R build/site build/gh-pages/docs
           git -C build/gh-pages config user.name 'github-actions[bot]'
           git -C build/gh-pages config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git -C build/gh-pages add docs

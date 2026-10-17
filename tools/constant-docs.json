@@ -1,0 +1,1318 @@
+{
+  "templates": {
+    "key": [
+      "{key} 键",
+      "{key} キー",
+      "{key} 키"
+    ],
+    "keyboard": [
+      "键盘上的 {key} 键",
+      "キーボードの {key} キー",
+      "키보드의 {key} 키"
+    ],
+    "keyboardPair": [
+      "键盘上的 {key} 和 {other} 键",
+      "キーボードの {key} と {other} のキー",
+      "키보드의 {key} 및 {other} 키"
+    ],
+    "numpad": [
+      "数字小键盘上的 {key} 键",
+      "テンキーの {key} キー",
+      "숫자 키패드의 {key} 키"
+    ],
+    "keypad": [
+      "数字小键盘上的 {key} 键",
+      "テンキーの {key} キー",
+      "숫자 키패드의 {key} 키"
+    ],
+    "keypadPair": [
+      "数字小键盘上的 {key} 和 {other} 键",
+      "テンキーの {key} と {other} のキー",
+      "숫자 키패드의 {key} 및 {other} 키"
+    ],
+    "left": [
+      "左侧 {key}",
+      "左 {key}",
+      "왼쪽 {key}"
+    ],
+    "right": [
+      "右侧 {key}",
+      "右 {key}",
+      "오른쪽 {key}"
+    ],
+    "axis": [
+      "{axis} 轴",
+      "{axis} 軸",
+      "{axis} 축"
+    ],
+    "povAxis": [
+      "视角帽开关的 {axis} 轴",
+      "ハットスイッチの {axis} 軸",
+      "시점 조절 햇 스위치의 {axis} 축"
+    ]
+  },
+  "keys": {
+    "Escape": [
+      "Escape（退出）",
+      "Escape",
+      "Escape"
+    ],
+    "Control": [
+      "Control",
+      "Control",
+      "Control"
+    ],
+    "Shift": [
+      "Shift",
+      "Shift",
+      "Shift"
+    ],
+    "Alt": [
+      "Alt",
+      "Alt",
+      "Alt"
+    ],
+    "System": [
+      "系统",
+      "システム",
+      "시스템"
+    ],
+    "Menu": [
+      "菜单",
+      "メニュー",
+      "메뉴"
+    ],
+    "Space": [
+      "空格",
+      "スペース",
+      "스페이스"
+    ],
+    "Enter/Return": [
+      "Enter/Return（回车）",
+      "Enter/Return",
+      "Enter/Return"
+    ],
+    "Backspace": [
+      "Backspace（退格）",
+      "Backspace",
+      "백스페이스"
+    ],
+    "Tabulation": [
+      "Tab（制表）",
+      "Tab",
+      "Tab"
+    ],
+    "Tab": [
+      "Tab（制表）",
+      "Tab",
+      "Tab"
+    ],
+    "Page up": [
+      "Page Up（向上翻页）",
+      "Page Up（前のページ）",
+      "Page Up(이전 페이지)"
+    ],
+    "Page Up": [
+      "Page Up（向上翻页）",
+      "Page Up（前のページ）",
+      "Page Up(이전 페이지)"
+    ],
+    "Page down": [
+      "Page Down（向下翻页）",
+      "Page Down（次のページ）",
+      "Page Down(다음 페이지)"
+    ],
+    "Page Down": [
+      "Page Down（向下翻页）",
+      "Page Down（次のページ）",
+      "Page Down(다음 페이지)"
+    ],
+    "End": [
+      "End（末尾）",
+      "End（末尾）",
+      "End(끝)"
+    ],
+    "Home": [
+      "Home（开头）",
+      "Home（先頭）",
+      "Home(처음)"
+    ],
+    "Insert": [
+      "Insert（插入）",
+      "Insert（挿入）",
+      "Insert(삽입)"
+    ],
+    "Delete": [
+      "Delete（删除）",
+      "Delete（削除）",
+      "Delete(삭제)"
+    ],
+    "Delete Forward": [
+      "向后删除（Delete）",
+      "カーソル後方の削除（Delete）",
+      "커서 뒤 문자 삭제(Delete)"
+    ],
+    "Pause": [
+      "Pause（暂停）",
+      "Pause（一時停止）",
+      "Pause(일시 정지)"
+    ],
+    "Caps %Lock": [
+      "Caps Lock（大写锁定）",
+      "Caps Lock（大文字ロック）",
+      "Caps Lock(대문자 잠금)"
+    ],
+    "Print Screen": [
+      "Print Screen（屏幕截图）",
+      "Print Screen（画面キャプチャ）",
+      "Print Screen(화면 캡처)"
+    ],
+    "Scroll %Lock": [
+      "Scroll Lock（滚动锁定）",
+      "Scroll Lock（スクロールロック）",
+      "Scroll Lock(스크롤 잠금)"
+    ],
+    "Num %Lock": [
+      "Num Lock（数字锁定）",
+      "Num Lock（数字ロック）",
+      "Num Lock(숫자 잠금)"
+    ],
+    "Clear": [
+      "清除",
+      "クリア",
+      "지우기"
+    ],
+    "Right Arrow": [
+      "右方向",
+      "右矢印",
+      "오른쪽 화살표"
+    ],
+    "Left Arrow": [
+      "左方向",
+      "左矢印",
+      "왼쪽 화살표"
+    ],
+    "Down Arrow": [
+      "下方向",
+      "下矢印",
+      "아래쪽 화살표"
+    ],
+    "Up Arrow": [
+      "上方向",
+      "上矢印",
+      "위쪽 화살표"
+    ],
+    "Application": [
+      "应用程序",
+      "アプリケーション",
+      "응용 프로그램"
+    ],
+    "Execute": [
+      "执行",
+      "実行",
+      "실행"
+    ],
+    "Mode Change": [
+      "模式切换",
+      "モード切り替え",
+      "모드 전환"
+    ],
+    "Help": [
+      "帮助",
+      "ヘルプ",
+      "도움말"
+    ],
+    "Select": [
+      "选择",
+      "選択",
+      "선택"
+    ],
+    "Redo": [
+      "重做",
+      "やり直し",
+      "다시 실행"
+    ],
+    "Undo": [
+      "撤销",
+      "元に戻す",
+      "실행 취소"
+    ],
+    "Cut": [
+      "剪切",
+      "切り取り",
+      "잘라내기"
+    ],
+    "Copy": [
+      "复制",
+      "コピー",
+      "복사"
+    ],
+    "Paste": [
+      "粘贴",
+      "貼り付け",
+      "붙여넣기"
+    ],
+    "Volume Mute": [
+      "静音",
+      "ミュート",
+      "음소거"
+    ],
+    "Volume Up": [
+      "增大音量",
+      "音量を上げる",
+      "볼륨 높이기"
+    ],
+    "Volume Down": [
+      "减小音量",
+      "音量を下げる",
+      "볼륨 낮추기"
+    ],
+    "Media Play Pause": [
+      "媒体播放/暂停",
+      "メディア再生/一時停止",
+      "미디어 재생/일시 정지"
+    ],
+    "Media Stop": [
+      "媒体停止",
+      "メディア停止",
+      "미디어 정지"
+    ],
+    "Media Next Track": [
+      "媒体下一曲",
+      "メディアの次のトラック",
+      "미디어 다음 트랙"
+    ],
+    "Media Previous Track": [
+      "媒体上一曲",
+      "メディアの前のトラック",
+      "미디어 이전 트랙"
+    ],
+    "Back": [
+      "后退",
+      "戻る",
+      "뒤로"
+    ],
+    "Forward": [
+      "前进",
+      "進む",
+      "앞으로"
+    ],
+    "Refresh": [
+      "刷新",
+      "更新",
+      "새로 고침"
+    ],
+    "Stop": [
+      "停止",
+      "停止",
+      "중지"
+    ],
+    "Search": [
+      "搜索",
+      "検索",
+      "검색"
+    ],
+    "Favorites": [
+      "收藏夹",
+      "お気に入り",
+      "즐겨찾기"
+    ],
+    "Home Page": [
+      "主页",
+      "ホームページ",
+      "홈 페이지"
+    ],
+    "Launch Application 1": [
+      "启动应用程序 1",
+      "アプリケーション 1 の起動",
+      "응용 프로그램 1 실행"
+    ],
+    "Launch Application 2": [
+      "启动应用程序 2",
+      "アプリケーション 2 の起動",
+      "응용 프로그램 2 실행"
+    ],
+    "Launch Mail": [
+      "启动邮件程序",
+      "メールソフトの起動",
+      "메일 프로그램 실행"
+    ],
+    "Launch Media Select": [
+      "启动媒体选择程序",
+      "メディア選択の起動",
+      "미디어 선택 프로그램 실행"
+    ]
+  },
+  "descriptions": {
+    "Window style bit flags that can be combined with bitwise OR.": [
+      "窗口样式位标志，可按位或组合。",
+      "ビット単位の OR で組み合わせられるウィンドウスタイルのフラグ。",
+      "비트 OR 연산으로 조합할 수 있는 창 스타일 플래그."
+    ],
+    "Initial window display state.": [
+      "窗口初始显示状态。",
+      "ウィンドウの初期表示状態。",
+      "창의 초기 표시 상태."
+    ],
+    "System cursor shapes; availability depends on the platform.": [
+      "系统光标形状，具体支持情况取决于平台。",
+      "システムカーソルの形状。利用できる形状はプラットフォームに依存します。",
+      "시스템 커서 모양. 지원 여부는 플랫폼에 따라 다릅니다."
+    ],
+    "Logical keys that depend on the system keyboard layout.": [
+      "随系统键盘布局变化的逻辑按键。",
+      "システムのキーボード配列に依存する論理キー。",
+      "시스템 키보드 배열에 따라 달라지는 논리 키."
+    ],
+    "Physical keys independent of the keyboard layout.": [
+      "与键盘布局无关的物理按键。",
+      "キーボード配列に依存しない物理キー。",
+      "키보드 배열과 무관한 물리 키."
+    ],
+    "Mouse buttons.": [
+      "鼠标按钮。",
+      "マウスボタン。",
+      "마우스 버튼."
+    ],
+    "Mouse wheel orientations.": [
+      "鼠标滚轮方向。",
+      "マウスホイールの方向。",
+      "마우스 휠 방향."
+    ],
+    "Joystick axes.": [
+      "游戏手柄坐标轴。",
+      "ジョイスティックの軸。",
+      "조이스틱 축."
+    ],
+    "Sensor types.": [
+      "传感器类型。",
+      "センサーの種類。",
+      "센서 유형."
+    ],
+    "No border / title bar (this flag and all others are mutually exclusive)": [
+      "无边框或标题栏（此标志与其他所有标志互斥）",
+      "枠線とタイトルバーなし（このフラグは他のすべてのフラグと併用できません）",
+      "테두리와 제목 표시줄 없음(이 플래그는 다른 모든 플래그와 함께 사용할 수 없음)"
+    ],
+    "Title bar + fixed border": [
+      "标题栏和固定边框",
+      "タイトルバーと固定サイズの枠線",
+      "제목 표시줄과 크기가 고정된 테두리"
+    ],
+    "Title bar + resizable border + maximize button": [
+      "标题栏、可调整大小的边框和最大化按钮",
+      "タイトルバー、サイズ変更可能な枠線、最大化ボタン",
+      "제목 표시줄, 크기 조절 가능한 테두리 및 최대화 버튼"
+    ],
+    "Title bar + close button (see note)": [
+      "标题栏和关闭按钮（参见注释）",
+      "タイトルバーと閉じるボタン（注記を参照）",
+      "제목 표시줄과 닫기 버튼(참고 사항 참조)"
+    ],
+    "Default window style": [
+      "默认窗口样式",
+      "既定のウィンドウスタイル",
+      "기본 창 스타일"
+    ],
+    "Floating window": [
+      "浮动窗口",
+      "フローティングウィンドウ",
+      "일반 창"
+    ],
+    "Fullscreen window": [
+      "全屏窗口",
+      "全画面ウィンドウ",
+      "전체 화면 창"
+    ],
+    "Arrow cursor (default)": [
+      "箭头光标（默认）",
+      "矢印カーソル（既定）",
+      "화살표 커서(기본값)"
+    ],
+    "Busy arrow cursor": [
+      "带忙碌指示的箭头光标",
+      "処理中を示す矢印カーソル",
+      "사용 중 표시가 있는 화살표 커서"
+    ],
+    "Busy cursor": [
+      "忙碌光标",
+      "処理中カーソル",
+      "사용 중 커서"
+    ],
+    "I-beam, cursor when hovering over a field allowing text entry": [
+      "I 形光标，悬停在允许输入文本的区域时显示",
+      "テキスト入力欄にマウスを重ねたときの I 字カーソル",
+      "텍스트 입력 영역 위에 마우스를 올릴 때 표시되는 I자 커서"
+    ],
+    "Pointing hand cursor": [
+      "手指指向光标",
+      "指差しハンドカーソル",
+      "가리키는 손 모양 커서"
+    ],
+    "Horizontal double arrow cursor": [
+      "水平双向箭头光标",
+      "水平方向の両矢印カーソル",
+      "수평 양방향 화살표 커서"
+    ],
+    "Vertical double arrow cursor": [
+      "垂直双向箭头光标",
+      "垂直方向の両矢印カーソル",
+      "수직 양방향 화살표 커서"
+    ],
+    "Double arrow cursor going from top-left to bottom-right": [
+      "从左上到右下的双向箭头光标",
+      "左上から右下に向かう両矢印カーソル",
+      "왼쪽 위에서 오른쪽 아래로 향하는 양방향 화살표 커서"
+    ],
+    "Double arrow cursor going from bottom-left to top-right": [
+      "从左下到右上的双向箭头光标",
+      "左下から右上に向かう両矢印カーソル",
+      "왼쪽 아래에서 오른쪽 위로 향하는 양방향 화살표 커서"
+    ],
+    "Left arrow cursor on Linux, same as SizeHorizontal on other platforms": [
+      "Linux 上为左箭头光标，其他平台上与 SizeHorizontal 相同",
+      "Linux では左矢印カーソル、他のプラットフォームでは SizeHorizontal と同じ",
+      "Linux에서는 왼쪽 화살표 커서이며, 다른 플랫폼에서는 SizeHorizontal과 동일"
+    ],
+    "Right arrow cursor on Linux, same as SizeHorizontal on other platforms": [
+      "Linux 上为右箭头光标，其他平台上与 SizeHorizontal 相同",
+      "Linux では右矢印カーソル、他のプラットフォームでは SizeHorizontal と同じ",
+      "Linux에서는 오른쪽 화살표 커서이며, 다른 플랫폼에서는 SizeHorizontal과 동일"
+    ],
+    "Up arrow cursor on Linux, same as SizeVertical on other platforms": [
+      "Linux 上为上箭头光标，其他平台上与 SizeVertical 相同",
+      "Linux では上矢印カーソル、他のプラットフォームでは SizeVertical と同じ",
+      "Linux에서는 위쪽 화살표 커서이며, 다른 플랫폼에서는 SizeVertical과 동일"
+    ],
+    "Down arrow cursor on Linux, same as SizeVertical on other platforms": [
+      "Linux 上为下箭头光标，其他平台上与 SizeVertical 相同",
+      "Linux では下矢印カーソル、他のプラットフォームでは SizeVertical と同じ",
+      "Linux에서는 아래쪽 화살표 커서이며, 다른 플랫폼에서는 SizeVertical과 동일"
+    ],
+    "Top-left arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms": [
+      "Linux 上为左上箭头光标，其他平台上与 SizeTopLeftBottomRight 相同",
+      "Linux では左上矢印カーソル、他のプラットフォームでは SizeTopLeftBottomRight と同じ",
+      "Linux에서는 왼쪽 위 화살표 커서이며, 다른 플랫폼에서는 SizeTopLeftBottomRight와 동일"
+    ],
+    "Bottom-right arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms": [
+      "Linux 上为右下箭头光标，其他平台上与 SizeTopLeftBottomRight 相同",
+      "Linux では右下矢印カーソル、他のプラットフォームでは SizeTopLeftBottomRight と同じ",
+      "Linux에서는 오른쪽 아래 화살표 커서이며, 다른 플랫폼에서는 SizeTopLeftBottomRight와 동일"
+    ],
+    "Bottom-left arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms": [
+      "Linux 上为左下箭头光标，其他平台上与 SizeBottomLeftTopRight 相同",
+      "Linux では左下矢印カーソル、他のプラットフォームでは SizeBottomLeftTopRight と同じ",
+      "Linux에서는 왼쪽 아래 화살표 커서이며, 다른 플랫폼에서는 SizeBottomLeftTopRight와 동일"
+    ],
+    "Top-right arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms": [
+      "Linux 上为右上箭头光标，其他平台上与 SizeBottomLeftTopRight 相同",
+      "Linux では右上矢印カーソル、他のプラットフォームでは SizeBottomLeftTopRight と同じ",
+      "Linux에서는 오른쪽 위 화살표 커서이며, 다른 플랫폼에서는 SizeBottomLeftTopRight와 동일"
+    ],
+    "Combination of SizeHorizontal and SizeVertical": [
+      "SizeHorizontal 和 SizeVertical 的组合",
+      "SizeHorizontal と SizeVertical の組み合わせ",
+      "SizeHorizontal과 SizeVertical의 조합"
+    ],
+    "Crosshair cursor": [
+      "十字准星光标",
+      "十字カーソル",
+      "십자선 커서"
+    ],
+    "Help cursor": [
+      "帮助光标",
+      "ヘルプカーソル",
+      "도움말 커서"
+    ],
+    "Action not allowed cursor": [
+      "禁止操作光标",
+      "操作禁止カーソル",
+      "작업 금지 커서"
+    ],
+    "Unhandled key": [
+      "未处理的按键",
+      "未対応のキー",
+      "처리되지 않는 키"
+    ],
+    "The left OS specific key: window (Windows and Linux), apple (macOS), ...": [
+      "左侧操作系统专用键：Windows 标志键（Windows 和 Linux）、Apple 键（macOS）等",
+      "左側の OS 固有キー：Windows キー（Windows と Linux）、Apple キー（macOS）など",
+      "왼쪽 OS 전용 키: Windows 키(Windows 및 Linux), Apple 키(macOS) 등"
+    ],
+    "The right OS specific key: window (Windows and Linux), apple (macOS), ...": [
+      "右侧操作系统专用键：Windows 标志键（Windows 和 Linux）、Apple 键（macOS）等",
+      "右側の OS 固有キー：Windows キー（Windows と Linux）、Apple キー（macOS）など",
+      "오른쪽 OS 전용 키: Windows 키(Windows 및 Linux), Apple 키(macOS) 등"
+    ],
+    "The - key (hyphen)": [
+      "- 键（连字符）",
+      "- キー（ハイフン）",
+      "- 키(하이픈)"
+    ],
+    "The Enter/Return keys": [
+      "Enter/Return（回车）键",
+      "Enter/Return キー",
+      "Enter/Return 키"
+    ],
+    "The - key (minus, usually from numpad)": [
+      "- 键（减号，通常位于数字小键盘）",
+      "- キー（マイナス、通常はテンキー）",
+      "- 키(빼기, 일반적으로 숫자 키패드에 있음)"
+    ],
+    "Left arrow": [
+      "左方向键",
+      "左矢印キー",
+      "왼쪽 화살표 키"
+    ],
+    "Right arrow": [
+      "右方向键",
+      "右矢印キー",
+      "오른쪽 화살표 키"
+    ],
+    "Up arrow": [
+      "上方向键",
+      "上矢印キー",
+      "위쪽 화살표 키"
+    ],
+    "Down arrow": [
+      "下方向键",
+      "下矢印キー",
+      "아래쪽 화살표 키"
+    ],
+    "Represents any scancode not present in this enum": [
+      "表示未包含在此枚举中的任何扫描码",
+      "この列挙型に含まれないすべてのスキャンコードを表します",
+      "이 열거형에 없는 모든 스캔 코드를 나타냄"
+    ],
+    "Keyboard = and +": [
+      "键盘上的 = 和 + 键",
+      "キーボードの = と + のキー",
+      "키보드의 = 및 + 키"
+    ],
+    "Keyboard \\ and | key OR various keys for Non-US keyboards": [
+      "键盘上的 \\ 和 | 键，或非美式键盘上的其他对应键",
+      "キーボードの \\ と | のキー、または米国配列以外のキーボードの各種キー",
+      "키보드의 \\ 및 | 키 또는 미국식이 아닌 키보드의 여러 대응 키"
+    ],
+    "Keyboard Non-US \\ and | key": [
+      "非美式键盘上的 \\ 和 | 键",
+      "米国配列以外のキーボードの \\ と | のキー",
+      "미국식이 아닌 키보드의 \\ 및 | 키"
+    ],
+    "The left mouse button": [
+      "鼠标左键",
+      "マウスの左ボタン",
+      "마우스 왼쪽 버튼"
+    ],
+    "The right mouse button": [
+      "鼠标右键",
+      "マウスの右ボタン",
+      "마우스 오른쪽 버튼"
+    ],
+    "The middle (wheel) mouse button": [
+      "鼠标中键（滚轮按钮）",
+      "マウスの中央ボタン（ホイールボタン）",
+      "마우스 가운데 버튼(휠 버튼)"
+    ],
+    "The first extra mouse button": [
+      "第一个鼠标扩展按钮",
+      "マウスの追加ボタン 1",
+      "첫 번째 마우스 추가 버튼"
+    ],
+    "The second extra mouse button": [
+      "第二个鼠标扩展按钮",
+      "マウスの追加ボタン 2",
+      "두 번째 마우스 추가 버튼"
+    ],
+    "The vertical mouse wheel": [
+      "鼠标垂直滚轮",
+      "マウスの垂直ホイール",
+      "마우스 수직 휠"
+    ],
+    "The horizontal mouse wheel": [
+      "鼠标水平滚轮",
+      "マウスの水平ホイール",
+      "마우스 수평 휠"
+    ],
+    "Measures the raw acceleration (m/s^2)": [
+      "测量原始加速度（m/s^2）",
+      "未加工の加速度を測定します（m/s^2）",
+      "원시 가속도를 측정함(m/s^2)"
+    ],
+    "Measures the raw rotation rates (radians/s)": [
+      "测量原始角速度（弧度/秒）",
+      "未加工の角速度を測定します（ラジアン/秒）",
+      "원시 각속도를 측정함(라디안/초)"
+    ],
+    "Measures the ambient magnetic field (micro-teslas)": [
+      "测量环境磁场（微特斯拉）",
+      "周囲の磁場を測定します（マイクロテスラ）",
+      "주변 자기장을 측정함(마이크로테슬라)"
+    ],
+    "Measures the direction and intensity of gravity, independent of device acceleration (m/s^2)": [
+      "测量重力的方向和强度，不受设备加速度影响（m/s^2）",
+      "デバイスの加速度とは独立して、重力の方向と強さを測定します（m/s^2）",
+      "장치 가속도와 무관하게 중력의 방향과 크기를 측정함(m/s^2)"
+    ],
+    "Measures the direction and intensity of device acceleration, independent of the gravity (m/s^2)": [
+      "测量设备加速度的方向和强度，不受重力影响（m/s^2）",
+      "重力とは独立して、デバイスの加速度の方向と強さを測定します（m/s^2）",
+      "중력과 무관하게 장치 가속도의 방향과 크기를 측정함(m/s^2)"
+    ],
+    "Measures the absolute 3D orientation (radians)": [
+      "测量绝对三维朝向（弧度）",
+      "絶対的な 3 次元の姿勢を測定します（ラジアン）",
+      "절대 3차원 자세를 측정함(라디안)"
+    ],
+    "The total number of keyboard keys, ignoring `Key::Unknown`": [
+      "键盘按键总数，不含 `Key::Unknown`",
+      "`Key::Unknown` を除くキーボードのキーの総数",
+      "`Key::Unknown`을 제외한 키보드 키의 총수"
+    ],
+    "The total number of scancodes, ignoring `Scan::Unknown`": [
+      "扫描码总数，不含 `Scan::Unknown`",
+      "`Scan::Unknown` を除くスキャンコードの総数",
+      "`Scan::Unknown`을 제외한 스캔 코드의 총수"
+    ],
+    "The total number of mouse buttons": [
+      "鼠标按钮总数",
+      "マウスボタンの総数",
+      "마우스 버튼의 총수"
+    ],
+    "Maximum number of supported joysticks": [
+      "支持的游戏手柄数量上限",
+      "対応するジョイスティックの最大数",
+      "지원되는 조이스틱의 최대 수"
+    ],
+    "Maximum number of supported buttons": [
+      "支持的按钮数量上限",
+      "対応するボタンの最大数",
+      "지원되는 버튼의 최대 수"
+    ],
+    "Maximum number of supported axes": [
+      "支持的坐标轴数量上限",
+      "対応する軸の最大数",
+      "지원되는 축의 최대 수"
+    ],
+    "The total number of sensor types": [
+      "传感器类型总数",
+      "センサーの種類の総数",
+      "센서 유형의 총수"
+    ],
+    "FTP file transfer modes.": [
+      "FTP 文件传输模式。",
+      "FTP のファイル転送モード。",
+      "FTP 파일 전송 모드."
+    ],
+    "FTP server response codes and client error codes.": [
+      "FTP 服务端响应码和客户端错误码。",
+      "FTP サーバーの応答コードとクライアントのエラーコード。",
+      "FTP 서버 응답 코드 및 클라이언트 오류 코드."
+    ],
+    "SFTP operation result codes.": [
+      "SFTP 操作结果码。",
+      "SFTP 操作の結果コード。",
+      "SFTP 작업 결과 코드."
+    ],
+    "SSH server host public key types.": [
+      "SSH 服务端主机公钥类型。",
+      "SSH サーバーのホスト公開鍵の種類。",
+      "SSH 서버 호스트 공개 키 유형."
+    ],
+    "Binary mode (file is transferred as a sequence of bytes)": [
+      "二进制模式（文件以字节序列传输）",
+      "バイナリモード（ファイルをバイト列として転送します）",
+      "바이너리 모드(파일을 바이트 시퀀스로 전송함)"
+    ],
+    "Text mode using ASCII encoding": [
+      "使用 ASCII 编码的文本模式",
+      "ASCII エンコーディングを使用するテキストモード",
+      "ASCII 인코딩을 사용하는 텍스트 모드"
+    ],
+    "Text mode using EBCDIC encoding": [
+      "使用 EBCDIC 编码的文本模式",
+      "EBCDIC エンコーディングを使用するテキストモード",
+      "EBCDIC 인코딩을 사용하는 텍스트 모드"
+    ],
+    "Restart marker reply": [
+      "重启标记响应",
+      "再開マーカーの応答",
+      "재시작 마커 응답"
+    ],
+    "Service ready in N minutes": [
+      "服务将在 N 分钟后就绪",
+      "サービスは N 分後に利用可能になります",
+      "N분 후 서비스 준비 완료"
+    ],
+    "Data connection already opened, transfer starting": [
+      "数据连接已打开，正在开始传输",
+      "データ接続は既に開かれており、転送を開始します",
+      "데이터 연결이 이미 열려 있으며 전송을 시작함"
+    ],
+    "File status ok, about to open data connection": [
+      "文件状态正常，即将打开数据连接",
+      "ファイルの状態は正常で、データ接続を開く準備ができています",
+      "파일 상태가 정상이며 데이터 연결을 열 예정"
+    ],
+    "Command ok": [
+      "命令成功",
+      "コマンド成功",
+      "명령 성공"
+    ],
+    "Command not implemented": [
+      "命令未实现",
+      "コマンドは実装されていません",
+      "명령이 구현되지 않음"
+    ],
+    "System status, or system help reply": [
+      "系统状态或系统帮助响应",
+      "システム状態、またはシステムヘルプの応答",
+      "시스템 상태 또는 시스템 도움말 응답"
+    ],
+    "Directory status": [
+      "目录状态",
+      "ディレクトリの状態",
+      "디렉터리 상태"
+    ],
+    "File status": [
+      "文件状态",
+      "ファイルの状態",
+      "파일 상태"
+    ],
+    "Help message": [
+      "帮助信息",
+      "ヘルプメッセージ",
+      "도움말 메시지"
+    ],
+    "NAME system type, where NAME is an official system name from the list in the Assigned Numbers document": [
+      "NAME 系统类型，其中 NAME 是 Assigned Numbers 文档列表中的官方系统名称",
+      "NAME システム種別。NAME は Assigned Numbers 文書の一覧にある正式なシステム名です",
+      "NAME 시스템 유형. NAME은 Assigned Numbers 문서 목록에 있는 공식 시스템 이름"
+    ],
+    "Service ready for new user": [
+      "服务已准备好接受新用户",
+      "サービスは新しいユーザーを受け入れる準備ができています",
+      "서비스가 새 사용자를 받을 준비가 됨"
+    ],
+    "Service closing control connection": [
+      "服务正在关闭控制连接",
+      "サービスが制御接続を閉じています",
+      "서비스가 제어 연결을 닫는 중"
+    ],
+    "Data connection open, no transfer in progress": [
+      "数据连接已打开，当前没有传输",
+      "データ接続は開いていますが、転送は行われていません",
+      "데이터 연결이 열려 있으나 진행 중인 전송이 없음"
+    ],
+    "Closing data connection, requested file action successful": [
+      "正在关闭数据连接，请求的文件操作已成功",
+      "データ接続を閉じています。要求されたファイル操作は成功しました",
+      "데이터 연결을 닫는 중이며 요청한 파일 작업이 성공함"
+    ],
+    "Entering passive mode": [
+      "正在进入被动模式",
+      "パッシブモードに移行します",
+      "수동 모드로 전환 중"
+    ],
+    "User logged in, proceed. Logged out if appropriate": [
+      "用户已登录，可以继续；适当时注销",
+      "ユーザーはログイン済みで、続行できます。必要に応じてログアウトします",
+      "사용자가 로그인했으므로 계속 진행. 필요한 경우 로그아웃됨"
+    ],
+    "Requested file action ok": [
+      "请求的文件操作成功",
+      "要求されたファイル操作は成功しました",
+      "요청한 파일 작업이 성공함"
+    ],
+    "PATHNAME created": [
+      "已创建 PATHNAME",
+      "PATHNAME を作成しました",
+      "PATHNAME이 생성됨"
+    ],
+    "User name ok, need password": [
+      "用户名有效，需要密码",
+      "ユーザー名は有効です。パスワードが必要です",
+      "사용자 이름이 유효하며 비밀번호가 필요함"
+    ],
+    "Need account for login": [
+      "登录需要账户信息",
+      "ログインにはアカウント情報が必要です",
+      "로그인에 계정 정보가 필요함"
+    ],
+    "Requested file action pending further information": [
+      "请求的文件操作正在等待更多信息",
+      "要求されたファイル操作は追加情報を待っています",
+      "요청한 파일 작업이 추가 정보를 기다리는 중"
+    ],
+    "Service not available, closing control connection": [
+      "服务不可用，正在关闭控制连接",
+      "サービスを利用できないため、制御接続を閉じています",
+      "서비스를 사용할 수 없어 제어 연결을 닫는 중"
+    ],
+    "Can't open data connection": [
+      "无法打开数据连接",
+      "データ接続を開けません",
+      "데이터 연결을 열 수 없음"
+    ],
+    "Connection closed, transfer aborted": [
+      "连接已关闭，传输已中止",
+      "接続が閉じられ、転送が中止されました",
+      "연결이 닫히고 전송이 중단됨"
+    ],
+    "Requested file action not taken": [
+      "未执行请求的文件操作",
+      "要求されたファイル操作は実行されませんでした",
+      "요청한 파일 작업이 수행되지 않음"
+    ],
+    "Requested action aborted, local error in processing": [
+      "请求的操作已中止，处理过程中发生本地错误",
+      "処理中にローカルエラーが発生し、要求された操作が中止されました",
+      "처리 중 로컬 오류가 발생하여 요청한 작업이 중단됨"
+    ],
+    "Requested action not taken; insufficient storage space in system, file unavailable": [
+      "未执行请求的操作；系统存储空间不足，文件不可用",
+      "要求された操作は実行されませんでした。システムの記憶領域が不足し、ファイルを利用できません",
+      "요청한 작업이 수행되지 않음. 시스템 저장 공간이 부족하여 파일을 사용할 수 없음"
+    ],
+    "Syntax error, command unrecognized": [
+      "语法错误，无法识别命令",
+      "構文エラー。コマンドを認識できません",
+      "구문 오류로 명령을 인식할 수 없음"
+    ],
+    "Syntax error in parameters or arguments": [
+      "参数或实参存在语法错误",
+      "パラメーターまたは引数に構文エラーがあります",
+      "매개변수 또는 인수에 구문 오류가 있음"
+    ],
+    "Bad sequence of commands": [
+      "命令顺序错误",
+      "コマンドの順序が不正です",
+      "명령 순서가 잘못됨"
+    ],
+    "Command not implemented for that parameter": [
+      "该命令尚未实现对该参数的支持",
+      "そのパラメーターに対するコマンドは実装されていません",
+      "해당 매개변수에 대한 명령이 구현되지 않음"
+    ],
+    "Not logged in": [
+      "尚未登录",
+      "ログインしていません",
+      "로그인하지 않음"
+    ],
+    "Need account for storing files": [
+      "存储文件需要账户信息",
+      "ファイルの保存にはアカウント情報が必要です",
+      "파일 저장에 계정 정보가 필요함"
+    ],
+    "Requested action not taken, file unavailable": [
+      "未执行请求的操作，文件不可用",
+      "ファイルを利用できないため、要求された操作は実行されませんでした",
+      "파일을 사용할 수 없어 요청한 작업이 수행되지 않음"
+    ],
+    "Requested action aborted, page type unknown": [
+      "请求的操作已中止，页面类型未知",
+      "ページ種別が不明なため、要求された操作が中止されました",
+      "페이지 유형을 알 수 없어 요청한 작업이 중단됨"
+    ],
+    "Requested file action aborted, exceeded storage allocation": [
+      "请求的文件操作已中止，超出分配的存储空间",
+      "割り当てられた記憶領域を超えたため、要求されたファイル操作が中止されました",
+      "할당된 저장 공간을 초과하여 요청한 파일 작업이 중단됨"
+    ],
+    "Requested action not taken, file name not allowed": [
+      "未执行请求的操作，文件名不被允许",
+      "ファイル名が許可されていないため、要求された操作は実行されませんでした",
+      "파일 이름이 허용되지 않아 요청한 작업이 수행되지 않음"
+    ],
+    "Not part of the FTP standard, generated by SFML when a received response cannot be parsed": [
+      "不属于 FTP 标准；SFML 无法解析收到的响应时生成",
+      "FTP 標準には含まれません。受信した応答を解析できないときに SFML が生成します",
+      "FTP 표준에 포함되지 않음. 수신한 응답을 구문 분석할 수 없을 때 SFML이 생성함"
+    ],
+    "Not part of the FTP standard, generated by SFML when the low-level socket connection with the server fails": [
+      "不属于 FTP 标准；与服务端的底层套接字连接失败时由 SFML 生成",
+      "FTP 標準には含まれません。サーバーとの低レベルソケット接続に失敗したときに SFML が生成します",
+      "FTP 표준에 포함되지 않음. 서버와의 저수준 소켓 연결에 실패했을 때 SFML이 생성함"
+    ],
+    "Not part of the FTP standard, generated by SFML when the low-level socket connection is unexpectedly closed": [
+      "不属于 FTP 标准；底层套接字连接意外关闭时由 SFML 生成",
+      "FTP 標準には含まれません。低レベルソケット接続が予期せず閉じられたときに SFML が生成します",
+      "FTP 표준에 포함되지 않음. 저수준 소켓 연결이 예기치 않게 닫혔을 때 SFML이 생성함"
+    ],
+    "Not part of the FTP standard, generated by SFML when a local file cannot be read or written": [
+      "不属于 FTP 标准；无法读取或写入本地文件时由 SFML 生成",
+      "FTP 標準には含まれません。ローカルファイルを読み書きできないときに SFML が生成します",
+      "FTP 표준에 포함되지 않음. 로컬 파일을 읽거나 쓸 수 없을 때 SFML이 생성함"
+    ],
+    "Operation completed successfully": [
+      "操作成功完成",
+      "操作が正常に完了しました",
+      "작업이 성공적으로 완료됨"
+    ],
+    "The TCP socket has been disconnected": [
+      "TCP 套接字已断开连接",
+      "TCP ソケットが切断されました",
+      "TCP 소켓의 연결이 끊어짐"
+    ],
+    "Operation timed out": [
+      "操作超时",
+      "操作がタイムアウトしました",
+      "작업 시간이 초과됨"
+    ],
+    "Connection refused": [
+      "连接被拒绝",
+      "接続が拒否されました",
+      "연결이 거부됨"
+    ],
+    "Generic error": [
+      "一般错误",
+      "一般的なエラー",
+      "일반 오류"
+    ],
+    "Error during banner receive": [
+      "接收协议标识信息时出错",
+      "バナーの受信中にエラーが発生しました",
+      "배너 수신 중 오류 발생"
+    ],
+    "Error during banner send": [
+      "发送协议标识信息时出错",
+      "バナーの送信中にエラーが発生しました",
+      "배너 전송 중 오류 발생"
+    ],
+    "Invalid message authentication code": [
+      "无效的消息认证码",
+      "メッセージ認証コードが無効です",
+      "유효하지 않은 메시지 인증 코드"
+    ],
+    "Allocation failure": [
+      "内存分配失败",
+      "メモリの割り当てに失敗しました",
+      "메모리 할당 실패"
+    ],
+    "Error sending on socket": [
+      "通过套接字发送时出错",
+      "ソケットでの送信中にエラーが発生しました",
+      "소켓 전송 중 오류 발생"
+    ],
+    "Key exchange failed": [
+      "密钥交换失败",
+      "鍵交換に失敗しました",
+      "키 교환 실패"
+    ],
+    "Host key initialization failed": [
+      "主机密钥初始化失败",
+      "ホスト鍵の初期化に失敗しました",
+      "호스트 키 초기화 실패"
+    ],
+    "Host key signing failed": [
+      "主机密钥签名失败",
+      "ホスト鍵による署名に失敗しました",
+      "호스트 키 서명 실패"
+    ],
+    "Decryption failed": [
+      "解密失败",
+      "復号に失敗しました",
+      "복호화 실패"
+    ],
+    "SSH protocol error": [
+      "SSH 协议错误",
+      "SSH プロトコルエラー",
+      "SSH 프로토콜 오류"
+    ],
+    "Password expired": [
+      "密码已过期",
+      "パスワードの有効期限が切れています",
+      "비밀번호가 만료됨"
+    ],
+    "File error": [
+      "文件错误",
+      "ファイルエラー",
+      "파일 오류"
+    ],
+    "No method found": [
+      "未找到可用方法",
+      "利用可能な方式が見つかりません",
+      "사용 가능한 방식을 찾을 수 없음"
+    ],
+    "Authentication failed": [
+      "身份验证失败",
+      "認証に失敗しました",
+      "인증 실패"
+    ],
+    "Public key unverified": [
+      "公钥未通过验证",
+      "公開鍵が検証されていません",
+      "공개 키가 검증되지 않음"
+    ],
+    "Channel out of order": [
+      "通道顺序错误",
+      "チャネルの順序が不正です",
+      "채널 순서가 잘못됨"
+    ],
+    "Channel failure": [
+      "通道故障",
+      "チャネルの障害",
+      "채널 실패"
+    ],
+    "Channel request denied": [
+      "通道请求被拒绝",
+      "チャネル要求が拒否されました",
+      "채널 요청이 거부됨"
+    ],
+    "Channel unknown": [
+      "未知通道",
+      "不明なチャネル",
+      "알 수 없는 채널"
+    ],
+    "Channel window exceeded": [
+      "超出通道窗口限制",
+      "チャネルのウィンドウ制限を超えました",
+      "채널 윈도 제한을 초과함"
+    ],
+    "Channel packet exceeded": [
+      "超出通道数据包大小限制",
+      "チャネルのパケットサイズ制限を超えました",
+      "채널 패킷 크기 제한을 초과함"
+    ],
+    "Channel closed": [
+      "通道已关闭",
+      "チャネルが閉じられました",
+      "채널이 닫힘"
+    ],
+    "Channel EOF sent": [
+      "已发送通道 EOF（数据结束）",
+      "チャネルの EOF（データ終端）を送信しました",
+      "채널 EOF(데이터 끝)를 전송함"
+    ],
+    "SCP protocol error": [
+      "SCP 协议错误",
+      "SCP プロトコルエラー",
+      "SCP 프로토콜 오류"
+    ],
+    "Zlib error": [
+      "Zlib 错误",
+      "Zlib エラー",
+      "Zlib 오류"
+    ],
+    "Request denied": [
+      "请求被拒绝",
+      "要求が拒否されました",
+      "요청이 거부됨"
+    ],
+    "Method not supported": [
+      "不支持该方法",
+      "この方式はサポートされていません",
+      "지원되지 않는 방식"
+    ],
+    "Invalid data": [
+      "无效数据",
+      "無効なデータ",
+      "유효하지 않은 데이터"
+    ],
+    "Public key protocol error": [
+      "公钥协议错误",
+      "公開鍵プロトコルエラー",
+      "공개 키 프로토콜 오류"
+    ],
+    "Buffer too small": [
+      "缓冲区太小",
+      "バッファーが小さすぎます",
+      "버퍼가 너무 작음"
+    ],
+    "Bad usage": [
+      "使用方式错误",
+      "使用方法が不正です",
+      "잘못된 사용"
+    ],
+    "Compression error": [
+      "压缩错误",
+      "圧縮エラー",
+      "압축 오류"
+    ],
+    "Out of boundary": [
+      "超出边界",
+      "境界外へのアクセス",
+      "경계를 벗어남"
+    ],
+    "Agent protocol error": [
+      "认证代理协议错误",
+      "認証エージェントのプロトコルエラー",
+      "인증 에이전트 프로토콜 오류"
+    ],
+    "Socket receive error": [
+      "套接字接收错误",
+      "ソケット受信エラー",
+      "소켓 수신 오류"
+    ],
+    "Encryption failed": [
+      "加密失败",
+      "暗号化に失敗しました",
+      "암호화 실패"
+    ],
+    "Bad socket": [
+      "无效套接字",
+      "無効なソケット",
+      "잘못된 소켓"
+    ],
+    "Known hosts error": [
+      "已知主机信息错误",
+      "既知のホスト情報のエラー",
+      "알려진 호스트 정보 오류"
+    ],
+    "Channel window full": [
+      "通道窗口已满",
+      "チャネルのウィンドウが満杯です",
+      "채널 윈도가 가득 참"
+    ],
+    "Key file authentication failed": [
+      "密钥文件认证失败",
+      "鍵ファイルによる認証に失敗しました",
+      "키 파일 인증 실패"
+    ],
+    "End of file": [
+      "文件结束",
+      "ファイルの終端",
+      "파일 끝"
+    ],
+    "No such file": [
+      "文件不存在",
+      "該当するファイルがありません",
+      "해당 파일이 없음"
+    ],
+    "Permission denied": [
+      "权限被拒绝",
+      "アクセス権限がありません",
+      "권한이 거부됨"
+    ],
+    "Failure": [
+      "失败",
+      "失敗",
+      "실패"
+    ],
+    "Bad message": [
+      "消息格式错误",
+      "不正なメッセージ",
+      "잘못된 메시지"
+    ],
+    "No connection": [
+      "尚未连接",
+      "接続がありません",
+      "연결이 없음"
+    ],
+    "Connection lost": [
+      "连接已丢失",
+      "接続が失われました",
+      "연결이 끊어짐"
+    ],
+    "Operation unsupported": [
+      "不支持该操作",
+      "この操作はサポートされていません",
+      "지원되지 않는 작업"
+    ],
+    "Invalid handle": [
+      "无效句柄",
+      "無効なハンドル",
+      "유효하지 않은 핸들"
+    ],
+    "No such path": [
+      "路径不存在",
+      "該当するパスがありません",
+      "해당 경로가 없음"
+    ],
+    "File already exists": [
+      "文件已存在",
+      "ファイルは既に存在します",
+      "파일이 이미 존재함"
+    ],
+    "Write protect": [
+      "写保护",
+      "書き込み保護",
+      "쓰기 금지"
+    ],
+    "No media": [
+      "没有存储介质",
+      "記憶媒体がありません",
+      "저장 매체가 없음"
+    ],
+    "No space on filesystem": [
+      "文件系统空间不足",
+      "ファイルシステムに空き領域がありません",
+      "파일 시스템에 여유 공간이 없음"
+    ],
+    "Quota exceeded": [
+      "超出配额",
+      "クォータを超過しました",
+      "할당량을 초과함"
+    ],
+    "Unknown principal": [
+      "未知安全主体",
+      "不明なセキュリティプリンシパル",
+      "알 수 없는 보안 주체"
+    ],
+    "Lock conflict": [
+      "锁冲突",
+      "ロックの競合",
+      "잠금 충돌"
+    ],
+    "Directory not empty": [
+      "目录非空",
+      "ディレクトリが空ではありません",
+      "디렉터리가 비어 있지 않음"
+    ],
+    "Not a directory": [
+      "不是目录",
+      "ディレクトリではありません",
+      "디렉터리가 아님"
+    ],
+    "Invalid filename": [
+      "无效文件名",
+      "無効なファイル名",
+      "유효하지 않은 파일 이름"
+    ],
+    "Link loop": [
+      "链接循环",
+      "リンクの循環",
+      "링크 순환"
+    ],
+    "Generic SFTP error": [
+      "一般 SFTP 错误",
+      "一般的な SFTP エラー",
+      "일반 SFTP 오류"
+    ],
+    "Unknown key type": [
+      "未知密钥类型",
+      "不明な鍵の種類",
+      "알 수 없는 키 유형"
+    ],
+    "RSA": [
+      "RSA",
+      "RSA",
+      "RSA"
+    ],
+    "DSA": [
+      "DSA",
+      "DSA",
+      "DSA"
+    ],
+    "NIST P-256 ECDSA": [
+      "NIST P-256 ECDSA",
+      "NIST P-256 ECDSA",
+      "NIST P-256 ECDSA"
+    ],
+    "NIST P-384 ECDSA": [
+      "NIST P-384 ECDSA",
+      "NIST P-384 ECDSA",
+      "NIST P-384 ECDSA"
+    ],
+    "NIST P-521 ECDSA": [
+      "NIST P-521 ECDSA",
+      "NIST P-521 ECDSA",
+      "NIST P-521 ECDSA"
+    ],
+    "ED25519": [
+      "ED25519",
+      "ED25519",
+      "ED25519"
+    ]
+  }
+}

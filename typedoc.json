@@ -6,9 +6,26 @@
   "tsconfig": "tsconfig.json",
   "out": "build/docs",
   "plugin": [
-    "typedoc-material-theme"
+    "./tools/typedoc/localize.mjs"
   ],
   "readme": "none",
+  "locales": {
+    "ko": {
+      "flag_private": "비공개",
+      "flag_protected": "보호됨",
+      "flag_public": "공개",
+      "flag_static": "정적",
+      "flag_external": "외부",
+      "flag_optional": "선택 사항",
+      "flag_rest": "나머지 매개변수",
+      "flag_abstract": "추상",
+      "flag_const": "상수",
+      "flag_readonly": "읽기 전용",
+      "flag_inherited": "상속됨",
+      "type_0_defined_in_1_is_referenced_by_2_but_not_included_in_docs": "{1}에 정의된 {0}을(를) {2}에서 참조하지만 문서에는 포함되지 않습니다",
+      "output_0_generated_at_1": "{0} 출력을 {1}에 생성했습니다"
+    }
+  },
   "excludePrivate": true,
   "excludeInternal": true
 }

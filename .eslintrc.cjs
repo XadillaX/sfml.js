@@ -8,6 +8,9 @@ module.exports = {
   ignorePatterns: [ 'build/', 'dist/', 'third_party/' ],
   rules: {
     'max-len': [ 'error', { code: 80 }],
+    'jsdoc/check-tag-names': [ 'error', {
+      definedTags: [ 'zh', 'ja', 'ko' ],
+    }],
   },
   overrides: [
     {

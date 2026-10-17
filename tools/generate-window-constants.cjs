@@ -2,6 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { constantDoc } = require('./constant-docs.cjs');
 
 const root = path.resolve(__dirname, '..');
 const headers = path.join(root, 'third_party/sfml/include/SFML/Window');
@@ -27,15 +28,15 @@ const counts = [
 ];
 const sources = new Map();
 const descriptions = {
-  Style: '窗口样式位标志，可按位组合。',
-  State: '窗口初始显示状态。',
-  CursorType: '系统光标形状，具体支持情况取决于平台。',
-  KeyboardKey: '随系统键盘布局变化的逻辑按键。',
-  KeyboardScancode: '与键盘布局无关的物理按键。',
-  MouseButton: '鼠标按钮。',
-  MouseWheel: '鼠标滚轮方向。',
-  JoystickAxis: '游戏手柄坐标轴。',
-  SensorType: '传感器类型。',
+  Style: 'Window style bit flags that can be combined with bitwise OR.',
+  State: 'Initial window display state.',
+  CursorType: 'System cursor shapes; availability depends on the platform.',
+  KeyboardKey: 'Logical keys that depend on the system keyboard layout.',
+  KeyboardScancode: 'Physical keys independent of the keyboard layout.',
+  MouseButton: 'Mouse buttons.',
+  MouseWheel: 'Mouse wheel orientations.',
+  JoystickAxis: 'Joystick axes.',
+  SensorType: 'Sensor types.',
 };
 function memberDocs(file, pattern) {
   const raw = fs.readFileSync(path.join(headers, `${file}.hpp`), 'utf8')
@@ -48,6 +49,19 @@ function memberDocs(file, pattern) {
     if (match) docs.set(match[1], match[2].replace(/\*\//g, '* /'));
   }
   return docs;
+}
+function countDoc(file, name) {
+  const raw = fs.readFileSync(path.join(headers, `${file}.hpp`), 'utf8');
+  const declaration = raw.match(new RegExp(`^.*\\b${name}\\{.*$`, 'm'));
+  const inline = declaration?.[0].match(/\/\/!<\s*(.+)$/)?.[1];
+  const before = declaration ? raw.slice(0, declaration.index) : '';
+  const brief = before.match(
+    /\/\/\/ \\brief ([^\n]+)\n(?:\s*\/\/[^\n]*\n)*$/)?.[1];
+  const description = inline || brief;
+  if (!description) {
+    throw new Error(`Missing count documentation: ${file}.${name}`);
+  }
+  return constantDoc(description.replace(/\*\//g, '* /'));
 }
 function source(file) {
   if (!sources.has(file)) {
@@ -123,7 +137,7 @@ for (const [ file, name, output ] of definitions) {
   const symbols = scopes.get(file) || new Map();
   scopes.set(file, symbols);
   let previous = -1;
-  ts.push('', `/** ${descriptions[output]} */`, `export enum ${output} {`);
+  ts.push('', constantDoc(descriptions[output]), `export enum ${output} {`);
   for (const item of match[1].split(',').map(s => s.trim()).filter(Boolean)) {
     const member = item.match(/^(\w+)(?:\s*=\s*(.+))?$/);
     if (!member) throw new Error(`Unsupported enumerator: ${item}`);
@@ -136,7 +150,7 @@ for (const [ file, name, output ] of definitions) {
     if (!description) {
       throw new Error(`Missing enum documentation: ${output}.${key}`);
     }
-    ts.push(`  /** ${description} */`, `  ${key} = ${value},`);
+    ts.push(constantDoc(description, '  '), `  ${key} = ${value},`);
   }
   ts.push('}');
 }
@@ -144,7 +158,7 @@ for (const [ file, name, output ] of counts) {
   const match = source(file).match(new RegExp(`${name}\\s*\\{([^}]+)\\}`));
   if (!match) throw new Error(`Missing count ${file}/${name}`);
   const value = evaluate(match[1], scopes.get(file));
-  ts.push('', `/** SFML ${file} 的 ${name} 数量上限。 */`,
+  ts.push('', countDoc(file, name),
     `export const ${output} = ${value};`);
 }
 for (const [ file, lines ] of [

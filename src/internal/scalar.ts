@@ -11,7 +11,15 @@ export const scalarArrays = {
   u64: BigUint64Array,
 };
 
-/** 向量标量类型：i/u 表示有符号/无符号整数，f 表示浮点，后缀为位数。 */
+/**
+ * Vector scalar type: i/u denotes signed/unsigned integers, f denotes
+ * floating point, and the suffix is the bit width.
+ * @zh 向量标量类型：i/u 表示有符号/无符号整数，f 表示浮点，后缀为位数。
+ * @ja ベクトルのスカラー型。i/u は符号付き/符号なし整数、
+ * f は浮動小数点数、末尾の数字はビット幅を表します。
+ * @ko 벡터 스칼라 유형입니다. i/u는 부호 있는/없는 정수,
+ * f는 부동 소수점을 나타내며 접미사는 비트 수입니다.
+ */
 export type ScalarType = keyof typeof scalarArrays;
 export type BigIntScalar = 'i64' | 'u64';
 export type NumberScalar = Exclude<ScalarType, BigIntScalar>;

@@ -4,7 +4,12 @@ import { Time } from './time';
 
 const maximumDelay = 2147483647n;
 
-/** Asynchronous wait; the calling thread remains available to the event loop. */
+/**
+ * Asynchronous wait; the calling thread remains available to the event loop.
+ * @zh 异步等待；调用线程仍可用于事件循环。
+ * @ja 非同期待機。呼び出しスレッドは引き続きイベントループで利用できる。
+ * @ko 비동기 대기. 호출 스레드는 계속 이벤트 루프에서 사용할 수 있다.
+ */
 export async function sleep(duration: ReadonlyValue<Time>): Promise<void> {
   if (!(duration instanceof Time)) throw new TypeError('Expected a Time');
   const microseconds = duration.asMicroseconds();

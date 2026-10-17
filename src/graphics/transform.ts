@@ -52,15 +52,32 @@ function matrixView(values: Float32Array): readonly number[] {
   return Object.freeze(view);
 }
 
-/** sf::Transform, using its 64-byte column-major storage from construction. */
+/**
+ * sf::Transform, using its 64-byte column-major storage from construction.
+ * @zh sf::Transform，从构造起使用其 64 字节列主序存储。
+ * @ja 構築時から 64 バイトの列優先ストレージを使用する sf::Transform。
+ * @ko 생성 시점부터 64바이트 열 우선 저장 공간을 사용하는 sf::Transform입니다.
+ */
 export class Transform {
   readonly [mutableValue] = true;
-  /** 变换矩阵的惰性原生包装及可选矩阵视图缓存。 */
+  /**
+   * Lazy native wrapper for the transform matrix and optional matrix view
+   * cache.
+   * @zh 变换矩阵的惰性原生包装及可选矩阵视图缓存。
+   * @ja 変換行列の遅延ネイティブラッパーと任意の行列ビューキャッシュ。
+   * @ko 변환 행렬의 지연 네이티브 래퍼 및 선택적 행렬 뷰 캐시입니다.
+   */
   private readonly state: State = new LazyValue(
     new Float32Array(16), buffer => native.wrapTransform(buffer),
   );
 
-  /** 创建单位矩阵、复制现有变换，或按行序提供 3×3 矩阵的九个分量。 */
+  /**
+   * Creates an identity matrix, copies a transform, or accepts nine row-ordered
+   * components of a 3x3 matrix.
+   * @zh 创建单位矩阵、复制现有变换，或按行序提供 3×3 矩阵的九个分量。
+   * @ja 単位行列を作成するか、既存の変換をコピーするか、3×3 行列の九成分を行順で指定します。
+   * @ko 단위 행렬을 만들거나 기존 변환을 복사하거나 3×3 행렬의 성분 9개를 행 순서로 지정합니다.
+   */
   constructor(...args: Arguments) {
     const values = this.state.values;
     if (args.length === 0) {
@@ -83,13 +100,25 @@ export class Transform {
     return nativeValue(this, transformNative, this.state);
   }
 
-  /** 返回供 OpenGL 使用的 4×4 列主序只读视图；内容随本变换更新。 */
+  /**
+   * Returns a read-only 4x4 column-major view for OpenGL; its contents update
+   * with this transform.
+   * @zh 返回供 OpenGL 使用的 4×4 列主序只读视图；内容随本变换更新。
+   * @ja OpenGL 用の 4×4 列優先の読み取り専用ビューを返します。内容はこの変換に応じて更新されます。
+   * @ko OpenGL용 4×4 열 우선 읽기 전용 뷰를 반환합니다. 내용은 이 변환에 따라 갱신됩니다.
+   */
   getMatrix(): readonly number[] {
     this.state.matrix ??= matrixView(this.state.values);
     return this.state.matrix;
   }
 
-  /** 返回逆变换的新对象；矩阵不可逆时返回单位矩阵。 */
+  /**
+   * Returns a new inverse transform, or an identity matrix if the matrix is not
+   * invertible.
+   * @zh 返回逆变换的新对象；矩阵不可逆时返回单位矩阵。
+   * @ja 逆変換を新しいオブジェクトで返します。逆行列が存在しなければ単位行列を返します。
+   * @ko 새 역변환 객체를 반환합니다. 역행렬이 없으면 단위 행렬을 반환합니다.
+   */
   getInverse(): Transform {
     const a = this.state.values;
     const p = minor(a[15], a[5], a[7], a[13]);
@@ -108,7 +137,12 @@ export class Transform {
     );
   }
 
-  /** 变换二维点并返回新向量。 */
+  /**
+   * Transforms a 2D point and returns a new vector.
+   * @zh 变换二维点并返回新向量。
+   * @ja 二次元の点を変換し、新しいベクトルを返します。
+   * @ko 2차원 점을 변환하고 새 벡터를 반환합니다.
+   */
   transformPoint(point: R<Vector2f>): Vector2f {
     requireVector(point);
     const a = this.state.values;
@@ -118,7 +152,13 @@ export class Transform {
     );
   }
 
-  /** 变换矩形四个角，返回其轴对齐包围框。 */
+  /**
+   * Transforms all four rectangle corners and returns their axis-aligned
+   * bounds.
+   * @zh 变换矩形四个角，返回其轴对齐包围框。
+   * @ja 矩形の四隅を変換し、その軸平行境界矩形を返します。
+   * @ko 사각형의 네 모서리를 변환하고 축 정렬 경계 상자를 반환합니다.
+   */
   transformRect(rectangle: R<FloatRect>): FloatRect {
     if (!(rectangle instanceof Rect) || rectangle.scalarType !== 'f32') {
       throw new TypeError('Transform requires a FloatRect');
@@ -151,7 +191,14 @@ export class Transform {
     return result;
   }
 
-  /** 原地右乘 transform，返回 this；点先应用 transform，再应用原变换。 */
+  /**
+   * Right-multiplies by transform in place and returns this; points apply
+   * transform first, then the original transform.
+   * @zh 原地右乘 transform，返回 this；点先应用 transform，再应用原变换。
+   * @ja その場で transform を右から乗算して this を返します。点には transform を先に適用し、次に元の変換を適用します。
+   * @ko 제자리에서 transform을 오른쪽에 곱하고 this를 반환합니다. 점에는 transform을 먼저 적용한 다음 기존 변환을
+   * 적용합니다.
+   */
   combine(this: Transform, transform: R<Transform>): this {
     if (!(transform instanceof Transform)) {
       throw new TypeError('Expected a Transform');
@@ -162,7 +209,12 @@ export class Transform {
     ) as this;
   }
 
-  /** 原地右乘平移矩阵，返回 this。 */
+  /**
+   * Right-multiplies by a translation matrix in place and returns this.
+   * @zh 原地右乘平移矩阵，返回 this。
+   * @ja その場で平行移動行列を右から乗算し、this を返します。
+   * @ko 제자리에서 평행이동 행렬을 오른쪽에 곱하고 this를 반환합니다.
+   */
   translate(this: Transform, offset: R<Vector2f>): this {
     requireVector(offset);
     return this.combineMatrix(
@@ -170,7 +222,13 @@ export class Transform {
     ) as this;
   }
 
-  /** 原地右乘缩放矩阵，围绕 center（默认原点）缩放，返回 this。 */
+  /**
+   * Right-multiplies by a scaling matrix in place around center (default
+   * origin) and returns this.
+   * @zh 原地右乘缩放矩阵，围绕 center（默认原点）缩放，返回 this。
+   * @ja center（既定は原点）を中心とした拡大縮小行列をその場で右から乗算し、this を返します。
+   * @ko center(기본값은 원점)를 중심으로 하는 크기 조절 행렬을 제자리에서 오른쪽에 곱하고 this를 반환합니다.
+   */
   scale(
     this: Transform, factors: R<Vector2f>, center?: R<Vector2f>,
   ): this {
@@ -183,7 +241,13 @@ export class Transform {
     ) as this;
   }
 
-  /** 原地右乘旋转矩阵，围绕 center（默认原点）旋转，返回 this。 */
+  /**
+   * Right-multiplies by a rotation matrix in place around center (default
+   * origin) and returns this.
+   * @zh 原地右乘旋转矩阵，围绕 center（默认原点）旋转，返回 this。
+   * @ja center（既定は原点）を中心とした回転行列をその場で右から乗算し、this を返します。
+   * @ko center(기본값은 원점)를 중심으로 하는 회전 행렬을 제자리에서 오른쪽에 곱하고 this를 반환합니다.
+   */
   rotate(
     this: Transform, angle: R<Angle>, center?: R<Vector2f>,
   ): this {
@@ -198,7 +262,12 @@ export class Transform {
     return this.combineMatrix(cos, -sin, tx, sin, cos, ty, 0, 0, 1) as this;
   }
 
-  /** 原地右乘 3×3 矩阵到列主序存储。 */
+  /**
+   * Right-multiplies column-major storage by a 3x3 matrix in place.
+   * @zh 原地右乘 3×3 矩阵到列主序存储。
+   * @ja 列優先ストレージに 3×3 行列をその場で右から乗算します。
+   * @ko 열 우선 저장 공간에 3×3 행렬을 제자리에서 오른쪽에 곱합니다.
+   */
   private combineMatrix(
     b00: number, b01: number, b02: number,
     b10: number, b11: number, b12: number,
@@ -222,7 +291,12 @@ export class Transform {
     return this;
   }
 
-  /** 将九个行序分量写入列主序存储。 */
+  /**
+   * Writes nine row-ordered components into column-major storage.
+   * @zh 将九个行序分量写入列主序存储。
+   * @ja 行順の九成分を列優先ストレージに書き込みます。
+   * @ko 행 순서의 성분 9개를 열 우선 저장 공간에 씁니다.
+   */
   private assign(
     a00: number, a01: number, a02: number,
     a10: number, a11: number, a12: number,
@@ -237,6 +311,11 @@ export class Transform {
     values[10] = 1;
   }
 
-  /** 只读单位变换，保持点的位置不变。 */
+  /**
+   * Read-only identity transform that leaves point positions unchanged.
+   * @zh 只读单位变换，保持点的位置不变。
+   * @ja 点の位置を変えない、読み取り専用の単位変換。
+   * @ko 점의 위치를 바꾸지 않는 읽기 전용 단위 변환입니다.
+   */
   static readonly Identity: R<Transform> = Object.freeze(new Transform());
 }

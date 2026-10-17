@@ -22,7 +22,14 @@ type ReadonlyFloatArray = Readonly<Pick<Float32Array,
 number | 'length' | 'byteLength' | 'byteOffset' | typeof Symbol.iterator |
 'slice' | 'entries' | 'keys' | 'values'>>;
 
-/** Const data members recurse; methods still return independent mutable values. */
+/**
+ * Const data members recurse; methods still return independent mutable values.
+ * @zh 数据成员递归只读；方法仍可返回独立的可变值。
+ * @ja データメンバーは再帰的に読み取り専用になります。
+ * メソッドは引き続き独立した変更可能な値を返せます。
+ * @ko 데이터 멤버는 재귀적으로 읽기 전용이 됩니다.
+ * 메서드는 여전히 독립적인 변경 가능 값을 반환할 수 있습니다.
+ */
 export type ReadonlyValue<T> = {
   readonly [K in keyof T as K extends typeof mutableValue ? never : K]:
   // Keep generic scalar coordinates verbatim; only the property becomes const.

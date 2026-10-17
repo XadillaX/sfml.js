@@ -1,7 +1,9 @@
 'use strict';
 
-const { readFileSync, writeFileSync, mkdirSync } = require('node:fs');
+const fs = require('node:fs');
+const { readFileSync, writeFileSync, mkdirSync } = fs;
 const { resolve, dirname } = require('node:path');
+const { constantDoc } = require('./constant-docs.cjs');
 const root = resolve(__dirname, '..');
 const declarations = [
   [ 'Ftp', 'TransferMode', 'TransferMode' ],
@@ -10,10 +12,10 @@ const declarations = [
   [ 'Sftp', 'Type', 'SftpHostKeyType' ],
 ];
 const descriptions = {
-  TransferMode: 'FTP 文件传输模式。',
-  FtpStatus: 'FTP 服务端响应码和客户端错误码。',
-  SftpResultValue: 'SFTP 操作结果码。',
-  SftpHostKeyType: 'SSH 服务端主机公钥类型。',
+  TransferMode: 'FTP file transfer modes.',
+  FtpStatus: 'FTP server response codes and client error codes.',
+  SftpResultValue: 'SFTP operation result codes.',
+  SftpHostKeyType: 'SSH server host public key types.',
 };
 let output = '// Generated from the bundled SFML Network headers.\n';
 for (const [ file, original, exported ] of declarations) {
@@ -28,7 +30,8 @@ for (const [ file, original, exported ] of declarations) {
     if (match) docs.set(match[1], match[2].replace(/\*\//g, '* /'));
   }
   const body = rawBody.replace(/\/\/[^\n]*/g, '');
-  output += `/** ${descriptions[exported]} */\nexport enum ${exported} {\n`;
+  output += `${constantDoc(descriptions[exported])}\n`;
+  output += `export enum ${exported} {\n`;
   for (const entry of body.split(',')) {
     const text = entry.trim();
     if (text) {
@@ -37,11 +40,20 @@ for (const [ file, original, exported ] of declarations) {
       if (!description) {
         throw new Error(`Missing enum documentation: ${exported}.${key}`);
       }
-      output += `  /** ${description} */\n  ${text.replace(/\s+/g, ' ')},\n`;
+      output += `${constantDoc(description, '  ')}\n`;
+      output += `  ${text.replace(/\s+/g, ' ')},\n`;
     }
   }
   output += '}\n';
 }
 const path = resolve(root, 'src/network/gen/constants.ts');
-mkdirSync(dirname(path), { recursive: true });
-writeFileSync(path, output);
+const current = fs.existsSync(path) ? readFileSync(path, 'utf8') : null;
+if (process.argv.includes('--check')) {
+  if (current !== output) {
+    throw new Error(
+      'Generated constants are stale: src/network/gen/constants.ts');
+  }
+} else if (current !== output) {
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, output);
+}

@@ -1,0 +1,152 @@
+@import './tokens.css';
+@import '../../../assets/icons/game-icons/icons.css';
+@import './home.css';
+
+:root {
+  --vp-font-family-base: var(--sf-font);
+  --vp-font-family-mono: var(--sf-mono);
+  --vp-c-brand-1: var(--sf-brand);
+  --vp-c-brand-2: var(--sf-brand-hover);
+  --vp-c-brand-3: #347c35;
+  --vp-c-brand-soft: var(--sf-brand-soft);
+  --vp-c-bg: var(--sf-bg);
+  --vp-c-bg-alt: var(--sf-bg-alt);
+  --vp-c-bg-soft: var(--sf-bg-soft);
+  --vp-c-bg-elv: var(--sf-bg);
+  --vp-c-text-1: var(--sf-text);
+  --vp-c-text-2: var(--sf-muted);
+  --vp-c-text-3: var(--sf-subtle);
+  --vp-c-divider: var(--sf-border);
+  --vp-c-gutter: var(--sf-border);
+  --vp-nav-bg-color: var(--sf-header);
+  --vp-nav-height: var(--sf-nav-height);
+  --vp-sidebar-width: 276px;
+  --vp-layout-max-width: 1440px;
+  --vp-code-bg: var(--sf-bg-alt);
+  --vp-code-block-bg: var(--sf-bg-alt);
+  --vp-custom-block-tip-border: var(--sf-border);
+  --vp-custom-block-tip-bg: var(--sf-brand-soft);
+}
+
+/* Shared navigation and reading surfaces retain the API theme's tokens. */
+.VPNavBar,
+.VPNavBar .content-body,
+.VPNavBar.has-sidebar .title { background: var(--sf-header) !important; }
+.VPNavBar {
+  color: var(--sf-header-text);
+  --vp-c-text-1: var(--sf-header-text);
+  --vp-c-text-2: var(--sf-header-muted);
+  --vp-c-text-3: var(--sf-header-muted);
+  --vp-c-brand-1: var(--sf-lime);
+  --vp-c-divider: var(--sf-header-border);
+  --sf-focus: var(--sf-lime);
+}
+.VPNavBar .wrapper { padding: 0 32px !important; }
+.VPNavBar .container { max-width: var(--sf-content-width) !important; }
+.VPNavBar.has-sidebar .title { position: static !important; width: auto !important; padding: 0 !important; }
+.VPNavBar.has-sidebar .content { padding: 0 !important; }
+.VPNavBarTitle .title { border: 0 !important; gap: 10px; line-height: 1; white-space: nowrap; }
+.VPNavBarTitle .logo { width: 40px; height: 40px; object-fit: contain; margin-right: 0; }
+.VPNavBarTitle .sf-wordmark { display: block; width: auto; height: 28px; object-fit: contain; }
+.VPNavBar .divider { display: none; }
+.VPNavBarMenuLink { font-size: 15px !important; font-weight: 650 !important; padding: 0 16px !important; }
+.VPNavBarMenuLink:hover { color: var(--sf-lime); }
+.VPNavBarSearch { flex-grow: 0 !important; padding: 0 24px !important; }
+.VPNavBarSearch .DocSearch-Button {
+  color: var(--sf-header-muted);
+  background: #223c2f;
+  border: 1px solid var(--sf-header-border);
+  border-radius: var(--sf-radius);
+  height: 38px;
+}
+.VPNavBarSearch .DocSearch-Button:hover { background: #304d3c; border-color: var(--sf-lime); color: #fff; }
+.VPNavBarSearch .DocSearch-Button-Keys { display: none; }
+.VPNavBar .VPSwitchAppearance { background: #304d3c; border-color: #708572; }
+.VPNavBar .VPSwitchAppearance .check { background: #e7eedf; color: #253e29; }
+.VPNavBar .VPMenu {
+  --vp-c-text-1: var(--sf-text);
+  --vp-c-text-2: var(--sf-muted);
+  --vp-c-brand-1: var(--sf-brand);
+  --sf-focus: var(--sf-brand);
+  color: var(--sf-text);
+  background: var(--sf-bg);
+  border-color: var(--sf-border);
+  border-radius: var(--sf-radius);
+  padding: 10px;
+}
+.VPMenu .VPMenuLink + .VPMenuLink { margin-top: 4px; }
+.VPMenuLink a { border-radius: var(--sf-radius) !important; }
+.VPMenuLink a:hover { background: var(--sf-bg-soft); }
+.VPNavScreen { background: var(--sf-bg) !important; }
+.VPNavScreenMenuLink { padding: 16px 8px !important; margin: 4px 0; border-radius: var(--sf-radius); }
+.VPNavScreenMenuLink:hover { background: var(--sf-bg-soft); }
+.VPNavScreenAppearance { border-radius: var(--sf-radius) !important; }
+
+.VPDoc .content-container { max-width: 800px !important; }
+.vp-doc { font-size: 16px; }
+.vp-doc h1 { font: 800 42px/1.2 var(--sf-display); letter-spacing: -.02em; }
+.vp-doc h2 { font: 700 30px/1.25 var(--sf-display); letter-spacing: -.01em; padding-top: 28px; margin-top: 44px; }
+.vp-doc h3 { font: 700 24px/1.3 var(--sf-display); }
+.vp-doc p { line-height: 1.85; }
+.vp-doc img { border-radius: var(--sf-radius); }
+.vp-doc div[class*='language-'], .vp-doc .custom-block { border-radius: var(--sf-radius); }
+.vp-doc th { font-weight: 650; background: var(--sf-bg-soft); }
+.vp-doc a { text-underline-offset: 3px; }
+.VPSidebar { border-right: 1px solid var(--sf-border); }
+.VPSidebar .curtain { background: var(--sf-bg-alt) !important; }
+.VPSidebarItem.level-0 > .item { margin-bottom: 8px; }
+.VPSidebarItem.level-0 > .item > .text { font-size: 14px; font-weight: 750; }
+.VPSidebarItem.level-1 > .item { margin: 4px 0; padding: 3px 10px; border-radius: var(--sf-radius); }
+.VPSidebarItem.level-1 > .item .text { line-height: 24px; }
+.VPSidebarItem.level-1.is-active > .item { background: var(--sf-brand-soft); }
+.VPSidebarItem.level-1 > .item:hover { background: var(--sf-bg-soft); }
+.VPSidebarItem .link:focus-visible { outline: 2px solid var(--sf-focus); outline-offset: 1px; border-radius: 2px; }
+.VPDocAsideOutline .outline-link { line-height: 28px; padding: 2px 0; }
+.VPDocFooter .pager-link { border-radius: var(--sf-radius); }
+.VPDocFooter .pager-link:hover { background: var(--sf-bg-alt); }
+.VPLocalSearchBox .shell { border-radius: 6px !important; }
+
+/* Use the same vendored silhouettes in VitePress's built-in controls. */
+html .vpi-search { --icon: var(--gi-search); }
+html .DocSearch-Button .DocSearch-Search-Icon { --icon: var(--gi-search); }
+html .vpi-languages { --icon: var(--gi-language); }
+html .vpi-sun { --icon: var(--gi-sun); }
+html .vpi-moon { --icon: var(--gi-moon); }
+html :is(.vpi-align-left, .vpi-layout-list, .vpi-more-horizontal) { --icon: var(--gi-menu); }
+html :is(.vpi-arrow-right, .vpi-arrow-down, .vpi-arrow-left, .vpi-arrow-up,
+  .vpi-chevron-right, .vpi-chevron-down, .vpi-chevron-left, .vpi-chevron-up) { --icon: var(--gi-arrow); }
+html .vpi-square-pen { --icon: var(--gi-edit); }
+html .vpi-delete { --icon: var(--gi-close); }
+html { --vp-icon-copy: var(--gi-copy); --vp-icon-copied: var(--gi-check); }
+.VPNavBarHamburger .container {
+  width: 22px;
+  height: 22px;
+  background: currentColor;
+  -webkit-mask: var(--gi-menu) center / contain no-repeat;
+  mask: var(--gi-menu) center / contain no-repeat;
+}
+.VPNavBarHamburger.active .container {
+  -webkit-mask-image: var(--gi-close);
+  mask-image: var(--gi-close);
+}
+.VPNavBarHamburger .container > span { display: none; }
+
+@media (max-width: 1100px) {
+  .VPNavBarSearch { padding: 0 16px !important; }
+  .VPNavBarMenuLink { padding: 0 12px !important; }
+}
+@media (max-width: 959px) {
+  .VPNavBarSearch .DocSearch-Button-Placeholder { display: none; }
+  .VPNavBarSearch .DocSearch-Button { width: 38px; justify-content: center; padding: 0; }
+  .VPNavBarSearch { padding: 0 12px !important; }
+}
+@media (max-width: 767px) {
+  :root { --sf-nav-height: 64px; }
+  .VPNavBar .wrapper { padding: 0 16px 0 20px !important; }
+  .VPNavBarTitle .title { gap: 8px; }
+  .VPNavBarTitle .logo { width: 36px; height: 36px; }
+  .VPNavBarTitle .sf-wordmark { height: 24px; }
+  .VPNavBarSearch { padding: 0 !important; }
+  .vp-doc h1 { font-size: 32px; }
+  .vp-doc h2 { font-size: 27px; }
+}

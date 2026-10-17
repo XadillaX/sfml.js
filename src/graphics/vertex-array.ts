@@ -23,7 +23,12 @@ function validateCount(count: number): void {
   }
 }
 
-/** Native contiguous vertices, exposed through stable per-allocation views. */
+/**
+ * Native contiguous vertices, exposed through stable per-allocation views.
+ * @zh 通过每次分配期间稳定的视图公开的原生连续顶点。
+ * @ja 割り当てごとに安定したビューで公開される、ネイティブの連続頂点。
+ * @ko 할당별로 안정적인 뷰를 통해 노출되는 네이티브 연속 꼭짓점입니다.
+ */
 export class VertexArray extends Drawable implements Iterable<Vertex> {
   private handle: NativeGraphicsHandle<'vertices'>;
   private bytes: Uint8Array;
@@ -44,9 +49,20 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
       });
   }
 
-  /** 创建顶点数组；默认 Points、零个顶点，新增顶点为原点处的不透明白色。 */
+  /**
+   * Creates a vertex array, defaulting to Points and zero vertices; new
+   * vertices are opaque white at the origin.
+   * @zh 创建顶点数组；默认 Points、零个顶点，新增顶点为原点处的不透明白色。
+   * @ja 頂点配列を作成します。既定は Points、0 頂点です。追加頂点は原点にあり、不透明な白です。
+   * @ko 꼭짓점 배열을 만듭니다. 기본값은 Points와 0개 꼭짓점이며 새 꼭짓점은 원점의 불투명한 흰색입니다.
+   */
   constructor(type?: PrimitiveType, vertexCount?: number);
-  /** 深复制顶点数据和图元类型。 */
+  /**
+   * Deep-copies vertex data and primitive type.
+   * @zh 深复制顶点数据和图元类型。
+   * @ja 頂点データとプリミティブ型をディープコピーします。
+   * @ko 꼭짓점 데이터와 프리미티브 형식을 깊은 복사합니다.
+   */
   constructor(source: VertexArray);
   constructor(source: PrimitiveType | VertexArray = PrimitiveType.Points,
     vertexCount = 0) {
@@ -65,7 +81,12 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
     if (copy) this.bytes.set(copy.bytes.subarray(0, count * 20));
   }
 
-  /** 返回当前顶点数。 */
+  /**
+   * Returns the current vertex count.
+   * @zh 返回当前顶点数。
+   * @ja 現在の頂点数を返します。
+   * @ko 현재 꼭짓점 수를 반환합니다.
+   */
   getVertexCount(): number {
     return this.count;
   }
@@ -80,8 +101,14 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
   }
 
   /**
-   * 返回从零开始的顶点共享视图；越界抛出 RangeError。
-   * 扩容重新分配后，之前取得的视图仍指向旧存储，请重新获取。
+   * Returns a zero-based shared vertex view; throws RangeError for an
+   * out-of-bounds index. After growth reallocates storage, previous views still
+   * point to the old storage and must be retrieved again.
+   * @zh 返回从零开始的顶点共享视图；越界抛出 RangeError。 扩容重新分配后，之前取得的视图仍指向旧存储，请重新获取。
+   * @ja 0 始まりの頂点共有ビューを返します。範囲外なら RangeError を投げます。拡張で再割り当てした後も既存ビューは旧ストレージを指すため
+   * 、再取得が必要です。
+   * @ko 0부터 시작하는 꼭짓점 공유 뷰를 반환합니다. 범위를 벗어나면 RangeError를 던집니다. 확장으로 재할당한 후에도 이전
+   * 뷰는 기존 저장 공간을 가리키므로 다시 가져와야 합니다.
    */
   getVertex(index: number): Vertex {
     this.checkIndex(index);
@@ -97,20 +124,36 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
     return vertex;
   }
 
-  /** 将 value 的分量复制到指定顶点；index 从零开始。 */
+  /**
+   * Copies value's components into the specified vertex; index starts at zero.
+   * @zh 将 value 的分量复制到指定顶点；index 从零开始。
+   * @ja value の成分を指定頂点にコピーします。index は 0 始まりです。
+   * @ko value의 성분을 지정한 꼭짓점에 복사합니다. index는 0부터 시작합니다.
+   */
   setVertex(index: number, value: ReadonlyValue<Vertex>): void {
     this.checkIndex(index);
     if (!(value instanceof Vertex)) throw new TypeError('Expected a Vertex');
     this.bytes.set(value[vertexStorage], index * 20);
   }
 
-  /** 将顶点数清零，保留已分配的容量。 */
+  /**
+   * Sets the vertex count to zero, retaining allocated capacity.
+   * @zh 将顶点数清零，保留已分配的容量。
+   * @ja 割り当て済み容量を保持して頂点数をゼロにします。
+   * @ko 할당된 용량을 유지하고 꼭짓점 수를 0으로 설정합니다.
+   */
   clear(): void {
     this.count = 0;
     this.views.clear();
   }
 
-  /** 调整顶点数；新增顶点使用默认值，缩小时截去末尾顶点。 */
+  /**
+   * Resizes the vertex count; new vertices use defaults, and shrinking removes
+   * vertices from the end.
+   * @zh 调整顶点数；新增顶点使用默认值，缩小时截去末尾顶点。
+   * @ja 頂点数を変更します。追加頂点は既定値を使い、縮小時は末尾の頂点を削除します。
+   * @ko 꼭짓점 수를 조절합니다. 새 꼭짓점은 기본값을 사용하며 축소 시 끝의 꼭짓점을 제거합니다.
+   */
   resize(vertexCount: number): void {
     validateCount(vertexCount);
     this.ensureCapacity(vertexCount);
@@ -125,7 +168,12 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
     this.count = vertexCount;
   }
 
-  /** 在末尾追加顶点副本，容量不足时重新分配存储。 */
+  /**
+   * Appends a vertex copy, reallocating storage if capacity is insufficient.
+   * @zh 在末尾追加顶点副本，容量不足时重新分配存储。
+   * @ja 頂点のコピーを末尾に追加し、容量不足ならストレージを再割り当てします。
+   * @ko 꼭짓점 복사본을 끝에 추가하며 용량이 부족하면 저장 공간을 재할당합니다.
+   */
   append(vertex: ReadonlyValue<Vertex>): void {
     if (!(vertex instanceof Vertex)) throw new TypeError('Expected a Vertex');
     validateCount(this.count + 1);
@@ -134,18 +182,34 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
     this.count++;
   }
 
-  /** 设置顶点组成图元的方式。 */
+  /**
+   * Sets how vertices form primitives.
+   * @zh 设置顶点组成图元的方式。
+   * @ja 頂点からプリミティブを構成する方法を設定します。
+   * @ko 꼭짓점이 프리미티브를 구성하는 방식을 설정합니다.
+   */
   setPrimitiveType(type: PrimitiveType): void {
     validatePrimitiveType(type);
     this.primitiveType = type;
   }
 
-  /** 返回当前图元类型。 */
+  /**
+   * Returns the current primitive type.
+   * @zh 返回当前图元类型。
+   * @ja 現在のプリミティブ型を返します。
+   * @ko 현재 프리미티브 형식을 반환합니다.
+   */
   getPrimitiveType(): PrimitiveType {
     return this.primitiveType;
   }
 
-  /** 返回所有顶点位置的轴对齐包围框；空数组返回零矩形。 */
+  /**
+   * Returns axis-aligned bounds of all vertex positions; an empty array returns
+   * a zero rectangle.
+   * @zh 返回所有顶点位置的轴对齐包围框；空数组返回零矩形。
+   * @ja 全頂点位置の軸平行境界矩形を返します。空配列ならゼロ矩形を返します。
+   * @ko 모든 꼭짓점 위치의 축 정렬 경계 상자를 반환합니다. 빈 배열은 0 사각형을 반환합니다.
+   */
   getBounds(): FloatRect {
     if (this.count === 0) return new FloatRect();
     const data = this.coordinates;
@@ -165,7 +229,12 @@ export class VertexArray extends Drawable implements Iterable<Vertex> {
       new Vector2f(left, top), new Vector2f(right - left, bottom - top));
   }
 
-  /** 按索引顺序遍历顶点共享视图。 */
+  /**
+   * Iterates shared vertex views in index order.
+   * @zh 按索引顺序遍历顶点共享视图。
+   * @ja インデックス順に頂点共有ビューを反復します。
+   * @ko 인덱스 순서로 꼭짓점 공유 뷰를 순회합니다.
+   */
   * [Symbol.iterator](): IterableIterator<Vertex> {
     for (let i = 0; i < this.count; i++) yield this.getVertex(i);
   }

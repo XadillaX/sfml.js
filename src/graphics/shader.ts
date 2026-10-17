@@ -11,13 +11,33 @@ import { InputStream } from '../system/input-stream';
 import { Texture, type ReadonlyTexture } from './texture';
 import * as Glsl from './glsl';
 
-/** GLSL 着色器阶段。 */
+/**
+ * GLSL shader stages.
+ * @zh GLSL 着色器阶段。
+ * @ja GLSL シェーダーステージ。
+ * @ko GLSL 셰이더 단계입니다.
+ */
 export enum ShaderType {
-  /** 顶点处理阶段。 */
+  /**
+   * Vertex processing stage.
+   * @zh 顶点处理阶段。
+   * @ja 頂点処理ステージ。
+   * @ko 꼭짓점 처리 단계입니다.
+   */
   Vertex,
-  /** 几何图元处理阶段。 */
+  /**
+   * Geometry primitive processing stage.
+   * @zh 几何图元处理阶段。
+   * @ja ジオメトリプリミティブ処理ステージ。
+   * @ko 기하 프리미티브 처리 단계입니다.
+   */
   Geometry,
-  /** 片元颜色处理阶段。 */
+  /**
+   * Fragment color processing stage.
+   * @zh 片元颜色处理阶段。
+   * @ja フラグメント色処理ステージ。
+   * @ko 프래그먼트 색상 처리 단계입니다.
+   */
   Fragment,
 }
 
@@ -29,7 +49,12 @@ type ArrayElement = number | R<Glsl.Vec2> | R<Glsl.Vec3> | R<Glsl.Vec4> |
 R<Glsl.Mat3> | R<Glsl.Mat4>;
 type Sources<T> = [ T, ShaderType ] | [ T, T ] | [ T, T, T ];
 
-/** 同一个着色器程序的只读接口。 */
+/**
+ * Read-only interface to the same shader program.
+ * @zh 同一个着色器程序的只读接口。
+ * @ja 同じシェーダープログラムへの読み取り専用インターフェース。
+ * @ko 동일한 셰이더 프로그램의 읽기 전용 인터페이스입니다.
+ */
 export type ReadonlyShader = Readonly<Pick<Shader,
 typeof graphicsNative | typeof shaderId | typeof shaderTextures |
 'getNativeHandle'>>;
@@ -57,20 +82,51 @@ function numeric(value: Uniform): { type: number; data: Float32Array | Int32Arra
   throw new TypeError('Expected a Shader uniform value');
 }
 
-/** Native-owned program; source loading and compilation run asynchronously. */
+/**
+ * Native-owned program; source loading and compilation run asynchronously.
+ * @zh 原生层拥有的程序；源码加载和编译异步执行。
+ * @ja ネイティブ所有のプログラム。ソースの読み込みとコンパイルは非同期に実行されます。
+ * @ko 네이티브 소유 프로그램입니다. 소스 로드와 컴파일은 비동기로 실행됩니다.
+ */
 export class Shader {
-  /** 着色器阶段枚举。 */
+  /**
+   * Shader stage enumeration.
+   * @zh 着色器阶段枚举。
+   * @ja シェーダーステージの列挙型。
+   * @ko 셰이더 단계 열거형입니다.
+   */
   static readonly Type = ShaderType;
-  /** uniform 纹理占位符，绘制时使用当前对象绑定的纹理。 */
+  /**
+   * Texture uniform placeholder using the texture bound to the current object
+   * at draw time.
+   * @zh uniform 纹理占位符，绘制时使用当前对象绑定的纹理。
+   * @ja 描画時に現在のオブジェクトにバインドされたテクスチャを使う uniform テクスチャのプレースホルダー。
+   * @ko 그릴 때 현재 객체에 바인딩된 텍스처를 사용하는 텍스처 uniform 자리표시자입니다.
+   */
   static readonly CurrentTexture: unique symbol = Symbol('Shader.CurrentTexture');
   readonly [graphicsNative]: NativeGraphicsHandle<'shader'>;
   readonly [shaderId]: number;
-  /** OpenGL 程序标识的只读 Uint32 包装。 */
+  /**
+   * Read-only Uint32 wrapper for the OpenGL program identifier.
+   * @zh OpenGL 程序标识的只读 Uint32 包装。
+   * @ja OpenGL プログラム識別子の読み取り専用 Uint32 ラッパー。
+   * @ko OpenGL 프로그램 식별자의 읽기 전용 Uint32 래퍼입니다.
+   */
   private readonly program: Uint32Array;
-  /** 已设置 uniform 的纹理引用，防止被 GC 回收。 */
+  /**
+   * Texture references set as uniforms, preventing garbage collection.
+   * @zh 已设置 uniform 的纹理引用，防止被 GC 回收。
+   * @ja GC による回収を防ぐ、uniform に設定されたテクスチャ参照。
+   * @ko GC 수거를 방지하는 uniform에 설정된 텍스처 참조입니다.
+   */
   private readonly textures = new Map<number, ReadonlyTexture>();
 
-  /** 创建尚未编译程序的空着色器。 */
+  /**
+   * Creates an empty shader with no compiled program.
+   * @zh 创建尚未编译程序的空着色器。
+   * @ja コンパイル済みプログラムのない空のシェーダーを作成します。
+   * @ko 컴파일된 프로그램이 없는 빈 셰이더를 만듭니다.
+   */
   constructor() {
     const mapping = native.createShader(graphicsContext());
     this[graphicsNative] = mapping.handle;
@@ -82,17 +138,35 @@ export class Shader {
     return this.textures;
   }
 
-  /** 异步编译文件；参数为文件及阶段、顶点/片元文件，或顶点/几何/片元文件。 */
+  /**
+   * Compiles files asynchronously; accepts a file and stage, vertex/fragment
+   * files, or vertex/geometry/fragment files.
+   * @zh 异步编译文件；参数为文件及阶段、顶点/片元文件，或顶点/几何/片元文件。
+   * @ja ファイルを非同期にコンパイルします。引数はファイルとステージ、頂点/フラグメントファイル、または頂点/ジオメトリ/フラグメントファイルです。
+   * @ko 파일을 비동기로 컴파일합니다. 인수는 파일과 단계, 꼭짓점/프래그먼트 파일 또는 꼭짓점/기하/프래그먼트 파일입니다.
+   */
   loadFromFile(...sources: Sources<string>): Promise<boolean> {
     return this.load(false, sources);
   }
 
-  /** 异步编译 GLSL 源码；参数顺序同 loadFromFile，返回编译链接是否成功。 */
+  /**
+   * Compiles GLSL source asynchronously; argument order matches loadFromFile.
+   * Returns whether compilation and linking succeeded.
+   * @zh 异步编译 GLSL 源码；参数顺序同 loadFromFile，返回编译链接是否成功。
+   * @ja GLSL ソースを非同期にコンパイルします。引数順は loadFromFile と同じです。コンパイルとリンクが成功したかを返します。
+   * @ko GLSL 소스를 비동기로 컴파일합니다. 인수 순서는 loadFromFile과 같으며 컴파일 및 링크 성공 여부를 반환합니다.
+   */
   loadFromMemory(...sources: Sources<string>): Promise<boolean> {
     return this.load(true, sources);
   }
 
-  /** 从输入流读取 UTF-8 GLSL 并异步编译，阶段顺序同 loadFromFile。 */
+  /**
+   * Reads UTF-8 GLSL from input streams and compiles asynchronously; stage
+   * order matches loadFromFile.
+   * @zh 从输入流读取 UTF-8 GLSL 并异步编译，阶段顺序同 loadFromFile。
+   * @ja 入力ストリームから UTF-8 GLSL を読み、非同期にコンパイルします。ステージ順は loadFromFile と同じです。
+   * @ko 입력 스트림에서 UTF-8 GLSL을 읽고 비동기로 컴파일합니다. 단계 순서는 loadFromFile과 같습니다.
+   */
   async loadFromStream(...sources: Sources<InputStream>): Promise<boolean> {
     const stages = this.stages(sources);
     const code: (string | null)[] = [ null, null, null ];
@@ -113,9 +187,22 @@ export class Shader {
     return this.compile(true, code);
   }
 
-  /** 设置 uniform，number 默认为 float；纹理参数会保留引用，其他值同步复制。 */
+  /**
+   * Sets a uniform; number defaults to float. Texture arguments retain
+   * references; other values are copied synchronously.
+   * @zh 设置 uniform，number 默认为 float；纹理参数会保留引用，其他值同步复制。
+   * @ja uniform を設定します。number の既定は float です。テクスチャ引数は参照を保持し、他の値は同期的にコピーします。
+   * @ko uniform을 설정합니다. number의 기본 형식은 float입니다. 텍스처 인수는 참조를 유지하고 다른 값은 동기적으로
+   * 복사합니다.
+   */
   setUniform(name: string, value: Uniform): void;
-  /** 设置数值 uniform，显式指定 GLSL float 或 int；先提交已录制绘制。 */
+  /**
+   * Sets a numeric uniform explicitly as GLSL float or int, first submitting
+   * recorded draws.
+   * @zh 设置数值 uniform，显式指定 GLSL float 或 int；先提交已录制绘制。
+   * @ja 記録済み描画を先に送信してから、GLSL float または int を明示して数値 uniform を設定します。
+   * @ko 기록된 그리기를 먼저 제출한 후 GLSL float 또는 int를 명시하여 숫자 uniform을 설정합니다.
+   */
   setUniform(name: string, value: number, type: 'float' | 'int'): void;
   setUniform(name: string, value: Uniform, scalarType?: 'float' | 'int'): void {
     nameString(name);
@@ -138,7 +225,13 @@ export class Shader {
     native.setShaderUniform(this[graphicsNative], name, type, data, false);
   }
 
-  /** 同步上传同类型的 float、浮点向量或矩阵数组，先提交已录制绘制。 */
+  /**
+   * Synchronously uploads a homogeneous array of floats, floating-point vectors
+   * or matrices, first submitting recorded draws.
+   * @zh 同步上传同类型的 float、浮点向量或矩阵数组，先提交已录制绘制。
+   * @ja 記録済み描画を先に送信し、同じ型の float、浮動小数点ベクトル、または行列の配列を同期的にアップロードします。
+   * @ko 기록된 그리기를 먼저 제출한 후 동일 형식의 float, 부동소수점 벡터 또는 행렬 배열을 동기적으로 업로드합니다.
+   */
   setUniformArray(name: string, values: Float32Array | readonly ArrayElement[]): void {
     nameString(name);
     let type = 0;
@@ -160,12 +253,23 @@ export class Shader {
     native.setShaderUniform(this[graphicsNative], name, type, data, true);
   }
 
-  /** 返回 OpenGL 程序标识；尚未编译成功时为 0。 */
+  /**
+   * Returns the OpenGL program identifier, or 0 if compilation has not
+   * succeeded.
+   * @zh 返回 OpenGL 程序标识；尚未编译成功时为 0。
+   * @ja OpenGL プログラム識別子を返します。コンパイルがまだ成功していなければ 0 です。
+   * @ko OpenGL 프로그램 식별자를 반환합니다. 아직 컴파일에 성공하지 않았으면 0입니다.
+   */
   getNativeHandle(): number {
     return this.program[0];
   }
 
-  /** 为直接 OpenGL 操作绑定程序；null 解除绑定。 */
+  /**
+   * Binds a program for direct OpenGL operations; null unbinds it.
+   * @zh 为直接 OpenGL 操作绑定程序；null 解除绑定。
+   * @ja OpenGL 直接操作用にプログラムをバインドします。null はバインドを解除します。
+   * @ko 직접 OpenGL 작업을 위해 프로그램을 바인딩합니다. null은 바인딩을 해제합니다.
+   */
   static bind(shader: ReadonlyShader | null): void {
     if (shader !== null && !(shader instanceof Shader)) {
       throw new TypeError('Expected a Shader or null');
@@ -173,12 +277,27 @@ export class Shader {
     native.bindShader(shader?.[graphicsNative] ?? null);
   }
 
-  /** 返回当前环境是否支持着色器。 */
+  /**
+   * Returns whether the current environment supports shaders.
+   * @zh 返回当前环境是否支持着色器。
+   * @ja 現在の環境がシェーダーに対応しているかを返します。
+   * @ko 현재 환경의 셰이더 지원 여부를 반환합니다.
+   */
   static isAvailable(): boolean { return native.isShaderAvailable(false); }
-  /** 返回当前环境是否支持几何着色器。 */
+  /**
+   * Returns whether the current environment supports geometry shaders.
+   * @zh 返回当前环境是否支持几何着色器。
+   * @ja 現在の環境がジオメトリシェーダーに対応しているかを返します。
+   * @ko 현재 환경의 기하 셰이더 지원 여부를 반환합니다.
+   */
   static isGeometryAvailable(): boolean { return native.isShaderAvailable(true); }
 
-  /** 将阶段参数标准化为 [vertex, geometry, fragment] 三元组。 */
+  /**
+   * Normalizes stage arguments into a [vertex, geometry, fragment] tuple.
+   * @zh 将阶段参数标准化为 [vertex, geometry, fragment] 三元组。
+   * @ja ステージ引数を [vertex, geometry, fragment] の組に正規化します。
+   * @ko 단계 인수를 [vertex, geometry, fragment] 튜플로 정규화합니다.
+   */
   private stages<T>(sources: Sources<T>): (T | null)[] {
     if (sources.length === 2 && typeof sources[1] === 'number') {
       if (!Number.isInteger(sources[1]) || sources[1] < 0 || sources[1] > 2) {
@@ -193,7 +312,12 @@ export class Shader {
     throw new TypeError('Expected a shader source and type, or two/three sources');
   }
 
-  /** 从文件或内存加载源码并编译。 */
+  /**
+   * Loads source from files or memory and compiles it.
+   * @zh 从文件或内存加载源码并编译。
+   * @ja ファイルまたはメモリからソースを読み込み、コンパイルします。
+   * @ko 파일 또는 메모리에서 소스를 로드하고 컴파일합니다.
+   */
   private async load(memory: boolean, sources: Sources<string>): Promise<boolean> {
     const stages = this.stages(sources).map(source => {
       if (source === null) return null;
@@ -204,7 +328,12 @@ export class Shader {
     return this.compile(memory, stages);
   }
 
-  /** 异步编译并链接着色器程序。 */
+  /**
+   * Compiles and links a shader program asynchronously.
+   * @zh 异步编译并链接着色器程序。
+   * @ja シェーダープログラムを非同期にコンパイルしてリンクします。
+   * @ko 셰이더 프로그램을 비동기로 컴파일하고 링크합니다.
+   */
   private compile(memory: boolean, sources: (string | null)[]): Promise<boolean> {
     return new Promise((resolve, reject) => {
       native.compileShader(memory, sources, (error, program) => {

@@ -28,7 +28,12 @@ export class SerialQueue {
     return next;
   }
 }
-/** Register before checking state so no event can be lost between both steps. */
+/**
+ * Register before checking state so no event can be lost between both steps.
+ * @zh 先注册再检查状态，以免在两个步骤之间丢失事件。
+ * @ja 状態確認の前に登録し、両手順の間でイベントが失われないようにします。
+ * @ko 두 단계 사이에 이벤트가 유실되지 않도록 상태 확인 전에 등록합니다.
+ */
 export function waitFor(events: EventEmitter, check: () => boolean,
   timeout = 0, signal?: AbortSignal): Promise<boolean> {
   return new Promise((resolve, reject) => {

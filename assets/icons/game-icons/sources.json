@@ -1,0 +1,23 @@
+{
+  "upstream": "https://github.com/game-icons/icons",
+  "revision": "82d948812bfe3f269ef8f731dcdb07b08160edc4",
+  "license": "https://creativecommons.org/licenses/by/3.0/",
+  "modifications": "Removed background, set monochrome fill, rotated plain-arrow to point right.",
+  "icons": {
+    "system": "lorc/gears",
+    "window": "delapouite/resize",
+    "graphics": "delapouite/palette",
+    "audio": "skoll/sound-waves",
+    "network": "delapouite/mesh-network",
+    "copy": "delapouite/files",
+    "search": "lorc/magnifying-glass",
+    "language": "delapouite/wireframe-globe",
+    "sun": "lorc/sun",
+    "moon": "lorc/moon",
+    "menu": "delapouite/hamburger-menu",
+    "arrow": "delapouite/plain-arrow",
+    "close": "lorc/cross-mark",
+    "check": "delapouite/check-mark",
+    "edit": "delapouite/pencil"
+  }
+}

@@ -29,31 +29,102 @@ export interface TransformableHost {
 }
 
 export interface TransformableMethods extends TransformableHost {
-  /** 设置对象原点在父坐标系中的位置，复制 position 的值。 */
+  /**
+   * Set the object's origin in parent coordinates, copying position.
+   * @zh 设置对象原点在父坐标系中的位置，复制 position 的值。
+   * @ja 親座標系での原点の位置を設定し、position の値をコピーします。
+   * @ko 부모 좌표계에서 원점 위치를 설정하고 position 값을 복사합니다.
+   */
   setPosition(this: TransformableHost, position: R<Vector2f>): void;
-  /** 返回位置的独立副本。 */
+  /**
+   * Return an independent copy of the position.
+   * @zh 返回位置的独立副本。
+   * @ja 位置の独立したコピーを返します。
+   * @ko 위치의 독립적인 복사본을 반환합니다.
+   */
   getPosition(): Vector2f;
-  /** 将 offset 加到当前位置。 */
+  /**
+   * Add offset to the current position.
+   * @zh 将 offset 加到当前位置。
+   * @ja 現在の位置に offset を加えます。
+   * @ko 현재 위치에 offset을 더합니다.
+   */
   move(this: TransformableHost, offset: R<Vector2f>): void;
-  /** 设置旋转角度；屏幕坐标中正角度为顺时针。 */
+  /**
+   * Set the rotation; positive angles are clockwise in screen coordinates.
+   * @zh 设置旋转角度；屏幕坐标中正角度为顺时针。
+   * @ja 回転角を設定します。画面座標では正の角度が時計回りです。
+   * @ko 회전 각도를 설정합니다. 화면 좌표에서 양의 각도는 시계 방향입니다.
+   */
   setRotation(this: TransformableHost, angle: R<Angle>): void;
-  /** 返回归一化到 [0°, 360°) 的旋转角度副本。 */
+  /**
+   * Return a copy of the rotation normalized to [0°, 360°).
+   * @zh 返回归一化到 [0°, 360°) 的旋转角度副本。
+   * @ja [0°, 360°) に正規化した回転角のコピーを返します。
+   * @ko [0°, 360°)로 정규화한 회전 각도의 복사본을 반환합니다.
+   */
   getRotation(): Angle;
-  /** 在当前旋转角度上累加 angle。 */
+  /**
+   * Add angle to the current rotation.
+   * @zh 在当前旋转角度上累加 angle。
+   * @ja 現在の回転角に angle を加えます。
+   * @ko 현재 회전 각도에 angle을 더합니다.
+   */
   rotate(this: TransformableHost, angle: R<Angle>): void;
-  /** 设置 X、Y 缩放因子；(1, 1) 为原始大小，负值可翻转。 */
+  /**
+   * Set X/Y scale factors; (1, 1) is original size and negatives flip axes.
+   * @zh 设置 X、Y 缩放因子；(1, 1) 为原始大小，负值可翻转。
+   * @ja X・Y の拡大率を設定します。(1, 1) は元の大きさ、負値は反転です。
+   * @ko X/Y 배율을 설정합니다. (1, 1)은 원래 크기이며 음수는 축을 뒤집습니다.
+   */
   setScale(this: TransformableHost, factors: R<Vector2f>): void;
-  /** 返回缩放因子的独立副本。 */
+  /**
+   * Return an independent copy of the scale factors.
+   * @zh 返回缩放因子的独立副本。
+   * @ja 拡大率の独立したコピーを返します。
+   * @ko 배율의 독립적인 복사본을 반환합니다.
+   */
   getScale(): Vector2f;
-  /** 将当前 X、Y 缩放因子分别乘以 factors。 */
+  /**
+   * Multiply the current X/Y scale factors by the components of factors.
+   * @zh 将当前 X、Y 缩放因子分别乘以 factors。
+   * @ja 現在の X・Y の拡大率に factors の各成分を掛けます。
+   * @ko 현재 X/Y 배율에 factors의 각 성분을 곱합니다.
+   */
   scale(this: TransformableHost, factors: R<Vector2f>): void;
-  /** 设置局部坐标中的变换原点，旋转和缩放围绕该点进行。 */
+  /**
+   * Set the local origin around which rotation and scaling take place.
+   * @zh 设置局部坐标中的变换原点，旋转和缩放围绕该点进行。
+   * @ja 回転と拡大縮小の中心となる原点をローカル座標で設定します。
+   * @ko 회전과 크기 조절의 중심이 되는 원점을 로컬 좌표로 설정합니다.
+   */
   setOrigin(this: TransformableHost, origin: R<Vector2f>): void;
-  /** 返回局部变换原点的独立副本。 */
+  /**
+   * Return an independent copy of the local origin.
+   * @zh 返回局部变换原点的独立副本。
+   * @ja ローカル座標の原点の独立したコピーを返します。
+   * @ko 로컬 원점의 독립적인 복사본을 반환합니다.
+   */
   getOrigin(): Vector2f;
-  /** 返回从局部到父坐标系的只读变换缓存；后续读取可更新同一对象。 */
+  /**
+   * Return the read-only cached local-to-parent transform.
+   * Later reads may update the same object.
+   * @zh 返回从局部到父坐标系的只读变换缓存；后续读取可更新同一对象。
+   * @ja ローカルから親座標系への読み取り専用の変換キャッシュを返します。
+   * 後続の読み取りで同じオブジェクトが更新される場合があります。
+   * @ko 로컬에서 부모 좌표계로의 읽기 전용 변환 캐시를 반환합니다.
+   * 이후 읽기에서 동일한 객체가 갱신될 수 있습니다.
+   */
   getTransform(): R<Transform>;
-  /** 返回从父坐标系到局部的只读逆变换缓存；不可逆时为单位矩阵。 */
+  /**
+   * Return the read-only cached parent-to-local inverse transform,
+   * or the identity matrix when not invertible.
+   * @zh 返回从父坐标系到局部的只读逆变换缓存；不可逆时为单位矩阵。
+   * @ja 親座標系からローカルへの読み取り専用の逆変換キャッシュを返します。
+   * 逆変換できない場合は単位行列になります。
+   * @ko 부모 좌표계에서 로컬로의 읽기 전용 역변환 캐시를 반환합니다.
+   * 역변환이 불가능하면 단위 행렬을 반환합니다.
+   */
   getInverseTransform(): R<Transform>;
 }
 

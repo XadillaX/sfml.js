@@ -27,7 +27,12 @@ export abstract class GlslValue<K extends string, A extends ValueArray> {
 
 export abstract class BooleanComponents<K extends string>
   extends GlslValue<K, Uint8Array> {
-  /** 布尔标量类型，底层分量使用 0/1 字节。 */
+  /**
+   * Boolean scalar type with components stored as 0/1 bytes.
+   * @zh 布尔标量类型，底层分量使用 0/1 字节。
+   * @ja 真偽値のスカラー型。各成分は 0/1 のバイトで格納します。
+   * @ko 불리언 스칼라 유형이며 성분을 0/1 바이트로 저장합니다.
+   */
   readonly scalarType = 'bool';
 
   protected constructor(
@@ -43,12 +48,32 @@ export abstract class BooleanComponents<K extends string>
     }
   }
 
-  /** X 布尔分量。 */
+  /**
+   * X boolean component.
+   * @zh X 布尔分量。
+   * @ja X の真偽値成分。
+   * @ko X 불리언 성분.
+   */
   get x(): boolean { return this[glslStorage][0] !== 0; }
-  /** 设置 X 布尔分量。 */
+  /**
+   * Set the X boolean component.
+   * @zh 设置 X 布尔分量。
+   * @ja X の真偽値成分を設定します。
+   * @ko X 불리언 성분을 설정합니다.
+   */
   set x(value: boolean) { this[glslStorage][0] = value ? 1 : 0; }
-  /** Y 布尔分量。 */
+  /**
+   * Y boolean component.
+   * @zh Y 布尔分量。
+   * @ja Y の真偽値成分。
+   * @ko Y 불리언 성분.
+   */
   get y(): boolean { return this[glslStorage][1] !== 0; }
-  /** 设置 Y 布尔分量。 */
+  /**
+   * Set the Y boolean component.
+   * @zh 设置 Y 布尔分量。
+   * @ja Y の真偽値成分を設定します。
+   * @ko Y 불리언 성분을 설정합니다.
+   */
   set y(value: boolean) { this[glslStorage][1] = value ? 1 : 0; }
 }

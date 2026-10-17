@@ -1,55 +1,115 @@
-# 开发指南
+# Development Guide
 
-本文面向修改 sfml.js 源码或运行仓库示例的贡献者。作为依赖使用时，请从 [README](../README.md) 中的安装与 API 导航开始。
+**English** · [简体中文](development.zh-CN.md) · [日本語](development.ja.md) · [한국어](development.ko.md)
 
-## 准备环境
+> This guide is for contributors changing source code, maintaining documentation or running repository tests. To use sfml.js as a dependency, start with [Quick start](getting-started.md).
 
-需要 Node.js `^18.19.0 || >=20.5.0`、Python 和 C++20 编译工具链。通过 npm 安装原生绑定也需要这些环境。
+[Documentation](README.md) · [API guide](api.md) · [Examples](../examples/README.md)
 
-| 平台 | 架构 | 编译环境 |
-| --- | --- | --- |
-| macOS 13+ | x64、arm64 | Xcode Command Line Tools |
-| Linux | x64 | GCC／Clang、make，以及 X11、OpenGL 和音频依赖 |
-| Windows | x64、ia32 | Visual Studio 2022 C++ Build Tools |
+<a id="get-the-source"></a>
 
-克隆仓库后，在仓库根目录执行：
+## Get the source
+
+Prepare Node.js, Python and a C++20 toolchain; see [requirements](getting-started.md#requirements) for platform installation commands. Then run:
 
 ```sh
+git clone https://github.com/XadillaX/node-sfml.git
+cd node-sfml
 npm ci
 ```
 
-`install` 下载对应平台的 SFML 官方预编译包并编译 Native 模块，`prepare` 编译 TypeScript，生成 `dist/`。作为 npm 依赖安装时使用包内的 JavaScript 和类型声明，只需编译 Native 模块。
+`install` compiles the native module; `prepare` generates TypeScript constants, JavaScript and declaration files. Build hooks first check for and download SFML 3.1.0. When installed as an npm dependency, the package uses the published dist, so only the native module needs compiling during installation.
 
-SFML 下载保存在 `third_party/sfml/`，版本与架构匹配时复用。需要镜像时，设置 `SFML_DOWNLOAD_MIRROR`；其值作为官方下载 URL 的前缀。
+## Building
 
-## 构建与验证
+Run these commands from the repository root:
 
-| 命令 | 用途 |
+| Command | Purpose |
 | --- | --- |
-| `npm run build` | 编译 Native 与 TypeScript |
-| `npm run build:native` | 编译 Native 并更新 clangd 配置 |
-| `npm run build:ts` | 生成常量并编译 TypeScript |
-| `npm run build:docs` | 从 TypeScript 入口生成 TypeDoc API 文档 |
-| `npm run lint` | 检查源码、工具、测试和示例 |
-| `npm run test:types` | 验证 TypeScript 接口 |
-| `npm run test:runtime` | 串行运行运行时测试，需要先构建 |
-| `npm test` | 依次执行 lint、构建、类型检查和运行时测试 |
-| `npm run test:ported` | 验证迁移示例，分别报告通过和不支持 |
-| `npm pack --dry-run` | 检查 npm 包文件清单 |
+| `npm run build` | Compile native code and TypeScript |
+| `npm run build:native` | Compile native code and update clangd configuration |
+| `npm run build:ts` | Generate constants and compile TypeScript |
+| `npm run build:docs` | Build the four-language website and generated API reference |
+| `npm run build:reference` | Generate TypeDoc API documentation only |
+| `npm run docs:dev` | Preview the website during development |
+| `npm run docs:preview` | Serve the production website build locally |
+| `npm run lint` | Check source, tools, tests and examples |
+| `npm run test:types` | Validate TypeScript APIs |
+| `npm run test:runtime` | Run runtime tests serially; requires a prior build |
+| `npm test` | Run lint, build, type checks and runtime tests in sequence |
+| `npm run test:ported` | Validate ported examples, reporting passes and unsupported cases separately |
+| `npm pack --dry-run` | Inspect the npm package file list |
 
-图形测试需要可用的显示服务和 OpenGL 上下文，运行时测试按文件串行执行。Linux 无显示器环境使用 Xvfb 和软件 OpenGL，依赖及命令见 [Linux CI](../.github/workflows/node.js.yml)；[Windows CI](../.github/workflows/node.js-windows.yml) 使用 Mesa 软件 OpenGL。
+For TypeScript-only changes, run `npm run build:ts`; after native changes, run `npm run build`. Runtime tests do not rebuild automatically, so ensure the build matches the source before running them.
 
-平台 CI 配置不代表所有硬件功能已经验证。SFML 的 macOS 构建不提供 Vulkan 后端，`SuspendAwareClock.now()` 仅支持 Android；能力查询和测试结果会反映平台差异。
+<a id="testing"></a>
 
-## API 文档发布
+## Testing and verification
 
-`npm run build:docs` 使用 `typedoc.json`，从 `src/index.ts` 生成 Material 主题的 API 文档，输出到 `build/docs/`。生成文档不需要编译或加载 Native 模块；文档专用环境可以先执行 `npm ci --ignore-scripts`。
+```sh
+npm test
+npm run test:ported
+```
 
-[Publish Docs 工作流](../.github/workflows/publish-docs.yml) 在 `main` 更新时运行，也支持手动触发。生成结果提交到 `gh-pages` 分支的 `docs/`，保留该分支根目录的文件，并沿用现有 `CNAME`（`sfml.js.org`）。生成内容没有变化时跳过提交。
+`npm test` runs lint, native and TypeScript builds, type checks and runtime tests. test:ported separately validates ported legacy examples, distinguishing passing cases from unsupported ones.
 
-## 运行示例
+Runtime tests run serially by file, covering public APIs, comparisons with native SFML, actual rendered pixels, asynchronous I/O, snapshots and lifetimes. Type tests are in `test/*.types.ts`, runtime tests in `test/*.test.cjs`, and native comparisons in `test/native/`.
 
-以下命令在仓库根目录执行：
+Graphics tests require a display server and an OpenGL context. For headless Linux, install Xvfb as shown in [Linux CI](../.github/workflows/node.js.yml), then run:
+
+```sh
+LIBGL_ALWAYS_SOFTWARE=1 \
+  xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm run test:runtime
+```
+
+CI is configured for Node.js 20/22 on Linux, macOS and Windows; [Windows CI](../.github/workflows/node.js-windows.yml) uses Mesa software OpenGL.
+
+CI does not replace device testing for speakers, microphones, joysticks, sensors or fullscreen switching. SFML's macOS backend does not support Vulkan, and SuspendAwareClock.now supports only Android. State the actual platform and skipped cases when reporting results.
+
+## Maintaining documentation
+
+The README introduces the project and provides a minimal example; `docs/` explains usage by task and module; `examples/README.md` provides runnable entry points. Generate complete signatures from source comments instead of maintaining a duplicate set of declarations in handwritten documentation.
+
+- Examples import the public `sfml.js` package; only repository demo scripts use repository-relative paths.
+- Distinguish complete examples from context-dependent snippets, and state requirements for async functions, assets and devices.
+- Check loading booleans and network statuses, and close owned resources when examples end.
+- When changing public behavior, update JSDoc, the relevant guides and affected examples together.
+
+Install the website dependencies, then build the website:
+
+```sh
+npm ci --prefix site
+npm run build:docs
+```
+
+`site/` contains the VitePress theme and build scripts. The build prepares English, Chinese, Japanese and Korean guides and API references. TypeDoc lives at `/reference/`, `/zh/reference/`, `/ja/reference/` and `/ko/reference/`; the complete website is written to `build/site/`. Edit the original Markdown files, then restart `npm run docs:dev` to refresh prepared content. Theme changes support hot reload.
+
+Documentation generation does not require compiling or loading the native module; documentation-only environments can first run `npm ci --ignore-scripts`. `npm run build:reference` generates standalone TypeDoc in `build/docs/`, with translations in its `zh/`, `ja/` and `ko/` subdirectories. `npm --prefix site test` checks localization, link conversion and legacy redirects; the production build also validates generated routes, anchors and assets.
+
+The [Publish Docs workflow](../.github/workflows/publish-docs.yml) runs on updates to `main` and also supports manual dispatch. Generated output is committed to `docs/` on the `gh-pages` branch, preserving files at that branch's root and its existing `CNAME` (`sfml.js.org`). It skips the commit when generated content is unchanged.
+
+Legacy TypeDoc class and interface URLs redirect to the corresponding English reference page, preserving fragment links. The API language selector preserves the current page and member anchor.
+
+Write JSDoc in English first, followed by `@zh`, `@ja` and `@ko` translations. Place each translation immediately after its summary or block tag. Parameter translations use `@zh name - description` (likewise for Japanese and Korean). Keep identifiers, code examples and links intact. Missing prose translations fail the documentation build.
+
+```ts
+/**
+ * Read the elapsed time.
+ * @zh 读取经过的时间。
+ * @ja 経過時間を読み取ります。
+ * @ko 경과 시간을 읽습니다.
+ * @param unit - Time unit.
+ * @zh unit - 时间单位。
+ * @ja unit - 時間の単位。
+ * @ko unit - 시간 단위.
+ */
+```
+
+Generated constant descriptions are maintained in `tools/constant-docs.json` and the templates in `tools/constant-docs.cjs`. Run `npm run generate:window` and `npm run generate:network` after editing them; do not edit generated comments directly.
+
+## Running examples
+
+Run these commands from the repository root:
 
 ```sh
 npm run demo:types -- --frames=120
@@ -58,20 +118,33 @@ npm run demo:audio
 npm run demo:network
 ```
 
-示例位于 [examples/](../examples/)。已构建时可直接运行 `node examples/<名称>.cjs`，无需重复构建。图形示例通过 Esc 或关闭窗口退出；支持 `--frames` 的入口可限制帧数，适合自动检查。
+See [examples/README.md](../examples/README.md) for descriptions. After building, run `node examples/<name>.cjs` directly. Entry points supporting `--frames` can limit the frame count; the examples guide also explains how to capture screenshots.
 
-旧版 `drawAsync`／`displayAsync` 两个示例明确报告不支持，详情见 [迁移说明](../examples/ported/README.md)。
+The two legacy `drawAsync`/`displayAsync` examples explicitly report that they are unsupported; see the [ported examples](../examples/ported/README.md).
 
-## 源码与生成文件
+## Source and generated files
 
-| 目录 | 内容 |
+| Directory | Contents |
 | --- | --- |
-| `src/` | TypeScript 实现 |
-| `native/` | C++ 绑定 |
-| `test/` | 运行时、类型和原生对照测试 |
-| `tools/` | 常量生成器、基准与测试工具 |
-| `docs/` | API 与开发文档 |
+| `src/` | TypeScript implementation |
+| `native/` | C++ bindings |
+| `test/` | Runtime, type and native comparison tests |
+| `tools/` | Constant generators, benchmarks and test tools |
+| `docs/` | API and development documentation |
+| `site/` | Website theme, localization, search and build scripts |
 
-`build/`、`dist/`、`node_modules/` 和下载的 SFML 均为生成内容。窗口与网络常量由当前 SFML 头文件生成，不直接编辑 `src/*/gen/constants.ts`。
+`build/`, `dist/`, `node_modules/` and downloaded SFML libraries are generated content. Window and network constants are generated from the current SFML headers; do not edit `src/*/gen/constants.ts` directly.
 
-Native 构建后自动生成 `build/compile_commands.json`，供 `.clangd` 使用。只更新语言服务配置时执行 `npm run configure:lsp`；编辑器仍显示旧诊断时，重启 clangd。
+Native builds automatically generate `build/compile_commands.json` for `.clangd`. To update only the language server configuration, run `npm run configure:lsp`; restart clangd if the editor still shows stale diagnostics.
+
+## Implementation conventions
+
+Value types use TypedArray for calculations and shared storage; native resources and their views keep memory alive. Graphics resources are destroyed on their owning thread. Recorded draws must preserve snapshot semantics: later property changes must not alter previously recorded results.
+
+Relevant entry points include `src/internal/lazy-value.ts`, `src/internal/graphics-state.ts`, `native/shared-handle.h`, `native/deferred-delete.h` and `native/batch-drawable.h`. Add JSDoc describing behavior, parameters and upstream counterparts when adding public fields or methods.
+
+The downloader, installation hooks and platform builds are interconnected; validate the corresponding platforms when changing them. Download URLs and architecture mappings are in `tools/lib_downloader_urls.cjs`, and the cache is in `third_party/sfml/`.
+
+## Submitting changes
+
+Describe the specific behavior, relevant verification and unverified platform paths in the PR. Run affected native comparison tests for native changes; check links, code examples and the TypeDoc build for documentation-only changes. Include the machine, Node.js/SFML versions, scenario and measurement method with performance figures.

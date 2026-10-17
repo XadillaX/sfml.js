@@ -279,20 +279,54 @@ function scale(
 
 // Overloads enforce SFML's distinct specializations. The implementation
 // checks them again for JavaScript callers before changing shared bytes.
-/** 返回同类型值相加的新对象；向量逐分量相加，Color 通道饱和到 255。 */
+/**
+ * Return a new object adding values of the same type; vectors add
+ * component-wise, and Color channels saturate at 255.
+ * @zh 返回同类型值相加的新对象；向量逐分量相加，Color 通道饱和到 255。
+ * @ja 同じ型の値を加算した新しいオブジェクトを返す。ベクトルは成分ごとに加算し、
+ * Color チャンネルは 255 で飽和する。
+ * @ko 같은 타입의 값을 더한 새 객체를 반환한다. 벡터는 성분별로 더하며
+ * Color 채널은 255에서 포화된다.
+ */
 export const add = ((left: Input, right: Input) =>
   combine(copy(left), right, 'add')) as Addition;
-/** 返回同类型值相减的新对象；Color 通道最低为 0。 */
+/**
+ * Return a new object subtracting values of the same type; Color channels
+ * have a minimum of 0.
+ * @zh 返回同类型值相减的新对象；Color 通道最低为 0。
+ * @ja 同じ型の値を減算した新しいオブジェクトを返す。Color チャンネルの下限は 0。
+ * @ko 같은 타입의 값을 뺀 새 객체를 반환한다. Color 채널의 최솟값은 0이다.
+ */
 export const subtract = ((left: Input, right: Input) =>
   combine(copy(left), right, 'subtract')) as Addition;
-/** 将 right 原地加到 left 并返回 left；不可修改只读常量。 */
+/**
+ * Add right to left in place and return left; read-only constants cannot
+ * be modified.
+ * @zh 将 right 原地加到 left 并返回 left；不可修改只读常量。
+ * @ja left に right を直接加算して left を返す。読み取り専用定数は変更できない。
+ * @ko left에 right를 제자리에서 더하고 left를 반환한다. 읽기 전용 상수는 수정 불가.
+ */
 export const addAssign = ((left: Value, right: Input) =>
   combine(left, right, 'add')) as AdditionAssign;
-/** 从 left 原地减去 right 并返回 left；Color 各通道最低为 0。 */
+/**
+ * Subtract right from left in place and return left; each Color channel
+ * has a minimum of 0.
+ * @zh 从 left 原地减去 right 并返回 left；Color 各通道最低为 0。
+ * @ja left から right を直接減算して left を返す。Color の各チャンネルの下限は 0。
+ * @ko left에서 right를 제자리에서 빼고 left를 반환한다. 각 Color 채널의 최솟값은 0.
+ */
 export const subtractAssign = ((left: Value, right: Input) =>
   combine(left, right, 'subtract')) as AdditionAssign;
 
-/** 返回取负后的新对象，按原标量类型转换；不支持 Color，布尔向量值保持不变。 */
+/**
+ * Return a new negated object, converted to the original scalar type;
+ * Color is unsupported, and boolean vector values remain unchanged.
+ * @zh 返回取负后的新对象，按原标量类型转换；不支持 Color，布尔向量值保持不变。
+ * @ja 元のスカラー型に変換した符号反転済みの新しいオブジェクトを返す。
+ * Color は非対応で、ブールベクトルの値は変わらない。
+ * @ko 부호를 반전하고 원래 스칼라 타입으로 변환한 새 객체를 반환한다.
+ * Color는 지원하지 않으며 불리언 벡터 값은 그대로 유지된다.
+ */
 export const negate = ((value: Input) => {
   if (value instanceof Color) {
     throw new TypeError('Color does not support unary negation');
@@ -309,7 +343,15 @@ export const negate = ((value: Input) => {
   return result;
 }) as Negation;
 
-/** 返回标量缩放、变换组合或点变换的新对象；Color 按通道相乘再除以 255。 */
+/**
+ * Return a new object from scalar scaling, transform composition, or point
+ * transformation; Color channels are multiplied and then divided by 255.
+ * @zh 返回标量缩放、变换组合或点变换的新对象；Color 按通道相乘再除以 255。
+ * @ja スカラー倍、変換の合成、または点の変換による新しいオブジェクトを返す。
+ * Color はチャンネルごとに乗算してから 255 で割る。
+ * @ko 스칼라 배율 적용, 변환 합성 또는 점 변환으로 새 객체를 반환한다.
+ * Color는 채널별로 곱한 뒤 255로 나눈다.
+ */
 export const multiply = ((
   left: Input | R<Transform> | number | bigint | boolean,
   right: Input | R<Transform> | number | bigint | boolean,
@@ -344,7 +386,14 @@ export const multiply = ((
   (left: R<Color>, right: R<Color>): Color;
 };
 
-/** 原地缩放、组合变换或调制颜色，返回左操作数。 */
+/**
+ * Scale, compose transforms, or modulate colors in place, returning the
+ * left operand.
+ * @zh 原地缩放、组合变换或调制颜色，返回左操作数。
+ * @ja スケーリング、変換の合成、または色の変調を直接行い、左オペランドを返す。
+ * @ko 배율 적용, 변환 합성 또는 색상 변조를 제자리에서 수행하고 왼쪽 피연산자를
+ * 반환한다.
+ */
 export const multiplyAssign = ((
   left: Value | Transform,
   right: Input | R<Transform> | number | bigint | boolean,
@@ -370,11 +419,25 @@ export const multiplyAssign = ((
   (left: Color, right: R<Color>): Color;
   (left: Transform, right: R<Transform>): Transform;
 };
-/** 将左值原地除以标量并返回左值；除数为零时抛出 RangeError。 */
+/**
+ * Divide the left value by a scalar in place and return it; throw RangeError
+ * if the divisor is zero.
+ * @zh 将左值原地除以标量并返回左值；除数为零时抛出 RangeError。
+ * @ja 左の値をスカラーで直接除算して返す。除数がゼロなら RangeError をスローする。
+ * @ko 왼쪽 값을 스칼라로 제자리에서 나누고 반환한다. 제수가 0이면 RangeError를 던진다.
+ */
 export const divideAssign = ((left: Value, right: number | bigint | boolean) =>
   scale(left, right, 'divide')) as ScaleAssign;
 
-/** 返回除以标量的新对象；两个 Time 或两个 Angle 相除返回数值比率。 */
+/**
+ * Return a new object divided by a scalar; dividing two Time or two Angle
+ * values returns a numeric ratio.
+ * @zh 返回除以标量的新对象；两个 Time 或两个 Angle 相除返回数值比率。
+ * @ja スカラーで除算した新しいオブジェクトを返す。2 つの Time または
+ * 2 つの Angle の除算では数値の比率を返す。
+ * @ko 스칼라로 나눈 새 객체를 반환한다. 두 Time 또는 두 Angle을 나누면
+ * 수치 비율을 반환한다.
+ */
 export const divide = ((
   left: Input, right: Input | number | bigint | boolean,
 ) => {
@@ -401,9 +464,20 @@ export const divide = ((
   (left: R<Angle>, right: R<Angle>): number;
 };
 
-/** 返回微秒数整数除法的余数时长，余数符号跟随 left。 */
+/**
+ * Return the duration remainder of integer microsecond division, with the
+ * remainder taking the sign of left.
+ * @zh 返回微秒数整数除法的余数时长，余数符号跟随 left。
+ * @ja マイクロ秒数の整数除算の剰余を時間長として返す。剰余の符号は left に従う。
+ * @ko 정수 마이크로초 나눗셈의 나머지를 시간 길이로 반환한다. 부호는 left를 따른다.
+ */
 export function modulo(left: R<Time>, right: R<Time>): Time;
-/** 返回角度的非负余数，right 必须为正角度。 */
+/**
+ * Return the non-negative angle remainder; right must be a positive angle.
+ * @zh 返回角度的非负余数，right 必须为正角度。
+ * @ja 非負の角度の剰余を返す。right は正の角度でなければならない。
+ * @ko 음이 아닌 각도 나머지를 반환한다. right는 양의 각도여야 한다.
+ */
 export function modulo(left: R<Angle>, right: R<Angle>): Angle;
 export function modulo(
   left: R<Time> | R<Angle>, right: R<Time> | R<Angle>,
@@ -418,9 +492,22 @@ export function modulo(
   return radians(positiveRemainder(left.asRadians(), right.asRadians()));
 }
 
-/** 将时长余数写回 left 并返回 left。 */
+/**
+ * Write the duration remainder back to left and return left.
+ * @zh 将时长余数写回 left 并返回 left。
+ * @ja 時間長の剰余を left に書き戻し、left を返す。
+ * @ko 시간 길이의 나머지를 left에 다시 쓰고 left를 반환한다.
+ */
 export function moduloAssign(left: Time, right: R<Time>): Time;
-/** 将非负角度余数写回 left 并返回 left，right 必须为正角度。 */
+/**
+ * Write the non-negative angle remainder back to left and return left;
+ * right must be a positive angle.
+ * @zh 将非负角度余数写回 left 并返回 left，right 必须为正角度。
+ * @ja 非負の角度の剰余を left に書き戻し、left を返す。
+ * right は正の角度でなければならない。
+ * @ko 음이 아닌 각도 나머지를 left에 다시 쓰고 left를 반환한다.
+ * right는 양의 각도여야 한다.
+ */
 export function moduloAssign(left: Angle, right: R<Angle>): Angle;
 export function moduloAssign(
   left: Time | Angle, right: R<Time> | R<Angle>,
@@ -505,9 +592,22 @@ function equals(left: EqualityInput, right: EqualityInput): boolean {
   return true;
 }
 
-/** 按值比较同类型操作数；浮点数精确比较，向量要求相同标量类型。 */
+/**
+ * Compare same-type operands by value; floating-point comparisons are exact,
+ * and vectors require the same scalar type.
+ * @zh 按值比较同类型操作数；浮点数精确比较，向量要求相同标量类型。
+ * @ja 同じ型のオペランドを値で比較する。浮動小数点数は厳密に比較し、
+ * ベクトルは同じスカラー型でなければならない。
+ * @ko 같은 타입의 피연산자를 값으로 비교한다. 부동소수점은 정확히 비교하며
+ * 벡터는 같은 스칼라 타입이어야 한다.
+ */
 export const equal = equals as Equality;
-/** 返回同类型操作数是否按值不相等。 */
+/**
+ * Return whether same-type operands are unequal by value.
+ * @zh 返回同类型操作数是否按值不相等。
+ * @ja 同じ型のオペランドの値が等しくないかどうかを返す。
+ * @ko 같은 타입의 피연산자가 값으로 같지 않은지 반환한다.
+ */
 export const notEqual = ((left: EqualityInput, right: EqualityInput) =>
   !equals(left, right)) as Equality;
 interface Ordering {
@@ -540,15 +640,42 @@ function compare(
   throw new TypeError('Ordering requires matching Time or Angle operands');
 }
 
-/** 判断左值是否小于右值；支持 Time、Angle、VideoMode 和 IpAddress。 */
+/**
+ * Test whether the left value is less than the right; supports Time, Angle,
+ * VideoMode, and IpAddress.
+ * @zh 判断左值是否小于右值；支持 Time、Angle、VideoMode 和 IpAddress。
+ * @ja 左の値が右の値より小さいか判定する。Time、Angle、VideoMode、
+ * IpAddress に対応する。
+ * @ko 왼쪽 값이 오른쪽 값보다 작은지 판별한다. Time, Angle, VideoMode,
+ * IpAddress를 지원한다.
+ */
 export const less = ((left, right) =>
   compare(left, right, (a, b) => a < b)) as Ordering;
-/** 判断左值是否小于等于右值；两者须具有相同可排序类型。 */
+/**
+ * Test whether the left value is less than or equal to the right; both must
+ * have the same orderable type.
+ * @zh 判断左值是否小于等于右值；两者须具有相同可排序类型。
+ * @ja 左の値が右の値以下か判定する。両者は同じ順序付け可能な型でなければならない。
+ * @ko 왼쪽 값이 오른쪽 값 이하인지 판별한다. 둘 다 같은 정렬 가능한 타입이어야 한다.
+ */
 export const lessEqual = ((left, right) =>
   compare(left, right, (a, b) => a <= b)) as Ordering;
-/** 判断左值是否大于右值；两者须具有相同可排序类型。 */
+/**
+ * Test whether the left value is greater than the right; both must have the
+ * same orderable type.
+ * @zh 判断左值是否大于右值；两者须具有相同可排序类型。
+ * @ja 左の値が右の値より大きいか判定する。両者は同じ順序付け可能な型で
+ * なければならない。
+ * @ko 왼쪽 값이 오른쪽 값보다 큰지 판별한다. 둘 다 같은 정렬 가능한 타입이어야 한다.
+ */
 export const greater = ((left, right) =>
   compare(left, right, (a, b) => a > b)) as Ordering;
-/** 判断左值是否大于等于右值；两者须具有相同可排序类型。 */
+/**
+ * Test whether the left value is greater than or equal to the right; both
+ * must have the same orderable type.
+ * @zh 判断左值是否大于等于右值；两者须具有相同可排序类型。
+ * @ja 左の値が右の値以上か判定する。両者は同じ順序付け可能な型でなければならない。
+ * @ko 왼쪽 값이 오른쪽 값 이상인지 판별한다. 둘 다 같은 정렬 가능한 타입이어야 한다.
+ */
 export const greaterEqual = ((left, right) =>
   compare(left, right, (a, b) => a >= b)) as Ordering;
