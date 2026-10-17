@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="title description" width="480" height="480">
+  <title id="title">SFML.js</title>
+  <desc id="description">The approved square SFML.js symbol with custom angled lettering, a V-shaped M and a six-sided separator.</desc>
+  <defs>
+    <linearGradient id="node-green" gradientUnits="userSpaceOnUse" x1="268.98" y1="60.68" x2="140.4" y2="293.2">
+      <stop stop-color="#85de18" />
+      <stop offset="1" stop-color="#73d519" />
+    </linearGradient>
+    <linearGradient id="left-wing-green" gradientUnits="userSpaceOnUse" x1="234.66" y1="409.29" x2="20.12" y2="368.62">
+      <stop stop-color="#1a9f32" />
+      <stop offset="1" stop-color="#16982a" />
+    </linearGradient>
+    <linearGradient id="right-wing-green" gradientUnits="userSpaceOnUse" x1="396.95" y1="385.28" x2="215.38" y2="389.89">
+      <stop stop-color="#87e31d" />
+      <stop offset="1" stop-color="#60c71e" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(61.24 -1.01) scale(.82)">
+    <g id="symbol">
+      <path id="node" fill="url(#node-green)" d="M 219.5 30.5 L 212.5 31.5 L 168.5 56.5 L 134.5 78.5 L 117.5 86.5 L 112.5 92.5 L 112.5 214.5 L 120.5 221.5 L 172.5 250.5 L 189.5 262.5 L 216.5 339.5 L 238.5 264.5 L 318.5 215.5 L 317.5 87.5 Z" />
+      <path id="left-wing" fill="url(#left-wing-green)" d="M68 206 L154 297 L217 410.5 L218 450.5 L88 450.5 L8 252Z" />
+      <path id="right-wing" fill="url(#right-wing-green)" d="M369 206 L275 297 L217 410.5 L218 450.5 L348 450.5 L428 252Z" />
+    </g>
+  </g>
+  <g transform="translate(87.68 380.32) scale(.64)">
+    <g id="wordmark">
+      <g class="wordmark-primary" fill="#15392f">
+        <path d="M12 12H66V20L58 28H22L18 31V47L22 50H52L66 60V97L52 108H0V100L8 92H44L48 89V73L44 68H14L0 58V23Z" />
+        <path d="M94 12H144V28H100V50H137V68H100V108H82V21Z" />
+        <path d="M160 108V12H178L202 46L226 12H244V108H226V44L202 76L178 44V108Z" />
+        <path d="M260 12H278V90H322V98L310 108H260Z" />
+      </g>
+      <g class="wordmark-accent" fill="#347c35">
+        <path d="M343 92L351 96V104L343 108L335 104V96Z" />
+        <path d="M382 42H400V110L384 124H360V106H374L382 98Z" />
+        <path d="M382 12H400V30H382Z" />
+        <path d="M430 42H476V57H437L433 60V65L437 68H462L476 78V97L462 108H418V93H454L458 90V85L454 82H432L418 72V53Z" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,53 @@
+/* Icons made by Lorc, Delapouite and Skoll, game-icons.net, CC BY 3.0.
+   See sources.json for the pinned originals and modifications. */
+:root {
+  --gi-system: url('./system.svg');
+  --gi-window: url('./window.svg');
+  --gi-graphics: url('./graphics.svg');
+  --gi-audio: url('./audio.svg');
+  --gi-network: url('./network.svg');
+  --gi-copy: url('./copy.svg');
+  --gi-search: url('./search.svg');
+  --gi-language: url('./language.svg');
+  --gi-sun: url('./sun.svg');
+  --gi-moon: url('./moon.svg');
+  --gi-menu: url('./menu.svg');
+  --gi-arrow: url('./arrow.svg');
+  --gi-close: url('./close.svg');
+  --gi-check: url('./check.svg');
+  --gi-edit: url('./edit.svg');
+}
+.game-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask: var(--game-icon) center / contain no-repeat;
+  mask: var(--game-icon) center / contain no-repeat;
+}
+.gi-system { --game-icon: var(--gi-system); }
+.gi-window { --game-icon: var(--gi-window); }
+.gi-graphics { --game-icon: var(--gi-graphics); }
+.gi-audio { --game-icon: var(--gi-audio); }
+.gi-network { --game-icon: var(--gi-network); }
+.gi-copy { --game-icon: var(--gi-copy); }
+.gi-search { --game-icon: var(--gi-search); }
+.gi-language { --game-icon: var(--gi-language); }
+.gi-sun { --game-icon: var(--gi-sun); }
+.gi-moon { --game-icon: var(--gi-moon); }
+.gi-menu { --game-icon: var(--gi-menu); }
+.gi-arrow { --game-icon: var(--gi-arrow); }
+.gi-close { --game-icon: var(--gi-close); }
+.gi-check { --game-icon: var(--gi-check); }
+.sf-icon-credits {
+  padding: 16px 24px;
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--sf-muted);
+  background: var(--sf-bg-alt);
+}
+.sf-icon-credits a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

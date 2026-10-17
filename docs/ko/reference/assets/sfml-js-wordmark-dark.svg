@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="492" height="136" viewBox="-8 0 492 136" role="img" aria-labelledby="title description">
+  <title id="title">SFML.js</title>
+  <desc id="description">Custom SFML.js lettering with angled terminals, a V-shaped M and a six-sided separator.</desc>
+  <style>.wordmark-primary{fill:#f5f8f1}.wordmark-accent{fill:#a5d936}</style>
+  <g id="wordmark">
+    <g class="wordmark-primary" fill="#15392f">
+      <path d="M12 12H66V20L58 28H22L18 31V47L22 50H52L66 60V97L52 108H0V100L8 92H44L48 89V73L44 68H14L0 58V23Z"/>
+      <path d="M94 12H144V28H100V50H137V68H100V108H82V21Z"/>
+      <path d="M160 108V12H178L202 46L226 12H244V108H226V44L202 76L178 44V108Z"/>
+      <path d="M260 12H278V90H322V98L310 108H260Z"/>
+    </g>
+    <g class="wordmark-accent" fill="#347c35">
+      <path d="M343 92L351 96V104L343 108L335 104V96Z"/>
+      <path d="M382 42H400V110L384 124H360V106H374L382 98Z"/>
+      <path d="M382 12H400V30H382Z"/>
+      <path d="M430 42H476V57H437L433 60V65L437 68H462L476 78V97L462 108H418V93H454L458 90V85L454 82H432L418 72V53Z"/>
+    </g>
+  </g>
+</svg>
