@@ -138,7 +138,9 @@ node examples/network.cjs
 
 [移植済みサンプル](examples/ported/README.ja.md)は、従来のデモを SFML 3 API に適合させたものです。`drawAsync()` または `displayAsync()` を必要とする 2 つのサンプルは `UNSUPPORTED` を報告します。このバインディングでは、これらのメソッドを公開していません。
 
-[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) と [play-nes](https://github.com/XadillaX/play-nes) は旧 API で開発されたプロジェクトであり、移行が必要です。
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) には、sfml.js で実装した Bomberman、Breakout、Tetris、Doodle Jump、Arkanoid が含まれています。インストールと起動の手順は[ゲームプロジェクト](examples/README.ja.md#game-projects)を参照してください。
+
+[play-nes](https://github.com/XadillaX/play-nes) — sfml.js と JSNES で構築されたデスクトップ NES エミュレータ。
 
 ## コントリビュート
 

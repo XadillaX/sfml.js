@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useData, withBase } from 'vitepress';
 import { homeContent } from './content';
 import ArrowIcon from './ArrowIcon.vue';
+import { mountLanternEffect } from './hero-light.mjs';
 
 const { lang } = useData();
 /** Resolve VitePress language tags to the content dictionary and public route. */
@@ -16,6 +17,13 @@ const copyStatus = ref('');
 const codeExpanded = ref(false);
 /** Local Game-icons silhouettes identify the five SFML modules. */
 const moduleIcons = ['system', 'window', 'graphics', 'audio', 'network'];
+/** 背景图、容器和灯光画布用于响应式坐标换算。 */
+const heroElement = ref<HTMLElement>();
+const heroImage = ref<HTMLImageElement>();
+const lanternCanvas = ref<HTMLCanvasElement>();
+/** 水面倒影独立定位，与灯笼共享呼吸周期。 */
+const reflectionCanvas = ref<HTMLCanvasElement>();
+let disposeLantern: (() => void) | undefined;
 let statusTimer: ReturnType<typeof setTimeout> | undefined;
 /** Copy the install command and keep feedback available to assistive technology. */
 async function copyInstall() {
@@ -28,17 +36,29 @@ async function copyInstall() {
   clearTimeout(statusTimer);
   statusTimer = setTimeout(() => { copyStatus.value = ''; }, 3000);
 }
-onBeforeUnmount(() => clearTimeout(statusTimer));
+onMounted(() => {
+  if (heroElement.value && heroImage.value && lanternCanvas.value && reflectionCanvas.value) {
+    disposeLantern = mountLanternEffect(
+      lanternCanvas.value, heroImage.value, heroElement.value, reflectionCanvas.value,
+    );
+  }
+});
+onBeforeUnmount(() => {
+  clearTimeout(statusTimer);
+  disposeLantern?.();
+});
 </script>
 
 <template>
   <div class="sfml-home">
-    <section class="sfml-hero" aria-labelledby="home-title">
+    <section ref="heroElement" class="sfml-hero" aria-labelledby="home-title">
       <picture class="hero-scene">
         <source media="(max-width: 767px)" :srcset="withBase('/media/forest-hero-mobile.webp')">
-        <img :src="withBase('/media/forest-hero.webp')" alt="" width="2160" height="1080" fetchpriority="high">
+        <img ref="heroImage" :src="withBase('/media/forest-hero.webp')" alt="" width="2160" height="1080" fetchpriority="high">
       </picture>
       <div class="hero-shade" aria-hidden="true"></div>
+      <canvas ref="lanternCanvas" class="hero-lantern" aria-hidden="true"></canvas>
+      <canvas ref="reflectionCanvas" class="hero-reflection" aria-hidden="true"></canvas>
       <div class="hero-inner section-width">
         <div class="hero-copy">
           <p class="hero-kicker">Simple and Fast Multimedia Library</p>
@@ -121,7 +141,12 @@ win.<span class="fn">setFramerateLimit</span>(<span class="num">60</span>);
 
     <section class="examples-section section-width" aria-labelledby="examples-title">
       <div class="examples-heading">
-        <div><h2 id="examples-title">{{ copy.examplesTitle }}</h2><p>{{ copy.examplesDescription }}</p></div>
+        <div>
+          <h2 id="examples-title">{{ copy.examplesTitle }}</h2>
+          <p>{{ copy.examplesDescription }}</p>
+          <p><a class="text-link" href="https://github.com/XadillaX/node-sfml-demos">{{ copy.gameProjectsAction }}<ArrowIcon /></a></p>
+          <p><a class="text-link" href="https://github.com/XadillaX/play-nes">{{ copy.playNes }}<ArrowIcon /></a></p>
+        </div>
         <a class="text-link" :href="withBase(`${prefix}examples`)">{{ copy.examplesAction }}<ArrowIcon /></a>
       </div>
       <div class="examples-grid">

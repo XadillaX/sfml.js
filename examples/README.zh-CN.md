@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-> 所有命令在仓库根目录执行。首次运行先 `npm ci`；修改源码后执行 `npm run build`。图形示例需要可用的显示服务和 OpenGL 上下文。
+> 本仓库的示例在仓库根目录运行。首次运行先 `npm ci`；修改源码后执行 `npm run build`。图形示例需要可用的显示服务和 OpenGL 上下文。
 
 [项目首页](../README.zh-CN.md) · [快速开始](../docs/getting-started.zh-CN.md) · [开发指南](../docs/development.zh-CN.md)
 
@@ -86,6 +86,23 @@ Remove-Item Env:SFML_DEMO_SNAPSHOT
 ```
 
 综合 all-types 示例保存 PPM，其他示例按各自入口实现保存格式。静态截图仅证明指定场景的渲染结果，不代表吞吐、声音输出或输入设备测试。
+
+<a id="game-projects"></a>
+
+## 游戏项目
+
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) 包含使用 sfml.js 实现的 Bomberman、Breakout、Tetris、Doodle Jump 和 Arkanoid。
+
+在存放项目的目录中克隆这个独立仓库，再进入各游戏目录安装依赖并启动。以 Bomberman 为例：
+
+```sh
+git clone https://github.com/XadillaX/node-sfml-demos.git
+cd node-sfml-demos/bomberman
+npm install
+node index.js
+```
+
+游戏目录、操作方式与上游 C++ 源码见 [仓库 README](https://github.com/XadillaX/node-sfml-demos#readme)。安装同样需要满足 [原生构建要求](../docs/getting-started.zh-CN.md#requirements)。
 
 ## 旧版示例
 

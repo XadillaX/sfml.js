@@ -2,7 +2,7 @@
 
 [English](README.md) / [简体中文](README.zh-CN.md) / [日本語](README.ja.md) / **한국어**
 
-> 모든 명령은 저장소 루트 디렉터리에서 실행합니다. 처음 실행하기 전에 `npm ci`를, 소스를 수정한 뒤에는 `npm run build`를 실행하세요. 그래픽 예제에는 사용 가능한 디스플레이 서버와 OpenGL 컨텍스트가 필요합니다.
+> 이 저장소의 예제는 루트 디렉터리에서 실행합니다. 처음 실행하기 전에 `npm ci`를, 소스를 수정한 뒤에는 `npm run build`를 실행하세요. 그래픽 예제에는 사용 가능한 디스플레이 서버와 OpenGL 컨텍스트가 필요합니다.
 
 [프로젝트 홈](../README.ko.md) · [빠른 시작](../docs/getting-started.ko.md) · [개발 가이드](../docs/development.ko.md)
 
@@ -85,6 +85,23 @@ Remove-Item Env:SFML_DEMO_SNAPSHOT
 ```
 
 종합 all-types 예제는 PPM으로 저장하며, 다른 예제는 각 진입점의 구현에 따른 형식으로 저장합니다. 정적 스크린샷은 지정한 장면의 렌더링 결과만 증명하며, 처리량, 사운드 출력, 입력 장치 테스트를 뜻하지 않습니다.
+
+<a id="game-projects"></a>
+
+## 게임 프로젝트
+
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)에는 sfml.js로 구현한 Bomberman, Breakout, Tetris, Doodle Jump, Arkanoid가 포함되어 있습니다.
+
+프로젝트를 보관하는 디렉터리에서 이 별도 저장소를 복제한 뒤, 각 게임 디렉터리에서 의존성을 설치하고 실행하세요. Bomberman의 경우:
+
+```sh
+git clone https://github.com/XadillaX/node-sfml-demos.git
+cd node-sfml-demos/bomberman
+npm install
+node index.js
+```
+
+게임 디렉터리, 조작법, 원본 C++ 소스 코드는 [저장소 README](https://github.com/XadillaX/node-sfml-demos#readme)를 참고하세요. [네이티브 빌드 요구 사항](../docs/getting-started.ko.md#requirements)도 적용됩니다.
 
 ## 이전 버전 예제
 

@@ -2,7 +2,7 @@
 
 [English](README.md) / [简体中文](README.zh-CN.md) / **日本語** / [한국어](README.ko.md)
 
-> すべてのコマンドはリポジトリのルートで実行します。初回実行前に `npm ci`、ソースコードの変更後に `npm run build` を実行してください。グラフィックスのサンプルには、利用可能なディスプレイサーバーと OpenGL コンテキストが必要です。
+> このリポジトリのサンプルはルートディレクトリで実行します。初回実行前に `npm ci`、ソースコードの変更後に `npm run build` を実行してください。グラフィックスのサンプルには、利用可能なディスプレイサーバーと OpenGL コンテキストが必要です。
 
 [プロジェクトトップ](../README.ja.md) · [クイックスタート](../docs/getting-started.ja.md) · [開発ガイド](../docs/development.ja.md)
 
@@ -85,6 +85,23 @@ Remove-Item Env:SFML_DEMO_SNAPSHOT
 ```
 
 総合サンプルの all-types は PPM で保存し、他のサンプルの保存形式はそれぞれの入口の実装に従います。静止画のスクリーンショットが示すのは、指定したシーンの描画結果だけです。スループット、音声出力、入力デバイスのテスト結果を示すものではありません。
+
+<a id="game-projects"></a>
+
+## ゲームプロジェクト
+
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) には、sfml.js で実装した Bomberman、Breakout、Tetris、Doodle Jump、Arkanoid が含まれています。
+
+プロジェクトを置くディレクトリで、この独立したリポジトリをクローンしてください。各ゲームのディレクトリで依存関係をインストールし、起動します。Bomberman の場合：
+
+```sh
+git clone https://github.com/XadillaX/node-sfml-demos.git
+cd node-sfml-demos/bomberman
+npm install
+node index.js
+```
+
+ゲームごとのディレクトリ、操作方法、元の C++ ソースコードは[リポジトリの README](https://github.com/XadillaX/node-sfml-demos#readme)を参照してください。[ネイティブビルドの要件](../docs/getting-started.ja.md#requirements)も適用されます。
 
 ## 旧バージョンのサンプル
 

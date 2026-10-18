@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-> Run all commands from the repository root. Run `npm ci` before the first launch, and `npm run build` after source changes. Graphics examples require a working display server and OpenGL context.
+> Run this repository's examples from its root directory. Run `npm ci` before the first launch, and `npm run build` after source changes. Graphics examples require a working display server and OpenGL context.
 
 [Project home](../README.md) · [Quick start](../docs/getting-started.md) · [Development guide](../docs/development.md)
 
@@ -86,6 +86,23 @@ Remove-Item Env:SFML_DEMO_SNAPSHOT
 ```
 
 The combined all-types example saves PPM; other examples use the formats implemented by their entry points. Static screenshots demonstrate only the specified scene's rendering result, not throughput, sound output or input-device testing.
+
+<a id="game-projects"></a>
+
+## Game projects
+
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) contains Bomberman, Breakout, Tetris, Doodle Jump and Arkanoid implementations using sfml.js.
+
+Clone this separate repository into your projects directory, then install dependencies and launch from the game's own directory. For Bomberman:
+
+```sh
+git clone https://github.com/XadillaX/node-sfml-demos.git
+cd node-sfml-demos/bomberman
+npm install
+node index.js
+```
+
+See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) for game directories, controls and upstream C++ sources. The [native build requirements](../docs/getting-started.md#requirements) also apply.
 
 ## Legacy examples
 
