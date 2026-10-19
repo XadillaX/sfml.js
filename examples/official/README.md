@@ -329,6 +329,9 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   and text drawing each save and restore GL state. Enter reloads or mipmaps
   the cube texture; Space recreates the window and background with the new
   sRGB request. Mipmapping and sRGB depend on the graphics driver.
+  Its cube texture uses the current
+  [sfml.js symbol](../../assets/branding/sfml-js-symbol-pentagon.svg),
+  rasterized to 256 × 256 over the original dark-gray background.
 
 Four examples remain unported: `android`, `cocoa`, `vulkan`, `win32`.
 
@@ -360,7 +363,8 @@ actual sRGB support is logged. Its documentation screenshot is from macOS.
 ## Sources and licenses
 
 [provenance.json](provenance.json) records the upstream commit, C++ source
-hashes and SHA-256 hashes of all 56 unchanged resource files.
+hashes and SHA-256 hashes of 55 unchanged resource files, plus the source
+and conversion details for the adapted OpenGL logo texture.
 
 - SFML source: [zlib license](SFML-LICENSE.md).
 - Upstream assets and their authors: [asset_licenses.md](asset_licenses.md).

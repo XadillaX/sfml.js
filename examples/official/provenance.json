@@ -166,10 +166,6 @@
       "sha256": "f7814f8c0ff0e7f0d0ba23467f9539819b8d9b8b2184f001430c6febc17430ea"
     },
     {
-      "path": "opengl/resources/logo.png",
-      "sha256": "295d3c99a1802ee4783ffd54f1367ae4f7eafb91482f8fa3553c50dd2146531e"
-    },
-    {
       "path": "opengl/resources/tuffy.ttf",
       "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
     },
@@ -348,6 +344,16 @@
     {
       "path": "text/resources/tuffy.ttf",
       "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    }
+  ],
+  "adaptedResources": [
+    {
+      "path": "opengl/resources/logo.png",
+      "sha256": "0cbbfcab3ec1332778eff8b69118954810245ac74693b3a3d6bfbf86517f52a4",
+      "source": "../../assets/branding/sfml-js-symbol-pentagon.svg",
+      "sourceSha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2",
+      "upstreamSha256": "295d3c99a1802ee4783ffd54f1367ae4f7eafb91482f8fa3553c50dd2146531e",
+      "processing": "Rasterized with macOS sips at 480x480, resized to 256x256 with Pillow Lanczos, composited on the original #333333 background and saved as RGB PNG."
     }
   ],
   "licenses": [

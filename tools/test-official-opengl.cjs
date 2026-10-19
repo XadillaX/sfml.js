@@ -108,7 +108,7 @@ function run() {
     let top = 0;
     const rows = new Uint32Array(bottom);
     let green = 0;
-    let white = 0;
+    let charcoal = 0;
     for (let i = 0; i < a.length; i += 4) {
       if (Math.abs(a[i] - b[i]) + Math.abs(a[i + 1] - b[i + 1]) +
           Math.abs(a[i + 2] - b[i + 2]) < 12) continue;
@@ -117,14 +117,15 @@ function run() {
       count++;
       rows[y]++;
       if (b[i + 1] > b[i] * 1.2 && b[i + 1] > b[i + 2] * 1.2) green++;
-      if (b[i] > 220 && b[i + 1] > 220 && b[i + 2] > 220) white++;
+      if (b[i] < 190 && Math.abs(b[i] - b[i + 1]) < 4 &&
+          Math.abs(b[i] - b[i + 2]) < 4) charcoal++;
       left = Math.min(left, x);
       right = Math.max(right, x);
       bottom = Math.min(bottom, y);
       top = Math.max(top, y);
     }
     return { count, x: (left + right) / 2, y: (bottom + top) / 2,
-      left, right, bottom, top, rows, green, white };
+      left, right, bottom, top, rows, green, charcoal };
   }
 
   /**
@@ -214,8 +215,8 @@ function run() {
     const text = difference(cube, final, width);
     assert.ok(box.count > width * height * 0.008, 'Textured cube visible');
     assert.ok(box.count < width * height * 0.3, 'Background stays visible');
-    assert.ok(box.green > box.count * 0.08 && box.white > box.count * 0.08,
-      'Cube texture must contain the green and white SFML logo');
+    assert.ok(box.green > box.count * 0.08 && box.charcoal > box.count * 0.08,
+      'Cube texture must contain the green sfml.js mark and dark surround');
     assert.ok(text.count > 500, 'Text visible over the native cube layer');
     assert.ok(text.top < height * 0.27, 'Three lines stay at the bottom');
     for (const y of [ 450, 500, 550 ]) {

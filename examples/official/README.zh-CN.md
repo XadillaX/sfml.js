@@ -302,6 +302,7 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 - Window 通过 `koffi` 调用系统 OpenGL 导出函数，保留上游六色顶点、每秒 50／30／90 度的三轴旋转和随窗口尺寸更新的透视投影。顶点使用稳定原生内存，窗口关闭后释放；零尺寸时暂停绘制。
 
 - OpenGL 通过 `koffi` 绘制上游位置／UV 顶点，SFML 背景和文字分别保存、恢复 GL 状态。Enter 重新加载或生成立方体纹理的 mipmap；Space 按新的 sRGB 设置重建窗口与背景纹理。mipmap 与 sRGB 支持取决于图形驱动。
+  立方体贴图采用当前的 [sfml.js 标识](../../assets/branding/sfml-js-symbol-pentagon.svg)，转为 256 × 256 PNG，并保留原贴图的深灰底色。
 
 其余四个示例（`android`、`cocoa`、`vulkan`、`win32`）暂未迁移。
 
@@ -315,7 +316,7 @@ OpenGL 的原生截图和日志保存为 `official-opengl-linux`。测试逐层�
 
 ## 来源与许可证
 
-[provenance.json](provenance.json) 记录上游 commit、C++ 源文件哈希，以及全部 56 个未修改资源文件的 SHA-256。
+[provenance.json](provenance.json) 记录上游 commit、C++ 源文件哈希、55 个未修改资源文件的 SHA-256，以及替换后的 OpenGL 标识贴图来源和转换方式。
 
 - SFML 源码：[zlib 许可证](SFML-LICENSE.md)。
 - 上游素材与作者：[asset_licenses.md](asset_licenses.md)。

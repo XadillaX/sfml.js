@@ -302,6 +302,7 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 - Window는 `koffi`로 시스템 OpenGL 내보내기 함수를 호출합니다. 원본의 여섯 색상 정점, 초당 50/30/90도 회전, 창 크기에 맞춰 갱신하는 원근 투영을 유지합니다. 정점용 네이티브 메모리는 창을 닫은 뒤 해제하고 크기가 0이면 그리기를 중단합니다.
 
 - OpenGL은 `koffi`로 원본 위치/UV 정점을 그리며 SFML 배경과 텍스트는 각각 GL 상태를 저장하고 복원합니다. Enter는 큐브 텍스처를 다시 읽거나 mipmap을 생성하고 Space는 새 sRGB 설정으로 창과 배경을 다시 만듭니다. mipmap과 sRGB 지원은 그래픽 드라이버에 따라 달라집니다.
+  큐브 텍스처는 현재 [sfml.js 심볼](../../assets/branding/sfml-js-symbol-pentagon.svg)을 256 × 256 PNG로 변환하고 원본의 짙은 회색 배경에 합성한 이미지입니다.
 
 나머지 4개 예제(`android`, `cocoa`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
 
@@ -315,7 +316,7 @@ OpenGL 이미지와 로그는 `official-opengl-linux`에 저장합니다. 배경
 
 ## 출처와 라이선스
 
-[provenance.json](provenance.json)에 커밋, C++ 소스 해시와 변경하지 않은 리소스 56개의 SHA-256을 기록했습니다.
+[provenance.json](provenance.json)에 커밋, C++ 소스 해시, 변경하지 않은 리소스 55개의 SHA-256과 교체한 OpenGL 로고의 출처 및 변환 방법을 기록했습니다.
 
 - SFML 소스: [zlib 라이선스](SFML-LICENSE.md).
 - 리소스와 저자: [asset_licenses.md](asset_licenses.md).

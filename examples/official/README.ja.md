@@ -302,6 +302,7 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 - Window は `koffi` でシステム OpenGL のエクスポート関数を呼び出します。元の 6 色の頂点、毎秒 50／30／90 度の 3 軸回転、サイズに追従する透視投影を保持します。頂点用の安定したネイティブメモリはウィンドウを閉じてから解放し、サイズがゼロの間は描画を休止します。
 
 - OpenGL は `koffi` で元の位置／UV 頂点を描画し、SFML の背景と文字はそれぞれ GL 状態を保存・復元します。Enter はテクスチャの再読み込みまたは mipmap 生成、Space は新しい sRGB 設定でウィンドウと背景を再作成します。mipmap と sRGB の対応はドライバーによります。
+  立方体には現在の [sfml.js シンボル](../../assets/branding/sfml-js-symbol-pentagon.svg) を 256 × 256 PNG に変換し、元の濃い灰色の背景と合成したテクスチャを使用します。
 
 残りの 4 サンプル（`android`、`cocoa`、`vulkan`、`win32`）は未移植です。
 
@@ -315,7 +316,7 @@ OpenGL の画像とログは `official-opengl-linux` に保存します。背景
 
 ## 出典とライセンス
 
-[provenance.json](provenance.json) にコミット、C++ ソースのハッシュ、変更していない全 56 素材の SHA-256 を記録しています。
+[provenance.json](provenance.json) にコミット、C++ ソースのハッシュ、未変更の 55 素材の SHA-256、および差し替えた OpenGL ロゴの出典と変換方法を記録しています。
 
 - SFML ソース：[zlib ライセンス](SFML-LICENSE.md)。
 - 素材と作者：[asset_licenses.md](asset_licenses.md)。
