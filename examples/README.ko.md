@@ -105,7 +105,7 @@ node index.js
 
 ## SFML 공식 예제
 
-[official/](official/README.ko.md)에는 SFML 공식 저장소에서 이식한 예제 21개가 있습니다. 테니스, 셰이더, 텍스트, 지형, 오디오, 네트워크, X11, OpenGL 창과 SFML/OpenGL 혼합 렌더링을 포함하며 원본 장면과 리소스를 유지합니다. 조작법, Node에 맞춘 조정, 출처와 라이선스는 안내 문서를 참고하세요.
+[official/](official/README.ko.md)에는 SFML 공식 저장소에서 이식한 예제 22개가 있습니다. 테니스, 셰이더, 텍스트, 지형, 오디오, 네트워크, X11, OpenGL 창, SFML/OpenGL 혼합 렌더링과 Cocoa 통합을 포함하며 원본 장면과 리소스를 유지합니다. 조작법, Node에 맞춘 조정, 출처와 라이선스는 안내 문서를 참고하세요.
 
 ```sh
 node examples/official/tennis/Tennis.cjs
@@ -116,7 +116,7 @@ node examples/official/tennis/Tennis.cjs
 [ported/](ported/README.ko.md)는 기존 스크립트 16개를 유지합니다. 14개는 현재 API로 실행하며, 2개는 이전 비동기 그리기 인터페이스에 의존하므로 미지원으로 보고합니다.
 
 ```sh
-npm run test:ported
+npm run demo:ported
 ```
 
 all-types-scene.cjs와 bitmap-label.cjs는 데모 보조 파일이며, 독립적인 애플리케이션 진입점이 아닙니다.

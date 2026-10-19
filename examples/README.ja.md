@@ -105,7 +105,7 @@ node index.js
 
 ## SFML 公式サンプル
 
-[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 21 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信、X11、OpenGL ウィンドウ、SFML／OpenGL 混在描画を含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。
+[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 22 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信、X11、OpenGL ウィンドウ、SFML／OpenGL 混在描画、Cocoa 連携を含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。
 
 ```sh
 node examples/official/tennis/Tennis.cjs
@@ -116,7 +116,7 @@ node examples/official/tennis/Tennis.cjs
 [ported/](ported/README.ja.md) には元の 16 本のスクリプトを保持しています。14 本は現在の API で動作し、2 本は旧版の非同期描画インターフェースに依存しており、未対応を報告します。
 
 ```sh
-npm run test:ported
+npm run demo:ported
 ```
 
 all-types-scene.cjs と bitmap-label.cjs はデモの補助ファイルであり、独立したアプリケーションの入口ではありません。

@@ -106,7 +106,7 @@ node index.js
 
 ## SFML 官方示例
 
-[official/](official/README.zh-CN.md) 包含从 SFML 官方仓库迁移的 21 个示例，覆盖乒乓球、shader、文字、地形、音频、网络、X11、OpenGL 窗口和 SFML／OpenGL 混合渲染。各入口保留上游场景与资源；操作方式、Node 适配、来源和许可证见目录说明。
+[official/](official/README.zh-CN.md) 包含从 SFML 官方仓库迁移的 22 个示例，覆盖乒乓球、shader、文字、地形、音频、网络、X11、OpenGL 窗口、SFML／OpenGL 混合渲染和 Cocoa 集成。各入口保留上游场景与资源；操作方式、Node 适配、来源和许可证见目录说明。
 
 ```sh
 node examples/official/tennis/Tennis.cjs
@@ -117,7 +117,7 @@ node examples/official/tennis/Tennis.cjs
 [ported/](ported/README.zh-CN.md) 保留原有 16 个脚本：14 个使用当前 API 运行，2 个依赖旧异步绘制接口并报告不支持。
 
 ```sh
-npm run test:ported
+npm run demo:ported
 ```
 
 all-types-scene.cjs 与 bitmap-label.cjs 是演示辅助文件，不是独立应用入口。

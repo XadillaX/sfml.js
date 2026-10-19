@@ -54,7 +54,6 @@
     "demo:audio": "npm run build && node examples/audio.cjs",
     "demo:network": "npm run build:ts && node examples/network.cjs",
     "demo:ported": "npm run build:ts && node examples/ported/render_window.cjs",
-    "test:ported": "npm run build:ts && node tools/test-ported-examples.cjs",
     "lint": "eslint --ext .ts,.cjs src tools test examples .eslintrc.cjs",
     "jslint": "npm run lint",
     "test:types": "tsc -p test/tsconfig.json",

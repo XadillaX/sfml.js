@@ -36,7 +36,6 @@ npm ci
 | `npm run test:types` | TypeScript のインターフェースを検証 |
 | `npm run test:runtime` | ランタイムテストを直列に実行。事前にビルドが必要 |
 | `npm test` | lint、ビルド、型検査、ランタイムテストを順に実行 |
-| `npm run test:ported` | 移植済みサンプルを検証し、成功と未対応を区別して報告 |
 | `npm pack --dry-run` | npm パッケージのファイル一覧を確認 |
 
 TypeScript だけを変更した場合は `npm run build:ts`、ネイティブ部分を変更した場合は `npm run build` を実行します。ランタイムテストは自動的に再ビルドしないため、実行前にビルド結果とソースコードが一致していることを確認してください。
@@ -46,10 +45,9 @@ TypeScript だけを変更した場合は `npm run build:ts`、ネイティブ�
 
 ```sh
 npm test
-npm run test:ported
 ```
 
-`npm test` は lint、ネイティブ部分と TypeScript のビルド、型検査、ランタイムテストを実行します。test:ported は旧バージョンから移植したサンプルを別途検証し、成功と未対応を区別します。
+`npm test` は lint、ネイティブ部分と TypeScript のビルド、型検査、ランタイムテストを実行します。
 
 ランタイムテストはファイル単位で直列に実行し、公開インターフェース、ネイティブ SFML との比較、実際に描画されたピクセル、非同期 I/O、スナップショット、ライフサイクルを検証します。型テストは `test/*.types.ts`、ランタイムテストは `test/*.test.cjs`、ネイティブ比較テストは `test/native/` にあります。
 

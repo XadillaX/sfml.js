@@ -106,9 +106,9 @@ See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) 
 
 ## SFML official examples
 
-[official/](official/README.md) contains 21 ports from the official SFML
+[official/](official/README.md) contains 22 ports from the official SFML
 repository, including tennis, shaders, text, terrain, audio, networking,
-X11, the OpenGL window and mixed SFML/OpenGL rendering.
+X11, the OpenGL window, mixed SFML/OpenGL rendering and Cocoa integration.
 Each entry retains its upstream scene and assets; the guide lists controls,
 Node adaptations, sources and licenses.
 
@@ -121,7 +121,7 @@ node examples/official/tennis/Tennis.cjs
 [ported/](ported/README.md) retains the original 16 scripts: 14 run with the current API, while 2 depend on legacy asynchronous drawing APIs and report that they are unsupported.
 
 ```sh
-npm run test:ported
+npm run demo:ported
 ```
 
 all-types-scene.cjs and bitmap-label.cjs are demo helpers, not standalone application entry points.

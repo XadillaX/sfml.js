@@ -36,7 +36,6 @@ npm ci
 | `npm run test:types` | TypeScript 인터페이스 검증 |
 | `npm run test:runtime` | 런타임 테스트를 직렬 실행. 사전 빌드 필요 |
 | `npm test` | lint, 빌드, 타입 검사, 런타임 테스트를 순서대로 실행 |
-| `npm run test:ported` | 포팅된 예제를 검증하고 통과와 미지원을 구분해 보고 |
 | `npm pack --dry-run` | npm 패키지 파일 목록 확인 |
 
 TypeScript만 수정했다면 `npm run build:ts`를 실행할 수 있습니다. 네이티브 코드를 수정했다면 `npm run build`를 실행하세요. 런타임 테스트는 자동으로 다시 빌드하지 않으므로, 실행 전에 빌드 결과가 소스와 일치하는지 확인해야 합니다.
@@ -46,10 +45,9 @@ TypeScript만 수정했다면 `npm run build:ts`를 실행할 수 있습니다. 
 
 ```sh
 npm test
-npm run test:ported
 ```
 
-`npm test`는 lint, 네이티브 및 TypeScript 빌드, 타입 검사, 런타임 테스트를 실행합니다. test:ported는 이전 버전에서 포팅한 예제를 별도로 검증하며, 통과와 미지원을 구분합니다.
+`npm test`는 lint, 네이티브 및 TypeScript 빌드, 타입 검사, 런타임 테스트를 실행합니다.
 
 런타임 테스트는 파일별로 직렬 실행되며 공개 인터페이스, 네이티브 SFML 대조, 실제 렌더링 픽셀, 비동기 I/O, 스냅샷, 수명 주기를 검증합니다. 타입 테스트는 `test/*.types.ts`, 런타임 테스트는 `test/*.test.cjs`, 네이티브 대조 테스트는 `test/native/`에 있습니다.
 

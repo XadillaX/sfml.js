@@ -37,7 +37,6 @@ npm ci
 | `npm run test:types` | 验证 TypeScript 接口 |
 | `npm run test:runtime` | 串行运行运行时测试，需要先构建 |
 | `npm test` | 依次执行 lint、构建、类型检查和运行时测试 |
-| `npm run test:ported` | 验证迁移示例，分别报告通过和不支持 |
 | `npm pack --dry-run` | 检查 npm 包文件清单 |
 
 只修改 TypeScript 时可执行 `npm run build:ts`；修改 Native 后执行 `npm run build`。运行时测试不会自动重建，运行前确保构建与源码一致。
@@ -48,10 +47,9 @@ npm ci
 
 ```sh
 npm test
-npm run test:ported
 ```
 
-`npm test` 执行 lint、Native 与 TypeScript 构建、类型检查和运行时测试。test:ported 单独验证旧版迁移示例，并区分通过与不支持。
+`npm test` 执行 lint、Native 与 TypeScript 构建、类型检查和运行时测试。
 
 运行时测试按文件串行运行，覆盖公开接口、原生 SFML 对照、实际渲染像素、异步 I/O、快照及生命周期。类型测试位于 `test/*.types.ts`，运行时测试为 `test/*.test.cjs`，原生对照在 `test/native/`。
 

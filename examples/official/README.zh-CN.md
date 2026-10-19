@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-这里将 [SFML/SFML][upstream] 的 21 个示例迁移到 JavaScript，上游固定为 commit
+这里将 [SFML/SFML][upstream] 的 22 个示例迁移到 JavaScript，上游固定为 commit
 `14cea1d978b3dce05780b9234925ca8be9373260`。这些是适配 sfml.js 的修改版本，保留上游目录、场景、操作方式与资源。
 
 [全部示例](../README.zh-CN.md) · [构建要求](../../docs/getting-started.zh-CN.md#requirements)
@@ -108,6 +108,13 @@ X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML
 
 ## 平台集成
 
+Cocoa 仅支持 macOS，使用第三方 [objc-js](https://github.com/iamEvanYT/objc-js)。进入 `examples/official` 后安装该示例的局部依赖，使用包内的 Apple Silicon／Intel 预编译模块：
+
+```sh
+npm ci --prefix cocoa --ignore-scripts
+node cocoa/Cocoa.cjs
+```
+
 Window 和 OpenGL 使用 SFML 窗口和第三方 `koffi` 调用系统桌面 OpenGL，支持 macOS、Linux 和 Windows 的兼容上下文；macOS 与 Linux 已验证，Windows 待验证。
 
 X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库根目录的 `npm ci` 会安装开发依赖 `x11` 和 `koffi`，无需编译额外的示例模块。
@@ -146,6 +153,20 @@ X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库�
         <p>800 × 600 SFML／OpenGL 混合渲染、纹理立方体与 sRGB</p>
         <p><strong>操作</strong> · 鼠标移动立方体，Enter 切换 mipmap，Space 重建窗口并切换 sRGB，Esc 退出</p>
         <p><code>node opengl/OpenGL.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/cocoa.png">
+          <img src="screenshots/cocoa.png" width="360"
+               alt="原生 Cocoa 控件与嵌入的 SFML 标识画面">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="cocoa/Cocoa.cjs">Cocoa</a></strong></p>
+        <p>485 × 379 原生窗口，嵌入 440 × 260 SFML 视图</p>
+        <p><strong>操作</strong> · Update 或 Enter 更新文字，Visible 切换标识显隐，旋钮控制旋转，Color 选择背景色，Up／Down 缩放；关闭窗口、Cmd+Q 或 Ctrl+C 退出</p>
+        <p><code>node cocoa/Cocoa.cjs</code>（macOS）</p>
       </td>
     </tr>
     <tr>
@@ -304,19 +325,17 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 - OpenGL 通过 `koffi` 绘制上游位置／UV 顶点，SFML 背景和文字分别保存、恢复 GL 状态。Enter 重新加载或生成立方体纹理的 mipmap；Space 按新的 sRGB 设置重建窗口与背景纹理。mipmap 与 sRGB 支持取决于图形驱动。
   立方体贴图采用当前的 [sfml.js 标识](../../assets/branding/sfml-js-symbol-pentagon.svg)，转为 256 × 256 PNG，并保留原贴图的深灰底色。
 
-其余四个示例（`android`、`cocoa`、`vulkan`、`win32`）暂未迁移。
+- Cocoa 通过第三方 [objc-js](https://github.com/iamEvanYT/objc-js) 在 JavaScript 中重建原始 XIB 布局，`sf.RenderWindow(BigInt(NSView*))` 借用原生视图。`NSTimer` 在默认及事件跟踪模式下以 60 Hz 绘制，Node 分派 AppKit 输入。菜单保留退出与标准文字编辑，无需编译 XIB 或打包应用。退出时先停止定时器、关闭 SFML，再关闭 Cocoa 并释放包装对象；objc-js 1.6.0 的类回调会保活 Node，因此独立入口清理后显式退出。
+
+其余三个示例（`android`、`vulkan`、`win32`）暂未迁移。
 
 验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
 
-[X11 CI](../../.github/workflows/official-x11.yml) 在 Ubuntu 24.04、Node.js 22、Xvfb 和 Mesa 软件渲染环境检查窗口层级、尺寸、两个立方体及动画差异、父子窗口按键退出、SIGINT 清理和无 `DISPLAY` 时的报错。截图、窗口树和日志上传为 `official-x11-linux` artifact，保留 14 天；实体 GPU 和 XWayland 未在此 CI 中验证。
-
-Window 使用同一 CI 的独立 `official-window-linux` artifact 保存截图和日志。验证读取真实 OpenGL 帧缓冲，检查立方体颜色与旋转、原生横纵缩放事件、viewport、投影矩阵和 SIGINT 清理；Esc、普通按键和关闭事件由脚本注入。文档中的 Window 截图来自 macOS，使用固定时钟采样。
-
-OpenGL 的原生截图和日志保存为 `official-opengl-linux`。测试逐层比较背景、立方体和文字的帧缓冲，检查纹理过滤、投影、鼠标移动、旋转、原生缩放、sRGB 上下文重建和退出清理。时钟与输入由脚本控制，实际 sRGB 支持写入日志；文档截图来自 macOS。
+迁移时，X11、Window 和 OpenGL 已在 Ubuntu 24.04、Node.js 22、Xvfb 和 Mesa 环境验证，未覆盖实体 GPU 和 XWayland。Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制及退出清理，Up／Down 按键由脚本控制。Window 文档截图来自 macOS，使用固定时钟采样。
 
 ## 来源与许可证
 
-[provenance.json](provenance.json) 记录上游 commit、C++ 源文件哈希、55 个未修改资源文件的 SHA-256，以及替换后的 OpenGL 标识贴图来源和转换方式。
+[provenance.json](provenance.json) 记录上游 commit、源码／XIB 哈希、62 个未修改资源文件的 SHA-256，以及替换后的 OpenGL 标识贴图来源和转换方式。
 
 - SFML 源码：[zlib 许可证](SFML-LICENSE.md)。
 - 上游素材与作者：[asset_licenses.md](asset_licenses.md)。

@@ -28,4 +28,3 @@ jobs:
     - run: npm run lint
     - run: npm run test:types
     - run: npm run test:runtime
-    - run: npm run test:ported

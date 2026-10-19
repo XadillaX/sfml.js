@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
-[SFML/SFML][upstream]의 예제 21개를 JavaScript로 이식했습니다. 기준 커밋은
+[SFML/SFML][upstream]의 예제 22개를 JavaScript로 이식했습니다. 기준 커밋은
 `14cea1d978b3dce05780b9234925ca8be9373260`입니다. sfml.js에 맞게 수정한 버전이며, 원본의 디렉터리 이름, 장면, 조작법과 리소스를 유지합니다.
 
 [전체 예제](../README.ko.md) · [빌드 요구 사항](../../docs/getting-started.ko.md#requirements)
@@ -108,6 +108,13 @@ X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브
 
 ## 플랫폼 통합
 
+Cocoa는 macOS 전용이며 [objc-js](https://github.com/iamEvanYT/objc-js)를 사용합니다. `examples/official`에서 예제의 로컬 의존성을 설치합니다. 패키지에 포함된 Apple Silicon/Intel 빌드를 사용합니다.
+
+```sh
+npm ci --prefix cocoa --ignore-scripts
+node cocoa/Cocoa.cjs
+```
+
 X11에는 Linux, X11 디스플레이 서버(또는 XWayland), 데스크톱 OpenGL이 필요합니다. 저장소 루트에서 `npm ci`를 실행하면 개발 의존성 `x11`과 `koffi`를 설치합니다. 별도 예제 모듈을 컴파일할 필요는 없습니다.
 
 Window와 OpenGL은 SFML 창과 외부 패키지 `koffi`로 시스템 데스크톱 OpenGL을 호출합니다. macOS, Linux, Windows의 호환 컨텍스트를 지원하며 macOS와 Linux는 검증했고 Windows는 아직 검증하지 않았습니다.
@@ -146,6 +153,20 @@ Window와 OpenGL은 SFML 창과 외부 패키지 `koffi`로 시스템 데스크�
         <p>800 × 600 SFML/OpenGL 혼합 렌더링, 텍스처 큐브와 sRGB</p>
         <p><strong>조작</strong> · 마우스로 큐브 이동, Enter로 mipmap 전환, Space로 창을 다시 만들고 sRGB 전환, Esc로 종료</p>
         <p><code>node opengl/OpenGL.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/cocoa.png">
+          <img src="screenshots/cocoa.png" width="360"
+               alt="Cocoa 네이티브 컨트롤과 내장된 SFML 로고">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="cocoa/Cocoa.cjs">Cocoa</a></strong></p>
+        <p>485 × 379 네이티브 창 안의 440 × 260 SFML 뷰</p>
+        <p><strong>조작</strong> · Update 또는 Enter로 텍스트 적용, Visible로 표시 전환, 다이얼로 회전, Color로 배경색 선택, Up/Down으로 확대·축소. 창 닫기, Cmd+Q 또는 Ctrl+C로 종료</p>
+        <p><code>node cocoa/Cocoa.cjs</code> (macOS)</p>
       </td>
     </tr>
     <tr>
@@ -304,19 +325,17 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 - OpenGL은 `koffi`로 원본 위치/UV 정점을 그리며 SFML 배경과 텍스트는 각각 GL 상태를 저장하고 복원합니다. Enter는 큐브 텍스처를 다시 읽거나 mipmap을 생성하고 Space는 새 sRGB 설정으로 창과 배경을 다시 만듭니다. mipmap과 sRGB 지원은 그래픽 드라이버에 따라 달라집니다.
   큐브 텍스처는 현재 [sfml.js 심볼](../../assets/branding/sfml-js-symbol-pentagon.svg)을 256 × 256 PNG로 변환하고 원본의 짙은 회색 배경에 합성한 이미지입니다.
 
-나머지 4개 예제(`android`, `cocoa`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
+- Cocoa는 [objc-js](https://github.com/iamEvanYT/objc-js)로 원본 XIB 배치를 JavaScript에서 구성합니다. `sf.RenderWindow(BigInt(NSView*))`가 뷰를 빌리며, `NSTimer`는 기본/이벤트 추적 모드에서 60 Hz로 렌더링하고 Node가 AppKit 입력을 처리합니다. 메뉴는 종료와 표준 텍스트 편집으로 줄였으며 XIB 컴파일이나 앱 번들이 필요하지 않습니다. 타이머 중지, SFML 종료, Cocoa 종료, 래퍼 해제 순으로 정리합니다. objc-js 1.6.0 클래스 콜백이 Node를 유지하므로 정리 후 명시적으로 종료합니다.
+
+나머지 3개 예제(`android`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
 
 검증 범위에는 네이티브 렌더링, 지형 생성, 텍스트/키 입력, 오디오 디코딩, Worker DSP와 로컬 통신이 포함됩니다. 실제 마이크, 스피커, 조이스틱, 장치 연결/해제 및 외부 FTP/SFTP는 대상 환경에서 확인해야 합니다.
 
-[X11 CI](../../.github/workflows/official-x11.yml)는 Ubuntu 24.04, Node.js 22, Xvfb, Mesa 소프트웨어 렌더링으로 창 계층과 크기, 두 큐브 및 애니메이션 차이, 부모/자식 키 종료, SIGINT 정리, `DISPLAY` 미설정 오류를 검사합니다. 스크린샷, 창 트리, 로그는 `official-x11-linux` artifact로 14일간 보관합니다. 실제 GPU와 XWayland는 이 CI에서 검증하지 않습니다.
-
-Window는 같은 CI의 별도 `official-window-linux` artifact에 스크린샷과 로그를 저장합니다. 실제 OpenGL 프레임버퍼로 색상과 회전을 확인하고 가로/세로 네이티브 크기 변경 이벤트, viewport, 투영 행렬과 SIGINT 정리를 검증합니다. Esc, 일반 키와 닫기 이벤트는 스크립트로 주입합니다. 문서의 Window 스크린샷은 macOS에서 고정 시각으로 캡처했습니다.
-
-OpenGL 이미지와 로그는 `official-opengl-linux`에 저장합니다. 배경·큐브·텍스트의 프레임버퍼 비교, 텍스처 필터, 투영, 마우스 이동, 회전, 네이티브 크기 변경, sRGB 컨텍스트 재생성과 종료 정리를 검증합니다. 시각과 입력은 스크립트로 제어하고 실제 sRGB 지원은 로그에 기록합니다. 문서 이미지는 macOS에서 캡처했습니다.
+이식 과정에서 X11, Window, OpenGL을 Ubuntu 24.04, Node.js 22, Xvfb, Mesa로 검증했습니다. 실제 GPU와 XWayland는 검증하지 않았습니다. Cocoa는 macOS에서 네이티브 컨트롤, 기본/이벤트 추적 모드 렌더링과 종료 정리를 확인했으며 Up/Down은 스크립트로 제어했습니다. Window 문서 이미지는 macOS에서 고정 시각으로 캡처했습니다.
 
 ## 출처와 라이선스
 
-[provenance.json](provenance.json)에 커밋, C++ 소스 해시, 변경하지 않은 리소스 55개의 SHA-256과 교체한 OpenGL 로고의 출처 및 변환 방법을 기록했습니다.
+[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 62개의 SHA-256과 교체한 OpenGL 로고의 출처 및 변환 방법을 기록했습니다.
 
 - SFML 소스: [zlib 라이선스](SFML-LICENSE.md).
 - 리소스와 저자: [asset_licenses.md](asset_licenses.md).

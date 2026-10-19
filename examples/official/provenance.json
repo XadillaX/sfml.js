@@ -8,6 +8,14 @@
       "sha256": "c01f0f281031f27b7aae7c491eb7de540a4abf09ad6ad9e61b12d4590020ebf5"
     },
     {
+      "path": "examples/cocoa/CocoaAppDelegate.mm",
+      "sha256": "cae35e5c7090fa2b83d394d971106f6c063834e269993e0926a83e607cf48858"
+    },
+    {
+      "path": "examples/cocoa/MainMenu.xib",
+      "sha256": "9d39fe6152bd18606b12a56237978b1b20b7ba3e9dfc43459f35fd0f6f4a950c"
+    },
+    {
       "path": "examples/event_handling/EventHandling.cpp",
       "sha256": "25af231f6557d58200418942b37767061f95d4e32020ab26a494196f0c5c4d49"
     },
@@ -125,6 +133,34 @@
     }
   ],
   "resources": [
+    {
+      "path": "cocoa/resources/Credits.rtf",
+      "sha256": "01b857727211f5c5373e84e9c662e829b335cd69da611965feba7c4a1d9e2d4e"
+    },
+    {
+      "path": "cocoa/resources/blue.png",
+      "sha256": "60cc965f9004ea12224154c8f1fbf565a4dc44c5d6b3f6a1213e1ea2d5beb9d0"
+    },
+    {
+      "path": "cocoa/resources/green.png",
+      "sha256": "c5599a86668d559405af3d1fe921ce519a8c26650fae4030c71007cb26d73197"
+    },
+    {
+      "path": "cocoa/resources/icon.icns",
+      "sha256": "4df7fb8cff6cbec8cfe04e3be4125ab2ffd5a49bff634e98f294000a1be235d5"
+    },
+    {
+      "path": "cocoa/resources/logo.png",
+      "sha256": "0c1466e59a8e70efd811d98d912a926c7b46c29b649708873fda4b0c880a11e4"
+    },
+    {
+      "path": "cocoa/resources/red.png",
+      "sha256": "6ac3349c5ceda2c35db95f6d4b0d186c98c56b670cd5139135c018de125d3c11"
+    },
+    {
+      "path": "cocoa/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
     {
       "path": "event_handling/resources/tuffy.ttf",
       "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"

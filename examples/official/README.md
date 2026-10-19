@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-JavaScript ports of 21 examples from [SFML/SFML][upstream], pinned to commit
+JavaScript ports of 22 examples from [SFML/SFML][upstream], pinned to commit
 `14cea1d978b3dce05780b9234925ca8be9373260`. These are modified sources for
 sfml.js, retaining the upstream directory names, scenes, controls and assets.
 
@@ -22,7 +22,7 @@ microphone and OS recording permission.
 
 Browse: [Graphics](#graphics) · [Platform integration](#platform) · [Input and events](#input) · [Audio](#audio) · [Networking](#network)
 
-The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native SFML windows on macOS. Click a preview for full resolution or a name for source code.
+The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native windows on macOS. Click a preview for full resolution or a name for source code.
 
 <a id="graphics"></a>
 
@@ -120,6 +120,15 @@ X11 requires Linux, an X11 display server (or XWayland), and desktop OpenGL.
 Running `npm ci` at the repository root installs the `x11` and `koffi`
 development dependencies. No additional example module needs compilation.
 
+Cocoa requires macOS and uses third-party [objc-js](https://github.com/iamEvanYT/objc-js).
+Install its local dependency using the bundled prebuild (Apple Silicon or Intel):
+
+```sh
+# From examples/official
+npm ci --prefix cocoa --ignore-scripts
+node cocoa/Cocoa.cjs
+```
+
 <table>
   <thead>
     <tr>
@@ -154,6 +163,20 @@ development dependencies. No additional example module needs compilation.
         <p>800 × 600 mixed SFML/OpenGL rendering, textured cube and sRGB</p>
         <p><strong>Controls</strong> · mouse moves the cube; Enter toggles mipmapping; Space recreates the window with sRGB toggled; Esc exits</p>
         <p><code>node opengl/OpenGL.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/cocoa.png">
+          <img src="screenshots/cocoa.png" width="360"
+               alt="Cocoa window with native controls and an embedded SFML logo">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="cocoa/Cocoa.cjs">Cocoa</a></strong></p>
+        <p>485 × 379 native window with a 440 × 260 SFML view</p>
+        <p><strong>Controls</strong> · Update or Enter applies text; Visible toggles the logo; the dial rotates it; Color selects the background; Up/Down scales it; close, Cmd+Q or Ctrl+C exits</p>
+        <p><code>node cocoa/Cocoa.cjs</code> (macOS)</p>
       </td>
     </tr>
     <tr>
@@ -333,37 +356,31 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   [sfml.js symbol](../../assets/branding/sfml-js-symbol-pentagon.svg),
   rasterized to 256 × 256 over the original dark-gray background.
 
-Four examples remain unported: `android`, `cocoa`, `vulkan`, `win32`.
+- Cocoa creates the original XIB layout in JavaScript with `objc-js`.
+  `sf.RenderWindow(BigInt(NSView*))` borrows the native view. An `NSTimer`
+  renders at 60 Hz in default and event-tracking modes while Node dispatches
+  AppKit input. The app menu is reduced to Quit and standard text editing;
+  no app bundle or XIB compilation is needed. Cleanup invalidates the timer,
+  closes SFML, then closes Cocoa and releases wrappers. The standalone entry
+  exits explicitly because objc-js 1.6.0 class callbacks keep Node alive.
+
+Three examples remain unported: `android`, `vulkan`, `win32`.
 
 Validation covers native window rendering, terrain generation, text/keyboard
 interaction, audio decoding and Worker DSP, and local network exchanges.
 Microphones, physical speaker output, joystick hardware, device hotplug and
 external FTP/SFTP services still require testing on the target system.
 
-[X11 CI](../../.github/workflows/official-x11.yml) uses Ubuntu 24.04,
-Node.js 22, Xvfb and Mesa software rendering. It checks window hierarchy,
-geometry, both cubes and their different animation, parent/child key exit,
-SIGINT cleanup and failure without `DISPLAY`. Screenshots, window trees and
-logs are uploaded as `official-x11-linux` artifacts retained for 14 days.
-Physical GPUs and XWayland are not covered by this CI.
-
-Window uses the same CI with a separate `official-window-linux` artifact
-for screenshots and logs. Tests read the real OpenGL framebuffer and check
-cube colors and rotation, native wide/tall resize events, viewport,
-projection matrix and SIGINT cleanup. Escape, ordinary key and close events
-are scripted. The Window documentation screenshot was captured on macOS
-with a fixed clock sample.
-
-OpenGL saves native screenshots and logs in `official-opengl-linux`. Tests
-compare background, cube and text framebuffer layers, inspect texture
-filtering and projection, and check mouse movement, rotation, native resize,
-sRGB context recreation and exit cleanup. Clock and input are scripted;
-actual sRGB support is logged. Its documentation screenshot is from macOS.
+During migration, X11, Window and OpenGL were verified on Ubuntu 24.04
+with Node.js 22, Xvfb and Mesa. Physical GPUs and XWayland were not covered.
+Cocoa was verified locally on macOS, including native controls, rendering
+in default/event-tracking modes and exit cleanup. Its Up/Down input was
+scripted. The Window screenshot uses a fixed clock sample on macOS.
 
 ## Sources and licenses
 
-[provenance.json](provenance.json) records the upstream commit, C++ source
-hashes and SHA-256 hashes of 55 unchanged resource files, plus the source
+[provenance.json](provenance.json) records the upstream commit, source/XIB
+hashes and SHA-256 hashes of 62 unchanged resource files, plus the source
 and conversion details for the adapted OpenGL logo texture.
 
 - SFML source: [zlib license](SFML-LICENSE.md).
