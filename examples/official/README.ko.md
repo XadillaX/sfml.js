@@ -50,7 +50,7 @@ X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="나비 이미지에 적용한 픽셀화 셰이더">
+               alt="sfml.js 로고에 적용한 에지 검출 셰이더">
         </a>
       </td>
       <td valign="top">
@@ -64,7 +64,7 @@ X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브
       <td width="44%" valign="top">
         <a href="screenshots/tennis.png">
           <img src="screenshots/tennis.png" width="360"
-               alt="게임 중 패들과 공">
+               alt="sfml.js 로고가 표시된 Tennis 시작 화면">
         </a>
       </td>
       <td valign="top">
@@ -159,7 +159,7 @@ Window와 OpenGL은 SFML 창과 외부 패키지 `koffi`로 시스템 데스크�
       <td width="44%" valign="top">
         <a href="screenshots/cocoa.png">
           <img src="screenshots/cocoa.png" width="360"
-               alt="Cocoa 네이티브 컨트롤과 내장된 SFML 로고">
+               alt="Cocoa 네이티브 컨트롤과 내장된 sfml.js 로고">
         </a>
       </td>
       <td valign="top">
@@ -335,7 +335,7 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 
 ## 출처와 라이선스
 
-[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 62개의 SHA-256과 교체한 OpenGL 로고의 출처 및 변환 방법을 기록했습니다.
+[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 57개의 SHA-256과 Cocoa, Shader, Tennis, OpenGL에 사용한 sfml.js 로고 리소스 6개의 출처 및 변환 방법을 기록했습니다. 프로젝트에서 채택한 브랜드 소재를 사용하며 원본 텍스처 크기와 투명도를 유지합니다.
 
 - SFML 소스: [zlib 라이선스](SFML-LICENSE.md).
 - 리소스와 저자: [asset_licenses.md](asset_licenses.md).

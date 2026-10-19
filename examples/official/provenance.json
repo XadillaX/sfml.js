@@ -146,14 +146,6 @@
       "sha256": "c5599a86668d559405af3d1fe921ce519a8c26650fae4030c71007cb26d73197"
     },
     {
-      "path": "cocoa/resources/icon.icns",
-      "sha256": "4df7fb8cff6cbec8cfe04e3be4125ab2ffd5a49bff634e98f294000a1be235d5"
-    },
-    {
-      "path": "cocoa/resources/logo.png",
-      "sha256": "0c1466e59a8e70efd811d98d912a926c7b46c29b649708873fda4b0c880a11e4"
-    },
-    {
       "path": "cocoa/resources/red.png",
       "sha256": "6ac3349c5ceda2c35db95f6d4b0d186c98c56b670cd5139135c018de125d3c11"
     },
@@ -242,16 +234,8 @@
       "sha256": "324f27c45962491d02aac5cff7eeb80d37c573fc42af2449bd2fa07249109231"
     },
     {
-      "path": "shader/resources/logo.png",
-      "sha256": "491393f4730cccc1faf145ec899311813039c9e6485c9dfc0e6e94a49b115538"
-    },
-    {
       "path": "shader/resources/pixelate.frag",
       "sha256": "fb60a0bfcfa4eca9875672b182b1dc769ce77a6f677b2f0765df485dd1853a94"
-    },
-    {
-      "path": "shader/resources/sfml.png",
-      "sha256": "1f63c2c69550e4dd123b1a06dd40a436d5a4656e54431960e2f85acf6e6a95a1"
     },
     {
       "path": "shader/resources/storm.vert",
@@ -304,10 +288,6 @@
     {
       "path": "tennis/resources/ball.wav",
       "sha256": "dfeb11b4d04849d296e5b92a90aec55abf533911ffa30199fa1f3c692eaf4f95"
-    },
-    {
-      "path": "tennis/resources/sfml_logo.png",
-      "sha256": "1137b9bb773caf307499fe818d4b0962ef334262956ba505f11b27a3c4fa9680"
     },
     {
       "path": "tennis/resources/tuffy.ttf",
@@ -384,12 +364,60 @@
   ],
   "adaptedResources": [
     {
+      "path": "cocoa/resources/icon.icns",
+      "sha256": "fa8396324ae3084817faac337050fd96c381bd217f61442befe98f794dd83604",
+      "source": "../../assets/branding/sfml-js-symbol-pentagon.svg",
+      "sourceSha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2",
+      "upstreamSha256": "4df7fb8cff6cbec8cfe04e3be4125ab2ffd5a49bff634e98f294000a1be235d5",
+      "processing": "Wrapped the replacement cocoa/resources/logo.png in a single 512x512 PNG-backed ic09 representation, matching the original ICNS size."
+    },
+    {
+      "path": "cocoa/resources/logo.png",
+      "sha256": "c20e91543912fe56003ea92514779be1d341b562c8daaf790638ff2355558c16",
+      "source": "../../assets/branding/sfml-js-symbol-pentagon.svg",
+      "sourceSha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2",
+      "upstreamSha256": "0c1466e59a8e70efd811d98d912a926c7b46c29b649708873fda4b0c880a11e4",
+      "processing": "Rasterized at 1920x1920 with macOS sips, resized to the original 512x512 with Pillow Lanczos and saved as transparent RGBA PNG."
+    },
+    {
       "path": "opengl/resources/logo.png",
       "sha256": "0cbbfcab3ec1332778eff8b69118954810245ac74693b3a3d6bfbf86517f52a4",
       "source": "../../assets/branding/sfml-js-symbol-pentagon.svg",
       "sourceSha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2",
       "upstreamSha256": "295d3c99a1802ee4783ffd54f1367ae4f7eafb91482f8fa3553c50dd2146531e",
       "processing": "Rasterized with macOS sips at 480x480, resized to 256x256 with Pillow Lanczos, composited on the original #333333 background and saved as RGB PNG."
+    },
+    {
+      "path": "shader/resources/logo.png",
+      "sha256": "a33e72a133cb2e655d611165db700016750ec7828bf559f67fdaf7cc486957cc",
+      "source": "../../assets/branding/sfml-js-symbol-pentagon.svg",
+      "sourceSha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2",
+      "upstreamSha256": "491393f4730cccc1faf145ec899311813039c9e6485c9dfc0e6e94a49b115538",
+      "processing": "Rasterized at 1920x1920 with macOS sips, resized to the original 150x150 with Pillow Lanczos and saved as transparent RGBA PNG."
+    },
+    {
+      "path": "shader/resources/sfml.png",
+      "sha256": "7fb806f447bfb9a0b2fa9101e20d7e612198de5c0caf5b1b8b720cf9e94e881a",
+      "source": "../../assets/branding/sfml-js-logo-pentagon.svg",
+      "sourceSha256": "2c8e3b3dd8c2b83e7312c0f4bede65cecf4502b622ad5025cf218c479647dfd1",
+      "upstreamSha256": "1f63c2c69550e4dd123b1a06dd40a436d5a4656e54431960e2f85acf6e6a95a1",
+      "processing": "Rasterized at 1920x1920 with macOS sips, resized to 320x320 with Pillow Lanczos, centered at (105, 0) on the original 530x320 transparent canvas and saved as RGBA PNG."
+    },
+    {
+      "path": "tennis/resources/sfml_logo.png",
+      "sha256": "d08c395e9444da0e2f526f2d76d811d7ec008f004f1b06fc86dadf488e834940",
+      "sources": [
+        {
+          "path": "../../assets/branding/sfml-js-symbol-pentagon.svg",
+          "sha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2"
+        },
+        {
+          "path": "../../assets/branding/sfml-js-wordmark-dark.svg",
+          "sha256": "affb7c035d5087b282e8f3be7363fe532927cb19789336a1b90b311bd9610840"
+        }
+      ],
+      "upstreamSha256": "1137b9bb773caf307499fe818d4b0962ef334262956ba505f11b27a3c4fa9680",
+      "processing": "Rasterized both vectors at four times their nominal resolution with macOS sips; resized the symbol to 113x113 and the light wordmark to 252x70 with Pillow Lanczos; placed at (0, 0) and (121, 21) on the original 373x113 transparent canvas and saved as RGBA PNG. The wordmark stylesheet colors were materialized as SVG fill attributes before rasterization because sips ignores its class stylesheet."
     }
   ],
   "licenses": [

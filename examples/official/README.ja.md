@@ -50,7 +50,7 @@ X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイテ�
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="蝶の画像に適用したピクセル化シェーダー">
+               alt="sfml.js ロゴに適用したエッジ検出シェーダー">
         </a>
       </td>
       <td valign="top">
@@ -64,7 +64,7 @@ X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイテ�
       <td width="44%" valign="top">
         <a href="screenshots/tennis.png">
           <img src="screenshots/tennis.png" width="360"
-               alt="ゲーム中のパドルとボール">
+               alt="sfml.js ロゴを表示する Tennis の開始画面">
         </a>
       </td>
       <td valign="top">
@@ -159,7 +159,7 @@ Window と OpenGL は SFML ウィンドウと外部パッケージ `koffi` で�
       <td width="44%" valign="top">
         <a href="screenshots/cocoa.png">
           <img src="screenshots/cocoa.png" width="360"
-               alt="Cocoa のネイティブ操作部品と埋め込まれた SFML ロゴ">
+               alt="Cocoa のネイティブ操作部品と埋め込まれた sfml.js ロゴ">
         </a>
       </td>
       <td valign="top">
@@ -335,7 +335,7 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 
 ## 出典とライセンス
 
-[provenance.json](provenance.json) にコミット、ソース／XIB のハッシュ、未変更の 62 素材の SHA-256、および差し替えた OpenGL ロゴの出典と変換方法を記録しています。
+[provenance.json](provenance.json) にコミット、ソース／XIB のハッシュ、未変更の 57 素材の SHA-256、および Cocoa、Shader、Tennis、OpenGL の 6 点の sfml.js ロゴ素材の出典と変換方法を記録しています。プロジェクトで採用したブランド素材を使い、元のテクスチャ寸法と透明度を保持しています。
 
 - SFML ソース：[zlib ライセンス](SFML-LICENSE.md)。
 - 素材と作者：[asset_licenses.md](asset_licenses.md)。

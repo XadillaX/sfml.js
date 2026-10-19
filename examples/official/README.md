@@ -54,7 +54,7 @@ The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native wi
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="Pixelate shader applied to the butterfly image">
+               alt="Edge post-effect applied to the sfml.js logo">
         </a>
       </td>
       <td valign="top">
@@ -68,7 +68,7 @@ The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native wi
       <td width="44%" valign="top">
         <a href="screenshots/tennis.png">
           <img src="screenshots/tennis.png" width="360"
-               alt="Paddles and ball during a tennis game">
+               alt="Tennis start screen with the sfml.js logo">
         </a>
       </td>
       <td valign="top">
@@ -169,7 +169,7 @@ node cocoa/Cocoa.cjs
       <td width="44%" valign="top">
         <a href="screenshots/cocoa.png">
           <img src="screenshots/cocoa.png" width="360"
-               alt="Cocoa window with native controls and an embedded SFML logo">
+               alt="Cocoa window with native controls and an embedded sfml.js logo">
         </a>
       </td>
       <td valign="top">
@@ -380,8 +380,10 @@ scripted. The Window screenshot uses a fixed clock sample on macOS.
 ## Sources and licenses
 
 [provenance.json](provenance.json) records the upstream commit, source/XIB
-hashes and SHA-256 hashes of 62 unchanged resource files, plus the source
-and conversion details for the adapted OpenGL logo texture.
+hashes and SHA-256 hashes of 57 unchanged resource files, plus the sources
+and conversion details for six sfml.js logo assets in Cocoa, Shader, Tennis
+and OpenGL. These assets use the project's approved branding, preserving
+the original texture dimensions and transparency.
 
 - SFML source: [zlib license](SFML-LICENSE.md).
 - Upstream assets and their authors: [asset_licenses.md](asset_licenses.md).

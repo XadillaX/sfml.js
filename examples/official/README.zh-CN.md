@@ -50,7 +50,7 @@ X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="蝴蝶图片的像素化 shader 效果">
+               alt="sfml.js 标识的边缘检测 shader 效果">
         </a>
       </td>
       <td valign="top">
@@ -64,7 +64,7 @@ X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML
       <td width="44%" valign="top">
         <a href="screenshots/tennis.png">
           <img src="screenshots/tennis.png" width="360"
-               alt="游戏中的球拍与球">
+               alt="带有 sfml.js 标识的 Tennis 开始画面">
         </a>
       </td>
       <td valign="top">
@@ -159,7 +159,7 @@ X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库�
       <td width="44%" valign="top">
         <a href="screenshots/cocoa.png">
           <img src="screenshots/cocoa.png" width="360"
-               alt="原生 Cocoa 控件与嵌入的 SFML 标识画面">
+               alt="原生 Cocoa 控件与嵌入的 sfml.js 标识画面">
         </a>
       </td>
       <td valign="top">
@@ -335,7 +335,7 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 
 ## 来源与许可证
 
-[provenance.json](provenance.json) 记录上游 commit、源码／XIB 哈希、62 个未修改资源文件的 SHA-256，以及替换后的 OpenGL 标识贴图来源和转换方式。
+[provenance.json](provenance.json) 记录上游 commit、源码／XIB 哈希、57 个未修改资源文件的 SHA-256，以及 Cocoa、Shader、Tennis 和 OpenGL 中 6 个 sfml.js 标识资源的来源和转换方式。这些资源使用项目已确定的品牌素材，保留原贴图尺寸和透明度。
 
 - SFML 源码：[zlib 许可证](SFML-LICENSE.md)。
 - 上游素材与作者：[asset_licenses.md](asset_licenses.md)。
