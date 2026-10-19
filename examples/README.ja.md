@@ -105,7 +105,7 @@ node index.js
 
 ## SFML 公式サンプル
 
-[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 20 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信、X11、OpenGL ウィンドウを含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。
+[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 21 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信、X11、OpenGL ウィンドウ、SFML／OpenGL 混在描画を含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。
 
 ```sh
 node examples/official/tennis/Tennis.cjs

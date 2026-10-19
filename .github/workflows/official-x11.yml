@@ -1,4 +1,4 @@
-name: Official X11 and Window examples
+name: Official X11, Window and OpenGL examples
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
       - 'examples/official/**'
       - 'tools/test-official-x11.py'
       - 'tools/test-official-window.cjs'
+      - 'tools/test-official-opengl.cjs'
       - 'src/**'
       - 'native/**'
       - 'binding.gyp'
@@ -19,6 +20,7 @@ on:
       - 'examples/official/**'
       - 'tools/test-official-x11.py'
       - 'tools/test-official-window.cjs'
+      - 'tools/test-official-opengl.cjs'
       - 'src/**'
       - 'native/**'
       - 'binding.gyp'
@@ -53,6 +55,7 @@ jobs:
         run: |
           npx eslint --ext .cjs examples/official
           npx eslint tools/test-official-window.cjs
+          npx eslint tools/test-official-opengl.cjs
           npm run test:types
       - name: Verify native windows, animation and cleanup
         run: |
@@ -69,6 +72,13 @@ jobs:
             node tools/test-official-window.cjs "$RUNNER_TEMP/official-window" \
             > "$RUNNER_TEMP/official-window/verification.log" 2>&1
           cat "$RUNNER_TEMP/official-window/verification.log"
+      - name: Verify OpenGL compositing, input, resize and sRGB recreation
+        run: |
+          mkdir -p "$RUNNER_TEMP/official-opengl"
+          xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" \
+            node tools/test-official-opengl.cjs "$RUNNER_TEMP/official-opengl" \
+            > "$RUNNER_TEMP/official-opengl/verification.log" 2>&1
+          cat "$RUNNER_TEMP/official-opengl/verification.log"
       - name: Upload native screenshots and diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -83,5 +93,13 @@ jobs:
         with:
           name: official-window-linux
           path: ${{ runner.temp }}/official-window/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Upload OpenGL screenshots and verification log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-opengl-linux
+          path: ${{ runner.temp }}/official-opengl/
           if-no-files-found: warn
           retention-days: 14

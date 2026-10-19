@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-JavaScript ports of 20 examples from [SFML/SFML][upstream], pinned to commit
+JavaScript ports of 21 examples from [SFML/SFML][upstream], pinned to commit
 `14cea1d978b3dce05780b9234925ca8be9373260`. These are modified sources for
 sfml.js, retaining the upstream directory names, scenes, controls and assets.
 
@@ -112,7 +112,7 @@ The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native SF
 
 ## Platform integration
 
-Window uses an SFML window and third-party `koffi` to call system desktop
+Window and OpenGL use SFML windows and third-party `koffi` to call system desktop
 OpenGL, using compatibility contexts on macOS, Linux and Windows.
 macOS and Linux are verified; Windows remains untested.
 
@@ -140,6 +140,20 @@ development dependencies. No additional example module needs compilation.
         <p>640 × 480 OpenGL window, 24-bit depth buffer and six-colored cube</p>
         <p><strong>Controls</strong> · resize by dragging the window border; Esc or window close exits</p>
         <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/opengl.png">
+          <img src="screenshots/opengl.png" width="360"
+               alt="Textured OpenGL cube over an SFML background with text">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="opengl/OpenGL.cjs">OpenGL</a></strong></p>
+        <p>800 × 600 mixed SFML/OpenGL rendering, textured cube and sRGB</p>
+        <p><strong>Controls</strong> · mouse moves the cube; Enter toggles mipmapping; Space recreates the window with sRGB toggled; Esc exits</p>
+        <p><code>node opengl/OpenGL.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -311,7 +325,12 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   projection updated on resize. Stable native vertex storage is freed after
   closing the window. Zero-sized viewports suspend drawing.
 
-Five examples remain unported: `android`, `cocoa`, `opengl`, `vulkan`, `win32`.
+- OpenGL uses `koffi` with the original position/UV vertices. SFML background
+  and text drawing each save and restore GL state. Enter reloads or mipmaps
+  the cube texture; Space recreates the window and background with the new
+  sRGB request. Mipmapping and sRGB depend on the graphics driver.
+
+Four examples remain unported: `android`, `cocoa`, `vulkan`, `win32`.
 
 Validation covers native window rendering, terrain generation, text/keyboard
 interaction, audio decoding and Worker DSP, and local network exchanges.
@@ -332,10 +351,16 @@ projection matrix and SIGINT cleanup. Escape, ordinary key and close events
 are scripted. The Window documentation screenshot was captured on macOS
 with a fixed clock sample.
 
+OpenGL saves native screenshots and logs in `official-opengl-linux`. Tests
+compare background, cube and text framebuffer layers, inspect texture
+filtering and projection, and check mouse movement, rotation, native resize,
+sRGB context recreation and exit cleanup. Clock and input are scripted;
+actual sRGB support is logged. Its documentation screenshot is from macOS.
+
 ## Sources and licenses
 
 [provenance.json](provenance.json) records the upstream commit, C++ source
-hashes and SHA-256 hashes of all 53 unchanged resource files.
+hashes and SHA-256 hashes of all 56 unchanged resource files.
 
 - SFML source: [zlib license](SFML-LICENSE.md).
 - Upstream assets and their authors: [asset_licenses.md](asset_licenses.md).

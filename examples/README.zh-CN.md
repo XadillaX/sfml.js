@@ -106,7 +106,7 @@ node index.js
 
 ## SFML 官方示例
 
-[official/](official/README.zh-CN.md) 包含从 SFML 官方仓库迁移的 20 个示例，覆盖乒乓球、shader、文字、地形、音频、网络、X11 和 OpenGL 窗口。各入口保留上游场景与资源；操作方式、Node 适配、来源和许可证见目录说明。
+[official/](official/README.zh-CN.md) 包含从 SFML 官方仓库迁移的 21 个示例，覆盖乒乓球、shader、文字、地形、音频、网络、X11、OpenGL 窗口和 SFML／OpenGL 混合渲染。各入口保留上游场景与资源；操作方式、Node 适配、来源和许可证见目录说明。
 
 ```sh
 node examples/official/tennis/Tennis.cjs

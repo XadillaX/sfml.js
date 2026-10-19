@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-这里将 [SFML/SFML][upstream] 的 20 个示例迁移到 JavaScript，上游固定为 commit
+这里将 [SFML/SFML][upstream] 的 21 个示例迁移到 JavaScript，上游固定为 commit
 `14cea1d978b3dce05780b9234925ca8be9373260`。这些是适配 sfml.js 的修改版本，保留上游目录、场景、操作方式与资源。
 
 [全部示例](../README.zh-CN.md) · [构建要求](../../docs/getting-started.zh-CN.md#requirements)
@@ -108,7 +108,7 @@ X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML
 
 ## 平台集成
 
-Window 使用 SFML 窗口和第三方 `koffi` 调用系统桌面 OpenGL，支持 macOS、Linux 和 Windows 的兼容上下文；macOS 与 Linux 已验证，Windows 待验证。
+Window 和 OpenGL 使用 SFML 窗口和第三方 `koffi` 调用系统桌面 OpenGL，支持 macOS、Linux 和 Windows 的兼容上下文；macOS 与 Linux 已验证，Windows 待验证。
 
 X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库根目录的 `npm ci` 会安装开发依赖 `x11` 和 `koffi`，无需编译额外的示例模块。
 
@@ -132,6 +132,20 @@ X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库�
         <p>640 × 480 OpenGL 窗口、24 位深度缓冲与六色立方体</p>
         <p><strong>操作</strong> · 拖动窗口边缘调整大小，Esc 或关闭窗口退出</p>
         <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/opengl.png">
+          <img src="screenshots/opengl.png" width="360"
+               alt="SFML 背景和文字之间的 OpenGL 纹理立方体">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="opengl/OpenGL.cjs">OpenGL</a></strong></p>
+        <p>800 × 600 SFML／OpenGL 混合渲染、纹理立方体与 sRGB</p>
+        <p><strong>操作</strong> · 鼠标移动立方体，Enter 切换 mipmap，Space 重建窗口并切换 sRGB，Esc 退出</p>
+        <p><code>node opengl/OpenGL.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -287,7 +301,9 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 
 - Window 通过 `koffi` 调用系统 OpenGL 导出函数，保留上游六色顶点、每秒 50／30／90 度的三轴旋转和随窗口尺寸更新的透视投影。顶点使用稳定原生内存，窗口关闭后释放；零尺寸时暂停绘制。
 
-其余五个示例（`android`、`cocoa`、`opengl`、`vulkan`、`win32`）暂未迁移。
+- OpenGL 通过 `koffi` 绘制上游位置／UV 顶点，SFML 背景和文字分别保存、恢复 GL 状态。Enter 重新加载或生成立方体纹理的 mipmap；Space 按新的 sRGB 设置重建窗口与背景纹理。mipmap 与 sRGB 支持取决于图形驱动。
+
+其余四个示例（`android`、`cocoa`、`vulkan`、`win32`）暂未迁移。
 
 验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
 
@@ -295,9 +311,11 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 
 Window 使用同一 CI 的独立 `official-window-linux` artifact 保存截图和日志。验证读取真实 OpenGL 帧缓冲，检查立方体颜色与旋转、原生横纵缩放事件、viewport、投影矩阵和 SIGINT 清理；Esc、普通按键和关闭事件由脚本注入。文档中的 Window 截图来自 macOS，使用固定时钟采样。
 
+OpenGL 的原生截图和日志保存为 `official-opengl-linux`。测试逐层比较背景、立方体和文字的帧缓冲，检查纹理过滤、投影、鼠标移动、旋转、原生缩放、sRGB 上下文重建和退出清理。时钟与输入由脚本控制，实际 sRGB 支持写入日志；文档截图来自 macOS。
+
 ## 来源与许可证
 
-[provenance.json](provenance.json) 记录上游 commit、C++ 源文件哈希，以及全部 53 个未修改资源文件的 SHA-256。
+[provenance.json](provenance.json) 记录上游 commit、C++ 源文件哈希，以及全部 56 个未修改资源文件的 SHA-256。
 
 - SFML 源码：[zlib 许可证](SFML-LICENSE.md)。
 - 上游素材与作者：[asset_licenses.md](asset_licenses.md)。

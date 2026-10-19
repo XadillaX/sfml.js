@@ -36,6 +36,10 @@
       "sha256": "ad368644364563378992308538a396152a63db7703f353a7b41582847a3d38d7"
     },
     {
+      "path": "examples/opengl/OpenGL.cpp",
+      "sha256": "95a012fdcaf8b1de5094123d9787ae2186af595ab8d80bfc760c21a0017e25ab"
+    },
+    {
       "path": "examples/raw_input/RawInput.cpp",
       "sha256": "3ed77d9e73e927792dfd406601e43da952cfa02cbcbe21e99a923168d6466162"
     },
@@ -156,6 +160,18 @@
     {
       "path": "keyboard/resources/mouserelease1.ogg",
       "sha256": "23cb78cea76d8f1bb1266af228101a09b5d62063f4ac87ead15b1d395c6181f0"
+    },
+    {
+      "path": "opengl/resources/background.jpg",
+      "sha256": "f7814f8c0ff0e7f0d0ba23467f9539819b8d9b8b2184f001430c6febc17430ea"
+    },
+    {
+      "path": "opengl/resources/logo.png",
+      "sha256": "295d3c99a1802ee4783ffd54f1367ae4f7eafb91482f8fa3553c50dd2146531e"
+    },
+    {
+      "path": "opengl/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
     },
     {
       "path": "raw_input/resources/tuffy.ttf",

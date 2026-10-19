@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
 
-[SFML/SFML][upstream] の 20 サンプルを JavaScript に移植しています。参照コミットは
+[SFML/SFML][upstream] の 21 サンプルを JavaScript に移植しています。参照コミットは
 `14cea1d978b3dce05780b9234925ca8be9373260` です。sfml.js 向けの変更版であり、元のディレクトリ名、シーン、操作方法、素材を保持しています。
 
 [全サンプル](../README.ja.md) · [ビルド要件](../../docs/getting-started.ja.md#requirements)
@@ -110,7 +110,7 @@ X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイテ�
 
 X11 には Linux、X11 ディスプレイサーバー（または XWayland）、デスクトップ OpenGL が必要です。ルートの `npm ci` で開発依存の `x11` と `koffi` を導入します。サンプル専用モジュールの追加コンパイルは不要です。
 
-Window は SFML ウィンドウと外部パッケージ `koffi` でシステムのデスクトップ OpenGL を呼び出します。macOS、Linux、Windows の互換コンテキストに対応し、macOS と Linux は検証済み、Windows は未検証です。
+Window と OpenGL は SFML ウィンドウと外部パッケージ `koffi` でシステムのデスクトップ OpenGL を呼び出します。macOS、Linux、Windows の互換コンテキストに対応し、macOS と Linux は検証済み、Windows は未検証です。
 
 <table>
   <thead>
@@ -132,6 +132,20 @@ Window は SFML ウィンドウと外部パッケージ `koffi` でシステム�
         <p>640 × 480 OpenGL ウィンドウ、24 ビット深度バッファと 6 色の立方体</p>
         <p><strong>操作</strong> · 枠のドラッグでサイズ変更、Esc またはウィンドウを閉じて終了</p>
         <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/opengl.png">
+          <img src="screenshots/opengl.png" width="360"
+               alt="SFML の背景と文字の間に描画した OpenGL テクスチャ立方体">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="opengl/OpenGL.cjs">OpenGL</a></strong></p>
+        <p>800 × 600 SFML／OpenGL 混在描画、テクスチャ立方体と sRGB</p>
+        <p><strong>操作</strong> · マウスで立方体を移動、Enter で mipmap 切替、Space でウィンドウを再作成して sRGB 切替、Esc で終了</p>
+        <p><code>node opengl/OpenGL.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -287,7 +301,9 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 
 - Window は `koffi` でシステム OpenGL のエクスポート関数を呼び出します。元の 6 色の頂点、毎秒 50／30／90 度の 3 軸回転、サイズに追従する透視投影を保持します。頂点用の安定したネイティブメモリはウィンドウを閉じてから解放し、サイズがゼロの間は描画を休止します。
 
-残りの 5 サンプル（`android`、`cocoa`、`opengl`、`vulkan`、`win32`）は未移植です。
+- OpenGL は `koffi` で元の位置／UV 頂点を描画し、SFML の背景と文字はそれぞれ GL 状態を保存・復元します。Enter はテクスチャの再読み込みまたは mipmap 生成、Space は新しい sRGB 設定でウィンドウと背景を再作成します。mipmap と sRGB の対応はドライバーによります。
+
+残りの 4 サンプル（`android`、`cocoa`、`vulkan`、`win32`）は未移植です。
 
 検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
 
@@ -295,9 +311,11 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 
 Window は同じ CI の `official-window-linux` artifact に画像とログを保存します。実際の OpenGL フレームバッファから色と回転を確認し、横長・縦長へのネイティブサイズ変更イベント、viewport、投影行列、SIGINT の後処理を検証します。Esc、通常キー、終了イベントはスクリプトで注入します。掲載した Window の画像は固定時刻で macOS 上で撮影しています。
 
+OpenGL の画像とログは `official-opengl-linux` に保存します。背景・立方体・文字のフレームバッファ比較、テクスチャフィルター、投影、マウス移動、回転、ネイティブサイズ変更、sRGB コンテキスト再作成、終了処理を検証します。時刻と入力はスクリプトで制御し、実際の sRGB 対応をログに記録します。掲載画像は macOS で撮影しています。
+
 ## 出典とライセンス
 
-[provenance.json](provenance.json) にコミット、C++ ソースのハッシュ、変更していない全 53 素材の SHA-256 を記録しています。
+[provenance.json](provenance.json) にコミット、C++ ソースのハッシュ、変更していない全 56 素材の SHA-256 を記録しています。
 
 - SFML ソース：[zlib ライセンス](SFML-LICENSE.md)。
 - 素材と作者：[asset_licenses.md](asset_licenses.md)。

@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
-[SFML/SFML][upstream]의 예제 20개를 JavaScript로 이식했습니다. 기준 커밋은
+[SFML/SFML][upstream]의 예제 21개를 JavaScript로 이식했습니다. 기준 커밋은
 `14cea1d978b3dce05780b9234925ca8be9373260`입니다. sfml.js에 맞게 수정한 버전이며, 원본의 디렉터리 이름, 장면, 조작법과 리소스를 유지합니다.
 
 [전체 예제](../README.ko.md) · [빌드 요구 사항](../../docs/getting-started.ko.md#requirements)
@@ -110,7 +110,7 @@ X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브
 
 X11에는 Linux, X11 디스플레이 서버(또는 XWayland), 데스크톱 OpenGL이 필요합니다. 저장소 루트에서 `npm ci`를 실행하면 개발 의존성 `x11`과 `koffi`를 설치합니다. 별도 예제 모듈을 컴파일할 필요는 없습니다.
 
-Window는 SFML 창과 외부 패키지 `koffi`로 시스템 데스크톱 OpenGL을 호출합니다. macOS, Linux, Windows의 호환 컨텍스트를 지원하며 macOS와 Linux는 검증했고 Windows는 아직 검증하지 않았습니다.
+Window와 OpenGL은 SFML 창과 외부 패키지 `koffi`로 시스템 데스크톱 OpenGL을 호출합니다. macOS, Linux, Windows의 호환 컨텍스트를 지원하며 macOS와 Linux는 검증했고 Windows는 아직 검증하지 않았습니다.
 
 <table>
   <thead>
@@ -132,6 +132,20 @@ Window는 SFML 창과 외부 패키지 `koffi`로 시스템 데스크톱 OpenGL�
         <p>640 × 480 OpenGL 창, 24비트 깊이 버퍼와 여섯 색상의 큐브</p>
         <p><strong>조작</strong> · 창 테두리를 드래그해 크기 조절, Esc 또는 창 닫기로 종료</p>
         <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/opengl.png">
+          <img src="screenshots/opengl.png" width="360"
+               alt="SFML 배경과 텍스트 사이에 그린 OpenGL 텍스처 큐브">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="opengl/OpenGL.cjs">OpenGL</a></strong></p>
+        <p>800 × 600 SFML/OpenGL 혼합 렌더링, 텍스처 큐브와 sRGB</p>
+        <p><strong>조작</strong> · 마우스로 큐브 이동, Enter로 mipmap 전환, Space로 창을 다시 만들고 sRGB 전환, Esc로 종료</p>
+        <p><code>node opengl/OpenGL.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -287,7 +301,9 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 
 - Window는 `koffi`로 시스템 OpenGL 내보내기 함수를 호출합니다. 원본의 여섯 색상 정점, 초당 50/30/90도 회전, 창 크기에 맞춰 갱신하는 원근 투영을 유지합니다. 정점용 네이티브 메모리는 창을 닫은 뒤 해제하고 크기가 0이면 그리기를 중단합니다.
 
-나머지 5개 예제(`android`, `cocoa`, `opengl`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
+- OpenGL은 `koffi`로 원본 위치/UV 정점을 그리며 SFML 배경과 텍스트는 각각 GL 상태를 저장하고 복원합니다. Enter는 큐브 텍스처를 다시 읽거나 mipmap을 생성하고 Space는 새 sRGB 설정으로 창과 배경을 다시 만듭니다. mipmap과 sRGB 지원은 그래픽 드라이버에 따라 달라집니다.
+
+나머지 4개 예제(`android`, `cocoa`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
 
 검증 범위에는 네이티브 렌더링, 지형 생성, 텍스트/키 입력, 오디오 디코딩, Worker DSP와 로컬 통신이 포함됩니다. 실제 마이크, 스피커, 조이스틱, 장치 연결/해제 및 외부 FTP/SFTP는 대상 환경에서 확인해야 합니다.
 
@@ -295,9 +311,11 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 
 Window는 같은 CI의 별도 `official-window-linux` artifact에 스크린샷과 로그를 저장합니다. 실제 OpenGL 프레임버퍼로 색상과 회전을 확인하고 가로/세로 네이티브 크기 변경 이벤트, viewport, 투영 행렬과 SIGINT 정리를 검증합니다. Esc, 일반 키와 닫기 이벤트는 스크립트로 주입합니다. 문서의 Window 스크린샷은 macOS에서 고정 시각으로 캡처했습니다.
 
+OpenGL 이미지와 로그는 `official-opengl-linux`에 저장합니다. 배경·큐브·텍스트의 프레임버퍼 비교, 텍스처 필터, 투영, 마우스 이동, 회전, 네이티브 크기 변경, sRGB 컨텍스트 재생성과 종료 정리를 검증합니다. 시각과 입력은 스크립트로 제어하고 실제 sRGB 지원은 로그에 기록합니다. 문서 이미지는 macOS에서 캡처했습니다.
+
 ## 출처와 라이선스
 
-[provenance.json](provenance.json)에 커밋, C++ 소스 해시와 변경하지 않은 리소스 53개의 SHA-256을 기록했습니다.
+[provenance.json](provenance.json)에 커밋, C++ 소스 해시와 변경하지 않은 리소스 56개의 SHA-256을 기록했습니다.
 
 - SFML 소스: [zlib 라이선스](SFML-LICENSE.md).
 - 리소스와 저자: [asset_licenses.md](asset_licenses.md).
