@@ -31,20 +31,20 @@ jobs:
       - name: Publish to gh-pages
         run: |
           git fetch --depth=1 origin gh-pages
-          git worktree add --detach build/gh-pages FETCH_HEAD
-          if [ -f build/gh-pages/CNAME ]; then
-            cp build/gh-pages/CNAME build/site/CNAME
-          elif [ -f build/gh-pages/docs/CNAME ]; then
-            cp build/gh-pages/docs/CNAME build/site/CNAME
+          git checkout --detach FETCH_HEAD
+          if [ -f CNAME ]; then
+            cp CNAME build/site/CNAME
+          elif [ -f docs/CNAME ]; then
+            cp docs/CNAME build/site/CNAME
           fi
           touch build/site/.nojekyll
-          rm -rf build/gh-pages/docs
-          cp -R build/site build/gh-pages/docs
-          git -C build/gh-pages config user.name 'github-actions[bot]'
-          git -C build/gh-pages config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git -C build/gh-pages add docs
-          if git -C build/gh-pages diff --cached --quiet; then
+          rm -rf docs
+          cp -R build/site docs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs
+          if git diff --cached --quiet; then
             exit 0
           fi
-          git -C build/gh-pages commit -m 'docs: update'
-          git -C build/gh-pages push origin HEAD:gh-pages
+          git commit -m 'docs: update'
+          git push origin HEAD:gh-pages

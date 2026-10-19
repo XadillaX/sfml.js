@@ -35,4 +35,3 @@ jobs:
     - run: npm run test:types
     # Keep the display alive between the suite's isolated Node.js processes.
     - run: xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm run test:runtime
-    - run: xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm run test:ported

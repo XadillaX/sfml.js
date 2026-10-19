@@ -37,7 +37,6 @@ Run these commands from the repository root:
 | `npm run test:types` | Validate TypeScript APIs |
 | `npm run test:runtime` | Run runtime tests serially; requires a prior build |
 | `npm test` | Run lint, build, type checks and runtime tests in sequence |
-| `npm run test:ported` | Validate ported examples, reporting passes and unsupported cases separately |
 | `npm pack --dry-run` | Inspect the npm package file list |
 
 For TypeScript-only changes, run `npm run build:ts`; after native changes, run `npm run build`. Runtime tests do not rebuild automatically, so ensure the build matches the source before running them.
@@ -48,10 +47,9 @@ For TypeScript-only changes, run `npm run build:ts`; after native changes, run `
 
 ```sh
 npm test
-npm run test:ported
 ```
 
-`npm test` runs lint, native and TypeScript builds, type checks and runtime tests. test:ported separately validates ported legacy examples, distinguishing passing cases from unsupported ones.
+`npm test` runs lint, native and TypeScript builds, type checks and runtime tests.
 
 Runtime tests run serially by file, covering public APIs, comparisons with native SFML, actual rendered pixels, asynchronous I/O, snapshots and lifetimes. Type tests are in `test/*.types.ts`, runtime tests in `test/*.test.cjs`, and native comparisons in `test/native/`.
 

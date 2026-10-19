@@ -1,0 +1,11 @@
+{
+  "name": "sfml-official-cocoa-example",
+  "private": true,
+  "description": "The official SFML Cocoa example using objc-js.",
+  "os": [
+    "darwin"
+  ],
+  "dependencies": {
+    "objc-js": "1.6.0"
+  }
+}

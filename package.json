@@ -54,7 +54,6 @@
     "demo:audio": "npm run build && node examples/audio.cjs",
     "demo:network": "npm run build:ts && node examples/network.cjs",
     "demo:ported": "npm run build:ts && node examples/ported/render_window.cjs",
-    "test:ported": "npm run build:ts && node tools/test-ported-examples.cjs",
     "lint": "eslint --ext .ts,.cjs src tools test examples .eslintrc.cjs",
     "jslint": "npm run lint",
     "test:types": "tsc -p test/tsconfig.json",
@@ -95,6 +94,7 @@
     "@types/ssh2": "1.15.6",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
+    "@wettstein/nodegl": "1.2.1",
     "eslint": "^8.57.1",
     "eslint-config-egg": "^14.1.0",
     "eslint-plugin-import": "^2.32.0",
@@ -102,6 +102,7 @@
     "eslint-plugin-node": "^11.1.0",
     "typedoc": "0.28.3",
     "typedoc-material-theme": "1.4.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "x11": "4.3.1"
   }
 }

@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-> 本仓库的示例在仓库根目录运行。首次运行先 `npm ci`；修改源码后执行 `npm run build`。图形示例需要可用的显示服务和 OpenGL 上下文。
+> 本仓库的示例在仓库根目录运行。首次运行先 `npm ci`；修改源码后执行 `npm run build`。图形示例需要可用的显示服务和 OpenGL 窗口支持。官方 Vulkan 示例通过 Vulkan 渲染，但 `sf.Window` 仍会创建一个未用于绘制的 OpenGL 上下文。
 
 [项目首页](../README.zh-CN.md) · [快速开始](../docs/getting-started.zh-CN.md) · [开发指南](../docs/development.zh-CN.md)
 
@@ -104,12 +104,28 @@ node index.js
 
 游戏目录、操作方式与上游 C++ 源码见 [仓库 README](https://github.com/XadillaX/node-sfml-demos#readme)。安装同样需要满足 [原生构建要求](../docs/getting-started.zh-CN.md#requirements)。
 
+## SFML 官方示例
+
+[official/](official/README.zh-CN.md) 包含从 SFML 官方仓库迁移的 24 个示例，覆盖乒乓球、shader、文字、地形、音频、网络、X11、OpenGL 窗口、SFML／OpenGL 混合渲染、Vulkan、Cocoa 和 Win32 集成。各入口保留上游场景与资源；操作方式、Node 适配、来源和许可证见目录说明。仅 `android` 尚未迁移。
+
+```sh
+node examples/official/tennis/Tennis.cjs
+```
+
+Vulkan 面向 x64 的 Linux／X11 和 Windows，使用 `nvk` 0.8.0，需要 Vulkan 加载器及支持 4 倍各向异性过滤的驱动与设备。SFML 负责窗口、事件和 surface，nvk 直接调用 Vulkan，无自定义原生桥接；SFML Graphics 仍使用 OpenGL。SFML 在编译期不支持 macOS Vulkan 集成，仅安装 MoltenVK 无法启用。Linux／X11 和 Windows 的原生绘制及交互验证均已通过。操作与要求见 [平台集成说明](official/README.zh-CN.md#platform)。
+
+```sh
+cd examples/official
+npm ci --prefix vulkan --ignore-scripts
+node vulkan/Vulkan.cjs
+```
+
 ## 旧版示例
 
 [ported/](ported/README.zh-CN.md) 保留原有 16 个脚本：14 个使用当前 API 运行，2 个依赖旧异步绘制接口并报告不支持。
 
 ```sh
-npm run test:ported
+npm run demo:ported
 ```
 
 all-types-scene.cjs 与 bitmap-label.cjs 是演示辅助文件，不是独立应用入口。

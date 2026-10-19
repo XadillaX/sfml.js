@@ -44,6 +44,11 @@ await cp(resolve(rootDir, 'assets'), resolve(sourceDir, 'public/media'), {
 });
 await copyBranding(resolve(sourceDir, 'public/media'));
 await cp(resolve(rootDir, 'examples/ported/assets'), resolve(sourceDir, 'public/media/examples/ported/assets'), { recursive: true });
+await cp(
+  resolve(rootDir, 'examples/official/screenshots'),
+  resolve(sourceDir, 'public/media/examples/official/screenshots'),
+  { recursive: true }
+);
 await writeFile(resolve(sourceDir, 'public/.nojekyll'), '');
 await writeFile(resolve(sourceDir, 'public/CNAME'), 'sfml.js.org\n');
 console.log(`Prepared ${manifest.length} pages across four locales in ${sourceDir}`);

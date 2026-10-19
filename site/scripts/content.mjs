@@ -33,6 +33,7 @@ const documentGroups = [
   ...[ 'getting-started', 'concepts', 'api', 'system', 'window', 'graphics', 'audio', 'network', 'development' ]
     .map(name => [ `docs/${name}`, `/guide/${name}` ]),
   [ 'examples/README', '/examples' ],
+  [ 'examples/official/README', '/examples/official' ],
   [ 'examples/ported/README', '/examples/ported' ],
 ];
 
@@ -91,7 +92,12 @@ export function createLinkMapper(manifest, {
     }
     if (page) return page.route + suffix;
     if (target.startsWith('assets/')) return `/media/${target.slice(7)}${suffix}`;
-    if (target.startsWith('examples/ported/assets/')) return `/media/${target}${suffix}`;
+    if (
+      target.startsWith('examples/ported/assets/') ||
+      target.startsWith('examples/official/screenshots/')
+    ) {
+      return `/media/${target}${suffix}`;
+    }
     const kind = isDirectory(target) ? 'tree' : 'blob';
     const encoded = target.replace(/\/$/, '').split('/').map(encodeURIComponent).join('/');
     return `${repository}/${kind}/main/${encoded}${suffix}`;

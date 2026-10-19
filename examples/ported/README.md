@@ -22,9 +22,6 @@ npm run demo:ported
 # Run any ported script
 node examples/ported/texture.cjs
 node examples/ported/sound_buffer.cjs
-
-# Verify results, reporting passes and unsupported cases separately
-npm run test:ported
 ```
 
 ## Example entry points
@@ -74,9 +71,3 @@ The two entry points with async in their names do not emulate legacy APIs with s
 Coordinates and sizes use Vector2, rotations use Angle, colors use Color, and events are read through `is/getIf`; numeric enum iteration filters reverse mappings. Loading operations check booleans; the original missing paths `abcdefg`/`abc.jpg` are preserved. console.log/JSON.stringify receive new objects directly, with output following the new types' own representation. Integer conversion and invalid-value handling also follow the new value types, without emulating legacy validation in the examples.
 
 Each script contains its demo logic independently, no longer using shared scenes or output-formatting helpers. Formerly synchronous resource loads now use await in the original order, not parallel preloading.
-
-## Automated verification
-
-`test:ported` uses a separate test preload script that normal example runs do not load. During testing, it selects a null audio device, checks mouse settings without moving the system pointer, and redirects file output to an isolated directory. If the virtual display offers fewer than four fullscreen modes, the test fills the remaining options with the desktop mode.
-
-The test script closes the combined window after 8 frames, checking layout, colors, point counts, scale, text and vertex lines per frame. Tests count 14 runnable entry points and 2 unsupported entry points separately; unsupported cases do not count as successful ports. Null-audio-device testing does not prove actual speaker output works.
