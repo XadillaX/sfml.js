@@ -115,9 +115,9 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
-X11에는 Linux, X11 디스플레이 서버(또는 XWayland), 데스크톱 OpenGL이 필요합니다. 저장소 루트에서 `npm ci`를 실행하면 개발 의존성 `x11`과 `koffi`를 설치합니다. 별도 예제 모듈을 컴파일할 필요는 없습니다.
+Window, OpenGL, X11은 [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl)로 데스크톱 OpenGL을 호출하고 SFML이 호환 컨텍스트를 관리합니다. 저장소 루트의 `npm ci`로 `nodegl`과 `x11`을 설치합니다.
 
-Window와 OpenGL은 SFML 창과 외부 패키지 `koffi`로 시스템 데스크톱 OpenGL을 호출합니다. macOS, Linux, Windows의 호환 컨텍스트를 지원하며 macOS와 Linux는 검증했고 Windows는 아직 검증하지 않았습니다.
+nodegl 1.2.1은 설치 시 컴파일하므로 CMake, C++ 도구 체인, OpenGL 개발 헤더와 라이브러리가 필요합니다. macOS SDK에는 OpenGL이 포함되어 있으며 Linux에는 `libgl1-mesa-dev` 등의 개발 패키지가 필요합니다. X11에는 Linux와 X11 디스플레이 서버(또는 XWayland)도 필요합니다. nodegl 전환은 macOS에서 검증했으며 Linux/X11과 Windows는 플랫폼 검증이 필요합니다.
 
 <table>
   <thead>
@@ -318,11 +318,11 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 - 텍스트 클러스터 위치는 JavaScript UTF-16 인덱스입니다. Noto 서브셋은 수정하지 않고 복사했습니다. [폰트 설명](text/resources/readme.md)을 참고하세요.
 - 바인딩이 제공하는 거리 감쇠는 역거리 모델뿐입니다. Surround는 원본의 네 가지 공식을 JavaScript에서 계산하며 네이티브 공간 패닝을 유지합니다. 생성 음의 주파수가 0이면 무음을 출력합니다.
 - TLS는 원본의 공개 데모 키와 DNS/IP SAN이 포함된 새 `localhost` 인증서를 사용합니다. 인증서 검증은 활성 상태입니다. 서로 다른 호스트에서도 이 키와 인증서는 데모 전용입니다.
-- X11 창은 외부 패키지 `x11`로, 빌린 창의 OpenGL 컨텍스트는 `sf.Window(BigInt(xid))`로 관리하고 `koffi`로 `libGL.so.1`을 호출합니다. 정점은 Koffi가 할당한 안정적인 메모리에 저장하며 SFML 컨텍스트, 정점, 부모 창, X11 연결 순서로 해제합니다.
+- X11 창은 외부 패키지 `x11`로, 빌린 창의 OpenGL 컨텍스트는 `sf.Window(BigInt(xid))`로 관리하고 `nodegl`로 데스크톱 GL을 호출합니다. 제로 카피 Buffer 뷰로 정점 데이터를 유지하며 SFML 컨텍스트, Buffer 참조, 부모 창, X11 연결 순서로 해제합니다.
 
-- Window는 `koffi`로 시스템 OpenGL 내보내기 함수를 호출합니다. 원본의 여섯 색상 정점, 초당 50/30/90도 회전, 창 크기에 맞춰 갱신하는 원근 투영을 유지합니다. 정점용 네이티브 메모리는 창을 닫은 뒤 해제하고 크기가 0이면 그리기를 중단합니다.
+- Window는 `nodegl`로 데스크톱 OpenGL을 호출합니다. 원본의 여섯 색상 정점, 초당 50/30/90도 회전, 창 크기에 맞춰 갱신하는 원근 투영을 유지합니다. 정점 Buffer 참조는 창을 닫은 뒤 해제하고 크기가 0이면 그리기를 중단합니다.
 
-- OpenGL은 `koffi`로 원본 위치/UV 정점을 그리며 SFML 배경과 텍스트는 각각 GL 상태를 저장하고 복원합니다. Enter는 큐브 텍스처를 다시 읽거나 mipmap을 생성하고 Space는 새 sRGB 설정으로 창과 배경을 다시 만듭니다. mipmap과 sRGB 지원은 그래픽 드라이버에 따라 달라집니다.
+- OpenGL은 `nodegl`과 제로 카피 Buffer 뷰로 원본 위치/UV 정점을 그리며 SFML 배경과 텍스트는 각각 GL 상태를 저장하고 복원합니다. Enter는 큐브 텍스처를 다시 읽거나 mipmap을 생성하고 Space는 새 sRGB 설정으로 창과 배경을 다시 만듭니다. mipmap과 sRGB 지원은 그래픽 드라이버에 따라 달라집니다.
   큐브 텍스처는 현재 [sfml.js 심볼](../../assets/branding/sfml-js-symbol-pentagon.svg)을 256 × 256 PNG로 변환하고 원본의 짙은 회색 배경에 합성한 이미지입니다.
 
 - Cocoa는 [objc-js](https://github.com/iamEvanYT/objc-js)로 원본 XIB 배치를 JavaScript에서 구성합니다. `sf.RenderWindow(BigInt(NSView*))`가 뷰를 빌리며, `NSTimer`는 기본/이벤트 추적 모드에서 60 Hz로 렌더링하고 Node가 AppKit 입력을 처리합니다. 메뉴는 종료와 표준 텍스트 편집으로 줄였으며 XIB 컴파일이나 앱 번들이 필요하지 않습니다. 타이머 중지, SFML 종료, Cocoa 종료, 래퍼 해제 순으로 정리합니다. objc-js 1.6.0 클래스 콜백이 Node를 유지하므로 정리 후 명시적으로 종료합니다.
@@ -331,7 +331,9 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 
 검증 범위에는 네이티브 렌더링, 지형 생성, 텍스트/키 입력, 오디오 디코딩, Worker DSP와 로컬 통신이 포함됩니다. 실제 마이크, 스피커, 조이스틱, 장치 연결/해제 및 외부 FTP/SFTP는 대상 환경에서 확인해야 합니다.
 
-이식 과정에서 X11, Window, OpenGL을 Ubuntu 24.04, Node.js 22, Xvfb, Mesa로 검증했습니다. 실제 GPU와 XWayland는 검증하지 않았습니다. Cocoa는 macOS에서 네이티브 컨트롤, 기본/이벤트 추적 모드 렌더링과 종료 정리를 확인했으며 Up/Down은 스크립트로 제어했습니다. Window 문서 이미지는 macOS에서 고정 시각으로 캡처했습니다.
+nodegl 전환 전 X11, Window, OpenGL을 Ubuntu 24.04, Node.js 22, Xvfb, Mesa로 검증했습니다. nodegl 버전의 Window와 OpenGL은 macOS에서 실제 픽셀, 크기 조절, mipmap/sRGB 전환, 종료 처리, 프레임 사이 강제 GC를 검증했습니다. X11 GL 모듈은 macOS 네이티브 컨텍스트 두 개로 확인했으며 X11 호스트는 실행하지 않았습니다. nodegl 버전의 Linux/X11, Windows, 다른 GPU 드라이버와 XWayland는 아직 검증하지 않았습니다.
+
+Cocoa는 macOS에서 네이티브 컨트롤, 기본/이벤트 추적 모드 렌더링과 종료 정리를 확인했으며 Up/Down은 스크립트로 제어했습니다. Window 문서 이미지는 macOS에서 고정 시각으로 캡처했습니다.
 
 ## 출처와 라이선스
 

@@ -115,9 +115,9 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
-X11 には Linux、X11 ディスプレイサーバー（または XWayland）、デスクトップ OpenGL が必要です。ルートの `npm ci` で開発依存の `x11` と `koffi` を導入します。サンプル専用モジュールの追加コンパイルは不要です。
+Window、OpenGL、X11 は [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) からデスクトップ OpenGL を呼び出し、SFML が互換コンテキストを管理します。ルートの `npm ci` で `nodegl` と `x11` を導入します。
 
-Window と OpenGL は SFML ウィンドウと外部パッケージ `koffi` でシステムのデスクトップ OpenGL を呼び出します。macOS、Linux、Windows の互換コンテキストに対応し、macOS と Linux は検証済み、Windows は未検証です。
+nodegl 1.2.1 はインストール時にコンパイルするため、CMake、C++ ツールチェーン、OpenGL の開発用ヘッダーとライブラリが必要です。macOS SDK は OpenGL を含み、Linux では `libgl1-mesa-dev` などが必要です。X11 には Linux と X11 ディスプレイサーバー（または XWayland）も必要です。nodegl への移行は macOS で検証済みで、Linux／X11 と Windows はプラットフォーム検証が必要です。
 
 <table>
   <thead>
@@ -318,11 +318,11 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 - テキストのクラスタ位置は JavaScript の UTF-16 インデックスです。Noto のサブセットは変更せずにコピーしています。[フォントの説明](text/resources/readme.md)を参照してください。
 - バインディングが公開する距離減衰は逆距離のみです。Surround は元の 4 式を JavaScript で計算し、ネイティブの空間パンを保持します。生成音の周波数がゼロの場合は無音です。
 - TLS は元の公開デモ鍵を使い、DNS／IP SAN 付きの `localhost` 証明書に置き換えています。証明書検証は有効です。別ホスト間でも、この鍵と証明書はデモ専用です。
-- X11 のウィンドウは外部パッケージ `x11`、借用ウィンドウの OpenGL コンテキストは `sf.Window(BigInt(xid))` で管理し、`koffi` から `libGL.so.1` を呼び出します。頂点は Koffi の安定したメモリに配置し、SFML コンテキスト、頂点、親ウィンドウ、X11 接続の順で解放します。
+- X11 のウィンドウは外部パッケージ `x11`、借用ウィンドウの OpenGL コンテキストは `sf.Window(BigInt(xid))` で管理し、`nodegl` からデスクトップ GL を呼び出します。ゼロコピーの Buffer ビューが頂点データを保持し、SFML コンテキスト、Buffer 参照、親ウィンドウ、X11 接続の順で解放します。
 
-- Window は `koffi` でシステム OpenGL のエクスポート関数を呼び出します。元の 6 色の頂点、毎秒 50／30／90 度の 3 軸回転、サイズに追従する透視投影を保持します。頂点用の安定したネイティブメモリはウィンドウを閉じてから解放し、サイズがゼロの間は描画を休止します。
+- Window は `nodegl` でデスクトップ OpenGL を呼び出します。元の 6 色の頂点、毎秒 50／30／90 度の 3 軸回転、サイズに追従する透視投影を保持します。頂点の Buffer 参照はウィンドウを閉じてから解放し、サイズがゼロの間は描画を休止します。
 
-- OpenGL は `koffi` で元の位置／UV 頂点を描画し、SFML の背景と文字はそれぞれ GL 状態を保存・復元します。Enter はテクスチャの再読み込みまたは mipmap 生成、Space は新しい sRGB 設定でウィンドウと背景を再作成します。mipmap と sRGB の対応はドライバーによります。
+- OpenGL は `nodegl` とゼロコピーの Buffer ビューで元の位置／UV 頂点を描画し、SFML の背景と文字はそれぞれ GL 状態を保存・復元します。Enter はテクスチャの再読み込みまたは mipmap 生成、Space は新しい sRGB 設定でウィンドウと背景を再作成します。mipmap と sRGB の対応はドライバーによります。
   立方体には現在の [sfml.js シンボル](../../assets/branding/sfml-js-symbol-pentagon.svg) を 256 × 256 PNG に変換し、元の濃い灰色の背景と合成したテクスチャを使用します。
 
 - Cocoa は [objc-js](https://github.com/iamEvanYT/objc-js) で元の XIB 配置を JavaScript から構築します。`sf.RenderWindow(BigInt(NSView*))` がビューを借用し、`NSTimer` が通常／イベント追跡モードで 60 Hz 描画、Node が AppKit 入力を処理します。メニューは終了と標準テキスト編集に絞り、XIB コンパイルやアプリバンドルは不要です。タイマー停止、SFML 終了、Cocoa 終了、ラッパー解放の順で片付けます。objc-js 1.6.0 のクラスコールバックが Node を保持するため、処理後に明示的に終了します。
@@ -331,7 +331,9 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 
 検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
 
-移植時に X11、Window、OpenGL を Ubuntu 24.04、Node.js 22、Xvfb、Mesa で検証しました。実 GPU と XWayland は対象外です。Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モードの描画、終了処理を検証し、Up／Down はスクリプトで制御しました。Window の掲載画像は固定時刻で macOS 上で撮影しています。
+nodegl 移行前の X11、Window、OpenGL は Ubuntu 24.04、Node.js 22、Xvfb、Mesa で検証しました。nodegl 版の Window と OpenGL は macOS で実画素、サイズ変更、mipmap／sRGB 切替、終了処理、フレーム間の強制 GC を検証済みです。X11 の GL モジュールは 2 つの macOS ネイティブコンテキストで検証し、X11 ホストは実行していません。nodegl 版の Linux／X11、Windows、その他の GPU ドライバー、XWayland は未検証です。
+
+Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モードの描画、終了処理を検証し、Up／Down はスクリプトで制御しました。Window の掲載画像は固定時刻で macOS 上で撮影しています。
 
 ## 出典とライセンス
 

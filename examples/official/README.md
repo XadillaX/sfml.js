@@ -112,13 +112,16 @@ The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native wi
 
 ## Platform integration
 
-Window and OpenGL use SFML windows and third-party `koffi` to call system desktop
-OpenGL, using compatibility contexts on macOS, Linux and Windows.
-macOS and Linux are verified; Windows remains untested.
-
-X11 requires Linux, an X11 display server (or XWayland), and desktop OpenGL.
-Running `npm ci` at the repository root installs the `x11` and `koffi`
-development dependencies. No additional example module needs compilation.
+Window, OpenGL and X11 call desktop OpenGL through
+[`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl)
+using compatibility contexts managed by SFML.
+Running `npm ci` at the repository root installs `nodegl` and `x11`.
+nodegl 1.2.1 compiles during installation and requires CMake, a C++ toolchain
+and OpenGL development headers/libraries. macOS provides OpenGL in its SDK;
+Linux needs a package such as `libgl1-mesa-dev`.
+X11 additionally needs Linux and an X11 display server (or XWayland).
+The nodegl migration is verified on macOS; Linux/X11 and Windows need
+platform validation.
 
 Cocoa requires macOS and uses third-party [objc-js](https://github.com/iamEvanYT/objc-js).
 Install its local dependency using the bundled prebuild (Apple Silicon or Intel):
@@ -338,17 +341,18 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   Verification stays enabled. This bundled key/certificate is for this
   demonstration only, including when the two peers run on different hosts.
 - X11 uses third-party `x11` for window ownership,
-  `sf.Window(BigInt(xid))` for borrowed-window OpenGL contexts, and `koffi`
-  for calls into `libGL.so.1`. Vertex storage uses stable Koffi allocations.
-  Cleanup closes SFML contexts, frees vertices, destroys the parent, then
+  `sf.Window(BigInt(xid))` for borrowed-window OpenGL contexts, and `nodegl`
+  for desktop GL calls. Zero-copy Buffer views retain the vertex data.
+  Cleanup closes SFML contexts, releases Buffer references, destroys the parent, then
   disconnects the X11 client.
 
-- Window calls system OpenGL exports through `koffi`, retaining the six
+- Window calls desktop OpenGL through `nodegl`, retaining the six
   original face colors, 50/30/90 degrees-per-second rotation and a perspective
-  projection updated on resize. Stable native vertex storage is freed after
+  projection updated on resize. Vertex Buffer references are released after
   closing the window. Zero-sized viewports suspend drawing.
 
-- OpenGL uses `koffi` with the original position/UV vertices. SFML background
+- OpenGL uses `nodegl` with zero-copy Buffer views of the original position/UV
+  vertices. SFML background
   and text drawing each save and restore GL state. Enter reloads or mipmaps
   the cube texture; Space recreates the window and background with the new
   sRGB request. Mipmapping and sRGB depend on the graphics driver.
@@ -371,8 +375,12 @@ interaction, audio decoding and Worker DSP, and local network exchanges.
 Microphones, physical speaker output, joystick hardware, device hotplug and
 external FTP/SFTP services still require testing on the target system.
 
-During migration, X11, Window and OpenGL were verified on Ubuntu 24.04
-with Node.js 22, Xvfb and Mesa. Physical GPUs and XWayland were not covered.
+Before the nodegl migration, X11, Window and OpenGL were verified on
+Ubuntu 24.04 with Node.js 22, Xvfb and Mesa. The nodegl version of Window
+and OpenGL was verified on macOS, including native pixels, resizing,
+mipmap/sRGB toggles, exit cleanup and forced GC between frames. The X11
+GL helper was checked with two native macOS contexts, without the X11 host.
+Linux/X11, Windows, other GPU drivers and XWayland remain unverified for nodegl.
 Cocoa was verified locally on macOS, including native controls, rendering
 in default/event-tracking modes and exit cleanup. Its Up/Down input was
 scripted. The Window screenshot uses a fixed clock sample on macOS.

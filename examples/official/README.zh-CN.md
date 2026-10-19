@@ -115,9 +115,9 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
-Window 和 OpenGL 使用 SFML 窗口和第三方 `koffi` 调用系统桌面 OpenGL，支持 macOS、Linux 和 Windows 的兼容上下文；macOS 与 Linux 已验证，Windows 待验证。
+Window、OpenGL 和 X11 使用 [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) 调用桌面 OpenGL，由 SFML 管理兼容上下文。仓库根目录的 `npm ci` 会安装 `nodegl` 和 `x11`。
 
-X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库根目录的 `npm ci` 会安装开发依赖 `x11` 和 `koffi`，无需编译额外的示例模块。
+nodegl 1.2.1 在安装时编译，需要 CMake、C++ 工具链和 OpenGL 开发头文件及链接库。macOS SDK 自带 OpenGL；Linux 需要安装 `libgl1-mesa-dev` 等开发包。X11 还需要 Linux 和 X11 显示服务（或 XWayland）。nodegl 迁移已在 macOS 验证，Linux／X11 和 Windows 待平台验证。
 
 <table>
   <thead>
@@ -318,11 +318,11 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 - 文字簇位置采用 JavaScript 的 UTF-16 下标。上游 Noto 子集字体原样复制，详见 [字体说明](text/resources/readme.md)。
 - 当前绑定仅暴露反距离衰减。Surround 场景在 JavaScript 中计算上游四种距离增益公式，保留原生空间声像；生成音调的频率为零时输出静音。
 - TLS 保留上游公开的演示密钥，替换为含 DNS／IP SAN 的 `localhost` 证书，继续启用证书校验。该密钥与证书仅用于示例，包括两端位于不同主机的情况。
-- X11 使用第三方 `x11` 创建窗口，`sf.Window(BigInt(xid))` 管理借用窗口的 OpenGL 上下文，`koffi` 调用 `libGL.so.1`。顶点存入 Koffi 分配的稳定内存；先关闭 SFML 上下文，再释放顶点、销毁父窗口并断开 X11 连接。
+- X11 使用第三方 `x11` 创建窗口，`sf.Window(BigInt(xid))` 管理借用窗口的 OpenGL 上下文，`nodegl` 调用桌面 GL。零拷贝 Buffer 视图持有顶点数据；先关闭 SFML 上下文，再释放 Buffer 引用、销毁父窗口并断开 X11 连接。
 
-- Window 通过 `koffi` 调用系统 OpenGL 导出函数，保留上游六色顶点、每秒 50／30／90 度的三轴旋转和随窗口尺寸更新的透视投影。顶点使用稳定原生内存，窗口关闭后释放；零尺寸时暂停绘制。
+- Window 通过 `nodegl` 调用桌面 OpenGL，保留上游六色顶点、每秒 50／30／90 度的三轴旋转和随窗口尺寸更新的透视投影。窗口关闭后释放顶点 Buffer 引用；零尺寸时暂停绘制。
 
-- OpenGL 通过 `koffi` 绘制上游位置／UV 顶点，SFML 背景和文字分别保存、恢复 GL 状态。Enter 重新加载或生成立方体纹理的 mipmap；Space 按新的 sRGB 设置重建窗口与背景纹理。mipmap 与 sRGB 支持取决于图形驱动。
+- OpenGL 通过 `nodegl` 和零拷贝 Buffer 视图绘制上游位置／UV 顶点，SFML 背景和文字分别保存、恢复 GL 状态。Enter 重新加载或生成立方体纹理的 mipmap；Space 按新的 sRGB 设置重建窗口与背景纹理。mipmap 与 sRGB 支持取决于图形驱动。
   立方体贴图采用当前的 [sfml.js 标识](../../assets/branding/sfml-js-symbol-pentagon.svg)，转为 256 × 256 PNG，并保留原贴图的深灰底色。
 
 - Cocoa 通过第三方 [objc-js](https://github.com/iamEvanYT/objc-js) 在 JavaScript 中重建原始 XIB 布局，`sf.RenderWindow(BigInt(NSView*))` 借用原生视图。`NSTimer` 在默认及事件跟踪模式下以 60 Hz 绘制，Node 分派 AppKit 输入。菜单保留退出与标准文字编辑，无需编译 XIB 或打包应用。退出时先停止定时器、关闭 SFML，再关闭 Cocoa 并释放包装对象；objc-js 1.6.0 的类回调会保活 Node，因此独立入口清理后显式退出。
@@ -331,7 +331,9 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 
 验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
 
-迁移时，X11、Window 和 OpenGL 已在 Ubuntu 24.04、Node.js 22、Xvfb 和 Mesa 环境验证，未覆盖实体 GPU 和 XWayland。Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制及退出清理，Up／Down 按键由脚本控制。Window 文档截图来自 macOS，使用固定时钟采样。
+切换 nodegl 前，X11、Window 和 OpenGL 已在 Ubuntu 24.04、Node.js 22、Xvfb 和 Mesa 环境验证。nodegl 版本的 Window 和 OpenGL 已在 macOS 验证原生像素、尺寸调整、mipmap／sRGB 切换、退出清理及帧间强制 GC；X11 的 GL 模块通过两个 macOS 原生上下文验证，未运行 X11 宿主。nodegl 的 Linux／X11、Windows、其他 GPU 驱动和 XWayland 待验证。
+
+Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制及退出清理，Up／Down 按键由脚本控制。Window 文档截图来自 macOS，使用固定时钟采样。
 
 ## 来源与许可证
 
