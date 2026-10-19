@@ -1,4 +1,4 @@
-name: Official X11 example
+name: Official X11 and Window examples
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - '.github/workflows/official-x11.yml'
       - 'examples/official/**'
       - 'tools/test-official-x11.py'
+      - 'tools/test-official-window.cjs'
       - 'src/**'
       - 'native/**'
       - 'binding.gyp'
@@ -17,6 +18,7 @@ on:
       - '.github/workflows/official-x11.yml'
       - 'examples/official/**'
       - 'tools/test-official-x11.py'
+      - 'tools/test-official-window.cjs'
       - 'src/**'
       - 'native/**'
       - 'binding.gyp'
@@ -50,6 +52,7 @@ jobs:
       - name: Check example JavaScript and public types
         run: |
           npx eslint --ext .cjs examples/official
+          npx eslint tools/test-official-window.cjs
           npm run test:types
       - name: Verify native windows, animation and cleanup
         run: |
@@ -59,11 +62,26 @@ jobs:
             /usr/bin/python3 tools/test-official-x11.py \
               "$RUNNER_TEMP/official-x11"
           '
+      - name: Verify Window rendering, projection, resize and cleanup
+        run: |
+          mkdir -p "$RUNNER_TEMP/official-window"
+          xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" \
+            node tools/test-official-window.cjs "$RUNNER_TEMP/official-window" \
+            > "$RUNNER_TEMP/official-window/verification.log" 2>&1
+          cat "$RUNNER_TEMP/official-window/verification.log"
       - name: Upload native screenshots and diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: official-x11-linux
           path: ${{ runner.temp }}/official-x11/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Upload Window screenshots and verification log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-window-linux
+          path: ${{ runner.temp }}/official-window/
           if-no-files-found: warn
           retention-days: 14

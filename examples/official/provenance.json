@@ -114,6 +114,10 @@
     {
       "path": "examples/voip/VoIP.cpp",
       "sha256": "3b9beaf7ea6565a46f2d81b04df3a5990e3c83982462cdf442f35b852549d2d7"
+    },
+    {
+      "path": "examples/window/Window.cpp",
+      "sha256": "083398829e850653dd124f7a5354bc8ee5815970d8759b83d0a37ba73ea4f0ab"
     }
   ],
   "resources": [

@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
 
-[SFML/SFML][upstream] の 19 サンプルを JavaScript に移植しています。参照コミットは
+[SFML/SFML][upstream] の 20 サンプルを JavaScript に移植しています。参照コミットは
 `14cea1d978b3dce05780b9234925ca8be9373260` です。sfml.js 向けの変更版であり、元のディレクトリ名、シーン、操作方法、素材を保持しています。
 
 [全サンプル](../README.ja.md) · [ビルド要件](../../docs/getting-started.ja.md#requirements)
@@ -110,6 +110,8 @@ X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイテ�
 
 X11 には Linux、X11 ディスプレイサーバー（または XWayland）、デスクトップ OpenGL が必要です。ルートの `npm ci` で開発依存の `x11` と `koffi` を導入します。サンプル専用モジュールの追加コンパイルは不要です。
 
+Window は SFML ウィンドウと外部パッケージ `koffi` でシステムのデスクトップ OpenGL を呼び出します。macOS、Linux、Windows の互換コンテキストに対応し、macOS と Linux は検証済み、Windows は未検証です。
+
 <table>
   <thead>
     <tr>
@@ -118,6 +120,20 @@ X11 には Linux、X11 ディスプレイサーバー（または XWayland）、
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/window.png">
+          <img src="screenshots/window.png" width="360"
+               alt="黒い背景で回転する 6 色の立方体">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="window/Window.cjs">Window</a></strong></p>
+        <p>640 × 480 OpenGL ウィンドウ、24 ビット深度バッファと 6 色の立方体</p>
+        <p><strong>操作</strong> · 枠のドラッグでサイズ変更、Esc またはウィンドウを閉じて終了</p>
+        <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
     <tr>
       <td width="44%" valign="top">
         <a href="screenshots/x11.png">
@@ -269,11 +285,15 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 - TLS は元の公開デモ鍵を使い、DNS／IP SAN 付きの `localhost` 証明書に置き換えています。証明書検証は有効です。別ホスト間でも、この鍵と証明書はデモ専用です。
 - X11 のウィンドウは外部パッケージ `x11`、借用ウィンドウの OpenGL コンテキストは `sf.Window(BigInt(xid))` で管理し、`koffi` から `libGL.so.1` を呼び出します。頂点は Koffi の安定したメモリに配置し、SFML コンテキスト、頂点、親ウィンドウ、X11 接続の順で解放します。
 
-残りの 6 サンプル（`android`、`cocoa`、`opengl`、`vulkan`、`win32`、`window`）はプラットフォーム UI または直接のグラフィックスコンテキスト API が必要なため、未移植です。
+- Window は `koffi` でシステム OpenGL のエクスポート関数を呼び出します。元の 6 色の頂点、毎秒 50／30／90 度の 3 軸回転、サイズに追従する透視投影を保持します。頂点用の安定したネイティブメモリはウィンドウを閉じてから解放し、サイズがゼロの間は描画を休止します。
+
+残りの 5 サンプル（`android`、`cocoa`、`opengl`、`vulkan`、`win32`）は未移植です。
 
 検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
 
 [X11 CI](../../.github/workflows/official-x11.yml) は Ubuntu 24.04、Node.js 22、Xvfb、Mesa ソフトウェア描画で、親子の階層と寸法、両立方体と動きの違い、親子のキー終了、SIGINT による解放、`DISPLAY` 未設定時のエラーを検証します。画像、ウィンドウツリー、ログは `official-x11-linux` artifact として 14 日間保持します。実 GPU と XWayland はこの CI の対象外です。
+
+Window は同じ CI の `official-window-linux` artifact に画像とログを保存します。実際の OpenGL フレームバッファから色と回転を確認し、横長・縦長へのネイティブサイズ変更イベント、viewport、投影行列、SIGINT の後処理を検証します。Esc、通常キー、終了イベントはスクリプトで注入します。掲載した Window の画像は固定時刻で macOS 上で撮影しています。
 
 ## 出典とライセンス
 

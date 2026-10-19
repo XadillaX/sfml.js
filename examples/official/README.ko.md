@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
-[SFML/SFML][upstream]의 예제 19개를 JavaScript로 이식했습니다. 기준 커밋은
+[SFML/SFML][upstream]의 예제 20개를 JavaScript로 이식했습니다. 기준 커밋은
 `14cea1d978b3dce05780b9234925ca8be9373260`입니다. sfml.js에 맞게 수정한 버전이며, 원본의 디렉터리 이름, 장면, 조작법과 리소스를 유지합니다.
 
 [전체 예제](../README.ko.md) · [빌드 요구 사항](../../docs/getting-started.ko.md#requirements)
@@ -110,6 +110,8 @@ X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브
 
 X11에는 Linux, X11 디스플레이 서버(또는 XWayland), 데스크톱 OpenGL이 필요합니다. 저장소 루트에서 `npm ci`를 실행하면 개발 의존성 `x11`과 `koffi`를 설치합니다. 별도 예제 모듈을 컴파일할 필요는 없습니다.
 
+Window는 SFML 창과 외부 패키지 `koffi`로 시스템 데스크톱 OpenGL을 호출합니다. macOS, Linux, Windows의 호환 컨텍스트를 지원하며 macOS와 Linux는 검증했고 Windows는 아직 검증하지 않았습니다.
+
 <table>
   <thead>
     <tr>
@@ -118,6 +120,20 @@ X11에는 Linux, X11 디스플레이 서버(또는 XWayland), 데스크톱 OpenG
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/window.png">
+          <img src="screenshots/window.png" width="360"
+               alt="검은 배경에서 회전하는 여섯 색상의 큐브">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="window/Window.cjs">Window</a></strong></p>
+        <p>640 × 480 OpenGL 창, 24비트 깊이 버퍼와 여섯 색상의 큐브</p>
+        <p><strong>조작</strong> · 창 테두리를 드래그해 크기 조절, Esc 또는 창 닫기로 종료</p>
+        <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
     <tr>
       <td width="44%" valign="top">
         <a href="screenshots/x11.png">
@@ -269,11 +285,15 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 - TLS는 원본의 공개 데모 키와 DNS/IP SAN이 포함된 새 `localhost` 인증서를 사용합니다. 인증서 검증은 활성 상태입니다. 서로 다른 호스트에서도 이 키와 인증서는 데모 전용입니다.
 - X11 창은 외부 패키지 `x11`로, 빌린 창의 OpenGL 컨텍스트는 `sf.Window(BigInt(xid))`로 관리하고 `koffi`로 `libGL.so.1`을 호출합니다. 정점은 Koffi가 할당한 안정적인 메모리에 저장하며 SFML 컨텍스트, 정점, 부모 창, X11 연결 순서로 해제합니다.
 
-나머지 6개 예제(`android`, `cocoa`, `opengl`, `vulkan`, `win32`, `window`)는 플랫폼 UI나 직접 그래픽 컨텍스트 API가 필요하여 아직 이식하지 않았습니다.
+- Window는 `koffi`로 시스템 OpenGL 내보내기 함수를 호출합니다. 원본의 여섯 색상 정점, 초당 50/30/90도 회전, 창 크기에 맞춰 갱신하는 원근 투영을 유지합니다. 정점용 네이티브 메모리는 창을 닫은 뒤 해제하고 크기가 0이면 그리기를 중단합니다.
+
+나머지 5개 예제(`android`, `cocoa`, `opengl`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
 
 검증 범위에는 네이티브 렌더링, 지형 생성, 텍스트/키 입력, 오디오 디코딩, Worker DSP와 로컬 통신이 포함됩니다. 실제 마이크, 스피커, 조이스틱, 장치 연결/해제 및 외부 FTP/SFTP는 대상 환경에서 확인해야 합니다.
 
 [X11 CI](../../.github/workflows/official-x11.yml)는 Ubuntu 24.04, Node.js 22, Xvfb, Mesa 소프트웨어 렌더링으로 창 계층과 크기, 두 큐브 및 애니메이션 차이, 부모/자식 키 종료, SIGINT 정리, `DISPLAY` 미설정 오류를 검사합니다. 스크린샷, 창 트리, 로그는 `official-x11-linux` artifact로 14일간 보관합니다. 실제 GPU와 XWayland는 이 CI에서 검증하지 않습니다.
+
+Window는 같은 CI의 별도 `official-window-linux` artifact에 스크린샷과 로그를 저장합니다. 실제 OpenGL 프레임버퍼로 색상과 회전을 확인하고 가로/세로 네이티브 크기 변경 이벤트, viewport, 투영 행렬과 SIGINT 정리를 검증합니다. Esc, 일반 키와 닫기 이벤트는 스크립트로 주입합니다. 문서의 Window 스크린샷은 macOS에서 고정 시각으로 캡처했습니다.
 
 ## 출처와 라이선스
 

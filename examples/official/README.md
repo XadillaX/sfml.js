@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-JavaScript ports of 19 examples from [SFML/SFML][upstream], pinned to commit
+JavaScript ports of 20 examples from [SFML/SFML][upstream], pinned to commit
 `14cea1d978b3dce05780b9234925ca8be9373260`. These are modified sources for
 sfml.js, retaining the upstream directory names, scenes, controls and assets.
 
@@ -112,6 +112,10 @@ The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native SF
 
 ## Platform integration
 
+Window uses an SFML window and third-party `koffi` to call system desktop
+OpenGL, using compatibility contexts on macOS, Linux and Windows.
+macOS and Linux are verified; Windows remains untested.
+
 X11 requires Linux, an X11 display server (or XWayland), and desktop OpenGL.
 Running `npm ci` at the repository root installs the `x11` and `koffi`
 development dependencies. No additional example module needs compilation.
@@ -124,6 +128,20 @@ development dependencies. No additional example module needs compilation.
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/window.png">
+          <img src="screenshots/window.png" width="360"
+               alt="A rotating six-colored cube against a black background">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="window/Window.cjs">Window</a></strong></p>
+        <p>640 × 480 OpenGL window, 24-bit depth buffer and six-colored cube</p>
+        <p><strong>Controls</strong> · resize by dragging the window border; Esc or window close exits</p>
+        <p><code>node window/Window.cjs</code></p>
+      </td>
+    </tr>
     <tr>
       <td width="44%" valign="top">
         <a href="screenshots/x11.png">
@@ -288,9 +306,12 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   Cleanup closes SFML contexts, frees vertices, destroys the parent, then
   disconnects the X11 client.
 
-The six platform/OpenGL integration examples (`android`, `cocoa`,
-`opengl`, `vulkan`, `win32`, `window`) remain outside this port: they require
-platform UI integration or direct graphics-context APIs.
+- Window calls system OpenGL exports through `koffi`, retaining the six
+  original face colors, 50/30/90 degrees-per-second rotation and a perspective
+  projection updated on resize. Stable native vertex storage is freed after
+  closing the window. Zero-sized viewports suspend drawing.
+
+Five examples remain unported: `android`, `cocoa`, `opengl`, `vulkan`, `win32`.
 
 Validation covers native window rendering, terrain generation, text/keyboard
 interaction, audio decoding and Worker DSP, and local network exchanges.
@@ -303,6 +324,13 @@ geometry, both cubes and their different animation, parent/child key exit,
 SIGINT cleanup and failure without `DISPLAY`. Screenshots, window trees and
 logs are uploaded as `official-x11-linux` artifacts retained for 14 days.
 Physical GPUs and XWayland are not covered by this CI.
+
+Window uses the same CI with a separate `official-window-linux` artifact
+for screenshots and logs. Tests read the real OpenGL framebuffer and check
+cube colors and rotation, native wide/tall resize events, viewport,
+projection matrix and SIGINT cleanup. Escape, ordinary key and close events
+are scripted. The Window documentation screenshot was captured on macOS
+with a fixed clock sample.
 
 ## Sources and licenses
 
