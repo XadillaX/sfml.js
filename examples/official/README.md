@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-JavaScript ports of 18 examples from [SFML/SFML][upstream], pinned to commit
+JavaScript ports of 19 examples from [SFML/SFML][upstream], pinned to commit
 `14cea1d978b3dce05780b9234925ca8be9373260`. These are modified sources for
 sfml.js, retaining the upstream directory names, scenes, controls and assets.
 
@@ -20,9 +20,9 @@ run until closed; they do not implement the other examples' `--frames` flag.
 Graphical examples require a display and OpenGL. Audio input requires a
 microphone and OS recording permission.
 
-Browse: [Graphics](#graphics) · [Input and events](#input) · [Audio](#audio) · [Networking](#network)
+Browse: [Graphics](#graphics) · [Platform integration](#platform) · [Input and events](#input) · [Audio](#audio) · [Networking](#network)
 
-Screenshots show native SFML windows on macOS. Click a preview for full resolution or a name for source code.
+The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native SFML windows on macOS. Click a preview for full resolution or a name for source code.
 
 <a id="graphics"></a>
 
@@ -103,6 +103,39 @@ Screenshots show native SFML windows on macOS. Click a preview for full resoluti
         <p>40 multilingual samples</p>
         <p><strong>Controls</strong> · click selects, F1/F2/F3 toggle bounds and cursor, F4 cycles preprocessing, Left/Right moves cursor</p>
         <p><code>node text/Text.cjs</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a id="platform"></a>
+
+## Platform integration
+
+X11 requires Linux, an X11 display server (or XWayland), and desktop OpenGL.
+Running `npm ci` at the repository root installs the `x11` and `koffi`
+development dependencies. No additional example module needs compilation.
+
+<table>
+  <thead>
+    <tr>
+      <th width="44%">Preview</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/x11.png">
+          <img src="screenshots/x11.png" width="360"
+               alt="Two SFML child windows with rotating cubes in an X11 parent">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="X11/X11.cjs">X11</a></strong></p>
+        <p>Two 310 × 310 SFML views inside a 650 × 330 parent; the right cube rotates at 30% of the left cube's speed</p>
+        <p><strong>Controls</strong> · any key, window close or Ctrl+C exits</p>
+        <p><code>node X11/X11.cjs</code></p>
       </td>
     </tr>
   </tbody>
@@ -249,8 +282,13 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   `localhost` certificate containing DNS/IP subject alternatives.
   Verification stays enabled. This bundled key/certificate is for this
   demonstration only, including when the two peers run on different hosts.
+- X11 uses third-party `x11` for window ownership,
+  `sf.Window(BigInt(xid))` for borrowed-window OpenGL contexts, and `koffi`
+  for calls into `libGL.so.1`. Vertex storage uses stable Koffi allocations.
+  Cleanup closes SFML contexts, frees vertices, destroys the parent, then
+  disconnects the X11 client.
 
-The seven platform/OpenGL integration examples (`X11`, `android`, `cocoa`,
+The six platform/OpenGL integration examples (`android`, `cocoa`,
 `opengl`, `vulkan`, `win32`, `window`) remain outside this port: they require
 platform UI integration or direct graphics-context APIs.
 
@@ -258,6 +296,13 @@ Validation covers native window rendering, terrain generation, text/keyboard
 interaction, audio decoding and Worker DSP, and local network exchanges.
 Microphones, physical speaker output, joystick hardware, device hotplug and
 external FTP/SFTP services still require testing on the target system.
+
+[X11 CI](../../.github/workflows/official-x11.yml) uses Ubuntu 24.04,
+Node.js 22, Xvfb and Mesa software rendering. It checks window hierarchy,
+geometry, both cubes and their different animation, parent/child key exit,
+SIGINT cleanup and failure without `DISPLAY`. Screenshots, window trees and
+logs are uploaded as `official-x11-linux` artifacts retained for 14 days.
+Physical GPUs and XWayland are not covered by this CI.
 
 ## Sources and licenses
 

@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-这里将 [SFML/SFML][upstream] 的 18 个示例迁移到 JavaScript，上游固定为 commit
+这里将 [SFML/SFML][upstream] 的 19 个示例迁移到 JavaScript，上游固定为 commit
 `14cea1d978b3dce05780b9234925ca8be9373260`。这些是适配 sfml.js 的修改版本，保留上游目录、场景、操作方式与资源。
 
 [全部示例](../README.zh-CN.md) · [构建要求](../../docs/getting-started.zh-CN.md#requirements)
@@ -16,9 +16,9 @@ node tennis/Tennis.cjs
 
 资源路径相对于各脚本解析。交互示例持续运行到关闭，不支持其他示例的 `--frames` 参数。图形示例需要显示服务与 OpenGL；录音需要麦克风及系统录音权限。
 
-浏览：[图形](#graphics) · [输入与事件](#input) · [音频](#audio) · [网络](#network)
+浏览：[图形](#graphics) · [平台集成](#platform) · [输入与事件](#input) · [音频](#audio) · [网络](#network)
 
-截图来自 macOS 原生 SFML 窗口。点击预览查看原图，点击示例名称查看源码。
+X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML 窗口。点击预览查看原图，点击示例名称查看源码。
 
 <a id="graphics"></a>
 
@@ -99,6 +99,37 @@ node tennis/Tennis.cjs
         <p>40 个多语言样本</p>
         <p><strong>操作</strong> · 点击选择，F1／F2／F3 切换边框和光标，F4 切换预处理，左／右移动光标</p>
         <p><code>node text/Text.cjs</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a id="platform"></a>
+
+## 平台集成
+
+X11 需要 Linux、X11 显示服务（或 XWayland）和桌面 OpenGL。仓库根目录的 `npm ci` 会安装开发依赖 `x11` 和 `koffi`，无需编译额外的示例模块。
+
+<table>
+  <thead>
+    <tr>
+      <th width="44%">运行画面</th>
+      <th>示例与操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/x11.png">
+          <img src="screenshots/x11.png" width="360"
+               alt="X11 父窗口中的两个 SFML 子窗口，各自显示旋转立方体">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="X11/X11.cjs">X11</a></strong></p>
+        <p>650 × 330 父窗口嵌入两个 310 × 310 SFML 视图；右侧立方体以左侧 30% 的速度旋转</p>
+        <p><strong>操作</strong> · 任意键、关闭窗口或 Ctrl+C 退出</p>
+        <p><code>node X11/X11.cjs</code></p>
       </td>
     </tr>
   </tbody>
@@ -236,10 +267,13 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 - 文字簇位置采用 JavaScript 的 UTF-16 下标。上游 Noto 子集字体原样复制，详见 [字体说明](text/resources/readme.md)。
 - 当前绑定仅暴露反距离衰减。Surround 场景在 JavaScript 中计算上游四种距离增益公式，保留原生空间声像；生成音调的频率为零时输出静音。
 - TLS 保留上游公开的演示密钥，替换为含 DNS／IP SAN 的 `localhost` 证书，继续启用证书校验。该密钥与证书仅用于示例，包括两端位于不同主机的情况。
+- X11 使用第三方 `x11` 创建窗口，`sf.Window(BigInt(xid))` 管理借用窗口的 OpenGL 上下文，`koffi` 调用 `libGL.so.1`。顶点存入 Koffi 分配的稳定内存；先关闭 SFML 上下文，再释放顶点、销毁父窗口并断开 X11 连接。
 
-其余七个示例（`X11`、`android`、`cocoa`、`opengl`、`vulkan`、`win32`、`window`）依赖平台 UI 集成或直接图形上下文接口，暂未迁移。
+其余六个示例（`android`、`cocoa`、`opengl`、`vulkan`、`win32`、`window`）依赖平台 UI 集成或直接图形上下文接口，暂未迁移。
 
 验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
+
+[X11 CI](../../.github/workflows/official-x11.yml) 在 Ubuntu 24.04、Node.js 22、Xvfb 和 Mesa 软件渲染环境检查窗口层级、尺寸、两个立方体及动画差异、父子窗口按键退出、SIGINT 清理和无 `DISPLAY` 时的报错。截图、窗口树和日志上传为 `official-x11-linux` artifact，保留 14 天；实体 GPU 和 XWayland 未在此 CI 中验证。
 
 ## 来源与许可证
 

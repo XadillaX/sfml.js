@@ -106,8 +106,8 @@ See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) 
 
 ## SFML official examples
 
-[official/](official/README.md) contains 18 ports from the official SFML
-repository, including tennis, shaders, text, terrain, audio and networking.
+[official/](official/README.md) contains 19 ports from the official SFML
+repository, including tennis, shaders, text, terrain, audio, networking and X11.
 Each entry retains its upstream scene and assets; the guide lists controls,
 Node adaptations, sources and licenses.
 

@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
 
-[SFML/SFML][upstream] の 18 サンプルを JavaScript に移植しています。参照コミットは
+[SFML/SFML][upstream] の 19 サンプルを JavaScript に移植しています。参照コミットは
 `14cea1d978b3dce05780b9234925ca8be9373260` です。sfml.js 向けの変更版であり、元のディレクトリ名、シーン、操作方法、素材を保持しています。
 
 [全サンプル](../README.ja.md) · [ビルド要件](../../docs/getting-started.ja.md#requirements)
@@ -16,9 +16,9 @@ node tennis/Tennis.cjs
 
 素材は各スクリプトからの相対パスで読み込みます。対話型サンプルは閉じるまで実行され、他のサンプルの `--frames` 引数には対応していません。描画にはディスプレイと OpenGL、録音にはマイクと OS の録音許可が必要です。
 
-一覧：[グラフィックス](#graphics) · [入力とイベント](#input) · [オーディオ](#audio) · [ネットワーク](#network)
+一覧：[グラフィックス](#graphics) · [プラットフォーム連携](#platform) · [入力とイベント](#input) · [オーディオ](#audio) · [ネットワーク](#network)
 
-macOS 上のネイティブ SFML ウィンドウの画像です。画像から原寸表示、サンプル名からソースコードを開けます。
+X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイティブ SFML ウィンドウで撮影しています。画像から原寸表示、サンプル名からソースコードを開けます。
 
 <a id="graphics"></a>
 
@@ -99,6 +99,37 @@ macOS 上のネイティブ SFML ウィンドウの画像です。画像から�
         <p>多言語の 40 サンプル</p>
         <p><strong>操作</strong> · クリックで選択、F1／F2／F3 で境界とカーソル、F4 で前処理を切り替え、左右でカーソル移動</p>
         <p><code>node text/Text.cjs</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a id="platform"></a>
+
+## プラットフォーム連携
+
+X11 には Linux、X11 ディスプレイサーバー（または XWayland）、デスクトップ OpenGL が必要です。ルートの `npm ci` で開発依存の `x11` と `koffi` を導入します。サンプル専用モジュールの追加コンパイルは不要です。
+
+<table>
+  <thead>
+    <tr>
+      <th width="44%">実行画面</th>
+      <th>サンプルと操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/x11.png">
+          <img src="screenshots/x11.png" width="360"
+               alt="X11 親ウィンドウ内の 2 つの SFML 子ウィンドウと回転する立方体">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="X11/X11.cjs">X11</a></strong></p>
+        <p>650 × 330 の親に 310 × 310 のビューを 2 つ埋め込み、右の立方体は左の 30% の速度で回転</p>
+        <p><strong>操作</strong> · 任意のキー、ウィンドウを閉じる操作、Ctrl+C で終了</p>
+        <p><code>node X11/X11.cjs</code></p>
       </td>
     </tr>
   </tbody>
@@ -236,10 +267,13 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 - テキストのクラスタ位置は JavaScript の UTF-16 インデックスです。Noto のサブセットは変更せずにコピーしています。[フォントの説明](text/resources/readme.md)を参照してください。
 - バインディングが公開する距離減衰は逆距離のみです。Surround は元の 4 式を JavaScript で計算し、ネイティブの空間パンを保持します。生成音の周波数がゼロの場合は無音です。
 - TLS は元の公開デモ鍵を使い、DNS／IP SAN 付きの `localhost` 証明書に置き換えています。証明書検証は有効です。別ホスト間でも、この鍵と証明書はデモ専用です。
+- X11 のウィンドウは外部パッケージ `x11`、借用ウィンドウの OpenGL コンテキストは `sf.Window(BigInt(xid))` で管理し、`koffi` から `libGL.so.1` を呼び出します。頂点は Koffi の安定したメモリに配置し、SFML コンテキスト、頂点、親ウィンドウ、X11 接続の順で解放します。
 
-残りの 7 サンプル（`X11`、`android`、`cocoa`、`opengl`、`vulkan`、`win32`、`window`）はプラットフォーム UI または直接のグラフィックスコンテキスト API が必要なため、未移植です。
+残りの 6 サンプル（`android`、`cocoa`、`opengl`、`vulkan`、`win32`、`window`）はプラットフォーム UI または直接のグラフィックスコンテキスト API が必要なため、未移植です。
 
 検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
+
+[X11 CI](../../.github/workflows/official-x11.yml) は Ubuntu 24.04、Node.js 22、Xvfb、Mesa ソフトウェア描画で、親子の階層と寸法、両立方体と動きの違い、親子のキー終了、SIGINT による解放、`DISPLAY` 未設定時のエラーを検証します。画像、ウィンドウツリー、ログは `official-x11-linux` artifact として 14 日間保持します。実 GPU と XWayland はこの CI の対象外です。
 
 ## 出典とライセンス
 

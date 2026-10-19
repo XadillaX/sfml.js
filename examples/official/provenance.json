@@ -4,6 +4,10 @@
   "sourceRoot": "examples/",
   "sources": [
     {
+      "path": "examples/X11/X11.cpp",
+      "sha256": "c01f0f281031f27b7aae7c491eb7de540a4abf09ad6ad9e61b12d4590020ebf5"
+    },
+    {
       "path": "examples/event_handling/EventHandling.cpp",
       "sha256": "25af231f6557d58200418942b37767061f95d4e32020ab26a494196f0c5c4d49"
     },
