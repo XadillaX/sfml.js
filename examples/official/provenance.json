@@ -1,0 +1,351 @@
+{
+  "repository": "https://github.com/SFML/SFML",
+  "commit": "14cea1d978b3dce05780b9234925ca8be9373260",
+  "sourceRoot": "examples/",
+  "sources": [
+    {
+      "path": "examples/event_handling/EventHandling.cpp",
+      "sha256": "25af231f6557d58200418942b37767061f95d4e32020ab26a494196f0c5c4d49"
+    },
+    {
+      "path": "examples/ftp/Ftp.cpp",
+      "sha256": "b5da7a9c201736338d87ec798bf76e34abf07799c39af16ea8b16f13a6c4b41c"
+    },
+    {
+      "path": "examples/http/Http.cpp",
+      "sha256": "24f48dc0f28eb34a6fc6dc11b773853961cf9db7cbb5c37c91037affc15eab07"
+    },
+    {
+      "path": "examples/island/Island.cpp",
+      "sha256": "ab601744e8a18c6a55cb77894ea951b1dc8e4ae63922b83db00bbdaa2c444c07"
+    },
+    {
+      "path": "examples/island/stb_perlin.h",
+      "sha256": "41487285619f1d31cd6ebabf525d7254b89f959e9696c32059d11db230d5017a"
+    },
+    {
+      "path": "examples/joystick/Joystick.cpp",
+      "sha256": "4eeb9b8048364b17c39ef23e8877cabe0e9f71f2808eea197a828f315ccb0827"
+    },
+    {
+      "path": "examples/keyboard/Keyboard.cpp",
+      "sha256": "ad368644364563378992308538a396152a63db7703f353a7b41582847a3d38d7"
+    },
+    {
+      "path": "examples/raw_input/RawInput.cpp",
+      "sha256": "3ed77d9e73e927792dfd406601e43da952cfa02cbcbe21e99a923168d6466162"
+    },
+    {
+      "path": "examples/sftp/Sftp.cpp",
+      "sha256": "1250195943e4cd6291fb1a723297c9ca5ecef260e8e21201c4fa009bdbb39de5"
+    },
+    {
+      "path": "examples/shader/Shader.cpp",
+      "sha256": "dfc4a98f5a6a207c1207ad4a961686d68cdf15e6808875c9cd0d5699291c5232"
+    },
+    {
+      "path": "examples/sockets/Sockets.cpp",
+      "sha256": "7eb693e261dfdfb9d3166a9487a4a1a421f0bd3595ea7b50126cb44b637d6644"
+    },
+    {
+      "path": "examples/sockets/TCP.cpp",
+      "sha256": "193ffa77deca5f8bc496a85fd6f359b59bd22cadc51b396d373cf8ab7aa911d8"
+    },
+    {
+      "path": "examples/sockets/TCP.hpp",
+      "sha256": "1f90c38d981b5c4a3240d248ec392b5aea1e15b19a5c590b0b18fb327a741363"
+    },
+    {
+      "path": "examples/sockets/UDP.cpp",
+      "sha256": "5294f852b84bd2f1d0be4534dd5c46e3272b3327d3d07591d544b8caa392e1b0"
+    },
+    {
+      "path": "examples/sockets/UDP.hpp",
+      "sha256": "718eb040e77ac47555c1b0e68c2f6e1903fa9e281d24c451a1d23c49fd94c678"
+    },
+    {
+      "path": "examples/sound/Sound.cpp",
+      "sha256": "2b8b13acb95d2de990be86c0c30d8f7e88de0b27889da8f8c40ccc33336c4535"
+    },
+    {
+      "path": "examples/sound_capture/SoundCapture.cpp",
+      "sha256": "7d869062405a48bb2dccdc6df419d40988b81685d5147697fe03325be1180c99"
+    },
+    {
+      "path": "examples/sound_device/SoundDevice.cpp",
+      "sha256": "cfdeb70186fc19c48bd30c7735d9456164c4eef113862b5acc13784ef68fd483"
+    },
+    {
+      "path": "examples/sound_effects/SoundEffects.cpp",
+      "sha256": "80bf8070fe64b08f78fe4f86de20e093a209b09a275dacf3f4661a18b461ff24"
+    },
+    {
+      "path": "examples/stencil/Stencil.cpp",
+      "sha256": "f1530476cb7f3aca27be92c5c4b89b664973df1eb8ea72064a688ca59ee191fc"
+    },
+    {
+      "path": "examples/tennis/Tennis.cpp",
+      "sha256": "adf4fa8305abe809bc59ca46028bcc74de2ff02f8da4cf5ed6b28ea39da0355d"
+    },
+    {
+      "path": "examples/text/Text.cpp",
+      "sha256": "aff1e644fb84b20561de523e4d777be0f7494f09eca1b981e05f517c3dfe2c5a"
+    },
+    {
+      "path": "examples/voip/Client.cpp",
+      "sha256": "f418010b8482a14cc08ebcdf635849e551be90c5c5b44ff0f6e0b3200d2e98d8"
+    },
+    {
+      "path": "examples/voip/Client.hpp",
+      "sha256": "773ae7198725ffe65b8802d703f69899e5bac288ea6bea4eb4726480a574e296"
+    },
+    {
+      "path": "examples/voip/Server.cpp",
+      "sha256": "5a6642fd3e5b1044eb3de447240460399d7d7c0bbe9dc651b526af7317094c87"
+    },
+    {
+      "path": "examples/voip/Server.hpp",
+      "sha256": "b48cedfbd5eef813747cfc2ca0675c83ef5a0ceec24721477827af902dbf6d97"
+    },
+    {
+      "path": "examples/voip/VoIP.cpp",
+      "sha256": "3b9beaf7ea6565a46f2d81b04df3a5990e3c83982462cdf442f35b852549d2d7"
+    }
+  ],
+  "resources": [
+    {
+      "path": "event_handling/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "island/resources/terrain.frag",
+      "sha256": "2f86041538448a7b1dbe13b8493d2b3e1d23287655630a87ca4ba07cad1525ca"
+    },
+    {
+      "path": "island/resources/terrain.vert",
+      "sha256": "4622389fc13f9de7e1d693a7d764d06d74016775543f3fa71a14099de8abca8e"
+    },
+    {
+      "path": "island/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "joystick/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "keyboard/resources/Tuffy.ttf",
+      "sha256": "b97cd5005278b24aabb69b8b6ead98860955599558f6e8119483b575a5fdce98"
+    },
+    {
+      "path": "keyboard/resources/error_005.ogg",
+      "sha256": "3f75b11df5b06d68d2c25fbf0e9c9d9e7dd9250562a4007ee34856b8a309a2ae"
+    },
+    {
+      "path": "keyboard/resources/mouseclick1.ogg",
+      "sha256": "ece1210c62ccae6c9ea4f4c59466d9d453d6b357c7d4b1a6c31196e5e6fea1bf"
+    },
+    {
+      "path": "keyboard/resources/mouserelease1.ogg",
+      "sha256": "23cb78cea76d8f1bb1266af228101a09b5d62063f4ac87ead15b1d395c6181f0"
+    },
+    {
+      "path": "raw_input/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "shader/resources/background.jpg",
+      "sha256": "4a94e6e35451cb5c60c0dc732001ec258cd3ef12cc0c5e2943cee054570369c2"
+    },
+    {
+      "path": "shader/resources/billboard.frag",
+      "sha256": "4f94f4c126d2c697c27f92fe69997d66480ce54d7a39ce38cce435e0e3100d14"
+    },
+    {
+      "path": "shader/resources/billboard.geom",
+      "sha256": "59a88e140b722f7e0f32c2db09e71f02f1dbd27380de5fed92fc1bb43661a59c"
+    },
+    {
+      "path": "shader/resources/billboard.vert",
+      "sha256": "ca6795913b099eadda2c8a25d7e55d63182732b5a2137046ef7a252bbb1a6612"
+    },
+    {
+      "path": "shader/resources/blink.frag",
+      "sha256": "04c235ae8fcd84c91f16e7496cdcc444fa49fdfe7d0afc2418c375ec063cf98e"
+    },
+    {
+      "path": "shader/resources/blur.frag",
+      "sha256": "da040f9a67d23ba178129679ffece335ed999c069a3fb49b550dd07f3699d722"
+    },
+    {
+      "path": "shader/resources/devices.png",
+      "sha256": "1d1b0ef2d2110b57ae0a623b9c611d497cfc00fce53d8874d5c36ecab71ff486"
+    },
+    {
+      "path": "shader/resources/edge.frag",
+      "sha256": "324f27c45962491d02aac5cff7eeb80d37c573fc42af2449bd2fa07249109231"
+    },
+    {
+      "path": "shader/resources/logo.png",
+      "sha256": "491393f4730cccc1faf145ec899311813039c9e6485c9dfc0e6e94a49b115538"
+    },
+    {
+      "path": "shader/resources/pixelate.frag",
+      "sha256": "fb60a0bfcfa4eca9875672b182b1dc769ce77a6f677b2f0765df485dd1853a94"
+    },
+    {
+      "path": "shader/resources/sfml.png",
+      "sha256": "1f63c2c69550e4dd123b1a06dd40a436d5a4656e54431960e2f85acf6e6a95a1"
+    },
+    {
+      "path": "shader/resources/storm.vert",
+      "sha256": "78c80c3762029e63d56a29d2da6df535da800025679a8061f998a6c63aac7891"
+    },
+    {
+      "path": "shader/resources/text-background.png",
+      "sha256": "a30feb9f5eeae700a9fde450a4c13706c090150c64f82faecc746050977c14af"
+    },
+    {
+      "path": "shader/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "shader/resources/wave.vert",
+      "sha256": "20585d5d1c210b1476f52851c857c21504f24636739dc6ef540922c4b5089337"
+    },
+    {
+      "path": "sound/resources/ding.flac",
+      "sha256": "17f526a56d245a7f7f3dc2dbef9cdc18b8b74aa1ecc02d60cacf7803a1b30bbb"
+    },
+    {
+      "path": "sound/resources/ding.mp3",
+      "sha256": "7490476b24e9962a6b4d5221d87369e12a7d638cbbb3c24d054d58592c77a26a"
+    },
+    {
+      "path": "sound/resources/doodle_pop.ogg",
+      "sha256": "fa9f876ef061871902187e0cc020b7f731ad40eef081656990f5595eb53df20a"
+    },
+    {
+      "path": "sound/resources/killdeer.wav",
+      "sha256": "52f1249b02985ac2e5fae81a2306d0aed6a1f8c07675d66ef9ee83833cccbaff"
+    },
+    {
+      "path": "sound_device/resources/doodle_pop.ogg",
+      "sha256": "fa9f876ef061871902187e0cc020b7f731ad40eef081656990f5595eb53df20a"
+    },
+    {
+      "path": "sound_effects/resources/doodle_pop.ogg",
+      "sha256": "fa9f876ef061871902187e0cc020b7f731ad40eef081656990f5595eb53df20a"
+    },
+    {
+      "path": "sound_effects/resources/text-background.png",
+      "sha256": "a30feb9f5eeae700a9fde450a4c13706c090150c64f82faecc746050977c14af"
+    },
+    {
+      "path": "sound_effects/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "tennis/resources/ball.wav",
+      "sha256": "dfeb11b4d04849d296e5b92a90aec55abf533911ffa30199fa1f3c692eaf4f95"
+    },
+    {
+      "path": "tennis/resources/sfml_logo.png",
+      "sha256": "1137b9bb773caf307499fe818d4b0962ef334262956ba505f11b27a3c4fa9680"
+    },
+    {
+      "path": "tennis/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "text/resources/NotoNaskhArabic-Regular.ttf",
+      "sha256": "5cc5aebbd1a3dbd76ee816350d4d41a21b73bbee50fc6a3e4f54701e70afa640"
+    },
+    {
+      "path": "text/resources/NotoSerif-Regular.ttf",
+      "sha256": "76b746ed54a2f83fa41db9a85a43b4b39900dbdb8ae40ec3d93950b0b00c4bd7"
+    },
+    {
+      "path": "text/resources/NotoSerifArmenian-Regular.ttf",
+      "sha256": "dad18769e541a4b74660b893732d0818755bc46a76aeb057559cb5f0fce9b16d"
+    },
+    {
+      "path": "text/resources/NotoSerifDevanagari-Regular.ttf",
+      "sha256": "fa9dc09cbb0384c6d6e2f93e5493e3bfa58bfab78e56a05858c43f29b110a1fa"
+    },
+    {
+      "path": "text/resources/NotoSerifEthiopic-Regular.ttf",
+      "sha256": "67d2ee1c4f71b60f904a9e35fa8a515c920c51814a0577d5fdbcabbd31eff5f7"
+    },
+    {
+      "path": "text/resources/NotoSerifGeorgian-Regular.ttf",
+      "sha256": "1dd5e00d47c2347e9c189c22ad8ec6efbe2115035e434aa4eae8304c259bf7a2"
+    },
+    {
+      "path": "text/resources/NotoSerifHebrew-Regular.ttf",
+      "sha256": "5e72a179024ad0463437b73b948f6d282da7d5b301a66e7f31efa05220c3fe02"
+    },
+    {
+      "path": "text/resources/NotoSerifJP-Regular.subset.ttf",
+      "sha256": "d2827be2c0277daf4e58e87dd862cff89dfaae7a41d89f5a8e4af06808b8eee1"
+    },
+    {
+      "path": "text/resources/NotoSerifKR-Regular.subset.ttf",
+      "sha256": "fece05c81162925bef5314d37567e9a42254f783f5da623dfcbe0bc27eb81481"
+    },
+    {
+      "path": "text/resources/NotoSerifKhmer-Regular.ttf",
+      "sha256": "4f3d6a7468fa503ba75d27484bdc4162f8fb4e9145c00aca051dc4ea7cdaf1e3"
+    },
+    {
+      "path": "text/resources/NotoSerifMyanmar-Regular.ttf",
+      "sha256": "fe6c047e8b8dfb083cd617eb4f65e1c65a80100b81b03a9e81250fff8d5504a0"
+    },
+    {
+      "path": "text/resources/NotoSerifTC-Regular.subset.ttf",
+      "sha256": "b846f3acf03eac12df384b52b40428ef70e89a8f383e0b5c6ffc1d18a1b5933f"
+    },
+    {
+      "path": "text/resources/NotoSerifTamil-Regular.ttf",
+      "sha256": "3a0f66f1b06b3b5f472f8cb60348531c96462a6e764efdcd7e1fda855bbe577f"
+    },
+    {
+      "path": "text/resources/NotoSerifThai-Regular.ttf",
+      "sha256": "a0295a49012458c637c4986a7e9ac48022884b3eb652b63dd2ca039ed2449e8f"
+    },
+    {
+      "path": "text/resources/NotoSerifTibetan-Regular.ttf",
+      "sha256": "33bd11da711ad8fbf55e5df25f29e6ebdfce53424fb41d61c7c6b83c2ba948cf"
+    },
+    {
+      "path": "text/resources/readme.md",
+      "sha256": "822f40a7534db967cf099e07273e397a0ca03c06616bb672b608ce2587c4d8da"
+    },
+    {
+      "path": "text/resources/tuffy.ttf",
+      "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    }
+  ],
+  "licenses": [
+    {
+      "path": "SFML-LICENSE.md",
+      "source": "license.md",
+      "sha256": "a67f414d3f02f77478492946e684c2ce17d6134ca39b803ce34dd090a0600fda"
+    },
+    {
+      "path": "asset_licenses.md",
+      "source": "examples/asset_licenses.md",
+      "sha256": "0097107a2d98a8b4a92ae1657eb846b3a70c9972e706df04eb5f1da3450ee694"
+    },
+    {
+      "path": "island/stb_perlin.LICENSE",
+      "source": "examples/island/stb_perlin.h (license block)",
+      "sha256": "9407f57d550d1d36974de15c7aad3dbf21e59c4b3312fc762157f05fdea6ff41"
+    },
+    {
+      "path": "text/resources/OFL.txt",
+      "source": "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/LICENSE",
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    }
+  ]
+}

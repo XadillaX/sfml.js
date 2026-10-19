@@ -104,6 +104,14 @@ node index.js
 
 游戏目录、操作方式与上游 C++ 源码见 [仓库 README](https://github.com/XadillaX/node-sfml-demos#readme)。安装同样需要满足 [原生构建要求](../docs/getting-started.zh-CN.md#requirements)。
 
+## SFML 官方示例
+
+[official/](official/README.zh-CN.md) 包含从 SFML 官方仓库迁移的 18 个示例，覆盖乒乓球、shader、文字、地形、音频和网络。各入口保留上游场景与资源；操作方式、Node 适配、来源和许可证见目录说明。
+
+```sh
+node examples/official/tennis/Tennis.cjs
+```
+
 ## 旧版示例
 
 [ported/](ported/README.zh-CN.md) 保留原有 16 个脚本：14 个使用当前 API 运行，2 个依赖旧异步绘制接口并报告不支持。

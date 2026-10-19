@@ -1,0 +1,69 @@
+name: Official X11 example
+
+on:
+  push:
+    branches: [examples/official-x11-ci, main]
+    paths:
+      - '.github/workflows/official-x11.yml'
+      - 'examples/official/**'
+      - 'tools/test-official-x11.py'
+      - 'src/**'
+      - 'native/**'
+      - 'binding.gyp'
+      - 'package*.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/official-x11.yml'
+      - 'examples/official/**'
+      - 'tools/test-official-x11.py'
+      - 'src/**'
+      - 'native/**'
+      - 'binding.gyp'
+      - 'package*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  x11:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      LIBGL_ALWAYS_SOFTWARE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install build and X11 capture dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential xvfb xauth libgl1-mesa-dev \
+            libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev \
+            libfreetype-dev libflac-dev libvorbis-dev libopenal-dev \
+            libmbedtls-dev xdotool x11-utils imagemagick python3-pil mesa-utils
+      - name: Install third-party dependencies and build sfml.js
+        run: npm ci
+      - name: Check example JavaScript and public types
+        run: |
+          npx eslint --ext .cjs examples/official
+          npm run test:types
+      - name: Verify native windows, animation and cleanup
+        run: |
+          mkdir -p "$RUNNER_TEMP/official-x11"
+          xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" sh -c '
+            glxinfo -B > "$RUNNER_TEMP/official-x11/glxinfo.txt"
+            /usr/bin/python3 tools/test-official-x11.py \
+              "$RUNNER_TEMP/official-x11"
+          '
+      - name: Upload native screenshots and diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-x11-linux
+          path: ${{ runner.temp }}/official-x11/
+          if-no-files-found: warn
+          retention-days: 14

@@ -104,6 +104,17 @@ node index.js
 
 See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) for game directories, controls and upstream C++ sources. The [native build requirements](../docs/getting-started.md#requirements) also apply.
 
+## SFML official examples
+
+[official/](official/README.md) contains 18 ports from the official SFML
+repository, including tennis, shaders, text, terrain, audio and networking.
+Each entry retains its upstream scene and assets; the guide lists controls,
+Node adaptations, sources and licenses.
+
+```sh
+node examples/official/tennis/Tennis.cjs
+```
+
 ## Legacy examples
 
 [ported/](ported/README.md) retains the original 16 scripts: 14 run with the current API, while 2 depend on legacy asynchronous drawing APIs and report that they are unsupported.

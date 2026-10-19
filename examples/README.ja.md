@@ -103,6 +103,14 @@ node index.js
 
 ゲームごとのディレクトリ、操作方法、元の C++ ソースコードは[リポジトリの README](https://github.com/XadillaX/node-sfml-demos#readme)を参照してください。[ネイティブビルドの要件](../docs/getting-started.ja.md#requirements)も適用されます。
 
+## SFML 公式サンプル
+
+[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 18 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信を含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。
+
+```sh
+node examples/official/tennis/Tennis.cjs
+```
+
 ## 旧バージョンのサンプル
 
 [ported/](ported/README.ja.md) には元の 16 本のスクリプトを保持しています。14 本は現在の API で動作し、2 本は旧版の非同期描画インターフェースに依存しており、未対応を報告します。

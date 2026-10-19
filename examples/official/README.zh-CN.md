@@ -1,0 +1,253 @@
+# SFML 官方示例
+
+[English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
+
+这里将 [SFML/SFML][upstream] 的 18 个示例迁移到 JavaScript，上游固定为 commit
+`14cea1d978b3dce05780b9234925ca8be9373260`。这些是适配 sfml.js 的修改版本，保留上游目录、场景、操作方式与资源。
+
+[全部示例](../README.zh-CN.md) · [构建要求](../../docs/getting-started.zh-CN.md#requirements)
+
+构建好 sfml.js 后，从仓库根目录进入官方示例目录运行：
+
+```sh
+cd examples/official
+node tennis/Tennis.cjs
+```
+
+资源路径相对于各脚本解析。交互示例持续运行到关闭，不支持其他示例的 `--frames` 参数。图形示例需要显示服务与 OpenGL；录音需要麦克风及系统录音权限。
+
+浏览：[图形](#graphics) · [输入与事件](#input) · [音频](#audio) · [网络](#network)
+
+截图来自 macOS 原生 SFML 窗口。点击预览查看原图，点击示例名称查看源码。
+
+<a id="graphics"></a>
+
+## 图形
+
+<table>
+  <thead>
+    <tr>
+      <th width="44%">运行画面</th>
+      <th>示例与操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/island.png">
+          <img src="screenshots/island.png" width="360"
+               alt="生成的岛屿及地形参数">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="island/Island.cjs">Island</a></strong></p>
+        <p>地形与光照</p>
+        <p><strong>操作</strong> · 方向键修改参数，Enter 重新生成</p>
+        <p><code>node island/Island.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/shader.png">
+          <img src="screenshots/shader.png" width="360"
+               alt="蝴蝶图片的像素化 shader 效果">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="shader/Shader.cjs">Shader</a></strong></p>
+        <p>五种 shader 场景</p>
+        <p><strong>操作</strong> · 左／右切换，鼠标调整参数</p>
+        <p><code>node shader/Shader.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/tennis.png">
+          <img src="screenshots/tennis.png" width="360"
+               alt="游戏中的球拍与球">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="tennis/Tennis.cjs">Tennis</a></strong></p>
+        <p>乒乓球</p>
+        <p><strong>操作</strong> · Space 开始，上／下移动，Esc 退出；保留触摸操作</p>
+        <p><code>node tennis/Tennis.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/stencil.png">
+          <img src="screenshots/stencil.png" width="360"
+               alt="通过模板遮罩交叠的红绿蓝图形">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="stencil/Stencil.cjs">Stencil</a></strong></p>
+        <p>模板遮罩与图形动画</p>
+        <p><code>node stencil/Stencil.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/text.png">
+          <img src="screenshots/text.png" width="360"
+               alt="40 个多语言文字样本">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="text/Text.cjs">Text</a></strong></p>
+        <p>40 个多语言样本</p>
+        <p><strong>操作</strong> · 点击选择，F1／F2／F3 切换边框和光标，F4 切换预处理，左／右移动光标</p>
+        <p><code>node text/Text.cjs</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a id="input"></a>
+
+## 输入与事件
+
+输入截图使用脚本事件；摇杆图展示未连接设备的状态。
+
+<table>
+  <thead>
+    <tr>
+      <th width="44%">运行画面</th>
+      <th>示例与操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/keyboard.png">
+          <img src="screenshots/keyboard.png" width="360"
+               alt="键盘布局、A 键按下及文字输入">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="keyboard/Keyboard.cjs">Keyboard</a></strong></p>
+        <p>物理键位、按键事件、文字输入与声音反馈</p>
+        <p><code>node keyboard/Keyboard.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/event_handling.png">
+          <img src="screenshots/event_handling.png" width="360"
+               alt="Visitor 模式下的键盘与鼠标事件日志">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="event_handling/EventHandling.cjs">Event handling</a></strong></p>
+        <p>五种事件分发形式</p>
+        <p><strong>操作</strong> · Enter 切换</p>
+        <p><code>node event_handling/EventHandling.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/raw_input.png">
+          <img src="screenshots/raw_input.png" width="360"
+               alt="鼠标原始移动量与光标位置">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="raw_input/RawInput.cjs">Raw input</a></strong></p>
+        <p>鼠标原始移动输入</p>
+        <p><code>node raw_input/RawInput.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/joystick.png">
+          <img src="screenshots/joystick.png" width="360"
+               alt="未连接设备时的摇杆选择界面">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="joystick/Joystick.cjs">Joystick</a></strong></p>
+        <p>摇杆轴与按键</p>
+        <p><strong>操作</strong> · 0～7 选择设备，Tab 切换通用／游戏手柄视图</p>
+        <p><code>node joystick/Joystick.cjs</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a id="audio"></a>
+
+## 音频
+
+音效截图使用空播放设备。
+
+<table>
+  <thead>
+    <tr>
+      <th width="44%">运行画面</th>
+      <th>示例与操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/sound_effects.png">
+          <img src="screenshots/sound_effects.png" width="360"
+               alt="听者、声源与距离衰减圆环">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="sound_effects/SoundEffects.cjs">Sound effects</a></strong></p>
+        <p>九种音效</p>
+        <p><strong>操作</strong> · 左／右切换，鼠标调整，上／下选择衰减模型或波形，Space 旁路 DSP，F1 切换输出设备</p>
+        <p><code>node sound_effects/SoundEffects.cjs</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+| 示例与操作 | 运行 |
+| --- | --- |
+| **[Sound](sound/Sound.cjs)**<br>播放 WAV 音效及 OGG、FLAC、MP3 音乐 | `node sound/Sound.cjs` |
+| **[Sound capture](sound_capture/SoundCapture.cjs)**<br>选择设备与采样率，录音后播放或保存 | `node sound_capture/SoundCapture.cjs` |
+| **[Sound device](sound_device/SoundDevice.cjs)**<br>设备通知、自动路由与设备丢失恢复；Ctrl+C 退出 | `node sound_device/SoundDevice.cjs` |
+
+<a id="network"></a>
+
+## 网络
+
+| 示例与操作 | 运行 |
+| --- | --- |
+| **[HTTP](http/Http.cjs)**<br>带重定向处理的交互式 HTTP GET | `node http/Http.cjs` |
+| **[FTP](ftp/Ftp.cjs)**<br>交互式 FTP 客户端，端口 21 | `node ftp/Ftp.cjs` |
+| **[SFTP](sftp/Sftp.cjs)**<br>交互式 SFTP 客户端；先确认主机指纹，再登录 | `node sftp/Sftp.cjs` |
+| **[Sockets](sockets/Sockets.cjs)**<br>TCP、TLS 或 UDP 消息交换，端口 50001 | `node sockets/Sockets.cjs` |
+| **[VoIP](voip/VoIP.cjs)**<br>TCP 语音采集、播放和回放，端口 2435 | `node voip/VoIP.cjs` |
+
+sockets 和 VoIP 各开两个终端，分别选择服务端、客户端；本机测试填写 `127.0.0.1`。
+
+FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需的输出路径。
+
+## Node 适配
+
+
+- 渲染通过 `setImmediate` 让出事件循环；资源加载和网络使用公开异步接口，音频回调在音频 Worker 中运行。
+- island 复用四个 Worker，保留原始 32 个地形块和 800 × 600 网格。Perlin 噪声使用上游查找表；边界采样使用有符号坐标，避免无符号下溢。
+- 文字簇位置采用 JavaScript 的 UTF-16 下标。上游 Noto 子集字体原样复制，详见 [字体说明](text/resources/readme.md)。
+- 当前绑定仅暴露反距离衰减。Surround 场景在 JavaScript 中计算上游四种距离增益公式，保留原生空间声像；生成音调的频率为零时输出静音。
+- TLS 保留上游公开的演示密钥，替换为含 DNS／IP SAN 的 `localhost` 证书，继续启用证书校验。该密钥与证书仅用于示例，包括两端位于不同主机的情况。
+
+其余七个示例（`X11`、`android`、`cocoa`、`opengl`、`vulkan`、`win32`、`window`）依赖平台 UI 集成或直接图形上下文接口，暂未迁移。
+
+验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
+
+## 来源与许可证
+
+[provenance.json](provenance.json) 记录上游 commit、C++ 源文件哈希，以及全部 53 个未修改资源文件的 SHA-256。
+
+- SFML 源码：[zlib 许可证](SFML-LICENSE.md)。
+- 上游素材与作者：[asset_licenses.md](asset_licenses.md)。
+- Noto 字体：[SIL Open Font License 1.1](text/resources/OFL.txt)，各字体保留原始内嵌版权信息。
+- 移植的 stb Perlin 实现：[MIT／公有领域双许可证](island/stb_perlin.LICENSE)。
+
+[upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples

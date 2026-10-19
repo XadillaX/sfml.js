@@ -100,8 +100,10 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsdoc": "^46.9.1",
     "eslint-plugin-node": "^11.1.0",
+    "koffi": "3.3.3",
     "typedoc": "0.28.3",
     "typedoc-material-theme": "1.4.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "x11": "4.3.1"
   }
 }
