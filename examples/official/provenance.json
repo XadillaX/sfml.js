@@ -128,6 +128,10 @@
       "sha256": "3b9beaf7ea6565a46f2d81b04df3a5990e3c83982462cdf442f35b852549d2d7"
     },
     {
+      "path": "examples/win32/Win32.cpp",
+      "sha256": "d51aa279e3482794c4dbc493bd8f18acb1c974a6147d42d1ae247b6fb45f0628"
+    },
+    {
       "path": "examples/window/Window.cpp",
       "sha256": "083398829e850653dd124f7a5354bc8ee5815970d8759b83d0a37ba73ea4f0ab"
     }
@@ -360,6 +364,14 @@
     {
       "path": "text/resources/tuffy.ttf",
       "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
+    },
+    {
+      "path": "win32/resources/image1.jpg",
+      "sha256": "f2ab5478bce470f54fdfc1270d366e898b817d7cd30ddbe1d3931832387075b0"
+    },
+    {
+      "path": "win32/resources/image2.jpg",
+      "sha256": "643ea2d8c823a4eda14d4ab3160358d8073abfd11aed4c94afbb9b0eca8abcb0"
     }
   ],
   "adaptedResources": [

@@ -2,7 +2,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-这里将 [SFML/SFML][upstream] 的 22 个示例迁移到 JavaScript，上游固定为 commit
+这里将 [SFML/SFML][upstream] 的 23 个示例迁移到 JavaScript，上游固定为 commit
 `14cea1d978b3dce05780b9234925ca8be9373260`。这些是适配 sfml.js 的修改版本，保留上游目录、场景、操作方式与资源。
 
 [全部示例](../README.zh-CN.md) · [构建要求](../../docs/getting-started.zh-CN.md#requirements)
@@ -18,7 +18,7 @@ node tennis/Tennis.cjs
 
 浏览：[图形](#graphics) · [平台集成](#platform) · [输入与事件](#input) · [音频](#audio) · [网络](#network)
 
-X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML 窗口。点击预览查看原图，点击示例名称查看源码。
+X11 截图来自 Linux CI 的 Xvfb／Mesa，Win32 截图来自 Windows CI 的 Mesa，其余截图来自 macOS 原生 SFML 窗口。点击预览查看原图，点击示例名称查看源码。
 
 <a id="graphics"></a>
 
@@ -116,6 +116,13 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
+Win32 需要 Windows x64 和 Node.js 20 或以上版本，使用 [`wndkit`](https://www.npmjs.com/package/wndkit) 0.1.0 自带的 x64 原生模块。在 `examples/official` 中安装该示例的局部依赖：
+
+```sh
+npm ci --prefix win32 --ignore-scripts
+node win32/Win32.cjs
+```
+
 Window、OpenGL 和 X11 使用 [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) 调用桌面 OpenGL，由 SFML 管理兼容上下文。仓库根目录的 `npm ci` 会安装 `nodegl` 和 `x11`。
 
 nodegl 1.2.1 在安装时编译，需要 CMake、C++ 工具链和 OpenGL 开发头文件及链接库。macOS SDK 自带 OpenGL；Linux 需要安装 `libgl1-mesa-dev` 等开发包。X11 还需要 Linux 和 X11 显示服务（或 XWayland）。Window 和 OpenGL 已在 macOS、Linux（Xvfb／Mesa）和 Windows（Mesa）验证，X11 原生宿主已在 Linux 验证。
@@ -168,6 +175,20 @@ nodegl 1.2.1 在安装时编译，需要 CMake、C++ 工具链和 OpenGL 开发�
         <p>485 × 379 原生窗口，嵌入 440 × 260 SFML 视图</p>
         <p><strong>操作</strong> · Update 或 Enter 更新文字，Visible 切换标识显隐，旋钮控制旋转，Color 选择背景色，Up／Down 缩放；关闭窗口、Cmd+Q 或 Ctrl+C 退出</p>
         <p><code>node cocoa/Cocoa.cjs</code>（macOS）</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/win32.png">
+          <img src="screenshots/win32.png" width="360"
+               alt="Win32 原生窗口中的两个 SFML 动画视图与 Quit 按钮">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="win32/Win32.cjs">Win32</a></strong></p>
+        <p>660 × 520 原生窗口内嵌两个 300 × 400 SFML 视图；左图旋转，右图水平移动</p>
+        <p><strong>操作</strong> · Quit、关闭窗口或 Ctrl+C 退出</p>
+        <p><code>node win32/Win32.cjs</code>（Windows x64）</p>
       </td>
     </tr>
     <tr>
@@ -328,7 +349,9 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 
 - Cocoa 通过第三方 [objc-js](https://github.com/iamEvanYT/objc-js) 在 JavaScript 中重建原始 XIB 布局，`sf.RenderWindow(BigInt(NSView*))` 借用原生视图。`NSTimer` 在默认及事件跟踪模式下以 60 Hz 绘制，Node 分派 AppKit 输入。菜单保留退出与标准文字编辑，无需编译 XIB 或打包应用。退出时先停止定时器、关闭 SFML，再关闭 Cocoa 并释放包装对象；objc-js 1.6.0 的类回调会保活 Node，因此独立入口清理后显式退出。
 
-其余三个示例（`android`、`vulkan`、`win32`）暂未迁移。
+- Win32 使用 `wndkit` 创建父窗口、Quit 按钮和两个原生 `STATIC` 控件，`sf.RenderWindow(BigInt(HWND))` 借用子窗口。`Application.processMessages()` 在帧间分派 Win32 输入，Node 通过 `setImmediate` 让出调度。控件包装对象保留至父窗口销毁；关闭回调同步关闭 SFML，再由 wndkit 销毁 HWND。保留官方固定控件布局和动画公式，窗口边框采用 wndkit 的标准可缩放样式。
+
+其余两个示例（`android`、`vulkan`）暂未迁移。
 
 验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
 
@@ -338,9 +361,11 @@ nodegl 验收使用 Node.js 22，覆盖 macOS、[Ubuntu 24.04／Xvfb／Mesa 25.2
 
 Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制及退出清理，Up／Down 按键由脚本控制。Window 文档截图来自 macOS，使用固定时钟采样。
 
+Win32 已通过 [Windows Server 2022／Node.js 22／Mesa 26.0.3 验收][win32-ci]，覆盖双原生子视图、纹理像素、动画、强制 GC、Quit 与 WM_CLOSE 输入，以及先关闭 SFML 再销毁 HWND 的顺序。截图使用脚本时钟采样，并裁掉不可见的缩放边框。其他 Windows 版本和 GPU 驱动待验证。
+
 ## 来源与许可证
 
-[provenance.json](provenance.json) 记录上游 commit、源码／XIB 哈希、57 个未修改资源文件的 SHA-256，以及 Cocoa、Shader、Tennis 和 OpenGL 中 6 个 sfml.js 标识资源的来源和转换方式。这些资源使用项目已确定的品牌素材，保留原贴图尺寸和透明度。
+[provenance.json](provenance.json) 记录上游 commit、源码／XIB 哈希、59 个未修改资源文件的 SHA-256，以及 Cocoa、Shader、Tennis 和 OpenGL 中 6 个 sfml.js 标识资源的来源和转换方式。这些资源使用项目已确定的品牌素材，保留原贴图尺寸和透明度。
 
 - SFML 源码：[zlib 许可证](SFML-LICENSE.md)。
 - 上游素材与作者：[asset_licenses.md](asset_licenses.md)。
@@ -350,3 +375,4 @@ Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制�
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
 [nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
 [nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
+[win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250

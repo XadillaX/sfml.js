@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
-[SFML/SFML][upstream]의 예제 22개를 JavaScript로 이식했습니다. 기준 커밋은
+[SFML/SFML][upstream]의 예제 23개를 JavaScript로 이식했습니다. 기준 커밋은
 `14cea1d978b3dce05780b9234925ca8be9373260`입니다. sfml.js에 맞게 수정한 버전이며, 원본의 디렉터리 이름, 장면, 조작법과 리소스를 유지합니다.
 
 [전체 예제](../README.ko.md) · [빌드 요구 사항](../../docs/getting-started.ko.md#requirements)
@@ -18,7 +18,7 @@ node tennis/Tennis.cjs
 
 바로가기: [그래픽](#graphics) · [플랫폼 통합](#platform) · [입력과 이벤트](#input) · [오디오](#audio) · [네트워크](#network)
 
-X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브 SFML 창에서 캡처했습니다. 이미지를 클릭하면 원본을, 예제 이름을 클릭하면 소스 코드를 볼 수 있습니다.
+X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, Win32는 Windows CI의 Mesa에서, 나머지는 macOS 네이티브 SFML 창에서 캡처했습니다. 이미지를 클릭하면 원본을, 예제 이름을 클릭하면 소스 코드를 볼 수 있습니다.
 
 <a id="graphics"></a>
 
@@ -116,6 +116,13 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
+Win32는 Windows x64와 Node.js 20 이상이 필요하며 [`wndkit`](https://www.npmjs.com/package/wndkit) 0.1.0에 포함된 x64 네이티브 모듈을 사용합니다. `examples/official`에서 예제의 로컬 의존성을 설치합니다.
+
+```sh
+npm ci --prefix win32 --ignore-scripts
+node win32/Win32.cjs
+```
+
 Window, OpenGL, X11은 [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl)로 데스크톱 OpenGL을 호출하고 SFML이 호환 컨텍스트를 관리합니다. 저장소 루트의 `npm ci`로 `nodegl`과 `x11`을 설치합니다.
 
 nodegl 1.2.1은 설치 시 컴파일하므로 CMake, C++ 도구 체인, OpenGL 개발 헤더와 라이브러리가 필요합니다. macOS SDK에는 OpenGL이 포함되어 있으며 Linux에는 `libgl1-mesa-dev` 등의 개발 패키지가 필요합니다. X11에는 Linux와 X11 디스플레이 서버(또는 XWayland)도 필요합니다. Window와 OpenGL은 macOS, Linux(Xvfb/Mesa), Windows(Mesa)에서, X11 네이티브 호스트는 Linux에서 검증했습니다.
@@ -168,6 +175,20 @@ nodegl 1.2.1은 설치 시 컴파일하므로 CMake, C++ 도구 체인, OpenGL �
         <p>485 × 379 네이티브 창 안의 440 × 260 SFML 뷰</p>
         <p><strong>조작</strong> · Update 또는 Enter로 텍스트 적용, Visible로 표시 전환, 다이얼로 회전, Color로 배경색 선택, Up/Down으로 확대·축소. 창 닫기, Cmd+Q 또는 Ctrl+C로 종료</p>
         <p><code>node cocoa/Cocoa.cjs</code> (macOS)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/win32.png">
+          <img src="screenshots/win32.png" width="360"
+               alt="Win32 네이티브 창의 SFML 애니메이션 뷰 두 개와 Quit 버튼">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="win32/Win32.cjs">Win32</a></strong></p>
+        <p>660 × 520 네이티브 창에 300 × 400 SFML 뷰 두 개 배치. 왼쪽 이미지는 회전하고 오른쪽은 수평 이동</p>
+        <p><strong>조작</strong> · Quit, 창 닫기 또는 Ctrl+C로 종료</p>
+        <p><code>node win32/Win32.cjs</code> (Windows x64)</p>
       </td>
     </tr>
     <tr>
@@ -328,7 +349,9 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 
 - Cocoa는 [objc-js](https://github.com/iamEvanYT/objc-js)로 원본 XIB 배치를 JavaScript에서 구성합니다. `sf.RenderWindow(BigInt(NSView*))`가 뷰를 빌리며, `NSTimer`는 기본/이벤트 추적 모드에서 60 Hz로 렌더링하고 Node가 AppKit 입력을 처리합니다. 메뉴는 종료와 표준 텍스트 편집으로 줄였으며 XIB 컴파일이나 앱 번들이 필요하지 않습니다. 타이머 중지, SFML 종료, Cocoa 종료, 래퍼 해제 순으로 정리합니다. objc-js 1.6.0 클래스 콜백이 Node를 유지하므로 정리 후 명시적으로 종료합니다.
 
-나머지 3개 예제(`android`, `vulkan`, `win32`)는 아직 이식하지 않았습니다.
+- Win32는 `wndkit`으로 부모 창, Quit 버튼과 네이티브 `STATIC` 두 개를 생성하고 `sf.RenderWindow(BigInt(HWND))`가 자식 창을 빌립니다. `Application.processMessages()`가 프레임 사이에 Win32 입력을 처리하고 Node는 `setImmediate`로 실행을 양보합니다. 부모 창이 제거될 때까지 컨트롤 래퍼를 유지하며 닫기 콜백에서 SFML을 동기적으로 종료한 뒤 wndkit이 HWND를 제거합니다. 원본의 고정 배치와 애니메이션 수식을 유지하고 wndkit의 표준 크기 조절 가능 창 테두리를 사용합니다.
+
+나머지 2개 예제(`android`, `vulkan`)는 아직 이식하지 않았습니다.
 
 검증 범위에는 네이티브 렌더링, 지형 생성, 텍스트/키 입력, 오디오 디코딩, Worker DSP와 로컬 통신이 포함됩니다. 실제 마이크, 스피커, 조이스틱, 장치 연결/해제 및 외부 FTP/SFTP는 대상 환경에서 확인해야 합니다.
 
@@ -338,9 +361,11 @@ nodegl 검증은 Node.js 22를 사용하여 macOS, [Ubuntu 24.04/Xvfb/Mesa 25.2.
 
 Cocoa는 macOS에서 네이티브 컨트롤, 기본/이벤트 추적 모드 렌더링과 종료 정리를 확인했으며 Up/Down은 스크립트로 제어했습니다. Window 문서 이미지는 macOS에서 고정 시각으로 캡처했습니다.
 
+Win32는 [Windows Server 2022/Node.js 22/Mesa 26.0.3][win32-ci]에서 검증했습니다. 두 네이티브 자식 뷰, 실제 텍스처 픽셀, 애니메이션, 강제 GC, Quit 및 WM_CLOSE 입력, HWND 제거 전 SFML 종료 순서를 확인했습니다. 이미지는 스크립트 시각을 사용하고 보이지 않는 크기 조절 테두리를 잘라냈습니다. 다른 Windows 버전과 GPU 드라이버는 아직 검증하지 않았습니다.
+
 ## 출처와 라이선스
 
-[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 57개의 SHA-256과 Cocoa, Shader, Tennis, OpenGL에 사용한 sfml.js 로고 리소스 6개의 출처 및 변환 방법을 기록했습니다. 프로젝트에서 채택한 브랜드 소재를 사용하며 원본 텍스처 크기와 투명도를 유지합니다.
+[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 59개의 SHA-256과 Cocoa, Shader, Tennis, OpenGL에 사용한 sfml.js 로고 리소스 6개의 출처 및 변환 방법을 기록했습니다. 프로젝트에서 채택한 브랜드 소재를 사용하며 원본 텍스처 크기와 투명도를 유지합니다.
 
 - SFML 소스: [zlib 라이선스](SFML-LICENSE.md).
 - 리소스와 저자: [asset_licenses.md](asset_licenses.md).
@@ -350,3 +375,4 @@ Cocoa는 macOS에서 네이티브 컨트롤, 기본/이벤트 추적 모드 렌�
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
 [nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
 [nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
+[win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250

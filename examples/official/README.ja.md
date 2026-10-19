@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
 
-[SFML/SFML][upstream] の 22 サンプルを JavaScript に移植しています。参照コミットは
+[SFML/SFML][upstream] の 23 サンプルを JavaScript に移植しています。参照コミットは
 `14cea1d978b3dce05780b9234925ca8be9373260` です。sfml.js 向けの変更版であり、元のディレクトリ名、シーン、操作方法、素材を保持しています。
 
 [全サンプル](../README.ja.md) · [ビルド要件](../../docs/getting-started.ja.md#requirements)
@@ -18,7 +18,7 @@ node tennis/Tennis.cjs
 
 一覧：[グラフィックス](#graphics) · [プラットフォーム連携](#platform) · [入力とイベント](#input) · [オーディオ](#audio) · [ネットワーク](#network)
 
-X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイティブ SFML ウィンドウで撮影しています。画像から原寸表示、サンプル名からソースコードを開けます。
+X11 の画像は Linux CI の Xvfb／Mesa、Win32 は Windows CI の Mesa、それ以外は macOS のネイティブ SFML ウィンドウで撮影しています。画像から原寸表示、サンプル名からソースコードを開けます。
 
 <a id="graphics"></a>
 
@@ -116,6 +116,13 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
+Win32 には Windows x64 と Node.js 20 以降が必要です。[`wndkit`](https://www.npmjs.com/package/wndkit) 0.1.0 に同梱された x64 ネイティブモジュールを使用します。`examples/official` でローカル依存をインストールします。
+
+```sh
+npm ci --prefix win32 --ignore-scripts
+node win32/Win32.cjs
+```
+
 Window、OpenGL、X11 は [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) からデスクトップ OpenGL を呼び出し、SFML が互換コンテキストを管理します。ルートの `npm ci` で `nodegl` と `x11` を導入します。
 
 nodegl 1.2.1 はインストール時にコンパイルするため、CMake、C++ ツールチェーン、OpenGL の開発用ヘッダーとライブラリが必要です。macOS SDK は OpenGL を含み、Linux では `libgl1-mesa-dev` などが必要です。X11 には Linux と X11 ディスプレイサーバー（または XWayland）も必要です。Window と OpenGL は macOS、Linux（Xvfb／Mesa）、Windows（Mesa）で、X11 ネイティブホストは Linux で検証済みです。
@@ -168,6 +175,20 @@ nodegl 1.2.1 はインストール時にコンパイルするため、CMake、C+
         <p>485 × 379 のネイティブウィンドウに 440 × 260 の SFML ビューを埋め込み</p>
         <p><strong>操作</strong> · Update または Enter で文字を更新、Visible で表示切替、ダイヤルで回転、Color で背景色、Up／Down で拡大縮小。閉じる、Cmd+Q、Ctrl+C で終了</p>
         <p><code>node cocoa/Cocoa.cjs</code>（macOS）</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/win32.png">
+          <img src="screenshots/win32.png" width="360"
+               alt="Win32 ネイティブウィンドウ内の 2 つの SFML アニメーションと Quit ボタン">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="win32/Win32.cjs">Win32</a></strong></p>
+        <p>660 × 520 のネイティブウィンドウに 300 × 400 の SFML ビューを 2 つ配置。左の画像は回転し、右は水平移動</p>
+        <p><strong>操作</strong> · Quit、ウィンドウを閉じる、または Ctrl+C で終了</p>
+        <p><code>node win32/Win32.cjs</code>（Windows x64）</p>
       </td>
     </tr>
     <tr>
@@ -328,7 +349,9 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 
 - Cocoa は [objc-js](https://github.com/iamEvanYT/objc-js) で元の XIB 配置を JavaScript から構築します。`sf.RenderWindow(BigInt(NSView*))` がビューを借用し、`NSTimer` が通常／イベント追跡モードで 60 Hz 描画、Node が AppKit 入力を処理します。メニューは終了と標準テキスト編集に絞り、XIB コンパイルやアプリバンドルは不要です。タイマー停止、SFML 終了、Cocoa 終了、ラッパー解放の順で片付けます。objc-js 1.6.0 のクラスコールバックが Node を保持するため、処理後に明示的に終了します。
 
-残りの 3 サンプル（`android`、`vulkan`、`win32`）は未移植です。
+- Win32 は `wndkit` で親ウィンドウ、Quit ボタン、2 つのネイティブ `STATIC` を作成し、`sf.RenderWindow(BigInt(HWND))` が子ウィンドウを借用します。`Application.processMessages()` がフレーム間で Win32 入力を処理し、Node は `setImmediate` で実行を譲ります。親を破棄するまで操作部品のラッパーを保持し、閉じるコールバックで SFML を同期的に終了してから wndkit が HWND を破棄します。元の固定配置と動きの式を保持し、枠は wndkit 標準のサイズ変更可能な形式を使用します。
+
+残りの 2 サンプル（`android`、`vulkan`）は未移植です。
 
 検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
 
@@ -338,9 +361,11 @@ nodegl の検証は Node.js 22 を使い、macOS、[Ubuntu 24.04／Xvfb／Mesa 2
 
 Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モードの描画、終了処理を検証し、Up／Down はスクリプトで制御しました。Window の掲載画像は固定時刻で macOS 上で撮影しています。
 
+Win32 は [Windows Server 2022／Node.js 22／Mesa 26.0.3][win32-ci] で検証済みです。両ネイティブ子ビュー、テクスチャの実画素、アニメーション、強制 GC、Quit と WM_CLOSE 入力、HWND 破棄前の SFML 終了を確認しました。画像はスクリプトの時刻を使用し、見えないサイズ変更用の枠を切り取っています。その他の Windows バージョンと GPU ドライバーは未検証です。
+
 ## 出典とライセンス
 
-[provenance.json](provenance.json) にコミット、ソース／XIB のハッシュ、未変更の 57 素材の SHA-256、および Cocoa、Shader、Tennis、OpenGL の 6 点の sfml.js ロゴ素材の出典と変換方法を記録しています。プロジェクトで採用したブランド素材を使い、元のテクスチャ寸法と透明度を保持しています。
+[provenance.json](provenance.json) にコミット、ソース／XIB のハッシュ、未変更の 59 素材の SHA-256、および Cocoa、Shader、Tennis、OpenGL の 6 点の sfml.js ロゴ素材の出典と変換方法を記録しています。プロジェクトで採用したブランド素材を使い、元のテクスチャ寸法と透明度を保持しています。
 
 - SFML ソース：[zlib ライセンス](SFML-LICENSE.md)。
 - 素材と作者：[asset_licenses.md](asset_licenses.md)。
@@ -350,3 +375,4 @@ Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モー�
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
 [nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
 [nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
+[win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250

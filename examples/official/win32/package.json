@@ -1,0 +1,17 @@
+{
+  "name": "sfml-official-win32-example",
+  "private": true,
+  "description": "The official SFML Win32 example using wndkit.",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "wndkit": "0.1.0"
+  }
+}

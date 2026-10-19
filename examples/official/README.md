@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-JavaScript ports of 22 examples from [SFML/SFML][upstream], pinned to commit
+JavaScript ports of 23 examples from [SFML/SFML][upstream], pinned to commit
 `14cea1d978b3dce05780b9234925ca8be9373260`. These are modified sources for
 sfml.js, retaining the upstream directory names, scenes, controls and assets.
 
@@ -22,7 +22,7 @@ microphone and OS recording permission.
 
 Browse: [Graphics](#graphics) · [Platform integration](#platform) · [Input and events](#input) · [Audio](#audio) · [Networking](#network)
 
-The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native windows on macOS. Click a preview for full resolution or a name for source code.
+The X11 screenshot comes from Linux CI with Xvfb/Mesa, Win32 from Windows CI with Mesa, and the others from native windows on macOS. Click a preview for full resolution or a name for source code.
 
 <a id="graphics"></a>
 
@@ -133,6 +133,16 @@ npm ci --prefix cocoa --ignore-scripts
 node cocoa/Cocoa.cjs
 ```
 
+Win32 requires Windows x64 and Node.js 20 or later. It uses
+[`wndkit`](https://www.npmjs.com/package/wndkit) 0.1.0 with its bundled x64
+native module. Install the example's local dependency:
+
+```sh
+# From examples/official
+npm ci --prefix win32 --ignore-scripts
+node win32/Win32.cjs
+```
+
 <table>
   <thead>
     <tr>
@@ -181,6 +191,20 @@ node cocoa/Cocoa.cjs
         <p>485 × 379 native window with a 440 × 260 SFML view</p>
         <p><strong>Controls</strong> · Update or Enter applies text; Visible toggles the logo; the dial rotates it; Color selects the background; Up/Down scales it; close, Cmd+Q or Ctrl+C exits</p>
         <p><code>node cocoa/Cocoa.cjs</code> (macOS)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/win32.png">
+          <img src="screenshots/win32.png" width="360"
+               alt="Two animated SFML images and a Quit button in a native Win32 window">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="win32/Win32.cjs">Win32</a></strong></p>
+        <p>660 × 520 native window with two 300 × 400 SFML views; the left image rotates and the right image moves horizontally</p>
+        <p><strong>Controls</strong> · Quit, window close or Ctrl+C exits</p>
+        <p><code>node win32/Win32.cjs</code> (Windows x64)</p>
       </td>
     </tr>
     <tr>
@@ -369,7 +393,15 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   closes SFML, then closes Cocoa and releases wrappers. The standalone entry
   exits explicitly because objc-js 1.6.0 class callbacks keep Node alive.
 
-Three examples remain unported: `android`, `vulkan`, `win32`.
+- Win32 uses `wndkit` for the parent window, Quit button and two native
+  `STATIC` controls. `sf.RenderWindow(BigInt(HWND))` borrows each child.
+  `Application.processMessages()` dispatches Win32 input between frames;
+  Node yields with `setImmediate`. Control wrappers stay alive until the
+  parent is destroyed. The close callback synchronously closes SFML before
+  wndkit destroys HWNDs. The original fixed control layout and animations
+  are retained; wndkit supplies a standard resizable window frame.
+
+Two examples remain unported: `android`, `vulkan`.
 
 Validation covers native window rendering, terrain generation, text/keyboard
 interaction, audio decoding and Worker DSP, and local network exchanges.
@@ -391,10 +423,16 @@ Cocoa was verified locally on macOS, including native controls, rendering
 in default/event-tracking modes and exit cleanup. Its Up/Down input was
 scripted. The Window screenshot uses a fixed clock sample on macOS.
 
+Win32 passed on [Windows Server 2022, Node.js 22 and Mesa 26.0.3][win32-ci].
+Checks cover both native child views, textured pixels, animation, forced GC,
+Quit and WM_CLOSE input, and SFML cleanup before HWND destruction.
+The screenshot uses scripted clock samples and crops the invisible resize
+border. Other Windows versions and GPU drivers remain unverified.
+
 ## Sources and licenses
 
 [provenance.json](provenance.json) records the upstream commit, source/XIB
-hashes and SHA-256 hashes of 57 unchanged resource files, plus the sources
+hashes and SHA-256 hashes of 59 unchanged resource files, plus the sources
 and conversion details for six sfml.js logo assets in Cocoa, Shader, Tennis
 and OpenGL. These assets use the project's approved branding, preserving
 the original texture dimensions and transparency.
@@ -408,3 +446,4 @@ the original texture dimensions and transparency.
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
 [nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
 [nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
+[win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250
