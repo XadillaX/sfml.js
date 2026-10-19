@@ -50,12 +50,13 @@ X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, 나머지는 macOS 네이티브
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="sfml.js 로고에 적용한 에지 검출 셰이더">
+               alt="나비 이미지에 적용한 픽셀화 셰이더">
         </a>
       </td>
       <td valign="top">
         <p><strong><a href="shader/Shader.cjs">Shader</a></strong></p>
         <p>셰이더 장면 5개</p>
+        <p><a href="screenshots/shader-edge.png">sfml.js 로고 에지 검출 미리보기</a></p>
         <p><strong>조작</strong> · 좌/우로 선택, 마우스로 조절</p>
         <p><code>node shader/Shader.cjs</code></p>
       </td>

@@ -54,12 +54,13 @@ The X11 screenshot comes from Linux CI with Xvfb/Mesa; the others show native wi
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="Edge post-effect applied to the sfml.js logo">
+               alt="Pixelate shader applied to the butterfly image">
         </a>
       </td>
       <td valign="top">
         <p><strong><a href="shader/Shader.cjs">Shader</a></strong></p>
         <p>Five shader scenes</p>
+        <p><a href="screenshots/shader-edge.png">sfml.js logo edge-effect preview</a></p>
         <p><strong>Controls</strong> · Left/Right selects, mouse controls parameters</p>
         <p><code>node shader/Shader.cjs</code></p>
       </td>

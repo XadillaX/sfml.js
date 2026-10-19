@@ -50,12 +50,13 @@ X11 截图来自 Linux CI 的 Xvfb／Mesa，其余截图来自 macOS 原生 SFML
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="sfml.js 标识的边缘检测 shader 效果">
+               alt="蝴蝶图片的像素化 shader 效果">
         </a>
       </td>
       <td valign="top">
         <p><strong><a href="shader/Shader.cjs">Shader</a></strong></p>
         <p>五种 shader 场景</p>
+        <p><a href="screenshots/shader-edge.png">sfml.js 标识的边缘检测预览</a></p>
         <p><strong>操作</strong> · 左／右切换，鼠标调整参数</p>
         <p><code>node shader/Shader.cjs</code></p>
       </td>

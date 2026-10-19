@@ -50,12 +50,13 @@ X11 の画像は Linux CI の Xvfb／Mesa、それ以外は macOS のネイテ�
       <td width="44%" valign="top">
         <a href="screenshots/shader.png">
           <img src="screenshots/shader.png" width="360"
-               alt="sfml.js ロゴに適用したエッジ検出シェーダー">
+               alt="蝶の画像に適用したピクセル化シェーダー">
         </a>
       </td>
       <td valign="top">
         <p><strong><a href="shader/Shader.cjs">Shader</a></strong></p>
         <p>5 種類のシェーダー</p>
+        <p><a href="screenshots/shader-edge.png">sfml.js ロゴのエッジ検出プレビュー</a></p>
         <p><strong>操作</strong> · 左右で選択、マウスで調整</p>
         <p><code>node shader/Shader.cjs</code></p>
       </td>
