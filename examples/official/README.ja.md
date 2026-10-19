@@ -2,23 +2,23 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
 
-[SFML/SFML][upstream] の 24 サンプルを JavaScript に移植しています。参照コミットは
-`14cea1d978b3dce05780b9234925ca8be9373260` です。sfml.js 向けの変更版であり、元のディレクトリ名、シーン、操作方法、素材を保持しています。
+[SFML 公式サンプル][upstream] の JavaScript 移植です。グラフィックス、ネイティブウィンドウ、入力、音声、通信の 24 サンプルを収録しています。[Android](android/README.md) は未移植です。
 
 [全サンプル](../README.ja.md) · [ビルド要件](../../docs/getting-started.ja.md#requirements)
 
-sfml.js をビルドした後、リポジトリのルートから公式サンプルのディレクトリに移動して実行します。
+## クイックスタート
+
+リポジトリのルートで実行します。
 
 ```sh
+npm ci
 cd examples/official
 node tennis/Tennis.cjs
 ```
 
-素材は各スクリプトからの相対パスで読み込みます。対話型サンプルは閉じるまで実行され、他のサンプルの `--frames` 引数には対応していません。描画にはディスプレイと OpenGL が必要ですが、Vulkan は独立したレンダラーを使います。録音にはマイクと OS の録音許可が必要です。
+以下のコマンドは `examples/official` で実行します。各スクリプトが必要な素材を読み込みます。描画にはディスプレイと OpenGL ウィンドウのサポートが必要です。
 
 一覧：[グラフィックス](#graphics) · [プラットフォーム連携](#platform) · [入力とイベント](#input) · [オーディオ](#audio) · [ネットワーク](#network)
-
-X11 と Vulkan の画像は Linux CI の Xvfb／Mesa、Win32 は Windows CI の Mesa、その他は macOS のネイティブ SFML ウィンドウで撮影しています。画像から原寸表示、サンプル名からソースコードを開けます。
 
 <a id="graphics"></a>
 
@@ -71,7 +71,7 @@ X11 と Vulkan の画像は Linux CI の Xvfb／Mesa、Win32 は Windows CI の 
       <td valign="top">
         <p><strong><a href="tennis/Tennis.cjs">Tennis</a></strong></p>
         <p>Pong</p>
-        <p><strong>操作</strong> · Space で開始、上下で移動、Esc で終了。タッチ操作にも対応</p>
+        <p><strong>操作</strong> · Space またはタッチで開始、上下キーで移動、Esc で終了</p>
         <p><code>node tennis/Tennis.cjs</code></p>
       </td>
     </tr>
@@ -109,30 +109,15 @@ X11 と Vulkan の画像は Linux CI の Xvfb／Mesa、Win32 は Windows CI の 
 
 ## プラットフォーム連携
 
-Cocoa は macOS 専用で、[objc-js](https://github.com/iamEvanYT/objc-js) を使用します。`examples/official` からローカル依存をインストールします。Apple Silicon／Intel の同梱ビルドを使用します。
+| サンプル | プラットフォーム | 依存関係 |
+| --- | --- | --- |
+| Window／OpenGL | macOS、Linux、Windows | ルートの `npm ci` で `@wettstein/nodegl` を導入 |
+| X11 | X11 を利用できる Linux | ルートの `npm ci` で `x11` と `@wettstein/nodegl` を導入 |
+| Cocoa | macOS | `npm ci --prefix cocoa --ignore-scripts` |
+| Win32 | Windows x64、Node.js 20+ | `npm ci --prefix win32 --ignore-scripts` |
+| Vulkan | Linux x64（X11）、Windows x64、Node.js 20+ | `npm ci --prefix vulkan --ignore-scripts` |
 
-```sh
-npm ci --prefix cocoa --ignore-scripts
-node cocoa/Cocoa.cjs
-```
-
-Win32 には Windows x64 と Node.js 20 以降が必要です。[`wndkit`](https://www.npmjs.com/package/wndkit) 0.1.0 に同梱された x64 ネイティブモジュールを使用します。`examples/official` でローカル依存をインストールします。
-
-```sh
-npm ci --prefix win32 --ignore-scripts
-node win32/Win32.cjs
-```
-
-Window、OpenGL、X11 は [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) からデスクトップ OpenGL を呼び出し、SFML が互換コンテキストを管理します。ルートの `npm ci` で `nodegl` と `x11` を導入します。
-
-nodegl 1.2.1 はインストール時にコンパイルするため、CMake、C++ ツールチェーン、OpenGL の開発用ヘッダーとライブラリが必要です。macOS SDK は OpenGL を含み、Linux では `libgl1-mesa-dev` などが必要です。X11 には Linux と X11 ディスプレイサーバー（または XWayland）も必要です。Window と OpenGL は macOS、Linux（Xvfb／Mesa）、Windows（Mesa）で、X11 ネイティブホストは Linux で検証済みです。
-
-Vulkan は x64 の Linux／X11 と Windows 向けで、Node.js 20 以降と [`nvk`](https://www.npmjs.com/package/nvk) 0.8.0 を使用します。Vulkan ローダーと 4 倍の異方性フィルタリングに対応するドライバー・デバイスが必要です。SFML の Vulkan 連携はコンパイル時に macOS 非対応となるため、MoltenVK の導入だけでは有効になりません。`examples/official` でローカル依存をインストールします。
-
-```sh
-npm ci --prefix vulkan --ignore-scripts
-node vulkan/Vulkan.cjs
-```
+nodegl のビルドには CMake、C++ コンパイラー、OpenGL 開発ライブラリ（Linux では `libgl1-mesa-dev`）が必要です。Vulkan には Vulkan ローダーと 4 倍の異方性フィルタリングに対応するドライバーも必要です。
 
 <table>
   <thead>
@@ -151,7 +136,7 @@ node vulkan/Vulkan.cjs
       </td>
       <td valign="top">
         <p><strong><a href="window/Window.cjs">Window</a></strong></p>
-        <p>640 × 480 OpenGL ウィンドウ、24 ビット深度バッファと 6 色の立方体</p>
+        <p>OpenGL ウィンドウで回転する 6 色の立方体</p>
         <p><strong>操作</strong> · 枠のドラッグでサイズ変更、Esc またはウィンドウを閉じて終了</p>
         <p><code>node window/Window.cjs</code></p>
       </td>
@@ -165,8 +150,8 @@ node vulkan/Vulkan.cjs
       </td>
       <td valign="top">
         <p><strong><a href="opengl/OpenGL.cjs">OpenGL</a></strong></p>
-        <p>800 × 600 SFML／OpenGL 混在描画、テクスチャ立方体と sRGB</p>
-        <p><strong>操作</strong> · マウスで立方体を移動、Enter で mipmap 切替、Space でウィンドウを再作成して sRGB 切替、Esc で終了</p>
+        <p>SFML の背景・文字と OpenGL のテクスチャ立方体を混在描画</p>
+        <p><strong>操作</strong> · マウスで立方体を移動、Enter で mipmap 切替、Space で sRGB 切替、Esc で終了</p>
         <p><code>node opengl/OpenGL.cjs</code></p>
       </td>
     </tr>
@@ -179,9 +164,9 @@ node vulkan/Vulkan.cjs
       </td>
       <td valign="top">
         <p><strong><a href="vulkan/Vulkan.cjs">Vulkan</a></strong></p>
-        <p>800 × 600 の Vulkan 描画で元の色付き立方体に sfml.js ロゴを使用。X／Y／Z 軸で毎秒 59／83／109 度の自動回転</p>
-        <p><strong>操作</strong> · マウスで立方体を平行移動、サイズ変更でスワップチェーンを再作成、Esc またはウィンドウを閉じて終了</p>
-        <p><code>node vulkan/Vulkan.cjs</code>（Linux／X11 と Windows x64）</p>
+        <p>Vulkan で描画する回転テクスチャ立方体</p>
+        <p><strong>操作</strong> · マウスで立方体を移動、枠のドラッグでサイズ変更、Esc またはウィンドウを閉じて終了</p>
+        <p><code>node vulkan/Vulkan.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -193,9 +178,9 @@ node vulkan/Vulkan.cjs
       </td>
       <td valign="top">
         <p><strong><a href="cocoa/Cocoa.cjs">Cocoa</a></strong></p>
-        <p>485 × 379 のネイティブウィンドウに 440 × 260 の SFML ビューを埋め込み</p>
+        <p>macOS のネイティブ操作部品と埋め込み SFML ビュー</p>
         <p><strong>操作</strong> · Update または Enter で文字を更新、Visible で表示切替、ダイヤルで回転、Color で背景色、Up／Down で拡大縮小。閉じる、Cmd+Q、Ctrl+C で終了</p>
-        <p><code>node cocoa/Cocoa.cjs</code>（macOS）</p>
+        <p><code>node cocoa/Cocoa.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -207,9 +192,9 @@ node vulkan/Vulkan.cjs
       </td>
       <td valign="top">
         <p><strong><a href="win32/Win32.cjs">Win32</a></strong></p>
-        <p>660 × 520 のネイティブウィンドウに 300 × 400 の SFML ビューを 2 つ配置。左の画像は回転し、右は水平移動</p>
+        <p>Windows のネイティブウィンドウに 2 つの SFML アニメーションと Quit ボタンを配置</p>
         <p><strong>操作</strong> · Quit、ウィンドウを閉じる、または Ctrl+C で終了</p>
-        <p><code>node win32/Win32.cjs</code>（Windows x64）</p>
+        <p><code>node win32/Win32.cjs</code></p>
       </td>
     </tr>
     <tr>
@@ -221,7 +206,7 @@ node vulkan/Vulkan.cjs
       </td>
       <td valign="top">
         <p><strong><a href="X11/X11.cjs">X11</a></strong></p>
-        <p>650 × 330 の親に 310 × 310 のビューを 2 つ埋め込み、右の立方体は左の 30% の速度で回転</p>
+        <p>2 つの埋め込み SFML ウィンドウで立方体が異なる速度で回転</p>
         <p><strong>操作</strong> · 任意のキー、ウィンドウを閉じる操作、Ctrl+C で終了</p>
         <p><code>node X11/X11.cjs</code></p>
       </td>
@@ -232,8 +217,6 @@ node vulkan/Vulkan.cjs
 <a id="input"></a>
 
 ## 入力とイベント
-
-入力の画像はスクリプトイベントを使用しています。ジョイスティックは未接続です。
 
 <table>
   <thead>
@@ -304,7 +287,7 @@ node vulkan/Vulkan.cjs
 
 ## オーディオ
 
-音声効果の画像は null 再生デバイスで撮影しています。
+録音サンプルにはマイクと OS の録音許可が必要です。
 
 <table>
   <thead>
@@ -351,55 +334,13 @@ node vulkan/Vulkan.cjs
 
 sockets と VoIP は 2 つのターミナルで実行し、サーバーとクライアントをそれぞれ選択します。ローカル接続には `127.0.0.1` を指定してください。
 
-FTP／SFTP のダウンロードや録音の保存先には、一時ディレクトリまたは任意の出力パスを入力してください。
-
-## Node 向けの調整
-
-
-- 描画は `setImmediate` でイベントループに制御を返します。素材と通信には公開非同期 API、音声コールバックには音声 Worker を使います。
-- island は 4 Worker を再利用し、元の 32 ブロックと 800 × 600 メッシュを保持します。Perlin は元の表を使い、境界では符号付き座標でアンダーフローを回避します。
-- テキストのクラスタ位置は JavaScript の UTF-16 インデックスです。Noto のサブセットは変更せずにコピーしています。[フォントの説明](text/resources/readme.md)を参照してください。
-- バインディングが公開する距離減衰は逆距離のみです。Surround は元の 4 式を JavaScript で計算し、ネイティブの空間パンを保持します。生成音の周波数がゼロの場合は無音です。
-- TLS は元の公開デモ鍵を使い、DNS／IP SAN 付きの `localhost` 証明書に置き換えています。証明書検証は有効です。別ホスト間でも、この鍵と証明書はデモ専用です。
-- X11 のウィンドウは外部パッケージ `x11`、借用ウィンドウの OpenGL コンテキストは `sf.Window(BigInt(xid))` で管理し、`nodegl` からデスクトップ GL を呼び出します。ゼロコピーの Buffer ビューが頂点データを保持し、SFML コンテキスト、Buffer 参照、親ウィンドウ、X11 接続の順で解放します。
-
-- Window は `nodegl` でデスクトップ OpenGL を呼び出します。元の 6 色の頂点、毎秒 50／30／90 度の 3 軸回転、サイズに追従する透視投影を保持します。頂点の Buffer 参照はウィンドウを閉じてから解放し、サイズがゼロの間は描画を休止します。
-
-- OpenGL は `nodegl` とゼロコピーの Buffer ビューで元の位置／UV 頂点を描画し、SFML の背景と文字はそれぞれ GL 状態を保存・復元します。Enter はテクスチャの再読み込みまたは mipmap 生成、Space は新しい sRGB 設定でウィンドウと背景を再作成します。mipmap と sRGB の対応はドライバーによります。
-  立方体には現在の [sfml.js シンボル](../../assets/branding/sfml-js-symbol-pentagon.svg) を 256 × 256 PNG に変換し、元の濃い灰色の背景と合成したテクスチャを使用します。
-
-- Vulkan では SFML がウィンドウ、イベント、サーフェス作成を担当し、`nvk` 0.8.0 が Vulkan を直接呼び出します。独自のネイティブブリッジは追加していません。SFML Graphics は引き続き OpenGL を使います。この移植の `sf.Window` は描画に使わない OpenGL コンテキストも作成するため、OpenGL ウィンドウのサポートが必要です。元のシェーダーファイル 4 個（GLSL と SPIR-V）は未変更で、ロゴには現在の sfml.js シンボルの 256 × 256 透過 PNG を使用します。
-
-- Cocoa は [objc-js](https://github.com/iamEvanYT/objc-js) で元の XIB 配置を JavaScript から構築します。`sf.RenderWindow(BigInt(NSView*))` がビューを借用し、`NSTimer` が通常／イベント追跡モードで 60 Hz 描画、Node が AppKit 入力を処理します。メニューは終了と標準テキスト編集に絞り、XIB コンパイルやアプリバンドルは不要です。タイマー停止、SFML 終了、Cocoa 終了、ラッパー解放の順で片付けます。objc-js 1.6.0 のクラスコールバックが Node を保持するため、処理後に明示的に終了します。
-
-- Win32 は `wndkit` で親ウィンドウ、Quit ボタン、2 つのネイティブ `STATIC` を作成し、`sf.RenderWindow(BigInt(HWND))` が子ウィンドウを借用します。`Application.processMessages()` がフレーム間で Win32 入力を処理し、Node は `setImmediate` で実行を譲ります。親を破棄するまで操作部品のラッパーを保持し、閉じるコールバックで SFML を同期的に終了してから wndkit が HWND を破棄します。元の固定配置と動きの式を保持し、枠は wndkit 標準のサイズ変更可能な形式を使用します。
-
-未移植は `android` のみです。
-
-Vulkan は Node.js 22 と Mesa lavapipe を使い、[Ubuntu 24.04][vulkan-linux-ci] と [Windows Server 2022／Mesa 26.0.3][vulkan-windows-ci] でネイティブ検証済みです。SFML サーフェス連携、実ピクセル、回転、マウスによる平行移動、横長／縦長のサイズ変更、最小化からの復帰、フレーム間の強制 GC、Escape とウィンドウを閉じる操作での終了処理を確認しました。Linux の Khronos 同期検証レイヤーのエラーはありません。Windows runner には Khronos 検証レイヤーを導入していません。画像は Linux で固定時刻に撮影しています。他の GPU ドライバーは未検証です。
-
-検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
-
-nodegl の検証は Node.js 22 を使い、macOS、[Ubuntu 24.04／Xvfb／Mesa 25.2.8][nodegl-linux-ci]、[Windows Server 2022／Mesa 26.0.3][nodegl-windows-ci] で実施しました。Window と OpenGL は実画素、サイズ変更、mipmap 切替、sRGB ウィンドウ再作成、Escape／閉じる操作、フレーム間の強制 GC を確認しています。Linux の X11 では両子ウィンドウ、異なる回転速度、親／子ウィンドウのキー終了、ネイティブウィンドウ破棄を検証しました。macOS と Linux では SIGINT の終了処理も確認しています。
-
-両 CI 環境は sRGB フレームバッファー非対応のため、フォールバックとウィンドウ再作成を検証しました。実際の sRGB 描画は macOS で検証済みです。その他の GPU ドライバーと XWayland は未検証です。
-
-Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モードの描画、終了処理を検証し、Up／Down はスクリプトで制御しました。Window の掲載画像は固定時刻で macOS 上で撮影しています。
-
-Win32 は [Windows Server 2022／Node.js 22／Mesa 26.0.3][win32-ci] で検証済みです。両ネイティブ子ビュー、テクスチャの実画素、アニメーション、強制 GC、Quit と WM_CLOSE 入力、HWND 破棄前の SFML 終了を確認しました。画像はスクリプトの時刻を使用し、見えないサイズ変更用の枠を切り取っています。その他の Windows バージョンと GPU ドライバーは未検証です。
-
 ## 出典とライセンス
 
-[provenance.json](provenance.json) にコミット、ソース／XIB のハッシュ、未変更の 63 素材の SHA-256、および Cocoa、Shader、Tennis、OpenGL、Vulkan の 7 点の sfml.js ロゴ素材の出典と変換方法を記録しています。プロジェクトで採用したブランド素材を使い、元のテクスチャ寸法と透明度を保持しています。
+[SFML のサンプル][upstream]を元にしています。ソースのバージョンと素材の出典は [provenance.json](provenance.json) に記録しています。
 
 - SFML ソース：[zlib ライセンス](SFML-LICENSE.md)。
 - 素材と作者：[asset_licenses.md](asset_licenses.md)。
-- Noto：[SIL Open Font License 1.1](text/resources/OFL.txt)。各フォントの著作権メタデータを保持しています。
+- Noto：[SIL Open Font License 1.1](text/resources/OFL.txt)。
 - stb Perlin の移植：[MIT／パブリックドメインのデュアルライセンス](island/stb_perlin.LICENSE)。
 
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
-[nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
-[nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
-[win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250
-[vulkan-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39272976562
-[vulkan-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39273977175
