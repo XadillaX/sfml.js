@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-JavaScript ports of 23 examples from [SFML/SFML][upstream], pinned to commit
+JavaScript ports of 24 examples from [SFML/SFML][upstream], pinned to commit
 `14cea1d978b3dce05780b9234925ca8be9373260`. These are modified sources for
 sfml.js, retaining the upstream directory names, scenes, controls and assets.
 
@@ -17,12 +17,12 @@ node tennis/Tennis.cjs
 
 Resources are resolved relative to each script. These interactive examples
 run until closed; they do not implement the other examples' `--frames` flag.
-Graphical examples require a display and OpenGL. Audio input requires a
-microphone and OS recording permission.
+Graphical examples require a display and OpenGL window support. Vulkan uses
+its own renderer. Audio input requires a microphone and OS recording permission.
 
 Browse: [Graphics](#graphics) · [Platform integration](#platform) · [Input and events](#input) · [Audio](#audio) · [Networking](#network)
 
-The X11 screenshot comes from Linux CI with Xvfb/Mesa, Win32 from Windows CI with Mesa, and the others from native windows on macOS. Click a preview for full resolution or a name for source code.
+The X11 and Vulkan screenshots come from Linux CI with Xvfb/Mesa, Win32 from Windows CI with Mesa, and the others from native windows on macOS. Click a preview for full resolution or a name for source code.
 
 <a id="graphics"></a>
 
@@ -143,6 +143,18 @@ npm ci --prefix win32 --ignore-scripts
 node win32/Win32.cjs
 ```
 
+Vulkan targets Linux/X11 and Windows on x64 with Node.js 20 or later.
+It uses [`nvk`](https://www.npmjs.com/package/nvk) 0.8.0 and requires a
+Vulkan loader and a driver/device supporting 4× anisotropic filtering.
+SFML's Vulkan integration is unavailable on macOS at compile time;
+installing MoltenVK alone does not enable it. Install the local dependency:
+
+```sh
+# From examples/official
+npm ci --prefix vulkan --ignore-scripts
+node vulkan/Vulkan.cjs
+```
+
 <table>
   <thead>
     <tr>
@@ -177,6 +189,20 @@ node win32/Win32.cjs
         <p>800 × 600 mixed SFML/OpenGL rendering, textured cube and sRGB</p>
         <p><strong>Controls</strong> · mouse moves the cube; Enter toggles mipmapping; Space recreates the window with sRGB toggled; Esc exits</p>
         <p><code>node opengl/OpenGL.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/vulkan.png">
+          <img src="screenshots/vulkan.png" width="360"
+               alt="Original colored cube with the sfml.js logo rendered with Vulkan">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="vulkan/Vulkan.cjs">Vulkan</a></strong></p>
+        <p>800 × 600 Vulkan rendering of the original colored cube with the sfml.js logo; automatic X/Y/Z rotation at 59/83/109 degrees per second</p>
+        <p><strong>Controls</strong> · mouse translates the cube; resizing recreates the swapchain; Esc or window close exits</p>
+        <p><code>node vulkan/Vulkan.cjs</code> (Linux/X11 and Windows x64)</p>
       </td>
     </tr>
     <tr>
@@ -385,6 +411,13 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   [sfml.js symbol](../../assets/branding/sfml-js-symbol-pentagon.svg),
   rasterized to 256 × 256 over the original dark-gray background.
 
+- Vulkan uses SFML for the window, events and surface creation; `nvk` 0.8.0
+  drives Vulkan directly, with no custom native bridge. SFML Graphics still
+  uses OpenGL. This port uses `sf.Window`, which also creates an unused OpenGL
+  context, so OpenGL window support is still required.
+  The four original shader files (GLSL and SPIR-V) are unchanged;
+  the logo texture uses the current sfml.js symbol as a transparent 256 × 256 PNG.
+
 - Cocoa creates the original XIB layout in JavaScript with `objc-js`.
   `sf.RenderWindow(BigInt(NSView*))` borrows the native view. An `NSTimer`
   renders at 60 Hz in default and event-tracking modes while Node dispatches
@@ -401,7 +434,16 @@ For FTP/SFTP downloads and saved recordings, enter a temporary or chosen output 
   wndkit destroys HWNDs. The original fixed control layout and animations
   are retained; wndkit supplies a standard resizable window frame.
 
-Two examples remain unported: `android`, `vulkan`.
+Only `android` remains unported.
+
+Vulkan passed with Node.js 22 and Mesa lavapipe on
+[Ubuntu 24.04][vulkan-linux-ci] and
+[Windows Server 2022 with Mesa 26.0.3][vulkan-windows-ci].
+Checks cover the SFML surface bridge, native pixels, rotation, mouse translation,
+wide/tall resizing, minimize/restore, forced GC, Escape and window-close cleanup.
+Linux Khronos synchronization validation reported no errors; the Windows runner
+had no Khronos validation layer installed. The screenshot uses a fixed clock
+sample on Linux. Other GPU drivers remain unverified.
 
 Validation covers native window rendering, terrain generation, text/keyboard
 interaction, audio decoding and Worker DSP, and local network exchanges.
@@ -432,9 +474,9 @@ border. Other Windows versions and GPU drivers remain unverified.
 ## Sources and licenses
 
 [provenance.json](provenance.json) records the upstream commit, source/XIB
-hashes and SHA-256 hashes of 59 unchanged resource files, plus the sources
-and conversion details for six sfml.js logo assets in Cocoa, Shader, Tennis
-and OpenGL. These assets use the project's approved branding, preserving
+hashes and SHA-256 hashes of 63 unchanged resource files, plus the sources
+and conversion details for seven sfml.js logo assets in Cocoa, Shader, Tennis,
+OpenGL and Vulkan. These assets use the project's approved branding, preserving
 the original texture dimensions and transparency.
 
 - SFML source: [zlib license](SFML-LICENSE.md).
@@ -447,3 +489,5 @@ the original texture dimensions and transparency.
 [nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
 [nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
 [win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250
+[vulkan-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39272976562
+[vulkan-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39273977175

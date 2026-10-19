@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-> Run this repository's examples from its root directory. Run `npm ci` before the first launch, and `npm run build` after source changes. Graphics examples require a working display server and OpenGL context.
+> Run this repository's examples from its root directory. Run `npm ci` before the first launch, and `npm run build` after source changes. Graphics examples require a working display server and OpenGL window support. The official Vulkan example renders through Vulkan but also creates an unused OpenGL context with `sf.Window`.
 
 [Project home](../README.md) · [Quick start](../docs/getting-started.md) · [Development guide](../docs/development.md)
 
@@ -106,14 +106,28 @@ See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) 
 
 ## SFML official examples
 
-[official/](official/README.md) contains 23 ports from the official SFML
+[official/](official/README.md) contains 24 ports from the official SFML
 repository, including tennis, shaders, text, terrain, audio, networking,
-X11, the OpenGL window, mixed SFML/OpenGL rendering, Cocoa and Win32 integration.
+X11, the OpenGL window, mixed SFML/OpenGL rendering, Vulkan, Cocoa and Win32 integration.
 Each entry retains its upstream scene and assets; the guide lists controls,
-Node adaptations, sources and licenses.
+Node adaptations, sources and licenses. Only `android` remains unported.
 
 ```sh
 node examples/official/tennis/Tennis.cjs
+```
+
+Vulkan targets Linux/X11 and Windows x64, using `nvk` 0.8.0 with a Vulkan
+loader and a driver/device supporting 4× anisotropic filtering. SFML handles
+the window, events and surface; nvk drives Vulkan directly without a custom
+native bridge. SFML Graphics still uses OpenGL. SFML's Vulkan integration
+is unavailable on macOS at compile time; MoltenVK alone does not enable it.
+Native rendering and interaction checks passed on Linux/X11 and Windows.
+See the [platform guide](official/README.md#platform) for controls and requirements.
+
+```sh
+cd examples/official
+npm ci --prefix vulkan --ignore-scripts
+node vulkan/Vulkan.cjs
 ```
 
 ## Legacy examples

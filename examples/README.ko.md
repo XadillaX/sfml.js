@@ -2,7 +2,7 @@
 
 [English](README.md) / [简体中文](README.zh-CN.md) / [日本語](README.ja.md) / **한국어**
 
-> 이 저장소의 예제는 루트 디렉터리에서 실행합니다. 처음 실행하기 전에 `npm ci`를, 소스를 수정한 뒤에는 `npm run build`를 실행하세요. 그래픽 예제에는 사용 가능한 디스플레이 서버와 OpenGL 컨텍스트가 필요합니다.
+> 이 저장소의 예제는 루트 디렉터리에서 실행합니다. 처음 실행하기 전에 `npm ci`를, 소스를 수정한 뒤에는 `npm run build`를 실행하세요. 그래픽 예제에는 사용 가능한 디스플레이 서버와 OpenGL 창 지원이 필요합니다. 공식 Vulkan 예제는 Vulkan으로 렌더링하지만 `sf.Window`가 렌더링에 쓰지 않는 OpenGL 컨텍스트도 생성합니다.
 
 [프로젝트 홈](../README.ko.md) · [빠른 시작](../docs/getting-started.ko.md) · [개발 가이드](../docs/development.ko.md)
 
@@ -105,10 +105,18 @@ node index.js
 
 ## SFML 공식 예제
 
-[official/](official/README.ko.md)에는 SFML 공식 저장소에서 이식한 예제 23개가 있습니다. 테니스, 셰이더, 텍스트, 지형, 오디오, 네트워크, X11, OpenGL 창, SFML/OpenGL 혼합 렌더링, Cocoa와 Win32 통합을 포함하며 원본 장면과 리소스를 유지합니다. 조작법, Node에 맞춘 조정, 출처와 라이선스는 안내 문서를 참고하세요.
+[official/](official/README.ko.md)에는 SFML 공식 저장소에서 이식한 예제 24개가 있습니다. 테니스, 셰이더, 텍스트, 지형, 오디오, 네트워크, X11, OpenGL 창, SFML/OpenGL 혼합 렌더링, Vulkan, Cocoa와 Win32 통합을 포함하며 원본 장면과 리소스를 유지합니다. 조작법, Node에 맞춘 조정, 출처와 라이선스는 안내 문서를 참고하세요. 아직 이식하지 않은 예제는 `android`뿐입니다.
 
 ```sh
 node examples/official/tennis/Tennis.cjs
+```
+
+Vulkan은 x64의 Linux/X11과 Windows를 대상으로 하며 `nvk` 0.8.0, Vulkan 로더와 4배 비등방성 필터링을 지원하는 드라이버 및 장치가 필요합니다. SFML은 창, 이벤트와 서피스를 담당하고 nvk가 별도의 네이티브 브리지 없이 Vulkan을 직접 호출합니다. SFML Graphics는 여전히 OpenGL을 사용합니다. SFML의 Vulkan 통합은 컴파일 시점에 macOS를 지원하지 않으므로 MoltenVK 설치만으로 활성화할 수 없습니다. Linux/X11과 Windows의 네이티브 렌더링 및 조작 검증을 모두 통과했습니다. 조작법과 요구 사항은 [플랫폼 통합 안내](official/README.ko.md#platform)를 참고하세요.
+
+```sh
+cd examples/official
+npm ci --prefix vulkan --ignore-scripts
+node vulkan/Vulkan.cjs
 ```
 
 ## 이전 버전 예제

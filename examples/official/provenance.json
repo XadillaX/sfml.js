@@ -128,6 +128,10 @@
       "sha256": "3b9beaf7ea6565a46f2d81b04df3a5990e3c83982462cdf442f35b852549d2d7"
     },
     {
+      "path": "examples/vulkan/Vulkan.cpp",
+      "sha256": "ba51377d6c97783338d40e15d97fe5eed35f74a8348245716b5d68404b660c73"
+    },
+    {
       "path": "examples/win32/Win32.cpp",
       "sha256": "d51aa279e3482794c4dbc493bd8f18acb1c974a6147d42d1ae247b6fb45f0628"
     },
@@ -366,6 +370,22 @@
       "sha256": "531b0148e9e700ca4ad91eda038bed432074af6c544cae8e9a0433c8f544c9a2"
     },
     {
+      "path": "vulkan/resources/shader.frag",
+      "sha256": "73a2f03521e38dc6ebb152e143ca19aba0278d72dd0c036795fea237338f6f9a"
+    },
+    {
+      "path": "vulkan/resources/shader.frag.spv",
+      "sha256": "f11d9dc9590c77b2a997adf96f2f09b3c562066409423b7dc13b059814ec17a6"
+    },
+    {
+      "path": "vulkan/resources/shader.vert",
+      "sha256": "bc261c9b68f9b5e41c9c9e525520fea724c6a386dfdab4afff267faa679f8226"
+    },
+    {
+      "path": "vulkan/resources/shader.vert.spv",
+      "sha256": "221fe402e7333efa3fdf7411535ca18ee3668ba12b702f5269143dfded98172b"
+    },
+    {
       "path": "win32/resources/image1.jpg",
       "sha256": "f2ab5478bce470f54fdfc1270d366e898b817d7cd30ddbe1d3931832387075b0"
     },
@@ -430,6 +450,14 @@
       ],
       "upstreamSha256": "1137b9bb773caf307499fe818d4b0962ef334262956ba505f11b27a3c4fa9680",
       "processing": "Rasterized both vectors at four times their nominal resolution with macOS sips; resized the symbol to 113x113 and the light wordmark to 252x70 with Pillow Lanczos; placed at (0, 0) and (121, 21) on the original 373x113 transparent canvas and saved as RGBA PNG. The wordmark stylesheet colors were materialized as SVG fill attributes before rasterization because sips ignores its class stylesheet."
+    },
+    {
+      "path": "vulkan/resources/logo.png",
+      "sha256": "301672ab140c646805294e6850e10c3799fc12ac106d400bbe7f0a6fa1a28092",
+      "source": "../../assets/branding/sfml-js-symbol-pentagon.svg",
+      "sourceSha256": "9cc0d2e5a3517471655b40b667cebdf83f3dc1b855453c81dc2806cd52c7cae2",
+      "upstreamSha256": "e324cebab356f664e779643a6a6c468da2c0231c64925325bf853ca70a5ec7a2",
+      "processing": "Rasterized with macOS sips at 480x480, resized to the original 256x256 with Pillow Lanczos and saved as transparent RGBA PNG."
     }
   ],
   "licenses": [

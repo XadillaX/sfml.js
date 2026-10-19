@@ -2,7 +2,7 @@
 
 [English](README.md) / [简体中文](README.zh-CN.md) / **日本語** / [한국어](README.ko.md)
 
-> このリポジトリのサンプルはルートディレクトリで実行します。初回実行前に `npm ci`、ソースコードの変更後に `npm run build` を実行してください。グラフィックスのサンプルには、利用可能なディスプレイサーバーと OpenGL コンテキストが必要です。
+> このリポジトリのサンプルはルートディレクトリで実行します。初回実行前に `npm ci`、ソースコードの変更後に `npm run build` を実行してください。グラフィックスのサンプルには、利用可能なディスプレイサーバーと OpenGL ウィンドウのサポートが必要です。公式 Vulkan サンプルは Vulkan で描画しますが、`sf.Window` は描画に使わない OpenGL コンテキストも作成します。
 
 [プロジェクトトップ](../README.ja.md) · [クイックスタート](../docs/getting-started.ja.md) · [開発ガイド](../docs/development.ja.md)
 
@@ -105,10 +105,18 @@ node index.js
 
 ## SFML 公式サンプル
 
-[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 23 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信、X11、OpenGL ウィンドウ、SFML／OpenGL 混在描画、Cocoa と Win32 の連携を含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。
+[official/](official/README.ja.md) には SFML 公式リポジトリから移植した 24 サンプルがあります。テニス、シェーダー、テキスト、地形、音声、通信、X11、OpenGL ウィンドウ、SFML／OpenGL 混在描画、Vulkan、Cocoa と Win32 の連携を含み、元のシーンと素材を保持しています。操作方法、Node 向けの調整、出典、ライセンスはガイドを参照してください。未移植は `android` のみです。
 
 ```sh
 node examples/official/tennis/Tennis.cjs
+```
+
+Vulkan は x64 の Linux／X11 と Windows 向けで、`nvk` 0.8.0、Vulkan ローダー、4 倍の異方性フィルタリングに対応するドライバー・デバイスを使います。SFML はウィンドウ、イベント、サーフェスを担当し、nvk が独自のネイティブブリッジなしで Vulkan を直接呼び出します。SFML Graphics は引き続き OpenGL を使います。SFML の Vulkan 連携はコンパイル時に macOS 非対応となるため、MoltenVK の導入だけでは有効になりません。Linux／X11 と Windows のネイティブ描画と操作はどちらも検証済みです。操作と要件は[プラットフォーム連携](official/README.ja.md#platform)を参照してください。
+
+```sh
+cd examples/official
+npm ci --prefix vulkan --ignore-scripts
+node vulkan/Vulkan.cjs
 ```
 
 ## 旧バージョンのサンプル

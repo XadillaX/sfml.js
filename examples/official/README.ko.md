@@ -2,7 +2,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
-[SFML/SFML][upstream]의 예제 23개를 JavaScript로 이식했습니다. 기준 커밋은
+[SFML/SFML][upstream]의 예제 24개를 JavaScript로 이식했습니다. 기준 커밋은
 `14cea1d978b3dce05780b9234925ca8be9373260`입니다. sfml.js에 맞게 수정한 버전이며, 원본의 디렉터리 이름, 장면, 조작법과 리소스를 유지합니다.
 
 [전체 예제](../README.ko.md) · [빌드 요구 사항](../../docs/getting-started.ko.md#requirements)
@@ -14,11 +14,11 @@ cd examples/official
 node tennis/Tennis.cjs
 ```
 
-리소스는 각 스크립트 기준의 상대 경로로 불러옵니다. 대화형 예제는 닫을 때까지 실행되며, 다른 예제의 `--frames` 인수를 지원하지 않습니다. 그래픽에는 디스플레이와 OpenGL이, 녹음에는 마이크와 OS 녹음 권한이 필요합니다.
+리소스는 각 스크립트 기준의 상대 경로로 불러옵니다. 대화형 예제는 닫을 때까지 실행되며, 다른 예제의 `--frames` 인수를 지원하지 않습니다. 그래픽에는 디스플레이와 OpenGL이 필요하지만 Vulkan은 독립 렌더러를 사용합니다. 녹음에는 마이크와 OS 녹음 권한이 필요합니다.
 
 바로가기: [그래픽](#graphics) · [플랫폼 통합](#platform) · [입력과 이벤트](#input) · [오디오](#audio) · [네트워크](#network)
 
-X11 스크린샷은 Linux CI의 Xvfb/Mesa에서, Win32는 Windows CI의 Mesa에서, 나머지는 macOS 네이티브 SFML 창에서 캡처했습니다. 이미지를 클릭하면 원본을, 예제 이름을 클릭하면 소스 코드를 볼 수 있습니다.
+X11과 Vulkan 스크린샷은 Linux CI의 Xvfb/Mesa에서, Win32는 Windows CI의 Mesa에서, 나머지는 macOS 네이티브 SFML 창에서 캡처했습니다. 이미지를 클릭하면 원본을, 예제 이름을 클릭하면 소스 코드를 볼 수 있습니다.
 
 <a id="graphics"></a>
 
@@ -127,6 +127,13 @@ Window, OpenGL, X11은 [`@wettstein/nodegl`](https://www.npmjs.com/package/@wett
 
 nodegl 1.2.1은 설치 시 컴파일하므로 CMake, C++ 도구 체인, OpenGL 개발 헤더와 라이브러리가 필요합니다. macOS SDK에는 OpenGL이 포함되어 있으며 Linux에는 `libgl1-mesa-dev` 등의 개발 패키지가 필요합니다. X11에는 Linux와 X11 디스플레이 서버(또는 XWayland)도 필요합니다. Window와 OpenGL은 macOS, Linux(Xvfb/Mesa), Windows(Mesa)에서, X11 네이티브 호스트는 Linux에서 검증했습니다.
 
+Vulkan은 x64의 Linux/X11과 Windows를 대상으로 하며 Node.js 20 이상과 [`nvk`](https://www.npmjs.com/package/nvk) 0.8.0을 사용합니다. Vulkan 로더와 4배 비등방성 필터링을 지원하는 드라이버 및 장치가 필요합니다. SFML의 Vulkan 통합은 컴파일 시점에 macOS를 지원하지 않으므로 MoltenVK 설치만으로 활성화할 수 없습니다. `examples/official`에서 로컬 의존성을 설치합니다.
+
+```sh
+npm ci --prefix vulkan --ignore-scripts
+node vulkan/Vulkan.cjs
+```
+
 <table>
   <thead>
     <tr>
@@ -161,6 +168,20 @@ nodegl 1.2.1은 설치 시 컴파일하므로 CMake, C++ 도구 체인, OpenGL �
         <p>800 × 600 SFML/OpenGL 혼합 렌더링, 텍스처 큐브와 sRGB</p>
         <p><strong>조작</strong> · 마우스로 큐브 이동, Enter로 mipmap 전환, Space로 창을 다시 만들고 sRGB 전환, Esc로 종료</p>
         <p><code>node opengl/OpenGL.cjs</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="44%" valign="top">
+        <a href="screenshots/vulkan.png">
+          <img src="screenshots/vulkan.png" width="360"
+               alt="Vulkan으로 렌더링한 원본 색상 큐브와 sfml.js 로고">
+        </a>
+      </td>
+      <td valign="top">
+        <p><strong><a href="vulkan/Vulkan.cjs">Vulkan</a></strong></p>
+        <p>800 × 600 Vulkan 렌더링으로 원본 색상 큐브와 sfml.js 로고 표시. X/Y/Z축에서 초당 59/83/109도로 자동 회전</p>
+        <p><strong>조작</strong> · 마우스로 큐브 평행 이동, 창 크기 변경 시 스왑체인 재생성, Esc 또는 창 닫기로 종료</p>
+        <p><code>node vulkan/Vulkan.cjs</code> (Linux/X11 및 Windows x64)</p>
       </td>
     </tr>
     <tr>
@@ -347,11 +368,15 @@ FTP/SFTP 다운로드와 녹음 저장 시 임시 디렉터리나 원하는 출�
 - OpenGL은 `nodegl`과 제로 카피 Buffer 뷰로 원본 위치/UV 정점을 그리며 SFML 배경과 텍스트는 각각 GL 상태를 저장하고 복원합니다. Enter는 큐브 텍스처를 다시 읽거나 mipmap을 생성하고 Space는 새 sRGB 설정으로 창과 배경을 다시 만듭니다. mipmap과 sRGB 지원은 그래픽 드라이버에 따라 달라집니다.
   큐브 텍스처는 현재 [sfml.js 심볼](../../assets/branding/sfml-js-symbol-pentagon.svg)을 256 × 256 PNG로 변환하고 원본의 짙은 회색 배경에 합성한 이미지입니다.
 
+- Vulkan에서는 SFML이 창, 이벤트와 서피스 생성을 담당하며 `nvk` 0.8.0이 Vulkan을 직접 호출합니다. 별도의 네이티브 브리지를 추가하지 않았으며 SFML Graphics는 여전히 OpenGL을 사용합니다. 이식에 사용한 `sf.Window`는 렌더링에 쓰지 않는 OpenGL 컨텍스트도 생성하므로 OpenGL 창 지원이 필요합니다. 원본 셰이더 파일 4개(GLSL 및 SPIR-V)는 변경하지 않았고 로고 텍스처는 현재 sfml.js 심볼의 256 × 256 투명 PNG를 사용합니다.
+
 - Cocoa는 [objc-js](https://github.com/iamEvanYT/objc-js)로 원본 XIB 배치를 JavaScript에서 구성합니다. `sf.RenderWindow(BigInt(NSView*))`가 뷰를 빌리며, `NSTimer`는 기본/이벤트 추적 모드에서 60 Hz로 렌더링하고 Node가 AppKit 입력을 처리합니다. 메뉴는 종료와 표준 텍스트 편집으로 줄였으며 XIB 컴파일이나 앱 번들이 필요하지 않습니다. 타이머 중지, SFML 종료, Cocoa 종료, 래퍼 해제 순으로 정리합니다. objc-js 1.6.0 클래스 콜백이 Node를 유지하므로 정리 후 명시적으로 종료합니다.
 
 - Win32는 `wndkit`으로 부모 창, Quit 버튼과 네이티브 `STATIC` 두 개를 생성하고 `sf.RenderWindow(BigInt(HWND))`가 자식 창을 빌립니다. `Application.processMessages()`가 프레임 사이에 Win32 입력을 처리하고 Node는 `setImmediate`로 실행을 양보합니다. 부모 창이 제거될 때까지 컨트롤 래퍼를 유지하며 닫기 콜백에서 SFML을 동기적으로 종료한 뒤 wndkit이 HWND를 제거합니다. 원본의 고정 배치와 애니메이션 수식을 유지하고 wndkit의 표준 크기 조절 가능 창 테두리를 사용합니다.
 
-나머지 2개 예제(`android`, `vulkan`)는 아직 이식하지 않았습니다.
+아직 이식하지 않은 예제는 `android`뿐입니다.
+
+Vulkan은 Node.js 22와 Mesa lavapipe를 사용해 [Ubuntu 24.04][vulkan-linux-ci]와 [Windows Server 2022/Mesa 26.0.3][vulkan-windows-ci]에서 네이티브 검증을 통과했습니다. SFML 서피스 연결, 실제 픽셀, 회전, 마우스 평행 이동, 가로/세로 창 크기 변경, 최소화 복원, 프레임 간 강제 GC, Escape 및 창 닫기 정리를 확인했습니다. Linux의 Khronos 동기화 검증 레이어에서 오류가 보고되지 않았으며 Windows runner에는 Khronos 검증 레이어를 설치하지 않았습니다. 스크린샷은 Linux에서 고정 시각으로 캡처했습니다. 다른 GPU 드라이버는 아직 검증하지 않았습니다.
 
 검증 범위에는 네이티브 렌더링, 지형 생성, 텍스트/키 입력, 오디오 디코딩, Worker DSP와 로컬 통신이 포함됩니다. 실제 마이크, 스피커, 조이스틱, 장치 연결/해제 및 외부 FTP/SFTP는 대상 환경에서 확인해야 합니다.
 
@@ -365,7 +390,7 @@ Win32는 [Windows Server 2022/Node.js 22/Mesa 26.0.3][win32-ci]에서 검증했�
 
 ## 출처와 라이선스
 
-[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 59개의 SHA-256과 Cocoa, Shader, Tennis, OpenGL에 사용한 sfml.js 로고 리소스 6개의 출처 및 변환 방법을 기록했습니다. 프로젝트에서 채택한 브랜드 소재를 사용하며 원본 텍스처 크기와 투명도를 유지합니다.
+[provenance.json](provenance.json)에 커밋, 소스/XIB 해시, 변경하지 않은 리소스 63개의 SHA-256과 Cocoa, Shader, Tennis, OpenGL, Vulkan에 사용한 sfml.js 로고 리소스 7개의 출처 및 변환 방법을 기록했습니다. 프로젝트에서 채택한 브랜드 소재를 사용하며 원본 텍스처 크기와 투명도를 유지합니다.
 
 - SFML 소스: [zlib 라이선스](SFML-LICENSE.md).
 - 리소스와 저자: [asset_licenses.md](asset_licenses.md).
@@ -376,3 +401,5 @@ Win32는 [Windows Server 2022/Node.js 22/Mesa 26.0.3][win32-ci]에서 검증했�
 [nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
 [nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
 [win32-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39233764250
+[vulkan-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39272976562
+[vulkan-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39273977175
