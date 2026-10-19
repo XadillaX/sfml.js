@@ -118,7 +118,7 @@ node cocoa/Cocoa.cjs
 
 Window、OpenGL 和 X11 使用 [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) 调用桌面 OpenGL，由 SFML 管理兼容上下文。仓库根目录的 `npm ci` 会安装 `nodegl` 和 `x11`。
 
-nodegl 1.2.1 在安装时编译，需要 CMake、C++ 工具链和 OpenGL 开发头文件及链接库。macOS SDK 自带 OpenGL；Linux 需要安装 `libgl1-mesa-dev` 等开发包。X11 还需要 Linux 和 X11 显示服务（或 XWayland）。nodegl 迁移已在 macOS 验证，Linux／X11 和 Windows 待平台验证。
+nodegl 1.2.1 在安装时编译，需要 CMake、C++ 工具链和 OpenGL 开发头文件及链接库。macOS SDK 自带 OpenGL；Linux 需要安装 `libgl1-mesa-dev` 等开发包。X11 还需要 Linux 和 X11 显示服务（或 XWayland）。Window 和 OpenGL 已在 macOS、Linux（Xvfb／Mesa）和 Windows（Mesa）验证，X11 原生宿主已在 Linux 验证。
 
 <table>
   <thead>
@@ -332,7 +332,9 @@ FTP／SFTP 下载和录音保存时，请在提示中输入临时目录或所需
 
 验证覆盖原生窗口绘制、地形生成、文字／键盘交互、音频解码与 Worker DSP，以及本机网络通信。真实麦克风、扬声器输出、摇杆硬件、设备热插拔及外部 FTP／SFTP 服务仍需在目标环境验证。
 
-切换 nodegl 前，X11、Window 和 OpenGL 已在 Ubuntu 24.04、Node.js 22、Xvfb 和 Mesa 环境验证。nodegl 版本的 Window 和 OpenGL 已在 macOS 验证原生像素、尺寸调整、mipmap／sRGB 切换、退出清理及帧间强制 GC；X11 的 GL 模块通过两个 macOS 原生上下文验证，未运行 X11 宿主。nodegl 的 Linux／X11、Windows、其他 GPU 驱动和 XWayland 待验证。
+nodegl 验收使用 Node.js 22，覆盖 macOS、[Ubuntu 24.04／Xvfb／Mesa 25.2.8][nodegl-linux-ci] 和 [Windows Server 2022／Mesa 26.0.3][nodegl-windows-ci]。Window 和 OpenGL 检查包括原生像素、尺寸调整、mipmap 切换、sRGB 窗口重建、Escape／关闭退出及帧间强制 GC。Linux 的 X11 检查覆盖双子窗口、不同转速、父／子窗口按键退出和原生窗口销毁。macOS 和 Linux 另验证了 SIGINT 清理。
+
+两个 CI 渲染环境均不支持 sRGB framebuffer，已验证回退与窗口重建；实际 sRGB 渲染已在 macOS 验证。其他 GPU 驱动和 XWayland 待验证。
 
 Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制及退出清理，Up／Down 按键由脚本控制。Window 文档截图来自 macOS，使用固定时钟采样。
 
@@ -346,3 +348,5 @@ Cocoa 已在 macOS 本机验证原生控件、默认／事件跟踪模式绘制�
 - 移植的 stb Perlin 实现：[MIT／公有领域双许可证](island/stb_perlin.LICENSE)。
 
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
+[nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
+[nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653

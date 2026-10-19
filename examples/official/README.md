@@ -121,8 +121,8 @@ nodegl 1.2.1 compiles during installation and requires CMake, a C++ toolchain
 and OpenGL development headers/libraries. macOS provides OpenGL in its SDK;
 Linux needs a package such as `libgl1-mesa-dev`.
 X11 additionally needs Linux and an X11 display server (or XWayland).
-The nodegl migration is verified on macOS; Linux/X11 and Windows need
-platform validation.
+Window and OpenGL are verified on macOS, Linux (Xvfb/Mesa) and Windows
+(Mesa); the X11 native host is verified on Linux.
 
 Cocoa requires macOS and uses third-party [objc-js](https://github.com/iamEvanYT/objc-js).
 Install its local dependency using the bundled prebuild (Apple Silicon or Intel):
@@ -376,12 +376,17 @@ interaction, audio decoding and Worker DSP, and local network exchanges.
 Microphones, physical speaker output, joystick hardware, device hotplug and
 external FTP/SFTP services still require testing on the target system.
 
-Before the nodegl migration, X11, Window and OpenGL were verified on
-Ubuntu 24.04 with Node.js 22, Xvfb and Mesa. The nodegl version of Window
-and OpenGL was verified on macOS, including native pixels, resizing,
-mipmap/sRGB toggles, exit cleanup and forced GC between frames. The X11
-GL helper was checked with two native macOS contexts, without the X11 host.
-Linux/X11, Windows, other GPU drivers and XWayland remain unverified for nodegl.
+nodegl verification uses Node.js 22 on macOS,
+[Ubuntu 24.04 with Xvfb/Mesa 25.2.8][nodegl-linux-ci], and
+[Windows Server 2022 with Mesa 26.0.3][nodegl-windows-ci].
+Window and OpenGL checks cover native pixels, resizing, mipmap toggles,
+sRGB window recreation, Escape/close cleanup and forced GC between frames.
+The Linux X11 checks cover both child windows, different rotation speeds,
+parent/child key exits and native window cleanup. SIGINT cleanup is verified
+on macOS and Linux. Both CI renderers lack sRGB framebuffers; fallback and
+recreation pass, while actual sRGB rendering is verified on macOS.
+Other GPU drivers and XWayland remain unverified.
+
 Cocoa was verified locally on macOS, including native controls, rendering
 in default/event-tracking modes and exit cleanup. Its Up/Down input was
 scripted. The Window screenshot uses a fixed clock sample on macOS.
@@ -401,3 +406,5 @@ the original texture dimensions and transparency.
 - Ported stb Perlin implementation: [MIT/public-domain dual license](island/stb_perlin.LICENSE).
 
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
+[nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
+[nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653

@@ -118,7 +118,7 @@ node cocoa/Cocoa.cjs
 
 Window、OpenGL、X11 は [`@wettstein/nodegl`](https://www.npmjs.com/package/@wettstein/nodegl) からデスクトップ OpenGL を呼び出し、SFML が互換コンテキストを管理します。ルートの `npm ci` で `nodegl` と `x11` を導入します。
 
-nodegl 1.2.1 はインストール時にコンパイルするため、CMake、C++ ツールチェーン、OpenGL の開発用ヘッダーとライブラリが必要です。macOS SDK は OpenGL を含み、Linux では `libgl1-mesa-dev` などが必要です。X11 には Linux と X11 ディスプレイサーバー（または XWayland）も必要です。nodegl への移行は macOS で検証済みで、Linux／X11 と Windows はプラットフォーム検証が必要です。
+nodegl 1.2.1 はインストール時にコンパイルするため、CMake、C++ ツールチェーン、OpenGL の開発用ヘッダーとライブラリが必要です。macOS SDK は OpenGL を含み、Linux では `libgl1-mesa-dev` などが必要です。X11 には Linux と X11 ディスプレイサーバー（または XWayland）も必要です。Window と OpenGL は macOS、Linux（Xvfb／Mesa）、Windows（Mesa）で、X11 ネイティブホストは Linux で検証済みです。
 
 <table>
   <thead>
@@ -332,7 +332,9 @@ FTP／SFTP のダウンロードや録音の保存先には、一時ディレク
 
 検証にはネイティブ描画、地形生成、文字／キー操作、音声デコード、Worker DSP、ローカル通信を含みます。実マイク、スピーカー、ジョイスティック、機器の抜き差し、外部 FTP／SFTP は対象環境での確認が必要です。
 
-nodegl 移行前の X11、Window、OpenGL は Ubuntu 24.04、Node.js 22、Xvfb、Mesa で検証しました。nodegl 版の Window と OpenGL は macOS で実画素、サイズ変更、mipmap／sRGB 切替、終了処理、フレーム間の強制 GC を検証済みです。X11 の GL モジュールは 2 つの macOS ネイティブコンテキストで検証し、X11 ホストは実行していません。nodegl 版の Linux／X11、Windows、その他の GPU ドライバー、XWayland は未検証です。
+nodegl の検証は Node.js 22 を使い、macOS、[Ubuntu 24.04／Xvfb／Mesa 25.2.8][nodegl-linux-ci]、[Windows Server 2022／Mesa 26.0.3][nodegl-windows-ci] で実施しました。Window と OpenGL は実画素、サイズ変更、mipmap 切替、sRGB ウィンドウ再作成、Escape／閉じる操作、フレーム間の強制 GC を確認しています。Linux の X11 では両子ウィンドウ、異なる回転速度、親／子ウィンドウのキー終了、ネイティブウィンドウ破棄を検証しました。macOS と Linux では SIGINT の終了処理も確認しています。
+
+両 CI 環境は sRGB フレームバッファー非対応のため、フォールバックとウィンドウ再作成を検証しました。実際の sRGB 描画は macOS で検証済みです。その他の GPU ドライバーと XWayland は未検証です。
 
 Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モードの描画、終了処理を検証し、Up／Down はスクリプトで制御しました。Window の掲載画像は固定時刻で macOS 上で撮影しています。
 
@@ -346,3 +348,5 @@ Cocoa は macOS 上でネイティブ操作、通常／イベント追跡モー�
 - stb Perlin の移植：[MIT／パブリックドメインのデュアルライセンス](island/stb_perlin.LICENSE)。
 
 [upstream]: https://github.com/SFML/SFML/tree/14cea1d978b3dce05780b9234925ca8be9373260/examples
+[nodegl-linux-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39219117768
+[nodegl-windows-ci]: https://github.com/XadillaX/sfml.js/actions/runs/39218329674/job/117947399653
