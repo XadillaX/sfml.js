@@ -3,17 +3,55 @@
 #include <nan.h>
 
 #include <memory>
+#include <unordered_map>
 #include <utility>
 
 namespace sfmljs {
+
+// V8 retains instantiated template metadata in its native context. Reuse one
+// shape per Node environment, and release its persistent before isolate teardown.
+// All handle types have the same layout; the private marker below checks T.
+class SharedHandleTemplate final {
+ public:
+  static v8::Local<v8::ObjectTemplate> Get() {
+    auto* environment = node::GetCurrentEnvironment(Nan::GetCurrentContext());
+    auto found = templates_.find(environment);
+    if (found == templates_.end()) {
+      auto* cache = new SharedHandleTemplate(environment);
+      found = templates_.emplace(environment, cache).first;
+      node::AddEnvironmentCleanupHook(v8::Isolate::GetCurrent(), Cleanup, cache);
+    }
+    return Nan::New(found->second->shape_);
+  }
+
+ private:
+  explicit SharedHandleTemplate(node::Environment* environment)
+      : environment_(environment) {
+    auto shape = Nan::New<v8::ObjectTemplate>();
+    shape->SetInternalFieldCount(1);
+    shape_.Reset(shape);
+  }
+
+  static void Cleanup(void* data) {
+    auto* cache = static_cast<SharedHandleTemplate*>(data);
+    cache->shape_.Reset();
+    templates_.erase(cache->environment_);
+    delete cache;
+  }
+
+  // Worker threads must never share V8 handles. The cleanup hook also removes
+  // entries when an environment is replaced on the same thread.
+  inline static thread_local
+      std::unordered_map<node::Environment*, SharedHandleTemplate*> templates_;
+  node::Environment* environment_;
+  Nan::Persistent<v8::ObjectTemplate> shape_;
+};
 
 template <typename T>
 class SharedHandle final : public Nan::ObjectWrap {
  public:
   static v8::Local<v8::Object> Create(std::shared_ptr<T> owner) {
-    auto shape = Nan::New<v8::ObjectTemplate>();
-    shape->SetInternalFieldCount(1);
-    auto object = Nan::NewInstance(shape).ToLocalChecked();
+    auto object = Nan::NewInstance(SharedHandleTemplate::Get()).ToLocalChecked();
     auto* handle = new SharedHandle(std::move(owner));
     handle->Wrap(object);
     Nan::SetPrivate(object, Key(),
