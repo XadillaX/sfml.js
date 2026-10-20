@@ -31,7 +31,9 @@
 /* Shared navigation and reading surfaces retain the API theme's tokens. */
 .VPNavBar,
 .VPNavBar .content-body,
-.VPNavBar.has-sidebar .title { background: var(--sf-header) !important; }
+.VPNavBar.has-sidebar > .wrapper > .container > .title {
+  background: var(--sf-header) !important;
+}
 .VPNavBar {
   color: var(--sf-header-text);
   --vp-c-text-1: var(--sf-header-text);
@@ -43,7 +45,11 @@
 }
 .VPNavBar .wrapper { padding: 0 32px !important; }
 .VPNavBar .container { max-width: var(--sf-content-width) !important; }
-.VPNavBar.has-sidebar .title { position: static !important; width: auto !important; padding: 0 !important; }
+.VPNavBar.has-sidebar > .wrapper > .container > .title {
+  position: static !important;
+  width: auto !important;
+  padding: 0 !important;
+}
 .VPNavBar.has-sidebar .content { padding: 0 !important; }
 .VPNavBarTitle .title { border: 0 !important; gap: 10px; line-height: 1; white-space: nowrap; }
 .VPNavBarTitle .logo { width: 40px; height: 40px; object-fit: contain; margin-right: 0; }
