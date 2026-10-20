@@ -54,7 +54,7 @@
     "demo:audio": "npm run build && node examples/audio.cjs",
     "demo:network": "npm run build:ts && node examples/network.cjs",
     "demo:ported": "npm run build:ts && node examples/ported/render_window.cjs",
-    "lint": "eslint --ext .ts,.cjs src tools test examples .eslintrc.cjs",
+    "lint": "eslint --ext .ts,.js,.cjs,.mjs . && eslint --no-ignore site/.vitepress/theme/hero-light.mjs",
     "jslint": "npm run lint",
     "test:types": "tsc -p test/tsconfig.json",
     "test:runtime": "node tools/run-tests.cjs",

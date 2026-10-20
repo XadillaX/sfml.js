@@ -12,8 +12,8 @@ const REFLECTION = { x: 1640, y: 867 };
 function sourcePoint(point, mobile) {
   if (!mobile) return { ...point };
   return {
-    x: (point.x * 2880 / 2160 - 1650) * 720 / 930,
-    y: point.y * 1440 / 1080 * 1115 / 1440,
+    x: (((point.x * 2880) / 2160 - 1650) * 720) / 930,
+    y: (((point.y * 1440) / 1080) * 1115) / 1440,
   };
 }
 
@@ -29,19 +29,45 @@ export function lanternPoint(mobile) {
 /**
  * 按 object-fit: cover 和 object-position 将图片坐标映射到容器。
  * @param {object} options 原图、容器尺寸、对齐比例与原图坐标。
+ * @param {number} options.imageWidth 原图宽度。
+ * @param {number} options.imageHeight 原图高度。
+ * @param {number} options.viewportWidth 容器宽度。
+ * @param {number} options.viewportHeight 容器高度。
+ * @param {number} options.positionX 横向对齐比例。
+ * @param {number} options.positionY 纵向对齐比例。
+ * @param {number} options.pointX 原图中的横坐标。
+ * @param {number} options.pointY 原图中的纵坐标。
  * @return {{x: number, y: number, scale: number}|undefined} 显示坐标及缩放系数。
  */
 export function imagePointToViewport({
-  imageWidth, imageHeight, viewportWidth, viewportHeight,
-  positionX, positionY, pointX, pointY,
+  imageWidth,
+  imageHeight,
+  viewportWidth,
+  viewportHeight,
+  positionX,
+  positionY,
+  pointX,
+  pointY,
 }) {
-  if (imageWidth <= 0 || imageHeight <= 0 || viewportWidth <= 0 || viewportHeight <= 0) {
+  if (
+    imageWidth <= 0 ||
+    imageHeight <= 0 ||
+    viewportWidth <= 0 ||
+    viewportHeight <= 0
+  ) {
     return undefined;
   }
-  const scale = Math.max(viewportWidth / imageWidth, viewportHeight / imageHeight);
+  const scale = Math.max(
+    viewportWidth / imageWidth,
+    viewportHeight / imageHeight
+  );
   return {
-    x: pointX * scale + (viewportWidth - imageWidth * scale) * positionX,
-    y: pointY * scale + (viewportHeight - imageHeight * scale) * positionY,
+    x:
+      pointX * scale +
+      (viewportWidth - imageWidth * scale) * positionX,
+    y:
+      pointY * scale +
+      (viewportHeight - imageHeight * scale) * positionY,
     scale,
   };
 }
@@ -81,20 +107,47 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
   let reflectionPositioned = false;
   let disposed = false;
 
-  /** 在有限面积内绘制，不影响文本或按钮的点击区域。 */
+  /**
+   * 在有限面积内绘制，不影响文本或按钮的点击区域。
+   * @param {number} time 动画经过的秒数。
+   * @param {number} breath 当前呼吸周期的亮度比例。
+   */
   function drawLantern(time, breath) {
     const center = size / 2;
     context.clearRect(0, 0, size, size);
     // 原图已包含亮灯，低谷时局部压暗才能看出完整的明暗周期。
-    const dim = context.createRadialGradient(center, center, 0, center, center, 42 * unit);
+    const dim = context.createRadialGradient(
+      center,
+      center,
+      0,
+      center,
+      center,
+      42 * unit
+    );
     dim.addColorStop(0, `rgba(35, 25, 12, ${0.55 * (1 - breath)})`);
-    dim.addColorStop(0.35, `rgba(35, 25, 12, ${0.32 * (1 - breath)})`);
+    dim.addColorStop(
+      0.35,
+      `rgba(35, 25, 12, ${0.32 * (1 - breath)})`
+    );
     dim.addColorStop(1, 'rgba(35, 25, 12, 0)');
     context.fillStyle = dim;
     context.fillRect(0, 0, size, size);
-    const glow = context.createRadialGradient(center, center, 0, center, center, (44 + 28 * breath) * unit);
-    glow.addColorStop(0, `rgba(255, 226, 143, ${0.06 + 0.44 * breath})`);
-    glow.addColorStop(0.25, `rgba(255, 205, 104, ${0.025 + 0.25 * breath})`);
+    const glow = context.createRadialGradient(
+      center,
+      center,
+      0,
+      center,
+      center,
+      (44 + 28 * breath) * unit
+    );
+    glow.addColorStop(
+      0,
+      `rgba(255, 226, 143, ${0.06 + 0.44 * breath})`
+    );
+    glow.addColorStop(
+      0.25,
+      `rgba(255, 205, 104, ${0.025 + 0.25 * breath})`
+    );
     glow.addColorStop(0.65, `rgba(255, 195, 90, ${0.07 * breath})`);
     glow.addColorStop(1, 'rgba(255, 195, 90, 0)');
     context.fillStyle = glow;
@@ -105,7 +158,10 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     context.save();
     context.scale(1, 1.8);
     const core = context.createRadialGradient(0, 0, 0, 0, 0, 13);
-    core.addColorStop(0, `rgba(255, 247, 208, ${0.08 + 0.56 * breath})`);
+    core.addColorStop(
+      0,
+      `rgba(255, 247, 208, ${0.08 + 0.56 * breath})`
+    );
     core.addColorStop(1, 'rgba(255, 232, 167, 0)');
     context.fillStyle = core;
     context.beginPath();
@@ -114,10 +170,11 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     context.restore();
     if (!motion.matches) {
       for (const particle of particles) {
-        const cycle = (time * particle.speed + particle.phase) % (Math.PI * 2);
+        const cycle =
+          (time * particle.speed + particle.phase) % (Math.PI * 2);
         const fade = Math.max(0, Math.sin(cycle));
         const x = Math.sin(cycle + particle.phase) * particle.orbit;
-        const y = 20 - cycle / (Math.PI * 2) * 54;
+        const y = 20 - (cycle / (Math.PI * 2)) * 54;
         context.fillStyle = `rgba(255, 227, 152, ${fade * 0.32})`;
         context.beginPath();
         context.arc(x, y, particle.size, 0, Math.PI * 2);
@@ -127,7 +184,11 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     context.restore();
   }
 
-  /** 反光沿原图的窄光带展开，以柔和的横向碎光表现水面扰动。 */
+  /**
+   * 反光沿原图的窄光带展开，以柔和的横向碎光表现水面扰动。
+   * @param {number} time 动画经过的秒数。
+   * @param {number} breath 当前呼吸周期的亮度比例。
+   */
   function drawReflection(time, breath) {
     water.clearRect(0, 0, reflectionWidth, reflectionHeight);
     water.save();
@@ -138,28 +199,46 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     water.transform(0.7, 0, 0.15, 1, 0, 0);
     const dim = water.createRadialGradient(0, 0, 0, 0, 0, 42);
     dim.addColorStop(0, `rgba(23, 48, 39, ${0.4 * (1 - breath)})`);
-    dim.addColorStop(0.4, `rgba(23, 48, 39, ${0.22 * (1 - breath)})`);
+    dim.addColorStop(
+      0.4,
+      `rgba(23, 48, 39, ${0.22 * (1 - breath)})`
+    );
     dim.addColorStop(1, 'rgba(23, 48, 39, 0)');
     water.fillStyle = dim;
     water.fillRect(-42, -42, 84, 84);
-    const glow = water.createRadialGradient(0, 0, 0, 0, 0, 38 + 6 * breath);
-    glow.addColorStop(0, `rgba(255, 235, 161, ${0.025 + 0.18 * breath})`);
+    const glow = water.createRadialGradient(
+      0,
+      0,
+      0,
+      0,
+      0,
+      38 + 6 * breath
+    );
+    glow.addColorStop(
+      0,
+      `rgba(255, 235, 161, ${0.025 + 0.18 * breath})`
+    );
     glow.addColorStop(0.5, `rgba(255, 220, 138, ${0.07 * breath})`);
     glow.addColorStop(1, 'rgba(255, 220, 138, 0)');
     water.fillStyle = glow;
     water.fillRect(-44, -44, 88, 88);
     water.restore();
     for (let i = 0; i < 9; i++) {
-      const drift = motion.matches ? 0 : Math.sin(time * 1.3 + i * 1.7) * 1.8;
+      const drift = motion.matches
+        ? 0
+        : Math.sin(time * 1.3 + i * 1.7) * 1.8;
       const y = -28 + i * 7;
       const x = y * 0.15 + drift;
       const length = 7 + i * 2.4;
-      const fade = Math.sin((i + 1) / 10 * Math.PI);
+      const fade = Math.sin(((i + 1) / 10) * Math.PI);
       water.save();
       water.translate(x, y);
       water.scale(length, 1.1);
       const ripple = water.createRadialGradient(0, 0, 0, 0, 0, 1);
-      ripple.addColorStop(0, `rgba(255, 240, 179, ${fade * (0.035 + 0.18 * breath)})`);
+      ripple.addColorStop(
+        0,
+        `rgba(255, 240, 179, ${fade * (0.035 + 0.18 * breath)})`
+      );
       ripple.addColorStop(1, 'rgba(255, 240, 179, 0)');
       water.fillStyle = ripple;
       water.fillRect(-1, -1, 2, 2);
@@ -168,15 +247,25 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     water.restore();
   }
 
-  /** 两处光照使用同一时钟，单独离屏的画布不再重绘。 */
+  /**
+   * 两处光照使用同一时钟，单独离屏的画布不再重绘。
+   * @param {number} time 动画经过的秒数。
+   * @param {boolean} force 是否绘制离屏画布。
+   */
   function draw(time, force = false) {
-    const breath = motion.matches ? 0.45
-      : (1 - Math.cos(time * Math.PI * 2 / 4.2)) / 2;
+    const breath = motion.matches
+      ? 0.45
+      : (1 - Math.cos((time * Math.PI * 2) / 4.2)) / 2;
     if (positioned && (force || inView)) drawLantern(time, breath);
-    if (reflectionPositioned && (force || reflectionInView)) drawReflection(time, breath);
+    if (reflectionPositioned && (force || reflectionInView)) {
+      drawReflection(time, breath);
+    }
   }
 
-  /** 以 30 fps 上限绘制，页面隐藏或两处光照均不可见时停止。 */
+  /**
+   * 以 30 fps 上限绘制，页面隐藏或两处光照均不可见时停止。
+   * @param {number} now 当前动画帧的毫秒时间戳。
+   */
   function tick(now) {
     frame = 0;
     if (lastTime) elapsed += Math.min(now - lastTime, 100);
@@ -196,7 +285,11 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     if (disposed || (!positioned && !reflectionPositioned)) return;
     if (motion.matches) {
       draw(0, true);
-    } else if (((positioned && inView) || (reflectionPositioned && reflectionInView)) && !document.hidden) {
+    } else if (
+      ((positioned && inView) ||
+        (reflectionPositioned && reflectionInView)) &&
+      !document.hidden
+    ) {
       frame = requestAnimationFrame(tick);
     }
   }
@@ -231,9 +324,14 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     canvas.style.width = `${size}px`;
     canvas.style.height = `${size}px`;
-    canvas.style.left = `${imageRect.left - heroRect.left + point.x - size / 2}px`;
+    const lampLeft = imageRect.left - heroRect.left + point.x - size / 2;
+    canvas.style.left = `${lampLeft}px`;
     canvas.style.top = `${imageRect.top - heroRect.top + point.y - size / 2}px`;
-    positioned = point.x >= 0 && point.x <= imageRect.width && point.y >= 0 && point.y <= imageRect.height;
+    positioned =
+      point.x >= 0 &&
+      point.x <= imageRect.width &&
+      point.y >= 0 &&
+      point.y <= imageRect.height;
     canvas.style.visibility = positioned ? 'visible' : 'hidden';
     const reflection = sourcePoint(REFLECTION, isMobile);
     const waterPoint = imagePointToViewport({
@@ -248,11 +346,20 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     water.setTransform(ratio, 0, 0, ratio, 0, 0);
     reflectionCanvas.style.width = `${reflectionWidth}px`;
     reflectionCanvas.style.height = `${reflectionHeight}px`;
-    reflectionCanvas.style.left = `${imageRect.left - heroRect.left + waterPoint.x - reflectionWidth / 2}px`;
-    reflectionCanvas.style.top = `${imageRect.top - heroRect.top + waterPoint.y - reflectionHeight / 2}px`;
-    reflectionPositioned = waterPoint.x >= 0 && waterPoint.x <= imageRect.width &&
-      waterPoint.y >= 0 && waterPoint.y <= imageRect.height;
-    reflectionCanvas.style.visibility = reflectionPositioned ? 'visible' : 'hidden';
+    const waterLeft = imageRect.left - heroRect.left +
+      waterPoint.x - reflectionWidth / 2;
+    const waterTop = imageRect.top - heroRect.top +
+      waterPoint.y - reflectionHeight / 2;
+    reflectionCanvas.style.left = `${waterLeft}px`;
+    reflectionCanvas.style.top = `${waterTop}px`;
+    reflectionPositioned =
+      waterPoint.x >= 0 &&
+      waterPoint.x <= imageRect.width &&
+      waterPoint.y >= 0 &&
+      waterPoint.y <= imageRect.height;
+    reflectionCanvas.style.visibility = reflectionPositioned
+      ? 'visible'
+      : 'hidden';
     draw(elapsed / 1000, true);
     updatePlayback();
   }
@@ -282,6 +389,9 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     image.removeEventListener('load', resize);
     mobile.removeEventListener('change', resize);
     motion.removeEventListener('change', updatePlayback);
-    document.removeEventListener('visibilitychange', updatePlayback);
+    document.removeEventListener(
+      'visibilitychange',
+      updatePlayback
+    );
   };
 }

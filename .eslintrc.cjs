@@ -2,17 +2,40 @@
 
 module.exports = {
   root: true,
-  extends: [
-    'eslint-config-egg',
+  extends: [ 'eslint-config-egg' ],
+  ignorePatterns: [
+    'build/',
+    'dist/',
+    'third_party/',
+    'site/.vitepress/cache/',
+    'site/.vitepress/dist/',
+    'site/.vitepress/.temp/',
   ],
-  ignorePatterns: [ 'build/', 'dist/', 'third_party/' ],
   rules: {
     'max-len': [ 'error', { code: 80 }],
-    'jsdoc/check-tag-names': [ 'error', {
-      definedTags: [ 'zh', 'ja', 'ko' ],
-    }],
+    'jsdoc/check-tag-names': [
+      'error',
+      {
+        definedTags: [ 'zh', 'ja', 'ko' ],
+      },
+    ],
   },
   overrides: [
+    {
+      files: [ '**/*.mjs' ],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+    {
+      files: [
+        'tools/typedoc/navigation.js',
+        'site/.vitepress/theme/hero-light.mjs',
+      ],
+      env: {
+        browser: true,
+      },
+    },
     {
       files: [ '**/*.ts' ],
       extends: [

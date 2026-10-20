@@ -42,7 +42,10 @@ export class Clock {
 export class Child extends Clock {}
 `;
 
-/** Exercise TypeDoc's real parsing, including moved parameter comments. */
+/**
+ * Exercise TypeDoc's real parsing, including moved parameter comments.
+ * @param {string} source - TypeScript fixture source to convert.
+ */
 async function convert(source = fixture) {
   const directory = await mkdtemp(resolve(tmpdir(), 'sfml-doc-test-'));
   try {
@@ -63,7 +66,8 @@ async function convert(source = fixture) {
 
 const text = parts => parts.map(part => part.text).join('');
 
-test('production plugin retains locale tags after TypeDoc resets bootstrap options', async () => {
+test('production plugin retains locale tags after ' +
+     'TypeDoc resets bootstrap options', async () => {
   const directory = await mkdtemp(resolve(tmpdir(), 'sfml-plugin-test-'));
   try {
     const file = resolve(directory, 'index.ts');
@@ -73,7 +77,10 @@ test('production plugin retains locale tags after TypeDoc resets bootstrap optio
       entryPoints: [ file ], lang: 'en', logLevel: 'Error',
     });
     for (const tag of [ '@zh', '@ja', '@ko' ]) {
-      assert.ok(app.options.getValue('blockTags').includes(tag), `${tag} must survive bootstrap`);
+      assert.ok(
+        app.options.getValue('blockTags').includes(tag),
+        `${tag} must survive bootstrap`
+      );
     }
     const warnings = [];
     app.logger.warn = message => warnings.push(String(message));
@@ -88,7 +95,9 @@ test('production plugin retains locale tags after TypeDoc resets bootstrap optio
   }
 });
 
-test('renders translated summaries, parameters, returns and inherited comments without locale tags', async () => {
+test('renders translated summaries, parameters, ' +
+     'returns and inherited comments without locale ' +
+     'tags', async () => {
   const project = await convert();
   localizeProject(project, 'ko');
   const clock = project.getChildByName('Clock');
@@ -98,30 +107,49 @@ test('renders translated summaries, parameters, returns and inherited comments w
   assert.equal(text(method.parameters[0].comment.summary), '시간 단위.');
   assert.equal(text(method.comment.getTag('@returns').content), '경과 시간.');
   assert.match(text(method.comment.getTag('@example').content), /new Clock/);
-  assert.ok(method.comment.summary.some(part => part.kind === 'inline-tag' && part.target === clock));
-  const inherited = project.getChildByName('Child').getChildByName('read').signatures[0];
+  assert.ok(
+    method.comment.summary.some(
+      part => part.kind === 'inline-tag' && part.target === clock
+    )
+  );
+  const inherited = project
+    .getChildByName('Child')
+    .getChildByName('read').signatures[0];
   assert.equal(text(inherited.comment.summary), 'Clock을 읽습니다.');
   for (const reflection of Object.values(project.reflections)) {
-    assert.ok(!reflection.comment?.blockTags.some(tag => /^@(zh|ja|ko)$/.test(tag.tag)));
+    assert.ok(
+      !reflection.comment?.blockTags.some(tag =>
+        /^@(zh|ja|ko)$/.test(tag.tag)
+      )
+    );
   }
 });
 
-test('keeps English prose and code while removing translation tags', async () => {
+test('keeps English prose and code while removing ' +
+     'translation tags', async () => {
   const project = await convert();
   localizeProject(project, 'en');
-  const method = project.getChildByName('Clock').getChildByName('read').signatures[0];
+  const method = project
+    .getChildByName('Clock')
+    .getChildByName('read').signatures[0];
   assert.equal(text(method.comment.summary), 'Read Clock.');
   assert.equal(text(method.parameters[0].comment.summary), 'The time unit.');
-  assert.equal(text(method.comment.getTag('@returns').content), 'Elapsed time.');
+  assert.equal(
+    text(method.comment.getTag('@returns').content),
+    'Elapsed time.'
+  );
   assert.ok(!method.comment.blockTags.some(tag => tag.tag === '@ko'));
 });
 
 test('rejects a missing translation with the affected API name', async () => {
-  const project = await convert('/** Untranslated. */ export const missing = 1;');
+  const project = await convert(
+    '/** Untranslated. */ export const missing = 1;'
+  );
   assert.throws(() => localizeProject(project, 'ja'), /Missing @ja.*missing/s);
 });
 
-test('does not use another API translation to conceal a partially translated comment', async () => {
+test('does not use another API translation to ' +
+     'conceal a partially translated comment', async () => {
   const project = await convert(`
 /** Shared.
  * @zh 共享。
@@ -136,7 +164,8 @@ export const partial = 2;`);
   assert.throws(() => localizeProject(project, 'ko'), /partial/);
 });
 
-test('literal grave key symbols do not swallow generated locale tags', async () => {
+test('literal grave key symbols do not swallow ' +
+     'generated locale tags', async () => {
   const source = constantDocs.constantDoc('The ` key') +
     '\nexport const grave = 1;\n' +
     constantDocs.constantDoc('Keyboard ` and ~ key') +
@@ -148,11 +177,15 @@ test('literal grave key symbols do not swallow generated locale tags', async () 
   ]) {
     const project = await convert(source);
     localizeProject(project, locale);
-    assert.equal(text(project.getChildByName('scan').comment.summary), expected);
+    assert.equal(
+      text(project.getChildByName('scan').comment.summary),
+      expected
+    );
   }
 });
 
-test('requires each locally declared parameter translation even when descriptions match', async () => {
+test('requires each locally declared parameter ' +
+     'translation even when descriptions match', async () => {
   const project = await convert(`
 /** Combine values.
  * @zh 合并值。
@@ -169,7 +202,8 @@ export function combine(first: number, second: number): void {}
   assert.throws(() => localizeProject(project, 'ko'), /second/);
 });
 
-test('rejects duplicate bindings instead of silently overwriting a parameter translation', async () => {
+test('rejects duplicate bindings instead of ' +
+     'silently overwriting a parameter translation', async () => {
   const project = await convert(`
 /** Combine.
  * @zh 合并。
@@ -184,7 +218,8 @@ export function combine(first: number): void {}
   assert.throws(() => localizeProject(project, 'zh'), /Duplicate.*first/);
 });
 
-test('rejects translated summaries and parameters with no English source prose', async () => {
+test('rejects translated summaries and parameters ' +
+     'with no English source prose', async () => {
   for (const source of [
     '/** @zh 中文。 */ export const missingEnglish = 1;',
     `/** A function.
@@ -198,7 +233,8 @@ test('rejects translated summaries and parameters with no English source prose',
   }
 });
 
-test('localizes an inline link label even when it is the entire summary', async () => {
+test('localizes an inline link label even when it ' +
+     'is the entire summary', async () => {
   const project = await convert(`
 /** {@link target | Read this}
  * @zh {@link target | 阅读}

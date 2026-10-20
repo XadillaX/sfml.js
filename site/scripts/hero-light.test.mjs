@@ -1,8 +1,12 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { imagePointToViewport, lanternPoint } from '../.vitepress/theme/hero-light.mjs';
+import {
+  imagePointToViewport,
+  lanternPoint,
+} from '../.vitepress/theme/hero-light.mjs';
 
-test('cover mapping accounts for horizontal cropping and object-position', () => {
+test('cover mapping accounts for horizontal ' +
+     'cropping and object-position', () => {
   const point = imagePointToViewport({
     imageWidth: 2000, imageHeight: 1000,
     viewportWidth: 1000, viewportHeight: 800,
@@ -25,7 +29,8 @@ test('cover mapping accounts for vertical cropping', () => {
   assert.equal(point.y, 372);
 });
 
-test('mobile lamp coordinates follow the source crop instead of the desktop percentages', () => {
+test('mobile lamp coordinates follow the source ' +
+     'crop instead of the desktop percentages', () => {
   const point = lanternPoint(true);
   // Original image lamp (2165.33, 876); mobile crop starts at x=1650.
   assert.ok(Math.abs(point.x - 399) < 0.1);
@@ -35,7 +40,8 @@ test('mobile lamp coordinates follow the source crop instead of the desktop perc
   assert.equal(desktop.y, 657);
 });
 
-test('empty or unloaded image dimensions do not produce invalid canvas coordinates', () => {
+test('empty or unloaded image dimensions do not ' +
+     'produce invalid canvas coordinates', () => {
   assert.equal(imagePointToViewport({
     imageWidth: 0, imageHeight: 0,
     viewportWidth: 1000, viewportHeight: 600,

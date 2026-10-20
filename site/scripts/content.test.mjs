@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildManifest, createLinkMapper, transformMarkdown } from './content.mjs';
+import {
+  buildManifest,
+  createLinkMapper,
+  transformMarkdown,
+} from './content.mjs';
 
 const manifest = buildManifest();
 const map = createLinkMapper(manifest, {
@@ -8,15 +12,32 @@ const map = createLinkMapper(manifest, {
   exists: path => !path.includes('missing'),
 });
 
-test('maps nested documentation and README links to the destination locale, preserving fragments', () => {
+test('maps nested documentation and README links to ' +
+     'the destination locale, preserving fragments', () => {
   const cases = [
     [ 'docs/api.md', 'system.md#input-streams', '/guide/system#input-streams' ],
-    [ 'docs/api.ko.md', 'system.ko.md#input-streams', '/ko/guide/system#input-streams' ],
-    [ 'docs/api.ja.md', 'system.md#input-streams', '/ja/guide/system#input-streams' ],
-    [ 'docs/api.md', 'system.zh-CN.md?from=api#input-streams', '/zh/guide/system?from=api#input-streams' ],
+    [
+      'docs/api.ko.md',
+      'system.ko.md#input-streams',
+      '/ko/guide/system#input-streams',
+    ],
+    [
+      'docs/api.ja.md',
+      'system.md#input-streams',
+      '/ja/guide/system#input-streams',
+    ],
+    [
+      'docs/api.md',
+      'system.zh-CN.md?from=api#input-streams',
+      '/zh/guide/system?from=api#input-streams',
+    ],
     [ 'docs/getting-started.zh-CN.md', 'README.zh-CN.md', '/zh/guide/' ],
     [ 'examples/ported/README.ko.md', '../README.ko.md', '/ko/examples' ],
-    [ 'docs/README.ja.md', '../examples/ported/README.ja.md', '/ja/examples/ported' ],
+    [
+      'docs/README.ja.md',
+      '../examples/ported/README.ja.md',
+      '/ja/examples/ported',
+    ],
     [ 'docs/README.zh-CN.md', '../README.zh-CN.md', '/zh/' ],
     [ 'examples/README.md', '../README.md', '/' ],
   ];
@@ -25,7 +46,8 @@ test('maps nested documentation and README links to the destination locale, pres
   }
 });
 
-test('maps project source files and folders to GitHub, never a broken local route', () => {
+test('maps project source files and folders to ' +
+     'GitHub, never a broken local route', () => {
   assert.equal(map('../src/index.ts#L2', 'docs/api.md'),
     'https://github.com/XadillaX/node-sfml/blob/main/src/index.ts#L2');
   assert.equal(map('../src/', 'docs/api.md'),
@@ -36,19 +58,42 @@ test('maps project source files and folders to GitHub, never a broken local rout
     'https://github.com/XadillaX/node-sfml/blob/main/LICENSE');
 });
 
-test('uses one shared media location for all locales and nested example images', () => {
-  assert.equal(map('../assets/render-texture.png', 'docs/graphics.ja.md'), '/media/render-texture.png');
-  assert.equal(map('assets/avatar.gif', 'examples/ported/README.md'), '/media/examples/ported/assets/avatar.gif');
+test('uses one shared media location for all ' +
+     'locales and nested example images', () => {
+  assert.equal(
+    map('../assets/render-texture.png', 'docs/graphics.ja.md'),
+    '/media/render-texture.png'
+  );
+  assert.equal(
+    map('assets/avatar.gif', 'examples/ported/README.md'),
+    '/media/examples/ported/assets/avatar.gif'
+  );
 });
 
-test('distinguishes old TypeDoc URLs from website routes and external links', () => {
+test('distinguishes old TypeDoc URLs from website ' +
+     'routes and external links', () => {
   assert.equal(map('https://sfml.js.org/', 'docs/api.md'), '/reference/');
-  assert.equal(map('https://sfml.js.org/classes/RenderWindow.html#draw', 'docs/api.md'),
-    '/reference/classes/RenderWindow.html#draw');
-  assert.equal(map('https://sfml.js.org/reference/classes/RenderWindow.html#draw', 'docs/api.md'),
-    '/reference/classes/RenderWindow.html#draw');
-  assert.equal(map('https://sfml.js.org/zh/guide/?from=home#intro', 'docs/api.md'),
-    '/zh/guide/?from=home#intro');
+  assert.equal(
+    map(
+      'https://sfml.js.org/classes/RenderWindow.html#draw',
+      'docs/api.md'
+    ),
+    '/reference/classes/RenderWindow.html#draw'
+  );
+  assert.equal(
+    map(
+      'https://sfml.js.org/reference/classes/RenderWindow.html#draw',
+      'docs/api.md'
+    ),
+    '/reference/classes/RenderWindow.html#draw'
+  );
+  assert.equal(
+    map(
+      'https://sfml.js.org/zh/guide/?from=home#intro',
+      'docs/api.md'
+    ),
+    '/zh/guide/?from=home#intro'
+  );
   for (const url of [
     '#draw-snapshots', '/zh/guide/', '/reference/',
     'https://www.sfml-dev.org/documentation/3.1.0/', 'mailto:hello@example.com',
@@ -58,26 +103,42 @@ test('distinguishes old TypeDoc URLs from website routes and external links', ()
   }
 });
 
-test('keeps API links in the source document language, including old member URLs', () => {
+test('keeps API links in the source document ' +
+     'language, including old member URLs', () => {
   assert.equal(map('https://sfml.js.org/', 'docs/api.ja.md'), '/ja/reference/');
-  assert.equal(map('https://sfml.js.org/classes/Clock.html#restart', 'docs/system.ko.md'),
-    '/ko/reference/classes/Clock.html#restart');
-  assert.equal(map('/reference/classes/Clock.html#restart', 'docs/system.zh-CN.md'),
-    '/zh/reference/classes/Clock.html#restart');
+  assert.equal(
+    map(
+      'https://sfml.js.org/classes/Clock.html#restart',
+      'docs/system.ko.md'
+    ),
+    '/ko/reference/classes/Clock.html#restart'
+  );
+  assert.equal(
+    map(
+      '/reference/classes/Clock.html#restart',
+      'docs/system.zh-CN.md'
+    ),
+    '/zh/reference/classes/Clock.html#restart'
+  );
   assert.equal(map('https://sfml.js.org/reference/?q=time', 'docs/api.ja.md'),
     '/ja/reference/?q=time');
 });
 
 test('fails on missing relative targets and repository escapes', () => {
   assert.throws(() => map('missing.md', 'docs/api.md'), /Missing linked file/);
-  assert.throws(() => map('../../outside.md', 'docs/api.md'), /outside the repository/);
+  assert.throws(
+    () => map('../../outside.md', 'docs/api.md'),
+    /outside the repository/
+  );
 });
 
-test('transforms only link nodes, preserving code, stable anchors, tables and localized content', async () => {
+test('transforms only link nodes, preserving code, ' +
+     'stable anchors, tables and localized content', async () => {
   const markdown = [
     '# Graphics',
     '',
-    '**English** · [简体中文](graphics.zh-CN.md) · [日本語](graphics.ja.md) · [한국어](graphics.ko.md)',
+    '**English** · [简体中文](graphics.zh-CN.md) · ' +
+    '[日本語](graphics.ja.md) · [한국어](graphics.ko.md)',
     '',
     '[Streams](system.md#input-streams) and [source][implementation].',
     '',
@@ -100,7 +161,11 @@ test('transforms only link nodes, preserving code, stable anchors, tables and lo
   ].join('\n');
   const output = await transformMarkdown(markdown, 'docs/graphics.md', map);
   assert.match(output, /\[Streams\]\(\/guide\/system#input-streams\)/);
-  assert.match(output, /\[implementation\]: https:\/\/github.com\/XadillaX\/node-sfml\/blob\/main\/src\/index.ts/);
+  assert.match(
+    output,
+    new RegExp('\\[implementation\\]: https://github.com/' +
+      'XadillaX/node-sfml/blob/main/src/index.ts')
+  );
   assert.match(output, /<a id="draw-snapshots"><\/a>/);
   assert.match(output, /!\[Scene\]\(\/media\/render-texture.png\)/);
   assert.match(output, /\[Concepts\]\(\/guide\/concepts#draw-snapshots\)/);
@@ -110,10 +175,15 @@ test('transforms only link nodes, preserving code, stable anchors, tables and lo
   assert.match(output, /\| API\s+\| Link/);
 });
 
-test('removes localized language bars without removing paragraphs that discuss languages', async () => {
+test('removes localized language bars without ' +
+     'removing paragraphs that discuss languages', async () => {
   const output = await transformMarkdown(
-    '# 문서\n\n[English](README.md) / [简体中文](README.zh-CN.md) / [日本語](README.ja.md) / **한국어**\n\nUse English or 日本語 labels.\n',
-    'docs/README.ko.md', map);
+    '# 문서\n\n[English](README.md) / ' +
+    '[简体中文](README.zh-CN.md) / [日本語](README.ja.md) ' +
+    '/ **한국어**\n\nUse English or 日本語 labels.\n',
+    'docs/README.ko.md',
+    map
+  );
   assert.doesNotMatch(output, /README|简体中文/);
   assert.match(output, /Use English or 日本語 labels\./);
 });

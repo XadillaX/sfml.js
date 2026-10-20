@@ -1,16 +1,31 @@
-/** Localized interface copy; API identifiers remain identical across languages. */
+/**
+ * Localized interface copy; API identifiers remain identical across
+ * languages.
+ */
 export const referenceLabels = {
   en: {
-    overview: 'Overview', modules: 'Modules', members: 'Member directory', parameters: 'Parameters',
-    returns: 'Returns', source: 'Source & inheritance', hierarchy: 'Type hierarchy',
-    all: 'All APIs', other: 'Other exports', symbols: 'Symbol members',
-    intro: 'Windows, graphics, audio and networking for Node.js. Browse a module or search for an API by name.',
+    overview: 'Overview',
+    modules: 'Modules',
+    members: 'Member directory',
+    parameters: 'Parameters',
+    returns: 'Returns',
+    source: 'Source & inheritance',
+    hierarchy: 'Type hierarchy',
+    all: 'All APIs',
+    other: 'Other exports',
+    symbols: 'Symbol members',
+    intro:
+      'Windows, graphics, audio and networking for ' +
+      'Node.js. Browse a module or search for an API ' +
+      'by name.',
     moduleDescriptions: [
       'Time, vectors and streams. The foundations shared by every module.',
-      'Windows, input and OpenGL contexts. Connect your application to the desktop.',
+      'Windows, input and OpenGL contexts. Connect ' +
+      'your application to the desktop.',
       'Textures, shapes, text and rendering. Build your 2D scene.',
       'Playback, recording and spatial audio. Work with sound in real time.',
-      'Sockets, packets and protocols. Connect your application to the network.',
+      'Sockets, packets and protocols. Connect your ' +
+      'application to the network.',
     ],
   },
   zh: {
@@ -27,10 +42,18 @@ export const referenceLabels = {
     ],
   },
   ja: {
-    overview: '概要', modules: 'モジュール', members: 'メンバー一覧', parameters: '引数',
-    returns: '戻り値', source: 'ソースと継承', hierarchy: '継承関係',
-    all: 'すべての API', other: 'その他のエクスポート', symbols: 'シンボルメンバー',
-    intro: 'Node.js のためのウィンドウ、グラフィックス、オーディオ、ネットワーク API。モジュールから探すか、API 名で検索できます。',
+    overview: '概要',
+    modules: 'モジュール',
+    members: 'メンバー一覧',
+    parameters: '引数',
+    returns: '戻り値',
+    source: 'ソースと継承',
+    hierarchy: '継承関係',
+    all: 'すべての API',
+    other: 'その他のエクスポート',
+    symbols: 'シンボルメンバー',
+    intro:
+      'Node.js のためのウィンドウ、グラフィックス、オーディオ、ネットワーク API。モジュールから探すか、API 名で検索できます。',
     moduleDescriptions: [
       '時間、ベクトル、ストリーム。各モジュールを支える基盤。',
       'ウィンドウ、入力、OpenGL コンテキスト。デスクトップとの接点。',
@@ -57,8 +80,20 @@ export const referenceLabels = {
 /** Display order and introductory APIs for the five SFML modules. */
 export const modules = [
   { id: 'system', name: 'System', featured: [ 'Clock', 'Time', 'Vector2f' ] },
-  { id: 'window', name: 'Window', featured: [ 'Window', 'Event', 'VideoMode' ] },
-  { id: 'graphics', name: 'Graphics', featured: [ 'RenderWindow', 'Texture', 'Sprite' ] },
+  {
+    id: 'window',
+    name: 'Window',
+    featured: [ 'Window', 'Event', 'VideoMode' ],
+  },
+  {
+    id: 'graphics',
+    name: 'Graphics',
+    featured: [ 'RenderWindow', 'Texture', 'Sprite' ],
+  },
   { id: 'audio', name: 'Audio', featured: [ 'Sound', 'SoundBuffer', 'Music' ] },
-  { id: 'network', name: 'Network', featured: [ 'TcpSocket', 'Http', 'Packet' ] },
+  {
+    id: 'network',
+    name: 'Network',
+    featured: [ 'TcpSocket', 'Http', 'Packet' ],
+  },
 ];
