@@ -53,7 +53,7 @@ for (const page of manifest) {
 
 await cp(resolve(rootDir, 'assets'), resolve(sourceDir, 'public/media'), {
   recursive: true,
-  // Original image-generation files document provenance, not website assets.
+  // Branding vectors are copied separately by copyBranding.
   filter: source => source !== resolve(rootDir, 'assets/branding'),
 });
 await copyBranding(resolve(sourceDir, 'public/media'));
