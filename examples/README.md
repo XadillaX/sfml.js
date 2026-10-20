@@ -91,6 +91,8 @@ The combined all-types example saves PPM; other examples use the formats impleme
 
 ## Game projects
 
+### node-sfml-demos
+
 [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) contains Bomberman, Breakout, Tetris, Doodle Jump and Arkanoid implementations using sfml.js.
 
 Clone this separate repository into your projects directory, then install dependencies and launch from the game's own directory. For Bomberman:
@@ -103,6 +105,44 @@ node index.js
 ```
 
 See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) for game directories, controls and upstream C++ sources. The [native build requirements](../docs/getting-started.md#requirements) also apply.
+
+<a id="16-games"></a>
+
+### 16 games in ClojureScript
+
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) is a fork of [jsyqrt/games](https://github.com/jsyqrt/games). The original 16 games were written in **C++ with SFML**; this fork ports all of them to **ClojureScript with sfml.js**, preserving the original directory layout, assets, game logic and controls.
+
+The games run on Node.js through **nbb**, with no JVM or separate compilation step. Clone the game repository into your projects directory, then run from its root:
+
+```sh
+git clone https://github.com/XadillaX/16-sfml.js-games-ported.git
+cd 16-sfml.js-games-ported
+npm ci
+npx nbb "01 Tetris/main.cljs"
+```
+
+Requires Node.js 20.5+ and the [native build requirements](../docs/getting-started.md#requirements), plus a graphical session with OpenGL window support. Dependencies are pinned to `sfml.js@1.0.0-rc.2` and `nbb@1.6.214`. Each script resolves its assets relative to its own directory.
+
+| Game | Launch from the game repository root |
+| --- | --- |
+| 01 · Tetris | `npx nbb "01 Tetris/main.cljs"` |
+| 02 · Doodle Jump | `npx nbb "02 Doodle Jump/main.cljs"` |
+| 03 · Arkanoid | `npx nbb "03 Arkanoid/main.cljs"` |
+| 04 · Snake | `npx nbb "04 Snake/main.cljs"` |
+| 05 · Minesweeper | `npx nbb "05 Minesweeper/main.cljs"` |
+| 06 · Fifteen-Puzzle | `npx nbb "06 Fifteen-Puzzle/main.cljs"` |
+| 07 · Racing (Top Down) | `npx nbb "07 Racing (Top Down)/main.cljs"` |
+| 08 · Outrun | `npx nbb "08 Outrun/main.cljs"` |
+| 09 · Xonix | `npx nbb "09 Xonix/main.cljs"` |
+| 10 · Bejeweled | `npx nbb "10 Bejeweled/main.cljs"` |
+| 11 · NetWalk (Pipe Puzzle) | `npx nbb "11 NetWalk (Pipe Puzzle)/main.cljs"` |
+| 12 · Mahjong Solitaire | `npx nbb "12 Mahjong Solitaire/main.cljs"` |
+| 13 · Tron | `npx nbb "13 Tron/main.cljs"` |
+| 14 · Chess | `npx nbb "14 Chess/main.cljs" /path/to/stockfish` |
+| 15 · Volleyball | `npx nbb "15 Volleyball/main.cljs"` |
+| 16 · Asteroids | `npx nbb "16 Asteroids/main.cljs"` |
+
+Chess requires an external [Stockfish executable](https://github.com/official-stockfish/Stockfish/releases) for your operating system; pass its path as shown above. Volleyball uses `box2dweb`, installed by `npm ci`. Close the game window to exit. See the [game gallery](https://github.com/XadillaX/16-sfml.js-games-ported#games) for screenshots, source files and controls.
 
 ## SFML official examples
 

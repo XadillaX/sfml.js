@@ -140,6 +140,8 @@ node examples/network.cjs
 
 [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)에는 sfml.js로 구현한 Bomberman, Breakout, Tetris, Doodle Jump, Arkanoid가 포함되어 있습니다. 설치 및 실행 명령은 [게임 프로젝트](examples/README.ko.md#game-projects)를 참고하세요.
 
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported)는 [jsyqrt/games](https://github.com/jsyqrt/games)의 C++과 SFML로 작성된 원본 게임 16개를 모두 ClojureScript와 sfml.js로 이식한 프로젝트입니다. 게임 목록과 nbb 실행 명령은 [게임 16개](examples/README.ko.md#16-games)를 참고하세요.
+
 [play-nes](https://github.com/XadillaX/play-nes) — sfml.js와 JSNES로 구축된 데스크톱 NES 에뮬레이터.
 
 ## 기여하기

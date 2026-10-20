@@ -91,6 +91,8 @@ Remove-Item Env:SFML_DEMO_SNAPSHOT
 
 ## 游戏项目
 
+### node-sfml-demos
+
 [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) 包含使用 sfml.js 实现的 Bomberman、Breakout、Tetris、Doodle Jump 和 Arkanoid。
 
 在存放项目的目录中克隆这个独立仓库，再进入各游戏目录安装依赖并启动。以 Bomberman 为例：
@@ -103,6 +105,44 @@ node index.js
 ```
 
 游戏目录、操作方式与上游 C++ 源码见 [仓库 README](https://github.com/XadillaX/node-sfml-demos#readme)。安装同样需要满足 [原生构建要求](../docs/getting-started.zh-CN.md#requirements)。
+
+<a id="16-games"></a>
+
+### 16 个 ClojureScript 游戏
+
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) Fork 自 [jsyqrt/games](https://github.com/jsyqrt/games)。原版 16 个游戏就是使用 **C++ 和 SFML** 编写的；这个 Fork 将它们全部迁移为 **ClojureScript + sfml.js**，保留原目录结构、素材、游戏逻辑和操作方式。
+
+游戏通过 **nbb** 在 Node.js 上运行，无需 JVM 或单独编译。在存放项目的目录中克隆游戏仓库，再从仓库根目录启动：
+
+```sh
+git clone https://github.com/XadillaX/16-sfml.js-games-ported.git
+cd 16-sfml.js-games-ported
+npm ci
+npx nbb "01 Tetris/main.cljs"
+```
+
+需要 Node.js 20.5+、满足 [原生构建要求](../docs/getting-started.zh-CN.md#requirements) 的环境，以及支持 OpenGL 窗口的图形会话。依赖固定为 `sfml.js@1.0.0-rc.2` 和 `nbb@1.6.214`。各脚本按自身目录定位资源。
+
+| 游戏 | 在游戏仓库根目录运行 |
+| --- | --- |
+| 01 · Tetris（俄罗斯方块） | `npx nbb "01 Tetris/main.cljs"` |
+| 02 · Doodle Jump（涂鸦跳跃） | `npx nbb "02 Doodle Jump/main.cljs"` |
+| 03 · Arkanoid（打砖块） | `npx nbb "03 Arkanoid/main.cljs"` |
+| 04 · Snake（贪吃蛇） | `npx nbb "04 Snake/main.cljs"` |
+| 05 · Minesweeper（扫雷） | `npx nbb "05 Minesweeper/main.cljs"` |
+| 06 · Fifteen-Puzzle（十五数码） | `npx nbb "06 Fifteen-Puzzle/main.cljs"` |
+| 07 · Racing（俯视赛车） | `npx nbb "07 Racing (Top Down)/main.cljs"` |
+| 08 · Outrun（伪 3D 赛车） | `npx nbb "08 Outrun/main.cljs"` |
+| 09 · Xonix（圈地） | `npx nbb "09 Xonix/main.cljs"` |
+| 10 · Bejeweled（宝石消除） | `npx nbb "10 Bejeweled/main.cljs"` |
+| 11 · NetWalk（管道连接） | `npx nbb "11 NetWalk (Pipe Puzzle)/main.cljs"` |
+| 12 · Mahjong Solitaire（麻将接龙） | `npx nbb "12 Mahjong Solitaire/main.cljs"` |
+| 13 · Tron（光轮摩托） | `npx nbb "13 Tron/main.cljs"` |
+| 14 · Chess（国际象棋） | `npx nbb "14 Chess/main.cljs" /path/to/stockfish` |
+| 15 · Volleyball（排球） | `npx nbb "15 Volleyball/main.cljs"` |
+| 16 · Asteroids（小行星） | `npx nbb "16 Asteroids/main.cljs"` |
+
+Chess 需要自行下载适合当前系统的 [Stockfish 可执行文件](https://github.com/official-stockfish/Stockfish/releases)，按表中命令传入路径。Volleyball 使用的 `box2dweb` 由 `npm ci` 安装。关闭游戏窗口即可退出。截图、源码和操作说明见 [游戏展示](https://github.com/XadillaX/16-sfml.js-games-ported#games)。
 
 ## SFML 官方示例
 
