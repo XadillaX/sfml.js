@@ -6,6 +6,68 @@
 
 [개요](../README.ko.md) · [기능 예제](../features/README.ko.md) · [공식 예제](../official/README.ko.md)
 
+<a id="game-projects"></a>
+
+<a id="super-mario-kart"></a>
+
+## Süper Mario Kart
+
+[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js)는 C++과 SFML 2.5.1로 작성된 [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart)를 **TypeScript + sfml.js**로 이식한 프로젝트입니다. TypeScript 모듈 54개가 원본 소스 구조를 따르며 Mode 7 렌더링, 게임 로직, AI와 리소스를 유지합니다.
+
+프로젝트를 보관할 디렉터리에 이 독립 저장소를 복제하고, 저장소 루트에서 설치 후 실행합니다.
+
+```sh
+git clone https://github.com/XadillaX/super-mario-kart-sfml.js.git
+cd super-mario-kart-sfml.js
+npm install
+npm start
+```
+
+Node.js 20.5 이상, 오디오 출력이 있는 그래픽 데스크톱과 [네이티브 빌드 요구 사항](../../docs/getting-started.ko.md#requirements)을 충족하는 환경이 필요합니다. 의존성은 `sfml.js@1.0.0-rc.2`와 `typescript@7.0.2`로 고정됩니다. `npm start`는 `dist/`로 컴파일한 뒤 네이티브 게임을 실행합니다. Python 코스 제작 도구는 선택 사항이며 플레이에는 필요하지 않습니다.
+
+<div class="example-gallery">
+  <article class="example-entry" id="super-mario-kart-game">
+    <a href="../../assets/examples/projects/super-mario-kart.webp">
+      <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart: TypeScript 이식판에서 Donut Plains 1을 실제 주행한 화면">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/super-mario-kart-sfml.js">Süper Mario Kart</a></strong></p>
+      <p>드라이버 8명, 코스 5개와 50cc·100cc·150cc를 제공합니다. Grand Prix는 다섯 코스 전체, Versus는 선택한 단일 코스에서 경주합니다. 두 모드 모두 플레이어 1명이 AI 7명과 대결하며 드리프트, 점프, 동전과 아이템을 사용합니다.</p>
+      <p><strong>조작</strong> · X 가속, Z 브레이크, C 점프 / 드리프트, 좌우 방향키 조향, 위아래 방향키로 전방 / 후방 아이템 사용. Enter는 메뉴 확인 / 코스 소개 건너뛰기, Esc는 일시 정지입니다. 일시 정지 메뉴에서 No를 선택하고 Enter를 누르면 재개하며, Yes는 경주를 포기합니다.</p>
+      <p><code>super-mario-kart-sfml.js/</code>에서 <code>npm install</code> 후 <code>npm start</code>를 실행하세요. Controls와 Settings 메뉴에서 키, 음량과 해상도를 설정할 수 있습니다.</p>
+      <p><a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">TypeScript 소스</a> · <a href="https://github.com/vmbatlle/super-mario-kart">원본 C++ 소스</a></p>
+    </div>
+  </article>
+</div>
+
+코스는 Donut Plains 1, Mario Circuit 2, Ghost Valley 1, Bowser Castle 1, Rainbow Road입니다. 코드는 [GPL v3](https://github.com/XadillaX/super-mario-kart-sfml.js/blob/HEAD/LICENSE)이며 캐릭터, 그래픽과 음악의 권리는 Nintendo에 있습니다. 비공식 교육용 팬 프로젝트입니다.
+
+<a id="play-nes"></a>
+
+## play-nes
+
+Node.js 22를 권장합니다. 네이티브 확장에는 Python과 C++20 컴파일러가 필요합니다. 오디오 출력이 있는 그래픽 데스크톱에서 실행하세요. 배포된 플레이어를 설치하고 내장 Concentration Room 또는 사용 권한이 있는 로컬 ROM을 실행합니다.
+
+```sh
+npm install -g play-nes
+nes croom
+nes "/path/to/your game.nes"
+```
+
+<div class="example-gallery">
+  <article class="example-entry" id="play-nes-player">
+    <a href="../../assets/examples/projects/play-nes.webp">
+      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
+      <p>JSNES로 에뮬레이션하고 sfml.js로 네이티브 그래픽과 오디오를 처리하는 TypeScript 데스크톱 NES 에뮬레이터입니다. 미리보기의 게임은 Concentration Room입니다.</p>
+      <p><strong>조작</strong> · 플레이어 1: WASD 방향, J/K는 A/B, 오른쪽 Shift는 Select, Enter는 Start. 플레이어 2: 방향키, 숫자 패드 5/6은 A/B, 숫자 패드 8/9는 Select/Start. Esc 또는 창 닫기로 종료하며 포커스를 잃으면 누른 버튼을 해제합니다.</p>
+      <p><code>--scale 3</code>은 창 배율을 바꾸고 <code>--frameRate 60</code>은 정상 속도를 선택합니다. 프레임률은 표시뿐 아니라 에뮬레이션 속도도 바꿉니다. 전체 옵션은 <code>nes --help</code>를 참고하세요.</p>
+    </div>
+  </article>
+</div>
+
 <a id="breakout"></a>
 
 ## 벽돌 깨기 플레이하기
@@ -31,8 +93,6 @@ SFML_DEMO_SNAPSHOT=/tmp/sfml-breakout.png \
 ```
 
 마지막 프레임의 실제 네이티브 화면을 저장합니다. `--autoplay`는 패들을 자동으로 조작하고 `--frames`는 실행 프레임 수를 제한합니다. `node examples/breakout.cjs --self-test`는 창을 열지 않고 게임 로직을 검사합니다.
-
-<a id="game-projects"></a>
 
 <a id="node-sfml-demos"></a>
 
@@ -319,31 +379,6 @@ Node.js 20.5 이상, [네이티브 빌드 요구 사항](../../docs/getting-star
 </div>
 
 Chess에는 현재 운영체제용 [Stockfish 실행 파일](https://github.com/official-stockfish/Stockfish/releases)이 별도로 필요하며, 표의 명령에 실행 파일 경로를 전달합니다. Volleyball이 사용하는 `box2dweb`은 `npm ci`로 설치됩니다. 게임 창을 닫으면 종료됩니다. 스크린샷, 소스 코드와 조작법은 [게임 목록](https://github.com/XadillaX/16-sfml.js-games-ported#games)을 참고하세요.
-<a id="play-nes"></a>
-
-## play-nes
-
-Node.js 22를 권장합니다. 네이티브 확장에는 Python과 C++20 컴파일러가 필요합니다. 오디오 출력이 있는 그래픽 데스크톱에서 실행하세요. 배포된 플레이어를 설치하고 내장 Concentration Room 또는 사용 권한이 있는 로컬 ROM을 실행합니다.
-
-```sh
-npm install -g play-nes
-nes croom
-nes "/path/to/your game.nes"
-```
-
-<div class="example-gallery">
-  <article class="example-entry" id="play-nes-player">
-    <a href="../../assets/examples/projects/play-nes.webp">
-      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
-      <p>JSNES로 에뮬레이션하고 sfml.js로 네이티브 그래픽과 오디오를 처리하는 TypeScript 데스크톱 NES 에뮬레이터입니다. 미리보기의 게임은 Concentration Room입니다.</p>
-      <p><strong>조작</strong> · 플레이어 1: WASD 방향, J/K는 A/B, 오른쪽 Shift는 Select, Enter는 Start. 플레이어 2: 방향키, 숫자 패드 5/6은 A/B, 숫자 패드 8/9는 Select/Start. Esc 또는 창 닫기로 종료하며 포커스를 잃으면 누른 버튼을 해제합니다.</p>
-      <p><code>--scale 3</code>은 창 배율을 바꾸고 <code>--frameRate 60</code>은 정상 속도를 선택합니다. 프레임률은 표시뿐 아니라 에뮬레이션 속도도 바꿉니다. 전체 옵션은 <code>nes --help</code>를 참고하세요.</p>
-    </div>
-  </article>
-</div>
 
 ## 스크린샷 출처
 

@@ -6,6 +6,68 @@
 
 [总览](../README.zh-CN.md) · [功能示例](../features/README.zh-CN.md) · [官方示例](../official/README.zh-CN.md)
 
+<a id="game-projects"></a>
+
+<a id="super-mario-kart"></a>
+
+## Süper Mario Kart
+
+[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) 使用 **TypeScript + sfml.js** 移植 [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart)。原版使用 C++ 和 SFML 2.5.1 编写；移植版的 54 个 TypeScript 模块沿用上游源码目录结构，保留 Mode 7 渲染、玩法、AI 与素材。
+
+在存放项目的目录中克隆这个独立仓库，再从仓库根目录安装并启动：
+
+```sh
+git clone https://github.com/XadillaX/super-mario-kart-sfml.js.git
+cd super-mario-kart-sfml.js
+npm install
+npm start
+```
+
+需要 Node.js 20.5+、带音频输出的图形桌面，并满足 [原生构建要求](../../docs/getting-started.zh-CN.md#requirements)。项目固定依赖 `sfml.js@1.0.0-rc.2` 和 `typescript@7.0.2`。`npm start` 编译到 `dist/` 后启动原生游戏；Python 赛道制作工具为可选项，游玩不需要安装。
+
+<div class="example-gallery">
+  <article class="example-entry" id="super-mario-kart-game">
+    <a href="../../assets/examples/projects/super-mario-kart.webp">
+      <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart：TypeScript 移植版在 Donut Plains 1 赛道实际游玩的画面">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/super-mario-kart-sfml.js">Süper Mario Kart</a></strong></p>
+      <p>8 名车手、5 条赛道，可选 50cc、100cc 或 150cc。Grand Prix 连续挑战五条赛道；Versus 选择单条赛道。两种模式均为一名玩家对战七名 AI，包含漂移、跳跃、金币与道具。</p>
+      <p><strong>操作</strong> · X 加速，Z 刹车，C 跳跃／漂移，左／右转向，上／下向前／向后使用道具。Enter 确认菜单或跳过赛道预览，Esc 暂停。暂停菜单选择 No 并按 Enter 继续，选择 Yes 则放弃比赛。</p>
+      <p>在 <code>super-mario-kart-sfml.js/</code> 内先运行 <code>npm install</code>，再运行 <code>npm start</code>。Controls 和 Settings 菜单可调整按键、音量与分辨率。</p>
+      <p><a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">TypeScript 源码</a> · <a href="https://github.com/vmbatlle/super-mario-kart">原版 C++ 源码</a></p>
+    </div>
+  </article>
+</div>
+
+五条赛道分别为 Donut Plains 1、Mario Circuit 2、Ghost Valley 1、Bowser Castle 1 和 Rainbow Road。代码采用 [GPL v3](https://github.com/XadillaX/super-mario-kart-sfml.js/blob/HEAD/LICENSE)；角色、图像与音乐归 Nintendo 所有。这是非官方的教育用途同人项目。
+
+<a id="play-nes"></a>
+
+## play-nes
+
+推荐 Node.js 22；原生扩展需要 Python 和 C++20 编译器。运行时需要图形桌面和音频输出设备。安装已发布的播放器后启动内置的 Concentration Room，或传入有权使用的本地 ROM：
+
+```sh
+npm install -g play-nes
+nes croom
+nes "/path/to/your game.nes"
+```
+
+<div class="example-gallery">
+  <article class="example-entry" id="play-nes-player">
+    <a href="../../assets/examples/projects/play-nes.webp">
+      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
+      <p>使用 TypeScript 编写的桌面 NES 模拟器，由 JSNES 负责模拟，sfml.js 提供原生图形和音频。预览中的游戏是 Concentration Room。</p>
+      <p><strong>操作</strong> · 玩家一：WASD 方向，J／K 对应 A／B，右 Shift 对应 Select，Enter 对应 Start。玩家二：方向键，小键盘 5／6 对应 A／B，小键盘 8／9 对应 Select／Start。Esc 或关闭窗口退出；失去焦点时释放按住的按键。</p>
+      <p><code>--scale 3</code> 调整窗口缩放，<code>--frameRate 60</code> 使用正常速度。帧率也会改变模拟速度，不仅改变显示速度。完整选项见 <code>nes --help</code>。</p>
+    </div>
+  </article>
+</div>
+
 <a id="breakout"></a>
 
 ## 玩一局打砖块
@@ -31,8 +93,6 @@ SFML_DEMO_SNAPSHOT=/tmp/sfml-breakout.png \
 ```
 
 截图保存最后一帧的真实原生画面。`--autoplay` 自动控制挡板，`--frames` 限制运行帧数。`node examples/breakout.cjs --self-test` 无需打开窗口即可检查游戏逻辑。
-
-<a id="game-projects"></a>
 
 <a id="node-sfml-demos"></a>
 
@@ -319,31 +379,6 @@ npx nbb "01 Tetris/main.cljs"
 </div>
 
 Chess 需要自行下载适合当前系统的 [Stockfish 可执行文件](https://github.com/official-stockfish/Stockfish/releases)，按表中命令传入路径。Volleyball 使用的 `box2dweb` 由 `npm ci` 安装。关闭游戏窗口即可退出。截图、源码和操作说明见 [游戏展示](https://github.com/XadillaX/16-sfml.js-games-ported#games)。
-<a id="play-nes"></a>
-
-## play-nes
-
-推荐 Node.js 22；原生扩展需要 Python 和 C++20 编译器。运行时需要图形桌面和音频输出设备。安装已发布的播放器后启动内置的 Concentration Room，或传入有权使用的本地 ROM：
-
-```sh
-npm install -g play-nes
-nes croom
-nes "/path/to/your game.nes"
-```
-
-<div class="example-gallery">
-  <article class="example-entry" id="play-nes-player">
-    <a href="../../assets/examples/projects/play-nes.webp">
-      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
-      <p>使用 TypeScript 编写的桌面 NES 模拟器，由 JSNES 负责模拟，sfml.js 提供原生图形和音频。预览中的游戏是 Concentration Room。</p>
-      <p><strong>操作</strong> · 玩家一：WASD 方向，J／K 对应 A／B，右 Shift 对应 Select，Enter 对应 Start。玩家二：方向键，小键盘 5／6 对应 A／B，小键盘 8／9 对应 Select／Start。Esc 或关闭窗口退出；失去焦点时释放按住的按键。</p>
-      <p><code>--scale 3</code> 调整窗口缩放，<code>--frameRate 60</code> 使用正常速度。帧率也会改变模拟速度，不仅改变显示速度。完整选项见 <code>nes --help</code>。</p>
-    </div>
-  </article>
-</div>
 
 ## 截图来源
 

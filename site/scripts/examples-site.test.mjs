@@ -169,14 +169,16 @@ locales.forEach(locale => {
         destinations.map(route => locale.prefix + route));
       const links = elements(home, node => node.tagName === 'a')
         .map(node => attr(node, 'href'));
-      for (const anchor of [ 'node-sfml-demos', '16-games', 'play-nes' ]) {
-        assert.ok(links.includes(
-          `${locale.prefix}/examples/projects#${anchor}`
-        ), `missing local project entry: ${anchor}`);
-      }
+      const projectLinks = elements(home, node =>
+        hasClass(node, 'project-entry-links')
+      ).map(node => elements(node, child => child.tagName === 'a')[0]);
+      assert.deepEqual(projectLinks.map(node => attr(node, 'href')), [
+        'super-mario-kart', 'play-nes', 'node-sfml-demos', '16-games',
+      ].map(anchor => `${locale.prefix}/examples/projects#${anchor}`));
       for (const source of [
         'node-sfml/blob/main/examples/breakout.cjs',
         'node-sfml/blob/main/examples/render-texture.cjs',
+        'super-mario-kart-sfml.js',
         'node-sfml-demos',
         '16-sfml.js-games-ported',
         'play-nes',
@@ -186,6 +188,7 @@ locales.forEach(locale => {
       }
       for (const destination of [
         ...destinations,
+        '/examples/projects#super-mario-kart',
         '/examples/projects#node-sfml-demos',
         '/examples/projects#16-games',
         '/examples/projects#play-nes',
@@ -286,12 +289,16 @@ test('generated documentation links resolve without legacy site routes',
 test('rendered galleries preserve entries and preview links', () => {
   for (const locale of locales) {
     for (const [ section, count ] of [
-      [ 'features', 15 ], [ 'official', 24 ], [ 'projects', 23 ],
+      [ 'features', 15 ], [ 'official', 24 ], [ 'projects', 24 ],
     ]) {
       const page = pages.get(`${locale.prefix}/examples/${section}`);
       assert.ok(page, `missing ${section} gallery in ${locale.lang}`);
       const entries = elements(page, node => hasClass(node, 'example-entry'));
       assert.equal(entries.length, count, `${locale.lang}/${section}`);
+      if (section === 'projects') {
+        assert.deepEqual(entries.slice(0, 3).map(node => attr(node, 'id')),
+          [ 'super-mario-kart-game', 'play-nes-player', 'breakout-game' ]);
+      }
       for (const entry of entries) {
         assert.ok(attr(entry, 'id'));
         assert.equal(elements(entry, node =>

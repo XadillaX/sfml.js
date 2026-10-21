@@ -6,6 +6,68 @@
 
 [Overview](../README.md) · [Feature examples](../features/README.md) · [Official examples](../official/README.md)
 
+<a id="game-projects"></a>
+
+<a id="super-mario-kart"></a>
+
+## Süper Mario Kart
+
+[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) is a **TypeScript + sfml.js** port of [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart), originally written in C++ with SFML 2.5.1. Its 54 TypeScript modules follow the upstream source layout, retaining Mode 7 rendering, gameplay, AI and assets.
+
+Clone this independent repository into your projects directory, then install and run from its root:
+
+```sh
+git clone https://github.com/XadillaX/super-mario-kart-sfml.js.git
+cd super-mario-kart-sfml.js
+npm install
+npm start
+```
+
+Requires Node.js 20.5+, a graphical desktop with audio output and the [native build prerequisites](../../docs/getting-started.md#requirements). The project pins `sfml.js@1.0.0-rc.2` and `typescript@7.0.2`. `npm start` compiles to `dist/` and launches the native game; Python circuit-authoring tools are optional.
+
+<div class="example-gallery">
+  <article class="example-entry" id="super-mario-kart-game">
+    <a href="../../assets/examples/projects/super-mario-kart.webp">
+      <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart: a played race on Donut Plains 1 in the TypeScript port">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/super-mario-kart-sfml.js">Süper Mario Kart</a></strong></p>
+      <p>Eight drivers, five circuits and 50cc, 100cc or 150cc. Grand Prix runs all five circuits; Versus selects one circuit. Both modes feature one human player against seven AI drivers, with drifting, jumps, coins and items.</p>
+      <p><strong>Controls</strong> · X accelerates, Z brakes, C hops / drifts, Left / Right steer, Up / Down use items forward / backward. Enter confirms menus or skips the flyover; Esc pauses. In the pause menu, select No and press Enter to resume, or Yes to give up.</p>
+      <p>Run <code>npm install</code> then <code>npm start</code> from <code>super-mario-kart-sfml.js/</code>. Controls and Settings menus configure bindings, volume and resolution.</p>
+      <p><a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">TypeScript source</a> · <a href="https://github.com/vmbatlle/super-mario-kart">Original C++ source</a></p>
+    </div>
+  </article>
+</div>
+
+The circuits are Donut Plains 1, Mario Circuit 2, Ghost Valley 1, Bowser Castle 1 and Rainbow Road. Code is licensed under [GPL v3](https://github.com/XadillaX/super-mario-kart-sfml.js/blob/HEAD/LICENSE); the characters, graphics and music belong to Nintendo. This is an unofficial educational fan project.
+
+<a id="play-nes"></a>
+
+## play-nes
+
+Node.js 22 is recommended; Python and a C++20 compiler are required for the native addon. Run in a graphical desktop with audio output. Install the published player and launch the bundled Concentration Room, or pass a local ROM you have permission to use:
+
+```sh
+npm install -g play-nes
+nes croom
+nes "/path/to/your game.nes"
+```
+
+<div class="example-gallery">
+  <article class="example-entry" id="play-nes-player">
+    <a href="../../assets/examples/projects/play-nes.webp">
+      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
+      <p>A TypeScript desktop NES emulator using JSNES for emulation and sfml.js for native graphics and audio. The preview features Concentration Room.</p>
+      <p><strong>Controls</strong> · Player 1: WASD directions, J/K for A/B, Right Shift for Select, Enter for Start. Player 2: arrow keys, Numpad 5/6 for A/B, Numpad 8/9 for Select/Start. Esc or window close exits; held buttons are released on focus loss.</p>
+      <p><code>--scale 3</code> changes window scale; <code>--frameRate 60</code> selects normal speed. Frame rate changes emulation speed, not only display speed. Use <code>nes --help</code> for all options.</p>
+    </div>
+  </article>
+</div>
+
 <a id="breakout"></a>
 
 ## Play Breakout
@@ -31,8 +93,6 @@ SFML_DEMO_SNAPSHOT=/tmp/sfml-breakout.png \
 ```
 
 The screenshot saves the actual native framebuffer at the final frame. `--autoplay` controls the paddle; `--frames` bounds the run. `node examples/breakout.cjs --self-test` checks the game logic without opening a window.
-
-<a id="game-projects"></a>
 
 <a id="node-sfml-demos"></a>
 
@@ -319,31 +379,6 @@ Requires Node.js 20.5+ and the [native build requirements](../../docs/getting-st
 </div>
 
 Chess requires an external [Stockfish executable](https://github.com/official-stockfish/Stockfish/releases) for your operating system; pass its path as shown above. Volleyball uses `box2dweb`, installed by `npm ci`. Close the game window to exit. See the [game gallery](https://github.com/XadillaX/16-sfml.js-games-ported#games) for screenshots, source files and controls.
-<a id="play-nes"></a>
-
-## play-nes
-
-Node.js 22 is recommended; Python and a C++20 compiler are required for the native addon. Run in a graphical desktop with audio output. Install the published player and launch the bundled Concentration Room, or pass a local ROM you have permission to use:
-
-```sh
-npm install -g play-nes
-nes croom
-nes "/path/to/your game.nes"
-```
-
-<div class="example-gallery">
-  <article class="example-entry" id="play-nes-player">
-    <a href="../../assets/examples/projects/play-nes.webp">
-      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
-      <p>A TypeScript desktop NES emulator using JSNES for emulation and sfml.js for native graphics and audio. The preview features Concentration Room.</p>
-      <p><strong>Controls</strong> · Player 1: WASD directions, J/K for A/B, Right Shift for Select, Enter for Start. Player 2: arrow keys, Numpad 5/6 for A/B, Numpad 8/9 for Select/Start. Esc or window close exits; held buttons are released on focus loss.</p>
-      <p><code>--scale 3</code> changes window scale; <code>--frameRate 60</code> selects normal speed. Frame rate changes emulation speed, not only display speed. Use <code>nes --help</code> for all options.</p>
-    </div>
-  </article>
-</div>
 
 ## Screenshot sources
 

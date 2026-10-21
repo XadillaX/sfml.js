@@ -148,6 +148,28 @@ win.<span class="fn">setFramerateLimit</span>(<span class="num">60</span>);
           <p class="project-entry-links">
             <a
               class="text-link"
+              :href="withBase(`${prefix}examples/projects#super-mario-kart`)"
+            >
+              <span>Süper Mario Kart</span><ArrowIcon />
+            </a>
+            <a class="text-link" href="https://github.com/XadillaX/super-mario-kart-sfml.js">
+              {{ copy.source }}
+            </a>
+          </p>
+          <p class="project-entry-links">
+            <a
+              class="text-link"
+              :href="withBase(`${prefix}examples/projects#play-nes`)"
+            >
+              <span>{{ copy.playNes }}</span><ArrowIcon />
+            </a>
+            <a class="text-link" href="https://github.com/XadillaX/play-nes">
+              {{ copy.source }}
+            </a>
+          </p>
+          <p class="project-entry-links">
+            <a
+              class="text-link"
               :href="withBase(`${prefix}examples/projects#node-sfml-demos`)"
             >
               <span>{{ copy.gameProjectsAction }}</span><ArrowIcon />
@@ -164,17 +186,6 @@ win.<span class="fn">setFramerateLimit</span>(<span class="num">60</span>);
               <span>{{ copy.sixteenGames }}</span><ArrowIcon />
             </a>
             <a class="text-link" href="https://github.com/XadillaX/16-sfml.js-games-ported">
-              {{ copy.source }}
-            </a>
-          </p>
-          <p class="project-entry-links">
-            <a
-              class="text-link"
-              :href="withBase(`${prefix}examples/projects#play-nes`)"
-            >
-              <span>{{ copy.playNes }}</span><ArrowIcon />
-            </a>
-            <a class="text-link" href="https://github.com/XadillaX/play-nes">
               {{ copy.source }}
             </a>
           </p>

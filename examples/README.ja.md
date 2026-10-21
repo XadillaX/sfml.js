@@ -18,7 +18,7 @@
 
 - [公式サンプル](official/README.ja.md): 操作方法、プラットフォーム要件、出典を記載した 24 個の SFML 移植。
 
-- <a id="game-projects"></a>[ゲームとアプリ](projects/README.ja.md): Breakout、JavaScript の 5 ゲーム、ClojureScript の 16 ゲーム、play-nes。
+- <a id="game-projects"></a>[ゲームとアプリ](projects/README.ja.md): [Süper Mario Kart](projects/README.ja.md#super-mario-kart)、[play-nes](projects/README.ja.md#play-nes)、Breakout、JavaScript の 5 ゲーム、ClojureScript の 16 ゲーム。
 
 ## 実行前の準備
 

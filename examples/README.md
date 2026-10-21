@@ -18,7 +18,7 @@
 
 - [Official examples](official/README.md): 24 SFML ports with controls, platform requirements and upstream credits.
 
-- <a id="game-projects"></a>[Games and applications](projects/README.md): Breakout, five JavaScript games, 16 ClojureScript games and play-nes.
+- <a id="game-projects"></a>[Games and applications](projects/README.md): [Süper Mario Kart](projects/README.md#super-mario-kart), [play-nes](projects/README.md#play-nes), Breakout, five JavaScript games and 16 ClojureScript games.
 
 ## Before running
 

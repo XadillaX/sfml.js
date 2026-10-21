@@ -18,7 +18,7 @@
 
 - [官方示例](official/README.zh-CN.md)：24 个 SFML 移植示例，附操作方式、平台要求和上游来源。
 
-- <a id="game-projects"></a>[游戏与应用](projects/README.zh-CN.md)：Breakout、5 个 JavaScript 游戏、16 个 ClojureScript 游戏和 play-nes。
+- <a id="game-projects"></a>[游戏与应用](projects/README.zh-CN.md)：[Süper Mario Kart](projects/README.zh-CN.md#super-mario-kart)、[play-nes](projects/README.zh-CN.md#play-nes)、Breakout、5 个 JavaScript 游戏和 16 个 ClojureScript 游戏。
 
 ## 运行准备
 

@@ -1,7 +1,7 @@
 {
   "capturedOn": "2026-10-21",
   "platform": "macOS arm64, Node.js 22.22.2",
-  "method": "Real gameplay with process-local keyboard, mouse and event inputs. Native framebuffer copied through SFML Texture and Image APIs, then encoded as WebP at quality 88.",
+  "method": "Real gameplay with process-local keyboard, mouse and event inputs. Native framebuffer copied through SFML Texture and Image APIs, then encoded as WebP at quality 88 unless an entry specifies otherwise.",
   "notes": [
     "Game logic, board state, clocks, random results and assets were not modified.",
     "Captures used the existing game installations with sfml.js 1.0.0-rc.2; they do not claim an upgrade of those projects to 1.0.0.",
@@ -24,9 +24,25 @@
       "url": "https://github.com/XadillaX/play-nes",
       "commit": "d90af5b47e43bc6a11573c48f36c266843c4207b",
       "launch": "node bin/nes croom -f 60 -s 2"
+    },
+    "super-mario-kart": {
+      "url": "https://github.com/XadillaX/super-mario-kart-sfml.js",
+      "commit": "ae15cdb640510bde7d7a90c6a5681177ebf64734",
+      "launch": "npm start from the repository root",
+      "origin": "TypeScript + sfml.js port of vmbatlle/super-mario-kart, originally C++ + SFML 2.5.1"
     }
   },
   "screenshots": [
+    {
+      "file": "super-mario-kart.webp",
+      "source": "src/game.ts",
+      "raceFrames": 127,
+      "elapsedMs": 2214,
+      "inputs": "Confirm Grand Prix, 50cc and Mario with Enter, skip the flyover, then hold X to accelerate.",
+      "progress": "Mario drove from normalized position (0.109375, 0.69140625) to (0.109375, 0.511599600315094) on Donut Plains 1; moving at capture, ranked sixth of eight.",
+      "encoding": "Lossless WebP, 768 by 672 pixels, 29804 bytes.",
+      "capture": "Existing compiled game running its real 60 Hz loop; process-local input hooks only. Player control type, physics, clock and AI unchanged. Preferences were not saved."
+    },
     {
       "file": "16-games/01-tetris.webp",
       "source": "01 Tetris/main.cljs",

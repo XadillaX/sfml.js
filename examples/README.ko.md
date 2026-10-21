@@ -18,7 +18,7 @@
 
 - [공식 예제](official/README.ko.md): 조작법, 플랫폼 요구 사항, 출처를 갖춘 SFML 이식 예제 24개.
 
-- <a id="game-projects"></a>[게임과 앱](projects/README.ko.md): Breakout, JavaScript 게임 5개, ClojureScript 게임 16개, play-nes.
+- <a id="game-projects"></a>[게임과 앱](projects/README.ko.md): [Süper Mario Kart](projects/README.ko.md#super-mario-kart), [play-nes](projects/README.ko.md#play-nes), Breakout, JavaScript 게임 5개, ClojureScript 게임 16개.
 
 ## 실행 준비
 
