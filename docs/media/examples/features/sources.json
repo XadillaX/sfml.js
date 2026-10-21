@@ -1,0 +1,95 @@
+[
+  {
+    "file": "all-types.webp",
+    "source": "examples/all-types.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/all-types.cjs --frames=4"
+  },
+  {
+    "file": "image.webp",
+    "source": "examples/image.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/image.cjs --frames=4"
+  },
+  {
+    "file": "texture.webp",
+    "source": "examples/texture.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/texture.cjs --frames=4"
+  },
+  {
+    "file": "sprite.webp",
+    "source": "examples/sprite.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/sprite.cjs --frames=4"
+  },
+  {
+    "file": "drawable.webp",
+    "source": "examples/drawable.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/drawable.cjs --frames=4"
+  },
+  {
+    "file": "vertex-array.webp",
+    "source": "examples/vertex-array.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/vertex-array.cjs --frames=4"
+  },
+  {
+    "file": "window.webp",
+    "source": "examples/window.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/window.cjs --frames=4"
+  },
+  {
+    "file": "system-window.webp",
+    "source": "examples/system-window.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/system-window.cjs --frames=4"
+  },
+  {
+    "file": "sleep-err.webp",
+    "source": "examples/sleep-err.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/sleep-err.cjs --frames=4"
+  },
+  {
+    "file": "audio.webp",
+    "source": "examples/audio.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/audio.cjs --frames=4"
+  },
+  {
+    "file": "text.webp",
+    "source": "examples/text.cjs",
+    "capture": "native framebuffer copied through Texture.update(window) before display",
+    "platform": "macOS arm64",
+    "command": "node examples/text.cjs --frames=4",
+    "note": "Captured by a temporary display hook; this script has no built-in screenshot option."
+  },
+  {
+    "file": "sprites.webp",
+    "source": "examples/sprites.cjs",
+    "capture": "native framebuffer",
+    "platform": "macOS arm64",
+    "command": "node examples/sprites.cjs"
+  },
+  {
+    "file": "vector-scalars.webp",
+    "source": "examples/vector-scalars.cjs",
+    "capture": "native framebuffer copied through Texture.update(window) before display",
+    "platform": "macOS arm64",
+    "command": "node examples/vector-scalars.cjs",
+    "note": "Captured by a temporary display hook and stopped after capture; this script has no built-in screenshot or frame limit option."
+  }
+]
