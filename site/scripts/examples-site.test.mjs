@@ -133,6 +133,18 @@ locales.forEach(locale => {
     for (const page of routes) {
       assert.ok(existsSync(resolve(rootDir, page.source)), page.source);
     }
+    const overview = pages.get(`${locale.prefix}/examples`);
+    const picks = elements(overview, node => hasClass(node, 'example-pick'));
+    assert.deepEqual(picks.map(node => attr(node, 'href')), [
+      'super-mario-kart', 'play-nes',
+    ].map(anchor => `${locale.prefix}/examples/projects#${anchor}`));
+    for (const pick of picks) {
+      assert.equal(elements(pick, node => node.tagName === 'a').length, 1);
+      assert.equal(elements(pick, node => node.tagName === 'img').length, 1);
+    }
+    const topics = elements(overview, node =>
+      hasClass(node, 'example-topics'))[0];
+    assert.equal(elements(topics, node => node.tagName === 'dt').length, 3);
   });
 
   test(`sidebar groups preserve reading order: ${locale.lang}`, () => {

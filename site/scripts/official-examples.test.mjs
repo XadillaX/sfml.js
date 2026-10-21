@@ -22,7 +22,7 @@ for (const [ readme, route ] of guides) {
       import.meta.url), 'utf8');
     const output = await transformMarkdown(markdown, source, map);
 
-    assert.ok(output.includes(`](${route})`));
+    assert.ok(output.includes(`href="${route}"`));
     assert.equal(map('official/README.md#platform', source),
       `${route}#platform`);
     assert.equal(map(`../${readme}`, `examples/official/${readme}`),

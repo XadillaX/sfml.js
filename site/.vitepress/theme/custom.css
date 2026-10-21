@@ -2,6 +2,7 @@
 @import '../../../assets/icons/game-icons/icons.css';
 @import './home.css';
 @import './projects.css';
+@import './examples.css';
 
 :root {
   --vp-font-family-base: var(--sf-font);
