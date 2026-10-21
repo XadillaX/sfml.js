@@ -1,0 +1,208 @@
+{
+  "capturedOn": "2026-10-21",
+  "platform": "macOS arm64, Node.js 22.22.2",
+  "method": "Real gameplay with process-local keyboard, mouse and event inputs. Native framebuffer copied through SFML Texture and Image APIs, then encoded as WebP at quality 88.",
+  "notes": [
+    "Game logic, board state, clocks, random results and assets were not modified.",
+    "Captures used the existing game installations with sfml.js 1.0.0-rc.2; they do not claim an upgrade of those projects to 1.0.0.",
+    "Every image was visually inspected after play. Frame and elapsed-time values identify the captured frame.",
+    "Source and asset ownership remain with their respective authors; these screenshots do not relicense game assets."
+  ],
+  "repositories": {
+    "16-games": {
+      "url": "https://github.com/XadillaX/16-sfml.js-games-ported",
+      "commit": "5f2d2e7663142c07f469424285ae2f3aee6d1717",
+      "launch": "npx nbb \"<game directory>/main.cljs\"",
+      "origin": "ClojureScript + sfml.js ports of jsyqrt/games, originally C++ + SFML"
+    },
+    "node-sfml-demos": {
+      "url": "https://github.com/XadillaX/node-sfml-demos",
+      "commit": "a486362fa8eee987f5f97d40469485ec84a29c4b",
+      "launch": "node index.js from the game's own directory"
+    },
+    "play-nes": {
+      "url": "https://github.com/XadillaX/play-nes",
+      "commit": "d90af5b47e43bc6a11573c48f36c266843c4207b",
+      "launch": "node bin/nes croom -f 60 -s 2"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "16-games/01-tetris.webp",
+      "source": "01 Tetris/main.cljs",
+      "frame": 8301,
+      "elapsedMs": 7179,
+      "inputs": "Move, rotate and accelerate falling pieces.",
+      "progress": "Seven pieces spawned; 29 locked cells visible."
+    },
+    {
+      "file": "16-games/02-doodle-jump.webp",
+      "source": "02 Doodle Jump/main.cljs",
+      "frame": 157,
+      "elapsedMs": 3143,
+      "inputs": "Steer left and right toward platforms.",
+      "progress": "Two platform bounces observed; player is airborne."
+    },
+    {
+      "file": "16-games/03-arkanoid.webp",
+      "source": "03 Arkanoid/main.cljs",
+      "frame": 657,
+      "elapsedMs": 11881,
+      "inputs": "Move the paddle left and right to return the ball.",
+      "progress": "Nine bricks broken."
+    },
+    {
+      "file": "16-games/04-snake.webp",
+      "source": "04 Snake/main.cljs",
+      "frame": 2874,
+      "elapsedMs": 4611,
+      "inputs": "Steer with directional keys to collect fruit.",
+      "progress": "Snake has grown to seven segments."
+    },
+    {
+      "file": "16-games/05-minesweeper.webp",
+      "source": "05 Minesweeper/main.cljs",
+      "frame": 89,
+      "elapsedMs": 523,
+      "inputs": "Click cells to reveal them and right-click to flag.",
+      "progress": "40 cells revealed and four flags placed; no exposed mines."
+    },
+    {
+      "file": "16-games/06-fifteen-puzzle.webp",
+      "source": "06 Fifteen-Puzzle/main.cljs",
+      "frame": 311,
+      "elapsedMs": 5726,
+      "inputs": "Click 12 tiles adjacent to the empty space.",
+      "progress": "Tiles have moved through the original sliding animation."
+    },
+    {
+      "file": "16-games/07-racing-top-down.webp",
+      "source": "07 Racing (Top Down)/main.cljs",
+      "frame": 88,
+      "elapsedMs": 1815,
+      "inputs": "Accelerate and steer among the opponent cars.",
+      "progress": "Player and opponents have moved; track scroll offset is -754."
+    },
+    {
+      "file": "16-games/08-outrun.webp",
+      "source": "08 Outrun/main.cljs",
+      "frame": 145,
+      "elapsedMs": 2907,
+      "inputs": "Hold forward and steer.",
+      "progress": "Advanced 435 road segments and reached a curve."
+    },
+    {
+      "file": "16-games/09-xonix.webp",
+      "source": "09 Xonix/main.cljs",
+      "frame": 137,
+      "elapsedMs": 2793,
+      "inputs": "Move into the field and return to its boundary.",
+      "progress": "Captured territory is visible with a new five-tile active path."
+    },
+    {
+      "file": "16-games/10-bejeweled.webp",
+      "source": "10 Bejeweled/main.cljs",
+      "frame": 205,
+      "elapsedMs": 4012,
+      "inputs": "Click adjacent gems to swap them.",
+      "progress": "Six matched gems are fading after the selected swap."
+    },
+    {
+      "file": "16-games/11-netwalk.webp",
+      "source": "11 NetWalk (Pipe Puzzle)/main.cljs",
+      "frame": 410,
+      "elapsedMs": 876,
+      "inputs": "Click pipe tiles to rotate them into a connected network.",
+      "progress": "All six computers are powered."
+    },
+    {
+      "file": "16-games/12-mahjong-solitaire.webp",
+      "source": "12 Mahjong Solitaire/main.cljs",
+      "frame": 78,
+      "elapsedMs": 762,
+      "inputs": "Click matching available tile pairs.",
+      "progress": "Ten pairs removed; 124 of the original 144 tiles remain."
+    },
+    {
+      "file": "16-games/13-tron.webp",
+      "source": "13 Tron/main.cljs",
+      "frame": 95,
+      "elapsedMs": 2315,
+      "inputs": "Turn both light cycles using their directional controls.",
+      "progress": "Three direction changes and 380 pixels travelled per cycle."
+    },
+    {
+      "file": "16-games/14-chess.webp",
+      "source": "14 Chess/main.cljs",
+      "frame": 110,
+      "elapsedMs": 954,
+      "inputs": "Drag e2e4, e7e5, g1f3, b8c6 and f1c4.",
+      "progress": "Five mouse-drag moves completed; no engine move was requested."
+    },
+    {
+      "file": "16-games/15-volleyball.webp",
+      "source": "15 Volleyball/main.cljs",
+      "frame": 113,
+      "elapsedMs": 2628,
+      "inputs": "Move and jump with both players' controls.",
+      "progress": "Two airborne rebounds and one net crossing observed."
+    },
+    {
+      "file": "16-games/16-asteroids.webp",
+      "source": "16 Asteroids/main.cljs",
+      "frame": 145,
+      "elapsedMs": 3212,
+      "inputs": "Thrust, turn and fire.",
+      "progress": "Moving ship, five visible projectiles and explosions."
+    },
+    {
+      "file": "node-sfml-demos/bomberman.webp",
+      "source": "bomberman/index.js",
+      "frame": 451,
+      "elapsedMs": 8143,
+      "inputs": "Enter the game from its menu, move and place two bombs.",
+      "progress": "One wall destroyed and an active explosion; player one has two lives."
+    },
+    {
+      "file": "node-sfml-demos/breakout.webp",
+      "source": "breakout/index.js",
+      "frame": 525,
+      "elapsedMs": 9738,
+      "inputs": "Launch and steer the paddle.",
+      "progress": "Five bricks destroyed and four paddle returns."
+    },
+    {
+      "file": "node-sfml-demos/tetris.webp",
+      "source": "tetris/index.js",
+      "frame": 1216,
+      "elapsedMs": 11519,
+      "inputs": "Move, rotate and accelerate falling pieces.",
+      "progress": "12 pieces locked and three lines cleared."
+    },
+    {
+      "file": "node-sfml-demos/doodle-jump.webp",
+      "source": "doodle_jump/index.js",
+      "frame": 420,
+      "elapsedMs": 7743,
+      "inputs": "Steer between platforms.",
+      "progress": "Six platform landings and 162 scrolling frames."
+    },
+    {
+      "file": "node-sfml-demos/arkanoid.webp",
+      "source": "arkanoid/index.js",
+      "frame": 1317,
+      "elapsedMs": 23381,
+      "inputs": "Move the paddle left and right to return the ball.",
+      "progress": "15 bricks destroyed and ten paddle returns."
+    },
+    {
+      "file": "play-nes.webp",
+      "source": "src/game.ts",
+      "rom": "Concentration Room (croom.nes)",
+      "frame": 17452,
+      "elapsedMs": 303184,
+      "inputs": "Enter the game, move the cursor with WASD and flip cards with J.",
+      "progress": "Two cards face up during an active matching attempt."
+    }
+  ]
+}

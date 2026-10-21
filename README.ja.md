@@ -136,13 +136,13 @@ node examples/all-types.cjs --frames=120
 node examples/network.cjs
 ```
 
-[移植済みサンプル](examples/ported/README.ja.md)は、従来のデモを SFML 3 API に適合させたものです。`drawAsync()` または `displayAsync()` を必要とする 2 つのサンプルは `UNSUPPORTED` を報告します。このバインディングでは、これらのメソッドを公開していません。
+[機能サンプル](examples/features/README.ja.md) · [公式サンプル](examples/official/README.ja.md) · [ゲームとアプリ](examples/projects/README.ja.md)
 
-[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) には、sfml.js で実装した Bomberman、Breakout、Tetris、Doodle Jump、Arkanoid が含まれています。インストールと起動の手順は[ゲームプロジェクト](examples/README.ja.md#game-projects)を参照してください。
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) には、sfml.js で実装した Bomberman、Breakout、Tetris、Doodle Jump、Arkanoid が含まれています。インストールと起動の手順は[ゲームプロジェクト](examples/projects/README.ja.md#node-sfml-demos)を参照してください。
 
-[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) は、[jsyqrt/games](https://github.com/jsyqrt/games) の C++ と SFML で作られた全 16 ゲームを、ClojureScript と sfml.js に移植したものです。ゲーム一覧と nbb の起動コマンドは[16 ゲーム](examples/README.ja.md#16-games)を参照してください。
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) は、[jsyqrt/games](https://github.com/jsyqrt/games) の C++ と SFML で作られた全 16 ゲームを、ClojureScript と sfml.js に移植したものです。ゲーム一覧と nbb の起動コマンドは[16 ゲーム](examples/projects/README.ja.md#16-games)を参照してください。
 
-[play-nes](https://github.com/XadillaX/play-nes) — sfml.js と JSNES で構築されたデスクトップ NES エミュレータ。
+[play-nes](examples/projects/README.ja.md#play-nes) — sfml.js と JSNES で構築されたデスクトップ NES エミュレータ。
 
 ## コントリビュート
 

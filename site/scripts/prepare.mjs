@@ -24,8 +24,8 @@ for (const page of manifest) {
     lang: page.locale.lang,
     sourcePath: page.source,
   };
-  // The last guide has no next Markdown page; TypeDoc is a separate renderer.
-  if (page.route.endsWith('/examples/ported')) {
+  // The projects gallery ends the examples sequence.
+  if (page.route.endsWith('/examples/projects')) {
     frontmatter.next = false;
   }
   if (page.home) {
@@ -57,11 +57,6 @@ await cp(resolve(rootDir, 'assets'), resolve(sourceDir, 'public/media'), {
   filter: source => source !== resolve(rootDir, 'assets/branding'),
 });
 await copyBranding(resolve(sourceDir, 'public/media'));
-await cp(
-  resolve(rootDir, 'examples/ported/assets'),
-  resolve(sourceDir, 'public/media/examples/ported/assets'),
-  { recursive: true }
-);
 await cp(
   resolve(rootDir, 'examples/official/screenshots'),
   resolve(sourceDir, 'public/media/examples/official/screenshots'),

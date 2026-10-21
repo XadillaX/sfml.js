@@ -114,9 +114,7 @@ npm run demo:audio
 npm run demo:network
 ```
 
-サンプルの説明は [examples/README.md](../examples/README.ja.md)を参照してください。ビルド済みであれば、`node examples/<名称>.cjs`（`<名称>` はサンプル名）で直接実行できます。`--frames` に対応する入口ではフレーム数を制限できます。スクリーンショットの撮影方法もサンプル一覧に記載しています。
-
-旧版の `drawAsync`／`displayAsync` を使う 2 つのサンプルは、未対応であることを明示的に報告します。詳細は[移植に関する説明](../examples/ported/README.ja.md)を参照してください。
+サンプルは[概要](../examples/README.ja.md)、[機能](../examples/features/README.ja.md)、[公式](../examples/official/README.ja.md)、[ゲームとアプリ](../examples/projects/README.ja.md)に分かれています。コマンドと[撮影機能](../examples/features/README.ja.md#screenshots)は各入口で説明しています。ビルド後はスクリプトを直接実行し、`--frames` は対応する入口にだけ渡してください。
 
 ## ソースコードと生成ファイル
 

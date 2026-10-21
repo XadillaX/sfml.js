@@ -136,13 +136,13 @@ node examples/all-types.cjs --frames=120
 node examples/network.cjs
 ```
 
-The [ported examples](examples/ported/README.md) retain the legacy demonstrations with SFML 3 API adaptations. The two examples requiring `drawAsync()` or `displayAsync()` report `UNSUPPORTED`; those methods are not exposed by this binding.
+[Feature examples](examples/features/README.md) · [Official examples](examples/official/README.md) · [Games and applications](examples/projects/README.md)
 
-[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) contains Bomberman, Breakout, Tetris, Doodle Jump and Arkanoid implementations using sfml.js. See [game setup](examples/README.md#game-projects) for installation and launch commands.
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) contains Bomberman, Breakout, Tetris, Doodle Jump and Arkanoid implementations using sfml.js. See [game setup](examples/projects/README.md#node-sfml-demos) for installation and launch commands.
 
-[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) ports all 16 games from [jsyqrt/games](https://github.com/jsyqrt/games), originally written in C++ with SFML, to ClojureScript with sfml.js. See [16 games](examples/README.md#16-games) for the game list and nbb launch commands.
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) ports all 16 games from [jsyqrt/games](https://github.com/jsyqrt/games), originally written in C++ with SFML, to ClojureScript with sfml.js. See [16 games](examples/projects/README.md#16-games) for the game list and nbb launch commands.
 
-[play-nes](https://github.com/XadillaX/play-nes) — a desktop NES emulator built with sfml.js and JSNES.
+[play-nes](examples/projects/README.md#play-nes) — a desktop NES emulator built with sfml.js and JSNES.
 
 ## Contributing
 

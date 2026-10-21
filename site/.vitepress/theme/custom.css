@@ -98,6 +98,80 @@
 .vp-doc div[class*='language-'], .vp-doc .custom-block { border-radius: var(--sf-radius); }
 .vp-doc th { font-weight: 650; background: var(--sf-bg-soft); }
 .vp-doc a { text-underline-offset: 3px; }
+
+/* Each gallery row pairs its preview with instructions, not another card. */
+.vp-doc .example-gallery {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-block: 24px 40px;
+}
+.vp-doc .example-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  min-width: 0;
+  padding: 16px;
+  border-bottom: 1px solid var(--sf-border);
+  scroll-margin-top: calc(var(--sf-nav-height) + 48px);
+}
+.vp-doc .example-entry > a {
+  display: block;
+  flex: 0 0 42%;
+  min-width: 0;
+  max-width: 360px;
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+}
+.vp-doc .example-entry > a:hover {
+  border-color: var(--sf-brand);
+}
+.vp-doc .example-entry img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.vp-doc .example-info {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.vp-doc .example-info p {
+  margin: 0 0 12px;
+}
+.vp-doc .example-info p:last-child {
+  margin-bottom: 0;
+}
+.vp-doc .example-info code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.vp-doc .example-entry a:focus-visible {
+  outline: 2px solid var(--sf-focus);
+  outline-offset: 4px;
+}
+.sf-doc-credits {
+  padding: 24px 32px;
+  text-align: center;
+}
+@media (min-width: 960px) {
+  .sf-doc-credits {
+    padding-left: calc(var(--vp-sidebar-width) + 32px);
+  }
+}
+@container (max-width: 560px) {
+  .vp-doc .example-entry {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .vp-doc .example-entry > a {
+    flex-basis: auto;
+    width: 100%;
+    max-width: none;
+  }
+}
+
 .VPSidebar { border-right: 1px solid var(--sf-border); }
 .VPSidebar .curtain { background: var(--sf-bg-alt) !important; }
 .VPSidebarItem.level-0 > .item { margin-bottom: 8px; }
@@ -155,4 +229,17 @@ html { --vp-icon-copy: var(--gi-copy); --vp-icon-copied: var(--gi-check); }
   .VPNavBarSearch { padding: 0 !important; }
   .vp-doc h1 { font-size: 32px; }
   .vp-doc h2 { font-size: 27px; }
+  .vp-doc .example-entry {
+    flex-direction: column;
+    gap: 20px;
+    padding: 12px;
+  }
+  .vp-doc .example-entry > a {
+    flex-basis: auto;
+    width: 100%;
+    max-width: none;
+  }
+  .sf-doc-credits {
+    padding: 24px;
+  }
 }

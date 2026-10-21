@@ -51,10 +51,18 @@ const ui = {
 function localizedTheme(locale: typeof locales[number]): DefaultTheme.Config {
   const text = ui[locale.id as keyof typeof ui];
   const pages = manifest.filter(page => page.locale.id === locale.id && !page.home);
-  const items = pages.map(page => ({
+  const items = new Map(pages.map(page => [ page.route, {
     text: readFileSync(resolve(projectRoot, page.source), 'utf8').match(/^# (.+)$/m)?.[1] || page.route,
     link: page.route,
-  }));
+  } ]));
+  const sectionItems = (routes: string[]): DefaultTheme.SidebarItem[] =>
+    routes.map(route => {
+      const item = items.get(locale.prefix + route);
+      if (!item) {
+        throw new Error(`Missing sidebar page: ${locale.prefix}${route}`);
+      }
+      return item;
+    });
   return {
     nav: [
       { text: text.guide, link: `${locale.prefix}/guide/getting-started`, activeMatch: '/guide/' },
@@ -62,12 +70,33 @@ function localizedTheme(locale: typeof locales[number]): DefaultTheme.Config {
       { text: text.reference, link: `${locale.prefix}/reference/`, target: '_self' },
     ],
     sidebar: [
-      { text: text.learn, items: items.slice(0, 4) },
-      { text: text.modules, items: items.slice(4, 9) },
-      { text: text.resources, items: [
-        ...items.slice(9),
-        { text: text.reference, link: `${locale.prefix}/reference/`, target: '_self' },
-      ] },
+      {
+        text: text.learn,
+        items: sectionItems([
+          '/guide/', '/guide/getting-started', '/guide/concepts', '/guide/api',
+        ]),
+      },
+      {
+        text: text.modules,
+        items: sectionItems([
+          '/guide/system', '/guide/window', '/guide/graphics',
+          '/guide/audio', '/guide/network',
+        ]),
+      },
+      {
+        text: text.examples,
+        items: sectionItems([
+          '/examples', '/examples/features',
+          '/examples/official', '/examples/projects',
+        ]),
+      },
+      {
+        text: text.resources,
+        items: [
+          ...sectionItems([ '/guide/development' ]),
+          { text: text.reference, link: `${locale.prefix}/reference/`, target: '_self' },
+        ],
+      },
     ],
     outline: { label: text.onPage, level: [ 2, 3 ] },
     docFooter: { prev: text.previous, next: text.next },

@@ -75,8 +75,9 @@ const documentGroups = [
     'development',
   ].map(name => [ `docs/${name}`, `/guide/${name}` ]),
   [ 'examples/README', '/examples' ],
+  [ 'examples/features/README', '/examples/features' ],
   [ 'examples/official/README', '/examples/official' ],
-  [ 'examples/ported/README', '/examples/ported' ],
+  [ 'examples/projects/README', '/examples/projects' ],
 ];
 
 export function buildManifest() {
@@ -178,10 +179,7 @@ export function createLinkMapper(
     if (target.startsWith('assets/')) {
       return `/media/${target.slice(7)}${suffix}`;
     }
-    if (
-      target.startsWith('examples/ported/assets/') ||
-      target.startsWith('examples/official/screenshots/')
-    ) {
+    if (target.startsWith('examples/official/screenshots/')) {
       return `/media/${target}${suffix}`;
     }
     const kind = isDirectory(target) ? 'tree' : 'blob';

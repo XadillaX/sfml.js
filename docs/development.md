@@ -116,9 +116,7 @@ npm run demo:audio
 npm run demo:network
 ```
 
-See [examples/README.md](../examples/README.md) for descriptions. After building, run `node examples/<name>.cjs` directly. Entry points supporting `--frames` can limit the frame count; the examples guide also explains how to capture screenshots.
-
-The two legacy `drawAsync`/`displayAsync` examples explicitly report that they are unsupported; see the [ported examples](../examples/ported/README.md).
+The examples are organized into [overview](../examples/README.md), [feature examples](../examples/features/README.md), [official examples](../examples/official/README.md) and [games and applications](../examples/projects/README.md). Commands and [screenshot support](../examples/features/README.md#screenshots) are documented with their entry points. After building, run the script directly; pass `--frames` only where supported.
 
 ## Source and generated files
 

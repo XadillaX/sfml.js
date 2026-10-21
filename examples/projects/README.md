@@ -1,0 +1,352 @@
+# Games and applications
+
+**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+
+> Breakout runs in this repository. The other projects are separate repositories or npm packages; use the working directory shown for each one. All require a graphical session and the native build requirements. Their dependency versions are independent of the sfml.js release.
+
+[Overview](../README.md) · [Feature examples](../features/README.md) · [Official examples](../official/README.md)
+
+<a id="breakout"></a>
+
+## Play Breakout
+
+From the sfml.js repository root, run `npm ci` once, then `node examples/breakout.cjs`. Run `npm run build` after source changes.
+
+<div class="example-gallery">
+  <article class="example-entry" id="breakout-game">
+    <a href="../../assets/breakout.png">
+      <img src="../../assets/breakout.png" width="360" alt="Breakout rendered in a native window">
+    </a>
+    <div class="example-info">
+      <p><a href="../breakout.cjs">breakout.cjs</a> is a complete game with brick collisions, three lives, scoring and win/loss states. Move with Left/Right or A/D; Space launches or restarts, P pauses, and Esc exits. Losing focus pauses interactive play.</p>
+    </div>
+  </article>
+</div>
+
+Use `npm run demo:breakout` to build and launch. For a reproducible gameplay capture on macOS/Linux:
+
+```sh
+SFML_DEMO_SNAPSHOT=/tmp/sfml-breakout.png \
+  node examples/breakout.cjs --autoplay --frames=1500
+```
+
+The screenshot saves the actual native framebuffer at the final frame. `--autoplay` controls the paddle; `--frames` bounds the run. `node examples/breakout.cjs --self-test` checks the game logic without opening a window.
+
+<a id="game-projects"></a>
+
+<a id="node-sfml-demos"></a>
+
+## node-sfml-demos
+
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) contains Bomberman, Breakout, Tetris, Doodle Jump and Arkanoid implementations using sfml.js.
+
+Clone this separate repository into your projects directory, then install dependencies and launch from the game's own directory. For Bomberman:
+
+```sh
+git clone https://github.com/XadillaX/node-sfml-demos.git
+cd node-sfml-demos/bomberman
+npm install
+node index.js
+```
+
+See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) for game directories, controls and upstream C++ sources. The [native build requirements](../../docs/getting-started.md#requirements) also apply.
+
+Use Node.js 22, Python 3 and a C++20 toolchain. Install inside each game folder with `npm install`, then run `node index.js` there. Keep the full repository because some games share fonts and textures. Each game pins `sfml.js@1.0.0-rc.2`; this page does not upgrade it. All support the close button; Bomberman also uses audio. Tetris, Doodle Jump and Arkanoid retain the prototypes' incomplete gameplay.
+
+<div class="example-gallery">
+  <article class="example-entry" id="demo-bomberman">
+    <a href="../../assets/examples/projects/node-sfml-demos/bomberman.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/bomberman.webp" width="360" alt="Bomberman: Two-player Bomberman in a tiled arena.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/bomberman">Bomberman</a></strong></p>
+      <p>Two-player Bomberman in a tiled arena.</p>
+      <p><strong>Controls</strong> · Player 1: WASD and Left Ctrl for bombs. Player 2: arrows and Space for bombs. Mouse operates the menu; Esc pauses/resumes.</p>
+      <p>Run inside: <code>node-sfml-demos/bomberman/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/PiGames/Bomberman">Original C++ source</a></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-breakout">
+    <a href="../../assets/examples/projects/node-sfml-demos/breakout.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/breakout.webp" width="360" alt="Breakout: A brick breaker against a starry backdrop.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/breakout">Breakout</a></strong></p>
+      <p>A brick breaker against a starry backdrop.</p>
+      <p><strong>Controls</strong> · A/D or Left/Right moves and launches; Space also launches. Release Space after losing to reset. Esc exits.</p>
+      <p>Run inside: <code>node-sfml-demos/breakout/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-tetris">
+    <a href="../../assets/examples/projects/node-sfml-demos/tetris.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/tetris.webp" width="360" alt="Tetris: Falling blocks inside a gold frame.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/tetris">Tetris</a></strong></p>
+      <p>Falling blocks inside a gold frame.</p>
+      <p><strong>Controls</strong> · Left/Right moves, Up rotates, Down drops faster.</p>
+      <p>Run inside: <code>node-sfml-demos/tetris/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/jsyqrt/games/blob/master/01%20Tetris/main.cpp">Original C++ source</a></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-doodle-jump">
+    <a href="../../assets/examples/projects/node-sfml-demos/doodle-jump.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/doodle-jump.webp" width="360" alt="Doodle Jump: Jump between green platforms.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/doodle_jump">Doodle Jump</a></strong></p>
+      <p>Jump between green platforms.</p>
+      <p><strong>Controls</strong> · Left/Right moves; jumping is automatic.</p>
+      <p>Run inside: <code>node-sfml-demos/doodle_jump/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/jsyqrt/games/blob/master/02%20Doodle%20Jump/main.cpp">Original C++ source</a></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-arkanoid">
+    <a href="../../assets/examples/projects/node-sfml-demos/arkanoid.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/arkanoid.webp" width="360" alt="Arkanoid: A compact brick breaker with green bricks.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/arkanoid">Arkanoid</a></strong></p>
+      <p>A compact brick breaker with green bricks.</p>
+      <p><strong>Controls</strong> · Left/Right moves the paddle; the ball starts automatically.</p>
+      <p>Run inside: <code>node-sfml-demos/arkanoid/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/jsyqrt/games/blob/master/03%20Arkanoid/main.cpp">Original C++ source</a></p>
+    </div>
+  </article>
+</div>
+
+<a id="16-games"></a>
+
+## 16 games in ClojureScript
+
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) is a fork of [jsyqrt/games](https://github.com/jsyqrt/games). The original 16 games were written in **C++ with SFML**; this fork ports all of them to **ClojureScript with sfml.js**, preserving the original directory layout, assets, game logic and controls.
+
+The games run on Node.js through **nbb**, with no JVM or separate compilation step. Clone the game repository into your projects directory, then run from its root:
+
+```sh
+git clone https://github.com/XadillaX/16-sfml.js-games-ported.git
+cd 16-sfml.js-games-ported
+npm ci
+npx nbb "01 Tetris/main.cljs"
+```
+
+Requires Node.js 20.5+ and the [native build requirements](../../docs/getting-started.md#requirements), plus a graphical session with OpenGL window support. Dependencies are pinned to `sfml.js@1.0.0-rc.2` and `nbb@1.6.214`. Each script resolves its assets relative to its own directory.
+
+<div class="example-gallery">
+  <article class="example-entry" id="01-tetris">
+    <a href="../../assets/examples/projects/16-games/01-tetris.webp">
+      <img src="../../assets/examples/projects/16-games/01-tetris.webp" width="360" alt="Tetris playing field with a falling purple block">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/01%20Tetris/main.cljs">01 · Tetris</a></strong></p>
+      <p>Falling blocks and line clearing</p>
+      <p><strong>Controls</strong> · Left/Right moves, Up rotates, Down drops faster</p>
+      <p><code>npx nbb &quot;01 Tetris/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="02-doodle-jump">
+    <a href="../../assets/examples/projects/16-games/02-doodle-jump.webp">
+      <img src="../../assets/examples/projects/16-games/02-doodle-jump.webp" width="360" alt="Doodle Jump character above green platforms on graph paper">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/02%20Doodle%20Jump/main.cljs">02 · Doodle Jump</a></strong></p>
+      <p>Jump between platforms as the screen scrolls</p>
+      <p><strong>Controls</strong> · Left/Right moves; jumping is automatic</p>
+      <p><code>npx nbb &quot;02 Doodle Jump/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="03-arkanoid">
+    <a href="../../assets/examples/projects/16-games/03-arkanoid.webp">
+      <img src="../../assets/examples/projects/16-games/03-arkanoid.webp" width="360" alt="Arkanoid green brick wall and paddle">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/03%20Arkanoid/main.cljs">03 · Arkanoid</a></strong></p>
+      <p>Break bricks with a bouncing ball</p>
+      <p><strong>Controls</strong> · Left/Right moves the paddle</p>
+      <p><code>npx nbb &quot;03 Arkanoid/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="04-snake">
+    <a href="../../assets/examples/projects/16-games/04-snake.webp">
+      <img src="../../assets/examples/projects/16-games/04-snake.webp" width="360" alt="Snake and food on a square grid">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/04%20Snake/main.cljs">04 · Snake</a></strong></p>
+      <p>Collect food and grow</p>
+      <p><strong>Controls</strong> · arrow keys change direction</p>
+      <p><code>npx nbb &quot;04 Snake/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="05-minesweeper">
+    <a href="../../assets/examples/projects/16-games/05-minesweeper.webp">
+      <img src="../../assets/examples/projects/16-games/05-minesweeper.webp" width="360" alt="Minesweeper board with covered cells">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/05%20Minesweeper/main.cljs">05 · Minesweeper</a></strong></p>
+      <p>Reveal cells and mark hidden mines</p>
+      <p><strong>Controls</strong> · left-click reveals, right-click flags</p>
+      <p><code>npx nbb &quot;05 Minesweeper/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="06-fifteen-puzzle">
+    <a href="../../assets/examples/projects/16-games/06-fifteen-puzzle.webp">
+      <img src="../../assets/examples/projects/16-games/06-fifteen-puzzle.webp" width="360" alt="Numbered fifteen-puzzle tiles with one empty square">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/06%20Fifteen-Puzzle/main.cljs">06 · Fifteen-Puzzle</a></strong></p>
+      <p>A 4 × 4 sliding-tile puzzle</p>
+      <p><strong>Controls</strong> · click a tile next to the empty square to slide it</p>
+      <p><code>npx nbb &quot;06 Fifteen-Puzzle/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="07-racing-top-down">
+    <a href="../../assets/examples/projects/16-games/07-racing-top-down.webp">
+      <img src="../../assets/examples/projects/16-games/07-racing-top-down.webp" width="360" alt="Colored cars on the top-down racing track">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/07%20Racing%20%28Top%20Down%29/main.cljs">07 · Racing (Top Down)</a></strong></p>
+      <p>Race alongside computer-controlled cars</p>
+      <p><strong>Controls</strong> · Up accelerates, Down brakes/reverses, Left/Right steers</p>
+      <p><code>npx nbb &quot;07 Racing (Top Down)/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="08-outrun">
+    <a href="../../assets/examples/projects/16-games/08-outrun.webp">
+      <img src="../../assets/examples/projects/16-games/08-outrun.webp" width="360" alt="Outrun road receding toward hills with roadside trees">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/08%20Outrun/main.cljs">08 · Outrun</a></strong></p>
+      <p>Perspective road, curves and roadside scenery</p>
+      <p><strong>Controls</strong> · Left/Right steers, Up/Down moves forward/backward, Tab boosts speed, W/S changes camera height</p>
+      <p><code>npx nbb &quot;08 Outrun/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="09-xonix">
+    <a href="../../assets/examples/projects/16-games/09-xonix.webp">
+      <img src="../../assets/examples/projects/16-games/09-xonix.webp" width="360" alt="Xonix enemies inside the blue-bordered playing field">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/09%20Xonix/main.cljs">09 · Xonix</a></strong></p>
+      <p>Capture territory while avoiding enemies</p>
+      <p><strong>Controls</strong> · arrow keys move, Esc resets the board</p>
+      <p><code>npx nbb &quot;09 Xonix/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="10-bejeweled">
+    <a href="../../assets/examples/projects/16-games/10-bejeweled.webp">
+      <img src="../../assets/examples/projects/16-games/10-bejeweled.webp" width="360" alt="Bejeweled board filled with colored gems">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/10%20Bejeweled/main.cljs">10 · Bejeweled</a></strong></p>
+      <p>Swap neighboring gems to form matching lines</p>
+      <p><strong>Controls</strong> · click two adjacent gems to swap</p>
+      <p><code>npx nbb &quot;10 Bejeweled/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="11-netwalk">
+    <a href="../../assets/examples/projects/16-games/11-netwalk.webp">
+      <img src="../../assets/examples/projects/16-games/11-netwalk.webp" width="360" alt="NetWalk pipe network with computers and a server">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/11%20NetWalk%20%28Pipe%20Puzzle%29/main.cljs">11 · NetWalk (Pipe Puzzle)</a></strong></p>
+      <p>Connect the computers to the server</p>
+      <p><strong>Controls</strong> · click a pipe to rotate it</p>
+      <p><code>npx nbb &quot;11 NetWalk (Pipe Puzzle)/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="12-mahjong-solitaire">
+    <a href="../../assets/examples/projects/16-games/12-mahjong-solitaire.webp">
+      <img src="../../assets/examples/projects/16-games/12-mahjong-solitaire.webp" width="360" alt="Layered Mahjong Solitaire tiles on a wooden table">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/12%20Mahjong%20Solitaire/main.cljs">12 · Mahjong Solitaire</a></strong></p>
+      <p>Remove matching pairs of available tiles</p>
+      <p><strong>Controls</strong> · left-click selects pairs, right-click undoes</p>
+      <p><code>npx nbb &quot;12 Mahjong Solitaire/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="13-tron">
+    <a href="../../assets/examples/projects/16-games/13-tron.webp">
+      <img src="../../assets/examples/projects/16-games/13-tron.webp" width="360" alt="Red and green players on the dark Tron grid">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/13%20Tron/main.cljs">13 · Tron</a></strong></p>
+      <p>Two-player light-cycle trails</p>
+      <p><strong>Controls</strong> · arrow keys for red, W/A/S/D for green</p>
+      <p><code>npx nbb &quot;13 Tron/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="14-chess">
+    <a href="../../assets/examples/projects/16-games/14-chess.webp">
+      <img src="../../assets/examples/projects/16-games/14-chess.webp" width="360" alt="Chess board and pieces">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/14%20Chess/main.cljs">14 · Chess</a></strong></p>
+      <p>Draggable board with an external Stockfish engine</p>
+      <p><strong>Controls</strong> · drag pieces, Space requests an engine move, Backspace undoes</p>
+      <p><code>npx nbb &quot;14 Chess/main.cljs&quot; /path/to/stockfish</code></p>
+      <p>Install an external <a href="https://github.com/official-stockfish/Stockfish/releases">Stockfish executable</a> for your OS and pass its extracted executable path. The engine is not bundled. On Windows, placing stockfish.exe beside main.cljs also works without an argument.</p>
+    </div>
+  </article>
+  <article class="example-entry" id="15-volleyball">
+    <a href="../../assets/examples/projects/16-games/15-volleyball.webp">
+      <img src="../../assets/examples/projects/16-games/15-volleyball.webp" width="360" alt="Red and green volleyball players beside a beach net">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/15%20Volleyball/main.cljs">15 · Volleyball</a></strong></p>
+      <p>Two-player volleyball with Box2D physics</p>
+      <p><strong>Controls</strong> · Left/Right and Up for red; A/D and W for green; Up/W jumps</p>
+      <p><code>npx nbb &quot;15 Volleyball/main.cljs&quot;</code></p>
+      <p><code>box2dweb@2.1.0-b</code> is installed by the game repository's root <code>npm ci</code>.</p>
+    </div>
+  </article>
+  <article class="example-entry" id="16-asteroids">
+    <a href="../../assets/examples/projects/16-games/16-asteroids.webp">
+      <img src="../../assets/examples/projects/16-games/16-asteroids.webp" width="360" alt="Asteroids against a star-filled background">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/16%20Asteroids/main.cljs">16 · Asteroids</a></strong></p>
+      <p>Pilot a spaceship and break apart asteroids</p>
+      <p><strong>Controls</strong> · Left/Right rotates, Up thrusts, Space fires</p>
+      <p><code>npx nbb &quot;16 Asteroids/main.cljs&quot;</code></p>
+    </div>
+  </article>
+</div>
+
+Chess requires an external [Stockfish executable](https://github.com/official-stockfish/Stockfish/releases) for your operating system; pass its path as shown above. Volleyball uses `box2dweb`, installed by `npm ci`. Close the game window to exit. See the [game gallery](https://github.com/XadillaX/16-sfml.js-games-ported#games) for screenshots, source files and controls.
+<a id="play-nes"></a>
+
+## play-nes
+
+Node.js 22 is recommended; Python and a C++20 compiler are required for the native addon. Run in a graphical desktop with audio output. Install the published player and launch the bundled Concentration Room, or pass a local ROM you have permission to use:
+
+```sh
+npm install -g play-nes
+nes croom
+nes "/path/to/your game.nes"
+```
+
+<div class="example-gallery">
+  <article class="example-entry" id="play-nes-player">
+    <a href="../../assets/examples/projects/play-nes.webp">
+      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
+      <p>A TypeScript desktop NES emulator using JSNES for emulation and sfml.js for native graphics and audio. The preview features Concentration Room.</p>
+      <p><strong>Controls</strong> · Player 1: WASD directions, J/K for A/B, Right Shift for Select, Enter for Start. Player 2: arrow keys, Numpad 5/6 for A/B, Numpad 8/9 for Select/Start. Esc or window close exits; held buttons are released on focus loss.</p>
+      <p><code>--scale 3</code> changes window scale; <code>--frameRate 60</code> selects normal speed. Frame rate changes emulation speed, not only display speed. Use <code>nes --help</code> for all options.</p>
+    </div>
+  </article>
+</div>
+
+## Screenshot sources
+
+Game assets come from the credited upstream projects. [provenance.json](../../assets/examples/projects/provenance.json) records screenshot sources and processing. A screenshot is not a compatibility or gameplay test report. Original game assets retain their authors' rights; these previews do not relicense them.
+
+The C++ originals and tutorials are credited by [jsyqrt/games](https://github.com/jsyqrt/games); the reference migration is [XadillaX/16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported#sources). [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos#license) and [play-nes](https://github.com/XadillaX/play-nes#readme) document their own licenses and credits.

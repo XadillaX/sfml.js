@@ -114,9 +114,7 @@ npm run demo:audio
 npm run demo:network
 ```
 
-예제 설명은 [examples/README.md](../examples/README.ko.md)를 참고하세요. 빌드된 상태라면 `node examples/<이름>.cjs`를 직접 실행할 수 있습니다. `--frames`를 지원하는 진입점에서는 프레임 수를 제한할 수 있으며, 스크린샷 방법도 예제 목록에 설명되어 있습니다.
-
-이전 버전의 `drawAsync`/`displayAsync` 예제 두 개는 미지원 상태를 명시적으로 보고합니다. 자세한 내용은 [포팅 안내](../examples/ported/README.ko.md)를 참고하세요.
+예제는 [개요](../examples/README.ko.md), [기능 예제](../examples/features/README.ko.md), [공식 예제](../examples/official/README.ko.md), [게임과 앱](../examples/projects/README.ko.md)으로 나뉩니다. 명령과 [캡처 지원](../examples/features/README.ko.md#screenshots)은 각 진입점에 설명되어 있습니다. 빌드 후 스크립트를 직접 실행하고 지원하는 진입점에만 `--frames`를 전달하세요.
 
 ## 소스와 생성 파일
 

@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useData, withBase } from 'vitepress';
 import { homeContent } from './content';
 import ArrowIcon from './ArrowIcon.vue';
+import IconCredits from './IconCredits.vue';
 import { mountLanternEffect } from './hero-light.mjs';
 
 const { lang } = useData();
@@ -144,43 +145,148 @@ win.<span class="fn">setFramerateLimit</span>(<span class="num">60</span>);
         <div>
           <h2 id="examples-title">{{ copy.examplesTitle }}</h2>
           <p>{{ copy.examplesDescription }}</p>
-          <p><a class="text-link" href="https://github.com/XadillaX/node-sfml-demos">{{ copy.gameProjectsAction }}<ArrowIcon /></a></p>
-          <p><a class="text-link" href="https://github.com/XadillaX/play-nes">{{ copy.playNes }}<ArrowIcon /></a></p>
+          <p class="project-entry-links">
+            <a
+              class="text-link"
+              :href="withBase(`${prefix}examples/projects#node-sfml-demos`)"
+            >
+              <span>{{ copy.gameProjectsAction }}</span><ArrowIcon />
+            </a>
+            <a class="text-link" href="https://github.com/XadillaX/node-sfml-demos">
+              {{ copy.source }}
+            </a>
+          </p>
+          <p class="project-entry-links">
+            <a
+              class="text-link"
+              :href="withBase(`${prefix}examples/projects#16-games`)"
+            >
+              <span>{{ copy.sixteenGames }}</span><ArrowIcon />
+            </a>
+            <a class="text-link" href="https://github.com/XadillaX/16-sfml.js-games-ported">
+              {{ copy.source }}
+            </a>
+          </p>
+          <p class="project-entry-links">
+            <a
+              class="text-link"
+              :href="withBase(`${prefix}examples/projects#play-nes`)"
+            >
+              <span>{{ copy.playNes }}</span><ArrowIcon />
+            </a>
+            <a class="text-link" href="https://github.com/XadillaX/play-nes">
+              {{ copy.source }}
+            </a>
+          </p>
         </div>
         <a class="text-link" :href="withBase(`${prefix}examples`)">{{ copy.examplesAction }}<ArrowIcon /></a>
       </div>
       <div class="examples-grid">
         <figure class="example-demo">
-          <a class="example-image" href="https://github.com/XadillaX/node-sfml/blob/main/examples/breakout.cjs" :aria-label="`${copy.game} · ${copy.source}`">
+          <a
+            class="example-image"
+            :href="withBase(`${prefix}examples/projects#breakout`)"
+            :aria-label="`${copy.game} · ${copy.runExample}`"
+          >
             <img :src="withBase('/media/breakout.png')" :alt="copy.gameAlt" width="1200" height="760" loading="lazy">
           </a>
           <figcaption>
             <div class="example-meta"><code>breakout.cjs</code><span>{{ copy.capture }}</span></div>
             <h3>{{ copy.game }}</h3><p>{{ copy.gameCaption }}</p>
-            <a class="text-link" href="https://github.com/XadillaX/node-sfml/blob/main/examples/breakout.cjs">{{ copy.source }}<ArrowIcon /></a>
+            <div class="example-actions">
+              <a class="text-link" :href="withBase(`${prefix}examples/projects#breakout`)">
+                {{ copy.runExample }}<ArrowIcon />
+              </a>
+              <a
+                class="text-link"
+                href="https://github.com/XadillaX/node-sfml/blob/main/examples/breakout.cjs"
+              >
+                {{ copy.source }}
+              </a>
+            </div>
           </figcaption>
         </figure>
         <figure class="example-demo">
-          <a class="example-image" :href="withBase(`${prefix}examples#screenshots`)" :aria-label="copy.textureTitle"><img :src="withBase('/media/render-texture.png')" :alt="copy.textureAlt" width="960" height="560" loading="lazy"></a>
+          <a
+            class="example-image"
+            :href="withBase(`${prefix}examples/features#render-texture`)"
+            :aria-label="`${copy.textureTitle} · ${copy.runExample}`"
+          >
+            <img :src="withBase('/media/render-texture.png')" :alt="copy.textureAlt" width="960" height="560" loading="lazy">
+          </a>
           <figcaption>
             <div class="example-meta"><code>render-texture.cjs</code><span>{{ copy.capture }}</span></div>
             <h3>{{ copy.textureTitle }}</h3><p>{{ copy.textureText }}</p>
-            <a class="text-link" href="https://github.com/XadillaX/node-sfml/blob/main/examples/render-texture.cjs">{{ copy.source }}<ArrowIcon /></a>
+            <div class="example-actions">
+              <a class="text-link" :href="withBase(`${prefix}examples/features#render-texture`)">
+                {{ copy.runExample }}<ArrowIcon />
+              </a>
+              <a
+                class="text-link"
+                href="https://github.com/XadillaX/node-sfml/blob/main/examples/render-texture.cjs"
+              >
+                {{ copy.source }}
+              </a>
+            </div>
           </figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="upstream-section">
+    <section class="upstream-section" aria-labelledby="resources-title">
       <div class="section-width upstream-inner">
-        <div><h2>{{ copy.upstreamTitle }}</h2><p>{{ copy.upstreamText }}</p></div>
+        <div>
+          <h2 id="resources-title">{{ copy.upstreamTitle }}</h2>
+          <p>{{ copy.upstreamText }}</p>
+        </div>
         <div class="upstream-links">
-          <a href="https://www.sfml-dev.org/documentation/3.1.0/">{{ copy.upstreamAction }}<ArrowIcon /></a>
-          <a :href="withBase(`${prefix}reference/`)" target="_self">{{ copy.referenceAction }}<ArrowIcon /></a>
-          <a href="https://github.com/XadillaX/node-sfml">GitHub<ArrowIcon /></a>
+          <a href="https://www.sfml-dev.org/documentation/3.1.0/">
+            <span>{{ copy.upstreamAction }}</span><ArrowIcon />
+          </a>
+          <a :href="withBase(`${prefix}reference/`)" target="_self">
+            <span>{{ copy.referenceAction }}</span><ArrowIcon />
+          </a>
+          <a href="https://github.com/XadillaX/node-sfml">
+            GitHub<ArrowIcon />
+          </a>
         </div>
       </div>
     </section>
-    <footer class="sfml-footer"><div class="section-width footer-inner"><a class="sfml-brand" :href="withBase(prefix)" aria-label="sfml.js"><img class="sf-symbol" :src="withBase('/media/sfml-js-symbol-pentagon.svg')" width="36" height="36" alt=""><img class="sf-wordmark sf-wordmark-light" :src="withBase('/media/sfml-js-wordmark.svg')" width="123" height="34" alt=""><img class="sf-wordmark sf-wordmark-dark" :src="withBase('/media/sfml-js-wordmark-dark.svg')" width="123" height="34" alt=""></a><p>{{ copy.footer }}</p><a :href="withBase(`${prefix}guide/`)">{{ copy.guide }}<ArrowIcon /></a></div></footer>
+    <footer class="sfml-footer section-width">
+      <div class="footer-inner">
+        <div class="footer-identity">
+          <a class="sfml-brand" :href="withBase(prefix)" aria-label="sfml.js">
+            <img
+              class="sf-symbol"
+              :src="withBase('/media/sfml-js-symbol-pentagon.svg')"
+              width="36"
+              height="36"
+              alt=""
+            >
+            <img
+              class="sf-wordmark sf-wordmark-light"
+              :src="withBase('/media/sfml-js-wordmark.svg')"
+              width="123"
+              height="34"
+              alt=""
+            >
+            <img
+              class="sf-wordmark sf-wordmark-dark"
+              :src="withBase('/media/sfml-js-wordmark-dark.svg')"
+              width="123"
+              height="34"
+              alt=""
+            >
+          </a>
+          <p>{{ copy.footer }}</p>
+        </div>
+        <div class="footer-details">
+          <IconCredits />
+          <a class="footer-guide" :href="withBase(`${prefix}guide/`)">
+            {{ copy.guide }}<ArrowIcon />
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>

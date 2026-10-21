@@ -3,6 +3,7 @@ import type { Theme } from 'vitepress';
 import { useData, withBase } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import Home from './Home.vue';
+import IconCredits from './IconCredits.vue';
 import './custom.css';
 
 /** Keep VitePress navigation, accessibility and documentation layouts on every route. */
@@ -20,16 +21,8 @@ export default {
           height: 34,
           alt: 'SFML.js',
         }),
-        'layout-bottom': () => h('p', { class: 'sf-icon-credits' }, [
-          'Icons made by ',
-          h('a', { href: 'https://lorcblog.blogspot.com/' }, 'Lorc'),
-          ', ',
-          h('a', { href: 'https://delapouite.com/' }, 'Delapouite'),
-          ' & Skoll · ',
-          h('a', { href: 'https://game-icons.net/' }, 'game-icons.net'),
-          ' · ',
-          h('a', { href: 'https://creativecommons.org/licenses/by/3.0/' }, 'CC BY 3.0'),
-        ]),
+        'layout-bottom': () => frontmatter.value.sfmlHome ? null
+          : h('div', { class: 'sf-doc-credits' }, [ h(IconCredits) ]),
       });
     },
   },

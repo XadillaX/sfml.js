@@ -136,13 +136,13 @@ node examples/all-types.cjs --frames=120
 node examples/network.cjs
 ```
 
-[旧版示例](examples/ported/README.zh-CN.md) 保留原演示，并适配 SFML 3 API。其中依赖 `drawAsync()` 或 `displayAsync()` 的两个入口报告 `UNSUPPORTED`；当前绑定不提供这两个方法。
+[功能示例](examples/features/README.zh-CN.md) · [官方示例](examples/official/README.zh-CN.md) · [游戏与应用](examples/projects/README.zh-CN.md)
 
-[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) 包含使用 sfml.js 实现的 Bomberman、Breakout、Tetris、Doodle Jump 和 Arkanoid。安装与启动命令见 [游戏项目](examples/README.zh-CN.md#game-projects)。
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) 包含使用 sfml.js 实现的 Bomberman、Breakout、Tetris、Doodle Jump 和 Arkanoid。安装与启动命令见 [游戏项目](examples/projects/README.zh-CN.md#node-sfml-demos)。
 
-[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) 将 [jsyqrt/games](https://github.com/jsyqrt/games) 中原本使用 C++ 和 SFML 编写的全部 16 个游戏迁移为 ClojureScript + sfml.js。游戏清单与 nbb 启动命令见 [16 个游戏](examples/README.zh-CN.md#16-games)。
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) 将 [jsyqrt/games](https://github.com/jsyqrt/games) 中原本使用 C++ 和 SFML 编写的全部 16 个游戏迁移为 ClojureScript + sfml.js。游戏清单与 nbb 启动命令见 [16 个游戏](examples/projects/README.zh-CN.md#16-games)。
 
-[play-nes](https://github.com/XadillaX/play-nes) — 基于 sfml.js 和 JSNES 的桌面 NES 模拟器。
+[play-nes](examples/projects/README.zh-CN.md#play-nes) — 基于 sfml.js 和 JSNES 的桌面 NES 模拟器。
 
 ## 参与贡献
 

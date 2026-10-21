@@ -32,11 +32,11 @@ test('maps nested documentation and README links to ' +
       '/zh/guide/system?from=api#input-streams',
     ],
     [ 'docs/getting-started.zh-CN.md', 'README.zh-CN.md', '/zh/guide/' ],
-    [ 'examples/ported/README.ko.md', '../README.ko.md', '/ko/examples' ],
+    [ 'examples/projects/README.ko.md', '../README.ko.md', '/ko/examples' ],
     [
       'docs/README.ja.md',
-      '../examples/ported/README.ja.md',
-      '/ja/examples/ported',
+      '../examples/features/README.ja.md',
+      '/ja/examples/features',
     ],
     [ 'docs/README.zh-CN.md', '../README.zh-CN.md', '/zh/' ],
     [ 'examples/README.md', '../README.md', '/' ],
@@ -56,6 +56,17 @@ test('maps project source files and folders to ' +
     'https://github.com/XadillaX/node-sfml/blob/main/examples/sprites.cjs');
   assert.equal(map('../LICENSE', 'docs/api.md'),
     'https://github.com/XadillaX/node-sfml/blob/main/LICENSE');
+  assert.equal(map('../examples/ported/README.ja.md', 'docs/README.ja.md'),
+    'https://github.com/XadillaX/node-sfml/blob/main/' +
+    'examples/ported/README.ja.md');
+  assert.equal(map('../examples/ported/', 'docs/README.md'),
+    'https://github.com/XadillaX/node-sfml/tree/main/examples/ported');
+  assert.equal(map('ported/render_window.cjs', 'examples/README.md'),
+    'https://github.com/XadillaX/node-sfml/blob/main/' +
+    'examples/ported/render_window.cjs');
+  assert.equal(map('ported/assets/avatar.gif', 'examples/README.md'),
+    'https://github.com/XadillaX/node-sfml/blob/main/' +
+    'examples/ported/assets/avatar.gif');
 });
 
 test('uses one shared media location for all ' +
@@ -65,8 +76,9 @@ test('uses one shared media location for all ' +
     '/media/render-texture.png'
   );
   assert.equal(
-    map('assets/avatar.gif', 'examples/ported/README.md'),
-    '/media/examples/ported/assets/avatar.gif'
+    map('../../assets/examples/features/image.webp',
+      'examples/features/README.ja.md'),
+    '/media/examples/features/image.webp'
   );
 });
 

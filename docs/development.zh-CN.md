@@ -116,9 +116,7 @@ npm run demo:audio
 npm run demo:network
 ```
 
-示例说明见 [examples/README.zh-CN.md](../examples/README.zh-CN.md)。已构建时可直接运行 `node examples/<名称>.cjs`。支持 `--frames` 的入口可限制帧数，截图方式也在示例目录说明中。
-
-旧版 `drawAsync`／`displayAsync` 两个示例明确报告不支持，详情见 [迁移说明](../examples/ported/README.zh-CN.md)。
+示例分为 [总览](../examples/README.zh-CN.md)、[功能示例](../examples/features/README.zh-CN.md)、[官方示例](../examples/official/README.zh-CN.md) 和 [游戏与应用](../examples/projects/README.zh-CN.md)。命令和 [截图支持](../examples/features/README.zh-CN.md#screenshots) 随入口说明。构建后直接运行脚本，仅对支持的入口传入 `--frames`。
 
 ## 源码与生成文件
 

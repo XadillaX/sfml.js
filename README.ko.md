@@ -136,13 +136,13 @@ node examples/all-types.cjs --frames=120
 node examples/network.cjs
 ```
 
-[포팅된 예제](examples/ported/README.ko.md)는 기존 데모를 유지하면서 SFML 3 API에 맞게 조정한 것입니다. `drawAsync()` 또는 `displayAsync()`가 필요한 두 예제는 `UNSUPPORTED`를 출력합니다. 이 바인딩에서는 해당 메서드를 제공하지 않습니다.
+[기능 예제](examples/features/README.ko.md) · [공식 예제](examples/official/README.ko.md) · [게임과 앱](examples/projects/README.ko.md)
 
-[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)에는 sfml.js로 구현한 Bomberman, Breakout, Tetris, Doodle Jump, Arkanoid가 포함되어 있습니다. 설치 및 실행 명령은 [게임 프로젝트](examples/README.ko.md#game-projects)를 참고하세요.
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)에는 sfml.js로 구현한 Bomberman, Breakout, Tetris, Doodle Jump, Arkanoid가 포함되어 있습니다. 설치 및 실행 명령은 [게임 프로젝트](examples/projects/README.ko.md#node-sfml-demos)를 참고하세요.
 
-[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported)는 [jsyqrt/games](https://github.com/jsyqrt/games)의 C++과 SFML로 작성된 원본 게임 16개를 모두 ClojureScript와 sfml.js로 이식한 프로젝트입니다. 게임 목록과 nbb 실행 명령은 [게임 16개](examples/README.ko.md#16-games)를 참고하세요.
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported)는 [jsyqrt/games](https://github.com/jsyqrt/games)의 C++과 SFML로 작성된 원본 게임 16개를 모두 ClojureScript와 sfml.js로 이식한 프로젝트입니다. 게임 목록과 nbb 실행 명령은 [게임 16개](examples/projects/README.ko.md#16-games)를 참고하세요.
 
-[play-nes](https://github.com/XadillaX/play-nes) — sfml.js와 JSNES로 구축된 데스크톱 NES 에뮬레이터.
+[play-nes](examples/projects/README.ko.md#play-nes) — sfml.js와 JSNES로 구축된 데스크톱 NES 에뮬레이터.
 
 ## 기여하기
 

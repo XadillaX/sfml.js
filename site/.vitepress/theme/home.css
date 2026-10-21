@@ -109,6 +109,36 @@
 .examples-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 30px; }
 .examples-heading p { color: var(--sf-muted); font-size: 14px; line-height: 1.8; margin-top: 12px; }
 .examples-heading > a { flex-shrink: 0; }
+.examples-heading > div {
+  min-width: 0;
+}
+.project-entry-links,
+.example-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 24px;
+}
+.project-entry-links .text-link {
+  min-width: 0;
+  max-width: 100%;
+}
+.project-entry-links .text-link > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.project-entry-links .text-link:last-child,
+.example-actions .text-link:last-child {
+  color: var(--sf-muted);
+  font-weight: 500;
+}
+.example-actions {
+  margin-top: 12px;
+  align-self: start;
+}
+.example-demo .example-actions .text-link {
+  margin: 0;
+}
 .examples-grid { display: grid; grid-template-columns: 1.1fr 1fr; column-gap: 36px; row-gap: 0; }
 .example-demo { display: grid; grid-template-rows: subgrid; grid-row: span 5; margin: 0; min-width: 0; }
 .example-demo figcaption { display: grid; grid-template-rows: subgrid; grid-row: span 4; }
@@ -121,24 +151,82 @@
 .example-demo p { margin-top: 10px; font-size: 14px; line-height: 1.85; color: var(--sf-muted); }
 .example-demo .text-link { justify-self: start; align-self: start; margin-top: 10px; }
 
-.upstream-section { background: var(--home-surface); border-block: 1px solid var(--sf-border); }
-.upstream-inner { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 100px; padding-block: 42px; }
+.upstream-inner,
+.footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: 64px;
+}
+.upstream-inner {
+  align-items: start;
+  border-top: 1px solid var(--sf-border);
+  padding-block: 48px 32px;
+}
 .upstream-inner h2 { font-size: 26px; max-width: 480px; margin-bottom: 18px; }
 .upstream-inner p { font-size: 14px; line-height: 1.9; color: var(--sf-muted); max-width: 520px; }
 .upstream-links { display: flex; flex-direction: column; gap: 8px; }
-.upstream-links a { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; padding: 10px 6px; border-bottom: 1px solid var(--sf-border); color: var(--sf-text); font-size: 14px; font-weight: 600; }
-.upstream-links a:last-child { border-bottom: 0; }
+.upstream-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 44px;
+  padding: 10px 6px;
+  color: var(--sf-text);
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
 .upstream-links a .sfml-arrow { color: var(--sf-brand); }
 .upstream-links a:hover { color: var(--sf-brand); }
-.footer-inner { display: flex; align-items: center; gap: 32px; padding-block: 26px; color: var(--sf-muted); font-size: 12px; }
-.footer-inner .sfml-brand { display: inline-flex; align-items: center; gap: 10px; line-height: 1; white-space: nowrap; }
-.footer-inner .sfml-brand .sf-symbol { display: block; width: 36px; height: 36px; }
-.footer-inner .sfml-brand .sf-wordmark { display: block; width: auto; height: 28px; object-fit: contain; }
-.footer-inner .sfml-brand .sf-wordmark-dark { display: none; }
-.dark .footer-inner .sfml-brand .sf-wordmark-light { display: none; }
-.dark .footer-inner .sfml-brand .sf-wordmark-dark { display: block; }
-.footer-inner > a:last-child { display: inline-flex; align-items: center; gap: 14px; margin-left: auto; min-height: 40px; }
-.footer-inner a:hover { color: var(--sf-brand); }
+.footer-inner {
+  align-items: start;
+  padding-block: 32px 48px;
+  color: var(--sf-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.footer-identity,
+.footer-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.footer-inner .sfml-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+.footer-inner .sfml-brand .sf-symbol {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+.footer-inner .sfml-brand .sf-wordmark {
+  display: block;
+  width: auto;
+  height: 28px;
+  object-fit: contain;
+}
+.footer-inner .sfml-brand .sf-wordmark-dark,
+.dark .footer-inner .sfml-brand .sf-wordmark-light {
+  display: none;
+}
+.dark .footer-inner .sfml-brand .sf-wordmark-dark {
+  display: block;
+}
+.footer-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 32px;
+}
+.footer-inner a:hover {
+  color: var(--sf-brand);
+}
 
 @media (max-width: 1100px) {
   .sfml-home .section-width { width: calc(100% - 64px); }
@@ -150,7 +238,10 @@
   .module-name { font-size: 17px; }
   .sfml-home h2 { font-size: 28px; }
   .code-section { gap: 44px; }
-  .upstream-inner { gap: 50px; }
+  .upstream-inner,
+  .footer-inner {
+    gap: 48px;
+  }
 }
 @media (max-width: 959px) {
   .hero-copy { max-width: 65%; }
@@ -166,7 +257,10 @@
   .examples-grid { column-gap: 28px; }
   .section-copy > p { font-size: 14px; }
   .section-copy .section-label { font-size: 10px; }
-  .upstream-inner { gap: 32px; grid-template-columns: 1.1fr .9fr; }
+  .upstream-inner,
+  .footer-inner {
+    gap: 32px;
+  }
 }
 @media (max-width: 767px) {
   .sfml-home .section-width { width: calc(100% - 40px); }
@@ -206,15 +300,30 @@
   .code-header { padding: 13px 16px; }
   .code-window pre { max-height: 340px; font-size: 11px; padding: 18px 16px; }
   .example-meta { font-size: 10px; gap: 14px; }
-  .upstream-inner { grid-template-columns: 1fr; gap: 24px; padding-block: 32px; }
+  .upstream-inner,
+  .footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .upstream-inner {
+    padding-block: 32px 16px;
+  }
   .upstream-inner h2 { font-size: 24px; margin-bottom: 16px; }
   .upstream-inner p { font-size: 13px; }
-  .upstream-links { gap: 5px; }
+  .upstream-links {
+    gap: 8px;
+  }
   .upstream-links a { font-size: 13px; }
-  .footer-inner { flex-wrap: wrap; gap: 16px 24px; padding-block: 22px 30px; }
-  .footer-inner .sfml-brand .sf-symbol { width: 32px; height: 32px; }
-  .footer-inner .sfml-brand .sf-wordmark { height: 24px; }
-  .footer-inner p { order: 3; flex-basis: 100%; }
+  .footer-inner {
+    padding-block: 24px 40px;
+  }
+  .footer-inner .sfml-brand .sf-symbol {
+    width: 32px;
+    height: 32px;
+  }
+  .footer-inner .sfml-brand .sf-wordmark {
+    height: 24px;
+  }
 }
 @media (max-width: 359px) {
   .hero-sfml { font-size: 84px; }

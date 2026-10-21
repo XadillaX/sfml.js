@@ -32,7 +32,8 @@ async function main() {
   const path = pathArgument ? resolve(pathArgument.slice(7)) :
     resolve(__dirname, 'ported/assets/avatar.gif');
   const [ original, logo ] = await Promise.all([
-    load(path), load(resolve(__dirname, '../assets/sfml.js.png')),
+    load(path),
+    load(resolve(__dirname, 'official/tennis/resources/sfml_logo.png')),
   ]);
   const size = original.getSize();
   const mirrored = new Image(original);
@@ -62,7 +63,7 @@ async function main() {
   const sprites = [
     label('SFML / IMAGE', 24, 28, 3),
     label('REAL FILE / ASYNC LOAD / SHARED PIXELS', 24, 70, 2, muted),
-    spriteFromImage(logo, 752, 24, 0.75),
+    spriteFromImage(logo, 736, 24, 0.75),
   ];
   const titles = [ 'ORIGINAL', 'HORIZONTAL FLIP', 'GRAYSCALE' ];
   const descriptions = [

@@ -1,12 +1,14 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const { performance } = require('node:perf_hooks');
 const { test } = require('node:test');
-const { setImmediate: nextTurn } = require('node:timers/promises');
+const { setImmediate: nextTurn, setTimeout: delay } =
+  require('node:timers/promises');
 const sf = require('..');
 const native = require('../build/Release/sfml.node');
 const {
-  graphicsNative, graphicsContext, shapeState, textureId,
+  graphicsNative, graphicsContext, shapeState,
 } = require('../dist/internal/graphics-state');
 const { transformableState } = require('../dist/internal/transformable');
 const { rectStorage, rectNative, vector2Native } =
@@ -462,30 +464,47 @@ test('Shape rectangle views retain native storage after wrapper collection',
 
 test('Shape last owned by buffers defers destruction to its environment',
   async () => {
-    let tex = texture(sf.Color.White);
-    let shape = new sf.RectangleShape(F(2, 3));
-    shape.setTexture(tex);
-    const id = tex[textureId];
-    const pose = shape[transformableState].values.buffer;
-    const appearance = shape[shapeState].words.buffer;
-    const refs = [ new WeakRef(shape), new WeakRef(tex) ];
+    const context = graphicsContext();
+    let tex = native.createTexture(context, 2, 3, false);
+    let shape = native.createShape(context, 2, 2, 3);
+    native.setShapeTexture(shape.handle, tex.handle, tex.id);
+    const id = tex.id;
+    // Keep every backing store until all native handles have been collected.
+    const metadata = [ ...shape.info.buffers, ...tex.info.buffers ];
+    const pose = shape.buffer;
+    const appearance = shape.appearance;
+    const refs = [
+      new WeakRef(shape.handle),
+      new WeakRef(shape.transformable),
+      new WeakRef(tex.handle),
+    ];
     shape = null;
     tex = null;
-    for (let i = 0; i < 30; i++) {
-      await nextTurn();
+    const gcDeadline = performance.now() + 1000;
+    do {
+      await delay(5);
       global.gc();
       if (refs.every(ref => !ref.deref())) break;
+    } while (performance.now() < gcDeadline);
+    assert.equal(refs.every(ref => !ref.deref()), true,
+      'Native handles must collect before releasing backing stores');
+    for (const buffer of metadata) {
+      native.releaseBackingOffThread(buffer);
+      assert.equal(buffer.byteLength, 0);
     }
-    assert.equal(refs.every(ref => !ref.deref()), true);
-    assert.equal(native.textureRegistered(graphicsContext(), id), true);
+    assert.equal(native.textureRegistered(context, id), true);
     native.releaseBackingOffThread(pose);
+    // Appearance is now the last owner; dispatch needs an event-loop turn.
     native.releaseBackingOffThread(appearance);
-    assert.equal(native.textureRegistered(graphicsContext(), id), true);
-    for (let i = 0; i < 30; i++) {
-      await nextTurn();
-      if (!native.textureRegistered(graphicsContext(), id)) break;
+    assert.equal(pose.byteLength, 0);
+    assert.equal(appearance.byteLength, 0);
+    assert.equal(native.textureRegistered(context, id), true);
+    const deadline = performance.now() + 1000;
+    while (native.textureRegistered(context, id) &&
+        performance.now() < deadline) {
+      await delay(5);
     }
-    assert.equal(native.textureRegistered(graphicsContext(), id), false);
+    assert.equal(native.textureRegistered(context, id), false);
   });
 
 test('Shape shader uniforms retain draw snapshots', async () => {

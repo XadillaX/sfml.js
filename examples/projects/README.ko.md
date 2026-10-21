@@ -1,0 +1,352 @@
+# 게임과 앱
+
+[English](README.md) / [简体中文](README.zh-CN.md) / [日本語](README.ja.md) / **한국어**
+
+> Breakout은 이 저장소에서 실행합니다. 나머지는 별도 저장소 또는 npm 패키지이며 각 절의 작업 디렉터리를 사용해야 합니다. 모두 그래픽 세션과 네이티브 빌드 요구 사항이 필요합니다. 각 프로젝트의 의존성 버전은 sfml.js 릴리스와 독립적입니다.
+
+[개요](../README.ko.md) · [기능 예제](../features/README.ko.md) · [공식 예제](../official/README.ko.md)
+
+<a id="breakout"></a>
+
+## 벽돌 깨기 플레이하기
+
+sfml.js 저장소 루트에서 처음에 `npm ci`, 이후 `node examples/breakout.cjs`를 실행합니다. 소스 변경 후에는 `npm run build`를 실행하세요.
+
+<div class="example-gallery">
+  <article class="example-entry" id="breakout-game">
+    <a href="../../assets/breakout.png">
+      <img src="../../assets/breakout.png" width="360" alt="네이티브 창에서 렌더링한 벽돌 깨기 게임">
+    </a>
+    <div class="example-info">
+      <p><a href="../breakout.cjs">breakout.cjs</a>는 충돌 판정, 세 번의 목숨, 점수, 승패 상태를 갖춘 게임입니다. 왼쪽/오른쪽 방향키 또는 A/D로 이동하고, Space로 발사하거나 다시 시작하며, P로 일시 정지하고, Esc로 종료합니다. 직접 플레이할 때 포커스를 잃으면 일시 정지합니다.</p>
+    </div>
+  </article>
+</div>
+
+`npm run demo:breakout`으로 빌드하고 실행할 수 있습니다. macOS/Linux에서 같은 게임 화면을 캡처하려면 다음을 실행하세요.
+
+```sh
+SFML_DEMO_SNAPSHOT=/tmp/sfml-breakout.png \
+  node examples/breakout.cjs --autoplay --frames=1500
+```
+
+마지막 프레임의 실제 네이티브 화면을 저장합니다. `--autoplay`는 패들을 자동으로 조작하고 `--frames`는 실행 프레임 수를 제한합니다. `node examples/breakout.cjs --self-test`는 창을 열지 않고 게임 로직을 검사합니다.
+
+<a id="game-projects"></a>
+
+<a id="node-sfml-demos"></a>
+
+## node-sfml-demos
+
+[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)에는 sfml.js로 구현한 Bomberman, Breakout, Tetris, Doodle Jump, Arkanoid가 포함되어 있습니다.
+
+프로젝트를 보관하는 디렉터리에서 이 별도 저장소를 복제한 뒤, 각 게임 디렉터리에서 의존성을 설치하고 실행하세요. Bomberman의 경우:
+
+```sh
+git clone https://github.com/XadillaX/node-sfml-demos.git
+cd node-sfml-demos/bomberman
+npm install
+node index.js
+```
+
+게임 디렉터리, 조작법, 원본 C++ 소스 코드는 [저장소 README](https://github.com/XadillaX/node-sfml-demos#readme)를 참고하세요. [네이티브 빌드 요구 사항](../../docs/getting-started.ko.md#requirements)도 적용됩니다.
+
+Node.js 22, Python 3, C++20 도구 모음을 사용합니다. 각 게임 폴더에서 `npm install` 후 `node index.js`를 실행하세요. 일부 게임이 폰트와 텍스처를 공유하므로 전체 저장소를 유지해야 합니다. 각 게임은 `sfml.js@1.0.0-rc.2`로 고정되어 있으며 이 페이지에서 업그레이드하지 않습니다. 모두 창 닫기를 지원하고 Bomberman은 오디오도 사용합니다. Tetris, Doodle Jump, Arkanoid는 원형의 미완성 게임 로직을 유지합니다.
+
+<div class="example-gallery">
+  <article class="example-entry" id="demo-bomberman">
+    <a href="../../assets/examples/projects/node-sfml-demos/bomberman.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/bomberman.webp" width="360" alt="Bomberman: 타일 경기장의 2인용 Bomberman.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/bomberman">Bomberman</a></strong></p>
+      <p>타일 경기장의 2인용 Bomberman.</p>
+      <p><strong>조작</strong> · 플레이어 1은 WASD 이동, 왼쪽 Ctrl 폭탄. 플레이어 2는 방향키 이동, Space 폭탄. 마우스로 메뉴 조작, Esc로 일시 정지/재개.</p>
+      <p>실행 디렉터리: <code>node-sfml-demos/bomberman/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/PiGames/Bomberman">원본 C++ 소스</a></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-breakout">
+    <a href="../../assets/examples/projects/node-sfml-demos/breakout.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/breakout.webp" width="360" alt="Breakout: 별이 있는 배경의 벽돌 깨기.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/breakout">Breakout</a></strong></p>
+      <p>별이 있는 배경의 벽돌 깨기.</p>
+      <p><strong>조작</strong> · A/D 또는 좌/우로 이동과 발사, Space로도 발사합니다. 패배 후 Space를 놓으면 초기화됩니다. Esc로 종료합니다.</p>
+      <p>실행 디렉터리: <code>node-sfml-demos/breakout/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-tetris">
+    <a href="../../assets/examples/projects/node-sfml-demos/tetris.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/tetris.webp" width="360" alt="Tetris: 금색 테두리 안의 떨어지는 블록.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/tetris">Tetris</a></strong></p>
+      <p>금색 테두리 안의 떨어지는 블록.</p>
+      <p><strong>조작</strong> · 좌/우 이동, 위 회전, 아래 빠른 낙하.</p>
+      <p>실행 디렉터리: <code>node-sfml-demos/tetris/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/jsyqrt/games/blob/master/01%20Tetris/main.cpp">원본 C++ 소스</a></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-doodle-jump">
+    <a href="../../assets/examples/projects/node-sfml-demos/doodle-jump.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/doodle-jump.webp" width="360" alt="Doodle Jump: 초록 플랫폼 사이를 점프합니다.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/doodle_jump">Doodle Jump</a></strong></p>
+      <p>초록 플랫폼 사이를 점프합니다.</p>
+      <p><strong>조작</strong> · 좌/우 이동, 점프는 자동입니다.</p>
+      <p>실행 디렉터리: <code>node-sfml-demos/doodle_jump/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/jsyqrt/games/blob/master/02%20Doodle%20Jump/main.cpp">원본 C++ 소스</a></p>
+    </div>
+  </article>
+  <article class="example-entry" id="demo-arkanoid">
+    <a href="../../assets/examples/projects/node-sfml-demos/arkanoid.webp">
+      <img src="../../assets/examples/projects/node-sfml-demos/arkanoid.webp" width="360" alt="Arkanoid: 초록 벽돌을 깨는 작은 게임.">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/node-sfml-demos/tree/HEAD/arkanoid">Arkanoid</a></strong></p>
+      <p>초록 벽돌을 깨는 작은 게임.</p>
+      <p><strong>조작</strong> · 좌/우로 패들 이동, 공은 자동으로 출발합니다.</p>
+      <p>실행 디렉터리: <code>node-sfml-demos/arkanoid/</code></p>
+      <p><code>npm install</code><br><code>node index.js</code></p>
+      <p><a href="https://github.com/jsyqrt/games/blob/master/03%20Arkanoid/main.cpp">원본 C++ 소스</a></p>
+    </div>
+  </article>
+</div>
+
+<a id="16-games"></a>
+
+## ClojureScript 게임 16개
+
+[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported)는 [jsyqrt/games](https://github.com/jsyqrt/games)의 포크입니다. 원본 게임 16개는 **C++과 SFML**로 작성되었습니다. 이 포크는 모든 게임을 **ClojureScript와 sfml.js**로 이식하며 원래 디렉터리 구조, 리소스, 게임 로직과 조작법을 유지합니다.
+
+**nbb**를 통해 Node.js에서 실행하므로 JVM이나 별도의 컴파일 단계가 필요하지 않습니다. 프로젝트를 보관하는 디렉터리에 게임 저장소를 복제한 뒤, 저장소 루트에서 실행하세요.
+
+```sh
+git clone https://github.com/XadillaX/16-sfml.js-games-ported.git
+cd 16-sfml.js-games-ported
+npm ci
+npx nbb "01 Tetris/main.cljs"
+```
+
+Node.js 20.5 이상, [네이티브 빌드 요구 사항](../../docs/getting-started.ko.md#requirements)을 충족하는 환경, OpenGL 창을 지원하는 그래픽 세션이 필요합니다. 의존성은 `sfml.js@1.0.0-rc.2`와 `nbb@1.6.214`로 고정되어 있습니다. 각 스크립트는 자신의 디렉터리를 기준으로 리소스를 찾습니다.
+
+<div class="example-gallery">
+  <article class="example-entry" id="01-tetris">
+    <a href="../../assets/examples/projects/16-games/01-tetris.webp">
+      <img src="../../assets/examples/projects/16-games/01-tetris.webp" width="360" alt="떨어지는 블록과 줄 지우기">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/01%20Tetris/main.cljs">01 · Tetris</a></strong></p>
+      <p>떨어지는 블록과 줄 지우기</p>
+      <p><strong>조작</strong> · 좌/우 이동, 위 회전, 아래 빠른 낙하</p>
+      <p><code>npx nbb &quot;01 Tetris/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="02-doodle-jump">
+    <a href="../../assets/examples/projects/16-games/02-doodle-jump.webp">
+      <img src="../../assets/examples/projects/16-games/02-doodle-jump.webp" width="360" alt="화면이 스크롤되며 플랫폼 사이를 점프">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/02%20Doodle%20Jump/main.cljs">02 · Doodle Jump</a></strong></p>
+      <p>화면이 스크롤되며 플랫폼 사이를 점프</p>
+      <p><strong>조작</strong> · 좌/우 이동, 점프는 자동</p>
+      <p><code>npx nbb &quot;02 Doodle Jump/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="03-arkanoid">
+    <a href="../../assets/examples/projects/16-games/03-arkanoid.webp">
+      <img src="../../assets/examples/projects/16-games/03-arkanoid.webp" width="360" alt="튀는 공으로 벽돌 깨기">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/03%20Arkanoid/main.cljs">03 · Arkanoid</a></strong></p>
+      <p>튀는 공으로 벽돌 깨기</p>
+      <p><strong>조작</strong> · 좌/우로 패들 이동</p>
+      <p><code>npx nbb &quot;03 Arkanoid/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="04-snake">
+    <a href="../../assets/examples/projects/16-games/04-snake.webp">
+      <img src="../../assets/examples/projects/16-games/04-snake.webp" width="360" alt="먹이를 모으며 성장">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/04%20Snake/main.cljs">04 · Snake</a></strong></p>
+      <p>먹이를 모으며 성장</p>
+      <p><strong>조작</strong> · 방향키로 방향 변경</p>
+      <p><code>npx nbb &quot;04 Snake/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="05-minesweeper">
+    <a href="../../assets/examples/projects/16-games/05-minesweeper.webp">
+      <img src="../../assets/examples/projects/16-games/05-minesweeper.webp" width="360" alt="칸을 열고 지뢰 표시">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/05%20Minesweeper/main.cljs">05 · Minesweeper</a></strong></p>
+      <p>칸을 열고 지뢰 표시</p>
+      <p><strong>조작</strong> · 왼쪽 클릭으로 열기, 오른쪽 클릭으로 깃발</p>
+      <p><code>npx nbb &quot;05 Minesweeper/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="06-fifteen-puzzle">
+    <a href="../../assets/examples/projects/16-games/06-fifteen-puzzle.webp">
+      <img src="../../assets/examples/projects/16-games/06-fifteen-puzzle.webp" width="360" alt="4 × 4 슬라이딩 퍼즐">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/06%20Fifteen-Puzzle/main.cljs">06 · Fifteen-Puzzle</a></strong></p>
+      <p>4 × 4 슬라이딩 퍼즐</p>
+      <p><strong>조작</strong> · 빈칸 옆 타일을 클릭해 이동</p>
+      <p><code>npx nbb &quot;06 Fifteen-Puzzle/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="07-racing-top-down">
+    <a href="../../assets/examples/projects/16-games/07-racing-top-down.webp">
+      <img src="../../assets/examples/projects/16-games/07-racing-top-down.webp" width="360" alt="컴퓨터 차량과 함께 경주">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/07%20Racing%20%28Top%20Down%29/main.cljs">07 · Racing (Top Down)</a></strong></p>
+      <p>컴퓨터 차량과 함께 경주</p>
+      <p><strong>조작</strong> · 위 가속, 아래 제동/후진, 좌/우 조향</p>
+      <p><code>npx nbb &quot;07 Racing (Top Down)/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="08-outrun">
+    <a href="../../assets/examples/projects/16-games/08-outrun.webp">
+      <img src="../../assets/examples/projects/16-games/08-outrun.webp" width="360" alt="원근감 있는 도로, 커브와 도로변 풍경">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/08%20Outrun/main.cljs">08 · Outrun</a></strong></p>
+      <p>원근감 있는 도로, 커브와 도로변 풍경</p>
+      <p><strong>조작</strong> · 좌/우 조향, 위/아래 전진/후진, Tab 가속, W/S 카메라 높이 변경</p>
+      <p><code>npx nbb &quot;08 Outrun/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="09-xonix">
+    <a href="../../assets/examples/projects/16-games/09-xonix.webp">
+      <img src="../../assets/examples/projects/16-games/09-xonix.webp" width="360" alt="적을 피하며 영역 차지">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/09%20Xonix/main.cljs">09 · Xonix</a></strong></p>
+      <p>적을 피하며 영역 차지</p>
+      <p><strong>조작</strong> · 방향키 이동, Esc로 판 초기화</p>
+      <p><code>npx nbb &quot;09 Xonix/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="10-bejeweled">
+    <a href="../../assets/examples/projects/16-games/10-bejeweled.webp">
+      <img src="../../assets/examples/projects/16-games/10-bejeweled.webp" width="360" alt="인접한 보석을 바꿔 줄 맞추기">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/10%20Bejeweled/main.cljs">10 · Bejeweled</a></strong></p>
+      <p>인접한 보석을 바꿔 줄 맞추기</p>
+      <p><strong>조작</strong> · 인접한 보석 두 개를 클릭해 교환</p>
+      <p><code>npx nbb &quot;10 Bejeweled/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="11-netwalk">
+    <a href="../../assets/examples/projects/16-games/11-netwalk.webp">
+      <img src="../../assets/examples/projects/16-games/11-netwalk.webp" width="360" alt="컴퓨터를 서버에 연결">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/11%20NetWalk%20%28Pipe%20Puzzle%29/main.cljs">11 · NetWalk (Pipe Puzzle)</a></strong></p>
+      <p>컴퓨터를 서버에 연결</p>
+      <p><strong>조작</strong> · 파이프를 클릭해 회전</p>
+      <p><code>npx nbb &quot;11 NetWalk (Pipe Puzzle)/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="12-mahjong-solitaire">
+    <a href="../../assets/examples/projects/16-games/12-mahjong-solitaire.webp">
+      <img src="../../assets/examples/projects/16-games/12-mahjong-solitaire.webp" width="360" alt="선택 가능한 같은 패의 쌍 제거">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/12%20Mahjong%20Solitaire/main.cljs">12 · Mahjong Solitaire</a></strong></p>
+      <p>선택 가능한 같은 패의 쌍 제거</p>
+      <p><strong>조작</strong> · 왼쪽 클릭으로 쌍 선택, 오른쪽 클릭으로 되돌리기</p>
+      <p><code>npx nbb &quot;12 Mahjong Solitaire/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="13-tron">
+    <a href="../../assets/examples/projects/16-games/13-tron.webp">
+      <img src="../../assets/examples/projects/16-games/13-tron.webp" width="360" alt="2인용 빛의 궤적 대결">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/13%20Tron/main.cljs">13 · Tron</a></strong></p>
+      <p>2인용 빛의 궤적 대결</p>
+      <p><strong>조작</strong> · 빨강은 방향키, 초록은 W/A/S/D</p>
+      <p><code>npx nbb &quot;13 Tron/main.cljs&quot;</code></p>
+    </div>
+  </article>
+  <article class="example-entry" id="14-chess">
+    <a href="../../assets/examples/projects/16-games/14-chess.webp">
+      <img src="../../assets/examples/projects/16-games/14-chess.webp" width="360" alt="말을 드래그하는 체스판과 외부 Stockfish 엔진">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/14%20Chess/main.cljs">14 · Chess</a></strong></p>
+      <p>말을 드래그하는 체스판과 외부 Stockfish 엔진</p>
+      <p><strong>조작</strong> · 말 드래그, Space로 엔진 수 요청, Backspace로 되돌리기</p>
+      <p><code>npx nbb &quot;14 Chess/main.cljs&quot; /path/to/stockfish</code></p>
+      <p>OS에 맞는 <a href="https://github.com/official-stockfish/Stockfish/releases">Stockfish 실행 파일</a>을 별도로 설치하고 압축을 푼 실행 파일 경로를 전달하세요. 엔진은 포함되지 않습니다. Windows에서는 main.cljs 옆에 stockfish.exe를 두면 인수 없이 실행할 수도 있습니다.</p>
+    </div>
+  </article>
+  <article class="example-entry" id="15-volleyball">
+    <a href="../../assets/examples/projects/16-games/15-volleyball.webp">
+      <img src="../../assets/examples/projects/16-games/15-volleyball.webp" width="360" alt="Box2D 물리 기반 2인용 배구">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/15%20Volleyball/main.cljs">15 · Volleyball</a></strong></p>
+      <p>Box2D 물리 기반 2인용 배구</p>
+      <p><strong>조작</strong> · 빨강은 좌/우 이동과 위 점프, 초록은 A/D 이동과 W 점프</p>
+      <p><code>npx nbb &quot;15 Volleyball/main.cljs&quot;</code></p>
+      <p>게임 저장소 루트의 <code>npm ci</code>가 <code>box2dweb@2.1.0-b</code>를 설치합니다.</p>
+    </div>
+  </article>
+  <article class="example-entry" id="16-asteroids">
+    <a href="../../assets/examples/projects/16-games/16-asteroids.webp">
+      <img src="../../assets/examples/projects/16-games/16-asteroids.webp" width="360" alt="우주선을 조종해 소행성 파괴">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/16-sfml.js-games-ported/blob/HEAD/16%20Asteroids/main.cljs">16 · Asteroids</a></strong></p>
+      <p>우주선을 조종해 소행성 파괴</p>
+      <p><strong>조작</strong> · 좌/우 회전, 위 추진, Space 발사</p>
+      <p><code>npx nbb &quot;16 Asteroids/main.cljs&quot;</code></p>
+    </div>
+  </article>
+</div>
+
+Chess에는 현재 운영체제용 [Stockfish 실행 파일](https://github.com/official-stockfish/Stockfish/releases)이 별도로 필요하며, 표의 명령에 실행 파일 경로를 전달합니다. Volleyball이 사용하는 `box2dweb`은 `npm ci`로 설치됩니다. 게임 창을 닫으면 종료됩니다. 스크린샷, 소스 코드와 조작법은 [게임 목록](https://github.com/XadillaX/16-sfml.js-games-ported#games)을 참고하세요.
+<a id="play-nes"></a>
+
+## play-nes
+
+Node.js 22를 권장합니다. 네이티브 확장에는 Python과 C++20 컴파일러가 필요합니다. 오디오 출력이 있는 그래픽 데스크톱에서 실행하세요. 배포된 플레이어를 설치하고 내장 Concentration Room 또는 사용 권한이 있는 로컬 ROM을 실행합니다.
+
+```sh
+npm install -g play-nes
+nes croom
+nes "/path/to/your game.nes"
+```
+
+<div class="example-gallery">
+  <article class="example-entry" id="play-nes-player">
+    <a href="../../assets/examples/projects/play-nes.webp">
+      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+    </a>
+    <div class="example-info">
+      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
+      <p>JSNES로 에뮬레이션하고 sfml.js로 네이티브 그래픽과 오디오를 처리하는 TypeScript 데스크톱 NES 에뮬레이터입니다. 미리보기의 게임은 Concentration Room입니다.</p>
+      <p><strong>조작</strong> · 플레이어 1: WASD 방향, J/K는 A/B, 오른쪽 Shift는 Select, Enter는 Start. 플레이어 2: 방향키, 숫자 패드 5/6은 A/B, 숫자 패드 8/9는 Select/Start. Esc 또는 창 닫기로 종료하며 포커스를 잃으면 누른 버튼을 해제합니다.</p>
+      <p><code>--scale 3</code>은 창 배율을 바꾸고 <code>--frameRate 60</code>은 정상 속도를 선택합니다. 프레임률은 표시뿐 아니라 에뮬레이션 속도도 바꿉니다. 전체 옵션은 <code>nes --help</code>를 참고하세요.</p>
+    </div>
+  </article>
+</div>
+
+## 스크린샷 출처
+
+게임 리소스는 출처를 명시한 원본 프로젝트에서 가져왔습니다. [provenance.json](../../assets/examples/projects/provenance.json)에 이미지 출처와 처리를 기록합니다. 이미지는 호환성이나 게임 동작 테스트 보고서가 아닙니다. 리소스의 권리는 각 저자에게 있으며 이미지 게시로 라이선스를 변경하지 않습니다.
+
+원본 C++ 게임과 튜토리얼 출처는 [jsyqrt/games](https://github.com/jsyqrt/games), 참조 이식은 [XadillaX/16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported#sources)를 참고하세요. [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos#license)와 [play-nes](https://github.com/XadillaX/play-nes#readme)는 각 라이선스와 출처를 기록합니다.
