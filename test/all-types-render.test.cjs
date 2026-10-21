@@ -37,8 +37,17 @@ async function setup() {
     const pixels = native.readRenderTexturePixels(target[graphicsNative]);
     const warmPixels =
       native.readRenderTexturePixels(warmTarget[graphicsNative]);
-    assert.ok(Buffer.from(pixels).equals(Buffer.from(warmPixels)),
-      'pixels differ between storage paths');
+    if (!Buffer.from(pixels).equals(Buffer.from(warmPixels))) {
+      const first = pixels.findIndex((value, index) =>
+        value !== warmPixels[index]);
+      const width = target.getSize().x;
+      const pixel = Math.floor(first / 4);
+      assert.fail('pixels differ between storage paths: ' +
+        `x=${pixel % width}, y=${Math.floor(pixel / width)}, ` +
+        `channel=${first % 4}, cold=${pixels[first]}, ` +
+        `warm=${warmPixels[first]}, ` +
+        `bytes=${pixels.length}/${warmPixels.length}`);
+    }
     return pixels;
   }
   return { cold, warm, target, frame, compare };
