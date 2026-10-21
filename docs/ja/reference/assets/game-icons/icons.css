@@ -16,6 +16,9 @@
   --gi-close: url('./close.svg');
   --gi-check: url('./check.svg');
   --gi-edit: url('./edit.svg');
+  --gi-return: url('./return.svg');
+  --gi-link: url('./link.svg');
+  --gi-list: url('./list.svg');
 }
 .game-icon {
   display: inline-block;

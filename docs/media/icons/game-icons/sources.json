@@ -18,6 +18,19 @@
     "arrow": "delapouite/plain-arrow",
     "close": "lorc/cross-mark",
     "check": "delapouite/check-mark",
-    "edit": "delapouite/pencil"
+    "edit": "delapouite/pencil",
+    "return": "lorc/return-arrow",
+    "link": "lorc/linked-rings",
+    "class": "delapouite/cube",
+    "interface": "delapouite/plug",
+    "function": "lorc/cog",
+    "value": "delapouite/token",
+    "list": "delapouite/checklist",
+    "folder": "delapouite/full-folder",
+    "document": "lorc/scroll-unfurled",
+    "info": "delapouite/info",
+    "tip": "lorc/light-bulb",
+    "warning": "lorc/hazard-sign",
+    "caution": "delapouite/stop-sign"
   }
 }
