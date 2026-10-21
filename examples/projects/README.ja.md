@@ -12,9 +12,37 @@
 
 ## Süper Mario Kart
 
-[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) は、C++ と SFML 2.5.1 で書かれた [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart) の **TypeScript + sfml.js** 移植版です。54 個の TypeScript モジュールが元のソース構成に対応し、Mode 7 描画、ゲームロジック、AI、素材を引き継いでいます。
+<div class="project-feature">
 
-プロジェクトを置くディレクトリに独立したリポジトリをクローンし、そのルートでインストールして起動します。
+<div class="example-gallery project-gallery">
+  <article class="example-entry project-summary-entry" id="super-mario-kart-game">
+    <div class="project-overview">
+      <a class="project-preview" href="../../assets/examples/projects/super-mario-kart.webp">
+        <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart：TypeScript 移植版で Donut Plains 1 を実際に走行した画面">
+        <span class="project-preview-label">元のサイズで画像を見る</span>
+      </a>
+      <div class="example-info">
+        <p class="project-description">TypeScript と sfml.js で動くネイティブのカートレース。Mode 7 描画、ドリフト、ジャンプ、コイン、アイテムを引き継いでいます。</p>
+        <dl class="project-facts">
+          <div><dt>対戦</dt><dd>プレイヤー 1 人と AI 7 人</dd></div>
+          <div><dt>モード</dt><dd>Grand Prix：5 コース · Versus：1 コース</dd></div>
+          <div><dt>クラス</dt><dd>50cc · 100cc · 150cc</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="project-run-link" href="#super-mario-kart-run">インストールと起動</a>
+          <a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">ソースを見る</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="project-run" aria-labelledby="super-mario-kart-run">
+  <h3 id="super-mario-kart-run">インストールと起動</h3>
+
+Node.js 20.5 以降 · 音声出力のあるデスクトップ · [ネイティブビルド要件](../../docs/getting-started.ja.md#requirements)
+
+プロジェクト用ディレクトリにクローンし、ゲームのルートで実行します。
 
 ```sh
 git clone https://github.com/XadillaX/super-mario-kart-sfml.js.git
@@ -23,49 +51,131 @@ npm install
 npm start
 ```
 
-Node.js 20.5 以降、音声出力のあるグラフィカルデスクトップと[ネイティブビルド要件](../../docs/getting-started.ja.md#requirements)を満たす環境が必要です。依存は `sfml.js@1.0.0-rc.2` と `typescript@7.0.2` に固定されています。`npm start` は `dist/` にコンパイルしてネイティブゲームを起動します。Python のコース制作ツールは任意で、プレイには不要です。
+`npm start` は `dist/` にコンパイルしてゲームを起動します。Python のコース制作ツールは任意で、プレイには不要です。
 
-<div class="example-gallery">
-  <article class="example-entry" id="super-mario-kart-game">
-    <a href="../../assets/examples/projects/super-mario-kart.webp">
-      <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart：TypeScript 移植版で Donut Plains 1 を実際に走行した画面">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/super-mario-kart-sfml.js">Süper Mario Kart</a></strong></p>
-      <p>8 人のドライバー、5 コース、50cc・100cc・150cc を用意。Grand Prix は全 5 コース、Versus は単一コースで競います。どちらも人間 1 人と AI 7 人の対戦で、ドリフト、ジャンプ、コイン、アイテムを使用できます。</p>
-      <p><strong>操作</strong> · X で加速、Z でブレーキ、C でジャンプ／ドリフト、左右で操舵、上下で前方／後方にアイテムを使用。Enter でメニュー決定／コース紹介をスキップ、Esc で一時停止。一時停止メニューで No を選び Enter を押すと再開、Yes でリタイアします。</p>
-      <p><code>super-mario-kart-sfml.js/</code> で <code>npm install</code>、続いて <code>npm start</code> を実行します。Controls と Settings メニューでキー、音量、解像度を設定できます。</p>
-      <p><a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">TypeScript ソース</a> · <a href="https://github.com/vmbatlle/super-mario-kart">元の C++ ソース</a></p>
-    </div>
-  </article>
-</div>
+</section>
+
+<section class="project-controls" aria-labelledby="super-mario-kart-controls">
+      <h3 id="super-mario-kart-controls">操作一覧</h3>
+      <dl class="project-key-list">
+        <div><dt><kbd>X</kbd></dt><dd>加速</dd></div>
+        <div><dt><kbd>Z</kbd></dt><dd>ブレーキ</dd></div>
+        <div><dt><kbd>C</kbd></dt><dd>ジャンプ／ドリフト</dd></div>
+        <div><dt><kbd>Left</kbd> <kbd>Right</kbd></dt><dd>操舵</dd></div>
+        <div><dt><kbd>Up</kbd> <kbd>Down</kbd></dt><dd>前方／後方にアイテムを使用</dd></div>
+        <div><dt><kbd>Enter</kbd></dt><dd>決定／コース紹介をスキップ</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>一時停止</dd></div>
+      </dl>
+      <p class="project-hint">再開するには一時停止メニューで <strong>No</strong> を選び <kbd>Enter</kbd>。<strong>Yes</strong> でリタイアします。</p>
+      <p class="project-hint">Controls と Settings メニューでキー、音量、解像度を設定できます。</p>
+</section>
+
+<details class="project-notes">
+      <summary>
+        <span>コース・出典・ライセンス</span>
+        <span class="project-expand" aria-hidden="true">開く</span>
+        <span class="project-collapse" aria-hidden="true">閉じる</span>
+      </summary>
+      <div class="project-notes-content">
+
+[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) は、C++ と SFML 2.5.1 で書かれた [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart) の **TypeScript + sfml.js** 移植版です。54 個の TypeScript モジュールが元のソース構成に対応し、Mode 7 描画、ゲームロジック、AI、素材を引き継いでいます。
+
+依存は `sfml.js@1.0.0-rc.2` と `typescript@7.0.2` に固定されています。
 
 コースは Donut Plains 1、Mario Circuit 2、Ghost Valley 1、Bowser Castle 1、Rainbow Road です。コードは [GPL v3](https://github.com/XadillaX/super-mario-kart-sfml.js/blob/HEAD/LICENSE)。キャラクター、画像、音楽の権利は Nintendo に帰属します。非公式の教育目的のファンプロジェクトです。
+
+</div>
+</details>
+
+</div>
 
 <a id="play-nes"></a>
 
 ## play-nes
 
-Node.js 22 を推奨します。ネイティブ拡張には Python と C++20 コンパイラーが必要です。音声出力のあるグラフィカルデスクトップで実行してください。公開済みのプレイヤーを導入し、同梱の Concentration Room または利用権限のあるローカル ROM を開きます。
+<div class="project-feature">
+
+<div class="example-gallery project-gallery">
+  <article class="example-entry project-summary-entry" id="play-nes-player">
+    <div class="project-overview">
+      <a class="project-preview" href="../../assets/examples/projects/play-nes.webp">
+        <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+        <span class="project-preview-label">元のサイズで画像を見る</span>
+      </a>
+      <div class="example-info">
+        <p class="project-description">TypeScript 製のデスクトップ NES エミュレーター。JSNES がエミュレーションを、sfml.js がネイティブ描画と音声を担当します。</p>
+        <dl class="project-facts">
+          <div><dt>画像</dt><dd>同梱ゲーム Concentration Room</dd></div>
+          <div><dt>ゲーム</dt><dd>同梱ゲームまたは利用権限のあるローカル ROM</dd></div>
+          <div><dt>入力</dt><dd>2 人分のキーボード割り当て</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="project-run-link" href="#play-nes-run">インストールと起動</a>
+          <a href="https://github.com/XadillaX/play-nes">ソースを見る</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="project-run" aria-labelledby="play-nes-run">
+  <h3 id="play-nes-run">インストールと起動</h3>
+
+Node.js 22 推奨 · Python と C++20 コンパイラー · 音声出力のあるデスクトップ
+
+公開済みプレイヤーをインストールし、同梱ゲームを起動します。
 
 ```sh
 npm install -g play-nes
 nes croom
+```
+
+利用権限のあるローカル ROM を開く場合：
+
+```sh
 nes "/path/to/your game.nes"
 ```
 
-<div class="example-gallery">
-  <article class="example-entry" id="play-nes-player">
-    <a href="../../assets/examples/projects/play-nes.webp">
-      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
-      <p>TypeScript 製のデスクトップ NES エミュレーター。JSNES でエミュレーションし、sfml.js でネイティブ描画と音声を扱います。画像のゲームは Concentration Room です。</p>
-      <p><strong>操作</strong> · プレイヤー 1 は WASD、A／B は J／K、Select は右 Shift、Start は Enter。プレイヤー 2 は矢印、A／B はテンキー 5／6、Select／Start はテンキー 8／9。Esc またはウィンドウを閉じて終了。フォーカスを失うと押下状態を解除します。</p>
-      <p><code>--scale 3</code> で倍率を変更し、<code>--frameRate 60</code> で通常速度にします。フレームレートは描画だけでなくエミュレーション速度も変えます。全オプションは <code>nes --help</code> を参照してください。</p>
-    </div>
-  </article>
+</section>
+
+<section class="project-controls" aria-labelledby="play-nes-controls">
+      <h3 id="play-nes-controls">操作一覧</h3>
+      <div class="project-players">
+        <div>
+          <h4>プレイヤー 1</h4>
+          <dl class="project-player-keys">
+            <div><dt>方向</dt><dd><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></dd></div>
+            <div><dt>A／B</dt><dd><kbd>J</kbd> <kbd>K</kbd></dd></div>
+            <div><dt>Select</dt><dd><kbd>右 Shift</kbd></dd></div>
+            <div><dt>Start</dt><dd><kbd>Enter</kbd></dd></div>
+          </dl>
+        </div>
+        <div>
+          <h4>プレイヤー 2</h4>
+          <dl class="project-player-keys">
+            <div><dt>方向</dt><dd><kbd>Left</kbd> <kbd>Right</kbd> <kbd>Up</kbd> <kbd>Down</kbd></dd></div>
+            <div><dt>A／B</dt><dd><kbd>テンキー 5</kbd> <kbd>テンキー 6</kbd></dd></div>
+            <div><dt>Select</dt><dd><kbd>テンキー 8</kbd></dd></div>
+            <div><dt>Start</dt><dd><kbd>テンキー 9</kbd></dd></div>
+          </dl>
+        </div>
+      </div>
+      <p class="project-hint"><kbd>Esc</kbd> またはウィンドウを閉じて終了。フォーカスを失うと押下状態を解除します。</p>
+</section>
+
+<details class="project-notes">
+      <summary>
+        <span>表示と速度のオプション</span>
+        <span class="project-expand" aria-hidden="true">開く</span>
+        <span class="project-collapse" aria-hidden="true">閉じる</span>
+      </summary>
+      <div class="project-notes-content">
+
+<p><code>--scale 3</code> で倍率を変更し、<code>--frameRate 60</code> で通常速度にします。フレームレートは描画だけでなくエミュレーション速度も変えます。全オプションは <code>nes --help</code> を参照してください。</p>
+
+</div>
+</details>
+
 </div>
 
 <a id="breakout"></a>
@@ -74,7 +184,7 @@ nes "/path/to/your game.nes"
 
 sfml.js リポジトリのルートで初回に `npm ci`、続いて `node examples/breakout.cjs` を実行します。ソース変更後は `npm run build` を実行してください。
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="breakout-game">
     <a href="../../assets/breakout.png">
       <img src="../../assets/breakout.png" width="360" alt="ネイティブウィンドウで描画するブロック崩し">
@@ -113,7 +223,7 @@ node index.js
 
 Node.js 22、Python 3、C++20 ツールチェーンを使います。各ゲームのディレクトリで `npm install`、続いて `node index.js` を実行してください。一部がフォントと画像を共有するため、リポジトリ全体を保持してください。各ゲームは `sfml.js@1.0.0-rc.2` に固定されており、このページによる更新はありません。すべて閉じるボタンに対応し、Bomberman は音声も使います。Tetris、Doodle Jump、Arkanoid は原型の未完成のゲーム処理を保持しています。
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="demo-bomberman">
     <a href="../../assets/examples/projects/node-sfml-demos/bomberman.webp">
       <img src="../../assets/examples/projects/node-sfml-demos/bomberman.webp" width="360" alt="Bomberman: タイル状のフィールドで遊ぶ 2 人用 Bomberman。">
@@ -197,7 +307,7 @@ npx nbb "01 Tetris/main.cljs"
 
 Node.js 20.5 以降、[ネイティブビルドの要件](../../docs/getting-started.ja.md#requirements)を満たす環境、OpenGL ウィンドウに対応するグラフィカルセッションが必要です。依存関係は `sfml.js@1.0.0-rc.2` と `nbb@1.6.214` に固定されています。各スクリプトは自身のディレクトリを基準に素材を読み込みます。
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="01-tetris">
     <a href="../../assets/examples/projects/16-games/01-tetris.webp">
       <img src="../../assets/examples/projects/16-games/01-tetris.webp" width="360" alt="落下するブロックとライン消去">

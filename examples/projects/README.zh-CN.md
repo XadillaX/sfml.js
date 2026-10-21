@@ -12,9 +12,37 @@
 
 ## Süper Mario Kart
 
-[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) 使用 **TypeScript + sfml.js** 移植 [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart)。原版使用 C++ 和 SFML 2.5.1 编写；移植版的 54 个 TypeScript 模块沿用上游源码目录结构，保留 Mode 7 渲染、玩法、AI 与素材。
+<div class="project-feature">
 
-在存放项目的目录中克隆这个独立仓库，再从仓库根目录安装并启动：
+<div class="example-gallery project-gallery">
+  <article class="example-entry project-summary-entry" id="super-mario-kart-game">
+    <div class="project-overview">
+      <a class="project-preview" href="../../assets/examples/projects/super-mario-kart.webp">
+        <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart：TypeScript 移植版在 Donut Plains 1 赛道实际游玩的画面">
+        <span class="project-preview-label">查看原尺寸截图</span>
+      </a>
+      <div class="example-info">
+        <p class="project-description">使用 TypeScript 与 sfml.js 实现的原生赛车游戏，保留 Mode 7 渲染、漂移、跳跃、金币和道具。</p>
+        <dl class="project-facts">
+          <div><dt>参赛</dt><dd>1 名玩家对战 7 名 AI</dd></div>
+          <div><dt>模式</dt><dd>Grand Prix 五赛道 · Versus 单赛道</dd></div>
+          <div><dt>组别</dt><dd>50cc · 100cc · 150cc</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="project-run-link" href="#super-mario-kart-run">安装与运行</a>
+          <a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">查看源码</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="project-run" aria-labelledby="super-mario-kart-run">
+  <h3 id="super-mario-kart-run">安装与运行</h3>
+
+Node.js 20.5+ · 带音频输出的图形桌面 · [原生构建要求](../../docs/getting-started.zh-CN.md#requirements)
+
+在存放项目的目录中克隆仓库，再进入游戏目录运行：
 
 ```sh
 git clone https://github.com/XadillaX/super-mario-kart-sfml.js.git
@@ -23,49 +51,131 @@ npm install
 npm start
 ```
 
-需要 Node.js 20.5+、带音频输出的图形桌面，并满足 [原生构建要求](../../docs/getting-started.zh-CN.md#requirements)。项目固定依赖 `sfml.js@1.0.0-rc.2` 和 `typescript@7.0.2`。`npm start` 编译到 `dist/` 后启动原生游戏；Python 赛道制作工具为可选项，游玩不需要安装。
+`npm start` 编译到 `dist/` 后启动游戏。Python 赛道制作工具为可选项，游玩不需要安装。
 
-<div class="example-gallery">
-  <article class="example-entry" id="super-mario-kart-game">
-    <a href="../../assets/examples/projects/super-mario-kart.webp">
-      <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart：TypeScript 移植版在 Donut Plains 1 赛道实际游玩的画面">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/super-mario-kart-sfml.js">Süper Mario Kart</a></strong></p>
-      <p>8 名车手、5 条赛道，可选 50cc、100cc 或 150cc。Grand Prix 连续挑战五条赛道；Versus 选择单条赛道。两种模式均为一名玩家对战七名 AI，包含漂移、跳跃、金币与道具。</p>
-      <p><strong>操作</strong> · X 加速，Z 刹车，C 跳跃／漂移，左／右转向，上／下向前／向后使用道具。Enter 确认菜单或跳过赛道预览，Esc 暂停。暂停菜单选择 No 并按 Enter 继续，选择 Yes 则放弃比赛。</p>
-      <p>在 <code>super-mario-kart-sfml.js/</code> 内先运行 <code>npm install</code>，再运行 <code>npm start</code>。Controls 和 Settings 菜单可调整按键、音量与分辨率。</p>
-      <p><a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">TypeScript 源码</a> · <a href="https://github.com/vmbatlle/super-mario-kart">原版 C++ 源码</a></p>
-    </div>
-  </article>
-</div>
+</section>
+
+<section class="project-controls" aria-labelledby="super-mario-kart-controls">
+      <h3 id="super-mario-kart-controls">按键速查</h3>
+      <dl class="project-key-list">
+        <div><dt><kbd>X</kbd></dt><dd>加速</dd></div>
+        <div><dt><kbd>Z</kbd></dt><dd>刹车</dd></div>
+        <div><dt><kbd>C</kbd></dt><dd>跳跃／漂移</dd></div>
+        <div><dt><kbd>Left</kbd> <kbd>Right</kbd></dt><dd>转向</dd></div>
+        <div><dt><kbd>Up</kbd> <kbd>Down</kbd></dt><dd>向前／向后使用道具</dd></div>
+        <div><dt><kbd>Enter</kbd></dt><dd>确认／跳过赛道预览</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>暂停</dd></div>
+      </dl>
+      <p class="project-hint">继续比赛：暂停菜单选 <strong>No</strong>，按 <kbd>Enter</kbd>；选 <strong>Yes</strong> 则放弃比赛。</p>
+      <p class="project-hint">Controls 和 Settings 菜单可调整按键、音量与分辨率。</p>
+</section>
+
+<details class="project-notes">
+      <summary>
+        <span>赛道、项目来源与许可</span>
+        <span class="project-expand" aria-hidden="true">展开</span>
+        <span class="project-collapse" aria-hidden="true">收起</span>
+      </summary>
+      <div class="project-notes-content">
+
+[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) 使用 **TypeScript + sfml.js** 移植 [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart)。原版使用 C++ 和 SFML 2.5.1 编写；移植版的 54 个 TypeScript 模块沿用上游源码目录结构，保留 Mode 7 渲染、玩法、AI 与素材。
+
+依赖固定为 `sfml.js@1.0.0-rc.2` 和 `typescript@7.0.2`。
 
 五条赛道分别为 Donut Plains 1、Mario Circuit 2、Ghost Valley 1、Bowser Castle 1 和 Rainbow Road。代码采用 [GPL v3](https://github.com/XadillaX/super-mario-kart-sfml.js/blob/HEAD/LICENSE)；角色、图像与音乐归 Nintendo 所有。这是非官方的教育用途同人项目。
+
+</div>
+</details>
+
+</div>
 
 <a id="play-nes"></a>
 
 ## play-nes
 
-推荐 Node.js 22；原生扩展需要 Python 和 C++20 编译器。运行时需要图形桌面和音频输出设备。安装已发布的播放器后启动内置的 Concentration Room，或传入有权使用的本地 ROM：
+<div class="project-feature">
+
+<div class="example-gallery project-gallery">
+  <article class="example-entry project-summary-entry" id="play-nes-player">
+    <div class="project-overview">
+      <a class="project-preview" href="../../assets/examples/projects/play-nes.webp">
+        <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+        <span class="project-preview-label">查看原尺寸截图</span>
+      </a>
+      <div class="example-info">
+        <p class="project-description">使用 TypeScript 编写的桌面 NES 模拟器。JSNES 负责模拟，sfml.js 提供原生图形和音频。</p>
+        <dl class="project-facts">
+          <div><dt>画面</dt><dd>内置游戏 Concentration Room</dd></div>
+          <div><dt>游戏</dt><dd>内置游戏或有权使用的本地 ROM</dd></div>
+          <div><dt>输入</dt><dd>支持两名玩家的键盘映射</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="project-run-link" href="#play-nes-run">安装与运行</a>
+          <a href="https://github.com/XadillaX/play-nes">查看源码</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="project-run" aria-labelledby="play-nes-run">
+  <h3 id="play-nes-run">安装与运行</h3>
+
+推荐 Node.js 22 · Python 与 C++20 编译器 · 带音频输出的图形桌面
+
+安装已发布的播放器，启动内置游戏：
 
 ```sh
 npm install -g play-nes
 nes croom
+```
+
+打开有权使用的本地 ROM：
+
+```sh
 nes "/path/to/your game.nes"
 ```
 
-<div class="example-gallery">
-  <article class="example-entry" id="play-nes-player">
-    <a href="../../assets/examples/projects/play-nes.webp">
-      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
-      <p>使用 TypeScript 编写的桌面 NES 模拟器，由 JSNES 负责模拟，sfml.js 提供原生图形和音频。预览中的游戏是 Concentration Room。</p>
-      <p><strong>操作</strong> · 玩家一：WASD 方向，J／K 对应 A／B，右 Shift 对应 Select，Enter 对应 Start。玩家二：方向键，小键盘 5／6 对应 A／B，小键盘 8／9 对应 Select／Start。Esc 或关闭窗口退出；失去焦点时释放按住的按键。</p>
-      <p><code>--scale 3</code> 调整窗口缩放，<code>--frameRate 60</code> 使用正常速度。帧率也会改变模拟速度，不仅改变显示速度。完整选项见 <code>nes --help</code>。</p>
-    </div>
-  </article>
+</section>
+
+<section class="project-controls" aria-labelledby="play-nes-controls">
+      <h3 id="play-nes-controls">按键速查</h3>
+      <div class="project-players">
+        <div>
+          <h4>玩家一</h4>
+          <dl class="project-player-keys">
+            <div><dt>方向</dt><dd><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></dd></div>
+            <div><dt>A／B</dt><dd><kbd>J</kbd> <kbd>K</kbd></dd></div>
+            <div><dt>Select</dt><dd><kbd>右 Shift</kbd></dd></div>
+            <div><dt>Start</dt><dd><kbd>Enter</kbd></dd></div>
+          </dl>
+        </div>
+        <div>
+          <h4>玩家二</h4>
+          <dl class="project-player-keys">
+            <div><dt>方向</dt><dd><kbd>Left</kbd> <kbd>Right</kbd> <kbd>Up</kbd> <kbd>Down</kbd></dd></div>
+            <div><dt>A／B</dt><dd><kbd>小键盘 5</kbd> <kbd>小键盘 6</kbd></dd></div>
+            <div><dt>Select</dt><dd><kbd>小键盘 8</kbd></dd></div>
+            <div><dt>Start</dt><dd><kbd>小键盘 9</kbd></dd></div>
+          </dl>
+        </div>
+      </div>
+      <p class="project-hint"><kbd>Esc</kbd> 或关闭窗口退出；失去焦点时释放按住的按键。</p>
+</section>
+
+<details class="project-notes">
+      <summary>
+        <span>显示与速度选项</span>
+        <span class="project-expand" aria-hidden="true">展开</span>
+        <span class="project-collapse" aria-hidden="true">收起</span>
+      </summary>
+      <div class="project-notes-content">
+
+<p><code>--scale 3</code> 调整窗口缩放，<code>--frameRate 60</code> 使用正常速度。帧率也会改变模拟速度，不仅改变显示速度。完整选项见 <code>nes --help</code>。</p>
+
+</div>
+</details>
+
 </div>
 
 <a id="breakout"></a>
@@ -74,7 +184,7 @@ nes "/path/to/your game.nes"
 
 在 sfml.js 仓库根目录先执行一次 `npm ci`，再运行 `node examples/breakout.cjs`。修改源码后执行 `npm run build`。
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="breakout-game">
     <a href="../../assets/breakout.png">
       <img src="../../assets/breakout.png" width="360" alt="在原生窗口中渲染的打砖块游戏">
@@ -113,7 +223,7 @@ node index.js
 
 使用 Node.js 22、Python 3 与 C++20 工具链。在各游戏目录内执行 `npm install`，再运行 `node index.js`。部分游戏共享字体和纹理，请保留完整仓库。各游戏固定依赖 `sfml.js@1.0.0-rc.2`，本页不会升级它们。所有游戏均支持关闭窗口，Bomberman 还会使用音频。Tetris、Doodle Jump 和 Arkanoid 保留原型中尚未完善的游戏逻辑。
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="demo-bomberman">
     <a href="../../assets/examples/projects/node-sfml-demos/bomberman.webp">
       <img src="../../assets/examples/projects/node-sfml-demos/bomberman.webp" width="360" alt="Bomberman: 格子场地中的双人炸弹人。">
@@ -197,7 +307,7 @@ npx nbb "01 Tetris/main.cljs"
 
 需要 Node.js 20.5+、满足 [原生构建要求](../../docs/getting-started.zh-CN.md#requirements) 的环境，以及支持 OpenGL 窗口的图形会话。依赖固定为 `sfml.js@1.0.0-rc.2` 和 `nbb@1.6.214`。各脚本按自身目录定位资源。
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="01-tetris">
     <a href="../../assets/examples/projects/16-games/01-tetris.webp">
       <img src="../../assets/examples/projects/16-games/01-tetris.webp" width="360" alt="方块下落与消行">

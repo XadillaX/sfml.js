@@ -12,9 +12,37 @@
 
 ## Süper Mario Kart
 
-[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) is a **TypeScript + sfml.js** port of [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart), originally written in C++ with SFML 2.5.1. Its 54 TypeScript modules follow the upstream source layout, retaining Mode 7 rendering, gameplay, AI and assets.
+<div class="project-feature">
 
-Clone this independent repository into your projects directory, then install and run from its root:
+<div class="example-gallery project-gallery">
+  <article class="example-entry project-summary-entry" id="super-mario-kart-game">
+    <div class="project-overview">
+      <a class="project-preview" href="../../assets/examples/projects/super-mario-kart.webp">
+        <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart: a played race on Donut Plains 1 in the TypeScript port">
+        <span class="project-preview-label">View full-size screenshot</span>
+      </a>
+      <div class="example-info">
+        <p class="project-description">A native kart racer in TypeScript and sfml.js, with Mode 7 rendering, drifting, jumps, coins and items.</p>
+        <dl class="project-facts">
+          <div><dt>Race</dt><dd>One player against seven AI drivers</dd></div>
+          <div><dt>Modes</dt><dd>Grand Prix: five circuits · Versus: one circuit</dd></div>
+          <div><dt>Classes</dt><dd>50cc · 100cc · 150cc</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="project-run-link" href="#super-mario-kart-run">Install and run</a>
+          <a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">View source</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="project-run" aria-labelledby="super-mario-kart-run">
+  <h3 id="super-mario-kart-run">Install and run</h3>
+
+Node.js 20.5+ · Graphical desktop with audio · [Native build prerequisites](../../docs/getting-started.md#requirements)
+
+Clone into your projects directory, then run from the game repository:
 
 ```sh
 git clone https://github.com/XadillaX/super-mario-kart-sfml.js.git
@@ -23,49 +51,131 @@ npm install
 npm start
 ```
 
-Requires Node.js 20.5+, a graphical desktop with audio output and the [native build prerequisites](../../docs/getting-started.md#requirements). The project pins `sfml.js@1.0.0-rc.2` and `typescript@7.0.2`. `npm start` compiles to `dist/` and launches the native game; Python circuit-authoring tools are optional.
+`npm start` compiles to `dist/` and launches the game. Python circuit-authoring tools are optional.
 
-<div class="example-gallery">
-  <article class="example-entry" id="super-mario-kart-game">
-    <a href="../../assets/examples/projects/super-mario-kart.webp">
-      <img src="../../assets/examples/projects/super-mario-kart.webp" width="360" alt="Süper Mario Kart: a played race on Donut Plains 1 in the TypeScript port">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/super-mario-kart-sfml.js">Süper Mario Kart</a></strong></p>
-      <p>Eight drivers, five circuits and 50cc, 100cc or 150cc. Grand Prix runs all five circuits; Versus selects one circuit. Both modes feature one human player against seven AI drivers, with drifting, jumps, coins and items.</p>
-      <p><strong>Controls</strong> · X accelerates, Z brakes, C hops / drifts, Left / Right steer, Up / Down use items forward / backward. Enter confirms menus or skips the flyover; Esc pauses. In the pause menu, select No and press Enter to resume, or Yes to give up.</p>
-      <p>Run <code>npm install</code> then <code>npm start</code> from <code>super-mario-kart-sfml.js/</code>. Controls and Settings menus configure bindings, volume and resolution.</p>
-      <p><a href="https://github.com/XadillaX/super-mario-kart-sfml.js/tree/HEAD/src">TypeScript source</a> · <a href="https://github.com/vmbatlle/super-mario-kart">Original C++ source</a></p>
-    </div>
-  </article>
-</div>
+</section>
+
+<section class="project-controls" aria-labelledby="super-mario-kart-controls">
+      <h3 id="super-mario-kart-controls">Controls</h3>
+      <dl class="project-key-list">
+        <div><dt><kbd>X</kbd></dt><dd>Accelerate</dd></div>
+        <div><dt><kbd>Z</kbd></dt><dd>Brake</dd></div>
+        <div><dt><kbd>C</kbd></dt><dd>Hop / drift</dd></div>
+        <div><dt><kbd>Left</kbd> <kbd>Right</kbd></dt><dd>Steer</dd></div>
+        <div><dt><kbd>Up</kbd> <kbd>Down</kbd></dt><dd>Use item forward / backward</dd></div>
+        <div><dt><kbd>Enter</kbd></dt><dd>Confirm / skip flyover</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>Pause</dd></div>
+      </dl>
+      <p class="project-hint">To resume, select <strong>No</strong> in the pause menu and press <kbd>Enter</kbd>; <strong>Yes</strong> gives up the race.</p>
+      <p class="project-hint">The Controls and Settings menus configure bindings, volume and resolution.</p>
+</section>
+
+<details class="project-notes">
+      <summary>
+        <span>Circuits, source and license</span>
+        <span class="project-expand" aria-hidden="true">Expand</span>
+        <span class="project-collapse" aria-hidden="true">Collapse</span>
+      </summary>
+      <div class="project-notes-content">
+
+[super-mario-kart-sfml.js](https://github.com/XadillaX/super-mario-kart-sfml.js) is a **TypeScript + sfml.js** port of [vmbatlle/super-mario-kart](https://github.com/vmbatlle/super-mario-kart), originally written in C++ with SFML 2.5.1. Its 54 TypeScript modules follow the upstream source layout, retaining Mode 7 rendering, gameplay, AI and assets.
+
+Pinned dependencies: `sfml.js@1.0.0-rc.2` and `typescript@7.0.2`.
 
 The circuits are Donut Plains 1, Mario Circuit 2, Ghost Valley 1, Bowser Castle 1 and Rainbow Road. Code is licensed under [GPL v3](https://github.com/XadillaX/super-mario-kart-sfml.js/blob/HEAD/LICENSE); the characters, graphics and music belong to Nintendo. This is an unofficial educational fan project.
+
+</div>
+</details>
+
+</div>
 
 <a id="play-nes"></a>
 
 ## play-nes
 
-Node.js 22 is recommended; Python and a C++20 compiler are required for the native addon. Run in a graphical desktop with audio output. Install the published player and launch the bundled Concentration Room, or pass a local ROM you have permission to use:
+<div class="project-feature">
+
+<div class="example-gallery project-gallery">
+  <article class="example-entry project-summary-entry" id="play-nes-player">
+    <div class="project-overview">
+      <a class="project-preview" href="../../assets/examples/projects/play-nes.webp">
+        <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
+        <span class="project-preview-label">View full-size screenshot</span>
+      </a>
+      <div class="example-info">
+        <p class="project-description">A TypeScript desktop NES emulator. JSNES emulates the console; sfml.js provides native graphics and audio.</p>
+        <dl class="project-facts">
+          <div><dt>Preview</dt><dd>Concentration Room, included with the player</dd></div>
+          <div><dt>Games</dt><dd>Bundled game or a local ROM you have permission to use</dd></div>
+          <div><dt>Input</dt><dd>Keyboard mappings for two players</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="project-run-link" href="#play-nes-run">Install and run</a>
+          <a href="https://github.com/XadillaX/play-nes">View source</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="project-run" aria-labelledby="play-nes-run">
+  <h3 id="play-nes-run">Install and run</h3>
+
+Node.js 22 recommended · Python and a C++20 compiler · Graphical desktop with audio
+
+Install the published player and launch the bundled game:
 
 ```sh
 npm install -g play-nes
 nes croom
+```
+
+To open a local ROM you have permission to use:
+
+```sh
 nes "/path/to/your game.nes"
 ```
 
-<div class="example-gallery">
-  <article class="example-entry" id="play-nes-player">
-    <a href="../../assets/examples/projects/play-nes.webp">
-      <img src="../../assets/examples/projects/play-nes.webp" width="360" alt="play-nes: Concentration Room">
-    </a>
-    <div class="example-info">
-      <p><strong><a href="https://github.com/XadillaX/play-nes">play-nes</a></strong></p>
-      <p>A TypeScript desktop NES emulator using JSNES for emulation and sfml.js for native graphics and audio. The preview features Concentration Room.</p>
-      <p><strong>Controls</strong> · Player 1: WASD directions, J/K for A/B, Right Shift for Select, Enter for Start. Player 2: arrow keys, Numpad 5/6 for A/B, Numpad 8/9 for Select/Start. Esc or window close exits; held buttons are released on focus loss.</p>
-      <p><code>--scale 3</code> changes window scale; <code>--frameRate 60</code> selects normal speed. Frame rate changes emulation speed, not only display speed. Use <code>nes --help</code> for all options.</p>
-    </div>
-  </article>
+</section>
+
+<section class="project-controls" aria-labelledby="play-nes-controls">
+      <h3 id="play-nes-controls">Controls</h3>
+      <div class="project-players">
+        <div>
+          <h4>Player 1</h4>
+          <dl class="project-player-keys">
+            <div><dt>Directions</dt><dd><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></dd></div>
+            <div><dt>A / B</dt><dd><kbd>J</kbd> <kbd>K</kbd></dd></div>
+            <div><dt>Select</dt><dd><kbd>Right Shift</kbd></dd></div>
+            <div><dt>Start</dt><dd><kbd>Enter</kbd></dd></div>
+          </dl>
+        </div>
+        <div>
+          <h4>Player 2</h4>
+          <dl class="project-player-keys">
+            <div><dt>Directions</dt><dd><kbd>Left</kbd> <kbd>Right</kbd> <kbd>Up</kbd> <kbd>Down</kbd></dd></div>
+            <div><dt>A / B</dt><dd><kbd>Numpad 5</kbd> <kbd>Numpad 6</kbd></dd></div>
+            <div><dt>Select</dt><dd><kbd>Numpad 8</kbd></dd></div>
+            <div><dt>Start</dt><dd><kbd>Numpad 9</kbd></dd></div>
+          </dl>
+        </div>
+      </div>
+      <p class="project-hint"><kbd>Esc</kbd> or window close exits. Held buttons are released on focus loss.</p>
+</section>
+
+<details class="project-notes">
+      <summary>
+        <span>Display and speed options</span>
+        <span class="project-expand" aria-hidden="true">Expand</span>
+        <span class="project-collapse" aria-hidden="true">Collapse</span>
+      </summary>
+      <div class="project-notes-content">
+
+<p><code>--scale 3</code> changes window scale; <code>--frameRate 60</code> selects normal speed. Frame rate changes emulation speed, not only display speed. Use <code>nes --help</code> for all options.</p>
+
+</div>
+</details>
+
 </div>
 
 <a id="breakout"></a>
@@ -74,7 +184,7 @@ nes "/path/to/your game.nes"
 
 From the sfml.js repository root, run `npm ci` once, then `node examples/breakout.cjs`. Run `npm run build` after source changes.
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="breakout-game">
     <a href="../../assets/breakout.png">
       <img src="../../assets/breakout.png" width="360" alt="Breakout rendered in a native window">
@@ -113,7 +223,7 @@ See the [repository README](https://github.com/XadillaX/node-sfml-demos#readme) 
 
 Use Node.js 22, Python 3 and a C++20 toolchain. Install inside each game folder with `npm install`, then run `node index.js` there. Keep the full repository because some games share fonts and textures. Each game pins `sfml.js@1.0.0-rc.2`; this page does not upgrade it. All support the close button; Bomberman also uses audio. Tetris, Doodle Jump and Arkanoid retain the prototypes' incomplete gameplay.
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="demo-bomberman">
     <a href="../../assets/examples/projects/node-sfml-demos/bomberman.webp">
       <img src="../../assets/examples/projects/node-sfml-demos/bomberman.webp" width="360" alt="Bomberman: Two-player Bomberman in a tiled arena.">
@@ -197,7 +307,7 @@ npx nbb "01 Tetris/main.cljs"
 
 Requires Node.js 20.5+ and the [native build requirements](../../docs/getting-started.md#requirements), plus a graphical session with OpenGL window support. Dependencies are pinned to `sfml.js@1.0.0-rc.2` and `nbb@1.6.214`. Each script resolves its assets relative to its own directory.
 
-<div class="example-gallery">
+<div class="example-gallery project-gallery">
   <article class="example-entry" id="01-tetris">
     <a href="../../assets/examples/projects/16-games/01-tetris.webp">
       <img src="../../assets/examples/projects/16-games/01-tetris.webp" width="360" alt="Tetris playing field with a falling purple block">

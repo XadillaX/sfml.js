@@ -155,6 +155,31 @@ locales.forEach(locale => {
     assert.equal(theme.nav[1].link, `${locale.prefix}/examples`);
   });
 
+  test(`project guides retain readable instructions: ${locale.lang}`, () => {
+    const page = pages.get(`${locale.prefix}/examples/projects`);
+    const guides = elements(page, node => hasClass(node, 'project-feature'));
+    assert.equal(guides.length, 2);
+    for (const [ index, guide ] of guides.entries()) {
+      const run = elements(guide, node => hasClass(node, 'project-run'));
+      const controls = elements(guide, node =>
+        hasClass(node, 'project-controls'));
+      const notes = elements(guide, node => node.tagName === 'details');
+      assert.equal(run.length, 1);
+      assert.equal(controls.length, 1);
+      assert.equal(notes.length, 1);
+      assert.equal(attr(notes[0], 'open'), undefined);
+      assert.ok(elements(notes[0], node => node.tagName === 'summary').length);
+      assert.ok(elements(controls[0], node => node.tagName === 'kbd').length);
+      const commands = elements(run[0], node => node.tagName === 'pre');
+      assert.equal(commands.length, index === 0 ? 1 : 2);
+      assert.ok(textContent(commands[0]).includes(
+        index === 0 ? 'npm start' : 'nes croom'));
+      for (const command of commands) {
+        assert.doesNotMatch(textContent(command), /<\/?(section|details|div)/);
+      }
+    }
+  });
+
   test(`homepage previews lead to run instructions: ${locale.lang}`,
     async () => {
       const app = createSSRApp(Home);

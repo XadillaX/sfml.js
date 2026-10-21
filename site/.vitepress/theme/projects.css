@@ -1,0 +1,323 @@
+/* Project guides follow preview → run → controls → optional background. */
+.vp-doc .project-feature,
+.vp-doc .project-gallery {
+  --project-section-gap: 28px;
+  --project-row-gap: 12px;
+}
+
+.vp-doc .project-gallery .example-info {
+  overflow-wrap: break-word;
+}
+
+.vp-doc .project-gallery .example-info > p:first-child > strong {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.vp-doc .project-gallery .project-summary-entry {
+  display: block;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.vp-doc .project-feature {
+  container-type: inline-size;
+}
+
+.vp-doc .project-feature .project-gallery {
+  margin-bottom: 0;
+}
+
+.vp-doc .project-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 28px;
+}
+
+.vp-doc .project-preview {
+  display: block;
+  min-width: 0;
+  border-radius: var(--sf-radius);
+  color: var(--sf-muted);
+  text-decoration: none;
+}
+
+.vp-doc .project-preview img {
+  border: 1px solid var(--sf-border);
+}
+
+.vp-doc .project-preview-label {
+  display: block;
+  padding-block: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.vp-doc .project-preview:hover {
+  color: var(--sf-brand);
+}
+
+.vp-doc .project-preview:hover img {
+  border-color: var(--sf-brand);
+}
+
+.vp-doc .project-preview:hover .project-preview-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vp-doc .project-feature p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.vp-doc .project-feature .project-description {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.vp-doc .project-facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--project-row-gap);
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.vp-doc .project-facts > div {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 16px;
+}
+
+.vp-doc .project-facts dt {
+  color: var(--sf-muted);
+}
+
+.vp-doc .project-facts dd,
+.vp-doc .project-key-list dd,
+.vp-doc .project-player-keys dd {
+  margin: 0;
+  min-width: 0;
+}
+
+.vp-doc .project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.vp-doc .project-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.vp-doc .project-actions .project-run-link {
+  padding: 8px 16px;
+  border: 1px solid var(--sf-brand);
+  border-radius: var(--sf-radius);
+  background: var(--sf-brand);
+  color: var(--sf-bg);
+  text-decoration: none;
+}
+
+.vp-doc .project-actions .project-run-link:hover {
+  background: var(--sf-brand-hover);
+  border-color: var(--sf-brand-hover);
+}
+
+.vp-doc .project-run,
+.vp-doc .project-controls {
+  margin-top: var(--project-section-gap);
+  padding-top: 24px;
+  border-top: 1px solid var(--sf-border);
+}
+
+.vp-doc .project-feature h3 {
+  margin: 0 0 16px;
+  font: 650 19px/1.4 var(--sf-font);
+  scroll-margin-top: calc(var(--sf-nav-height) + 64px);
+}
+
+.vp-doc .project-run > p {
+  margin-block: 12px;
+}
+
+.vp-doc .project-run > h3 + p,
+.vp-doc .project-hint {
+  color: var(--sf-muted);
+}
+
+.vp-doc .project-run div[class*='language-'] {
+  margin: 16px 0;
+}
+
+.vp-doc .project-run div[class*='language-'] > button.copy {
+  opacity: 1;
+}
+
+.vp-doc .project-run div[class*='language-'] > span.lang {
+  opacity: 0;
+}
+
+.vp-doc .project-key-list,
+.vp-doc .project-players {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 28px;
+  margin: 0;
+}
+
+.vp-doc .project-key-list > div,
+.vp-doc .project-player-keys > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.vp-doc .project-key-list dt,
+.vp-doc .project-player-keys dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.vp-doc .project-feature kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  border: 1px solid var(--sf-border);
+  border-bottom-width: 2px;
+  border-radius: var(--sf-radius);
+  background: var(--sf-bg-alt);
+  color: var(--sf-text);
+  font: 12px/1.5 var(--sf-mono);
+  white-space: nowrap;
+}
+
+.vp-doc .project-feature .project-hint {
+  margin: 16px 0 0;
+  font-size: 13px;
+}
+
+.vp-doc .project-hint + .project-hint {
+  margin-top: 8px;
+}
+
+.vp-doc .project-players h4 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.vp-doc .project-player-keys {
+  display: flex;
+  flex-direction: column;
+  gap: var(--project-row-gap);
+  margin: 0;
+}
+
+.vp-doc .project-player-keys > div {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.vp-doc .project-notes {
+  margin-top: var(--project-section-gap);
+  border-top: 1px solid var(--sf-border);
+}
+
+.vp-doc .project-notes summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  padding: 16px 8px;
+  border-radius: var(--sf-radius);
+  color: var(--sf-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  list-style: none;
+}
+
+.vp-doc .project-notes summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc .project-notes summary::marker {
+  content: '';
+}
+
+.vp-doc .project-notes summary:hover {
+  background: var(--sf-bg-alt);
+  color: var(--sf-text);
+}
+
+.vp-doc .project-expand,
+.vp-doc .project-collapse {
+  flex-shrink: 0;
+  color: var(--sf-brand);
+  font-size: 12px;
+}
+
+.vp-doc .project-collapse,
+.vp-doc .project-notes[open] .project-expand {
+  display: none;
+}
+
+.vp-doc .project-notes[open] .project-collapse {
+  display: inline;
+}
+
+.vp-doc .project-notes-content {
+  padding: 0 8px 8px;
+  color: var(--sf-muted);
+}
+
+.vp-doc .project-notes-content p {
+  margin: 12px 0;
+}
+
+.vp-doc .project-feature :is(a, summary):focus-visible {
+  outline: 2px solid var(--sf-focus);
+  outline-offset: 4px;
+}
+
+@container (max-width: 640px) {
+  .vp-doc .project-overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .vp-doc .project-preview {
+    width: min(100%, 420px);
+  }
+
+  .vp-doc .project-key-list,
+  .vp-doc .project-players {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .vp-doc .project-players {
+    gap: 24px;
+  }
+
+  .vp-doc .project-run div[class*='language-'] {
+    margin-inline: 0;
+  }
+}
