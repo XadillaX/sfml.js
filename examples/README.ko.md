@@ -23,6 +23,14 @@
       <span class="example-pick-action">플레이 및 실행 안내</span>
     </div>
   </a>
+  <a class="example-pick" href="projects/README.ko.md#breakout">
+    <img src="../assets/breakout.png" width="240" alt="Breakout의 움직이는 공, 패들 및 남은 벽돌">
+    <div class="example-pick-info">
+      <h3>Breakout · 벽돌 깨기</h3>
+      <p>이 저장소에 포함된 벽돌 깨기 게임으로 충돌 판정, 세 번의 목숨, 점수와 일시 정지를 제공합니다. 전체 게임이 단일 JavaScript 파일 <code>examples/breakout.cjs</code>에 있어 실행하고 읽기 쉽습니다.</p>
+      <span class="example-pick-action">플레이 및 실행 안내</span>
+    </div>
+  </a>
 </div>
 
 ## 주제별 둘러보기

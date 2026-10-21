@@ -23,6 +23,14 @@ Try a complete game or application, then explore the individual SFML features be
       <span class="example-pick-action">Gameplay and run instructions</span>
     </div>
   </a>
+  <a class="example-pick" href="projects/README.md#breakout">
+    <img src="../assets/breakout.png" width="240" alt="Breakout with a moving ball, paddle and remaining bricks">
+    <div class="example-pick-info">
+      <h3>Breakout</h3>
+      <p>The brick-breaker included in this repository: collisions, three lives, scoring and pause/resume. Read the complete game in a single JavaScript file, <code>examples/breakout.cjs</code>.</p>
+      <span class="example-pick-action">Gameplay and run instructions</span>
+    </div>
+  </a>
 </div>
 
 ## Browse by topic

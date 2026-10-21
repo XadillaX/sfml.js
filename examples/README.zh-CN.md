@@ -23,6 +23,14 @@
       <span class="example-pick-action">查看玩法与运行说明</span>
     </div>
   </a>
+  <a class="example-pick" href="projects/README.zh-CN.md#breakout">
+    <img src="../assets/breakout.png" width="240" alt="Breakout 中运动的弹球、挡板与剩余砖块">
+    <div class="example-pick-info">
+      <h3>Breakout · 打砖块</h3>
+      <p>本仓库自带的打砖块游戏，包含碰撞、三条生命、计分与暂停功能。完整游戏写在单个 JavaScript 文件 <code>examples/breakout.cjs</code> 中，方便运行与阅读。</p>
+      <span class="example-pick-action">查看玩法与运行说明</span>
+    </div>
+  </a>
 </div>
 
 ## 按主题浏览

@@ -136,7 +136,7 @@ locales.forEach(locale => {
     const overview = pages.get(`${locale.prefix}/examples`);
     const picks = elements(overview, node => hasClass(node, 'example-pick'));
     assert.deepEqual(picks.map(node => attr(node, 'href')), [
-      'super-mario-kart', 'play-nes',
+      'super-mario-kart', 'play-nes', 'breakout',
     ].map(anchor => `${locale.prefix}/examples/projects#${anchor}`));
     for (const pick of picks) {
       assert.equal(elements(pick, node => node.tagName === 'a').length, 1);

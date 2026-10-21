@@ -23,6 +23,14 @@
       <span class="example-pick-action">遊び方と起動手順</span>
     </div>
   </a>
+  <a class="example-pick" href="projects/README.ja.md#breakout">
+    <img src="../assets/breakout.png" width="240" alt="Breakout のボール、パドル、残ったブロック">
+    <div class="example-pick-info">
+      <h3>Breakout · ブロック崩し</h3>
+      <p>このリポジトリに同梱された、衝突判定、3 つのライフ、スコア、一時停止を備えたゲーム。単一の JavaScript ファイル <code>examples/breakout.cjs</code> で全体を読み、実行できます。</p>
+      <span class="example-pick-action">遊び方と起動手順</span>
+    </div>
+  </a>
 </div>
 
 ## 目的別に探す
