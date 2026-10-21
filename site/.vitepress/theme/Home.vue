@@ -282,9 +282,6 @@ win.<span class="fn">setFramerateLimit</span>(<span class="num">60</span>);
         </div>
         <div class="footer-details">
           <IconCredits />
-          <a class="footer-guide" :href="withBase(`${prefix}guide/`)">
-            {{ copy.guide }}<ArrowIcon />
-          </a>
         </div>
       </div>
     </footer>

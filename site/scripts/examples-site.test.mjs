@@ -236,7 +236,6 @@ locales.forEach(locale => {
           const footerLinks = elements(footer, node => node.tagName === 'a')
             .map(node => attr(node, 'href'));
           assert.ok(footerLinks.includes(`${locale.prefix}/`));
-          assert.ok(footerLinks.includes(`${locale.prefix}/guide/`));
         } else {
           assert.equal(elements(page, node =>
             hasClass(node, 'sfml-home')).length, 0);

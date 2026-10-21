@@ -218,12 +218,6 @@
 .dark .footer-inner .sfml-brand .sf-wordmark-dark {
   display: block;
 }
-.footer-guide {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  min-height: 32px;
-}
 .footer-inner a:hover {
   color: var(--sf-brand);
 }
