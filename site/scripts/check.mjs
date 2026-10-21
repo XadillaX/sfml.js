@@ -16,8 +16,30 @@ import { htmlFiles } from './redirects.mjs';
 function inspectHtml(html) {
   const ids = new Set();
   const links = [];
+  const iconErrors = new Set();
+  const frameworkIcons = new Set([
+    // Official brand identifiers are the explicit exception to the UI rule.
+    'vpi-social-github',
+    'vpi-search', 'vpi-languages', 'vpi-sun', 'vpi-moon',
+    'vpi-align-left', 'vpi-layout-list', 'vpi-more-horizontal',
+    'vpi-arrow-right', 'vpi-arrow-down', 'vpi-arrow-left', 'vpi-arrow-up',
+    'vpi-chevron-right', 'vpi-chevron-down', 'vpi-chevron-left',
+    'vpi-chevron-up', 'vpi-square-pen', 'vpi-delete',
+    'vpi-corner-down-left',
+  ]);
   function walk(node) {
+    if (node.tagName === 'svg' &&
+      !node.attrs?.some(attr => attr.name === 'data-game-icon')) {
+      iconErrors.add('SVG icon without an attributed Game Icons source');
+    }
     for (const attr of node.attrs || []) {
+      if (attr.name === 'class') {
+        for (const name of attr.value.split(/\s+/)) {
+          if (name.startsWith('vpi-') && !frameworkIcons.has(name)) {
+            iconErrors.add(`Unmapped framework icon: ${name}`);
+          }
+        }
+      }
       if (
         attr.name === 'id' ||
         (node.tagName === 'a' && attr.name === 'name')
@@ -40,7 +62,7 @@ function inspectHtml(html) {
     }
   }
   walk(parse(html));
-  return { ids, links };
+  return { ids, links, iconErrors };
 }
 
 function resolveOutputFile(directory, pathname) {
@@ -68,6 +90,7 @@ export async function auditHtmlFiles(directory) {
   }
   const errors = new Set();
   for (const [ file, page ] of pages) {
+    for (const error of page.iconErrors) errors.add(`${file}: ${error}`);
     for (const link of page.links) {
       if (
         !link ||

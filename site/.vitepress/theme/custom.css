@@ -155,6 +155,9 @@
   padding: 24px 32px;
   text-align: center;
 }
+.sf-doc-credits .sf-icon-credits {
+  justify-content: center;
+}
 @media (min-width: 960px) {
   .sf-doc-credits {
     padding-left: calc(var(--vp-sidebar-width) + 32px);
@@ -192,11 +195,19 @@ html .DocSearch-Button .DocSearch-Search-Icon { --icon: var(--gi-search); }
 html .vpi-languages { --icon: var(--gi-language); }
 html .vpi-sun { --icon: var(--gi-sun); }
 html .vpi-moon { --icon: var(--gi-moon); }
-html :is(.vpi-align-left, .vpi-layout-list, .vpi-more-horizontal) { --icon: var(--gi-menu); }
+html .vpi-align-left { --icon: var(--gi-list); }
+html .vpi-layout-list { --icon: var(--gi-list); }
+html .vpi-more-horizontal { --icon: var(--gi-menu); }
 html :is(.vpi-arrow-right, .vpi-arrow-down, .vpi-arrow-left, .vpi-arrow-up,
   .vpi-chevron-right, .vpi-chevron-down, .vpi-chevron-left, .vpi-chevron-up) { --icon: var(--gi-arrow); }
 html .vpi-square-pen { --icon: var(--gi-edit); }
 html .vpi-delete { --icon: var(--gi-close); }
+html .vpi-corner-down-left { --icon: var(--gi-return); }
+html :is(.vp-external-link-icon, .vp-doc a[href*='://'],
+  .vp-doc a[target='_blank']):not(:is(.no-icon, svg a, :has(img, svg)))::after {
+  --icon: var(--gi-arrow);
+  transform: rotate(-45deg);
+}
 html { --vp-icon-copy: var(--gi-copy); --vp-icon-copied: var(--gi-check); }
 .VPNavBarHamburger .container {
   width: 22px;

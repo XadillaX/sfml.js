@@ -76,3 +76,20 @@ test('treats absolute sfml.js.org links as local ' +
   assert.equal(errors.length, 1);
   assert.ok(errors[0].includes('https://sfml.js.org/guide/missing'));
 });
+
+test('rejects unapproved framework and inline icons in built pages',
+  async t => {
+    const directory = await fixture(t, {
+      'index.html':
+        '<span class="vpi-unmapped"></span>' +
+        '<svg><path d="M0 0h1v1"></path></svg>',
+      'reference/index.html':
+        '<svg data-game-icon="link"></svg>' +
+        '<span class="vpi-search"></span>' +
+        '<span class="vpi-social-github"></span>',
+    });
+    const errors = await auditHtmlFiles(directory);
+    assert.equal(errors.length, 2);
+    assert.ok(errors.some(error => error.includes('vpi-unmapped')));
+    assert.ok(errors.some(error => error.includes('SVG icon')));
+  });

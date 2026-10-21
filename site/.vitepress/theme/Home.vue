@@ -278,9 +278,9 @@ win.<span class="fn">setFramerateLimit</span>(<span class="num">60</span>);
               alt=""
             >
           </a>
-          <p>{{ copy.footer }}</p>
         </div>
-        <div class="footer-details">
+        <div class="footer-meta">
+          <p>{{ copy.footer }}</p>
           <IconCredits />
         </div>
       </div>

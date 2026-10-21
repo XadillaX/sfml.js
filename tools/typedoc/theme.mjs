@@ -1,5 +1,6 @@
 import { DefaultTheme, JSX, ReflectionKind } from 'typedoc';
 import { modules, referenceLabels } from './labels.mjs';
+import { createGameIcons } from './icons.mjs';
 
 const element = JSX.createElement;
 
@@ -100,6 +101,15 @@ export function registerSiteTheme(
   const labels = referenceLabels[locale.id] || referenceLabels.en;
 
   class SiteTheme extends DefaultTheme {
+    /**
+     * Use the catalog artwork before TypeDoc creates any icon references.
+     * @param {object} renderer - TypeDoc renderer owning this theme.
+     */
+    constructor(renderer) {
+      super(renderer);
+      this.icons = createGameIcons(this.icons);
+    }
+
     /**
      * Reorganize pages while preserving signatures, anchors and search.
      * @param {object} page - Page being rendered.

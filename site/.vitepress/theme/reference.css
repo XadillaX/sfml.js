@@ -1,6 +1,25 @@
 @import './tokens.css';
 @import './game-icons/icons.css';
 
+/* The checkbox surface is a control; its checked glyph is Game Icons. */
+.sf-api-checkbox {
+  box-sizing: border-box;
+  padding: 3px;
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+  background: var(--sf-bg-alt);
+  color: var(--sf-text);
+}
+.sf-api-checkmark {
+  visibility: hidden;
+}
+input[type='checkbox']:checked ~ .sf-api-checkbox .sf-api-checkmark {
+  visibility: visible;
+}
+input[type='checkbox']:disabled ~ .sf-api-checkbox {
+  opacity: .5;
+}
+
 :root {
   --color-background: var(--sf-bg);
   --color-background-secondary: var(--sf-bg-alt);
