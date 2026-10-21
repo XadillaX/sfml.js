@@ -78,7 +78,7 @@
   background: var(--sf-bg);
   border-color: var(--sf-border);
   border-radius: var(--sf-radius);
-  padding: 10px;
+  padding: 12px;
 }
 .VPMenu .VPMenuLink + .VPMenuLink { margin-top: 4px; }
 .VPMenuLink a { border-radius: var(--sf-radius) !important; }
