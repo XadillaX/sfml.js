@@ -158,7 +158,7 @@ NAN_METHOD(ImDrawListPushTextureID) {
     if (!draw_list) return;
   }
   ImTextureID texture_id = 0;
-  if (!ReadU64(info, 1, &texture_id)) return;
+  if (!ReadTextureId(info, 1, &texture_id)) return;
   ::cimgui::ImDrawList_PushTextureID(draw_list, texture_id);
 }
 
@@ -715,7 +715,7 @@ NAN_METHOD(ImDrawListAddImage) {
     if (!draw_list) return;
   }
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 minimum;
   if (!ReadImVec2(info, 2, &minimum)) return;
   cimgui::ImVec2 maximum;
@@ -730,7 +730,7 @@ NAN_METHOD(ImDrawListAddImageEx) {
     if (!draw_list) return;
   }
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 minimum;
   if (!ReadImVec2(info, 2, &minimum)) return;
   cimgui::ImVec2 maximum;
@@ -752,7 +752,7 @@ NAN_METHOD(ImDrawListAddImageQuad) {
     if (!draw_list) return;
   }
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 p1;
   if (!ReadImVec2(info, 2, &p1)) return;
   cimgui::ImVec2 p2;
@@ -771,7 +771,7 @@ NAN_METHOD(ImDrawListAddImageQuadEx) {
     if (!draw_list) return;
   }
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 p1;
   if (!ReadImVec2(info, 2, &p1)) return;
   cimgui::ImVec2 p2;
@@ -801,7 +801,7 @@ NAN_METHOD(ImDrawListAddImageRounded) {
     if (!draw_list) return;
   }
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 minimum;
   if (!ReadImVec2(info, 2, &minimum)) return;
   cimgui::ImVec2 maximum;

@@ -273,7 +273,7 @@ NAN_METHOD(ImDrawListSetTextureID) {
     if (!draw_list) return;
   }
   ImTextureID texture_id = 0;
-  if (!ReadU64(info, 1, &texture_id)) return;
+  if (!ReadTextureId(info, 1, &texture_id)) return;
   ::cimgui::ImDrawList__SetTextureID(draw_list, texture_id);
 }
 

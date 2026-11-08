@@ -156,7 +156,7 @@ NAN_METHOD(TextLinkOpenURLEx) {
 
 NAN_METHOD(Image) {
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 0, &user_texture_id)) return;
+  if (!ReadTextureId(info, 0, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 1, &image_size)) return;
   ::cimgui::ImGui_Image(user_texture_id, image_size);
@@ -164,7 +164,7 @@ NAN_METHOD(Image) {
 
 NAN_METHOD(ImageEx) {
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 0, &user_texture_id)) return;
+  if (!ReadTextureId(info, 0, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 1, &image_size)) return;
   cimgui::ImVec2 uv0;
@@ -176,7 +176,7 @@ NAN_METHOD(ImageEx) {
 
 NAN_METHOD(ImageWithBg) {
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 0, &user_texture_id)) return;
+  if (!ReadTextureId(info, 0, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 1, &image_size)) return;
   ::cimgui::ImGui_ImageWithBg(user_texture_id, image_size);
@@ -184,7 +184,7 @@ NAN_METHOD(ImageWithBg) {
 
 NAN_METHOD(ImageWithBgEx) {
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 0, &user_texture_id)) return;
+  if (!ReadTextureId(info, 0, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 1, &image_size)) return;
   cimgui::ImVec2 uv0;
@@ -204,7 +204,7 @@ NAN_METHOD(ImageButton) {
   const char* string_id = nullptr;
   if (!ReadUtf8(info, 0, &string_id_utf8, &string_id, true)) return;
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 2, &image_size)) return;
   auto result =
@@ -217,7 +217,7 @@ NAN_METHOD(ImageButtonEx) {
   const char* string_id = nullptr;
   if (!ReadUtf8(info, 0, &string_id_utf8, &string_id, true)) return;
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 1, &user_texture_id)) return;
+  if (!ReadTextureId(info, 1, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 2, &image_size)) return;
   cimgui::ImVec2 uv0;
@@ -508,7 +508,7 @@ NAN_METHOD(PlotHistogramEx) {
 
 NAN_METHOD(ImageImVec4) {
   ImTextureID user_texture_id = 0;
-  if (!ReadU64(info, 0, &user_texture_id)) return;
+  if (!ReadTextureId(info, 0, &user_texture_id)) return;
   cimgui::ImVec2 image_size;
   if (!ReadImVec2(info, 1, &image_size)) return;
   cimgui::ImVec2 uv0;

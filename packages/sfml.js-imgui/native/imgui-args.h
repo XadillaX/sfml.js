@@ -178,6 +178,17 @@ inline bool ReadU64(const CallbackInfo& info,
   return true;
 }
 
+inline bool ReadTextureId(const CallbackInfo& info,
+                          unsigned index,
+                          ImTextureID* output) {
+  std::uint64_t value = 0;
+  if (!ReadU64(info, index, &value)) {
+    return false;
+  }
+  *output = static_cast<ImTextureID>(value);
+  return true;
+}
+
 inline bool ReadSize(const CallbackInfo& info, unsigned index, size_t* output) {
   std::uint64_t value = 0;
   if (!ReadU64(info, index, &value)) return false;

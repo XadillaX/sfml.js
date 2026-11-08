@@ -8,6 +8,7 @@ import { copyBranding } from '../../../packages/sfml.js/tools/branding.mjs';
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const sfmlRoot = resolve(root, 'packages/sfml.js');
 const siteRoot = resolve(root, 'site');
+const toPosixPath = path => path.replaceAll('\\', '/');
 const languages = [
   {
     id: 'en',
@@ -78,7 +79,9 @@ async function buildPackageReferences(out, { site, packageName }) {
       options: resolve(siteRoot, 'typedoc.json'),
       name: packageName,
       tsconfig: resolve(packageRoot, 'tsconfig.json'),
-      entryPoints: [ resolve(packageRoot, 'src/index.ts') ],
+      entryPoints: [
+        toPosixPath(resolve(packageRoot, 'src/index.ts')),
+      ],
       basePath: packageRoot,
       out: destination(locale),
       lang: locale.id,
