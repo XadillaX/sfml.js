@@ -1,6 +1,6 @@
 import { access, readFile } from 'node:fs/promises';
 import { existsSync, statSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parse } from 'parse5';
 import {
@@ -66,16 +66,20 @@ function inspectHtml(html) {
 }
 
 function resolveOutputFile(directory, pathname) {
+  const root = resolve(directory);
   const path = decodeURIComponent(pathname).replace(/^\/+/, '');
   const candidates = pathname.endsWith('/') ? [ `${path}index.html` ] :
     [ path, `${path}.html`, `${path}/index.html` ];
   return candidates.find(file => {
-    const absolute = resolve(directory, file);
-    return (
-      absolute.startsWith(`${resolve(directory)}/`) &&
-      existsSync(absolute) &&
-      statSync(absolute).isFile()
-    );
+    const absolute = resolve(root, file);
+    // Compare via relative() so the containment check works with either
+    // path separator; a hard-coded "/" prefix fails every file on Windows.
+    const relativePath = relative(root, absolute);
+    const inside = relativePath !== '' &&
+      relativePath !== '..' &&
+      !isAbsolute(relativePath) &&
+      !relativePath.startsWith(`..${sep}`);
+    return inside && existsSync(absolute) && statSync(absolute).isFile();
   });
 }
 
