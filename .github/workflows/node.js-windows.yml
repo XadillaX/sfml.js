@@ -27,10 +27,94 @@ jobs:
       with:
         python-version: "3.11"
     - uses: microsoft/setup-msbuild@v2
+    # Mirrors ssciwr/setup-mesa-dist-win@v3 (download, "7z x", systemwidedeploy.cmd 1)
+    # but retries the browser URL and falls back to the GitHub API asset endpoint,
+    # whose CDN path survives github.com release 504 outages.
     - name: Install software OpenGL
-      uses: ssciwr/setup-mesa-dist-win@v3
-      with:
-        version: "26.0.3"
+      shell: powershell
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        $ErrorActionPreference = 'Stop'
+        [Net.ServicePointManager]::SecurityProtocol =
+          [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+
+        $version = '26.0.3'
+        $assetName = "mesa3d-$version-release-msvc.7z"
+        $installDir = Join-Path $env:RUNNER_TEMP 'setup-mesa-dist-win'
+        $archivePath = Join-Path $installDir 'mesa.7z'
+        New-Item -ItemType Directory -Force -Path $installDir | Out-Null
+
+        function Test-MesaArchive {
+          param([string]$Path)
+          if (-not (Test-Path $Path)) {
+            return $false
+          }
+          $stream = [System.IO.File]::OpenRead($Path)
+          try {
+            $buffer = New-Object byte[] 6
+            if ($stream.Read($buffer, 0, 6) -ne 6) {
+              return $false
+            }
+          } finally {
+            $stream.Dispose()
+          }
+          $magic = [byte[]](0x37, 0x7A, 0xBC, 0xAF, 0x27, 0x1C)
+          for ($i = 0; $i -lt 6; $i += 1) {
+            if ($buffer[$i] -ne $magic[$i]) {
+              return $false
+            }
+          }
+          return $true
+        }
+
+        $browserUrl = "https://github.com/pal1000/mesa-dist-win/releases/download/$version/$assetName"
+        & curl.exe -fL --retry 6 --retry-all-errors --connect-timeout 30 `
+          -o $archivePath $browserUrl
+        $downloaded = $LASTEXITCODE -eq 0 -and (Test-MesaArchive $archivePath)
+
+        if (-not $downloaded) {
+          Write-Host 'Browser download failed; resolving the asset through the GitHub API'
+          $apiHeaders = @{
+            'Accept' = 'application/vnd.github+json'
+            'X-GitHub-Api-Version' = '2022-11-28'
+          }
+          if ($env:GITHUB_TOKEN) {
+            $apiHeaders['Authorization'] = "Bearer $env:GITHUB_TOKEN"
+          }
+          $apiUrl = "https://api.github.com/repos/pal1000/mesa-dist-win/releases/tags/$version"
+          $release = Invoke-RestMethod -Uri $apiUrl -Headers $apiHeaders -UserAgent 'sfml.js-ci'
+          $asset = @($release.assets | Where-Object { $_.name -eq $assetName }) |
+            Select-Object -First 1
+          if (-not $asset) {
+            throw "Release asset $assetName not found"
+          }
+          Remove-Item -Force $archivePath -ErrorAction SilentlyContinue
+          if ($env:GITHUB_TOKEN) {
+            & curl.exe -fL --retry 6 --retry-all-errors --connect-timeout 30 `
+              -H 'Accept: application/octet-stream' `
+              -H "Authorization: Bearer $env:GITHUB_TOKEN" `
+              -o $archivePath $asset.url
+          } else {
+            & curl.exe -fL --retry 6 --retry-all-errors --connect-timeout 30 `
+              -H 'Accept: application/octet-stream' `
+              -o $archivePath $asset.url
+          }
+          if ($LASTEXITCODE -ne 0 -or -not (Test-MesaArchive $archivePath)) {
+            throw 'Mesa archive download failed after the GitHub API fallback'
+          }
+        }
+
+        Set-Location $installDir
+        & 7z.exe x $archivePath -y
+        if ($LASTEXITCODE -ne 0) {
+          throw "7z extraction failed with exit code $LASTEXITCODE"
+        }
+        & .\systemwidedeploy.cmd 1
+        if ($LASTEXITCODE -ne 0) {
+          throw "systemwidedeploy.cmd failed with exit code $LASTEXITCODE"
+        }
+        Set-Location $env:GITHUB_WORKSPACE
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build
     - run: npm --prefix packages/sfml.js run lint
