@@ -209,7 +209,7 @@ NAN_METHOD(EndMultiSelect) {
 
 NAN_METHOD(SetNextItemSelectionUserData) {
   ImGuiSelectionUserData selection_user_data = 0;
-  if (!ReadS64(info, 0, &selection_user_data)) return;
+  if (!ReadSelectionUserData(info, 0, &selection_user_data)) return;
   ::cimgui::ImGui_SetNextItemSelectionUserData(selection_user_data);
 }
 

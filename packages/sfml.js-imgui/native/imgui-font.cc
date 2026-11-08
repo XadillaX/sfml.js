@@ -318,7 +318,7 @@ NAN_METHOD(ImFontAtlasSetTexID) {
     if (!atlas) return;
   }
   ImTextureID id = 0;
-  if (!ReadU64(info, 1, &id)) return;
+  if (!ReadTextureId(info, 1, &id)) return;
   ::cimgui::ImFontAtlas_SetTexID(atlas, id);
 }
 
