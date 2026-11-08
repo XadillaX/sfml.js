@@ -41,5 +41,6 @@ jobs:
     - run: npm --prefix packages/sfml.js-imgui run lint
     - run: npm --prefix packages/sfml.js-imgui run cpplint
     - run: npm --prefix packages/sfml.js-imgui run test:types
-    # npm --prefix runs scripts from the package directory, so --require is relative to it.
-    - run: env NODE_OPTIONS="$NODE_OPTIONS --require ./tools/disable-imgui-cursor.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX +render -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
+    # NODE_OPTIONS is read by npm itself (cwd = repo root) and by every spawned
+    # test process (cwd = package dir), so the preload path must be absolute.
+    - run: env NODE_OPTIONS="$NODE_OPTIONS --require $GITHUB_WORKSPACE/packages/sfml.js-imgui/tools/disable-imgui-cursor.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX +render -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
