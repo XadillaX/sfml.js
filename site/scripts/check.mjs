@@ -90,7 +90,9 @@ export async function auditHtmlFiles(directory) {
   }
   const errors = new Set();
   for (const [ file, page ] of pages) {
-    for (const error of page.iconErrors) errors.add(`${file}: ${error}`);
+    for (const error of page.iconErrors) {
+      errors.add(`${file}: ${error}`);
+    }
     for (const link of page.links) {
       if (
         !link ||
@@ -139,6 +141,9 @@ async function checkSite() {
         'classes/RenderWindow.html',
         'assets/game-icons/icons.css',
         'assets/game-icons/LICENSE.txt',
+        'imgui/index.html',
+        'imgui/modules/ImGui.html',
+        'imgui/modules/SFML.html',
       ].map(file => `${prefix}reference/${file}`);
     }),
     'media/sfml-js-symbol-pentagon.svg',

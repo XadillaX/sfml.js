@@ -1,25 +1,45 @@
 {
   "name": "sfml-js-site",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "lint": "eslint --max-warnings 0 --ext .ts,.mts,.vue,.js,.cjs,.mjs scripts .vitepress .eslintrc.cjs",
     "prepare:content": "node scripts/prepare.mjs",
     "dev": "npm run prepare:content && vitepress dev . --host 127.0.0.1",
     "build": "npm run prepare:content && vitepress build . && npm run build:reference && node scripts/redirects.mjs && npm run check",
     "build:reference": "node scripts/reference.mjs",
     "preview": "vitepress preview . --host 127.0.0.1",
-    "test": "node --test scripts/*.test.mjs",
+    "test": "npm run lint && node --test scripts/*.test.mjs",
     "check": "node scripts/check.mjs"
   },
   "devDependencies": {
+    "@types/node": "20.19.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitejs/plugin-vue": "5.2.4",
+    "@vue/server-renderer": "3.5.44",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-vue": "^9.33.0",
     "parse5": "7.2.1",
     "remark-gfm": "4.0.1",
     "remark-parse": "11.0.0",
     "remark-stringify": "11.0.0",
+    "sfml.js": "1.1.0",
+    "sfml.js-imgui": "0.1.0",
+    "typedoc": "0.28.3",
+    "typescript": "5.0.4",
     "unified": "11.0.5",
     "unist-util-visit": "5.0.0",
+    "vite": "5.4.21",
     "vitepress": "1.6.4",
-    "vue": "3.5.44"
+    "vue": "3.5.44",
+    "vue-eslint-parser": "^9.4.3"
   },
   "engines": {
     "node": ">=20"

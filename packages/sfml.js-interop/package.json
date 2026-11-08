@@ -1,0 +1,36 @@
+{
+  "name": "sfml.js-interop",
+  "version": "1.1.0",
+  "description": "Shared native interop headers for sfml.js and its addons.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/node-sfml.git"
+  },
+  "author": "XadillaX <i@2333.moe>",
+  "license": "MIT",
+  "files": [
+    "include/",
+    "index.js",
+    "paths.js",
+    "tools/lib_downloader*.cjs",
+    "tools/verify.cjs",
+    "tools/run-tests.cjs"
+  ],
+  "scripts": {
+    "build": "node tools/lib_downloader.cjs && node tools/verify.cjs",
+    "download:sfml": "node tools/lib_downloader.cjs",
+    "cpplint": "cpplint include/*.h",
+    "test:runtime": "node tools/run-tests.cjs"
+  },
+  "dependencies": {
+    "download": "8.0.0"
+  },
+  "devDependencies": {
+    "cpplint.js": "2.0.1"
+  },
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./paths": "./paths.js"
+  }
+}

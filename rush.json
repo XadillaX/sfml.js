@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+  "rushVersion": "5.182.1",
+  "pnpmVersion": "9.15.4",
+  "nodeSupportedVersionRange": ">=18.19.0 <23.0.0",
+  "projectFolderMinDepth": 1,
+  "projectFolderMaxDepth": 2,
+  "projects": [
+    {
+      "packageName": "sfml.js-interop",
+      "projectFolder": "packages/sfml.js-interop",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "sfml.js",
+      "projectFolder": "packages/sfml.js",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "sfml.js-imgui",
+      "projectFolder": "packages/sfml.js-imgui",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "sfml-js-site",
+      "projectFolder": "site",
+      "shouldPublish": false
+    }
+  ]
+}

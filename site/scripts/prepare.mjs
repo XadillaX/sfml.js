@@ -1,10 +1,11 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { copyBranding } from '../../tools/branding.mjs';
+import { copyBranding } from '../../packages/sfml.js/tools/branding.mjs';
 import {
   buildManifest,
   createLinkMapper,
   rootDir,
+  sfmlDir,
   routeFile,
   sourceDir,
   transformMarkdown,
@@ -51,15 +52,20 @@ for (const page of manifest) {
   await writeFile(destination, `---\n${metadata}\n---\n\n${text}`);
 }
 
-await cp(resolve(rootDir, 'assets'), resolve(sourceDir, 'public/media'), {
+await cp(resolve(sfmlDir, 'assets'), resolve(sourceDir, 'public/media'), {
   recursive: true,
   // Branding vectors are copied separately by copyBranding.
-  filter: source => source !== resolve(rootDir, 'assets/branding'),
+  filter: source => source !== resolve(sfmlDir, 'assets/branding'),
 });
 await copyBranding(resolve(sourceDir, 'public/media'));
 await cp(
-  resolve(rootDir, 'examples/official/screenshots'),
+  resolve(sfmlDir, 'examples/official/screenshots'),
   resolve(sourceDir, 'public/media/examples/official/screenshots'),
+  { recursive: true }
+);
+await cp(
+  resolve(rootDir, 'packages/sfml.js-imgui/examples/screenshots'),
+  resolve(sourceDir, 'public/media/imgui/examples/screenshots'),
   { recursive: true }
 );
 await writeFile(resolve(sourceDir, 'public/.nojekyll'), '');

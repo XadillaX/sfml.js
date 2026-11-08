@@ -1,5 +1,5 @@
 @import './tokens.css';
-@import '../../../assets/icons/game-icons/icons.css';
+@import '../../../packages/sfml.js/assets/icons/game-icons/icons.css';
 @import './home.css';
 @import './projects.css';
 @import './examples.css';
@@ -254,5 +254,162 @@ html { --vp-icon-copy: var(--gi-copy); --vp-icon-copied: var(--gi-check); }
   }
   .sf-doc-credits {
     padding: 24px;
+  }
+}
+
+.vp-doc a:is(
+  [href$='.avif'],
+  [href$='.gif'],
+  [href$='.jpeg'],
+  [href$='.jpg'],
+  [href$='.png'],
+  [href$='.svg'],
+  [href$='.svgz'],
+  [href$='.webp']
+):has(img[alt]:not([alt=''])),
+.vp-doc img[alt]:not([alt='']):not(a img) {
+  cursor: zoom-in;
+}
+
+.sf-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgb(15 23 18 / 88%);
+}
+
+.sf-lightbox-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1120px, 100%);
+  max-height: calc(100dvh - 64px);
+  padding-top: 52px;
+  overflow: hidden;
+  background: var(--sf-bg);
+  border: 1px solid var(--sf-border);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 45%);
+}
+
+.sf-lightbox-toolbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 52px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 10px 12px;
+}
+
+.sf-lightbox-toolbar button,
+.sf-lightbox-close {
+  min-height: 32px;
+  padding: 0 12px;
+  color: var(--sf-text);
+  background: var(--sf-bg-alt);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+  font: inherit;
+  font-size: 13px;
+}
+
+.sf-lightbox-toolbar button:hover,
+.sf-lightbox-close:hover {
+  background: var(--sf-bg-soft);
+  border-color: var(--sf-brand);
+}
+
+.sf-lightbox-toolbar button:disabled {
+  color: var(--sf-subtle);
+  cursor: default;
+  opacity: 0.5;
+}
+
+.sf-lightbox-close {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: grid;
+  width: 32px;
+  padding: 0;
+  place-items: center;
+}
+
+.sf-lightbox-close .game-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.sf-lightbox-viewport {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px 20px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.sf-lightbox-viewport img {
+  flex: 0 0 auto;
+  max-width: none;
+  height: auto;
+  cursor: zoom-in;
+  border-radius: 0;
+}
+
+.sf-lightbox-caption {
+  margin: 0;
+  padding: 12px 24px 16px;
+  color: var(--sf-muted);
+  border-top: 1px solid var(--sf-border);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .sf-lightbox {
+    padding: 0;
+  }
+
+  .sf-lightbox-dialog {
+    width: 100%;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .sf-lightbox-toolbar button {
+    min-height: 36px;
+  }
+
+  .sf-lightbox-close {
+    width: 40px;
+    min-height: 40px;
+  }
+
+  .sf-lightbox-viewport {
+    padding-inline: 12px;
   }
 }

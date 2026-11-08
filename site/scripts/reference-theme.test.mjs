@@ -3,9 +3,11 @@ import test from 'node:test';
 import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Application } from 'typedoc';
+import ts from 'typescript';
 import { parse } from 'parse5';
-import { registerSiteTheme } from '../../tools/typedoc/theme.mjs';
+import { registerSiteTheme } from './typedoc/theme.mjs';
 
 /**
  * Read rendered elements without coupling assertions to HTML attribute order.
@@ -22,6 +24,11 @@ const attr = (node, name) =>
   node.attrs?.find(item => item.name === name)?.value;
 const hasClass = (node, name) => attr(node, 'class')?.split(' ').includes(name);
 const text = node => node.value || (node.childNodes || []).map(text).join('');
+const repositoryRoot = fileURLToPath(new URL('../../', import.meta.url));
+const iconStylesheetPath = resolve(
+  repositoryRoot,
+  'packages/sfml.js/assets/icons/game-icons/icons.css'
+);
 
 test('module navigation retains nested APIs and ' +
      'member details retain callable contracts', async () => {
@@ -71,7 +78,7 @@ export namespace Glsl {
     });
     app.options.setCompilerOptions(
       [ entry ],
-      { skipLibCheck: true },
+      { skipLibCheck: true, target: ts.ScriptTarget.ES2020 },
       undefined
     );
     registerSiteTheme(app, {
@@ -79,6 +86,7 @@ export namespace Glsl {
       languages: [], home: '/', localeHref: () => '/',
     });
     const project = await app.convert();
+    assert.ok(project, 'TypeDoc converts the fixture');
     await app.generateDocs(project, resolve(directory, 'out'));
     const windowPage = parse(
       await readFile(
@@ -96,6 +104,10 @@ export namespace Glsl {
       node => attr(node, 'data-module') === 'graphics'
     )[0];
     assert.ok(graphicsGroup);
+    assert.ok(elements(
+      graphicsGroup,
+      node => hasClass(node, 'gi-graphics')
+    ).length);
     const hrefs = elements(graphicsGroup, node => node.tagName === 'a').map(
       node =>
         new URL(
@@ -164,6 +176,115 @@ export namespace Glsl {
     )[0];
     assert.equal(elements(pageNav, node => node.tagName === 'a').length, 2,
       'overview local navigation lists modules instead of every export');
+    assert.equal(app.logger.hasErrors(), false);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test('ImGui module groups use the same attributed icon treatment', async () => {
+  const directory = await mkdtemp(resolve(tmpdir(), 'sfml-imgui-icons-'));
+  try {
+    await mkdir(resolve(directory, 'src'), { recursive: true });
+    await writeFile(resolve(directory, 'src/api.ts'), `
+/** SFML window integration. */
+export namespace SFML {
+  /** Initialize ImGui. */
+  export function Init(): void {
+  }
+  /** Start a frame. */
+  export function Update(): void {
+  }
+  /** Render a frame. */
+  export function Render(): void {
+  }
+}
+
+/** Dear ImGui controls. */
+export namespace ImGui {
+  /** Begin a window. */
+  export function Begin(): boolean {
+    return true;
+  }
+  /** Draw a button. */
+  export function Button(): boolean {
+    return false;
+  }
+  /** Edit text through a callback. */
+  export function InputTextEx(): boolean {
+    return false;
+  }
+}
+
+/** Return the font atlas. */
+export function getFontAtlas(): null {
+  return null;
+}
+/** Return style colors. */
+export function getStyleColors(): Float32Array {
+  return new Float32Array();
+}
+`);
+    const entry = resolve(directory, 'index.ts');
+    await writeFile(entry, "export * from './src/api';");
+    const app = await Application.bootstrap({
+      name: 'sfml.js-imgui',
+      entryPoints: [ entry ],
+      readme: 'none',
+      logLevel: 'Error',
+    });
+    app.options.setCompilerOptions(
+      [ entry ],
+      { skipLibCheck: true, target: ts.ScriptTarget.ES2020 },
+      undefined
+    );
+    registerSiteTheme(app, {
+      locale: { id: 'en', reference: 'API reference', contents: 'Contents' },
+      languages: [],
+      home: '/',
+      localeHref: () => '/',
+    });
+    const project = await app.convert();
+    assert.ok(project);
+    await app.generateDocs(project, resolve(directory, 'out'));
+
+    const overview = parse(await readFile(
+      resolve(directory, 'out/index.html'),
+      'utf8'
+    ));
+    const iconStylesheet = await readFile(iconStylesheetPath, 'utf8');
+    const expectedIcons = {
+      SFML: 'gi-window',
+      ImGui: 'gi-list',
+      fonts: 'gi-document',
+    };
+    for (const [ moduleId, iconClass ] of Object.entries(expectedIcons)) {
+      const iconName = iconClass.slice('gi-'.length);
+      assert.match(
+        iconStylesheet,
+        new RegExp(`\\.${iconClass}\\s*{[^}]*var\\(--gi-${iconName}\\)`),
+        `${iconClass} is registered in the shared icon stylesheet`
+      );
+      const section = elements(
+        overview,
+        node => attr(node, 'id') === `module-${moduleId}`
+      )[0];
+      assert.ok(section, `${moduleId} section exists`);
+      assert.ok(
+        elements(section, node => hasClass(node, iconClass)).length,
+        `${moduleId} overview has ${iconClass}`
+      );
+
+      const nav = elements(
+        overview,
+        node => attr(node, 'data-module') === moduleId
+      )[0];
+      assert.ok(nav, `${moduleId} navigation group exists`);
+      assert.ok(
+        elements(nav, node => hasClass(node, iconClass)).length,
+        `${moduleId} navigation has ${iconClass}`
+      );
+    }
     assert.equal(app.logger.hasErrors(), false);
   } finally {
     await rm(directory, { recursive: true, force: true });

@@ -10,7 +10,9 @@ const REFLECTION = { x: 1640, y: 867 };
  * @return {{x: number, y: number}} 当前图片中的位置。
  */
 function sourcePoint(point, mobile) {
-  if (!mobile) return { ...point };
+  if (!mobile) {
+    return { ...point };
+  }
   return {
     x: (((point.x * 2880) / 2160 - 1650) * 720) / 930,
     y: (((point.y * 1440) / 1080) * 1115) / 1440,
@@ -83,7 +85,9 @@ export function imagePointToViewport({
 export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
   const context = canvas.getContext('2d');
   const water = reflectionCanvas.getContext('2d');
-  if (!context || !water) return () => {};
+  if (!context || !water) {
+    return () => {};
+  }
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = window.matchMedia('(max-width: 767px)');
   // 固定粒子参数，帧间只更新位置和亮度，避免持续分配对象。
@@ -256,7 +260,9 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
     const breath = motion.matches
       ? 0.45
       : (1 - Math.cos((time * Math.PI * 2) / 4.2)) / 2;
-    if (positioned && (force || inView)) drawLantern(time, breath);
+    if (positioned && (force || inView)) {
+      drawLantern(time, breath);
+    }
     if (reflectionPositioned && (force || reflectionInView)) {
       drawReflection(time, breath);
     }
@@ -268,7 +274,9 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
    */
   function tick(now) {
     frame = 0;
-    if (lastTime) elapsed += Math.min(now - lastTime, 100);
+    if (lastTime) {
+      elapsed += Math.min(now - lastTime, 100);
+    }
     lastTime = now;
     if (now - lastDraw >= 1000 / 30) {
       draw(elapsed / 1000);
@@ -279,10 +287,14 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
 
   /** 控制动画生命周期，减少动态模式只绘制静态光晕。 */
   function updatePlayback() {
-    if (frame) cancelAnimationFrame(frame);
+    if (frame) {
+      cancelAnimationFrame(frame);
+    }
     frame = 0;
     lastTime = 0;
-    if (disposed || (!positioned && !reflectionPositioned)) return;
+    if (disposed || (!positioned && !reflectionPositioned)) {
+      return;
+    }
     if (motion.matches) {
       draw(0, true);
     } else if (
@@ -296,7 +308,9 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
 
   /** 根据当前资源尺寸和实际 CSS 裁切位置定位灯芯。 */
   function resize() {
-    if (disposed || !image.complete || !image.naturalWidth) return;
+    if (disposed || !image.complete || !image.naturalWidth) {
+      return;
+    }
     const imageRect = image.getBoundingClientRect();
     const heroRect = hero.getBoundingClientRect();
     const positions = getComputedStyle(image).objectPosition.split(' ');
@@ -315,7 +329,9 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
       pointX: lamp.x,
       pointY: lamp.y,
     });
-    if (!point) return;
+    if (!point) {
+      return;
+    }
     unit = point.scale;
     size = Math.ceil(160 * unit);
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -368,8 +384,11 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
   observer.observe(hero);
   const visibility = new IntersectionObserver(entries => {
     for (const entry of entries) {
-      if (entry.target === canvas) inView = entry.isIntersecting;
-      else reflectionInView = entry.isIntersecting;
+      if (entry.target === canvas) {
+        inView = entry.isIntersecting;
+      } else {
+        reflectionInView = entry.isIntersecting;
+      }
     }
     updatePlayback();
   });
@@ -383,7 +402,9 @@ export function mountLanternEffect(canvas, image, hero, reflectionCanvas) {
 
   return () => {
     disposed = true;
-    if (frame) cancelAnimationFrame(frame);
+    if (frame) {
+      cancelAnimationFrame(frame);
+    }
     observer.disconnect();
     visibility.disconnect();
     image.removeEventListener('load', resize);

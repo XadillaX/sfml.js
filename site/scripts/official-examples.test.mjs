@@ -17,31 +17,43 @@ const guides = [
 
 for (const [ readme, route ] of guides) {
   test(`official guide links stay on the site: ${readme}`, async () => {
-    const source = `examples/${readme}`;
-    const markdown = await readFile(new URL(`../../${source}`,
-      import.meta.url), 'utf8');
+    const source = `packages/sfml.js/examples/${readme}`;
+    const markdown = await readFile(
+      new URL(`../../${source}`, import.meta.url),
+      'utf8'
+    );
     const output = await transformMarkdown(markdown, source, map);
 
     assert.ok(output.includes(`href="${route}"`));
-    assert.equal(map('official/README.md#platform', source),
-      `${route}#platform`);
-    assert.equal(map(`../${readme}`, `examples/official/${readme}`),
-      route.replace(/\/official$/, ''));
+    assert.equal(
+      map('official/README.md#platform', source),
+      `${route}#platform`
+    );
+    assert.equal(
+      map(`../${readme}`, `packages/sfml.js/examples/official/${readme}`),
+      route.replace(/\/official$/, '')
+    );
   });
 
   test(`official preview links use shared media: ${readme}`, async () => {
-    const source = `examples/official/${readme}`;
-    const markdown = await readFile(new URL(`../../${source}`,
-      import.meta.url), 'utf8');
+    const source = `packages/sfml.js/examples/official/${readme}`;
+    const markdown = await readFile(
+      new URL(`../../${source}`, import.meta.url),
+      'utf8'
+    );
     const output = await transformMarkdown(markdown, source, map);
     const image = '/media/examples/official/screenshots/vulkan.png';
 
     assert.ok(output.includes(`href="${image}"`));
     assert.ok(output.includes(`src="${image}"`));
-    assert.equal(map('screenshots/vulkan.png?raw=1', source),
-      `${image}?raw=1`);
-    assert.equal(map('vulkan/Vulkan.cjs', source),
+    assert.equal(
+      map('screenshots/vulkan.png?raw=1', source),
+      `${image}?raw=1`
+    );
+    assert.equal(
+      map('vulkan/Vulkan.cjs', source),
       'https://github.com/XadillaX/node-sfml/blob/main/' +
-      'examples/official/vulkan/Vulkan.cjs');
+        'packages/sfml.js/examples/official/vulkan/Vulkan.cjs'
+    );
   });
 }

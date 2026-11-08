@@ -1,0 +1,74 @@
+{
+  "name": "sfml.js-imgui",
+  "version": "0.1.0",
+  "description": "Dear ImGui integration for sfml.js, following imgui-sfml.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/sfml.js-imgui.git"
+  },
+  "author": "XadillaX <i@2333.moe>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XadillaX/sfml.js-imgui/issues"
+  },
+  "homepage": "https://github.com/XadillaX/sfml.js-imgui#readme",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "download:deps": "node tools/deps_downloader.cjs",
+    "prebuild:native": "npm run download:deps",
+    "build:native": "node ../../tools/native-build.cjs",
+    "postbuild:native": "node ../../tools/configure-lsp.cjs",
+    "cpplint": "cpplint --quiet --recursive native",
+    "prebuild:ts": "npm run download:deps",
+    "build:ts": "tsc -p tsconfig.json",
+    "build": "npm run build:native && npm run build:ts",
+    "lint": "eslint --max-warnings 0 --ext .ts,.js,.cjs .",
+    "test:types": "tsc -p test/tsconfig.json",
+    "test:runtime": "node tools/run-tests.cjs",
+    "test": "npm run lint && npm run cpplint && npm run build && npm run test:types && npm run test:runtime",
+    "demo": "npm run build:ts && node examples/demo.cjs",
+    "demo:inspector": "npm run build:ts && node examples/scene-inspector.cjs",
+    "benchmark": "npm run build:ts && node tools/benchmark-bindings.cjs"
+  },
+  "files": [
+    "binding.gyp",
+    "dist/",
+    "native/",
+    "src/",
+    "tools/deps_downloader.cjs",
+    "tsconfig.json"
+  ],
+  "engines": {
+    "node": "^18.19.0 || >=20.5.0"
+  },
+  "dependencies": {
+    "download": "8.0.0",
+    "nan": "2.29.0",
+    "node-gyp": "11.5.0",
+    "sfml.js-interop": "1.1.0"
+  },
+  "peerDependencies": {
+    "sfml.js": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "cpplint.js": "2.0.1",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "sfml.js": "^1.1.0",
+    "typescript": "5.0.4"
+  }
+}

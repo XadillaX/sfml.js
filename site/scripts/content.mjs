@@ -9,8 +9,9 @@ import { visit } from 'unist-util-visit';
 import { parseFragment, serialize } from 'parse5';
 
 export const rootDir = fileURLToPath(new URL('../../', import.meta.url));
-export const sourceDir = resolve(rootDir, 'build/site-source');
-export const outputDir = resolve(rootDir, 'build/site');
+export const sfmlDir = resolve(rootDir, 'packages/sfml.js');
+export const sourceDir = resolve(rootDir, 'site/build/source');
+export const outputDir = resolve(rootDir, 'site/build/site');
 export const repository = 'https://github.com/XadillaX/node-sfml';
 
 export const locales = [
@@ -62,7 +63,7 @@ export const locales = [
 ];
 
 const documentGroups = [
-  [ 'docs/README', '/guide/' ],
+  [ 'docs/sfml/README', '/guide/' ],
   ...[
     'getting-started',
     'concepts',
@@ -73,17 +74,26 @@ const documentGroups = [
     'audio',
     'network',
     'development',
-  ].map(name => [ `docs/${name}`, `/guide/${name}` ]),
-  [ 'examples/README', '/examples' ],
-  [ 'examples/features/README', '/examples/features' ],
-  [ 'examples/official/README', '/examples/official' ],
-  [ 'examples/projects/README', '/examples/projects' ],
+  ].map(name => [ `docs/sfml/${name}`, `/guide/${name}` ]),
+  [ 'packages/sfml.js/examples/README', '/examples' ],
+  [ 'packages/sfml.js/examples/features/README', '/examples/features' ],
+  [ 'packages/sfml.js/examples/official/README', '/examples/official' ],
+  [ 'packages/sfml.js-imgui/examples/README', '/examples/imgui' ],
+  [ 'packages/sfml.js/examples/projects/README', '/examples/projects' ],
+  [ 'docs/imgui/README', '/imgui/' ],
+  ...[
+    'getting-started', 'widgets', 'layout', 'callbacks', 'fonts',
+    'rendering', 'api',
+  ].map(
+    name => [ `docs/imgui/${name}`, `/imgui/${name}` ]
+  ),
+  [ 'docs/interop/README', '/interop/' ],
 ];
 
 export function buildManifest() {
   return locales.flatMap(locale => [
     {
-      source: `README${locale.suffix}.md`,
+      source: `packages/sfml.js/README${locale.suffix}.md`,
       route: `${locale.prefix}/`,
       locale,
       home: true,
@@ -114,8 +124,7 @@ export function createLinkMapper(
   {
     exists = path => existsSync(resolve(rootDir, path)),
     isDirectory = path =>
-      exists(path) &&
-      statSync(resolve(rootDir, path)).isDirectory(),
+      exists(path) && statSync(resolve(rootDir, path)).isDirectory(),
   } = {}
 ) {
   const pages = new Map(manifest.map(page => [ page.source, page ]));
@@ -135,8 +144,10 @@ export function createLinkMapper(
         legacyDirectories.includes(first) ||
         legacyRootFiles.includes(first)
       ) {
-        return `${prefix}/reference${parsed.pathname}` +
-          `${parsed.search}${parsed.hash}`;
+        return (
+          `${prefix}/reference${parsed.pathname}` +
+          `${parsed.search}${parsed.hash}`
+        );
       }
       if (first === 'reference') {
         return `${prefix}${parsed.pathname}${parsed.search}${parsed.hash}`;
@@ -152,10 +163,7 @@ export function createLinkMapper(
     const suffix = boundary < 0 ? '' : url.slice(boundary);
     const target = posix
       .normalize(
-        posix.join(
-          posix.dirname(source),
-          decodeURIComponent(pathname)
-        )
+        posix.join(posix.dirname(source), decodeURIComponent(pathname))
       )
       .replace(/\/$/, '');
     if (target === '..' || target.startsWith('../')) {
@@ -171,16 +179,24 @@ export function createLinkMapper(
     // Unsuffixed links in a translation stay in that language when a
     // translation exists.
     if (page && locale?.suffix && !page.locale.suffix) {
-      page = pages.get(target.replace(/\.md$/, `${locale.suffix}.md`)) || page;
+      page =
+        pages.get(target.replace(/\.md$/, `${locale.suffix}.md`)) || page;
     }
     if (page) {
       return page.route + suffix;
     }
-    if (target.startsWith('assets/')) {
-      return `/media/${target.slice(7)}${suffix}`;
+    if (target.startsWith('packages/sfml.js/assets/')) {
+      const relative = target.slice('packages/sfml.js/assets/'.length);
+      return `/media/${relative}${suffix}`;
     }
-    if (target.startsWith('examples/official/screenshots/')) {
-      return `/media/${target}${suffix}`;
+    if (
+      target.startsWith('packages/sfml.js/examples/official/screenshots/')
+    ) {
+      return `/media/${target.slice('packages/sfml.js/'.length)}${suffix}`;
+    }
+    if (target.startsWith('packages/sfml.js-imgui/examples/screenshots/')) {
+      const relative = target.slice('packages/sfml.js-imgui/'.length);
+      return `/media/imgui/${relative}${suffix}`;
     }
     const kind = isDirectory(target) ? 'tree' : 'blob';
     const encoded = target
@@ -233,8 +249,8 @@ export async function transformMarkdown(markdown, source, map) {
       return true;
     }
     const text = textContent(node);
-    return ![ 'English', '简体中文', '日本語', '한국어' ].every(
-      label => text.includes(label)
+    return ![ 'English', '简体中文', '日本語', '한국어' ].every(label =>
+      text.includes(label)
     );
   });
   visit(tree, node => {
@@ -249,5 +265,7 @@ export async function transformMarkdown(markdown, source, map) {
 }
 
 export function routeFile(route, extension = '.md') {
-  return (route.endsWith('/') ? `${route}index` : route).slice(1) + extension;
+  return (
+    (route.endsWith('/') ? `${route}index` : route).slice(1) + extension
+  );
 }

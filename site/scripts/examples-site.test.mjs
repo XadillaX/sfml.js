@@ -24,13 +24,14 @@ const exampleRoutes = [
   '/examples',
   '/examples/features',
   '/examples/official',
+  '/examples/imgui',
   '/examples/projects',
 ];
 const groupLabels = {
-  root: [ 'Learn', 'Modules', 'Examples', 'Resources' ],
-  zh: [ '开始使用', '模块', '示例', '资源' ],
-  ja: [ 'はじめに', 'モジュール', 'サンプル', 'リソース' ],
-  ko: [ '시작하기', '모듈', '예제', '리소스' ],
+  root: [ 'Learn', 'Modules', 'Examples', 'ImGui', 'Resources' ],
+  zh: [ '开始使用', '模块', '示例', 'ImGui', '资源' ],
+  ja: [ 'はじめに', 'モジュール', 'サンプル', 'ImGui', 'リソース' ],
+  ko: [ '시작하기', '모듈', '예제', 'ImGui', '리소스' ],
 };
 const attr = (node, name) =>
   node.attrs?.find(item => item.name === name)?.value;
@@ -123,7 +124,7 @@ after(async () => {
 });
 
 locales.forEach(locale => {
-  test(`publishes the four example sections: ${locale.lang}`, () => {
+  test(`publishes the five example sections: ${locale.lang}`, () => {
     const routes = manifest.filter(page =>
       page.locale.id === locale.id &&
       page.route.startsWith(`${locale.prefix}/examples`)
@@ -144,12 +145,40 @@ locales.forEach(locale => {
     }
     const topics = elements(overview, node =>
       hasClass(node, 'example-topics'))[0];
-    assert.equal(elements(topics, node => node.tagName === 'dt').length, 3);
+    assert.equal(elements(topics, node => node.tagName === 'dt').length, 4);
+    assert.ok(elements(topics, node =>
+      attr(node, 'href') === `${locale.prefix}/examples/imgui`
+    ).length);
+  });
+
+  test(`ImGui examples include commands and sources: ${locale.lang}`, () => {
+    const page = pages.get(`${locale.prefix}/examples/imgui`);
+    assert.ok(page);
+    const links = elements(page, node => node.tagName === 'a')
+      .map(node => attr(node, 'href'));
+    for (const name of [ 'demo', 'scene-inspector', 'workbench' ]) {
+      assert.ok(elements(page, node => attr(node, 'id') === name).length);
+      assert.ok(textContent(page).includes(
+        `node packages/sfml.js-imgui/examples/${name}.cjs`));
+      assert.ok(links.includes(
+        'https://github.com/XadillaX/node-sfml/blob/main/' +
+        `packages/sfml.js-imgui/examples/${name}.cjs`));
+    }
+    const images = elements(page, node => node.tagName === 'img')
+      .map(node => attr(node, 'src'));
+    for (const name of [ 'demo', 'scene-inspector', 'workbench' ]) {
+      const screenshot = `/media/imgui/examples/screenshots/${name}.png`;
+      assert.ok(links.includes(screenshot));
+      assert.ok(images.includes(screenshot));
+    }
+    assert.ok(links.includes(`${locale.prefix}/imgui/getting-started`));
+    assert.ok(links.includes(`${locale.prefix}/imgui/widgets`));
   });
 
   test(`sidebar groups preserve reading order: ${locale.lang}`, () => {
     const theme = config.locales[locale.id].themeConfig;
-    assert.deepEqual(theme.sidebar.map(group => group.text),
+    const sidebar = theme.sidebar[`${locale.prefix}/`];
+    assert.deepEqual(sidebar.map(group => group.text),
       groupLabels[locale.id]);
     const expectedGroups = [
       [ '/guide/', '/guide/getting-started', '/guide/concepts', '/guide/api' ],
@@ -158,13 +187,21 @@ locales.forEach(locale => {
         '/guide/audio', '/guide/network',
       ],
       exampleRoutes,
-      [ '/guide/development', '/reference/' ],
+      [ '/imgui/', '/imgui/getting-started', '/imgui/widgets',
+        '/imgui/layout', '/imgui/callbacks', '/imgui/fonts',
+        '/imgui/rendering', '/imgui/api',
+        '/reference/imgui/' ],
+      [ '/guide/development', '/interop/', '/reference/' ],
     ];
     for (const [ index, routes ] of expectedGroups.entries()) {
-      assert.deepEqual(theme.sidebar[index].items.map(item => item.link),
+      assert.deepEqual(sidebar[index].items.map(item => item.link),
         routes.map(route => locale.prefix + route));
     }
     assert.equal(theme.nav[1].link, `${locale.prefix}/examples`);
+    const imguiSidebar = theme.sidebar[`${locale.prefix}/imgui/`];
+    assert.equal(imguiSidebar[0].text, 'ImGui');
+    assert.equal(imguiSidebar[0].items[1].link,
+      `${locale.prefix}/imgui/getting-started`);
   });
 
   test(`project guides retain readable instructions: ${locale.lang}`, () => {
@@ -213,8 +250,8 @@ locales.forEach(locale => {
         'super-mario-kart', 'play-nes', 'node-sfml-demos', '16-games',
       ].map(anchor => `${locale.prefix}/examples/projects#${anchor}`));
       for (const source of [
-        'node-sfml/blob/main/examples/breakout.cjs',
-        'node-sfml/blob/main/examples/render-texture.cjs',
+        'node-sfml/blob/main/packages/sfml.js/examples/breakout.cjs',
+        'node-sfml/blob/main/packages/sfml.js/examples/render-texture.cjs',
         'super-mario-kart-sfml.js',
         'node-sfml-demos',
         '16-sfml.js-games-ported',
@@ -301,9 +338,15 @@ test('generated documentation links resolve without legacy site routes',
           /^\/(?:(?:zh|ja|ko)\/)?examples\/ported(?:\/|$)/);
         if (url.pathname.startsWith('/media/')) {
           const path = url.pathname.slice('/media/'.length);
+          if (path.startsWith('imgui/examples/screenshots/')) {
+            assert.ok(existsSync(resolve(
+              rootDir, 'packages/sfml.js-imgui', path.slice('imgui/'.length)
+            )), `${route}: missing screenshot ${link}`);
+            continue;
+          }
           const source = path.startsWith('examples/official/screenshots/')
             ? path : `assets/${path}`;
-          assert.ok(existsSync(resolve(rootDir, source)),
+          assert.ok(existsSync(resolve(rootDir, 'packages/sfml.js', source)),
             `${route}: missing image ${link}`);
           continue;
         }

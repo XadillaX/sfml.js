@@ -16,30 +16,31 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            site/package-lock.json
-      - run: npm ci --ignore-scripts
-      - run: npm ci --prefix site
+          node-version: 22
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install native build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libgl1-mesa-dev libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libfreetype-dev libflac-dev libvorbis-dev libopenal-dev libmbedtls-dev
+      - run: node common/scripts/install-run-rush.js install
+      - run: node common/scripts/install-run-rush.js build --to sfml-js-site
       - run: npm --prefix site test
-      - run: npm run build:docs
       - name: Publish to gh-pages
         run: |
+          cp -R site/build/site "$RUNNER_TEMP/sfml-site"
           git fetch --depth=1 origin gh-pages
           git checkout --detach FETCH_HEAD
-          if [ -f CNAME ]; then
-            cp CNAME build/site/CNAME
-          elif [ -f docs/CNAME ]; then
-            cp docs/CNAME build/site/CNAME
+          if [ -f docs/CNAME ]; then
+            cp docs/CNAME "$RUNNER_TEMP/sfml-site/CNAME"
           fi
-          touch build/site/.nojekyll
+          touch "$RUNNER_TEMP/sfml-site/.nojekyll"
           rm -rf docs
-          cp -R build/site docs
+          cp -R "$RUNNER_TEMP/sfml-site" docs
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add docs

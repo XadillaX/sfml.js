@@ -1,12 +1,11 @@
-# Dependencies and generated output
+# Workspace dependencies and generated output
 node_modules/
-/build/
-/dist/
-/third_party/sfml/
-/third_party/.sfml-download-*/
-compile_commands.json
+packages/*/build/
+packages/*/dist/
+packages/*/third_party/
+/compile_commands.json
+packages/*/*.tgz
 *.tsbuildinfo
-*.tgz
 
 # Logs and local caches
 logs/
@@ -16,7 +15,6 @@ coverage/
 .npm/
 .eslintcache
 .cache/
-/.screenshots/
 /scratch/
 core
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -27,3 +25,11 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .DS_Store
 .vscode/
 .prettierrc
+
+# Rush
+common/temp/
+common/deploy/
+common/autoinstallers/*/.npmrc
+
+packages/*/rush-logs/
+packages/*/.rush/

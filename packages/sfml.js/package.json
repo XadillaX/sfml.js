@@ -1,0 +1,100 @@
+{
+  "name": "sfml.js",
+  "version": "1.1.0",
+  "description": "SFML's Node.js binding.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/node-sfml.git"
+  },
+  "author": "XadillaX <i@2333.moe>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XadillaX/node-sfml/issues"
+  },
+  "homepage": "https://github.com/XadillaX/node-sfml#readme",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "download:sfml": "node tools/ensure-sfml.cjs",
+    "generate:window": "node tools/generate-window-constants.cjs",
+    "generate:network": "node tools/generate-network-constants.cjs",
+    "prebuild:native": "npm run download:sfml",
+    "build:native": "npm run generate:window && node ../../tools/native-build.cjs",
+    "postbuild:native": "node ../../tools/configure-lsp.cjs",
+    "prebuild:ts": "npm run download:sfml",
+    "build:ts": "npm run generate:window && npm run generate:network && tsc -p tsconfig.json",
+    "build": "npm run build:native && npm run build:ts",
+    "demo": "npm run build && node examples/sprites.cjs",
+    "demo:breakout": "npm run build && node examples/breakout.cjs",
+    "demo:types": "npm run build && node examples/all-types.cjs",
+    "demo:image": "npm run build && node examples/image.cjs",
+    "demo:texture": "npm run build && node examples/texture.cjs",
+    "demo:sprite": "npm run build && node examples/sprite.cjs",
+    "demo:render-texture": "npm run build && node examples/render-texture.cjs",
+    "demo:drawable": "npm run build && node examples/drawable.cjs",
+    "demo:vertices": "npm run build && node examples/vertex-array.cjs",
+    "demo:text": "npm run build && node examples/text.cjs",
+    "demo:window": "npm run build && node examples/window.cjs",
+    "demo:system-window": "npm run build && node examples/system-window.cjs",
+    "demo:sleep-err": "npm run build && node examples/sleep-err.cjs",
+    "demo:audio": "npm run build && node examples/audio.cjs",
+    "demo:network": "npm run build:ts && node examples/network.cjs",
+    "demo:ported": "npm run build:ts && node examples/ported/render_window.cjs",
+    "lint": "eslint --ext .ts,.js,.cjs,.mjs .",
+    "jslint": "npm run lint",
+    "cpplint": "cpplint native/*.cc native/*.h test/native/*.cc test/native/*.h",
+    "test:types": "tsc -p test/tsconfig.json",
+    "test:runtime": "node tools/run-tests.cjs",
+    "test": "npm run lint && npm run build && npm run test:types && npm run test:runtime"
+  },
+  "files": [
+    "binding.gyp",
+    "dist/",
+    "native/",
+    "src/",
+    "test/native/",
+    "tools/generate-*-constants.cjs",
+    "tools/constant-docs.cjs",
+    "tools/constant-docs.json",
+    "tsconfig.json",
+    "assets/branding/sfml-js-symbol-pentagon.svg",
+    "assets/branding/sfml-js-wordmark.svg",
+    "assets/branding/sfml-js-wordmark-dark.svg",
+    "assets/breakout.png",
+    "tools/ensure-sfml.cjs"
+  ],
+  "engines": {
+    "node": "^18.19.0 || >=20.5.0"
+  },
+  "dependencies": {
+    "basic-ftp": "6.2.1",
+    "download": "8.0.0",
+    "ipaddr.js": "2.5.0",
+    "nan": "2.29.0",
+    "node-gyp": "11.5.0",
+    "ssh2": "1.17.0",
+    "sfml.js-interop": "1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "@types/ssh2": "1.15.6",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@wettstein/nodegl": "1.2.1",
+    "cpplint.js": "2.0.1",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "typescript": "5.0.4",
+    "x11": "4.3.1"
+  }
+}
