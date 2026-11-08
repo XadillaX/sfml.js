@@ -41,4 +41,4 @@ jobs:
     - run: npm --prefix packages/sfml.js-imgui run lint
     - run: npm --prefix packages/sfml.js-imgui run cpplint
     - run: npm --prefix packages/sfml.js-imgui run test:types
-    - run: xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX +render -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
+    - run: env NODE_OPTIONS="$NODE_OPTIONS --require ./packages/sfml.js-imgui/tools/disable-imgui-cursor.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX +render -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
