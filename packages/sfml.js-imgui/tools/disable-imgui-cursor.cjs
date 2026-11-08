@@ -19,8 +19,9 @@ const { NoMouseCursorChange } = imgui.ImGui.ImGuiConfigFlags;
 imgui.SFML.Init = function patchInit(window, loadDefaultFont) {
   const initialized = init.call(this, window, loadDefaultFont);
   if (initialized) {
+    // Tests never set application config flags, so a fresh context reads 0.
     const io = imgui.SFML.GetIO();
-    io.configFlags |= NoMouseCursorChange;
+    io.configFlags = NoMouseCursorChange;
   }
   return initialized;
 };
