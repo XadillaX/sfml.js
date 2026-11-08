@@ -12,6 +12,41 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function githubHeaders() {
+  return {
+    Accept: 'application/octet-stream',
+    ...(process.env.GITHUB_TOKEN ? {
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    } : {}),
+  };
+}
+
+async function resolveGitHubReleaseAsset(url) {
+  const match = decodeURIComponent(url).match(
+    /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/releases\/download\/([^/]+)\/([^?]+)/
+  );
+  if (!match) {
+    return null;
+  }
+  const [ , owner, repository, tag, assetName ] = match;
+  const endpoint =
+    `https://api.github.com/repos/${owner}/${repository}/releases/tags/${tag}`;
+  const response = await fetch(endpoint, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      ...(process.env.GITHUB_TOKEN ? {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      } : {}),
+    },
+  });
+  if (!response.ok) {
+    return null;
+  }
+  const release = await response.json();
+  const asset = release.assets?.find(item => item.name === assetName);
+  return asset?.url ?? null;
+}
+
 async function downloadWithRetry(...args) {
   let lastError;
   for (let attempt = 1; attempt <= maxDownloadAttempts; attempt += 1) {
@@ -20,8 +55,21 @@ async function downloadWithRetry(...args) {
     } catch (error) {
       lastError = error;
       const status = error.response?.statusCode ?? error.statusCode;
-      if (attempt === maxDownloadAttempts ||
-          (status !== undefined && !retryableStatuses.has(status))) {
+      if (status !== undefined && !retryableStatuses.has(status)) {
+        throw error;
+      }
+      const assetUrl = await resolveGitHubReleaseAsset(args[0]);
+      if (assetUrl) {
+        try {
+          return await download(assetUrl, args[1], {
+            ...args[2],
+            headers: githubHeaders(),
+          });
+        } catch (fallbackError) {
+          lastError = fallbackError;
+        }
+      }
+      if (attempt === maxDownloadAttempts) {
         throw error;
       }
       await sleep(5000 * (2 ** (attempt - 1)));
