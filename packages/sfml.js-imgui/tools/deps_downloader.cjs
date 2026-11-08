@@ -31,6 +31,7 @@ const identity = [
 const thirdParty = path.join(__dirname, '../third_party');
 const marker = path.join(thirdParty, '.installed');
 const retryableStatuses = new Set([ 429, 500, 502, 503, 504 ]);
+const maxDownloadAttempts = 6;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -38,17 +39,17 @@ function sleep(ms) {
 
 async function downloadWithRetry(...args) {
   let lastError;
-  for (let attempt = 1; attempt <= 4; attempt += 1) {
+  for (let attempt = 1; attempt <= maxDownloadAttempts; attempt += 1) {
     try {
       return await download(...args);
     } catch (error) {
       lastError = error;
       const status = error.response?.statusCode ?? error.statusCode;
-      if (attempt === 4 ||
+      if (attempt === maxDownloadAttempts ||
           (status !== undefined && !retryableStatuses.has(status))) {
         throw error;
       }
-      await sleep(2 ** attempt * 1000);
+      await sleep(5000 * (2 ** (attempt - 1)));
     }
   }
   throw lastError;
