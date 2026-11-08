@@ -1,17 +1,26 @@
 'use strict';
 
 /**
- * Test-only preload for Xvfb. The virtual X server does not reliably support
- * ImGui's custom hidden cursor, so keep the backend from changing the system
- * mouse cursor while exercising the rest of the frame lifecycle.
+ * Test-only preload for Xvfb. The virtual X server rejects some of ImGui's
+ * system cursors (BadCursor on X_ChangeWindowAttributes), so forbid the
+ * backend from touching the system mouse cursor.
+ *
+ * imgui-sfml creates a separate ImGui context per window and switches the
+ * current context inside Init. Patching Update would miss windows that are
+ * not current at frame time, so the flag is applied to each context right
+ * after Init, before any frame can call updateMouseCursor.
  */
 
 const imgui = require('../dist');
 
-const update = imgui.SFML.Update;
+const init = imgui.SFML.Init;
+const { NoMouseCursorChange } = imgui.ImGui.ImGuiConfigFlags;
 
-imgui.SFML.Update = function patchUpdate(window, seconds) {
-  const io = imgui.SFML.GetIO();
-  io.configFlags = imgui.ImGui.ImGuiConfigFlags.NoMouseCursorChange;
-  return update.call(this, window, seconds);
+imgui.SFML.Init = function patchInit(window, loadDefaultFont) {
+  const initialized = init.call(this, window, loadDefaultFont);
+  if (initialized) {
+    const io = imgui.SFML.GetIO();
+    io.configFlags |= NoMouseCursorChange;
+  }
+  return initialized;
 };
