@@ -29,7 +29,7 @@ jobs:
     - name: Install graphics and audio dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential xvfb xauth libgl1-mesa-dev libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libfreetype-dev libflac-dev libvorbis-dev libopenal-dev libmbedtls-dev
+        sudo apt-get install -y build-essential xvfb xauth libgl1-mesa-dev libgl1-mesa-dri libglx-mesa0 libegl-mesa0 libgbm1 libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libfreetype-dev libflac-dev libvorbis-dev libopenal-dev libmbedtls-dev
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build
     - run: npm --prefix packages/sfml.js-interop run cpplint
@@ -37,8 +37,8 @@ jobs:
     - run: npm --prefix packages/sfml.js run lint
     - run: npm --prefix packages/sfml.js run test:types
     # Keep the display alive between the suite's isolated Node.js processes.
-    - run: xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js run test:runtime
+    - run: xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX +render -noreset" npm --prefix packages/sfml.js run test:runtime
     - run: npm --prefix packages/sfml.js-imgui run lint
     - run: npm --prefix packages/sfml.js-imgui run cpplint
     - run: npm --prefix packages/sfml.js-imgui run test:types
-    - run: xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
+    - run: xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX +render -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
