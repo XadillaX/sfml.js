@@ -98,7 +98,12 @@ pre, .tsd-signature {
   grid-template-areas: 'sidebar content toc'; gap: 40px;
   max-width: 1440px; width: 100%; padding: 0 32px; margin: 0 auto;
 }
-.col-content { grid-area: content; min-width: 0; padding: 40px 0 80px; }
+.col-content {
+  grid-area: content;
+  min-width: 0;
+  padding: 40px 0 80px;
+  overflow-wrap: anywhere;
+}
 .col-content [id] { scroll-margin-block: 0; }
 .col-sidebar { display: contents; }
 .site-menu, .page-menu {
@@ -149,7 +154,11 @@ details[open] > summary > .sf-api-disclosure { transform: rotate(90deg); }
 .sf-api-nav-kind > summary { min-height: 32px; padding: 6px 10px; font-size: .75rem; color: var(--sf-subtle); }
 .sf-api-nav-kind ul { list-style: none; padding: 4px; margin: 4px 0 12px; max-height: 256px; overflow-y: auto; scrollbar-width: thin; overscroll-behavior: contain; }
 .sf-api-nav-kind li { padding: 0; }
-.sf-api-nav-kind li a { font-family: var(--sf-mono); font-size: .75rem; }
+.sf-api-nav-kind li a {
+  font-family: var(--sf-mono);
+  font-size: .75rem;
+  scroll-margin-block: 4px;
+}
 
 /* Compact directory, with the full native anchors still available. */
 .sf-api-member-index { margin: 24px 0 32px; border-top: 1px solid var(--sf-border); border-bottom: 1px solid var(--sf-border); }
@@ -235,6 +244,7 @@ footer { border-color: var(--sf-border); color: var(--sf-muted); background: var
 .sf-api-language-menu { position: absolute; z-index: 10; right: 0; top: calc(100% + 12px); min-width: 164px; background: var(--sf-bg); color: var(--sf-text); border: 1px solid var(--sf-border); border-radius: var(--sf-radius); padding: 10px; box-shadow: 0 10px 24px #07100922; --sf-focus: var(--sf-brand); }
 .sf-api-language-menu a { display: block; padding: 8px 12px; font-size: 14px; line-height: 24px; border-radius: 3px; }
 .sf-api-language-menu a + a { margin-top: 4px; }
+.sf-api-language-menu a:focus-visible { outline-offset: 1px; }
 .sf-api-language-menu a:hover { background: var(--sf-bg-soft); }
 .sf-api-language-menu a[aria-current] { color: var(--sf-brand); background: var(--sf-brand-soft); font-weight: 650; }
 .sf-api-header .sf-api-theme { padding: 3px; width: 40px; height: 24px; border-radius: 14px; border: 1px solid #708572; background: #304d3c; justify-content: flex-start; }

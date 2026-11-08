@@ -19,6 +19,7 @@
   --gi-return: url('./return.svg');
   --gi-link: url('./link.svg');
   --gi-list: url('./list.svg');
+  --gi-document: url('./document.svg');
 }
 .game-icon {
   display: inline-block;
@@ -44,6 +45,8 @@
 .gi-arrow { --game-icon: var(--gi-arrow); }
 .gi-close { --game-icon: var(--gi-close); }
 .gi-check { --game-icon: var(--gi-check); }
+.gi-list { --game-icon: var(--gi-list); }
+.gi-document { --game-icon: var(--gi-document); }
 .sf-icon-credits {
   padding: 16px 24px;
   margin: 0;
