@@ -5,6 +5,30 @@ const path = require('node:path');
 const download = require('download');
 const urls = require('./lib_downloader_urls.cjs');
 
+const retryableStatuses = new Set([ 429, 500, 502, 503, 504 ]);
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function downloadWithRetry(...args) {
+  let lastError;
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      return await download(...args);
+    } catch (error) {
+      lastError = error;
+      const status = error.response?.statusCode ?? error.statusCode;
+      if (attempt === 4 ||
+          (status !== undefined && !retryableStatuses.has(status))) {
+        throw error;
+      }
+      await sleep(2 ** attempt * 1000);
+    }
+  }
+  throw lastError;
+}
+
 /**
  * Validate the actual version and the headers required by code generation,
  * so a stale installation left over from another branch is never reused.
@@ -63,7 +87,7 @@ async function main() {
   try {
     console.log(`[sfml.js-interop] Downloading ${url}`);
     const hardLinks = [];
-    await download(url, staging, {
+    await downloadWithRetry(url, staging, {
       extract: true,
       strip: 1,
       filter(file) {

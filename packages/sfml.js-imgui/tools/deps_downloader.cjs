@@ -30,6 +30,29 @@ const identity = [
 
 const thirdParty = path.join(__dirname, '../third_party');
 const marker = path.join(thirdParty, '.installed');
+const retryableStatuses = new Set([ 429, 500, 502, 503, 504 ]);
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function downloadWithRetry(...args) {
+  let lastError;
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      return await download(...args);
+    } catch (error) {
+      lastError = error;
+      const status = error.response?.statusCode ?? error.statusCode;
+      if (attempt === 4 ||
+          (status !== undefined && !retryableStatuses.has(status))) {
+        throw error;
+      }
+      await sleep(2 ** attempt * 1000);
+    }
+  }
+  throw lastError;
+}
 
 /**
  * Extract a zip into target, keeping only the first-level subdirectory.
@@ -39,7 +62,7 @@ const marker = path.join(thirdParty, '.installed');
 async function extract(url, target) {
   const staging = await fs.mkdtemp(path.join(thirdParty, '.deps-'));
   try {
-    await download(url, staging, { extract: true, strip: 1 });
+    await downloadWithRetry(url, staging, { extract: true, strip: 1 });
     await fs.rm(target, { recursive: true, force: true });
     await fs.rename(staging, target);
   } finally {
@@ -54,7 +77,7 @@ async function extract(url, target) {
  */
 async function fetchFile(url, target) {
   await fs.mkdir(path.dirname(target), { recursive: true });
-  await download(url, path.dirname(target), {
+  await downloadWithRetry(url, path.dirname(target), {
     filename: path.basename(target),
   });
 }

@@ -40,7 +40,7 @@ function locateNodeModules(from) {
  * @param {import('node:test').TestContext} t Test context used to register
  * temporary resource cleanup.
  */
-async function installer(t) {
+async function installer(t, handler) {
   const root = path.resolve(__dirname, '..');
   const temporary = await fs.mkdtemp(path.join(os.tmpdir(), 'sfml-installer-'));
   t.after(() => fs.rm(temporary, { recursive: true, force: true }));
@@ -50,8 +50,12 @@ async function installer(t) {
     await fs.copyFile(path.join(root, 'tools', file), path.join(tools, file));
   }
   let requests = 0;
-  const server = http.createServer((_request, response) => {
+  const server = http.createServer((request, response) => {
     requests++;
+    if (handler) {
+      handler(request, response, requests, archive);
+      return;
+    }
     response.end(archive);
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -93,6 +97,20 @@ test('SFML installer reuses a complete matching installation', async t => {
   await fixture.run();
   await fixture.run();
   assert.equal(fixture.requests(), 1);
+});
+
+test('SFML installer retries transient gateway failures', async t => {
+  const fixture = await installer(t, (_request, response, requestCount, payload) => {
+    if (requestCount === 1) {
+      response.statusCode = 504;
+      response.end();
+      return;
+    }
+    response.end(payload);
+  });
+  await fixture.run();
+  assert.equal(fixture.requests(), 2);
+  await fs.access(path.join(fixture.installed, 'include/SFML/Config.hpp'));
 });
 
 for (const header of [
