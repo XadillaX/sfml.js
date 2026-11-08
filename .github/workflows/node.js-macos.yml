@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      NODE_OPTIONS: --max_old_space_size=4096
     strategy:
       matrix:
         node-version: [20.x, 22.x]

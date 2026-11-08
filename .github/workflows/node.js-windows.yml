@@ -11,6 +11,7 @@ jobs:
     runs-on: windows-2022
     env:
       GALLIUM_DRIVER: llvmpipe
+      NODE_OPTIONS: --max_old_space_size=4096
     strategy:
       fail-fast: false
       matrix:
