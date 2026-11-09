@@ -123,8 +123,9 @@ test('SoundStream plays, pauses, loops and exposes the SFML stream metadata',
       assert.equal(stream.getStatus(), sf.SoundStatus.Paused);
       stream.setPlayingOffset(sf.milliseconds(200));
       stream.play();
-      await delay(40);
-      assert.ok(stream.getWorkerStats().processed > 0n);
+      // Null-device runners do not pump audio at a fixed rate; wait for the
+      // worker to report processed blocks instead of trusting 40 ms.
+      await until(() => stream.getWorkerStats().processed > 0n);
       stream.stop();
       assert.equal(stream.getStatus(), sf.SoundStatus.Stopped);
       assert.ok(new sf.Music() instanceof sf.SoundStream);
