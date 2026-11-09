@@ -40,7 +40,7 @@ jobs:
     # changed the visual/fbconfig selection and produced BadAccess while GL
     # contexts are created under the Node 20 GC schedule.
     # Keep the display alive between the suite's isolated Node.js processes.
-    - run: xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js run test:runtime
+    - run: env NODE_OPTIONS="$NODE_OPTIONS --require $GITHUB_WORKSPACE/packages/sfml.js/tools/keep-gl-context.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js run test:runtime
     - run: npm --prefix packages/sfml.js-imgui run lint
     - run: npm --prefix packages/sfml.js-imgui run cpplint
     - run: npm --prefix packages/sfml.js-imgui run test:types
