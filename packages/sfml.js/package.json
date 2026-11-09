@@ -80,7 +80,7 @@
     "nan": "2.29.0",
     "node-gyp": "11.5.0",
     "ssh2": "1.17.0",
-    "sfml.js-interop": "1.1.0"
+    "sfml.js-interop": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "20.19.0",

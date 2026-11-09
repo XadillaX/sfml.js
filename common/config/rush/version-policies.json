@@ -1,0 +1,16 @@
+[
+  {
+    "definitionName": "lockStepVersion",
+    "policyName": "sfml-js-core",
+    "version": "1.1.1",
+    "nextBump": "patch",
+    "dependencies": {
+      "versionFormatForPublish": "exact",
+      "versionFormatForCommit": "original"
+    }
+  },
+  {
+    "definitionName": "individualVersion",
+    "policyName": "sfml-js-imgui"
+  }
+]

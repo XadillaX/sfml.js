@@ -1,0 +1,67 @@
+name: Publish packages
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+# Rush pushes the version branch, merges it into main and pushes per-package
+# tags, so the workflow identity needs write access to the repository.
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    env:
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      NODE_OPTIONS: --max-old-space-size=4096
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        # Rush creates a version/bump branch and merges it into main.
+        fetch-depth: 0
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20.x"
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - name: Install graphics and audio dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential xvfb xauth libgl1-mesa-dev libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libfreetype-dev libflac-dev libvorbis-dev libopenal-dev libmbedtls-dev
+    - name: Install dependencies
+      run: node common/scripts/install-run-rush.js install
+    - name: Build
+      run: node common/scripts/install-run-rush.js build
+    - name: Verify core package
+      run: |
+        npm --prefix packages/sfml.js run lint
+        npm --prefix packages/sfml.js run cpplint
+        npm --prefix packages/sfml.js run test:types
+        env NODE_OPTIONS="$NODE_OPTIONS --require $GITHUB_WORKSPACE/packages/sfml.js/tools/keep-gl-context.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js run test:runtime
+    - name: Verify imgui package
+      run: |
+        npm --prefix packages/sfml.js-imgui run lint
+        npm --prefix packages/sfml.js-imgui run cpplint
+        npm --prefix packages/sfml.js-imgui run test:types
+        env NODE_OPTIONS="$NODE_OPTIONS --require $GITHUB_WORKSPACE/packages/sfml.js-imgui/tools/disable-imgui-cursor.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
+    - name: Prepare git for Rush
+      run: |
+        git config user.name "sfml.js release bot"
+        git config user.email "noreply@sfml.js.org"
+        # The tag points at main; Rush merges its version branch back into main.
+        git checkout main
+    - name: Publish to npm
+      run: |
+        test -n "$NPM_AUTH_TOKEN"
+        node common/scripts/install-run-rush.js publish \
+          --apply \
+          --publish \
+          --target-branch main \
+          --add-commit-details \
+          --set-access-level public

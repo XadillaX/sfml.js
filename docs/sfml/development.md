@@ -143,3 +143,31 @@ The downloader, installation hooks and platform builds are interconnected; valid
 ## Submitting changes
 
 Describe the specific behavior, relevant verification and unverified platform paths in the PR. Run affected native comparison tests for native changes; check links, code examples and the TypeDoc build for documentation-only changes. Include the machine, Node.js/SFML versions, scenario and measurement method with performance figures.
+
+### Record changes with rush change
+
+Package versions are placeholders managed by Rush version policies; do not edit `version` fields in `package.json` by hand. `sfml.js-interop` and `sfml.js` use lockstep policy `sfml-js-core` and always release together; `sfml.js-imgui` uses individual policy `sfml-js-imgui`.
+
+After changing a published package, run from the repository root and commit the generated file under `common/changes/`:
+
+```sh
+node common/scripts/install-run-rush.js change
+```
+
+Choose `patch`, `minor` or `major` per affected package. A release without change files publishes nothing.
+
+### Release through CI
+
+Releases run in the **Publish packages** workflow and must be cut only after main CI is green:
+
+1. Merge the PRs containing the `common/changes/*.json` files.
+2. Push a `v*` tag at the main commit (the tag name only triggers the workflow; versions come from the change files):
+
+   ```sh
+   git tag v2026.11.09
+   git push origin v2026.11.0
+   ```
+
+3. The workflow builds and reruns both packages' tests, then `rush publish --apply --publish --target-branch main` applies the change files, updates versions and CHANGELOG files, merges the bump back to main, tags each package and publishes to npm.
+
+Requirements: an npm automation/publish token stored as the `NPM_AUTH_TOKEN` repository secret (consumed through `common/config/rush/.npmrc-publish`), and main must accept the workflow's `GITHUB_TOKEN` pushes. The lockstep policy pins `sfml.js` to the exact interop version at publish time; `sfml.js-imgui` keeps a caret range on interop and releases independently when its own change file is present.

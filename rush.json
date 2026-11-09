@@ -9,16 +9,19 @@
     {
       "packageName": "sfml.js-interop",
       "projectFolder": "packages/sfml.js-interop",
+      "versionPolicyName": "sfml-js-core",
       "shouldPublish": true
     },
     {
       "packageName": "sfml.js",
       "projectFolder": "packages/sfml.js",
+      "versionPolicyName": "sfml-js-core",
       "shouldPublish": true
     },
     {
       "packageName": "sfml.js-imgui",
       "projectFolder": "packages/sfml.js-imgui",
+      "versionPolicyName": "sfml-js-imgui",
       "shouldPublish": true
     },
     {

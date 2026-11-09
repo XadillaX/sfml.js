@@ -53,7 +53,7 @@
     "download": "8.0.0",
     "nan": "2.29.0",
     "node-gyp": "11.5.0",
-    "sfml.js-interop": "1.1.0"
+    "sfml.js-interop": "^1.1.0"
   },
   "peerDependencies": {
     "sfml.js": "^1.1.0"
