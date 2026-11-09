@@ -4,7 +4,11 @@ const { spawnSync } = require('node:child_process');
 const { readdirSync } = require('node:fs');
 const { resolve } = require('node:path');
 
-// 枚举测试文件，避免依赖 shell 通配符；串行运行以隔离图形和音频设备。
+// Enumerate test files without relying on shell globs. Each file runs in its
+// own process, in sequence: under Node 20, "node --test file1 file2" loads
+// every file in one process, so audio Worker threads and GL/X connections
+// from earlier suites stay alive while later suites create and destroy
+// render contexts. Xvfb's GLX rejects that context churn with BadAccess.
 const root = resolve(__dirname, '..');
 const files = readdirSync(resolve(root, 'test'))
   .filter(name => name.endsWith('.test.cjs'))
@@ -14,10 +18,14 @@ if (files.length === 0) {
   throw new Error('No runtime tests found');
 }
 
-const result = spawnSync(process.execPath, [
-  '--expose-gc', '--test', '--test-concurrency=1', ...files,
-], { cwd: root, stdio: 'inherit' });
-if (result.error) {
-  throw result.error;
+for (const file of files) {
+  const result = spawnSync(process.execPath, [
+    '--expose-gc', '--test', '--test-concurrency=1', file,
+  ], { cwd: root, stdio: 'inherit' });
+  if (result.error) {
+    throw result.error;
+  }
+  if (result.status !== 0) {
+    process.exit(result.status ?? 1);
+  }
 }
-process.exitCode = result.status ?? 1;
