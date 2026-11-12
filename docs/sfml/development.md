@@ -146,7 +146,7 @@ Describe the specific behavior, relevant verification and unverified platform pa
 
 ### Record changes with rush change
 
-Package versions are placeholders managed by Rush version policies; do not edit `version` fields in `package.json` by hand. `sfml.js-interop` and `sfml.js` use lockstep policy `sfml-js-core` and always release together; `sfml.js-imgui` uses individual policy `sfml-js-imgui`.
+Package versions are placeholders managed by Rush version policies; do not edit `version` fields in `package.json` by hand. All three published packages (`sfml.js-interop`, `sfml.js`, and `sfml.js-imgui`) use the single lockstep policy `sfml-js`, so they always release together and share one version number.
 
 After changing a published package, run from the repository root and commit the generated file under `common/changes/`:
 
@@ -154,20 +154,20 @@ After changing a published package, run from the repository root and commit the 
 node common/scripts/install-run-rush.js change
 ```
 
-Choose `patch`, `minor` or `major` per affected package. A release without change files publishes nothing.
+Choose `patch`, `minor` or `major` per affected package. Change files feed the CHANGELOG content; the lockstep policy's `nextBump` decides the actual version, and every release bumps and publishes all three packages together.
 
 ### Release through CI
 
 Releases run in the **Publish packages** workflow and must be cut only after main CI is green:
 
 1. Merge the PRs containing the `common/changes/*.json` files.
-2. Push a `v*` tag at the main commit (the tag name only triggers the workflow; versions come from the change files):
+2. Push a `v*` tag at the main commit (the tag name only triggers the workflow; the version is determined by the lockstep policy):
 
    ```sh
    git tag v2026.11.09
    git push origin v2026.11.0
    ```
 
-3. The workflow builds and reruns both packages' tests, then `rush publish --apply --publish --target-branch main` applies the change files, updates versions and CHANGELOG files, merges the bump back to main, tags each package and publishes to npm.
+3. The workflow builds and reruns all three packages' tests, then `rush publish --apply --publish --target-branch main` applies the change files, updates versions and CHANGELOG files, merges the bump back to main, tags each package and publishes to npm.
 
-Requirements: an npm automation/publish token stored as the `NPM_AUTH_TOKEN` repository secret (consumed through `common/config/rush/.npmrc-publish`), and main must accept the workflow's `GITHUB_TOKEN` pushes. The lockstep policy pins `sfml.js` to the exact interop version at publish time; `sfml.js-imgui` keeps a caret range on interop and releases independently when its own change file is present.
+Requirements: an npm automation/publish token stored as the `NPM_AUTH_TOKEN` repository secret (consumed through `common/config/rush/.npmrc-publish`), and main must accept the workflow's `GITHUB_TOKEN` pushes. At publish time the lockstep policy pins every internal dependency between the three packages to the exact released version; the working-tree manifests keep caret ranges (`versionFormatForCommit: original`).

@@ -31,7 +31,7 @@
     "remark-parse": "11.0.0",
     "remark-stringify": "11.0.0",
     "sfml.js": "1.1.0",
-    "sfml.js-imgui": "0.1.0",
+    "sfml.js-imgui": "1.1.0",
     "typedoc": "0.28.3",
     "typescript": "5.0.4",
     "unified": "11.0.5",

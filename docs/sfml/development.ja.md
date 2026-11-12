@@ -144,7 +144,7 @@ PR には具体的な挙動、実施した検証、未検証のプラットフ�
 
 ### rush change で変更を記録する
 
-パッケージのバージョンは Rush のバージョンポリシーが管理するプレースホルダーです。`package.json` の `version` を手動で編集しないでください。`sfml.js-interop` と `sfml.js` はロックステップポリシー `sfml-js-core` で常に一緒にリリースし、`sfml.js-imgui` は個別ポリシー `sfml-js-imgui` を使います。
+パッケージのバージョンは Rush のバージョンポリシーが管理するプレースホルダーです。`package.json` の `version` を手動で編集しないでください。公開する 3 つのパッケージ（`sfml.js-interop`、`sfml.js`、`sfml.js-imgui`）は単一のロックステップポリシー `sfml-js` を使い、常に一緒にリリースされ、同じバージョン番号を共有します。
 
 公開パッケージを変更したら、リポジトリのルートで次を実行し、生成されたファイルを `common/changes/` にコミットします。
 
@@ -152,20 +152,20 @@ PR には具体的な挙動、実施した検証、未検証のプラットフ�
 node common/scripts/install-run-rush.js change
 ```
 
-影響を受けるパッケージごとに `patch`、`minor`、`major` を選びます。チェンジファイルがないリリースでは何も公開されません。
+影響を受けるパッケージごとに `patch`、`minor`、`major` を選びます。チェンジファイルは CHANGELOG の内容になり、実際のバージョンはロックステップポリシーの `nextBump` が決定します。毎回のリリースで 3 パッケージすべてがまとめてバンプおよび公開されます。
 
 ### CI でリリースする
 
 リリースは **Publish packages** ワークフローが実行します。main の CI がすべて成功した後にのみタグを作成してください。
 
 1. `common/changes/*.json` を含む PR をマージします。
-2. main のコミットに `v*` タグを付けてプッシュします（タグ名はワークフローのトリガー専用で、バージョンはチェンジファイルから決まります）。
+2. main のコミットに `v*` タグを付けてプッシュします（タグ名はワークフローのトリガー専用で、バージョンはロックステップポリシーが決定します）。
 
    ```sh
    git tag v2026.11.09
    git push origin v2026.11.09
    ```
 
-3. ワークフローは両パッケージをビルドしてテストを再実行し、`rush publish --apply --publish --target-branch main` を実行します。これによりチェンジファイルの適用、バージョンと CHANGELOG の更新、main へのバンプのマージ、パッケージごとのタグ付け、npm への公開が行われます。
+3. ワークフローは 3 パッケージすべてをビルドしてテストを再実行し、`rush publish --apply --publish --target-branch main` を実行します。これによりチェンジファイルの適用、バージョンと CHANGELOG の更新、main へのバンプのマージ、パッケージごとのタグ付け、npm への公開が行われます。
 
-前提条件: npm の自動公開トークンをリポジトリシークレット `NPM_AUTH_TOKEN` に保存すること（`common/config/rush/.npmrc-publish` から参照）、および main がワークフローの `GITHUB_TOKEN` によるプッシュを許可すること。ロックステップポリシーは公開時に `sfml.js` の interop 依存を正確なバージョンに固定します。`sfml.js-imgui` は interop へのキャレット範囲を維持し、専用のチェンジファイルがある場合に独立して公開されます。
+前提条件: npm の自動公開トークンをリポジトリシークレット `NPM_AUTH_TOKEN` に保存すること（`common/config/rush/.npmrc-publish` から参照）、および main がワークフローの `GITHUB_TOKEN` によるプッシュを許可すること。公開時、ロックステップポリシーは 3 パッケージ間のすべての内部依存を公開バージョンと正確に一致するよう固定します。作業ツリーのマニフェストではキャレット範囲を維持します（`versionFormatForCommit: original`）。

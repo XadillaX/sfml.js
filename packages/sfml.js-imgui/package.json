@@ -1,6 +1,6 @@
 {
   "name": "sfml.js-imgui",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Dear ImGui integration for sfml.js, following imgui-sfml.",
   "repository": {
     "type": "git",

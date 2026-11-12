@@ -146,7 +146,7 @@ PR 说明具体行为、相关验证及未验证的平台路径。Native 变更�
 
 ### 用 rush change 记录变更
 
-软件包版本号是由 Rush version policy 管理的占位值，不要手改 `package.json` 中的 `version` 字段。`sfml.js-interop` 和 `sfml.js` 使用 lockstep 策略 `sfml-js-core`，始终一起发布；`sfml.js-imgui` 使用独立策略 `sfml-js-imgui`。
+软件包版本号是由 Rush version policy 管理的占位值，不要手改 `package.json` 中的 `version` 字段。三个发布包（`sfml.js-interop`、`sfml.js`、`sfml.js-imgui`）统一使用单一 lockstep 策略 `sfml-js`，始终一起发布并共享同一个版本号。
 
 修改已发布软件包后，在仓库根目录执行，并把生成的文件提交到 `common/changes/`：
 
@@ -154,20 +154,20 @@ PR 说明具体行为、相关验证及未验证的平台路径。Native 变更�
 node common/scripts/install-run-rush.js change
 ```
 
-按受影响的软件包选择 `patch`、`minor` 或 `major`。没有变更单的发布不会发布任何包。
+按受影响的软件包选择 `patch`、`minor` 或 `major`。变更单用于生成 CHANGELOG 内容；实际版本由 lockstep 策略的 `nextBump` 决定，每次发布都会统一升级并发布全部三个包。
 
 ### 通过 CI 发布
 
 发布由 **Publish packages** 工作流执行，只能在 main 分支 CI 全绿后发版：
 
 1. 合并包含 `common/changes/*.json` 变更单的 PR。
-2. 在 main 的提交上打 `v*` 标签并推送（标签名只用于触发工作流，版本号来自变更单）：
+2. 在 main 的提交上打 `v*` 标签并推送（标签名只用于触发工作流，版本号由 lockstep 策略决定）：
 
    ```sh
    git tag v2026.11.09
    git push origin v2026.11.09
    ```
 
-3. 工作流构建并重跑两个包的测试，然后执行 `rush publish --apply --publish --target-branch main`：应用变更单、更新版本号和 CHANGELOG、把版本提交合并回 main、为每个包打标签并发布到 npm。
+3. 工作流构建并重跑三个包的测试，然后执行 `rush publish --apply --publish --target-branch main`：应用变更单、更新版本号和 CHANGELOG、把版本提交合并回 main、为每个包打标签并发布到 npm。
 
-前置条件：把 npm 自动化发布令牌存为仓库 secret `NPM_AUTH_TOKEN`（通过 `common/config/rush/.npmrc-publish` 引用），且 main 允许工作流的 `GITHUB_TOKEN` 推送。lockstep 策略在发布时把 `sfml.js` 对 interop 的依赖钉为精确版本；`sfml.js-imgui` 对 interop 保留 caret 范围，并在存在自己的变更单时独立发布。
+前置条件：把 npm 自动化发布令牌存为仓库 secret `NPM_AUTH_TOKEN`（通过 `common/config/rush/.npmrc-publish` 引用），且 main 允许工作流的 `GITHUB_TOKEN` 推送。lockstep 策略在发布时把三个包之间的所有内部依赖钉为当次发布的精确版本；工作区清单保留 caret 范围（`versionFormatForCommit: original`）。

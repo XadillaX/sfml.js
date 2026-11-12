@@ -144,7 +144,7 @@ PR에는 구체적인 동작, 관련 검증, 아직 검증하지 않은 플랫�
 
 ### rush change로 변경 기록하기
 
-패키지 버전은 Rush 버전 정책이 관리하는 자리 표시자이며 `package.json`의 `version`을 직접 수정하지 마세요. `sfml.js-interop`과 `sfml.js`는 록스텝 정책 `sfml-js-core`으로 항상 함께 릴리스하고 `sfml.js-imgui`는 개별 정책 `sfml-js-imgui`를 사용합니다.
+패키지 버전은 Rush 버전 정책이 관리하는 자리 표시자이며 `package.json`의 `version`을 직접 수정하지 마세요. 공개되는 세 패키지(`sfml.js-interop`, `sfml.js`, `sfml.js-imgui`)는 단일 록스텝 정책 `sfml-js`를 사용하며 항상 함께 릴리스되고 동일한 버전 번호를 공유합니다.
 
 공개 패키지를 변경한 뒤 저장소 루트에서 실행하고 생성된 파일을 `common/changes/`에 커밋하세요.
 
@@ -152,20 +152,20 @@ PR에는 구체적인 동작, 관련 검증, 아직 검증하지 않은 플랫�
 node common/scripts/install-run-rush.js change
 ```
 
-영향받는 패키지마다 `patch`, `minor`, `major`를 선택합니다. 변경 파일이 없는 릴리스는 아무것도 게시하지 않습니다.
+영향받는 패키지마다 `patch`, `minor`, `major`를 선택합니다. 변경 파일은 CHANGELOG 내용이 되며 실제 버전은 록스텝 정책의 `nextBump`가 결정하고, 모든 릴리스에서 세 패키지가 함께 범프되고 게시됩니다.
 
 ### CI로 릴리스하기
 
 릴리스는 **Publish packages** 워크플로가 실행하며 main의 CI가 모두 성공한 뒤에만 태그를 만드세요.
 
 1. `common/changes/*.json` 변경 파일을 포함한 PR을 병합합니다.
-2. main 커밋에 `v*` 태그를 푸시합니다(태그 이름은 워크플로 트리거 전용이며 버전은 변경 파일에서 결정됩니다).
+2. main 커밋에 `v*` 태그를 푸시합니다(태그 이름은 워크플로 트리거 전용이며 버전은 록스텝 정책이 결정합니다).
 
    ```sh
    git tag v2026.11.09
    git push origin v2026.11.09
    ```
 
-3. 워크플로는 두 패키지를 빌드하고 테스트를 다시 실행한 뒤 `rush publish --apply --publish --target-branch main`을 실행합니다. 변경 파일 적용, 버전과 CHANGELOG 갱신, main으로의 범프 병합, 패키지별 태그 생성, npm 게시가 진행됩니다.
+3. 워크플로는 세 패키지를 모두 빌드하고 테스트를 다시 실행한 뒤 `rush publish --apply --publish --target-branch main`을 실행합니다. 변경 파일 적용, 버전과 CHANGELOG 갱신, main으로의 범프 병합, 패키지별 태그 생성, npm 게시가 진행됩니다.
 
-전제 조건: npm 자동화 게시 토큰을 저장소 시크릿 `NPM_AUTH_TOKEN`에 저장하고(`common/config/rush/.npmrc-publish`가 참조), main이 워크플로의 `GITHUB_TOKEN` 푸시를 허용해야 합니다. 록스텝 정책은 게시 시점에 `sfml.js`의 interop 의존을 정확한 버전으로 고정합니다. `sfml.js-imgui`는 interop에 케어트 범위를 유지하며 자체 변경 파일이 있을 때 독립적으로 게시됩니다.
+전제 조건: npm 자동화 게시 토큰을 저장소 시크릿 `NPM_AUTH_TOKEN`에 저장하고(`common/config/rush/.npmrc-publish`가 참조), main이 워크플로의 `GITHUB_TOKEN` 푸시를 허용해야 합니다. 록스텝 정책은 게시 시점에 세 패키지 간의 모든 내부 의존을 정확한 게시 버전으로 고정합니다. 작업 트리의 매니페스트는 케어트 범위를 유지합니다(`versionFormatForCommit: original`).
