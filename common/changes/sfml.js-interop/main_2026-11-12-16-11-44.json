@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "sfml.js-interop",
+      "comment": "Initial release of the shared native interop layer used by sfml.js and its addons.",
+      "type": "minor"
+    }
+  ],
+  "packageName": "sfml.js-interop",
+  "email": "i@2333.moe"
+}

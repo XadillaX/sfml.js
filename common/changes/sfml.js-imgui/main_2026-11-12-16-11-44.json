@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "sfml.js-imgui",
+      "comment": "Initial release of the Dear ImGui integration for sfml.js, following imgui-sfml.",
+      "type": "minor"
+    }
+  ],
+  "packageName": "sfml.js-imgui",
+  "email": "i@2333.moe"
+}
