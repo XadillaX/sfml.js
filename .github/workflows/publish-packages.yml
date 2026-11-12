@@ -6,8 +6,8 @@ on:
       - "v*"
   workflow_dispatch:
 
-# Rush pushes the version branch, merges it into main and pushes per-package
-# tags, so the workflow identity needs write access to the repository.
+# Rush pushes the version branch and merges it into main, so the workflow
+# identity needs write access to the repository.
 permissions:
   contents: write
 
@@ -65,3 +65,11 @@ jobs:
           --target-branch main \
           --add-commit-details \
           --set-access-level public
+    - name: Remove Rush per-package git tags
+      if: always()
+      run: |
+        # Rush creates <package>_v<version> tags, which do not match the
+        # repository's plain v<version> release tag convention.
+        for tag in $(git tag -l 'sfml.js*_v*'); do
+          git push origin --delete "$tag"
+        done

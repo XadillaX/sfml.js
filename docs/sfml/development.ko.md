@@ -159,13 +159,13 @@ node common/scripts/install-run-rush.js change
 릴리스는 **Publish packages** 워크플로가 실행하며 main의 CI가 모두 성공한 뒤에만 태그를 만드세요.
 
 1. `common/changes/*.json` 변경 파일을 포함한 PR을 병합합니다.
-2. main 커밋에 `v*` 태그를 푸시합니다(태그 이름은 워크플로 트리거 전용이며 버전은 록스텝 정책이 결정합니다).
+2. main 커밋에 `v<버전>` 태그를 푸시합니다. 태그 이름은 릴리스 대상 버전의 순수 SemVer(예: `v1.2.2`)이며 워크플로 트리거도 겸합니다. 실제 버전은 록스텝 정책이 결정합니다.
 
    ```sh
-   git tag v2026.11.09
-   git push origin v2026.11.09
+   git tag v1.2.2
+   git push origin v1.2.2
    ```
 
-3. 워크플로는 세 패키지를 모두 빌드하고 테스트를 다시 실행한 뒤 `rush publish --apply --publish --target-branch main`을 실행합니다. 변경 파일 적용, 버전과 CHANGELOG 갱신, main으로의 범프 병합, 패키지별 태그 생성, npm 게시가 진행됩니다.
+3. 워크플로는 세 패키지를 모두 빌드하고 테스트를 다시 실행한 뒤 `rush publish --apply --publish --target-branch main`을 실행합니다. 변경 파일 적용, 버전과 CHANGELOG 갱신, main으로의 범프 병합, npm 게시가 진행됩니다. Rush가 만드는 임시 `<패키지>_v<버전>` 태그는 자동으로 삭제되어 저장소에는 순수 `v<버전>` 릴리스 태그만 남습니다.
 
 전제 조건: npm 자동화 게시 토큰을 저장소 시크릿 `NPM_AUTH_TOKEN`에 저장하고(`common/config/rush/.npmrc-publish`가 참조), main이 워크플로의 `GITHUB_TOKEN` 푸시를 허용해야 합니다. 세 패키지 간 내부 의존은 커밋된 소스와 게시 매니페스트 모두에서 케어트 범위를 유지합니다. 모든 록스텝 릴리스가 동일한 버전 번호를 공유하므로 해당 범위는 항상 그 버전으로 해석됩니다.

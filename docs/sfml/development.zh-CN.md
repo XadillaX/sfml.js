@@ -161,13 +161,13 @@ node common/scripts/install-run-rush.js change
 发布由 **Publish packages** 工作流执行，只能在 main 分支 CI 全绿后发版：
 
 1. 合并包含 `common/changes/*.json` 变更单的 PR。
-2. 在 main 的提交上打 `v*` 标签并推送（标签名只用于触发工作流，版本号由 lockstep 策略决定）：
+2. 在 main 的提交上打 `v<版本号>` 标签并推送。标签名即目标发布版本的纯 SemVer（例如 `v1.2.2`），同时用于触发工作流；实际版本号由 lockstep 策略决定：
 
    ```sh
-   git tag v2026.11.09
-   git push origin v2026.11.09
+   git tag v1.2.2
+   git push origin v1.2.2
    ```
 
-3. 工作流构建并重跑三个包的测试，然后执行 `rush publish --apply --publish --target-branch main`：应用变更单、更新版本号和 CHANGELOG、把版本提交合并回 main、为每个包打标签并发布到 npm。
+3. 工作流构建并重跑三个包的测试，然后执行 `rush publish --apply --publish --target-branch main`：应用变更单、更新版本号和 CHANGELOG、把版本提交合并回 main 并发布到 npm。Rush 生成的临时 `<包名>_v<版本号>` 标签会被自动清理，仓库只保留纯版本号的 `v<版本号>` 发布标签。
 
 前置条件：把 npm 自动化发布令牌存为仓库 secret `NPM_AUTH_TOKEN`（通过 `common/config/rush/.npmrc-publish` 引用），且 main 允许工作流的 `GITHUB_TOKEN` 推送。三个包之间的内部依赖在源码清单与发布清单中都保留 caret 范围；由于 lockstep 每次发布共享同一个版本号，该范围始终解析到当次发布的版本。

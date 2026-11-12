@@ -161,13 +161,13 @@ Choose `patch`, `minor` or `major` per affected package. Change files feed the C
 Releases run in the **Publish packages** workflow and must be cut only after main CI is green:
 
 1. Merge the PRs containing the `common/changes/*.json` files.
-2. Push a `v*` tag at the main commit (the tag name only triggers the workflow; the version is determined by the lockstep policy):
+2. Push a `v<version>` tag at the main commit. The tag name is the target release version in plain SemVer (for example `v1.2.2`) and also triggers the workflow; the actual version is determined by the lockstep policy:
 
    ```sh
-   git tag v2026.11.09
-   git push origin v2026.11.0
+   git tag v1.2.2
+   git push origin v1.2.2
    ```
 
-3. The workflow builds and reruns all three packages' tests, then `rush publish --apply --publish --target-branch main` applies the change files, updates versions and CHANGELOG files, merges the bump back to main, tags each package and publishes to npm.
+3. The workflow builds and reruns all three packages' tests, then `rush publish --apply --publish --target-branch main` applies the change files, updates versions and CHANGELOG files, merges the bump back to main and publishes to npm. Rush's temporary `<package>_v<version>` tags are removed automatically, so the repository keeps only the plain `v<version>` release tag.
 
 Requirements: an npm automation/publish token stored as the `NPM_AUTH_TOKEN` repository secret (consumed through `common/config/rush/.npmrc-publish`), and main must accept the workflow's `GITHUB_TOKEN` pushes. Internal dependencies between the three packages keep caret ranges in both the checked-in source and the published manifests; because every lockstep release shares one version number, the ranges always resolve to that exact version.
