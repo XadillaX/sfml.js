@@ -168,4 +168,4 @@ node common/scripts/install-run-rush.js change
 
 3. 워크플로는 세 패키지를 모두 빌드하고 테스트를 다시 실행한 뒤 `rush publish --apply --publish --target-branch main`을 실행합니다. 변경 파일 적용, 버전과 CHANGELOG 갱신, main으로의 범프 병합, 패키지별 태그 생성, npm 게시가 진행됩니다.
 
-전제 조건: npm 자동화 게시 토큰을 저장소 시크릿 `NPM_AUTH_TOKEN`에 저장하고(`common/config/rush/.npmrc-publish`가 참조), main이 워크플로의 `GITHUB_TOKEN` 푸시를 허용해야 합니다. 록스텝 정책은 게시 시점에 세 패키지 간의 모든 내부 의존을 정확한 게시 버전으로 고정합니다. 작업 트리의 매니페스트는 케어트 범위를 유지합니다(`versionFormatForCommit: original`).
+전제 조건: npm 자동화 게시 토큰을 저장소 시크릿 `NPM_AUTH_TOKEN`에 저장하고(`common/config/rush/.npmrc-publish`가 참조), main이 워크플로의 `GITHUB_TOKEN` 푸시를 허용해야 합니다. 세 패키지 간 내부 의존은 커밋된 소스와 게시 매니페스트 모두에서 케어트 범위를 유지합니다. 모든 록스텝 릴리스가 동일한 버전 번호를 공유하므로 해당 범위는 항상 그 버전으로 해석됩니다.

@@ -2,8 +2,8 @@
   "changes": [
     {
       "packageName": "sfml.js-imgui",
-      "comment": "Initial release of the Dear ImGui integration for sfml.js, following imgui-sfml.",
-      "type": "minor"
+      "comment": "Dear ImGui integration for sfml.js, following imgui-sfml, on the unified lockstep version line with corrected repository and homepage metadata.",
+      "type": "patch"
     }
   ],
   "packageName": "sfml.js-imgui",

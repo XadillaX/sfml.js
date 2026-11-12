@@ -170,4 +170,4 @@ node common/scripts/install-run-rush.js change
 
 3. 工作流构建并重跑三个包的测试，然后执行 `rush publish --apply --publish --target-branch main`：应用变更单、更新版本号和 CHANGELOG、把版本提交合并回 main、为每个包打标签并发布到 npm。
 
-前置条件：把 npm 自动化发布令牌存为仓库 secret `NPM_AUTH_TOKEN`（通过 `common/config/rush/.npmrc-publish` 引用），且 main 允许工作流的 `GITHUB_TOKEN` 推送。lockstep 策略在发布时把三个包之间的所有内部依赖钉为当次发布的精确版本；工作区清单保留 caret 范围（`versionFormatForCommit: original`）。
+前置条件：把 npm 自动化发布令牌存为仓库 secret `NPM_AUTH_TOKEN`（通过 `common/config/rush/.npmrc-publish` 引用），且 main 允许工作流的 `GITHUB_TOKEN` 推送。三个包之间的内部依赖在源码清单与发布清单中都保留 caret 范围；由于 lockstep 每次发布共享同一个版本号，该范围始终解析到当次发布的版本。

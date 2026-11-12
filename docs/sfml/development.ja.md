@@ -168,4 +168,4 @@ node common/scripts/install-run-rush.js change
 
 3. ワークフローは 3 パッケージすべてをビルドしてテストを再実行し、`rush publish --apply --publish --target-branch main` を実行します。これによりチェンジファイルの適用、バージョンと CHANGELOG の更新、main へのバンプのマージ、パッケージごとのタグ付け、npm への公開が行われます。
 
-前提条件: npm の自動公開トークンをリポジトリシークレット `NPM_AUTH_TOKEN` に保存すること（`common/config/rush/.npmrc-publish` から参照）、および main がワークフローの `GITHUB_TOKEN` によるプッシュを許可すること。公開時、ロックステップポリシーは 3 パッケージ間のすべての内部依存を公開バージョンと正確に一致するよう固定します。作業ツリーのマニフェストではキャレット範囲を維持します（`versionFormatForCommit: original`）。
+前提条件: npm の自動公開トークンをリポジトリシークレット `NPM_AUTH_TOKEN` に保存すること（`common/config/rush/.npmrc-publish` から参照）、および main がワークフローの `GITHUB_TOKEN` によるプッシュを許可すること。3 パッケージ間の内部依存はコミット済みソースと公開マニフェストの両方でキャレット範囲を維持します。ロックステップのリリースは常に同一バージョンを共有するため、範囲は必ずそのバージョンに解決されます。

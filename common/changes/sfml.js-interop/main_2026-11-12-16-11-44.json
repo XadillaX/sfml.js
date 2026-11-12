@@ -2,8 +2,8 @@
   "changes": [
     {
       "packageName": "sfml.js-interop",
-      "comment": "Initial release of the shared native interop layer used by sfml.js and its addons.",
-      "type": "minor"
+      "comment": "Shared native interop layer for sfml.js and its addons, released on the unified lockstep version line with corrected repository and homepage metadata.",
+      "type": "patch"
     }
   ],
   "packageName": "sfml.js-interop",
