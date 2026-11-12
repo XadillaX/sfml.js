@@ -1,6 +1,6 @@
 {
   "name": "sfml.js-interop",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Shared native interop headers for sfml.js and its addons.",
   "repository": {
     "type": "git",

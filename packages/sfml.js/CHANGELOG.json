@@ -1,0 +1,24 @@
+{
+  "name": "sfml.js",
+  "entries": [
+    {
+      "version": "1.2.1",
+      "tag": "sfml.js_v1.2.1",
+      "date": "Thu, 12 Nov 2026 10:00:47 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "First release from the Rush monorepo on the unified lockstep version line, aligned with SFML 3.1.0, with corrected repository and homepage metadata.",
+            "author": "XadillaX <i@2333.moe>",
+            "commit": "9a964ac2e3c71d1384101c05b683464479202261"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"sfml.js-interop\" from `^1.2.0` to `1.2.1`"
+          }
+        ]
+      }
+    }
+  ]
+}

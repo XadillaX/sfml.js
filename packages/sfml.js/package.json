@@ -1,6 +1,6 @@
 {
   "name": "sfml.js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "SFML's Node.js binding.",
   "repository": {
     "type": "git",
@@ -81,7 +81,7 @@
     "nan": "2.29.0",
     "node-gyp": "11.5.0",
     "ssh2": "1.17.0",
-    "sfml.js-interop": "^1.2.0"
+    "sfml.js-interop": "^1.2.1"
   },
   "devDependencies": {
     "@types/node": "20.19.0",

@@ -1,0 +1,19 @@
+{
+  "name": "sfml.js-interop",
+  "entries": [
+    {
+      "version": "1.2.1",
+      "tag": "sfml.js-interop_v1.2.1",
+      "date": "Thu, 12 Nov 2026 10:00:47 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Shared native interop layer for sfml.js and its addons, released on the unified lockstep version line with corrected repository and homepage metadata.",
+            "author": "XadillaX <i@2333.moe>",
+            "commit": "9a964ac2e3c71d1384101c05b683464479202261"
+          }
+        ]
+      }
+    }
+  ]
+}
