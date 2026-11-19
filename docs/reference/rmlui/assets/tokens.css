@@ -1,0 +1,70 @@
+/* Shared by VitePress and the standalone TypeDoc renderer. */
+@font-face {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/barlow-latin-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./fonts/barlow-latin-800.woff2') format('woff2');
+}
+:root {
+  --sf-font: 'Avenir Next', 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Apple SD Gothic Neo', sans-serif;
+  --sf-display: Barlow, 'Avenir Next', 'PingFang SC', 'Hiragino Sans', 'Apple SD Gothic Neo', sans-serif;
+  --sf-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --sf-bg: #ffffff;
+  --sf-bg-alt: #f3f6f2;
+  --sf-bg-soft: #eaf0e7;
+  --sf-text: #202a24;
+  --sf-muted: #526058;
+  --sf-subtle: #66736b;
+  --sf-border: #d9e1d8;
+  --sf-brand: #347c35;
+  --sf-brand-hover: #27632a;
+  --sf-brand-soft: #e5f2de;
+  --sf-lime: #a5d936;
+  --sf-node: #43853d;
+  --sf-header: #182d24;
+  --sf-header-text: #f5f8f1;
+  --sf-header-muted: #c6d4c8;
+  --sf-header-border: #354d3e;
+  --sf-code: #13251d;
+  --sf-focus: #568b32;
+  --sf-radius: 4px;
+  --sf-nav-height: 76px;
+  --sf-content-width: 1280px;
+}
+.dark, html[data-theme='dark'] {
+  color-scheme: dark;
+  --sf-bg: #17231d;
+  --sf-bg-alt: #121d17;
+  --sf-bg-soft: #22332a;
+  --sf-text: #eef3e9;
+  --sf-muted: #bdcabb;
+  --sf-subtle: #a5b4a4;
+  --sf-border: #35483b;
+  --sf-brand: #a5d936;
+  --sf-brand-hover: #c3e975;
+  --sf-brand-soft: #2c4023;
+  --sf-focus: #a5d936;
+}
+::selection { background: #a5d936; color: #17231d; }
+html { scrollbar-color: var(--sf-subtle) var(--sf-bg-alt); }
+input, textarea { caret-color: var(--sf-brand); }
+a, button, input, summary, select { -webkit-tap-highlight-color: transparent; }
+:is(a, button, input, summary, select):focus-visible {
+  outline: 2px solid var(--sf-focus);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}

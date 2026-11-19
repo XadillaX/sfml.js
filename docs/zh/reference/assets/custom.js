@@ -14,6 +14,9 @@ const root = document.documentElement;
 const header = document.querySelector('.sf-api-header');
 const themeButton = document.querySelector('.sf-api-theme');
 const languageMenu = document.querySelector('.sf-api-languages');
+const dropdowns = document.querySelectorAll(
+  '.sf-api-languages, .sf-api-extensions'
+);
 const menuButton = document.querySelector('.sf-api-menu-button');
 const sidebarButton = document.querySelector('#sf-api-sidebar-trigger');
 const sidebar = document.querySelector('.col-sidebar');
@@ -79,6 +82,22 @@ window.addEventListener('storage', event => {
 function closeNavigation() {
   header?.classList.remove('nav-open');
   menuButton?.setAttribute('aria-expanded', 'false');
+  const extensions = document.querySelector('.sf-api-extensions');
+  if (extensions) {
+    extensions.open = false;
+  }
+}
+
+/**
+ * Close header dropdowns when another control takes over.
+ * @param {HTMLDetailsElement} [except] - Dropdown to keep open.
+ */
+function closeDropdowns(except) {
+  for (const dropdown of dropdowns) {
+    if (dropdown !== except) {
+      dropdown.open = false;
+    }
+  }
 }
 
 /**
@@ -97,7 +116,7 @@ function setSidebar(open, restoreFocus = false) {
   }
   if (open) {
     closeNavigation();
-    languageMenu.open = false;
+    closeDropdowns();
     sidebar?.querySelector('.site-menu a')?.focus();
   } else if (restoreFocus) {
     sidebarButton?.focus();
@@ -107,7 +126,7 @@ function setSidebar(open, restoreFocus = false) {
 menuButton?.addEventListener('click', () => {
   const open = !header.classList.contains('nav-open');
   setSidebar(false);
-  languageMenu.open = false;
+  closeDropdowns();
   header.classList.toggle('nav-open', open);
   menuButton.setAttribute('aria-expanded', String(open));
 });
@@ -117,7 +136,7 @@ sidebarButton?.addEventListener('click', () =>
 document.querySelector('#tsd-search-trigger')?.addEventListener('click', () => {
   setSidebar(false);
   closeNavigation();
-  languageMenu.open = false;
+  closeDropdowns();
 });
 document
   .querySelector('.overlay')
@@ -127,15 +146,22 @@ sidebar?.addEventListener('click', event => {
     setSidebar(false);
   }
 });
-languageMenu?.addEventListener('toggle', () => {
-  if (languageMenu.open) {
-    closeNavigation();
-    setSidebar(false);
-  }
-});
+for (const dropdown of dropdowns) {
+  dropdown.addEventListener('toggle', () => {
+    if (dropdown.open) {
+      closeDropdowns(dropdown);
+      setSidebar(false);
+      if (dropdown === languageMenu) {
+        closeNavigation();
+      }
+    }
+  });
+}
 document.addEventListener('click', event => {
-  if (!languageMenu?.contains(event.target)) {
-    languageMenu.open = false;
+  for (const dropdown of dropdowns) {
+    if (!dropdown.contains(event.target)) {
+      dropdown.open = false;
+    }
   }
   if (!header?.contains(event.target)) {
     closeNavigation();
@@ -143,16 +169,18 @@ document.addEventListener('click', event => {
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
+    const dropdown = [ ...dropdowns ].find(item => item.open);
+    if (dropdown) {
+      dropdown.open = false;
+      dropdown.querySelector('summary')?.focus();
+      return;
+    }
     if (root.classList.contains('has-menu')) {
       setSidebar(false, true);
     }
     if (header?.classList.contains('nav-open')) {
       closeNavigation();
       menuButton.focus();
-    }
-    if (languageMenu?.open) {
-      languageMenu.open = false;
-      languageMenu.querySelector('summary')?.focus();
     }
   }
   if (event.key === 'Tab' && root.classList.contains('has-menu')) {
@@ -173,6 +201,7 @@ document.addEventListener('keydown', event => {
 narrowScreen.addEventListener('change', () => {
   setSidebar(false);
   closeNavigation();
+  closeDropdowns();
 });
 
 // The module navigation is rendered on the server, so it is ready before
