@@ -9,6 +9,11 @@
 
 #include "native/values/rmlui-string.h"
 
+// The Windows spooler macro must not rename Rml::URL::SetPort.
+#ifdef SetPort
+#undef SetPort
+#endif
+
 namespace sfmlrmlui {
 namespace {
 

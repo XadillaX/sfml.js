@@ -72,7 +72,7 @@ interface ReadonlyFloatArray {
    * @ja end - 終了成分インデックス。この位置を含まず、既定値は length。
    * @ko end - 포함되지 않는 끝 성분 인덱스입니다. 기본값은 length입니다.
    *
-   * @returns An independent float32 array.
+   * @return An independent float32 array.
    * @zh 独立的 float32 数组。
    * @ja 独立した float32 配列。
    * @ko 독립적인 float32 배열입니다.

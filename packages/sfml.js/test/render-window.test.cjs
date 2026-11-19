@@ -170,7 +170,7 @@ test('window draws preserve Sprite, vertex, texture and shader snapshots',
   });
 
 test('RenderWindow view, viewport, scissor and resize retain SFML view state',
-  t => {
+  async t => {
     const window = windowFixture(t);
     const initialSize = window.getSize();
     const defaultView = window.getDefaultView();
@@ -202,9 +202,19 @@ test('RenderWindow view, viewport, scissor and resize retain SFML view state',
       true);
     window.setSize(new V(initialSize.x + 20, initialSize.y + 10));
     let resized = false;
-    window.handleEvents({ Resized: () => {
-      resized = true;
-    } });
+    const resizeHandlers = {
+      Resized() {
+        resized = true;
+      },
+    };
+    // X11 delivers ConfigureNotify after the resize request returns.
+    const deadline = performance.now() + 2000;
+    while (!resized && performance.now() < deadline) {
+      window.handleEvents(resizeHandlers);
+      if (!resized) {
+        await nextTurn();
+      }
+    }
     assert.equal(resized, true);
     assert.equal(window.getView(), currentView);
     assert.equal(window.getDefaultView(), defaultView);

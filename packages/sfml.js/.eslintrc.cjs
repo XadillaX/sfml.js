@@ -53,6 +53,12 @@ module.exports = {
         sourceType: 'module',
       },
       rules: {
+        'jsdoc/check-tag-names': [
+          'error',
+          {
+            definedTags: [ 'zh', 'ja', 'ko', 'inline' ],
+          },
+        ],
         '@typescript-eslint/ban-types': 'off',
         'import/no-relative-packages': 'error',
       },

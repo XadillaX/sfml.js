@@ -110,6 +110,8 @@ const cases = {
       const shaping = new rmlui.TextShapingContext(
         'language-tag-longer-than-sso');
       const expected = engine.getStringWidth(face, 'native', shaping);
+      // Native counters work everywhere; libmalloc tracking is macOS-only.
+      const trackMalloc = process.platform === 'darwin';
       for (const size of [ 1000, 10000, 100000 ]) {
         const buffer = new rmlui.FontMeasureBuffer(size, size * 6);
         for (let i = 0; i < size; ++i) {
@@ -118,7 +120,7 @@ const cases = {
         for (let warmup = 0; warmup < 20; ++warmup) {
           engine.measureStrings(face, buffer, shaping);
         }
-        native.beginDataDiagnostics(true);
+        native.beginDataDiagnostics(trackMalloc);
         const result = engine.measureStrings(face, buffer, shaping);
         const counts = native.endDataDiagnostics();
         assert.equal(result, buffer.widths);
@@ -129,9 +131,12 @@ const cases = {
         assert.equal(counts.fontMeasureRows, size);
         assert.equal(counts.callbackSnapshotVisits, 0);
         assert.equal(counts.elementOwnershipVisits, 0);
-        assert.equal(counts.mallocAllocations, 0,
-          JSON.stringify({ size, counts }));
-        assert.equal(counts.mallocReallocations, 0);
+        assert.equal(counts.mallocTracking, trackMalloc);
+        if (trackMalloc) {
+          assert.equal(counts.mallocAllocations, 0,
+            JSON.stringify({ size, counts }));
+          assert.equal(counts.mallocReallocations, 0);
+        }
         assert.ok(result.every(width => width === expected));
       }
     },
