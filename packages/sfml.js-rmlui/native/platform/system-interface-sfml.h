@@ -36,6 +36,11 @@ class SystemInterfaceSFML : public Rml::SystemInterface {
   void ActivateKeyboard(Rml::Vector2f caret, float height) override;
   void DeactivateKeyboard() override;
 
+ protected:
+  // JS windows retain the aliasing owner until their native cursor changes
+  // or the window closes, even after this system interface is destroyed.
+  virtual void ApplyMouseCursor(std::shared_ptr<sf::Cursor> cursor);
+
  private:
   struct Cursors {
     Cursors();
@@ -53,7 +58,7 @@ class SystemInterfaceSFML : public Rml::SystemInterface {
   sf::RenderWindow* window_{nullptr};
   Rml::Vector2f keyboard_caret_;
   float keyboard_line_height_{1.f};
-  std::unique_ptr<Cursors> cursors_;
+  std::shared_ptr<Cursors> cursors_;
 };
 
 }  // namespace sfmlrmlui

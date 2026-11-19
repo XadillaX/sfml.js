@@ -54,8 +54,11 @@ NAN_METHOD(IgnoreAsyncResult) {}
 class CallbackSystem final : public SystemInterfaceSFML {
  public:
   CallbackSystem(std::shared_ptr<SystemClock> clock,
-                 v8::Local<v8::Array> functions)
+                 v8::Local<v8::Array> functions,
+                 v8::Local<v8::Object> window_handle)
       : clock_(std::move(clock)) {
+    window_handle_.Reset(v8::Isolate::GetCurrent(), window_handle);
+    window_handle_.SetWeak();
     for (uint32_t i = 0; i < kMethodCount; ++i) {
       if (Nan::Get(functions, i).ToLocalChecked()->IsFunction()) {
         methods_ |= 1u << i;
@@ -199,6 +202,27 @@ class CallbackSystem final : public SystemInterfaceSFML {
   }
 
  private:
+  void ApplyMouseCursor(std::shared_ptr<sf::Cursor> cursor) override {
+    if (window_handle_.IsEmpty()) {
+      return;
+    }
+    const auto handle = window_handle_.Get(v8::Isolate::GetCurrent());
+    v8::Local<v8::Value> slot;
+    // This slot belongs to sfml.js OwnedWindow. Reuse its native retention
+    // contract so window.close() releases the cursor after X11 cleanup.
+    if (!Nan::GetPrivate(handle,
+                         Nan::New("sfml.window.cursor").ToLocalChecked())
+             .ToLocal(&slot) ||
+        !slot->IsExternal()) {
+      CaptureCallbackException(
+          Nan::TypeError("Expected an owned sfml.js window cursor slot"));
+      return;
+    }
+    window()->setMouseCursor(*cursor);
+    *static_cast<std::shared_ptr<sf::Cursor>*>(
+        slot.As<v8::External>()->Value()) = std::move(cursor);
+  }
+
   bool Has(Method method) const {
     return (methods_ & (1u << method)) != 0 && !functions_.IsEmpty();
   }
@@ -260,6 +284,7 @@ class CallbackSystem final : public SystemInterfaceSFML {
 
   std::shared_ptr<SystemClock> clock_;
   v8::Global<v8::Array> functions_;
+  v8::Global<v8::Object> window_handle_;
   uint32_t methods_{0};
 };
 
@@ -314,7 +339,8 @@ v8::Local<v8::Object> CreateSystem(v8::Local<v8::Object> window_handle,
   ClaimRuntimeSetup();
   auto owner = std::make_shared<SystemState>();
   owner->clock = std::make_shared<SystemClock>();
-  owner->value = std::make_shared<CallbackSystem>(owner->clock, functions);
+  owner->value =
+      std::make_shared<CallbackSystem>(owner->clock, functions, window_handle);
   owner->value->SetWindow(window);
   owner->generation = SystemGeneration();
   auto handle = SystemHandle::Create(owner);

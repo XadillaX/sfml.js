@@ -29,7 +29,7 @@ SystemInterfaceSFML::Cursors::Cursors()
 
 SystemInterfaceSFML::SystemInterfaceSFML() {
   try {
-    cursors_ = std::make_unique<Cursors>();
+    cursors_ = std::make_shared<Cursors>();
   } catch (const sf::Exception&) {
     // Cursor creation can fail on headless systems; mouse cursor support
     // then degrades gracefully to no-ops.
@@ -71,8 +71,12 @@ void SystemInterfaceSFML::SetMouseCursor(const Rml::String& cursor_name) {
   }
 
   if (cursor) {
-    window_->setMouseCursor(*cursor);
+    ApplyMouseCursor(std::shared_ptr<sf::Cursor>(cursors_, cursor));
   }
+}
+
+void SystemInterfaceSFML::ApplyMouseCursor(std::shared_ptr<sf::Cursor> cursor) {
+  window_->setMouseCursor(*cursor);
 }
 
 void SystemInterfaceSFML::SetClipboardText(const Rml::String& text_utf8) {

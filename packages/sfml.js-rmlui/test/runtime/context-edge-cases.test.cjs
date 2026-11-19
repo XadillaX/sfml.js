@@ -109,6 +109,34 @@ const cases = {
     context.remove();
     assert.throws(() => context.enableMouseCursor(true), /context|destroy/i);
   },
+
+  'mouse-cursor-survives-shutdown-and-next-system-generation': options => {
+    const { context, rmlui, window } = options;
+    const showCursor = (target, cursor) => {
+      const doc = target.loadDocumentFromMemory(
+        '<rml><head><style>' +
+        `body { width:160px; height:120px; cursor:${cursor}; }` +
+        '</style></head><body/></rml>');
+      doc.show();
+      target.processMouseMove(10, 10);
+      assert.equal(target.update(), true);
+    };
+    const toggleCursor = () => {
+      window.setMouseCursorVisible(false);
+      window.setMouseCursorVisible(true);
+      assert.equal(window.isOpen(), true);
+    };
+
+    showCursor(context, 'cross');
+    rmlui.shutdown();
+    toggleCursor();
+
+    assert.ok(rmlui.initialise(window, { highDpi: false }));
+    const next = rmlui.createContext('next-cursor-generation', 160, 120);
+    showCursor(next, 'text');
+    rmlui.shutdown();
+    toggleCursor();
+  },
 };
 
 function run(name) {
@@ -119,7 +147,7 @@ function run(name) {
   assert.ok(rmlui.initialise(window, { highDpi: false, fileRoot: '/' }));
   try {
     const context = rmlui.createContext('context-edges', 160, 120);
-    cases[name]({ rmlui, context });
+    cases[name]({ rmlui, context, window });
   } finally {
     rmlui.shutdown();
     window.close();
