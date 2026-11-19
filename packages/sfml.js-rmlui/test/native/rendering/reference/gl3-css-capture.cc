@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "test/native/rendering/css/effect-scenes.h"
+#include "test/native/rendering/reference/software-geometry-completion.h"
 #include "third_party/rmlui/Backends/RmlUi_Include_GL3.h"
 #include "third_party/rmlui/Backends/RmlUi_Renderer_GL3.h"
 #include <SFML/Graphics/Image.hpp>
@@ -53,6 +54,7 @@ int main(int argc, char** argv) {
   Rml::String message;
   assert(RmlGL3::Initialize(&message));
   {
+    gl3_reference::SoftwareGeometryCompletion geometry_completion;
     RenderInterface_GL3 renderer;
     assert(renderer);
     renderer.SetViewport(css_scenes::kWidth, css_scenes::kHeight);
