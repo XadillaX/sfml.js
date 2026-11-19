@@ -1,0 +1,32 @@
+body {
+  display: block;
+  left: 36px;
+  top: 24px;
+  width: 648px;
+  font-family: LatoLatin;
+  font-size: 22px;
+  color: #dce4ed;
+}
+
+h1 {
+  display: block;
+  font-size: 34px;
+  margin-bottom: 28px;
+}
+
+.row {
+  display: block;
+  height: 58px;
+  padding-left: 16px;
+  padding-top: 18px;
+  margin-bottom: 12px;
+  border-left: 4px #b8c6da;
+  background-color: #182536;
+}
+
+.hint {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #9baabc;
+}

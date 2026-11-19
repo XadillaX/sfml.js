@@ -330,6 +330,7 @@ export class HttpRequest {
   setBody(body: string | Uint8Array): void {
     this.body = Buffer.from(typeof body === 'string' ? body : bytes(body));
   }
+  /** Creates the request snapshot consumed by the native client. @internal */
   [prepareRequest](host: string): PreparedRequest {
     const fields = new Map(this.fields);
     if (!fields.has('host')) {

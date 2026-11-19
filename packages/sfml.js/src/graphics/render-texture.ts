@@ -40,6 +40,7 @@ function flag(value: boolean): void {
  * @ko sf::RenderTexture: clear/draw를 기록하고 display 호출 시 제출합니다.
  */
 export class RenderTexture extends RenderTarget {
+  /** Native offscreen render-target capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'renderTexture'>;
   private readonly state: Readonly<NativeTextureInfo>;
   private readonly targetInfo: Readonly<{ sRgb: boolean }>;

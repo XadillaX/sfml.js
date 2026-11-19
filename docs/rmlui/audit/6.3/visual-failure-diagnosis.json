@@ -1,0 +1,909 @@
+{
+  "scope": "Fresh original six-page diagnostic capture; unchanged validators and pinned Core",
+  "platform": "macOS arm64",
+  "wholeAcceptance": false,
+  "captureDirectory": "/tmp/rmlui-63-completion/visual-diagnosis",
+  "actionsSHA256": "0381d1da6fe78fd3e28184dac3d63979346984a1cf0f952baf1c68ccfec1bc2c",
+  "referenceExecutableSHA256": "d5654077f714b052c168b31c41eff47731d0700bd2b638b78a30e19e1a822a09",
+  "sources": {
+    "Source/Core/ElementUtilities.cpp": "6ab24c4e02d5c0d3ce4bd2cd935af19d045576619377fbd5602c39458b387929",
+    "Source/Core/ElementEffects.cpp": "5d30fe6cdddc268eee82376a3c5fcd5a0d13bfcad4751f5c1e357e696fe8d597",
+    "Source/Core/FilterDropShadow.cpp": "e632eb8888823b64eef50884f8c03e70d03a18b731c480717ef506def56bfd01",
+    "Source/Core/ElementText.cpp": "40f2c958c52d5030f140fbe8004dc2a6e2f03c50dadd16866d0eb1e8cd673657",
+    "Source/Core/Layout/LayoutDetails.cpp": "f19986d1a15cc910f50e7b523a1abaed1c044475287d608519b2a265075cd34e",
+    "Source/Core/Layout/FlexFormattingContext.cpp": "c5be9a16b257323670594be9786b6db1d1df90174d2196f5adfa12e26cc67d33",
+    "Source/Core/Layout/BlockFormattingContext.cpp": "07f710f6f199858c7fe0ad001714bd7c6a99544aae3af3dd03ee8e245e016699",
+    "Source/Core/Layout/InlineContainer.cpp": "ae5fe0dfea9cad86131f4e004a9e091b35de25e7a31e48066369d962af2ebf6f",
+    "Source/Core/FontEngineDefault/FontFaceHandleDefault.cpp": "ba935cc21d8484d7c2a67057bdef89e13562b970b639fedf995d6cde7b55c332",
+    "Source/Debugger/ElementInfo.cpp": "d0a68107473d67f6ff169a91357f073fa825682d42e1327346b2df3154d94302"
+  },
+  "pages": [
+    {
+      "name": "flex_04",
+      "sourceSHA256": "028fe407f82c77d71f1a24f7a29c70b22c02f2f099fcd2532ef7696e04f669d1",
+      "originalMetadata": [
+        {
+          "name": "Description",
+          "content": "The default value of flex should allow the items to shrink but not grow. With 'flex: auto' the items should fill the container and also allow shrinking. With 'flex: none' the items neither shrink nor grow with the container size. Finally, with 'flex: &amp;lt;number&amp;gt;' each item should be given that proportion of the available space."
+        },
+        {
+          "name": "Instructions",
+          "content": "Resize the document to see the resizing behavior of the flexboxes."
+        }
+      ],
+      "frames": [
+        {
+          "name": "flex_04--narrow",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00048010253905772515,
+          "sfmlSHA256": "134ae8898a1597b0c62c696e7b43162efae98f97dc17bb8736ddaeec261b1c13",
+          "gl3SHA256": "134ae8898a1597b0c62c696e7b43162efae98f97dc17bb8736ddaeec261b1c13"
+        },
+        {
+          "name": "flex_04--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0003740234375300133,
+          "sfmlSHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6",
+          "gl3SHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6"
+        },
+        {
+          "name": "flex_04--wide",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0003435058593765916,
+          "sfmlSHA256": "c93bee29986802457f5c5c4769a52839d37d20db954fff66f5723dbafd7db655",
+          "gl3SHA256": "c93bee29986802457f5c5c4769a52839d37d20db954fff66f5723dbafd7db655"
+        },
+        {
+          "name": "flex_04",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0003740234375300133,
+          "sfmlSHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6",
+          "gl3SHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6"
+        }
+      ],
+      "content": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "default/none do not grow, auto fills available width, numeric basis respects minimums"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "default/none do not grow, auto fills available width, numeric basis respects minimums"
+          ]
+        }
+      },
+      "interaction": {
+        "sfml": {
+          "status": "fail",
+          "message": "(263, 164, 0.01)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/interactions/validators/layout/resizing.py",
+              "line": 64,
+              "expression": "close(element(frames[\"base\"], fixed)[\"rect\"][2],"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/common.py",
+              "line": 7,
+              "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+            }
+          ]
+        },
+        "gl3": {
+          "status": "fail",
+          "message": "(263, 164, 0.01)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/interactions/validators/layout/resizing.py",
+              "line": 64,
+              "expression": "close(element(frames[\"base\"], fixed)[\"rect\"][2],"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/common.py",
+              "line": 7,
+              "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ink_overflow_bounding_box",
+      "sourceSHA256": "b11581867f4c402aa38e57cd0112750eb2af1ddc1917d0f268566e757bfee07a",
+      "originalMetadata": [
+        {
+          "name": "Description",
+          "content": "Enables testing an element's bounding box with ink overflow and transform. The bounding box should cover all of the element's box shadows and filters, even when they have transforms applied."
+        },
+        {
+          "name": "Instructions",
+          "content": "The bounding box of an element can be seen as the white frame in the debugger, when selecting it in the element info mode."
+        }
+      ],
+      "frames": [
+        {
+          "name": "ink_overflow_bounding_box--initial-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004782714843827307,
+          "sfmlSHA256": "f69c89929ebfa3e1774e1049dd122cc47d457f3435b55b0c682ccd65759a2b7d",
+          "gl3SHA256": "f69c89929ebfa3e1774e1049dd122cc47d457f3435b55b0c682ccd65759a2b7d"
+        },
+        {
+          "name": "ink_overflow_bounding_box--second-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004782714843827307,
+          "sfmlSHA256": "f69c89929ebfa3e1774e1049dd122cc47d457f3435b55b0c682ccd65759a2b7d",
+          "gl3SHA256": "f69c89929ebfa3e1774e1049dd122cc47d457f3435b55b0c682ccd65759a2b7d"
+        },
+        {
+          "name": "ink_overflow_bounding_box",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004782714843827307,
+          "sfmlSHA256": "f69c89929ebfa3e1774e1049dd122cc47d457f3435b55b0c682ccd65759a2b7d",
+          "gl3SHA256": "f69c89929ebfa3e1774e1049dd122cc47d457f3435b55b0c682ccd65759a2b7d"
+        }
+      ],
+      "content": {
+        "sfml": {
+          "status": "fail",
+          "message": "('debugger Auto bounds omit drop-shadow ink', 'box dropshadow', [103.82858276367188, 278, 396.1714782714844, 348], 'required bottom', 388)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 28,
+              "expression": "results = module.run(name, snapshot, samples)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/rendering/ink_bounds.py",
+              "line": 29,
+              "expression": "assert bounds[3] >= y + height + 40, ("
+            }
+          ]
+        },
+        "gl3": {
+          "status": "fail",
+          "message": "('debugger Auto bounds omit drop-shadow ink', 'box dropshadow', [103.829, 278, 396.171, 348], 'required bottom', 388)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 28,
+              "expression": "results = module.run(name, snapshot, samples)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/rendering/ink_bounds.py",
+              "line": 29,
+              "expression": "assert bounds[3] >= y + height + 40, ("
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "position_05_floating_a_box_clear",
+      "sourceSHA256": "222608cb0bfe7edffe8aefc1acc92f251e8c7d2d74cb202752de5b179e49671d",
+      "originalMetadata": [
+        {
+          "name": "description",
+          "content": "Now the \"sibling\" text moves down to below the \"inner\" text\u2019s box, leaving blank space behind. The text following the \"sibling\" text flows after it as normal."
+        }
+      ],
+      "frames": [
+        {
+          "name": "position_05_floating_a_box_clear--initial-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "sfmlSHA256": "f3220b1ee3f7b349e310d133bafb66c0026c3455c7c29810185158790eb6419e",
+          "gl3SHA256": "f3220b1ee3f7b349e310d133bafb66c0026c3455c7c29810185158790eb6419e"
+        },
+        {
+          "name": "position_05_floating_a_box_clear--second-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "sfmlSHA256": "f3220b1ee3f7b349e310d133bafb66c0026c3455c7c29810185158790eb6419e",
+          "gl3SHA256": "f3220b1ee3f7b349e310d133bafb66c0026c3455c7c29810185158790eb6419e"
+        },
+        {
+          "name": "position_05_floating_a_box_clear",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "sfmlSHA256": "f3220b1ee3f7b349e310d133bafb66c0026c3455c7c29810185158790eb6419e",
+          "gl3SHA256": "f3220b1ee3f7b349e310d133bafb66c0026c3455c7c29810185158790eb6419e"
+        }
+      ],
+      "content": {
+        "sfml": {
+          "status": "fail",
+          "message": "('declared clear:right did not place inline sibling below float', [8, 72, 145, 24], [362, 64, 130, 80])",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 22,
+              "expression": "results = module.run(name, snapshot, image)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 101,
+              "expression": "return css_example(name, snapshot)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 35,
+              "expression": "assert sibling[\"rect\"][1] >= bottom(inner), ("
+            }
+          ]
+        },
+        "gl3": {
+          "status": "fail",
+          "message": "('declared clear:right did not place inline sibling below float', [8, 72, 145, 24], [362, 64, 130, 80])",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 22,
+              "expression": "results = module.run(name, snapshot, image)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 101,
+              "expression": "return css_example(name, snapshot)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 35,
+              "expression": "assert sibling[\"rect\"][1] >= bottom(inner), ("
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "position_07_absolute_positioning_relative",
+      "sourceSHA256": "d9658a0111baee42ebb5072b2d3ce4a5deb52fd6853ccea7421c4c194e4a3cba",
+      "originalMetadata": [
+        {
+          "name": "description",
+          "content": "The \"inner\" text is positioned in an independent box, relative to the top-left corner of the start of the \"outer\" text."
+        }
+      ],
+      "frames": [
+        {
+          "name": "position_07_absolute_positioning_relative--initial-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "sfmlSHA256": "fda8a4fbf7493a0e791291423119e67747a6a9716fe0d8701030eaafeafbb9b8",
+          "gl3SHA256": "fda8a4fbf7493a0e791291423119e67747a6a9716fe0d8701030eaafeafbb9b8"
+        },
+        {
+          "name": "position_07_absolute_positioning_relative--second-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "sfmlSHA256": "fda8a4fbf7493a0e791291423119e67747a6a9716fe0d8701030eaafeafbb9b8",
+          "gl3SHA256": "fda8a4fbf7493a0e791291423119e67747a6a9716fe0d8701030eaafeafbb9b8"
+        },
+        {
+          "name": "position_07_absolute_positioning_relative",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "sfmlSHA256": "fda8a4fbf7493a0e791291423119e67747a6a9716fe0d8701030eaafeafbb9b8",
+          "gl3SHA256": "fda8a4fbf7493a0e791291423119e67747a6a9716fe0d8701030eaafeafbb9b8"
+        }
+      ],
+      "content": {
+        "sfml": {
+          "status": "fail",
+          "message": "(-100, 126, 0.01)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 22,
+              "expression": "results = module.run(name, snapshot, image)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 101,
+              "expression": "return css_example(name, snapshot)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 47,
+              "expression": "close(inner[\"rect\"][0], outer[\"rect\"][0] - 100)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/common.py",
+              "line": 7,
+              "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+            }
+          ]
+        },
+        "gl3": {
+          "status": "fail",
+          "message": "(-100, 126, 0.01)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 22,
+              "expression": "results = module.run(name, snapshot, image)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 101,
+              "expression": "return css_example(name, snapshot)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/positioning.py",
+              "line": 47,
+              "expression": "close(inner[\"rect\"][0], outer[\"rect\"][0] - 100)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/common.py",
+              "line": 7,
+              "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "text_overflow_01",
+      "sourceSHA256": "62e4b7732ee27dda81feb93f707a2e97512163a572922ebf026e08878a2b1f3b",
+      "originalMetadata": [
+        {
+          "name": "Description",
+          "content": "The 'text-overflow' property can be used in combination with the 'overflow' property to render an ellipsis or other text when it overflows its line. This property should not affect layouting, only text rendering."
+        },
+        {
+          "name": "Assert",
+          "content": "Hovering over any lines with ellipsis should remove the ellipsis (except for the scrolling container), without changing the layout."
+        }
+      ],
+      "frames": [
+        {
+          "name": "text_overflow_01--break-base",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8",
+          "gl3SHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8"
+        },
+        {
+          "name": "text_overflow_01--break-hover",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8",
+          "gl3SHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8"
+        },
+        {
+          "name": "text_overflow_01--initial-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-0-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-0",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-1-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-1",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "9337cdb41afc4129afa9387cba0b2c33cf38ac0abc8e6bad6aa237082a05cbfb",
+          "gl3SHA256": "9337cdb41afc4129afa9387cba0b2c33cf38ac0abc8e6bad6aa237082a05cbfb"
+        },
+        {
+          "name": "text_overflow_01--line-2-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-2",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "bab291e055a67236739e573401be716395c9390ba0cf10fe7763212842b5dfea",
+          "gl3SHA256": "bab291e055a67236739e573401be716395c9390ba0cf10fe7763212842b5dfea"
+        },
+        {
+          "name": "text_overflow_01--narrow-0",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "00daf5a8318bc6bff28141e66b32b615c663e6e8e5c9f21d3a1951c26a41574d",
+          "gl3SHA256": "00daf5a8318bc6bff28141e66b32b615c663e6e8e5c9f21d3a1951c26a41574d"
+        },
+        {
+          "name": "text_overflow_01--narrow-1",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "6fed674d88726f7375eb78a389677441d8aaa4dc8f594b6e15fc0b689c72f76e",
+          "gl3SHA256": "6fed674d88726f7375eb78a389677441d8aaa4dc8f594b6e15fc0b689c72f76e"
+        },
+        {
+          "name": "text_overflow_01--narrow-2",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "6d1c58ef91a88be97fa26ac97bdc9a6917b4bca462f6b4c47cd662b0d05fd688",
+          "gl3SHA256": "6d1c58ef91a88be97fa26ac97bdc9a6917b4bca462f6b4c47cd662b0d05fd688"
+        },
+        {
+          "name": "text_overflow_01--narrow-3",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "b8bd024cef0a91229496ee678bc5663f98eca912f7a604f2cd8545d6d2ac5185",
+          "gl3SHA256": "b8bd024cef0a91229496ee678bc5663f98eca912f7a604f2cd8545d6d2ac5185"
+        },
+        {
+          "name": "text_overflow_01--narrow-4",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-5",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-6",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-7",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-8",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-9",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--scroller-end",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "3e540d51725d55e68b86147900ee7087e853f884512e82162e17608c1efbdbca",
+          "gl3SHA256": "3e540d51725d55e68b86147900ee7087e853f884512e82162e17608c1efbdbca"
+        },
+        {
+          "name": "text_overflow_01--scroller-hover",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "gl3SHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "sfmlSHA256": "09d40caaa24dde9bc7937c8c1afdf48b818d8e8d83f7e2d4ebe3116af19bab93",
+          "gl3SHA256": "09d40caaa24dde9bc7937c8c1afdf48b818d8e8d83f7e2d4ebe3116af19bab93"
+        }
+      ],
+      "content": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "ellipsis changes only hidden-overflow glyphs; narrowing retains clipped first character and reduces ink; break-word variants contain identical four-line text"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "ellipsis changes only hidden-overflow glyphs; narrowing retains clipped first character and reduces ink; break-word variants contain identical four-line text"
+          ]
+        }
+      },
+      "interaction": {
+        "sfml": {
+          "status": "fail",
+          "message": "second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/interactions/validators/rendering/text.py",
+              "line": 102,
+              "expression": "assert not failures, \"; \".join(failures)"
+            }
+          ]
+        },
+        "gl3": {
+          "status": "fail",
+          "message": "second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/interactions/validators/rendering/text.py",
+              "line": 102,
+              "expression": "assert not failures, \"; \".join(failures)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "white_space",
+      "sourceSHA256": "750a8fff5247c2e0a09f1223aae95d7a8d0e9b119978b8e30e12b09446b04e26",
+      "originalMetadata": [
+        {
+          "name": "Assert",
+          "content": "The 'I' and 'ABC' lines should be horizontally centered, intersecting the vertical guideline."
+        },
+        {
+          "name": "Assert",
+          "content": "Each 'hello world' text should have the same spacing."
+        },
+        {
+          "name": "Assert",
+          "content": "Each 'duck' should have spacing to the next one."
+        }
+      ],
+      "frames": [
+        {
+          "name": "white_space--initial-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "sfmlSHA256": "67379a38b545a36a1291349187533681025da838a394acb35c5bb5e6f40efff5",
+          "gl3SHA256": "67379a38b545a36a1291349187533681025da838a394acb35c5bb5e6f40efff5"
+        },
+        {
+          "name": "white_space--second-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "sfmlSHA256": "67379a38b545a36a1291349187533681025da838a394acb35c5bb5e6f40efff5",
+          "gl3SHA256": "67379a38b545a36a1291349187533681025da838a394acb35c5bb5e6f40efff5"
+        },
+        {
+          "name": "white_space",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "sfmlSHA256": "67379a38b545a36a1291349187533681025da838a394acb35c5bb5e6f40efff5",
+          "gl3SHA256": "67379a38b545a36a1291349187533681025da838a394acb35c5bb5e6f40efff5"
+        }
+      ],
+      "content": {
+        "sfml": {
+          "status": "fail",
+          "message": "centered: ('trailing whitespace moves centered I away from the guideline', {'none': 250.0, 'left': 250.0, 'right': 244.0, 'both': 244.0, 'newlines': 244.0}, 250) | wrapped: ('wrapped ABC lines miss the guideline', [np.float64(250.0), np.float64(250.0), np.float64(250.0), np.float64(244.0)], 250) | headings: Hello World whitespace differs | ducks: ('Duck boundaries omit the 4dp word space', {'0/9': [0, 37, 74], '0/10': [0, 41, 82], '0/11': [0, 41, 82]}, 35)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 28,
+              "expression": "results = module.run(name, snapshot, samples)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/white_space.py",
+              "line": 80,
+              "expression": "assert not failures, \" | \".join(failures)"
+            }
+          ]
+        },
+        "gl3": {
+          "status": "fail",
+          "message": "centered: ('trailing whitespace moves centered I away from the guideline', {'none': 250.0, 'left': 250.0, 'right': 244.0, 'both': 244.0, 'newlines': 244.0}, 250) | wrapped: ('wrapped ABC lines miss the guideline', [np.float64(250.0), np.float64(250.0), np.float64(250.0), np.float64(244.0)], 250) | headings: Hello World whitespace differs | ducks: ('Duck boundaries omit the 4dp word space', {'0/9': [0, 37, 74], '0/10': [0, 41, 82], '0/11': [0, 41, 82]}, 35)",
+          "stack": [
+            {
+              "source": "/tmp/rmlui-63-completion/analyze-visual-diagnosis.py",
+              "line": 40,
+              "expression": "return {\"status\": \"pass\", \"assertions\": callback(*arguments)}"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/__init__.py",
+              "line": 28,
+              "expression": "results = module.run(name, snapshot, samples)"
+            },
+            {
+              "source": "packages/sfml.js-rmlui/test/visual/assertions/layout/white_space.py",
+              "line": 80,
+              "expression": "assert not failures, \" | \".join(failures)"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "ellipsisDiagnostic": {
+    "initialRepeatChangedPixels": 278,
+    "changedExtent": [
+      13,
+      202,
+      50,
+      213
+    ],
+    "premeasurementOnly": {
+      "acceptance": false,
+      "changedPixels": 0,
+      "interaction": {
+        "status": "pass",
+        "assertions": [
+          "hover removes eligible ellipses without changing any layout box; narrowing clips first glyph",
+          "hover exit restores text; scrolling container retains ellipsis; break-word hover leaves paint unchanged"
+        ]
+      }
+    }
+  },
+  "summary": {
+    "pages": 6,
+    "frames": 38,
+    "byteExactFrames": 38,
+    "originalContentFailures": 4,
+    "originalInteractionFailures": 2
+  }
+}

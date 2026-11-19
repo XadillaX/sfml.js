@@ -1,0 +1,187 @@
+{
+  "version": "6.3",
+  "platform": "macos-arm64",
+  "scope_complete": false,
+  "independent_review_completed": false,
+  "notice": "Bounded local color-filter pixels and existing resource/layer regressions; not full renderer, device or platform acceptance.",
+  "public_filter_names": [
+    "opacity",
+    "blur",
+    "drop-shadow",
+    "brightness",
+    "contrast",
+    "invert",
+    "grayscale",
+    "sepia",
+    "hue-rotate",
+    "saturate"
+  ],
+  "new_pixel_scenarios": 12,
+  "existing_layer_resource_scenarios": 13,
+  "max_rgb_error": 2,
+  "runtime": {
+    "/tmp/rmlui-63-completion/color-filters-runtime-2.log": {
+      "bytes": 538,
+      "sha256": "ce2f23f24806ec980d952018878232ac011710754783bb048ad8a95612cf47f4",
+      "scenarios": [
+        "brightness-native-parameter-and-pixels",
+        "contrast-native-parameter-and-pixels",
+        "invert-native-parameter-and-pixels",
+        "grayscale-native-parameter-and-pixels",
+        "sepia-native-parameter-and-pixels",
+        "hue-rotate-native-parameter-and-pixels",
+        "saturate-native-parameter-and-pixels",
+        "opacity-native-parameter-and-pixels",
+        "ordered-chain-and-premultiplied-constant-terms",
+        "nonzero-hue-rotation-and-invert-clamping",
+        "rcss-instancers-send-resolved-filter-values",
+        "finite-parameters-and-independent-filter-lifetimes"
+      ]
+    },
+    "/tmp/rmlui-63-completion/color-filters-layers-regression-1.log": {
+      "bytes": 418,
+      "sha256": "e68bd42ac31cdbc57d89c0f07cdb5e2b78ce598c81c209022f91ffe9232cfc87",
+      "scenarios": [
+        "balanced-stack-and-stale-pool-token",
+        "nested-blend-and-replace-pixels",
+        "filters-consumed-in-order-and-self-composite",
+        "invalid-resources-leave-layer-stack-unchanged",
+        "saved-mask-snapshot-affects-pixels",
+        "event-callback-cannot-mutate-layers",
+        "decorator-layer-scope-and-upstream-ownership",
+        "unbalanced-decorator-return-and-exception-restore-stack",
+        "shutdown-releases-unbalanced-owned-layers"
+      ]
+    },
+    "/tmp/rmlui-63-completion/color-filters-resources-regression-1.log": {
+      "bytes": 176,
+      "sha256": "3aa10f7037b9961d1b8d01e4cd60ef0df7510543cfb883200b4b9dc2205a0951",
+      "scenarios": [
+        "native-compilation-and-unique-release",
+        "unused-manager-and-shared-context-lifetime",
+        "owned-manager-and-resource-gc",
+        "late-getters-stale-handles-and-invalid-input"
+      ]
+    }
+  },
+  "checks": {
+    "/tmp/rmlui-63-completion/color-filters-red.log": {
+      "bytes": 16649,
+      "sha256": "07d95ae3e1f9a1d880d756e43455a4eea9a9fa836940f178648a4bbeb7c93849"
+    },
+    "/tmp/rmlui-63-completion/color-filters-build-1.log": {
+      "bytes": 2901,
+      "sha256": "ad7f739c10751641bff519d0355b88548eb4e7ea50419cfbbe543579553f4403"
+    },
+    "/tmp/rmlui-63-completion/color-filters-build-2.log": {
+      "bytes": 201,
+      "sha256": "d0887d7f12bc66b356ecebf2bc3a17bcbbcc5f71b6cba204e133d05bb04c1e9f"
+    },
+    "/tmp/rmlui-63-completion/color-filters-lint-2.log": {
+      "bytes": 76,
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397"
+    },
+    "/tmp/rmlui-63-completion/color-filters-cpplint-1.log": {
+      "bytes": 1129,
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c"
+    },
+    "/tmp/rmlui-63-completion/color-filters-format-4.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/tmp/rmlui-63-completion/color-filters-types-1.log": {
+      "bytes": 63,
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4"
+    },
+    "/tmp/rmlui-63-completion/color-filters-naming-2.log": {
+      "bytes": 869,
+      "sha256": "3edd8dea598aa4be5b27c83c4ae52472cf86d0fa36fb9b13d55460699cda505f"
+    }
+  },
+  "files": {
+    "packages/sfml.js-rmlui/binding.gyp": {
+      "bytes": 12751,
+      "sha256": "dc038ea015aa2662ec7d97245d5fdac06134b849e03a37099b7957e1c2cc8c97"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/color-filter.cc": {
+      "bytes": 4837,
+      "sha256": "4b688d352e50e91ccf2bb60e6550f6474841c43d94fbccd6aac76fe17dc38e59"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/color-filter.h": {
+      "bytes": 1375,
+      "sha256": "20a80f16a4707864e9fbc0d3b7ab99a58a7fa28a88555292dff8d3f83ee3e08c"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/filter-record.h": {
+      "bytes": 981,
+      "sha256": "c444091de324b60ee417b020f5d50a4054bbaefe3a9c90211de1148b11db0dbb"
+    },
+    "packages/sfml.js-rmlui/native/rendering/render-interface-sfml.cc": {
+      "bytes": 40649,
+      "sha256": "59d6c2dd7e58a937aa12d21f8740dd20679f1f05e851f694eb4334c05c87c04a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/render-interface-sfml.h": {
+      "bytes": 8105,
+      "sha256": "4b70d9221defb5b5c53a357fdeb049589c82e1412e29e43f0e62ad6a4c0f5160"
+    },
+    "packages/sfml.js-rmlui/native/rendering/rmlui-render-manager.cc": {
+      "bytes": 15945,
+      "sha256": "20532c7349b09a6e57737c562d233d4e53c0b8c2e1f80384f424d145acfe0694"
+    },
+    "packages/sfml.js-rmlui/test/rendering/effects/color-filters.test.cjs": {
+      "bytes": 6019,
+      "sha256": "d7f821088ab716361e7ee2fce4c8f380369430a508f90dc8675a8dc318c8dfa3"
+    },
+    "packages/sfml.js-rmlui/test/rendering/render-layers.test.cjs": {
+      "bytes": 11701,
+      "sha256": "9d325988e668d5ee1c29a55c2c23783e0bf1c4da6b20bf226e4b6930a2a77c68"
+    },
+    "packages/sfml.js-rmlui/test/rendering/compiled-resources.test.cjs": {
+      "bytes": 7268,
+      "sha256": "0f7aa38268cca7b067486ba74553e8ca42433e5f19a476276b43ffccc4925256"
+    },
+    "packages/sfml.js-rmlui/third_party/rmlui/Backends/RmlUi_Renderer_GL3.cpp": {
+      "bytes": 72681,
+      "sha256": "8f51d9dafc81ace13bcdf56a120f61cdf2f217bed97a890772d9758feb9857dd"
+    },
+    "docs/rmlui/rendering.md": {
+      "bytes": 3871,
+      "sha256": "3171002e7348b7243ce56442d1278a74a2dc92acc43f8e229d2162db201f9cec"
+    },
+    "docs/rmlui/rendering.zh-CN.md": {
+      "bytes": 3643,
+      "sha256": "df0903e62a104c177f160905bd5410c6a5ba99d531f9552538f71977c8a875a4"
+    },
+    "docs/rmlui/rendering.ja.md": {
+      "bytes": 4848,
+      "sha256": "3f65928fa985b9906f148c3006bd5375d4be1c757caef1e536e604baad088986"
+    },
+    "docs/rmlui/rendering.ko.md": {
+      "bytes": 4394,
+      "sha256": "c6cb1bc8ad6544569e33b48d91ccaf720da3854ecf5442681774ceb15bd16437"
+    }
+  },
+  "native_binary": {
+    "bytes": 13102680,
+    "sha256": "f1a4a1a246a0e690b077e464e88c445433107985b60d2737ed8d1ea17f192973"
+  },
+  "unavailable_effect_shader_behavior": "Compilation returns zero; real unavailable-device and allocation injection remain unobserved",
+  "remaining": [
+    "Readable owned layer zero and host-view restoration",
+    "Backdrop/foreground/mask combinations",
+    "Full perspective, gradients and deep clip protocols",
+    "Scale-correct large blur and shadow source preservation",
+    "GPU/platform/official application and independent whole acceptance"
+  ],
+  "complete_runtime_run": {
+    "composition": "One complete 131-file runtime runner",
+    "files": 131,
+    "literal_passes": 1301,
+    "failed_files": 0,
+    "logs": {
+      "/tmp/rmlui-63-completion/color-filters-full-runtime-1.log": {
+        "bytes": 117886,
+        "sha256": "63c3f5f272e0b0a47d729b3edc115d21979973e007cd309a3a9ae3e05d1eb015"
+      }
+    }
+  }
+}

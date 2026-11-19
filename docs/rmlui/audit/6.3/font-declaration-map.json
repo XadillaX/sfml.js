@@ -1,0 +1,953 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "font_original_records": 29,
+  "whole_scope_complete": false,
+  "notice": "Fifteen FontEngineInterface records plus nine FontMetrics and five TextShapingContext records. Records are not scenario counts. Direct Native oracle covers fields and FreeType widths; existing addon consumers verify provider lifecycle, effects and generation.",
+  "consumer_suites": {
+    "font-engine.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+      "sha256": "65e597416b30682c59a2be3b102d4e2f7a39c95ad13890c57f1ca14f5fccb4e4",
+      "scenarios": [
+        "selection-and-single-provider-lifetime",
+        "reset-to-automatic-default",
+        "all-three-load-overloads",
+        "shared-metrics-and-shaping-storage",
+        "bulk-widths-and-shared-output",
+        "bulk-widths-have-one-entry-and-zero-host-callbacks",
+        "bulk-input-accessors-cannot-use-invalidated-face",
+        "computed-face-tokens-and-static-native-font-rendering",
+        "font-effects-meshes-and-resource-generations"
+      ],
+      "pass_count": 9
+    },
+    "font-engine-custom.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+      "sha256": "f9efdf90899d852089402b74b4ce57cba9ca963261ca2d23611123b843ff3c3f",
+      "scenarios": [
+        "custom-metrics-version-release-and-foreign-face-contracts",
+        "custom-packed-font-renders-context-and-reuses-static-geometry",
+        "custom-packed-measurement-reuses-native-workspace-with-one-callback",
+        "custom-packed-callback-has-independent-input-and-atomic-errors",
+        "custom-packed-growth-and-detachment-preserve-old-native-storage",
+        "custom-native-table-overflow-keeps-entire-output-unchanged",
+        "custom-provider-initializes-once-and-invalidates-owned-faces",
+        "custom-native-advance-table-has-no-per-string-callback",
+        "custom-bulk-callback-snapshots-input-and-commits-once",
+        "custom-callback-exceptions-promises-and-reentry",
+        "custom-initialize-failure-releases-core-and-first-error",
+        "custom-bulk-failure-and-detachment-leave-output-unchanged",
+        "custom-all-load-overloads-preserve-arguments-and-memory-snapshot",
+        "custom-compatibility-widths-snapshot-all-rows-before-first-callback",
+        "custom-effects-and-generated-mesh-snapshots",
+        "custom-face-descriptor-accessors-cannot-destroy-provider",
+        "custom-cross-realm-promises-are-rejected-synchronously",
+        "custom-callback-cycles-collect-and-selected-roots-release"
+      ],
+      "pass_count": 18
+    },
+    "font-measure-buffer.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-measure-buffer.test.cjs",
+      "sha256": "abb2c77c28ec480b766b43a76595259705452f2ef064f1aa940abcb5766e3911",
+      "scenarios": [
+        "packed-utf8-parity-and-reused-output",
+        "direct-shared-input-and-partial-count",
+        "bounds-and-utf8-fail-before-output",
+        "append-capacity-and-zero-capacity",
+        "warm-one-entry-without-buffer-allocations-or-copies",
+        "shared-buffers-cannot-transfer-native-memory",
+        "direct-transfers-invalidate-measurement-without-losing-storage",
+        "count-accessors-cannot-use-invalidated-face",
+        "escaped-views-survive-gc-and-shutdown"
+      ],
+      "pass_count": 9
+    },
+    "font-fields.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+      "sha256": "b00d07b7a6e46729ad7fea76beb3b2f649ab7d8b8eb38c14cf93e2d347d2e415",
+      "scenarios": [
+        "all-metric-fields-use-independent-native-snapshots",
+        "shaping-defaults-enums-and-language-survive-runtime-restart",
+        "shaping-mutations-in-callback-do-not-change-active-batch",
+        "packed-measure-and-generation-use-frozen-shaping-snapshots",
+        "invalid-shared-shaping-fields-reject-before-host-callback",
+        "numeric-field-access-has-zero-native-entries",
+        "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+      ],
+      "pass_count": 7
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 1333,
+      "exact_key": "Core/FontEngineInterface.h|19|ClassDecl|Rml::FontEngineInterface|FontEngineInterface|Rml::FontEngineInterface",
+      "native_symbol": "Rml::FontEngineInterface",
+      "surface": "FontEngineInterface",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "selection-and-single-provider-lifetime"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-provider-initializes-once-and-invalidates-owned-faces"
+        }
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1334,
+      "exact_key": "Core/FontEngineInterface.h|21|CXXConstructor|Rml::FontEngineInterface::FontEngineInterface|FontEngineInterface()|void ()",
+      "native_symbol": "Rml::FontEngineInterface::FontEngineInterface",
+      "surface": "new FontEngineInterface(callbacks?)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "reset-to-automatic-default"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-provider-initializes-once-and-invalidates-owned-faces"
+        }
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1335,
+      "exact_key": "Core/FontEngineInterface.h|22|CXXDestructor|Rml::FontEngineInterface::~FontEngineInterface|~FontEngineInterface()|void ()",
+      "native_symbol": "Rml::FontEngineInterface::~FontEngineInterface",
+      "surface": "Native/shared-handle GC and Core shutdown",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "selection-and-single-provider-lifetime"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-callback-cycles-collect-and-selected-roots-release"
+        }
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1336,
+      "exact_key": "Core/FontEngineInterface.h|25|CXXMethod|Rml::FontEngineInterface::Initialize|Initialize()|void ()",
+      "native_symbol": "Rml::FontEngineInterface::Initialize",
+      "surface": "Core initialise / callbacks.initialize",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "selection-and-single-provider-lifetime"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-provider-initializes-once-and-invalidates-owned-faces"
+        }
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1337,
+      "exact_key": "Core/FontEngineInterface.h|28|CXXMethod|Rml::FontEngineInterface::Shutdown|Shutdown()|void ()",
+      "native_symbol": "Rml::FontEngineInterface::Shutdown",
+      "surface": "Core shutdown / callbacks.shutdown",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "selection-and-single-provider-lifetime"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-provider-initializes-once-and-invalidates-owned-faces"
+        }
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1338,
+      "exact_key": "Core/FontEngineInterface.h|36|CXXMethod|Rml::FontEngineInterface::LoadFontFace|LoadFontFace(const String &, int, bool, Style::FontWeight)|bool (const String &, int, bool, Style::FontWeight)",
+      "native_symbol": "Rml::FontEngineInterface::LoadFontFace",
+      "surface": "FontEngineInterface.loadFontFace(metadata file)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "all-three-load-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-all-load-overloads-preserve-arguments-and-memory-snapshot"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1339,
+      "exact_key": "Core/FontEngineInterface.h|46|CXXMethod|Rml::FontEngineInterface::LoadFontFace|LoadFontFace(const String &, int, const String &, Style::FontStyle, Style::FontWeight, bool)|bool (const String &, int, const String &, Style::FontStyle, Style::FontWeight, bool)",
+      "native_symbol": "Rml::FontEngineInterface::LoadFontFace",
+      "surface": "FontEngineInterface.loadFontFace(named file)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "all-three-load-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-all-load-overloads-preserve-arguments-and-memory-snapshot"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1340,
+      "exact_key": "Core/FontEngineInterface.h|58|CXXMethod|Rml::FontEngineInterface::LoadFontFace|LoadFontFace(Span<const byte>, int, const String &, Style::FontStyle, Style::FontWeight, bool)|bool (Span<const byte>, int, const String &, Style::FontStyle, Style::FontWeight, bool)",
+      "native_symbol": "Rml::FontEngineInterface::LoadFontFace",
+      "surface": "FontEngineInterface.loadFontFace(named bytes)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "all-three-load-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-all-load-overloads-preserve-arguments-and-memory-snapshot"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1341,
+      "exact_key": "Core/FontEngineInterface.h|68|CXXMethod|Rml::FontEngineInterface::GetFontFaceHandle|GetFontFaceHandle(const String &, Style::FontStyle, Style::FontWeight, int)|FontFaceHandle (const String &, Style::FontStyle, Style::FontWeight, int)",
+      "native_symbol": "Rml::FontEngineInterface::GetFontFaceHandle",
+      "surface": "FontEngineInterface.getFontFaceHandle",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "selection-and-single-provider-lifetime"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-metrics-version-release-and-foreign-face-contracts"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1342,
+      "exact_key": "Core/FontEngineInterface.h|74|CXXMethod|Rml::FontEngineInterface::PrepareFontEffects|PrepareFontEffects(FontFaceHandle, const FontEffectList &)|FontEffectsHandle (FontFaceHandle, const FontEffectList &)",
+      "native_symbol": "Rml::FontEngineInterface::PrepareFontEffects",
+      "surface": "FontEngineInterface.prepareFontEffects",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "font-effects-meshes-and-resource-generations"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-effects-and-generated-mesh-snapshots"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1343,
+      "exact_key": "Core/FontEngineInterface.h|79|CXXMethod|Rml::FontEngineInterface::GetFontMetrics|GetFontMetrics(FontFaceHandle)|const FontMetrics &(FontFaceHandle)",
+      "native_symbol": "Rml::FontEngineInterface::GetFontMetrics",
+      "surface": "FontEngineInterface.getFontMetrics",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "shared-metrics-and-shaping-storage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-metrics-version-release-and-foreign-face-contracts"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1344,
+      "exact_key": "Core/FontEngineInterface.h|88|CXXMethod|Rml::FontEngineInterface::GetStringWidth|GetStringWidth(FontFaceHandle, StringView, const TextShapingContext &, Character)|int (FontFaceHandle, StringView, const TextShapingContext &, Character)",
+      "native_symbol": "Rml::FontEngineInterface::GetStringWidth",
+      "surface": "FontEngineInterface.getStringWidth",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "bulk-widths-and-shared-output"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-compatibility-widths-snapshot-all-rows-before-first-callback"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1345,
+      "exact_key": "Core/FontEngineInterface.h|102|CXXMethod|Rml::FontEngineInterface::GenerateString|GenerateString(RenderManager &, FontFaceHandle, FontEffectsHandle, StringView, Vector2f, ColourbPremultiplied, float, const TextShapingContext &, TexturedMeshList &)|int (RenderManager &, FontFaceHandle, FontEffectsHandle, StringView, Vector2f, ColourbPremultiplied, float, const TextShapingContext &, TexturedMeshList &)",
+      "native_symbol": "Rml::FontEngineInterface::GenerateString",
+      "surface": "FontEngineInterface.generateString",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "font-effects-meshes-and-resource-generations"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-effects-and-generated-mesh-snapshots"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1346,
+      "exact_key": "Core/FontEngineInterface.h|109|CXXMethod|Rml::FontEngineInterface::GetVersion|GetVersion(FontFaceHandle)|int (FontFaceHandle)",
+      "native_symbol": "Rml::FontEngineInterface::GetVersion",
+      "surface": "FontEngineInterface.getVersion",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "font-effects-meshes-and-resource-generations"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-metrics-version-release-and-foreign-face-contracts"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1347,
+      "exact_key": "Core/FontEngineInterface.h|113|CXXMethod|Rml::FontEngineInterface::ReleaseFontResources|ReleaseFontResources()|void ()",
+      "native_symbol": "Rml::FontEngineInterface::ReleaseFontResources",
+      "surface": "FontEngineInterface.releaseFontResources",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-custom.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-engine.ts",
+        "packages/sfml.js-rmlui/src/font-engine-callbacks.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+          "scenario": "font-effects-meshes-and-resource-generations"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+          "scenario": "custom-metrics-version-release-and-foreign-face-contracts"
+        }
+      ],
+      "domain": "native-default-and-managed-custom-provider",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1357,
+      "exact_key": "Core/FontMetrics.h|7|StructDecl|Rml::FontMetrics|FontMetrics|Rml::FontMetrics",
+      "native_symbol": "Rml::FontMetrics",
+      "surface": "FontMetrics / Native-owned snapshot",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1358,
+      "exact_key": "Core/FontMetrics.h|8|FieldDecl|Rml::FontMetrics::size|size|int",
+      "native_symbol": "Rml::FontMetrics::size",
+      "surface": "FontMetrics.size",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1359,
+      "exact_key": "Core/FontMetrics.h|10|FieldDecl|Rml::FontMetrics::ascent|ascent|float",
+      "native_symbol": "Rml::FontMetrics::ascent",
+      "surface": "FontMetrics.ascent / values[0]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1360,
+      "exact_key": "Core/FontMetrics.h|11|FieldDecl|Rml::FontMetrics::descent|descent|float",
+      "native_symbol": "Rml::FontMetrics::descent",
+      "surface": "FontMetrics.descent / values[1]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1361,
+      "exact_key": "Core/FontMetrics.h|12|FieldDecl|Rml::FontMetrics::line_spacing|line_spacing|float",
+      "native_symbol": "Rml::FontMetrics::line_spacing",
+      "surface": "FontMetrics.lineSpacing / values[2]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1362,
+      "exact_key": "Core/FontMetrics.h|14|FieldDecl|Rml::FontMetrics::x_height|x_height|float",
+      "native_symbol": "Rml::FontMetrics::x_height",
+      "surface": "FontMetrics.xHeight / values[3]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1363,
+      "exact_key": "Core/FontMetrics.h|16|FieldDecl|Rml::FontMetrics::underline_position|underline_position|float",
+      "native_symbol": "Rml::FontMetrics::underline_position",
+      "surface": "FontMetrics.underlinePosition / values[4]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1364,
+      "exact_key": "Core/FontMetrics.h|17|FieldDecl|Rml::FontMetrics::underline_thickness|underline_thickness|float",
+      "native_symbol": "Rml::FontMetrics::underline_thickness",
+      "surface": "FontMetrics.underlineThickness / values[5]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1365,
+      "exact_key": "Core/FontMetrics.h|19|FieldDecl|Rml::FontMetrics::has_ellipsis|has_ellipsis|bool",
+      "native_symbol": "Rml::FontMetrics::has_ellipsis",
+      "surface": "FontMetrics.hasEllipsis",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/font-metrics.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "all-metric-fields-use-independent-native-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2900,
+      "exact_key": "Core/TextShapingContext.h|11|StructDecl|Rml::TextShapingContext|TextShapingContext|Rml::TextShapingContext",
+      "native_symbol": "Rml::TextShapingContext",
+      "surface": "TextShapingContext / owned language and shared numeric allocation",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/text-shaping-context.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-defaults-enums-and-language-survive-runtime-restart"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-mutations-in-callback-do-not-change-active-batch"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "packed-measure-and-generation-use-frozen-shaping-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "invalid-shared-shaping-fields-reject-before-host-callback"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2901,
+      "exact_key": "Core/TextShapingContext.h|12|FieldDecl|Rml::TextShapingContext::language|language|const String &",
+      "native_symbol": "Rml::TextShapingContext::language",
+      "surface": "TextShapingContext.language",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/text-shaping-context.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-defaults-enums-and-language-survive-runtime-restart"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-mutations-in-callback-do-not-change-active-batch"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "packed-measure-and-generation-use-frozen-shaping-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "invalid-shared-shaping-fields-reject-before-host-callback"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2902,
+      "exact_key": "Core/TextShapingContext.h|13|FieldDecl|Rml::TextShapingContext::text_direction|text_direction|Style::Direction",
+      "native_symbol": "Rml::TextShapingContext::text_direction",
+      "surface": "TextShapingContext.textDirection / enums[0]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/text-shaping-context.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-defaults-enums-and-language-survive-runtime-restart"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-mutations-in-callback-do-not-change-active-batch"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "packed-measure-and-generation-use-frozen-shaping-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "invalid-shared-shaping-fields-reject-before-host-callback"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2903,
+      "exact_key": "Core/TextShapingContext.h|14|FieldDecl|Rml::TextShapingContext::font_kerning|font_kerning|Style::FontKerning",
+      "native_symbol": "Rml::TextShapingContext::font_kerning",
+      "surface": "TextShapingContext.fontKerning / enums[1]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/text-shaping-context.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-defaults-enums-and-language-survive-runtime-restart"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-mutations-in-callback-do-not-change-active-batch"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "packed-measure-and-generation-use-frozen-shaping-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "invalid-shared-shaping-fields-reject-before-host-callback"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2904,
+      "exact_key": "Core/TextShapingContext.h|15|FieldDecl|Rml::TextShapingContext::letter_spacing|letter_spacing|float",
+      "native_symbol": "Rml::TextShapingContext::letter_spacing",
+      "surface": "TextShapingContext.letterSpacing / values[0]",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-font-engine.cc"
+      ],
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/text-shaping-context.ts"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-defaults-enums-and-language-survive-runtime-restart"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "shaping-mutations-in-callback-do-not-change-active-batch"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "packed-measure-and-generation-use-frozen-shaping-snapshots"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "invalid-shared-shaping-fields-reject-before-host-callback"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "numeric-field-access-has-zero-native-entries"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+          "scenario": "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs",
+      "domain": "native-owned-font-field-and-managed-shared-adapter",
+      "status": "locally-verified-font-contract-macos-arm64"
+    }
+  ]
+}

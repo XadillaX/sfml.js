@@ -18,6 +18,7 @@ import type { SoundFileWriter } from './sound-file-writer';
  * 형식은 파일 확장자로 결정됩니다.
  */
 export class OutputSoundFile {
+  /** Native output encoder capability. @internal */
   readonly [audioHandle] = audioNative.createAudioOutput();
   private readonly queue = new AudioQueue();
   private writer?: SoundFileWriter;

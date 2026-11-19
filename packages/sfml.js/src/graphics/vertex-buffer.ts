@@ -59,6 +59,7 @@ const usages = [
   VertexBufferUsage.Dynamic,
   VertexBufferUsage.Static,
 ];
+/** Vertex array or immutable sequence copied by the upload. @inline */
 type Vertices = VertexArray | readonly ReadonlyValue<Vertex>[];
 
 function usageIndex(usage: VertexBufferUsage): number {
@@ -94,6 +95,7 @@ export class VertexBuffer extends Drawable {
    * @ko 꼭짓점 버퍼 사용 방식 열거형입니다.
    */
   static readonly Usage = VertexBufferUsage;
+  /** Native GPU vertex-buffer capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'vertexBuffer'>;
   readonly [vertexBufferId]: number;
   /**

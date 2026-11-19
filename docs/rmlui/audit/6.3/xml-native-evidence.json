@@ -1,0 +1,163 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+  "scope_complete": false,
+  "notice": "Local XML acceptance only. No isolated install, packaged-archive runtime, GPU timing, platform IME, full Core nineteen groups or whole-integration completion is claimed.",
+  "record_domains": {
+    "native-type-and-lifecycle-support": 16,
+    "native-parser-and-checked-managed-adapter": 32,
+    "native-lifecycle-support": 1
+  },
+  "native_probe": {
+    "path": "/tmp/rmlui-63-completion/xml-native-contracts-3.log",
+    "sha256": "3bb2cb2f10f6f2327e496e0dc810ee52e1186e625267dd6d2009567b6e928a9d",
+    "exit_code": 0,
+    "literal_pass_lines": 4
+  },
+  "complete_package_verification": {
+    "path": "/tmp/rmlui-63-completion/xml-package-3.log",
+    "sha256": "9e508f33f2170f00d3677295294ee7dd8ac716b6eceb64b34dbc35e720fbecc9",
+    "exit_code": 0,
+    "literal_pass_lines": 1148,
+    "runtime_files": 114,
+    "failures": 0,
+    "native_compiler_warnings": 0,
+    "native_compiler_errors": 0,
+    "host_dependency_notices": "Node/Python dependency deprecations are distinct from native compiler diagnostics."
+  },
+  "consumer_suites": {
+    "xml": {
+      "source": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "sha256": "ee8f4b9de0dcb087f17cd320b1800fad6e604b20eca10fa987ce8643fb0c9bae",
+      "scenarios": [
+        "base-public-virtuals-dispatch-and-preserve-owned-attributes",
+        "base-callback-shape-rejects-nonfunctions-at-construction",
+        "xml-setup-callback-getter-cannot-cross-shutdown",
+        "base-native-batch-preserves-xml-data-and-source-lines",
+        "base-synchronous-callback-order-borrows-and-reentry",
+        "xml-default-native-dom-and-header-snapshot",
+        "xml-custom-handler-native-delegation-and-scoped-parser",
+        "xml-handler-replacement-invalidates-borrowed-native-targets",
+        "xml-callback-errors-unwind-and-invalid-return-values-reject",
+        "base-callbacks-reject-nonvoid-and-async-results",
+        "xml-handler-return-must-belong-to-active-subtree",
+        "xml-context-removal-invalidates-parser-root",
+        "xml-owned-root-gc-and-generation-lifetimes",
+        "xml-batch-and-default-path-fixed-native-crossings",
+        "xml-persistent-cdata-header-writeback-and-native-data-dispatch",
+        "xml-unregistered-callback-cycles-collect-and-registration-retains",
+        "xml-setup-registration-adopts-generation-and-shutdown-clears"
+      ],
+      "pass_count": 17
+    }
+  },
+  "four_language_contracts": {
+    "path": "/tmp/rmlui-63-completion/xml-four-language-1.log",
+    "sha256": "34edd6ce399dc5537fd403e7280efb17290dce20f85c58af285214982593e1e8",
+    "exit_code": 0,
+    "literal_pass_lines": 0
+  },
+  "checks": {
+    "xml-naming-2.log": {
+      "path": "/tmp/rmlui-63-completion/xml-naming-2.log",
+      "sha256": "71c1e0990481ce9c56d545fc9a231c7c6d30dfd6651085961188368ae86b8db2",
+      "exit_code": 0,
+      "literal_pass_lines": 2
+    },
+    "xml-format-4.log": {
+      "path": "/tmp/rmlui-63-completion/xml-format-4.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "xml-whitespace-2.log": {
+      "path": "/tmp/rmlui-63-completion/xml-whitespace-2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "xml-guide-routing-1.log": {
+      "path": "/tmp/rmlui-63-completion/xml-guide-routing-1.log",
+      "sha256": "b2b55d0e589e5205b6ad08d3a482e7d1e1536bafb4589c9ada726cbbffcfd868",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "xml-guide-links-1.log": {
+      "path": "/tmp/rmlui-63-completion/xml-guide-links-1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "xml-guide-runtime-1.log": {
+      "path": "/tmp/rmlui-63-completion/xml-guide-runtime-1.log",
+      "sha256": "5fa36baad2f3e5990600bcfc4f59256d9469e7a0f39b9a9b2229ef71ff183fe6",
+      "exit_code": 0,
+      "literal_pass_lines": 4
+    },
+    "xml-source-review.log": {
+      "path": "/tmp/rmlui-63-completion/xml-source-review.log",
+      "sha256": "6924455804ba18b9e5143322d2fb55796392289102959d3f5caf1df3d30f61d5",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    }
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/rmlui-xml.cc": "c80017a49ec09044d6b9192298bdad32b7a36d296fbef22312acb938db450d59",
+    "packages/sfml.js-rmlui/native/rmlui-xml-callbacks.cc": "acbbf17949660e1fd918ad22fec254b3c6a06937ce475f473f984b55233e8a76",
+    "packages/sfml.js-rmlui/native/rmlui-xml.h": "3dbb6cbe0b67a241b8c786b912721a5de75ceef4824afeeff818415f615519ac",
+    "packages/sfml.js-rmlui/native/rmlui-state.cc": "4426cb2a2b271f30eff2414552be676ff317558de07bebcd64c7b54bbaceea1d",
+    "packages/sfml.js-rmlui/native/rmlui-state.h": "af3bedde2831cca1f394aa9f80aeb3ca01c5961da3215de7aaf4b0643c5c8f50",
+    "packages/sfml.js-rmlui/native/rmlui-document-header.cc": "668ed7cbe8e144a8357523f9d0dd2ff58e718d3d7b8a5eadf2df42fd05dcd60c",
+    "packages/sfml.js-rmlui/native/rmlui-document-header.h": "cd485bcb84f615ac05b27bd467f3d7eb4d16e12a6c3c58f6af84e0b6d064f255",
+    "packages/sfml.js-rmlui/native/rmlui-forms.cc": "816af64767aa8fc975d9fe530468748f8ff17df2eea1ec0fb088cd99af88a5d1",
+    "packages/sfml.js-rmlui/native/addon.cc": "2b3da052fd25ab6746a2f5e5573a95e59778e91a2397dd24166e40c1adb4a46a",
+    "packages/sfml.js-rmlui/binding.gyp": "605562d6f5cda174521fc669f888626244c1a65308377bae4d632b31ffe85258",
+    "packages/sfml.js-rmlui/src/xml-parser.ts": "8e9af976df7f9a7c226913068c7cf0ddcd50fb2562160ef6e60d3c06ea2541b0",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "47effc60c6e5c62e1b1605a2b794051ed0fefac4f59fe53dcd776061347322b0",
+    "packages/sfml.js-rmlui/src/core.ts": "0e5a8edef4b15076528d9e354e1f6e9b519da642327168c7065a6224a77e1548",
+    "packages/sfml.js-rmlui/test/xml-parser.test.cjs": "ee8f4b9de0dcb087f17cd320b1800fad6e604b20eca10fa987ce8643fb0c9bae",
+    "packages/sfml.js-rmlui/test/xml-parser.ts": "d588ccf0969541302f609d75ddd35dcae465d621227f8fc3eba93c402e067a83",
+    "packages/sfml.js-rmlui/test/native/xml-contracts.cc": "f46ee51106779452c185032eabc2be554e7d9815dd997ac710a111cd31c0495f",
+    "packages/sfml.js-rmlui/test/native/build-xml-contracts.py": "1689250dbccc4f3dbc28a6cff080fcb7aa6ebe8aeff86fbcee646fd54596109a",
+    "docs/rmlui/documents.md": "a0fd231560ed900f1d7d0248144afd1436da091f459364856b9bf0f11ea5f24f",
+    "docs/rmlui/documents.zh-CN.md": "ad529507f2356f84aaf194f39cc90e34b9dc279aa1f7117e708a01c60ba90a4c",
+    "docs/rmlui/documents.ja.md": "ab88a817497964a3145e279c5f4fff6c5f94b6ffcee01ab4e7aead1f077b6029",
+    "docs/rmlui/documents.ko.md": "f279573aa9642e21feff8f22742bedcc682ffb3bd48c8d0cb2311657a1d1fc86"
+  },
+  "archive": {
+    "path": "/tmp/rmlui-63-completion/xml-package/sfml.js-rmlui-1.2.1.tgz",
+    "sha256": "3b41d9f7beb32abb8c8e2b1ba70be2b81dd0c95b2c88ee7be4888b4b0aa7b8ea",
+    "entries": 604,
+    "bytes": 1546731,
+    "matched_current_paths": [
+      "native/rmlui-xml.cc",
+      "native/rmlui-xml-callbacks.cc",
+      "native/rmlui-xml.h",
+      "native/rmlui-state.cc",
+      "native/rmlui-state.h",
+      "native/rmlui-document-header.cc",
+      "native/rmlui-document-header.h",
+      "native/rmlui-forms.cc",
+      "native/addon.cc",
+      "binding.gyp",
+      "src/xml-parser.ts",
+      "src/internal/native.ts",
+      "src/core.ts",
+      "dist/xml-parser.js",
+      "dist/xml-parser.d.ts",
+      "dist/internal/native.js",
+      "dist/internal/native.d.ts",
+      "dist/core.js",
+      "dist/core.d.ts"
+    ],
+    "runtime_executed_from_archive": false,
+    "isolated_install_created": false
+  },
+  "representation": {
+    "maps": 13,
+    "represented": 3612,
+    "unrepresented": 314,
+    "is_pass_count": false
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "name": "sfml.js-rmlui",
+  "version": "1.2.1",
+  "description": "RmlUi integration for sfml.js, HTML/CSS driven native UI with zero-copy SFML geometry.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/sfml.js.git",
+    "directory": "packages/sfml.js-rmlui"
+  },
+  "author": "XadillaX <i@2333.moe>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XadillaX/sfml.js/issues"
+  },
+  "homepage": "https://sfml.js.org/rmlui/",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "install": "npm run build:native",
+    "download:deps": "node tools/dependencies/deps_downloader.cjs",
+    "download:ime-fonts": "node tools/dependencies/prepare-ime-fonts.cjs",
+    "prebuild:native": "npm run download:deps && node tools/codegen/generate-computed-values.cjs",
+    "build:native": "node tools/build/native-build.cjs",
+    "postbuild:native": "node tools/build/configure-lsp.cjs",
+    "cpplint": "cpplint --quiet --extensions=cc,h,mm --recursive native",
+    "prebuild:ts": "npm run download:deps && node tools/codegen/generate-input.cjs && node tools/codegen/generate-events.cjs && node tools/codegen/generate-property-ids.cjs && node tools/codegen/generate-computed-values.cjs",
+    "build:ts": "tsc -p tsconfig.json",
+    "build": "npm run build:native && npm run build:ts",
+    "lint": "eslint --max-warnings 0 --ext .ts,.js,.cjs .",
+    "test:types": "tsc -p test/tsconfig.json",
+    "test:runtime": "node tools/testing/run-tests.cjs",
+    "test:official-native": "node test/examples/invaders-application.cjs",
+    "test:package": "node tools/testing/verify-source-package.cjs",
+    "test:publication": "node tools/testing/verify-publication.cjs",
+    "test": "npm run lint && npm run cpplint && npm run build && npm run test:types && npm run test:runtime",
+    "demo": "npm run build:ts && node examples/demo.cjs",
+    "examples": "node examples/official.cjs"
+  },
+  "files": [
+    "binding.gyp",
+    "dist/",
+    "native/",
+    "src/",
+    "examples/official.cjs",
+    "examples/official/",
+    "tools/dependencies/deps_downloader.cjs",
+    "tools/dependencies/prepare-ime-fonts.cjs",
+    "tools/dependencies/patches/patch-rmlui.cjs",
+    "tools/dependencies/patches/patch-rmlui-numeric.cjs",
+    "tools/dependencies/patches/patch-rmlui-strings.cjs",
+    "tools/dependencies/patches/patch-rmlui-text-input.cjs",
+    "tools/dependencies/patches/patch-rmlui-lua.cjs",
+    "tools/dependencies/patches/patch-rmlui-debugger.cjs",
+    "tools/dependencies/patches/patch-rmlui-fonts.cjs",
+    "tools/dependencies/optional-dependencies.json",
+    "tools/dependencies/patches/patch-rlottie.cjs",
+    "tools/build/compile-lua-cxx.cjs",
+    "tools/build/native-build.cjs",
+    "tools/build/configure-lsp.cjs",
+    "tools/codegen/generate-input.cjs",
+    "tools/codegen/generate-events.cjs",
+    "tools/codegen/generate-property-ids.cjs",
+    "tools/codegen/generate-computed-values.cjs",
+    "tools/codegen/documentation.cjs",
+    "tsconfig.json"
+  ],
+  "engines": {
+    "node": "^18.19.0 || >=20.5.0"
+  },
+  "dependencies": {
+    "download": "8.0.0",
+    "nan": "2.29.0",
+    "node-gyp": "11.5.0",
+    "sfml.js-interop": "^1.2.1"
+  },
+  "peerDependencies": {
+    "sfml.js": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "cpplint.js": "2.0.1",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "sfml.js": "^1.2.1",
+    "typescript": "5.0.4"
+  }
+}

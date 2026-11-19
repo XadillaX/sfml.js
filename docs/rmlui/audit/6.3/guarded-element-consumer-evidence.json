@@ -1,0 +1,122 @@
+{
+  "status": "locally-verified-native-element-consumers-macos-arm64",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_declarations": 3926,
+  "declaration_status_promotions": 0,
+  "whole_scope_complete": false,
+  "exact_declaration_keys": [
+    "Core/Element.h|291|CXXMethod|Rml::Element::GetAttribute|GetAttribute(const String &)|Variant *(const String &)",
+    "Core/Element.h|293|CXXMethod|Rml::Element::GetAttribute|GetAttribute(const String &)|const Variant *(const String &) const",
+    "Core/Element.h|298|FunctionTemplate|Rml::Element::GetAttribute|GetAttribute(const String &, const T &)|T (const String &, const T &) const",
+    "Core/Element.inl|26|FunctionTemplate|Rml::Element::GetAttribute|GetAttribute(const String &, const T &)|T (const String &, const T &) const",
+    "Core/Event.h|33|CXXConstructor|Rml::Event::Event|Event(Element *, EventId, const String &, const Dictionary &, bool)|void (Element *, EventId, const String &, const Dictionary &, bool)",
+    "Core/Event.h|78|FunctionTemplate|Rml::Event::GetParameter|GetParameter(const String &, const T &)|T (const String &, const T &) const",
+    "Core/Property.h|42|FunctionTemplate|Rml::Property::Get|Get()|T () const",
+    "Core/Variant.h|74|FunctionTemplate|Rml::Variant::Get|Get(T)|T (T) const",
+    "Core/Variant.h|82|FunctionTemplate|Rml::Variant::GetInto|GetInto(T &)|bool (T &) const",
+    "Core/Variant.h|87|FunctionTemplate|Rml::Variant::GetReference|GetReference()|const T &() const",
+    "Core/Variant.inl|23|FunctionTemplate|Rml::Variant::GetInto|GetInto(T &)|bool (T &) const",
+    "Core/Variant.inl|72|FunctionTemplate|Rml::Variant::Get|Get(T)|T (T) const",
+    "Core/Variant.inl|79|FunctionTemplate|Rml::Variant::GetReference|GetReference()|const T &() const"
+  ],
+  "unregistered_external_event_constructor_parameter_verified": true,
+  "unregistered_native_pointer_or_slot_accepted": false,
+  "registered_non_element_script_getters_return_null": true,
+  "element_slot_resolution_allocates_v8_or_calls_js": false,
+  "raw_drag_contract_shared_by_three_consumers": true,
+  "event_element_observer_expiry_preserved": true,
+  "focused": {
+    "path": "/tmp/rmlui-63-completion/external-value-getters-green-1.log",
+    "sha256": "f6b572ff3eba1f5dd8e31da9f2b077964231e485f1c3c5a4501a519a772d7bbb",
+    "exit_code": 0,
+    "passed_scenarios": 44,
+    "failed_scenarios": 0
+  },
+  "independent_probe": {
+    "path": "/tmp/rmlui-63-completion/unregistered-value-getters-green-1.log",
+    "sha256": "bfb450f315d98ed341d952164c14f751aa7e19be6f99c5fe87530ac55261adc0",
+    "exit_code": 0,
+    "passed_scenarios": 6,
+    "failed_scenarios": 0,
+    "independent_reviewer_implied": false
+  },
+  "native_build": {
+    "path": "/tmp/rmlui-63-completion/external-value-getters-build-1.log",
+    "sha256": "7069ef0ac19151d1280f4185d9e32380fbe9622f967f1a605af8842da03ad3a3",
+    "exit_code": 0,
+    "compiler_errors": 0,
+    "compiler_warnings": 0
+  },
+  "compiler_naming": {
+    "path": "/tmp/rmlui-63-completion/external-value-getters-naming-1.log",
+    "sha256": "9013ae65b805d341c910ec973414af17809ae5540733e66ddcc10bb757610cfa",
+    "exit_code": 0,
+    "maintained_units": 9,
+    "external_header_diagnostics_retained_in_log": true
+  },
+  "package": {
+    "status": "passed",
+    "path": "/tmp/rmlui-63-completion/external-value-getters-package-1.log",
+    "sha256": "5e567176b6d76546d919662d3eb715994e7c49d58a050f723618df4335cd3848",
+    "exit_code": 0,
+    "runtime_files": 109,
+    "passed_lines": 1096,
+    "failed_lines": 0,
+    "compiler_errors": 0,
+    "compiler_warnings": 0
+  },
+  "stopped_package_run": {
+    "path": "/tmp/rmlui-63-completion/external-event-parameters-package-1.log",
+    "status": "stopped-before-completion",
+    "passing_run": false
+  },
+  "regression": {
+    "value_getters": {
+      "path": "/tmp/rmlui-63-completion/external-value-getters-red-1.log",
+      "sha256": "76b305f9ace5d2584409497b20cb669fb30b1fc299fc904432e8440161d1e9db",
+      "exit_code": 1,
+      "sigsegv_scenarios": 6
+    },
+    "independent_value_getters": {
+      "path": "/tmp/rmlui-63-completion/unregistered-value-getters-red-1.log",
+      "sha256": "3c7fa70c5c0dae7c08f667cb99599f51667688e88251ab1a4a8d4a298bac4dbe",
+      "exit_code": 1,
+      "sigsegv_scenarios": 6
+    },
+    "event_constructor": {
+      "path": "/tmp/rmlui-63-completion/external-event-parameters-red-4.log",
+      "sha256": "fd098f0f21ae3e67bcfef31d2389b4849b4e2c57137557b6e4928ac451e8aa73",
+      "exit_code": 1,
+      "native_signal_scenarios": 2,
+      "getter_fixture_failure_is_not_crash_evidence": true
+    },
+    "event_element_getter": {
+      "path": "/tmp/rmlui-63-completion/external-event-element-getter-red.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_command_exit_code": 139,
+      "stderr_empty": true
+    }
+  },
+  "standalone_scenarios_in_package_count": false,
+  "unaccepted_serialization_followup": {
+    "path": "/tmp/rmlui-63-completion/unregistered-property-string-red-1.log",
+    "sha256": "b648b86719c6046a21fe0fc09bde611a23e6cec0707001e60af185145e24c00b",
+    "exit_code": 1,
+    "missing_expected_pointer_exception": true,
+    "production_fix_verified": false
+  },
+  "browser_gpu_platform_package_acceptance_implied": false,
+  "historical_source_evidence": "external-script-variant-evidence.json",
+  "source_sha256": {
+    "packages/sfml.js-rmlui/native/rmlui-variant.h": "47ace823b2ba2eb35b0aef75d78a6907359809f6262e1fe12e26a708c6b61f41",
+    "packages/sfml.js-rmlui/native/rmlui-variant.cc": "93ac414f6c7a8f522617c397254d2fb683e999663bc273c507b0c1809a196169",
+    "packages/sfml.js-rmlui/native/rmlui-events.h": "8c464ee832aa11b2930bb70a8485203cda9d717088cbfb98bfe918c9c22f8f3f",
+    "packages/sfml.js-rmlui/native/rmlui-events.cc": "f04602b9705fefb97588b40f9a057c556d41c9eac27cb4da80f1ffdd0bb83f58",
+    "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc": "f37cfe9ab81bf0a646c84f1fbb2f93cab36b5234161cad89742acce5b300797f",
+    "packages/sfml.js-rmlui/native/rmlui-owned-variant.cc": "9ff2faa1e0c63883f1a9cbac6cd6b9abe380683787ebe22658cbaa4420e16873",
+    "packages/sfml.js-rmlui/native/rmlui-property.cc": "11877cbf108629563256e48865c98cb083b63bb69fea59f294ffccca65dd9805",
+    "packages/sfml.js-rmlui/native/rmlui-element-state.cc": "56f8c5314e39a53f2d074fee5ff8756e835e819116b054ae0235dfee8061085e",
+    "packages/sfml.js-rmlui/test/native/external-variant-adapters.cc": "c9132785a626f41ef0641d2a1316c69330945387b16e081214e606b3e800cdcd",
+    "packages/sfml.js-rmlui/test/external-variant-adapters.cjs": "044805b6b712e8f79e156afa431dd8222404ab0ec2ee6e9930d4705a12dd3a77"
+  }
+}

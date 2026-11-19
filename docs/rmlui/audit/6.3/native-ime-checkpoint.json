@@ -1,0 +1,1185 @@
+{
+  "scope": "RmlUi 6.3 macOS native IME focused checkpoint",
+  "checkpoint_is_historical": true,
+  "current_continuation_evidence": "platform-adapter-checkpoint.json",
+  "recorded_at": "2026-11-18T12:40:17.911292+00:00",
+  "platform": "Darwin",
+  "machine": "arm64",
+  "full_acceptance": false,
+  "independent_acceptance": false,
+  "physical_input_method_acceptance": false,
+  "other_platform_native_ime_acceptance": false,
+  "full_runtime_observed": true,
+  "completed_previous_full_runtime": {
+    "path": "/tmp/rmlui-63-completion/ime-prepared-snapshot-full-runtime.log",
+    "bytes": 127523,
+    "sha256": "9cb42e94ea19f8e985f38d254e72aaf01f984362aaf3d800b7cb286b5e60414c",
+    "observed_exit_code": 0,
+    "observed_suites": 142,
+    "observed_pass": 1474,
+    "current_focus_transaction_revision": false,
+    "sources": [
+      {
+        "path": "packages/sfml.js/native/window-binding.cc",
+        "bytes": 15290,
+        "sha256": "afa95a8d978035e2791bdbf40d04b2f537acc27728a9175d54ddc931df746dfb"
+      },
+      {
+        "path": "packages/sfml.js/src/window/event.ts",
+        "bytes": 19850,
+        "sha256": "432710efc338d6bd577bee9f163ce16e3ff345b76d8232189837f4d04a1cd492"
+      },
+      {
+        "path": "packages/sfml.js-interop/include/sfml-js-interop.h",
+        "bytes": 1904,
+        "sha256": "51dec5f3bbd0b32a5934c9b5abce36785d4806ed89902667055488356b18515d"
+      },
+      {
+        "path": "packages/sfml.js-interop/include/window-event-source.h",
+        "bytes": 5493,
+        "sha256": "b337dbe0520524c98640d02789a958e4ebe2b8af432d519e0d6dadf2ad11730c"
+      },
+      {
+        "path": "packages/sfml.js-interop/tools/lib_downloader_macos.cjs",
+        "bytes": 5116,
+        "sha256": "359b7d5eca32e3ea9d3f2a2baeadffd51b3b54f2f168b7eefe34a6cff5ba9efd"
+      },
+      {
+        "path": "packages/sfml.js-interop/tools/patches/sfml-macos-event-source.patch",
+        "bytes": 4714,
+        "sha256": "e7b3db2dd07e07baf7a4621a4b964e947f2a4d411d58375a08f326b2ef6a6fec"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/binding.gyp",
+        "bytes": 13877,
+        "sha256": "efe12031da848da325d7fc4f2207d8d973f05ca8398ee767aaa4623a54f2c8c6"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/caret-bounds.h",
+        "bytes": 2378,
+        "sha256": "b7a2289ad2ecdd6c306c12ebee1387833828410808cf976d9d2a37a0e2c747ca"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-client.h",
+        "bytes": 2563,
+        "sha256": "283e844fbaf74cb40a3d8309c4018defdd93935461855894f3d9cf1a131109d8"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-commands.mm",
+        "bytes": 3570,
+        "sha256": "fd15d5f61986e478029637a978752714699dc21bc0d7d949192f4838d3898f0a"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-editing.mm",
+        "bytes": 7801,
+        "sha256": "4124361ffc644e46fc9262a39e19bd83bee295184b15664cda128bd5bc04674c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-events.mm",
+        "bytes": 12485,
+        "sha256": "462aaaef75c2a1856e55009a0b158a0d02534800739a7bd95ff0231ac294f350"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-snapshot.h",
+        "bytes": 876,
+        "sha256": "78b589738bb56c28294c23208cc13eee4087ba4dc86b5f4245cdb0cb069615e1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/native-text-input.h",
+        "bytes": 1359,
+        "sha256": "d9a3fe9cd373715c5611bf4db2b4a7836ca153925461e43d366f4fd870da0740"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/platform-text-input.cc",
+        "bytes": 4915,
+        "sha256": "b5b0d4ba0e80065aa118691ff41054d030a6438b4db320baf5e0b4151ab3a5c7"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/platform-text-input.h",
+        "bytes": 1313,
+        "sha256": "5e173157a856e86cbddf9d7b3e8bfa0cb28322815382a3048251f1ffe0eb20be"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/text-input-session.cc",
+        "bytes": 5323,
+        "sha256": "39651a711d0daa1352fa81b93129eb66593cc0994050478f1aa07546a604dc9e"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/text-input-session.h",
+        "bytes": 1880,
+        "sha256": "8d149320da4914ce21007afdc7b330c6cd8539160615d56cc01f27a35adab947"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/unicode-ranges.cc",
+        "bytes": 1728,
+        "sha256": "1a876df5abdbe046a5d39cc6ee0bc96a7cf123133730e026238bf96bc01d759c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/unicode-ranges.h",
+        "bytes": 897,
+        "sha256": "35d316595ffbd3deea11f84e0b21841da7e9982b844cc76aef646090f860ef48"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-platform-sfml.cc",
+        "bytes": 9639,
+        "sha256": "b11592e96f8dd4a2d7824efa71b38d801efb806b46e3729a5c6c02d1e52c9605"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-platform-sfml.h",
+        "bytes": 965,
+        "sha256": "4c1456f2bdadaae6b66a1bdd6c4358b031080efaf6a5cbcf29c38fe537cc25b0"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-system-interface.cc",
+        "bytes": 18552,
+        "sha256": "a16a9a04e8f6daddf1aa7c63586ae97bef749c4c4db7e9c3bff9d26f0e661f15"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-text-input.cc",
+        "bytes": 20049,
+        "sha256": "825da5840dbaec1d97cc2034b0a31ebce574282c26942d27dfe356539b8c23a5"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/runtime/rmlui-context.cc",
+        "bytes": 12138,
+        "sha256": "7daee08a81de4bac84f2de51ea94ea6d336923d4433308b89b787b248ccc169d"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/runtime/rmlui-state.cc",
+        "bytes": 29565,
+        "sha256": "cb9ca4b6d1a3f62c36036bfbffde972f21cb58c51a275f92bada4267d051f5b1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/package.json",
+        "bytes": 3312,
+        "sha256": "5a3cb9d29c771d3083fe9bd30c337650592d26fb08c6608fe473714bae49c6fc"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/src/platform/text-input-context.ts",
+        "bytes": 11309,
+        "sha256": "41d9457bbb37802e544b796bd55d68a75ae9402ea8d42d1755ff8124cb0b1ac1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/events/listeners.test.cjs",
+        "bytes": 9086,
+        "sha256": "9b254e2d062419bb7bda443c2f9aae90f3284751381d61d9313f2c574dd6e4d2"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/build-cocoa-probes.py",
+        "bytes": 1490,
+        "sha256": "1464494e01137632b402b70f5b62bf34bc0f53a93c5eec2981dc0a9dfda23e4b"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/build-ime-contracts.py",
+        "bytes": 3329,
+        "sha256": "ad778796067e8ba22eea5749076d3a8f11cdfdf4b6708e2a802ce2cf3d94c369"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/caret-contracts.cc",
+        "bytes": 4050,
+        "sha256": "c3736c699da18e7c21cbf28d6ae6f2e5e5d7a0f6966e0bb86b069b92396b5494"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/cocoa-ime-contracts.mm",
+        "bytes": 15244,
+        "sha256": "6e3bdeb4089f6e0a6e519f2c2ea5242a6ad9ce327edf3658a45221c3af50ed99"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/cocoa-probes.mm",
+        "bytes": 7189,
+        "sha256": "79cfe7eaf13848b73aaa0ae8f142c1651f33e7c563cd1a04e8f6508bac54947c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/focus-allocation-contracts.mm",
+        "bytes": 6261,
+        "sha256": "42086267aad38171e8cab1231ab1ccb75624903f33bf67912bd6eec2ec1bac5c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/ime-contracts.cc",
+        "bytes": 8444,
+        "sha256": "0a4e110784dcf2223c27a77ad172cf3aa22b2af187446fce39a983d08d661a6e"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/preserve-clipboard.mm",
+        "bytes": 2878,
+        "sha256": "e0aadc0bc441e57b4c12331105f86f430cc66d77fa2e5d9ce4f0514b219d5f00"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/ime-integration.test.cjs",
+        "bytes": 12884,
+        "sha256": "ee77599ddc01d4f2012b0d8e5f9c60be5ff9fe6a2f24c8af657ca7a21057d672"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/ime-native.test.cjs",
+        "bytes": 1165,
+        "sha256": "0337b322097ab1a907e599f4b7b00dfdb0857936d03c3ad82f89bf839072a1ee"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/input.test.cjs",
+        "bytes": 14288,
+        "sha256": "ea6c5f82aa65a96723fd51569fd6067cb4ad409c9ed4a34810fb740e2b557b0c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/system-interface.test.cjs",
+        "bytes": 16195,
+        "sha256": "8cf990e5c85fdaa229775273016491ab81a2eec6fcea513191a7ef495612f80b"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/text-input.test.cjs",
+        "bytes": 15469,
+        "sha256": "769f8708b2205665a4a8d6a9004565aa90b0dbd5f8698988c657290673067bec"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/TextInputContext.h",
+        "bytes": 4263,
+        "sha256": "f80ce0c4f66fd2cd431143794a6fb2a65deb83439ea9cc4889263771ab70a88f"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetTextInput.cpp",
+        "bytes": 57456,
+        "sha256": "75a2ae3ade8a573884de34ac965b6dd4d106bd856d269452862a2264386e2c60"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui-text-input.cjs",
+        "bytes": 1942,
+        "sha256": "cb4a5309f498c48c80dc276869c4d7d4abd816038c25ff5a5c097477c7f1d472"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui.cjs",
+        "bytes": 82894,
+        "sha256": "a16511f9fca63d0213d230660516da2a246b99811be1ecfd310646036ce7ba9b"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/tools/testing/preserve-clipboard.cjs",
+        "bytes": 1553,
+        "sha256": "b7f599bfac6c398cce8a32db88c37a3bd561da3a87a11a7c5ee6fd35d6c9aa2f"
+      },
+      {
+        "path": "tools/configure-lsp.cjs",
+        "bytes": 4559,
+        "sha256": "4f280e21974430fe7b442b4771e68eb98e8da88b858fdc5df4af936ea5e0caab"
+      }
+    ],
+    "binary": {
+      "path": "packages/sfml.js-rmlui/build/Release/rmlui.node",
+      "bytes": 13277928,
+      "sha256": "597149c4b4f9db7949f52ad9f5f1553d57e92809041b7d804329a518ea80b13b"
+    }
+  },
+  "completed_focus_transaction_full_runtime": {
+    "path": "/tmp/rmlui-63-completion/ime-focus-transaction-full-runtime.log",
+    "bytes": 127968,
+    "sha256": "0d842e1481f7e060a3d4e74ef7f52cde48f225626d5bfb9d85e0f882b5a34a04",
+    "observed_exit_code": 0,
+    "observed_suites": 142,
+    "observed_pass": 1479,
+    "sources": [
+      {
+        "path": "packages/sfml.js/native/window-binding.cc",
+        "bytes": 15290,
+        "sha256": "afa95a8d978035e2791bdbf40d04b2f537acc27728a9175d54ddc931df746dfb"
+      },
+      {
+        "path": "packages/sfml.js/src/window/event.ts",
+        "bytes": 19850,
+        "sha256": "432710efc338d6bd577bee9f163ce16e3ff345b76d8232189837f4d04a1cd492"
+      },
+      {
+        "path": "packages/sfml.js-interop/include/sfml-js-interop.h",
+        "bytes": 1904,
+        "sha256": "51dec5f3bbd0b32a5934c9b5abce36785d4806ed89902667055488356b18515d"
+      },
+      {
+        "path": "packages/sfml.js-interop/include/window-event-source.h",
+        "bytes": 5493,
+        "sha256": "b337dbe0520524c98640d02789a958e4ebe2b8af432d519e0d6dadf2ad11730c"
+      },
+      {
+        "path": "packages/sfml.js-interop/tools/lib_downloader_macos.cjs",
+        "bytes": 5116,
+        "sha256": "359b7d5eca32e3ea9d3f2a2baeadffd51b3b54f2f168b7eefe34a6cff5ba9efd"
+      },
+      {
+        "path": "packages/sfml.js-interop/tools/patches/sfml-macos-event-source.patch",
+        "bytes": 4714,
+        "sha256": "e7b3db2dd07e07baf7a4621a4b964e947f2a4d411d58375a08f326b2ef6a6fec"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/binding.gyp",
+        "bytes": 13936,
+        "sha256": "94ab19b1dc47890de955d63bc5a2f728f757e9a84ad7bf2a53979e10761a2511"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/caret-bounds.h",
+        "bytes": 2378,
+        "sha256": "b7a2289ad2ecdd6c306c12ebee1387833828410808cf976d9d2a37a0e2c747ca"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-client.h",
+        "bytes": 2622,
+        "sha256": "5234b5eb2af34b7a0b2e240eb7219bb5c118fc59e3bbb50c5cf65dfb8e63934d"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-commands.mm",
+        "bytes": 3570,
+        "sha256": "fd15d5f61986e478029637a978752714699dc21bc0d7d949192f4838d3898f0a"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-editing.mm",
+        "bytes": 7801,
+        "sha256": "4124361ffc644e46fc9262a39e19bd83bee295184b15664cda128bd5bc04674c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-events.mm",
+        "bytes": 11071,
+        "sha256": "c272d526671f6da71cf50582453f262732069af183a2d43a4a03ea80e66dd961"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-focus.mm",
+        "bytes": 3230,
+        "sha256": "061a90ff0d08882f9224e7c4e18399f4f93eab9783ad2ed8d04bd8537c3784d5"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-snapshot.h",
+        "bytes": 876,
+        "sha256": "78b589738bb56c28294c23208cc13eee4087ba4dc86b5f4245cdb0cb069615e1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/native-text-input.h",
+        "bytes": 1359,
+        "sha256": "d9a3fe9cd373715c5611bf4db2b4a7836ca153925461e43d366f4fd870da0740"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/platform-text-input.cc",
+        "bytes": 4915,
+        "sha256": "b5b0d4ba0e80065aa118691ff41054d030a6438b4db320baf5e0b4151ab3a5c7"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/platform-text-input.h",
+        "bytes": 1313,
+        "sha256": "5e173157a856e86cbddf9d7b3e8bfa0cb28322815382a3048251f1ffe0eb20be"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/text-input-session.cc",
+        "bytes": 5323,
+        "sha256": "39651a711d0daa1352fa81b93129eb66593cc0994050478f1aa07546a604dc9e"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/text-input-session.h",
+        "bytes": 1880,
+        "sha256": "8d149320da4914ce21007afdc7b330c6cd8539160615d56cc01f27a35adab947"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/unicode-ranges.cc",
+        "bytes": 1728,
+        "sha256": "1a876df5abdbe046a5d39cc6ee0bc96a7cf123133730e026238bf96bc01d759c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/ime/unicode-ranges.h",
+        "bytes": 897,
+        "sha256": "35d316595ffbd3deea11f84e0b21841da7e9982b844cc76aef646090f860ef48"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-platform-sfml.cc",
+        "bytes": 9639,
+        "sha256": "b11592e96f8dd4a2d7824efa71b38d801efb806b46e3729a5c6c02d1e52c9605"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-platform-sfml.h",
+        "bytes": 965,
+        "sha256": "4c1456f2bdadaae6b66a1bdd6c4358b031080efaf6a5cbcf29c38fe537cc25b0"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-system-interface.cc",
+        "bytes": 18552,
+        "sha256": "a16a9a04e8f6daddf1aa7c63586ae97bef749c4c4db7e9c3bff9d26f0e661f15"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/platform/rmlui-text-input.cc",
+        "bytes": 20049,
+        "sha256": "825da5840dbaec1d97cc2034b0a31ebce574282c26942d27dfe356539b8c23a5"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/runtime/rmlui-context.cc",
+        "bytes": 12138,
+        "sha256": "7daee08a81de4bac84f2de51ea94ea6d336923d4433308b89b787b248ccc169d"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/native/runtime/rmlui-state.cc",
+        "bytes": 29565,
+        "sha256": "cb9ca4b6d1a3f62c36036bfbffde972f21cb58c51a275f92bada4267d051f5b1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/package.json",
+        "bytes": 3312,
+        "sha256": "5a3cb9d29c771d3083fe9bd30c337650592d26fb08c6608fe473714bae49c6fc"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/src/platform/text-input-context.ts",
+        "bytes": 11309,
+        "sha256": "41d9457bbb37802e544b796bd55d68a75ae9402ea8d42d1755ff8124cb0b1ac1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/events/listeners.test.cjs",
+        "bytes": 9086,
+        "sha256": "9b254e2d062419bb7bda443c2f9aae90f3284751381d61d9313f2c574dd6e4d2"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/build-cocoa-probes.py",
+        "bytes": 1490,
+        "sha256": "1464494e01137632b402b70f5b62bf34bc0f53a93c5eec2981dc0a9dfda23e4b"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/build-ime-contracts.py",
+        "bytes": 3465,
+        "sha256": "39f2212edd8e258419363d017ea753bc97870a6e668f15f8a2c1a6354143c3f1"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/caret-contracts.cc",
+        "bytes": 4050,
+        "sha256": "c3736c699da18e7c21cbf28d6ae6f2e5e5d7a0f6966e0bb86b069b92396b5494"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/cocoa-ime-contracts.mm",
+        "bytes": 15244,
+        "sha256": "6e3bdeb4089f6e0a6e519f2c2ea5242a6ad9ce327edf3658a45221c3af50ed99"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/cocoa-probes.mm",
+        "bytes": 7189,
+        "sha256": "79cfe7eaf13848b73aaa0ae8f142c1651f33e7c563cd1a04e8f6508bac54947c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/focus-allocation-contracts.mm",
+        "bytes": 6713,
+        "sha256": "4fa43fb76d1787452ac723d70153c41bfb43cd3f7c25837f73ff9d16a8d3bc20"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/focus-exception-contracts.mm",
+        "bytes": 5745,
+        "sha256": "b0b01f6c210a76d38fbc17c88fbe52f299507d214d8c8e8fb00e29c43e5f46e4"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/ime-contracts.cc",
+        "bytes": 8444,
+        "sha256": "0a4e110784dcf2223c27a77ad172cf3aa22b2af187446fce39a983d08d661a6e"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/native/platform/preserve-clipboard.mm",
+        "bytes": 2878,
+        "sha256": "e0aadc0bc441e57b4c12331105f86f430cc66d77fa2e5d9ce4f0514b219d5f00"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/ime-integration.test.cjs",
+        "bytes": 12884,
+        "sha256": "ee77599ddc01d4f2012b0d8e5f9c60be5ff9fe6a2f24c8af657ca7a21057d672"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/ime-native.test.cjs",
+        "bytes": 1282,
+        "sha256": "894bdd77e46cdcac077a354ed05f9f00d5fa57f1c549f932bead0f637db49ee4"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/input.test.cjs",
+        "bytes": 14288,
+        "sha256": "ea6c5f82aa65a96723fd51569fd6067cb4ad409c9ed4a34810fb740e2b557b0c"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/system-interface.test.cjs",
+        "bytes": 16195,
+        "sha256": "8cf990e5c85fdaa229775273016491ab81a2eec6fcea513191a7ef495612f80b"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/test/platform/text-input.test.cjs",
+        "bytes": 15469,
+        "sha256": "769f8708b2205665a4a8d6a9004565aa90b0dbd5f8698988c657290673067bec"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/TextInputContext.h",
+        "bytes": 4263,
+        "sha256": "f80ce0c4f66fd2cd431143794a6fb2a65deb83439ea9cc4889263771ab70a88f"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetTextInput.cpp",
+        "bytes": 57456,
+        "sha256": "75a2ae3ade8a573884de34ac965b6dd4d106bd856d269452862a2264386e2c60"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui-text-input.cjs",
+        "bytes": 1942,
+        "sha256": "cb4a5309f498c48c80dc276869c4d7d4abd816038c25ff5a5c097477c7f1d472"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui.cjs",
+        "bytes": 82894,
+        "sha256": "a16511f9fca63d0213d230660516da2a246b99811be1ecfd310646036ce7ba9b"
+      },
+      {
+        "path": "packages/sfml.js-rmlui/tools/testing/preserve-clipboard.cjs",
+        "bytes": 1553,
+        "sha256": "b7f599bfac6c398cce8a32db88c37a3bd561da3a87a11a7c5ee6fd35d6c9aa2f"
+      },
+      {
+        "path": "tools/configure-lsp.cjs",
+        "bytes": 4559,
+        "sha256": "4f280e21974430fe7b442b4771e68eb98e8da88b858fdc5df4af936ea5e0caab"
+      }
+    ],
+    "binary": {
+      "path": "packages/sfml.js-rmlui/build/Release/rmlui.node",
+      "bytes": 13278520,
+      "sha256": "20f9b691ec2f401644a75b9afa50271c96cb1da7f4e71990ee17c4545b0f81ba"
+    },
+    "official_application_revision_included": false
+  },
+  "observed_focused_pass": 109,
+  "runtime": [
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-native.log",
+      "bytes": 2427,
+      "sha256": "d2a9d7ea62ca5000bff8be49fc01ae850bca160cd4f93ce786ec1916a189e2ff",
+      "observed_pass": 41,
+      "observed_exit_code": 0,
+      "scenarios": [
+        "PASS UTF16 code-point ranges and surrogate boundaries",
+        "PASS native preedit replacement and final commit",
+        "PASS cancel restores replaced text and selection",
+        "PASS insertion and composition at code-point zero",
+        "PASS provisional text and maxlength-aware commit",
+        "PASS explicit replacement and unmark commit",
+        "PASS external edits invalidate stale composition",
+        "PASS disabled native widget rejects preedit and commit",
+        "PASS empty composition commit dispatches one native change",
+        "PASS sanitized and maxlength-rejected commits notify deletion",
+        "PASS invalidation rejects late native edits",
+        "PASS actual widget caret follows nested ancestor transforms",
+        "PASS render refreshes the rotated caret without a key event",
+        "PASS candidate caret uses homogeneous perspective division",
+        "PASS behind-camera caret has no candidate rectangle",
+        "PASS Cocoa preedit queue and commit at safe native entry",
+        "PASS Cocoa UTF16 replacement and whole-surrogate queries",
+        "PASS candidate screen coordinates at both surface densities",
+        "PASS Cocoa preserves projected width and hides invalid caret",
+        "PASS cancellation and exact responder restoration",
+        "PASS synthetic Cocoa keyboard routing without SFML duplicates",
+        "PASS interrupted key dispatch stops Cocoa interpretation",
+        "PASS SFML disabled key repeat is preserved",
+        "PASS queued keys follow shared-window context focus changes",
+        "PASS independent window responder ownership",
+        "PASS window close cancels and recreation gets a new adapter",
+        "PASS destruction drops pending and late Cocoa edits",
+        "PASS focus allocation 1 preserves the active Cocoa session",
+        "PASS focus allocation 2 preserves the active Cocoa session",
+        "PASS focus allocation 3 preserves the active Cocoa session",
+        "PASS focus allocation 1 preserves the active Cocoa session",
+        "PASS focus allocation 2 preserves the active Cocoa session",
+        "PASS focus allocation 3 preserves the active Cocoa session",
+        "PASS focus allocation 4 preserves the active Cocoa session",
+        "PASS focus allocation 5 preserves the active Cocoa session",
+        "PASS focus allocation 6 preserves the active Cocoa session",
+        "PASS synthetic Cocoa deactivate switch exception preserves composition and permits commit",
+        "PASS synthetic Cocoa discard switch exception preserves composition and permits commit",
+        "PASS synthetic Cocoa activate switch exception preserves composition and permits commit",
+        "PASS synthetic Cocoa deactivate blur exception preserves composition and permits commit",
+        "PASS synthetic Cocoa discard blur exception preserves composition and permits commit"
+      ]
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-text.log",
+      "bytes": 840,
+      "sha256": "b2e27f907b13da6310f027d70450acde958c845ca5e8457d125ea4e72076bddc",
+      "observed_pass": 14,
+      "observed_exit_code": 0,
+      "scenarios": [
+        "PASS native-lifecycle-journal-and-canonical-context",
+        "PASS native-unicode-editing-selection-and-composition",
+        "PASS explicit-immediate-callback-order-and-safe-reentry",
+        "PASS replacement-preserves-captured-handler-and-runtime-invalidates",
+        "PASS type-replacement-invalidates-old-context-with-new-identity",
+        "PASS owned-context-callback-cycle-collects",
+        "PASS default-journal-and-unchanged-ownership-have-measured-crossings",
+        "PASS registered-handler-survives-facade-gc-before-widget-creation",
+        "PASS callback-error-propagates-and-next-input-remains-usable",
+        "PASS composition-replacement-applies-maxlength-to-remaining-text",
+        "PASS transferred-widget-retains-original-destroy-handler",
+        "PASS transformed-detached-input-reports-failed-bounds-projection",
+        "PASS explicit-shutdown-delivers-destroy-after-native-invalidation",
+        "PASS environment-cleanup-does-not-dispatch-destroy-js"
+      ]
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-input.log",
+      "bytes": 192,
+      "sha256": "5afcac18e48923762053b5d03349d4577ace49242425bc7474728485107d11af",
+      "observed_pass": 13,
+      "observed_exit_code": 0,
+      "scenarios": [
+        "PASS constants",
+        "PASS keyboard",
+        "PASS sfml-keys",
+        "PASS unicode",
+        "PASS pointer",
+        "PASS wheel",
+        "PASS touch",
+        "PASS sfml-touch",
+        "PASS drag",
+        "PASS exceptions",
+        "PASS validation",
+        "PASS getter-lifetime",
+        "PASS sfml-validation"
+      ]
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-listeners.log",
+      "bytes": 400,
+      "sha256": "d5a40069bdffc00d76e14743f7e9a9764fae6f93f6368a1db1ccf69ccaecf829",
+      "observed_pass": 16,
+      "observed_exit_code": 0,
+      "scenarios": [
+        "PASS shared-callback",
+        "PASS wrong-capture",
+        "PASS unmatched-removal",
+        "PASS duplicate-add",
+        "PASS distinct-capture",
+        "PASS dispatch-removal",
+        "PASS callback-exception",
+        "PASS callback-mutations",
+        "PASS input-type-reentry",
+        "PASS destructive-reentry",
+        "PASS callback-release-remove",
+        "PASS callback-release-subtree",
+        "PASS callback-release-close",
+        "PASS callback-release-unload",
+        "PASS callback-release-context",
+        "PASS callback-release-shutdown"
+      ]
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-system.log",
+      "bytes": 727,
+      "sha256": "6509b6d715a0713e4cde3824e744a478cc3b42a9081569609698e822147dcf24",
+      "observed_pass": 14,
+      "observed_exit_code": 0,
+      "scenarios": [
+        "PASS native-default-clipboard-writes-utf8",
+        "PASS native-default-clipboard-reads-utf8",
+        "PASS pending-selection-and-native-default",
+        "PASS default-identity-and-shutdown",
+        "PASS setup-replacement-rejection-and-invalidation",
+        "PASS all-eight-host-hooks-use-native-virtuals",
+        "PASS native-document-translation-and-resource-path",
+        "PASS shared-clock-has-no-frame-callbacks-or-owner-scans",
+        "PASS exceptions-invalid-results-and-recursive-mutation",
+        "PASS callback-getters-captured-once-and-input-authenticity",
+        "PASS unselected-cycles-collect-and-selected-callbacks-survive",
+        "PASS retained-clock-and-wrapper-do-not-retain-shutdown-callbacks",
+        "PASS preinit-native-virtuals-and-result-accessor-reentry",
+        "PASS foreign-environment-cannot-read-or-replace-pending-interface"
+      ]
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-integration.log",
+      "bytes": 480,
+      "sha256": "c6137adf0c7bb0838ba5a6f4c1e5d4a150b9115639a971f6aaabf20fa96888cb",
+      "observed_pass": 11,
+      "observed_exit_code": 0,
+      "scenarios": [
+        "PASS cocoa-exception-restores-deferred-input",
+        "PASS event-source-collected-after-discard",
+        "PASS closing-window-releases-unpolled-sources",
+        "PASS native-stream-and-independent-copies",
+        "PASS native-events-before-focus-remain-independent",
+        "PASS native-text-without-key-and-wait-event",
+        "PASS mutated-native-key-is-independent",
+        "PASS discarded-native-key-does-not-consume-synthetic",
+        "PASS shared-window-active-caret",
+        "PASS destroyed-widget-rejects-retained-client",
+        "PASS runtime-restart-rejects-old-client"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-sfml-build.log",
+      "bytes": 2198,
+      "sha256": "2544e2bd2cde909c3435bc89cc53a4fbfd9dab0d1096d54613736aebed98a797",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-core-build.log",
+      "bytes": 104,
+      "sha256": "bfd10c5e3344d026aaead781c8dee1ead6325737af15934dcd93338d41b463ce",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-build.log",
+      "bytes": 5088,
+      "sha256": "dd5581743fc97a99f4c5aa708aeb5b3afdc2b0c6ba7776d2140a780db531f7a5",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-format.log",
+      "bytes": 40,
+      "sha256": "4eb069aa10c6dce8c7bc116a535f151f8d5a7162ab2c200d1553680e94241ce2",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-fixture-format.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-cpplint.log",
+      "bytes": 1129,
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-fixture-cpplint.log",
+      "bytes": 767,
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-interop-style.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-naming.log",
+      "bytes": 2119,
+      "sha256": "23a71df042ac621605ce28f0f1a0339751afe7a68db98d55f26f29cad47acfca",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-compile-database.log",
+      "bytes": 94,
+      "sha256": "76ef82098280520a71863181c321104e219ba1c3c8aa81454889c15799668b7a",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-compile-coverage.log",
+      "bytes": 80,
+      "sha256": "4313e604f2ad8b724aa01fc3afb162e1c7e39ae2c956877831673de5ea51d786",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-lint.log",
+      "bytes": 76,
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-ts.log",
+      "bytes": 640,
+      "sha256": "e427fc2977f277cc76a88a59d3f6f49b3c8cc8e5b105effd5ed7f810e1aba27c",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-types.log",
+      "bytes": 63,
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-transaction-comments.log",
+      "bytes": 742,
+      "sha256": "e4ee83d03d9f5bd65d622ac3bf8f33ec3556302d95862d3afeb59742b49e4644",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-retina.log",
+      "bytes": 384,
+      "sha256": "1da84c0a8b1a093bf9699b225692fbaaf181f60a7a13130633f31de40c7752a7",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-provenance-window.log",
+      "bytes": 6965,
+      "sha256": "e5373656a559b7adcf26a55e2f937e7c9b9a2f534e5b72c4a5d022390601e70f",
+      "observed_exit_code": 0
+    }
+  ],
+  "sources": [
+    {
+      "path": "packages/sfml.js/native/window-binding.cc",
+      "bytes": 15290,
+      "sha256": "afa95a8d978035e2791bdbf40d04b2f537acc27728a9175d54ddc931df746dfb"
+    },
+    {
+      "path": "packages/sfml.js/src/window/event.ts",
+      "bytes": 19850,
+      "sha256": "432710efc338d6bd577bee9f163ce16e3ff345b76d8232189837f4d04a1cd492"
+    },
+    {
+      "path": "packages/sfml.js-interop/include/sfml-js-interop.h",
+      "bytes": 1904,
+      "sha256": "51dec5f3bbd0b32a5934c9b5abce36785d4806ed89902667055488356b18515d"
+    },
+    {
+      "path": "packages/sfml.js-interop/include/window-event-source.h",
+      "bytes": 5493,
+      "sha256": "b337dbe0520524c98640d02789a958e4ebe2b8af432d519e0d6dadf2ad11730c"
+    },
+    {
+      "path": "packages/sfml.js-interop/tools/lib_downloader_macos.cjs",
+      "bytes": 5116,
+      "sha256": "359b7d5eca32e3ea9d3f2a2baeadffd51b3b54f2f168b7eefe34a6cff5ba9efd"
+    },
+    {
+      "path": "packages/sfml.js-interop/tools/patches/sfml-macos-event-source.patch",
+      "bytes": 4714,
+      "sha256": "e7b3db2dd07e07baf7a4621a4b964e947f2a4d411d58375a08f326b2ef6a6fec"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/binding.gyp",
+      "bytes": 13936,
+      "sha256": "94ab19b1dc47890de955d63bc5a2f728f757e9a84ad7bf2a53979e10761a2511"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/caret-bounds.h",
+      "bytes": 2378,
+      "sha256": "b7a2289ad2ecdd6c306c12ebee1387833828410808cf976d9d2a37a0e2c747ca"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-client.h",
+      "bytes": 2622,
+      "sha256": "5234b5eb2af34b7a0b2e240eb7219bb5c118fc59e3bbb50c5cf65dfb8e63934d"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-commands.mm",
+      "bytes": 3570,
+      "sha256": "fd15d5f61986e478029637a978752714699dc21bc0d7d949192f4838d3898f0a"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-editing.mm",
+      "bytes": 7801,
+      "sha256": "4124361ffc644e46fc9262a39e19bd83bee295184b15664cda128bd5bc04674c"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-events.mm",
+      "bytes": 11071,
+      "sha256": "c272d526671f6da71cf50582453f262732069af183a2d43a4a03ea80e66dd961"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-focus.mm",
+      "bytes": 3230,
+      "sha256": "061a90ff0d08882f9224e7c4e18399f4f93eab9783ad2ed8d04bd8537c3784d5"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/macos-text-input-snapshot.h",
+      "bytes": 876,
+      "sha256": "78b589738bb56c28294c23208cc13eee4087ba4dc86b5f4245cdb0cb069615e1"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/native-text-input.h",
+      "bytes": 1359,
+      "sha256": "d9a3fe9cd373715c5611bf4db2b4a7836ca153925461e43d366f4fd870da0740"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/platform-text-input.cc",
+      "bytes": 4915,
+      "sha256": "b5b0d4ba0e80065aa118691ff41054d030a6438b4db320baf5e0b4151ab3a5c7"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/platform-text-input.h",
+      "bytes": 1313,
+      "sha256": "5e173157a856e86cbddf9d7b3e8bfa0cb28322815382a3048251f1ffe0eb20be"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/text-input-session.cc",
+      "bytes": 5323,
+      "sha256": "39651a711d0daa1352fa81b93129eb66593cc0994050478f1aa07546a604dc9e"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/text-input-session.h",
+      "bytes": 1880,
+      "sha256": "8d149320da4914ce21007afdc7b330c6cd8539160615d56cc01f27a35adab947"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/unicode-ranges.cc",
+      "bytes": 1728,
+      "sha256": "1a876df5abdbe046a5d39cc6ee0bc96a7cf123133730e026238bf96bc01d759c"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/ime/unicode-ranges.h",
+      "bytes": 897,
+      "sha256": "35d316595ffbd3deea11f84e0b21841da7e9982b844cc76aef646090f860ef48"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/rmlui-platform-sfml.cc",
+      "bytes": 9639,
+      "sha256": "b11592e96f8dd4a2d7824efa71b38d801efb806b46e3729a5c6c02d1e52c9605"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/rmlui-platform-sfml.h",
+      "bytes": 965,
+      "sha256": "4c1456f2bdadaae6b66a1bdd6c4358b031080efaf6a5cbcf29c38fe537cc25b0"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/rmlui-system-interface.cc",
+      "bytes": 18552,
+      "sha256": "a16a9a04e8f6daddf1aa7c63586ae97bef749c4c4db7e9c3bff9d26f0e661f15"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/platform/rmlui-text-input.cc",
+      "bytes": 20049,
+      "sha256": "825da5840dbaec1d97cc2034b0a31ebce574282c26942d27dfe356539b8c23a5"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/runtime/rmlui-context.cc",
+      "bytes": 12138,
+      "sha256": "7daee08a81de4bac84f2de51ea94ea6d336923d4433308b89b787b248ccc169d"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/native/runtime/rmlui-state.cc",
+      "bytes": 29565,
+      "sha256": "cb9ca4b6d1a3f62c36036bfbffde972f21cb58c51a275f92bada4267d051f5b1"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/package.json",
+      "bytes": 3312,
+      "sha256": "5a3cb9d29c771d3083fe9bd30c337650592d26fb08c6608fe473714bae49c6fc"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/src/platform/text-input-context.ts",
+      "bytes": 11309,
+      "sha256": "41d9457bbb37802e544b796bd55d68a75ae9402ea8d42d1755ff8124cb0b1ac1"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/events/listeners.test.cjs",
+      "bytes": 9086,
+      "sha256": "9b254e2d062419bb7bda443c2f9aae90f3284751381d61d9313f2c574dd6e4d2"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/build-cocoa-probes.py",
+      "bytes": 1490,
+      "sha256": "1464494e01137632b402b70f5b62bf34bc0f53a93c5eec2981dc0a9dfda23e4b"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/build-ime-contracts.py",
+      "bytes": 3465,
+      "sha256": "39f2212edd8e258419363d017ea753bc97870a6e668f15f8a2c1a6354143c3f1"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/caret-contracts.cc",
+      "bytes": 4050,
+      "sha256": "c3736c699da18e7c21cbf28d6ae6f2e5e5d7a0f6966e0bb86b069b92396b5494"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/cocoa-ime-contracts.mm",
+      "bytes": 15244,
+      "sha256": "6e3bdeb4089f6e0a6e519f2c2ea5242a6ad9ce327edf3658a45221c3af50ed99"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/cocoa-probes.mm",
+      "bytes": 7189,
+      "sha256": "79cfe7eaf13848b73aaa0ae8f142c1651f33e7c563cd1a04e8f6508bac54947c"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/focus-allocation-contracts.mm",
+      "bytes": 6713,
+      "sha256": "4fa43fb76d1787452ac723d70153c41bfb43cd3f7c25837f73ff9d16a8d3bc20"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/focus-exception-contracts.mm",
+      "bytes": 5745,
+      "sha256": "b0b01f6c210a76d38fbc17c88fbe52f299507d214d8c8e8fb00e29c43e5f46e4"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/ime-contracts.cc",
+      "bytes": 8444,
+      "sha256": "0a4e110784dcf2223c27a77ad172cf3aa22b2af187446fce39a983d08d661a6e"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/native/platform/preserve-clipboard.mm",
+      "bytes": 2878,
+      "sha256": "e0aadc0bc441e57b4c12331105f86f430cc66d77fa2e5d9ce4f0514b219d5f00"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/platform/ime-integration.test.cjs",
+      "bytes": 12884,
+      "sha256": "ee77599ddc01d4f2012b0d8e5f9c60be5ff9fe6a2f24c8af657ca7a21057d672"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/platform/ime-native.test.cjs",
+      "bytes": 1282,
+      "sha256": "894bdd77e46cdcac077a354ed05f9f00d5fa57f1c549f932bead0f637db49ee4"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/platform/input.test.cjs",
+      "bytes": 14288,
+      "sha256": "ea6c5f82aa65a96723fd51569fd6067cb4ad409c9ed4a34810fb740e2b557b0c"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/platform/system-interface.test.cjs",
+      "bytes": 16195,
+      "sha256": "8cf990e5c85fdaa229775273016491ab81a2eec6fcea513191a7ef495612f80b"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/test/platform/text-input.test.cjs",
+      "bytes": 15469,
+      "sha256": "769f8708b2205665a4a8d6a9004565aa90b0dbd5f8698988c657290673067bec"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/TextInputContext.h",
+      "bytes": 4263,
+      "sha256": "f80ce0c4f66fd2cd431143794a6fb2a65deb83439ea9cc4889263771ab70a88f"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetTextInput.cpp",
+      "bytes": 57456,
+      "sha256": "75a2ae3ade8a573884de34ac965b6dd4d106bd856d269452862a2264386e2c60"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui-text-input.cjs",
+      "bytes": 1942,
+      "sha256": "cb4a5309f498c48c80dc276869c4d7d4abd816038c25ff5a5c097477c7f1d472"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui.cjs",
+      "bytes": 82894,
+      "sha256": "a16511f9fca63d0213d230660516da2a246b99811be1ecfd310646036ce7ba9b"
+    },
+    {
+      "path": "packages/sfml.js-rmlui/tools/testing/preserve-clipboard.cjs",
+      "bytes": 1553,
+      "sha256": "b7f599bfac6c398cce8a32db88c37a3bd561da3a87a11a7c5ee6fd35d6c9aa2f"
+    },
+    {
+      "path": "tools/configure-lsp.cjs",
+      "bytes": 4559,
+      "sha256": "4f280e21974430fe7b442b4771e68eb98e8da88b858fdc5df4af936ea5e0caab"
+    }
+  ],
+  "binary": {
+    "path": "packages/sfml.js-rmlui/build/Release/rmlui.node",
+    "bytes": 13278520,
+    "sha256": "20f9b691ec2f401644a75b9afa50271c96cb1da7f4e71990ee17c4545b0f81ba"
+  },
+  "core_binary": {
+    "path": "packages/sfml.js/build/Release/sfml.node",
+    "bytes": 2243192,
+    "sha256": "d4bd6ae344c901bcdd57fdb2bc8a66f90c3084b405a46b6e24d77792245c16da"
+  },
+  "sfml_window_binary": {
+    "path": "packages/sfml.js-interop/third_party/sfml/lib/libsfml-window.3.1.0.dylib",
+    "bytes": 294408,
+    "sha256": "3a3b9c624c7f8b689a281a66b0d0efae1a0fe54f28daccfb94699865b723751e"
+  },
+  "integration_probe_binary": {
+    "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-ime-contracts/cocoa-probes.node",
+    "bytes": 92976,
+    "sha256": "6bda6711d33bab3879546083e25c213bb6ea4428b0479e1397fa39ab6a301dd9"
+  },
+  "guard_mutation": {
+    "path": "/tmp/rmlui-63-completion/ime-caret-integration-mutation-red.log",
+    "bytes": 1485,
+    "sha256": "10c2100f4af0ca92da547bf85bb86ecc9f49f98b48f2ac59445651a1fc3e3b2b",
+    "observed_exit_code": 1,
+    "production_guard_restored": true,
+    "green_log": "ime-focus-transaction-integration.log"
+  },
+  "resolved_regressions": [
+    {
+      "path": "/tmp/rmlui-63-completion/ime-synthetic-key-red.log",
+      "bytes": 1128,
+      "sha256": "8d42e49ceae4dc9860a982f5b3b9af4cf571e77816eeae977e20ac0afc4008ad",
+      "observed_exit_code": 1,
+      "actual_keydown_count": 1,
+      "expected_keydown_count": 2,
+      "trigger": "Discard polled Cocoa events, update, then submit a synthetic key with the same value",
+      "reproducer": {
+        "path": "/tmp/rmlui-63-completion/ime-synthetic-key-red.cjs",
+        "bytes": 1809,
+        "sha256": "714f55de214c6c040cf6243837a2fb82a05d81593bd0cf6d45155a3b4725503b"
+      },
+      "green_log": "ime-provenance-integration-final.log",
+      "fix": "Exact queue-entry source and private native snapshot owner"
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-allocation-red.log",
+      "bytes": 20304,
+      "sha256": "6655cf12203abcae163dc156da842050e0cd6c794a1838147cc13add311d05aa",
+      "observed_exit_code": 1,
+      "trigger": "Fail allocation while switching the native input session",
+      "green_log": "ime-focus-transaction-native.log",
+      "fix": "Construct the new session and widget snapshot before deactivating the previous session"
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-allocation-third-red.log",
+      "bytes": 19437,
+      "sha256": "a9abe652c397ee8841bf6b341debd0c62682d448de44819a768ba2a9a3c7c03e",
+      "observed_exit_code": 1,
+      "trigger": "Fail the Cocoa UTF-16 snapshot allocation during focus replacement",
+      "green_log": "ime-focus-transaction-native.log",
+      "fix": "Prepare owned Cocoa text and ranges before replacing the adapter session or publishing the registry entry"
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-long-cancellation-red.log",
+      "bytes": 19662,
+      "sha256": "3b85420653f5c5a3ea67f9ecee06b5db5f4a48d851dcd9773d40d0f9dd14fba2",
+      "observed_exit_code": 1,
+      "trigger": "Fail cancellation's snapshot allocation for the long previous widget",
+      "green_log": "ime-focus-transaction-native.log",
+      "fix": "Restore accepting state, retained Cocoa snapshot and the previous responder if focus cancellation fails"
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/ime-focus-cocoa-exception-protocol-red.log",
+      "bytes": 21319,
+      "sha256": "0cec06ec59c5fdd9edd86b97dba300692a21a8d06e5a6d9cdc2ddcc5c11b25c3",
+      "observed_exit_code": 1,
+      "trigger": "NSTextInputContext deactivation throws while changing registered platform focus",
+      "green_log": "ime-focus-transaction-native.log",
+      "fix": "Stage Cocoa operations before native composition cancellation; roll back text/session/responders before propagating failure",
+      "synthetic_api_evidence": true,
+      "physical_input_method_evidence": false
+    }
+  ],
+  "unresolved_regressions": [],
+  "whole_naming_gate": {
+    "path": "/tmp/rmlui-63-completion/native-naming-macos-sdk.log",
+    "bytes": 52,
+    "sha256": "809116a62098474f51192676ce2803a6088f247e5b8c95fb1475579ac1b63c85",
+    "observed_exit_code": 0,
+    "observed_compilation_units": 234,
+    "current_focus_transaction_revision": false,
+    "toolchain_wrapper": {
+      "path": "/tmp/rmlui-63-completion/clang-tidy-macos",
+      "bytes": 466,
+      "sha256": "e6bee811edbb6bed3af5d96537d2ab7c0dc40add8638a1d9cf22f627ea941418"
+    },
+    "command": "CLANG_TIDY=/tmp/rmlui-63-completion/clang-tidy-macos node tools/check-native-style.cjs naming"
+  },
+  "physical_observation": {
+    "accepted": false,
+    "input_method_changed": false,
+    "reason": "Desktop tool returned no window screenshot; native window capture failed and full-screen capture is black. No candidate visibility or position can be asserted.",
+    "harness": {
+      "path": "/tmp/rmlui-63-completion/physical-ime.cjs",
+      "bytes": 4401,
+      "sha256": "d0533f11dcabb59a8fe2e15418864d4872ea72a5a9d312bada74de4e55531585"
+    },
+    "events": {
+      "path": "/tmp/rmlui-63-completion/physical-ime-events.jsonl",
+      "bytes": 150,
+      "sha256": "7296c1ad40b7e17229a45d06f978358ccfb9dcc96c87a8abea323fbd405d379c"
+    },
+    "desktop_capture": {
+      "path": "/tmp/rmlui-63-completion/physical-ime-desktop.png",
+      "bytes": 151533,
+      "sha256": "9d4e989876dc00d43a88ab9e65e88c62953c96e693ad21b3dd6312c643003a53"
+    }
+  },
+  "pending": [
+    "Physical macOS input method and displayed candidate window",
+    "Physical candidate placement for transformed and scrolling widgets",
+    "Native allocation/reentry/lifecycle review beyond prepared Cocoa snapshots and long previous-widget cancellation",
+    "Non-macOS native IME adapter",
+    "Independent renderer acceptance and full application-revision runtime",
+    "20 official applications and 113 VisualTests pages",
+    "Site/editor/package/CI and independent whole acceptance"
+  ]
+}

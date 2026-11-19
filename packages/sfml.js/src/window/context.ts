@@ -34,6 +34,7 @@ function remember(key: bigint, context: Context): void {
  * @ko 네이티브 측이 소유한 OpenGL 컨텍스트. 활성화는 네이티브 스레드별로 유지된다.
  */
 export class Context {
+  /** Native OpenGL context capability. @internal */
   readonly [graphicsNative]: NativeContextMapping['handle'];
   private readonly settings: Readonly<Required<ContextSettings>>;
 

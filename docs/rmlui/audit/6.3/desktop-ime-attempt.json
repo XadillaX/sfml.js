@@ -1,0 +1,378 @@
+{
+  "platform": "darwin-arm64",
+  "accepted": true,
+  "accepted_by_user": true,
+  "acceptance_basis": "User decision, not a claim that all desktop checks passed",
+  "user_decision": "你就当它完成了吧",
+  "waived_desktop_checks": [
+    "Reliable fresh-process repeats",
+    "Hardware keyboard input",
+    "Candidate panel visibility and placement"
+  ],
+  "status": "Closed by user acceptance; actual verification results retained",
+  "scope": "Observed macOS system IME behavior through built production addons",
+  "historical_unfocused_attempt": "desktop-ime-initial-attempt.json",
+  "actual_engine_preedit_observed": true,
+  "actual_engine_chinese_commit_observed": true,
+  "actual_engine_cancel_observed": true,
+  "actual_window_focus_rollback_observed": true,
+  "scrolled_caret_coordinates_observed": true,
+  "transformed_caret_coordinates_observed": true,
+  "reliable_fresh_process_repeat_verified": false,
+  "physical_keyboard_verified": false,
+  "candidate_window_observed": false,
+  "candidate_window_placement_verified": false,
+  "linux_execution_verified": false,
+  "windows_execution_verified": false,
+  "root_cause_established": false,
+  "input_delivery": "OS key events from Computer Use, not hardware keyboard",
+  "selected_input_source": "com.sogou.inputmethod.sogou.pinyin",
+  "observed_commit": "你",
+  "sfml_text_duplicates_in_successful_run": 0,
+  "observations": {
+    "preedit": {
+      "time": "2026-11-19T11:22:03.747Z",
+      "type": "state",
+      "values": [
+        "ni",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        514.5,
+        665.3999938964844,
+        0.5,
+        31
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": true,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "commit": {
+      "time": "2026-11-19T11:22:47.589Z",
+      "type": "state",
+      "values": [
+        "你",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        520,
+        665.3999938964844,
+        0.5,
+        31
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": false,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "escape_cancel": {
+      "time": "2026-11-19T11:23:09.127Z",
+      "type": "state",
+      "values": [
+        "你",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        520,
+        665.3999938964844,
+        0.5,
+        31
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": false,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "before_scroll": {
+      "time": "2026-11-19T11:23:39.392Z",
+      "type": "state",
+      "values": [
+        "你ni",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        540.5,
+        665.3999938964844,
+        0.5,
+        31
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": true,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "after_scroll": {
+      "time": "2026-11-19T11:23:40.725Z",
+      "type": "state",
+      "values": [
+        "你ni",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        540.5,
+        715.3999938964844,
+        0.5,
+        31
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": true,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "after_transform": {
+      "time": "2026-11-19T11:23:41.966Z",
+      "type": "state",
+      "values": [
+        "你ni",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        601.6726379394531,
+        737.0998382568359,
+        4.80950927734375,
+        30.767913818359375
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": true,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "outside_click_rollback": {
+      "time": "2026-11-19T11:24:03.808Z",
+      "type": "state",
+      "values": [
+        "你",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        581.3721618652344,
+        739.9528961181641,
+        4.8094940185546875,
+        30.767898559570312
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": false,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "window_focus_loss": {
+      "time": "2026-11-19T11:24:30.918Z",
+      "type": "state",
+      "values": [
+        "你",
+        ""
+      ],
+      "nativeFocus": false,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        581.3721618652344,
+        739.9528961181641,
+        4.8094940185546875,
+        30.767898559570312
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": false,
+        "current": false,
+        "allowedLocales": ""
+      }
+    },
+    "window_focus_recovery": {
+      "time": "2026-11-19T11:24:32.353Z",
+      "type": "state",
+      "values": [
+        "你",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        581.3721618652344,
+        739.9528961181641,
+        4.8094940185546875,
+        30.767898559570312
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": false,
+        "current": true,
+        "allowedLocales": ""
+      }
+    },
+    "native_reference_commit": {
+      "characters": "",
+      "clientWindow": 1024861,
+      "systemSource": "com.sogou.inputmethod.sogou.pinyin",
+      "current": true,
+      "active": true,
+      "eventType": 0,
+      "time": 1795086629.3785748,
+      "stage": "insertText",
+      "keyWindow": 1024861,
+      "value": "你",
+      "modifiers": 0,
+      "keyCode": 0,
+      "selected": "com.sogou.inputmethod.sogou.pinyin",
+      "firstResponder": "SFMLRmlTraceNativeReference",
+      "marked": true
+    },
+    "native_reference_english_fallback": {
+      "characters": "",
+      "clientWindow": 1025067,
+      "systemSource": "com.sogou.inputmethod.sogou.pinyin",
+      "current": true,
+      "active": true,
+      "eventType": 0,
+      "time": 1795087015.8536038,
+      "stage": "insertText",
+      "keyWindow": 1025067,
+      "value": "n",
+      "modifiers": 0,
+      "keyCode": 0,
+      "selected": "com.sogou.inputmethod.sogou.pinyin",
+      "firstResponder": "SFMLRmlTraceNativeReference",
+      "marked": false
+    },
+    "unmodified_client_repeat_failure": {
+      "time": "2026-11-19T11:29:57.676Z",
+      "type": "state",
+      "values": [
+        "ni",
+        ""
+      ],
+      "nativeFocus": true,
+      "elementFocus": "first",
+      "inputBounds": null,
+      "selection": null,
+      "candidateRect": [
+        514.5,
+        665.3999938964844,
+        0.5,
+        31
+      ],
+      "nativeInput": {
+        "selected": "com.sogou.inputmethod.sogou.pinyin",
+        "marked": false,
+        "current": true,
+        "allowedLocales": ""
+      }
+    }
+  },
+  "source_restoration_closed_runs": {
+    "application_control": {
+      "selected": "com.apple.keylayout.ABC",
+      "before_after_byte_identical": true,
+      "before_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231",
+      "after_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231"
+    },
+    "production_observer": {
+      "selected": "com.apple.keylayout.ABC",
+      "before_after_byte_identical": true,
+      "before_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231",
+      "after_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231"
+    },
+    "source_selector_observer": {
+      "selected": "com.apple.keylayout.ABC",
+      "before_after_byte_identical": true,
+      "before_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231",
+      "after_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231"
+    }
+  },
+  "current_hardware_observer": {
+    "pid": 29437,
+    "watchdog_ms": 900000,
+    "started": "2026-11-19T11:33:05.849Z",
+    "events": "/tmp/rmlui-63-completion/physical-ime-os-events.jsonl",
+    "status": "Stopped",
+    "stopped": "2026-11-19T11:46:47.894Z",
+    "timed_out": false,
+    "restoration": "Verified original ABC source and unchanged enabled inventory after exit",
+    "before_after_inventory_byte_identical": true,
+    "inventory_sha256": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231",
+    "events_sha256": "2cbd7c0a06b4e982c0e8deb51fb8883cc319897ddab7c31b00eedecb41e72155"
+  },
+  "verification": {
+    "native_contracts": 73,
+    "interop_runtime_tests": 13,
+    "full_package_command": "npm_config_jobs=4 npm test",
+    "full_package_exit_code": 0,
+    "full_package_pass_markers": 1601,
+    "full_package_fail_markers": 0,
+    "full_package_rerun_this_diagnostic_stage": false
+  },
+  "image": "../../assets/system-ime-macos-commit.png",
+  "image_scope": "Successful observed commit; not a reliability acceptance",
+  "sha256": {
+    "/tmp/rmlui-63-completion/physical-ime-context-source-events.jsonl": "7651071bdbc2a49deb8d60c45ab4e113d7a0b046fcf1954c1cb4d66befff21f0",
+    "/tmp/rmlui-63-completion/physical-ime-app-native.jsonl": "cdad4b6212c770164e8f0e48413eb4a4f2bef0c9ba7db0c87a8d439572519a86",
+    "/tmp/rmlui-63-completion/physical-ime-timing-native.jsonl": "ed1790fa776935e3f47fc435c5bc837fdba19df3fd60ad38a27a4b5e3eb73cd9",
+    "/tmp/rmlui-63-completion/physical-ime-menu-events.jsonl": "3572c0c4dcbb44ccf6386d5970d10d5f3dd183b1bfd1ebce0615837d40ee32d7",
+    "/tmp/rmlui-63-completion/physical-ime-production-events.jsonl": "8f2814ab3c89385a3941c6974b420d1b798ddbfb42523fcb519db841ed7d929c",
+    "/tmp/rmlui-63-completion/empty-preedit-red.log": "8a4e4f7099c7f6a3d47f43ae800eb4d48d124c9ec7280ae90d6a17e25d7d8d20",
+    "/tmp/rmlui-63-completion/empty-preedit-green-final.log": "20d5ca344cee2f35f49679ae6b972179c9a55c311be4c3d164ec440fb7b835d2",
+    "/tmp/rmlui-63-completion/desktop-ime-interop-runtime.log": "bb7992ba466373c3e75d1c10ddc42adfbc603453b806113d5bb8cfb992c05f00",
+    "/tmp/rmlui-63-completion/desktop-ime-final-npm-test.log": "a9bdad6db4efb16782caf458c63e3c47d9dceb49ed5ee778e4d869372e5dca9e",
+    "docs/rmlui/assets/system-ime-macos-commit.png": "9fc49512fed3d491c51d077a08314e585219cbb006f316b84e2f08d915f45d1c",
+    "packages/sfml.js-rmlui/build/Release/rmlui.node": "b41588ddd8ca0a3079a4a7de9c7bea03c6b1414dc11ec2b1c03e32dd27014eca",
+    "packages/sfml.js-rmlui/native/platform/ime/macos/text-input-editing.mm": "7f37e7ac5e948940b0533b32862e7b92ccd2bac2a32277ab37c75dad1cfef690",
+    "packages/sfml.js-rmlui/native/platform/ime/macos/text-input-events.mm": "e108097e618baf027a30b391c8249232989f84b583655488dca89ccd5fd19e7e",
+    "packages/sfml.js-interop/tools/patches/sfml-macos-text-owner.patch": "d01cca1d5d472aeeeb88e04ece311ab3812753c135bbe5594fcf2692032c73d2"
+  },
+  "limits": [
+    "A successful engine observation is not stable full IME acceptance.",
+    "The successful traced client logs existing methods without changing their behavior; the later observer does not override the client.",
+    "Both global TIS source selection and input-context source selection have produced English-only responses during controlled attempts.",
+    "Synchronous key processing did not establish a repair; the native reference also later produced English with Sogou selected.",
+    "Source identity, key-window focus, and current-input-context identity do not establish the engine's actual Chinese conversion mode.",
+    "System source changes were observed between automated operations; their origin was not established.",
+    "The timed CGEventPostToPid attempt logged intended keys but delivered no native key events and is excluded from engine conclusions.",
+    "The app screenshot does not capture the independently owned candidate panel."
+  ]
+}

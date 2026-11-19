@@ -1,0 +1,621 @@
+{
+  "scope": "Native Mesh.resize destination storage",
+  "scope_complete": false,
+  "independent_review_completed": false,
+  "platform": "macos-arm64",
+  "inventory": {
+    "bytes": 690451,
+    "sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13"
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/rendering/rmlui-mesh.cc": {
+      "bytes": 7901,
+      "sha256": "3ed8ba7b99d2d300a9ff5e345adf68bbf99f8c444cb34f0993f59b88e83e669a"
+    },
+    "packages/sfml.js-rmlui/src/rendering/mesh.ts": {
+      "bytes": 11266,
+      "sha256": "80cd26c110477635902c86b57105e31aa99306d51be72a012d75e95c45bf514e"
+    },
+    "packages/sfml.js-rmlui/test/rendering/mesh.test.cjs": {
+      "bytes": 5772,
+      "sha256": "5c4ea9f2f6b85ce89bbfbd548b89608fe1e59108a30a7320d8d95770ec0feb45"
+    },
+    "packages/sfml.js-rmlui/test/runtime/mesh-resize-performance.test.cjs": {
+      "bytes": 1532,
+      "sha256": "542a4e11c9959297fe35825bf51088f20a9b7a2b735136e906628c1e08e1afa2"
+    },
+    "packages/sfml.js-rmlui/test/rendering/geometry.test.cjs": {
+      "bytes": 20775,
+      "sha256": "3d7a2f1719f6ddf196caab0090fa7bcea19083baeb427bf0e5c3557b128a2adc"
+    },
+    "packages/sfml.js-rmlui/test/rendering/mesh-utilities.test.cjs": {
+      "bytes": 6970,
+      "sha256": "28d745c95e6e46cb5e00c7154b8bb93ea017732c69816810ad26cd9ef83d7b4d"
+    },
+    "packages/sfml.js-rmlui/test/runtime/utility-performance.test.cjs": {
+      "bytes": 3020,
+      "sha256": "fff3cb9c984d412c19222b6d49dfeda2991c26668d495489ef18fdbe7e82e22c"
+    },
+    "packages/sfml.js-rmlui/tools/performance/measure-mesh-resize.cjs": {
+      "bytes": 2444,
+      "sha256": "a1151942d391149b1626acc8fe48d16de3c5f686931391a7442f58fbb17fb07d"
+    }
+  },
+  "native_binary": {
+    "path": "packages/sfml.js-rmlui/build/Release/rmlui.node",
+    "bytes": 13084328,
+    "sha256": "0335ce2d4c9bebdd3c01f73b719c9cd0154ff51f7128b0e3fe08d926ce67151a"
+  },
+  "check_logs": {
+    "/tmp/rmlui-63-completion/mesh-resize-native-build-1.log": {
+      "bytes": 7935,
+      "sha256": "c4d510cd506eec8eac7b88d046e37af3633241409c38d04826330d093092604f",
+      "observed_exit_code": 0,
+      "literal_pass_count": 0
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-native-build-2.log": {
+      "bytes": 7934,
+      "sha256": "b9a8736f9e593ba5289a3777460a49e3f3c0d902d081346fc28b8a3f9b0482f3",
+      "observed_exit_code": 0,
+      "literal_pass_count": 0
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-performance-red-2.log": {
+      "bytes": 992,
+      "sha256": "fbe8137d9b1623898a485b4f8aed29be551598e0177a9669843d4a155aeca6c5",
+      "observed_exit_code": 1,
+      "literal_pass_count": 0
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-semantics-red-1.log": {
+      "bytes": 430,
+      "sha256": "6a7db5d6f770176a52605cfcce6e41554cf8de0d7142a2c3f44b700be438aecf",
+      "observed_exit_code": 0,
+      "literal_pass_count": 7
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-performance-green-1.log": {
+      "bytes": 168,
+      "sha256": "fe5e5989ba1e5435c71b3ad5af145e3d4816cf6d8f755124432dc47ca7ec3249",
+      "observed_exit_code": 0,
+      "literal_pass_count": 2
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-semantics-green-1.log": {
+      "bytes": 430,
+      "sha256": "6a7db5d6f770176a52605cfcce6e41554cf8de0d7142a2c3f44b700be438aecf",
+      "observed_exit_code": 0,
+      "literal_pass_count": 7
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-geometry-1.log": {
+      "bytes": 563,
+      "sha256": "b7d62b472ddbff49d147c771b6ec76b69fd8000a429d268a86ae019f314f0adc",
+      "observed_exit_code": 0,
+      "literal_pass_count": 12
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-utilities-1.log": {
+      "bytes": 404,
+      "sha256": "180240a5c359dffb5592bcfb779e7487b65e5bd086de5222e8797effc2e46ec8",
+      "observed_exit_code": 0,
+      "literal_pass_count": 7
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-utility-performance-1.log": {
+      "bytes": 254,
+      "sha256": "f9ddeb88644fb85f9c1727c63169cdaf1ff2973e9fd8b2b0a5f2146255393ab9",
+      "observed_exit_code": 0,
+      "literal_pass_count": 4
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-lint-2.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_exit_code": 0,
+      "literal_pass_count": 0
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-cpplint-1.log": {
+      "bytes": 1039,
+      "sha256": "7d9dd9e0810f662312d87fe80f0e9d68662642fe0b31c055f436e747014d7ef2",
+      "observed_exit_code": 0,
+      "literal_pass_count": 0
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-format-2.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_exit_code": 0,
+      "literal_pass_count": 0
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-naming-1.log": {
+      "bytes": 256,
+      "sha256": "5af0d2ca6aef0bad1b48395f43daa761f2269a85c2d85219e05c8785fee0e814",
+      "observed_exit_code": 0,
+      "literal_pass_count": 1
+    }
+  },
+  "measurement_logs": {
+    "/tmp/rmlui-63-completion/mesh-resize-allocations-baseline-1.log": {
+      "bytes": 5189,
+      "sha256": "3d5ac18030ee2eff5cd56b24c47d4c168d5029858ebdacaef4eaa6509b637b31"
+    },
+    "/tmp/rmlui-63-completion/mesh-resize-allocations-green-1.log": {
+      "bytes": 7450,
+      "sha256": "bac97f3e12b0b8f1b23c4883aebc965767c5dfbaddc8d33bce99a5cfeb301eeb"
+    }
+  },
+  "baseline_samples": [
+    {
+      "previousCount": 1000,
+      "nextCount": 0,
+      "retained": false,
+      "prefixBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 36,
+      "mallocRequestedBytes": 95728,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 0,
+      "retained": true,
+      "prefixBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 32072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 3,
+      "retained": false,
+      "prefixBytes": 96,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 32072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 3,
+      "retained": true,
+      "prefixBytes": 96,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 32072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 2000,
+      "retained": false,
+      "prefixBytes": 32000,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 5,
+      "mallocRequestedBytes": 96072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 2000,
+      "retained": true,
+      "prefixBytes": 32000,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 5,
+      "mallocRequestedBytes": 96072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 0,
+      "retained": false,
+      "prefixBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 320072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 0,
+      "retained": true,
+      "prefixBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 320072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 3,
+      "retained": false,
+      "prefixBytes": 96,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 320072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 3,
+      "retained": true,
+      "prefixBytes": 96,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 320072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 20000,
+      "retained": false,
+      "prefixBytes": 320000,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 5,
+      "mallocRequestedBytes": 960072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 20000,
+      "retained": true,
+      "prefixBytes": 320000,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 5,
+      "mallocRequestedBytes": 960072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 0,
+      "retained": false,
+      "prefixBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 3200072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 0,
+      "retained": true,
+      "prefixBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 3200072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 3,
+      "retained": false,
+      "prefixBytes": 96,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 3200072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 3,
+      "retained": true,
+      "prefixBytes": 96,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 3200072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 200000,
+      "retained": false,
+      "prefixBytes": 3200000,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 5,
+      "mallocRequestedBytes": 9600072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 200000,
+      "retained": true,
+      "prefixBytes": 3200000,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "mallocAllocations": 5,
+      "mallocRequestedBytes": 9600072,
+      "mallocReallocations": 0
+    }
+  ],
+  "final_samples": [
+    {
+      "previousCount": 1000,
+      "nextCount": 0,
+      "retained": false,
+      "prefixBytes": 0,
+      "targetBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "nativeStorageAllocations": 0,
+      "nativeStorageBytes": 0,
+      "mallocTracking": true,
+      "mallocAllocations": 1,
+      "mallocRequestedBytes": 72,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 0,
+      "retained": true,
+      "prefixBytes": 0,
+      "targetBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "nativeStorageAllocations": 0,
+      "nativeStorageBytes": 0,
+      "mallocTracking": true,
+      "mallocAllocations": 1,
+      "mallocRequestedBytes": 72,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 3,
+      "retained": false,
+      "prefixBytes": 96,
+      "targetBytes": 96,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 96,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 96,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 168,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 3,
+      "retained": true,
+      "prefixBytes": 96,
+      "targetBytes": 96,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 96,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 96,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 168,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 2000,
+      "retained": false,
+      "prefixBytes": 32000,
+      "targetBytes": 64000,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 32000,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 64000,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 64072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 1000,
+      "nextCount": 2000,
+      "retained": true,
+      "prefixBytes": 32000,
+      "targetBytes": 64000,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 32000,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 64000,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 64072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 0,
+      "retained": false,
+      "prefixBytes": 0,
+      "targetBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "nativeStorageAllocations": 0,
+      "nativeStorageBytes": 0,
+      "mallocTracking": true,
+      "mallocAllocations": 1,
+      "mallocRequestedBytes": 72,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 0,
+      "retained": true,
+      "prefixBytes": 0,
+      "targetBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "nativeStorageAllocations": 0,
+      "nativeStorageBytes": 0,
+      "mallocTracking": true,
+      "mallocAllocations": 1,
+      "mallocRequestedBytes": 72,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 3,
+      "retained": false,
+      "prefixBytes": 96,
+      "targetBytes": 96,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 96,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 96,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 168,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 3,
+      "retained": true,
+      "prefixBytes": 96,
+      "targetBytes": 96,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 96,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 96,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 168,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 20000,
+      "retained": false,
+      "prefixBytes": 320000,
+      "targetBytes": 640000,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 320000,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 640000,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 640072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 10000,
+      "nextCount": 20000,
+      "retained": true,
+      "prefixBytes": 320000,
+      "targetBytes": 640000,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 320000,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 640000,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 640072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 0,
+      "retained": false,
+      "prefixBytes": 0,
+      "targetBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "nativeStorageAllocations": 0,
+      "nativeStorageBytes": 0,
+      "mallocTracking": true,
+      "mallocAllocations": 1,
+      "mallocRequestedBytes": 72,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 0,
+      "retained": true,
+      "prefixBytes": 0,
+      "targetBytes": 0,
+      "nativePrefixCopies": 0,
+      "nativePrefixCopiedBytes": 0,
+      "nativeStorageAllocations": 0,
+      "nativeStorageBytes": 0,
+      "mallocTracking": true,
+      "mallocAllocations": 1,
+      "mallocRequestedBytes": 72,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 3,
+      "retained": false,
+      "prefixBytes": 96,
+      "targetBytes": 96,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 96,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 96,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 168,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 3,
+      "retained": true,
+      "prefixBytes": 96,
+      "targetBytes": 96,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 96,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 96,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 168,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 200000,
+      "retained": false,
+      "prefixBytes": 3200000,
+      "targetBytes": 6400000,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 3200000,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 6400000,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 6400072,
+      "mallocReallocations": 0
+    },
+    {
+      "previousCount": 100000,
+      "nextCount": 200000,
+      "retained": true,
+      "prefixBytes": 3200000,
+      "targetBytes": 6400000,
+      "nativePrefixCopies": 1,
+      "nativePrefixCopiedBytes": 3200000,
+      "nativeStorageAllocations": 2,
+      "nativeStorageBytes": 6400000,
+      "mallocTracking": true,
+      "mallocAllocations": 3,
+      "mallocRequestedBytes": 6400072,
+      "mallocReallocations": 0
+    }
+  ],
+  "review": {
+    "counts_validated_before_allocation": true,
+    "both_vectors_prepared_before_replacement": true,
+    "always_fresh_storage_including_unchanged_sizes": true,
+    "prefix_copy_only": true,
+    "opaque_black_vertex_and_zero_index_defaults_preserved": true,
+    "shared_old_views_survive_owner_collection": true,
+    "process_allocator_interval_warmed": true,
+    "linux_windows_allocator_acceptance": false
+  }
+}

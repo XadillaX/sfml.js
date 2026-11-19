@@ -13,7 +13,9 @@ Declare `sfml.js-interop` as a dependency of your extension. Like nan, `require(
 }
 ```
 
-`sfml-js-interop.h` exposes `SFMLJS_INTEROP_VERSION` (currently 1), `shared-handle.h`, `exception-boundary.h` and `numeric-fields.h`. Match the contract and SFML versions used by the host binding. `RenderWindowFrom` accepts the binding's native window handle, not a public JavaScript RenderWindow object.
+`sfml-js-interop.h` exposes `SFMLJS_INTEROP_VERSION` (currently 2), `shared-handle.h`, `exception-boundary.h`, `numeric-fields.h` and `window-event-source.h`. Match the contract and SFML versions used by the host binding. `RenderWindowFrom` accepts the binding's native window handle, not a public JavaScript RenderWindow object.
+
+The macOS event-source extension retains an opaque source with each captured SFML queue entry and polled JavaScript snapshot. Native addons can identify duplicate platform key/text delivery without changing the host event stream. Public `Event` construction copies only event data, producing an independent event.
 
 Native owners control lifetime. A view or borrowed pointer must not outlive its owner, context or window. Keep resources alive for recorded drawing and preserve draw-time snapshots. Use the shared exception boundary when exposing C++ callbacks to V8. A matching version macro alone does not guarantee ABI compatibility across independently configured binaries.
 

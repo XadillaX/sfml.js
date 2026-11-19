@@ -65,6 +65,16 @@ Try a complete game or application, then explore the individual SFML features be
       </div>
     </dd>
   </div>
+  <div>
+    <dt><a href="../../sfml.js-rmlui/examples/README.md">RmlUi examples</a></dt>
+    <dd>
+      <p>RML/RCSS interfaces with a working counter, themes and upstream tutorials.</p>
+      <div class="example-topic-links">
+        <a href="../../sfml.js-rmlui/examples/README.md#demo">Counter</a>
+        <a href="../../sfml.js-rmlui/examples/README.md#variables">Themes</a>
+      </div>
+    </dd>
+  </div>
   <div id="game-projects">
     <dt><a href="projects/README.md">Games and applications</a></dt>
     <dd>

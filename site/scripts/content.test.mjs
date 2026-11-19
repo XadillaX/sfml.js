@@ -1,9 +1,12 @@
 import assert from 'node:assert/strict';
+import { readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import test from 'node:test';
 import {
   buildManifest,
   createLinkMapper,
   locales,
+  rootDir,
   transformMarkdown,
 } from './content.mjs';
 
@@ -14,6 +17,61 @@ const map = createLinkMapper(manifest, {
       path
     ),
   exists: path => !path.includes('missing'),
+});
+
+test('publishes every RmlUi guide in its own language', () => {
+  const files = readdirSync(resolve(rootDir, 'docs/rmlui'))
+    .filter(name => name.endsWith('.md'));
+  for (const file of files) {
+    const source = `docs/rmlui/${file}`;
+    const page = manifest.find(item => item.source === source);
+    assert.ok(page, `Unpublished guide: ${source}`);
+    const stem = file.replace(/\.(?:zh-CN|ja|ko)\.md$|\.md$/g, '');
+    const route = stem === 'README' ? '/rmlui/' : `/rmlui/${stem}`;
+    assert.equal(page.route, page.locale.prefix + route);
+    for (const locale of locales) {
+      const translated = `docs/rmlui/${stem}${locale.suffix}.md`;
+      assert.ok(files.includes(`${stem}${locale.suffix}.md`), translated);
+      assert.equal(
+        map(`${stem}.md#details`, `docs/rmlui/README${locale.suffix}.md`),
+        `${locale.prefix}${route}#details`
+      );
+    }
+  }
+});
+
+test('publishes localized RmlUi guides, API links and screenshots', () => {
+  for (const locale of locales) {
+    const source = `docs/rmlui/api${locale.suffix}.md`;
+    for (const route of [
+      '/rmlui/', '/rmlui/getting-started', '/rmlui/documents', '/rmlui/streams',
+      '/rmlui/strings',
+      '/rmlui/element-utilities', '/rmlui/geometry-utilities',
+      '/rmlui/render-state', '/rmlui/plugins',
+      '/rmlui/rendering', '/rmlui/api',
+      '/examples/rmlui',
+    ]) {
+      assert.ok(
+        manifest.some(page => page.route === locale.prefix + route),
+        `Missing ${locale.prefix}${route}`
+      );
+    }
+    assert.equal(
+      map('/reference/rmlui/classes/Context.html', source),
+      `${locale.prefix}/reference/rmlui/classes/Context.html`
+    );
+    assert.equal(
+      map('../../packages/sfml.js-rmlui/examples/README.md#demo', source),
+      `${locale.prefix}/examples/rmlui#demo`
+    );
+    assert.equal(
+      map(
+        'screenshots/variables.png',
+        `packages/sfml.js-rmlui/examples/README${locale.suffix}.md`
+      ),
+      '/media/rmlui/examples/screenshots/variables.png'
+    );
+  }
 });
 
 test(

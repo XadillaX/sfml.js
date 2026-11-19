@@ -1,0 +1,589 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "364da8137d5ecbb490183793faa46be2b91f5891e8ee0726ccfe8fc62647be8a",
+  "checks": {
+    "runtime": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-runtime-1.log",
+      "sha256": "cf1b1c16c82957d531e11244251e2e68f679db03b05ad95b59e1d6d612087d23",
+      "exit_code": 0,
+      "literal_pass_lines": 6
+    },
+    "debugger": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-debugger-1.log",
+      "sha256": "d8bf2fcd00aebdeba156e64c904ab4d4825b8ad8d61bb5ccd4c304a6a40e3af3",
+      "exit_code": 0,
+      "literal_pass_lines": 18
+    },
+    "constructors": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-constructors-1.log",
+      "sha256": "434fa1d00a0c27a617cdf6deda3df108a3707817c10d0ef9eae05326cda005c8",
+      "exit_code": 0,
+      "literal_pass_lines": 10
+    },
+    "instancers": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-instancers-1.log",
+      "sha256": "b8dfd6fc735c416613c6dda288f0c73fa533c57e87f568ebff7a46d1b6103fa5",
+      "exit_code": 0,
+      "literal_pass_lines": 9
+    },
+    "lifetime": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-lifetime-1.log",
+      "sha256": "d21270a45f67da7150ff62e1cdbf44cc2bedbf826ba1e0f6a3330504b642356a",
+      "exit_code": 0,
+      "literal_pass_lines": 13
+    },
+    "textures": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-textures-1.log",
+      "sha256": "610707c8c757473924a3af1e8344c8495e2ed6a0d6d5ee743019a5acc461b18b",
+      "exit_code": 0,
+      "literal_pass_lines": 13
+    },
+    "components": {
+      "path": "/tmp/rmlui-63-completion/organization-dependency-tests-1.log",
+      "sha256": "095525a184742134e6137a391a0c1781422d42780086c5853dd96a1301db012d",
+      "exit_code": 0,
+      "literal_pass_lines": 3
+    },
+    "lint": {
+      "path": "/tmp/rmlui-63-completion/organization-lint-10.log",
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "types": {
+      "path": "/tmp/rmlui-63-completion/organization-types-6.log",
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "cpplint": {
+      "path": "/tmp/rmlui-63-completion/organization-cpplint-2.log",
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "format": {
+      "path": "/tmp/rmlui-63-completion/organization-format-2.log",
+      "sha256": "3ee7cbb5baf13ba9751ed0aaf8e828b02ec4a5372c0f351edfe705678229afc2",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "naming": {
+      "path": "/tmp/rmlui-63-completion/organization-vector-naming-1.log",
+      "sha256": "c4ab2cbf1b7c1acf5c1914bb0c900e2bfd2b60169e2d68da11a195a0ab00eb1b",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "build": {
+      "path": "/tmp/rmlui-63-completion/organization-build-2.log",
+      "sha256": "bcc11ea097cc7c79a0d80bb7cc64167c9ace7512c545ea3d70856f8f6519ca8a",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "patch": {
+      "path": "/tmp/rmlui-63-completion/organization-dependency-idempotence-1.log",
+      "sha256": "4626efecd9ff875f60a8499138dd1ea4fce792219de4626ccba28520b23bff93",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    }
+  },
+  "scope_complete": false,
+  "whole_rmlui_accepted": false,
+  "platform": "macOS arm64",
+  "runtime_consumer_suites": 6,
+  "runtime_consumer_passes": 69,
+  "tooling_pass_groups": 3,
+  "compiled_sources": {
+    "SVG": 5,
+    "Lottie": 2,
+    "LunaSVG": 10,
+    "PlutoVG": 11,
+    "rlottie": 34
+  },
+  "dependency_manifest": {
+    "lunasvg": {
+      "version": "3.5.0",
+      "repository": "sammycage/lunasvg",
+      "commit": "83c58df8103dc7dca423dfd824992af94d49bed6",
+      "sha256": "eef27349e8bda119f0e91e9b7dcd5027ac8dd3faf64bb22294f41f22157c9fe7",
+      "header": "include/lunasvg.h",
+      "options": {
+        "static": true,
+        "examples": false,
+        "plutovg": "1.3.1",
+        "plutovgCommit": "6f46696db1da131749d7f97d9c19d697ff8aeb6b"
+      }
+    },
+    "rlottie": {
+      "version": "0.2",
+      "repository": "Samsung/rlottie",
+      "commit": "bf3d272df3916a0c34575ac8286cb0fe672fd0d4",
+      "sha256": "ffa001d34758b394a8ea1c85bad9d974f9a58808f028287bea6abb0165251cc6",
+      "header": "inc/rlottie.h",
+      "options": {
+        "static": true,
+        "imageModule": false,
+        "imageDecoder": "bundled-stb",
+        "thread": false,
+        "cache": true,
+        "examples": false
+      }
+    },
+    "harfbuzz": {
+      "version": "15.1.0",
+      "repository": "harfbuzz/harfbuzz",
+      "commit": "3df40d9b98d6b32f0e4288d4ecfbb158ddb3a372",
+      "sha256": "2fa9f8dae5e2d432d09ba06e915b33ee1ffe7bb38fed878257978c1d55df2d30",
+      "header": "src/hb.h",
+      "options": {
+        "static": true,
+        "freetype": "shared-package-build",
+        "utilities": false
+      }
+    }
+  },
+  "harfbuzz_compiled_or_accepted": false,
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/vector-source-review.md",
+    "sha256": "7f0237f3c42a1f253082499b07a4cfc61f1c1bf6d95585635bd15d6d1997c783",
+    "independent": false
+  },
+  "previous_input_map_fingerprints": {
+    "renderer-declaration-map.json": "7455a3d56434b10f2a7ffe8c7f756d2d25e7a53727c44dc9299a3c2f7f34042c",
+    "core-scroll-iterator-declaration-map.json": "d212466db3168769ade1a81fefc9dc4b67b5f7e4e34cc6c9ad232d1f29732a4c",
+    "xml-declaration-map.json": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+    "core-input-event-declaration-map.json": "9b7c10a3529e45a7fa996067abf98aba10ea9af7934a1f0560431f2e1019ee62",
+    "utility-declaration-map.json": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+    "debugger-declaration-map.json": "1b2b7601ea73bdfcb26fcc6d4128ed16dda4aac4589b181e2c941cfbdc758ed6",
+    "numeric-declaration-map.json": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+    "string-url-declaration-map.json": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+    "lua-declaration-map.json": "77d67a9b5b8f13763dfa6c15dc4bf0a5404215116cd32b748c0444db00643dae",
+    "type-converter-declaration-map.json": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+    "supplemental-type-declaration-map.json": "7e97be4c7146e6fa792e897d8a0dcffc3f5e0516e29eb5b5be76603077e2a9e1",
+    "id-scroll-declaration-map.json": "beeb1646e29b151bc10d6d6fa46d1c25848a65b80d222a9053dce0c33b4eac57",
+    "core-type-declaration-map.json": "bf0977bdba57cd9565897244224cadadf5fe852b5f4f6d1cbec5a0fa97796499",
+    "support-declaration-map.json": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+    "stylesheet-types-declaration-map.json": "4cf738dd12550d498d2bc3da967786d995e29a20923fca891e30af4554a6060e",
+    "font-declaration-map.json": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44",
+    "data-operation-ledger.json": "cc0d49cad43e1a2a7dd8ecabd06d6c1851ebf3d917ae2a723b865470726d8c5b"
+  },
+  "source_fingerprints": {
+    "docs/rmlui/README.ja.md": "4c8cfafb481260b844e3f22da21e10b2fb786a3f0588606b76e69c27e4b38146",
+    "docs/rmlui/README.ko.md": "506f28ea1b8e221e04dcaa07ac2580b7c5ec00a33b1934056cc60d069f6949f7",
+    "docs/rmlui/README.md": "8b89f9cafdaf4f6b71303175512c6fe14dd6a9803c25c78fc52ba6ee055aa593",
+    "docs/rmlui/README.zh-CN.md": "ea166cf06394469e07fc79ccfb8bbbb025cddc53bee8c8a160bbeb043eea2a78",
+    "docs/rmlui/audit/6.3/vector-native-contracts.md": "13c022c80c146064953332c4fd489a5764a8e0cb71a8060fd91ada9dc1dd61f1",
+    "docs/rmlui/vector-elements.ja.md": "8fb31055aa0af974fb93ae17a3956b4ee76cf1186adeec75870f2b42dcd70158",
+    "docs/rmlui/vector-elements.ko.md": "7ee44b869f32e8e12b8eaaca7e5ee9c452e6d2aaf972bea6278a370037986975",
+    "docs/rmlui/vector-elements.md": "316368216a4bd4851c73071bd55441ac2f49ae9558b97ac7d53776ad92ad722c",
+    "docs/rmlui/vector-elements.zh-CN.md": "0769d77f555be51793972d225cbe6bfb50024516db65356d13e2695e4d6b0472",
+    "packages/sfml.js-rmlui/README.ja.md": "8b23f0c7621fffb9ed37718cf105805482f1b7fce9a66a71ba5c8ba82c812193",
+    "packages/sfml.js-rmlui/README.ko.md": "0d35f2fe1bd66cf348e2e1bbe32033f18ca02811f075ac0fb57640f168859f55",
+    "packages/sfml.js-rmlui/README.md": "d32375d37bea3dc56c276c19cbda1b7c715b22dfd8c8bdd29cf60c3c7231f2d9",
+    "packages/sfml.js-rmlui/README.zh-CN.md": "7f1e1d4f50ad3f5e713cb6fd0816414dad6e3a61071a60ac408d7459e2efa7f7",
+    "packages/sfml.js-rmlui/binding.gyp": "8c371e1b6b86cfbdbff0e4101b76d33eefee94ee9ec372f090071e58b9ae65c2",
+    "packages/sfml.js-rmlui/native/addon.cc": "10aaa62e0ee845e3f8b04ef43edc1640314c701e8031986ad95bad55edd86bc4",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-core.cc": "af9674cbe56052e36a555593be64cb52ce93349cee6385250d24a6d0e82dda5b",
+    "packages/sfml.js-rmlui/native/dom/elements/rmlui-element-instancers.cc": "81a264c13655982a576d19c64a6b2d29179df97299488165314944e4b31b8c01",
+    "packages/sfml.js-rmlui/native/dom/controls/rmlui-forms.cc": "a98761d5fb3a851d01b301d83f9c3bb4b9be5ed61289778eac7b958c2d2dd7aa",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-rtti.cc": "d34a693531704fb3f12c53c2a6cf62dd5e9762149aa496a1c2d26cf8efe2a873",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-state.cc": "c21adda92d3d857aa9a5dda6d46c0231f58484817b22654e868b340ae548d518",
+    "packages/sfml.js-rmlui/native/dom/elements/rmlui-vector-elements.cc": "52ec087d29e3d6d926307a1eea7821732f1a36594c3da6c2afa4c44b79689ebd",
+    "packages/sfml.js-rmlui/package.json": "08cbb276beeb82e97499df764c8d35da0fe6c22fbf014d4c9dab1107f26395fb",
+    "packages/sfml.js-rmlui/src/index.ts": "a27f1dbe9d1e6792daeec0856c7009f67277ec48c48b0048e121405c1ea67ac9",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "df5eb97eee78bacad76e13ae49eca5fe68317371606a1cfc7a97246d48d30742",
+    "packages/sfml.js-rmlui/src/dom/elements/vector-elements.ts": "58f46f4135557a743e5f2737357da3abdea660d3d9b38df7b97057a1188eed7f",
+    "packages/sfml.js-rmlui/test/tooling/dependency-components.test.cjs": "a891e01812e00949796d6372bf28ca97bc43ccf242491fcc6ffcd043568f2fee",
+    "packages/sfml.js-rmlui/test/dom/vector-modules.test.cjs": "7146a308cbeee381bda3a05f1a661acd28a2f6aa126ac386ddb1b62f555e74ef",
+    "packages/sfml.js-rmlui/test/dom/vector-modules.types.ts": "ace8bdb223ffabeb9f318fec523002074877a67de053d3f23ad2593e6a44a987",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lottie/ElementLottie.h": "81fbb459efc051f45c10be15926343a693f0a60ae25ddc92fb4902fb2cde91a6",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/SVG/ElementSVG.h": "5e3be9c5bd72f6b96cb43b02104aaa793c1221fbf742b0184bd7e564a5bd48bb",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Lottie/ElementLottie.cpp": "4a3a4cfd16581ee71f0a8944df7e807e5c0280fc4315e8c8fd0403bff9e0808f",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Lottie/LottiePlugin.cpp": "78cbc89d3cc4ce1bdc989850fce9d6432312760948e5d630ff08419c097aaccb",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Lottie/LottiePlugin.h": "1881a8f131c1d634f4820b00c460daec10c59ab55285924c5195f764e9bb5343",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/DecoratorSVG.cpp": "b1adf2a273e431e031691fcfd3b7bc2bbada4e8f0f61bfd03fb94969963ff338",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/DecoratorSVG.h": "dd259fbab02db7d49dc126104cd81e2c32dcc6e36f06646b0beab0ef5a0ae5ab",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/ElementSVG.cpp": "97575d9c470fb0087cf584161243e9c0f300495bf369b2bb8b37f713f4117ee2",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/SVGCache.cpp": "9141d75743798e499fad9c27c51a52274dfc9aec2151250c76a3ff885e547149",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/SVGCache.h": "579876e05cdb70d81aedd6c4a5b606a59793f15423d3a57ac77e51a9e71374c8",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/SVGPlugin.cpp": "8da5a400363e1cb58fb5d8f7faea88231dca6ad0b6122e55648d38493a60a478",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/SVGPlugin.h": "7b449d3a8d4afc1bce65f559192b5831b9ba7ab3b8ca1bbe6624a995789e74ff",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/XMLNodeHandlerSVG.cpp": "2a7098c2a815169fefb21116b7eb4e731c4f6163edc51d47d4279c10a87524f6",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/SVG/XMLNodeHandlerSVG.h": "49db3d509857cc992134cadd43ddbbd453a2a8f5ef3550d26b9311e5d17d5da1",
+    "packages/sfml.js-rmlui/tools/dependencies/deps_downloader.cjs": "151855e6eaa1b50ab5e5786e5f1fb79adda31393dde7015871a7e176a8041e12",
+    "packages/sfml.js-rmlui/tools/dependencies/optional-dependencies.json": "1abfbf3baebfd8b09a929c47134fde16fe0666f09bb273de93a37484c811a2d0",
+    "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rlottie.cjs": "c283f27084c5f7f1a53d142fb9f83036bb4d774c4006acabee414d9cdc223059"
+  },
+  "representation_snapshot": {
+    "maps": 20,
+    "represented": 3926,
+    "unrepresented": 0,
+    "is_pass_count": false
+  },
+  "gpu_timing_measured": false,
+  "initialization_performance_measured": false,
+  "full_package_runtime_repeated": false,
+  "directory_layout_map": "source-layout-map.json",
+  "full_package_runtime": {
+    "runtime_suites": 121,
+    "literal_pass_lines": 1205,
+    "failures": 0,
+    "source_log": "/tmp/rmlui-63-completion/organization-runtime-complete.log",
+    "log_sha256": "1ab8b462908c119d4ca363940871bdeb9eadae30ec713e0f2a8a5aceb27a5b5b",
+    "source_runs": {
+      "initial": {
+        "log": "/tmp/rmlui-63-completion/organization-runtime-1.log",
+        "exit_code": 1,
+        "sha256": "ab85e432f288c22eae6a0d839d2c96db47107ab8da9d377ea3aa74dcbef016b1",
+        "failed_suite": "runtime/log.test.cjs",
+        "use": "Only successful suites before the failed logging suite"
+      },
+      "resume": {
+        "log": "/tmp/rmlui-63-completion/organization-runtime-2.log",
+        "exit_code": 1,
+        "sha256": "8172616514f9c1882e7d1b9b2135c6bc60675786a08d5c8399009fb625b6d57d",
+        "suite_statuses": [
+          {
+            "suite": "runtime/log.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "runtime/ownership-performance.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "runtime/performance-diagnostics.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "runtime/plugin.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "runtime/utility-performance.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/lua-functions.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/lua-scripts.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/lua-variant-callbacks.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/lua-variant-ownership-performance.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/lua-variants.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/script-interface.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "scripting/scripts.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/computed-values.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/convolution-filter.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/decoration-values.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/decorator-callbacks.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/decorator.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/effect-instancers.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/effect-values.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/filter-callbacks.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/filter-instancers.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/property-dictionary.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/property-specification.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/property.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/specification-ids.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/style-sheet-specification.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/style-sheet.test.cjs",
+            "status": 1,
+            "signal": null
+          },
+          {
+            "suite": "style/style-structs.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "style/transform.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "tooling/dependency-components.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/numeric-value.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/owned-variant.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/string-format.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/string-performance.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/string-url.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/variant-elements.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/variant-scalars.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/variant-scriptinterfaces.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/variant-template-destinations.test.cjs",
+            "status": 0,
+            "signal": null
+          },
+          {
+            "suite": "values/variant-void-pointers.test.cjs",
+            "status": 1,
+            "signal": null
+          }
+        ]
+      },
+      "corrections": {
+        "style/style-sheet.test.cjs": {
+          "log": "/tmp/rmlui-63-completion/organization-stylesheet-green-1.log",
+          "exit_code": 0,
+          "sha256": "5ab54ee28d8051640008a2f3927f386a1faf70fad28df0dc811395da6f9570ec"
+        },
+        "values/variant-void-pointers.test.cjs": {
+          "log": "/tmp/rmlui-63-completion/organization-opaque-green-1.log",
+          "exit_code": 0,
+          "sha256": "eb4058cd244b47e5b216308ae9570f53ca61d79e3da353d9984a5c80bb301c70"
+        }
+      }
+    },
+    "focused_vector_passes": 69,
+    "suite_pass_counts": {
+      "animation/animation-values.test.cjs": 10,
+      "animation/animation.test.cjs": 12,
+      "data/data-addresses.test.cjs": 6,
+      "data/data-batch.test.cjs": 15,
+      "data/data-custom.test.cjs": 8,
+      "data/data-defaults.test.cjs": 6,
+      "data/data-definition.test.cjs": 8,
+      "data/data-diagnostics.test.cjs": 5,
+      "data/data-factory.test.cjs": 17,
+      "data/data-initialization.test.cjs": 1,
+      "data/data-members.test.cjs": 13,
+      "data/data-model.test.cjs": 10,
+      "data/data-owned.test.cjs": 9,
+      "data/data-references.test.cjs": 10,
+      "data/data-schema.test.cjs": 12,
+      "data/data-transforms.test.cjs": 10,
+      "data/official-data.test.cjs": 4,
+      "dom/box.test.cjs": 10,
+      "dom/controls.test.cjs": 8,
+      "dom/document-header.test.cjs": 10,
+      "dom/documents.test.cjs": 10,
+      "dom/dom.test.cjs": 17,
+      "dom/element-background-border.test.cjs": 7,
+      "dom/element-commands.test.cjs": 17,
+      "dom/element-components.test.cjs": 10,
+      "dom/element-constructors.test.cjs": 10,
+      "dom/element-instancers.test.cjs": 9,
+      "dom/element-state.test.cjs": 10,
+      "dom/element-style.test.cjs": 11,
+      "dom/element-utilities.test.cjs": 13,
+      "dom/factory-documents.test.cjs": 5,
+      "dom/factory.test.cjs": 9,
+      "dom/form-control-instancer.test.cjs": 10,
+      "dom/layout.test.cjs": 17,
+      "dom/owned-scroll.test.cjs": 11,
+      "dom/rtti-default-action.test.cjs": 10,
+      "dom/text-panels.test.cjs": 10,
+      "dom/vector-modules.test.cjs": 6,
+      "dom/xml-parser.test.cjs": 17,
+      "events/default-events.test.cjs": 5,
+      "events/event-dispatcher.test.cjs": 10,
+      "events/event-instancers.test.cjs": 9,
+      "events/event-listener-instancers.test.cjs": 10,
+      "events/event-registration.test.cjs": 5,
+      "events/events.test.cjs": 16,
+      "events/listeners.test.cjs": 16,
+      "fonts/font-effect-alpha.test.cjs": 1,
+      "fonts/font-effect-callbacks.test.cjs": 6,
+      "fonts/font-effect-native-ownership.test.cjs": 19,
+      "fonts/font-effect-ownership.test.cjs": 6,
+      "fonts/font-engine-custom.test.cjs": 18,
+      "fonts/font-engine.test.cjs": 9,
+      "fonts/font-fields.test.cjs": 7,
+      "fonts/font-measure-buffer.test.cjs": 9,
+      "fonts/fonts.test.cjs": 11,
+      "io/file-interface.test.cjs": 18,
+      "io/streams.test.cjs": 9,
+      "platform/density.test.cjs": 0,
+      "platform/input.test.cjs": 13,
+      "platform/system-interface.test.cjs": 14,
+      "platform/text-input-startup.test.cjs": 8,
+      "platform/text-input.test.cjs": 14,
+      "rendering/callback-textures.test.cjs": 13,
+      "rendering/compiled-resources.test.cjs": 4,
+      "rendering/geometry.test.cjs": 12,
+      "rendering/mesh-utilities.test.cjs": 7,
+      "rendering/render-batching.test.cjs": 7,
+      "rendering/render-interface-startup.test.cjs": 11,
+      "rendering/render-layers.test.cjs": 9,
+      "rendering/render-state.test.cjs": 16,
+      "rendering/resource-preload.test.cjs": 6,
+      "rendering/resource-release.test.cjs": 6,
+      "rendering/resources.test.cjs": 0,
+      "runtime/basic.test.cjs": 0,
+      "runtime/callback-ownership-performance.test.cjs": 14,
+      "runtime/context-construction.test.cjs": 21,
+      "runtime/context-edge-cases.test.cjs": 5,
+      "runtime/context-instancers.test.cjs": 16,
+      "runtime/context-state.test.cjs": 5,
+      "runtime/debugger.test.cjs": 18,
+      "runtime/lifetime.test.cjs": 13,
+      "runtime/log.test.cjs": 6,
+      "runtime/ownership-performance.test.cjs": 9,
+      "runtime/performance-diagnostics.test.cjs": 6,
+      "runtime/plugin.test.cjs": 11,
+      "runtime/utility-performance.test.cjs": 4,
+      "scripting/lua-functions.test.cjs": 13,
+      "scripting/lua-scripts.test.cjs": 28,
+      "scripting/lua-variant-callbacks.test.cjs": 14,
+      "scripting/lua-variant-ownership-performance.test.cjs": 6,
+      "scripting/lua-variants.test.cjs": 23,
+      "scripting/script-interface.test.cjs": 25,
+      "scripting/scripts.test.cjs": 15,
+      "style/computed-values.test.cjs": 12,
+      "style/convolution-filter.test.cjs": 7,
+      "style/decoration-values.test.cjs": 7,
+      "style/decorator-callbacks.test.cjs": 11,
+      "style/decorator.test.cjs": 7,
+      "style/effect-instancers.test.cjs": 6,
+      "style/effect-values.test.cjs": 22,
+      "style/filter-callbacks.test.cjs": 5,
+      "style/filter-instancers.test.cjs": 6,
+      "style/property-dictionary.test.cjs": 5,
+      "style/property-specification.test.cjs": 5,
+      "style/property.test.cjs": 12,
+      "style/specification-ids.test.cjs": 3,
+      "style/style-sheet-specification.test.cjs": 7,
+      "style/style-sheet.test.cjs": 14,
+      "style/style-structs.test.cjs": 5,
+      "style/transform.test.cjs": 7,
+      "tooling/dependency-components.test.cjs": 3,
+      "values/numeric-value.test.cjs": 7,
+      "values/owned-variant.test.cjs": 10,
+      "values/string-format.test.cjs": 5,
+      "values/string-performance.test.cjs": 4,
+      "values/string-url.test.cjs": 15,
+      "values/variant-elements.test.cjs": 11,
+      "values/variant-scalars.test.cjs": 5,
+      "values/variant-scriptinterfaces.test.cjs": 13,
+      "values/variant-template-destinations.test.cjs": 9,
+      "values/variant-void-pointers.test.cjs": 13
+    }
+  },
+  "isolated_environment_created": false,
+  "other_platforms_executed": false
+}

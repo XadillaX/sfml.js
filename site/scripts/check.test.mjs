@@ -93,3 +93,23 @@ test('rejects unapproved framework and inline icons in built pages',
     assert.ok(errors.some(error => error.includes('vpi-unmapped')));
     assert.ok(errors.some(error => error.includes('SVG icon')));
   });
+
+test('rejects empty guide bodies even when the site shell has a heading',
+  async t => {
+    const directory = await fixture(t, {
+      'index.html':
+        '<h1>Navigation</h1><div class="VPDoc">' +
+        '<div class="vp-doc"></div></div>',
+      'guide/empty.html':
+        '<div class="VPDoc"><div class="vp-doc"><h1> </h1></div></div>',
+      'guide/literal.html':
+        '<div class="VPDoc"><div class="vp-doc"><h1>Data models</h1>' +
+        '<p><code>{{name | decorate(\'!\')}}</code></p></div></div>',
+      'home/index.html':
+        '<div class="VPHome"><div class="vp-doc"></div></div>',
+    });
+    const errors = await auditHtmlFiles(directory);
+    assert.equal(errors.length, 2);
+    assert.ok(errors.some(error => error.startsWith('index.html:')));
+    assert.ok(errors.some(error => error.startsWith('guide/empty.html:')));
+  });

@@ -1,0 +1,43 @@
+{
+  "name": "sfmljs-rmlui-language-server",
+  "version": "1.2.1",
+  "private": true,
+  "description": "Language Server Protocol implementation for RmlUi RML markup and RCSS stylesheets.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/sfml.js.git",
+    "directory": "packages/sfmljs-rmlui-language-server"
+  },
+  "type": "commonjs",
+  "main": "./dist/server.js",
+  "bin": {
+    "sfmljs-rmlui-language-server": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "bundle": "esbuild src/server.ts --bundle --platform=node --target=node18 --format=cjs --outfile=dist/bundle/server.js",
+    "lint": "eslint --max-warnings 0 --ext .ts,.js,.cjs .",
+    "test:runtime": "node tools/run-tests.cjs",
+    "test": "npm run lint && npm run build && npm run test:runtime"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "typescript": "5.0.4"
+  },
+  "engines": {
+    "node": "^18.19.0 || >=20.5.0"
+  }
+}

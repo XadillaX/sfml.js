@@ -31,9 +31,6 @@ import { CoordinateType } from './render-states';
 export type ReadonlyTexture = Readonly<
 Pick<
 Texture,
-| typeof graphicsNative
-| typeof textureId
-| typeof textureOwner
 | 'getSize'
 | 'copyToImage'
 | 'isSmooth'
@@ -41,6 +38,11 @@ Texture,
 | 'isSrgb'
 | 'getNativeHandle'
 >
+> & TextureIdentity;
+
+/** Native identity and owner retained by const texture references. @inline */
+type TextureIdentity = Pick<
+Texture, typeof graphicsNative | typeof textureId | typeof textureOwner
 >;
 
 /**
@@ -88,8 +90,11 @@ function areaSnapshot(area?: ReadonlyValue<IntRect>): IntRect | undefined {
  * @ko 백그라운드 이미지 디코딩과 순서가 보장되는 픽셀 업로드를 지원하는 GPU 텍스처입니다.
  */
 export class Texture {
+  /** Native GPU resource identity. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'texture'>;
+  /** Command-buffer texture identifier. @internal */
   readonly [textureId]: number;
+  /** Retains a borrowed texture's native owner. @internal */
   readonly [textureOwner]?: PendingTarget;
   /**
    * Read-only view of native texture metadata.

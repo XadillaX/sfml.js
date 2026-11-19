@@ -1,0 +1,284 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+  "scope_complete": false,
+  "notice": "This is local native support and consumer acceptance. 157 exact rows are not 157 scenarios or a feature completion percentage. No isolated installation, packaged-archive runtime, GPU timing, platform IME, whole Core nineteen groups or whole-integration acceptance is claimed.",
+  "record_domains": {
+    "native-abi-configuration": 27,
+    "native-debug-support": 1,
+    "managed-record-and-native-variant": 3,
+    "native-varargs-and-checked-managed-scalars": 11,
+    "native-weak-observer-and-checked-handle": 23,
+    "native-owned-plugin-and-managed-callbacks": 23,
+    "native-set-and-managed-id-snapshot": 26,
+    "native-borrowed-span-and-retained-managed-storage": 11,
+    "native-stable-index-and-checked-texture": 11,
+    "native-ownership-and-rtti-support": 21
+  },
+  "native_probe": {
+    "path": "/tmp/rmlui-63-completion/support-native-5.log",
+    "sha256": "dca108d02a1a64b51623e1706e76cac99ffc37f025977c3c38be8cd6ca3ac73a",
+    "literal_pass_lines": 8,
+    "exit_code": 0,
+    "runtime_groups": 8
+  },
+  "complete_package_verification": {
+    "path": "/tmp/rmlui-63-completion/support-package-1.log",
+    "sha256": "6c57b7836d1936175cf211b5e3e3505d02b9299dd449dcae85128a81eb7a3af0",
+    "literal_pass_lines": 1131,
+    "exit_code": 0,
+    "runtime_files": 113,
+    "failures": 0,
+    "native_compiler_warnings": 0,
+    "native_compiler_errors": 0,
+    "host_dependency_notices": "Node/Python dependency deprecations remain distinct from native compiler warnings and errors."
+  },
+  "consumer_suites": {
+    "log": {
+      "source": "packages/sfml.js-rmlui/test/log.test.cjs",
+      "sha256": "99b8d8ddf488e724a9d02a09f69b35b88b024a5a6a996af3e3fe508166274435",
+      "scenarios": [
+        "log-routes-through-selected-native-system-before-and-after-initialisation",
+        "log-parse-errors-use-native-filename-and-negative-line-rules",
+        "log-keeps-native-byte-truncation-percent-and-nul-semantics",
+        "log-rejects-invalid-input-before-dispatch",
+        "log-callback-exceptions-and-reentry-return-to-the-owning-boundary",
+        "log-foreign-worker-cannot-dispatch-through-the-selected-interface"
+      ],
+      "pass_count": 6
+    },
+    "plugin": {
+      "source": "packages/sfml.js-rmlui/test/plugin.test.cjs",
+      "sha256": "791b0a3002a2ec9a9b8f16a9b8aaa0fd4f74da7c1c459c671e681eed61f0fffd",
+      "scenarios": [
+        "plugin-late-registration-and-fixed-event-mask",
+        "plugin-self-removal-keeps-notification-order",
+        "plugin-context-and-element-borrows-expire",
+        "plugin-preinitialisation-and-global-shutdown-masks",
+        "plugin-all-eleven-notifications-use-live-native-objects",
+        "plugin-late-initialise-can-cancel-its-own-registration",
+        "plugin-removal-and-addition-during-traversal",
+        "plugin-errors-preserve-native-teardown-and-expire-borrows",
+        "plugin-rejects-invalid-masks-callbacks-and-async-returns",
+        "plugin-registered-native-owner-and-collected-unregistered-cycle",
+        "plugin-static-frames-add-zero-host-callbacks"
+      ],
+      "pass_count": 11
+    },
+    "geometry": {
+      "source": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+      "sha256": "5080846384f80f2c32a2d9280893fe7fdd06080217736ba1b370c07f2303d6c1",
+      "scenarios": [
+        "vertex-and-sprite-snapshots-survive-owner-gc",
+        "spritesheet-list-overwrite-merge-and-snapshot",
+        "spritesheet-validation-and-accessor-reentry",
+        "typed-vertex-shared-fields-and-resize-lifetime",
+        "texture-source-cache-manager-removal-and-aggregate",
+        "native-mesh-views-and-snapshot-transfer",
+        "rendered-mesh-pixels-and-submission-snapshot",
+        "textured-and-shaded-geometry-pixels",
+        "native-texture-views-sources-and-lazy-loading",
+        "geometry-rendering-and-resource-affinity",
+        "invalid-mesh-and-getter-reentry",
+        "views-manager-gc-and-shutdown"
+      ],
+      "pass_count": 12
+    },
+    "events": {
+      "source": "packages/sfml.js-rmlui/test/events.test.cjs",
+      "sha256": "d705161208d77aca3f80fb7125ab7d539204dc9e484d8ee62e18ee6fe4e58693",
+      "scenarios": [
+        "identity",
+        "phases",
+        "stops",
+        "nested",
+        "exceptions",
+        "variants",
+        "parameter-defaults",
+        "parameter-value-copies",
+        "parameter-validation",
+        "parameter-callback-lifetime",
+        "getter-receiver-lifetime",
+        "getter-runtime-lifetime",
+        "getter-parameter-lifetime",
+        "parameter-dispatch-lifetime",
+        "getter-error",
+        "snapshot-own-properties"
+      ],
+      "pass_count": 16
+    },
+    "lifetime": {
+      "source": "packages/sfml.js-rmlui/test/lifetime.test.cjs",
+      "sha256": "fa814ef59bb3db5dde3e6a1a26c3041e0351c85a479c76ebb05e968cf7fbf461",
+      "scenarios": [
+        "font-before-initialise",
+        "subtree-aliases",
+        "close-update",
+        "unload-update",
+        "same-name-context",
+        "retained-dimensions",
+        "shutdown-reinitialise",
+        "font-after-shutdown",
+        "document-type-check",
+        "wrapper-gc",
+        "foreign-worker",
+        "environment-cleanup",
+        "foreign-worker-contention"
+      ],
+      "pass_count": 13
+    },
+    "property-specification": {
+      "source": "packages/sfml.js-rmlui/test/property-specification.test.cjs",
+      "sha256": "a18e2d3f0ff6f66e65819a7a7b4368042b6bec64d754f416c06099edb3031b3a",
+      "scenarios": [
+        "registration-lookup-and-id-sets",
+        "shorthand-parsing-and-owned-snapshots",
+        "all-shorthand-types-and-partial-failure",
+        "bounded-ids-collisions-and-invalid-shorthands",
+        "gc-borrowed-definitions-and-generation-invalidation"
+      ],
+      "pass_count": 5
+    },
+    "rtti-default-action": {
+      "source": "packages/sfml.js-rmlui/test/rtti-default-action.test.cjs",
+      "sha256": "20ce76964efc7ab283e3d55336d92e7a2cc1b1126c47d3a67c66294b2f85349a",
+      "scenarios": [
+        "native-class-identity",
+        "class-lifetime",
+        "manual-tab-action",
+        "manual-input-action",
+        "manual-base-action",
+        "automatic-action-retained",
+        "nested-manual-actions",
+        "action-lease",
+        "action-reentry",
+        "action-exceptions"
+      ],
+      "pass_count": 10
+    },
+    "string-format": {
+      "source": "packages/sfml.js-rmlui/test/string-format.test.cjs",
+      "sha256": "d87903f884a266d52c7ca614a99513eb2402910bc7f8bf70fddd8d58c4cbdba8",
+      "scenarios": [
+        "Typed formatting preserves native ASCII and UTF8 byte lengths",
+        "Typed integer formatting uses native signed and unsigned domains",
+        "Dynamic width and precision consume explicit typed arguments",
+        "Formatting preserves the native small and large NUL buffer branches",
+        "Unsafe C ABI formats and mismatched values are rejected"
+      ],
+      "pass_count": 5
+    },
+    "string-performance": {
+      "source": "packages/sfml.js-rmlui/test/string-performance.test.cjs",
+      "sha256": "9961976c872a2f42c77b474fe6b4ce31f4006a51589352d4c71ff8da5b0d66f3",
+      "scenarios": [
+        "first-batch-builds-one-native-index",
+        "warm-batch-one-entry-no-copy-allocation-or-owner-scan",
+        "managed-iteration-has-zero-native-entries",
+        "warm-native-batch-has-zero-main-thread-malloc"
+      ],
+      "pass_count": 4
+    }
+  },
+  "four_language_contracts": {
+    "path": "/tmp/rmlui-63-completion/support-four-language-1.log",
+    "sha256": "d847b29429949886bd4d098973f9ec642c461213521d8ce96472bf898666d4ff",
+    "literal_pass_lines": 0,
+    "exit_code": 0
+  },
+  "checks": {
+    "support-format-5.log": {
+      "path": "/tmp/rmlui-63-completion/support-format-5.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "literal_pass_lines": 0,
+      "exit_code": 0
+    },
+    "support-fixture-style-2.log": {
+      "path": "/tmp/rmlui-63-completion/support-fixture-style-2.log",
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "literal_pass_lines": 0,
+      "exit_code": 0
+    },
+    "support-naming-1.log": {
+      "path": "/tmp/rmlui-63-completion/support-naming-1.log",
+      "sha256": "0c4c7c89eee35d4e63d7151872ac3444717973e2102709e19abe49376b159c96",
+      "literal_pass_lines": 2,
+      "exit_code": 0
+    },
+    "support-guide-routing-1.log": {
+      "path": "/tmp/rmlui-63-completion/support-guide-routing-1.log",
+      "sha256": "e3684415b0ba2df4f854c2761baa77a5b668a8b52873293992451fb5c00492ce",
+      "literal_pass_lines": 0,
+      "exit_code": 0
+    },
+    "support-site-lint-1.log": {
+      "path": "/tmp/rmlui-63-completion/support-site-lint-1.log",
+      "sha256": "995c6b0094984a10487e2b2bd003b6d4cc5a0cf6c49ec1c4adeea5c92fbe9fc4",
+      "literal_pass_lines": 0,
+      "exit_code": 0
+    },
+    "support-guide-links-1.log": {
+      "path": "/tmp/rmlui-63-completion/support-guide-links-1.log",
+      "sha256": "69c335b9bc4635af291ea50aad16de8a6f978fdd156d3696a5df227f949b10dc",
+      "literal_pass_lines": 1,
+      "exit_code": 0
+    }
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/rmlui-log.cc": "045d2f73d73258deb33c6ade4f5114bbe1e2b831e8b283e7d994e0e6cc4892e0",
+    "packages/sfml.js-rmlui/native/rmlui-string-format.cc": "ba1684e464ec75c6b7609dd31d90a867f7e948b9731bc8d59e0ac81451a44eb8",
+    "packages/sfml.js-rmlui/native/rmlui-string.h": "a984f218f18ecf02e17cd4528aaa70e8d328fdd7349d1a60e080e08a6286f590",
+    "packages/sfml.js-rmlui/native/addon.cc": "a345a953537bd53d2bf44c37a25343e845eedbe0218858e7fbca3a6dfe06a890",
+    "packages/sfml.js-rmlui/native/rmlui-state.h": "61cac6e9306a51617a293a9a4be3933c8cd7b9c77627652031dec4be0555824f",
+    "packages/sfml.js-rmlui/native/rmlui-state.cc": "4755a11cc8de97bdabb874120d683b6ecf9a64e05bcfa5cc53ec17b2a99fcd8a",
+    "packages/sfml.js-rmlui/native/rmlui-events.cc": "f04602b9705fefb97588b40f9a057c556d41c9eac27cb4da80f1ffdd0bb83f58",
+    "packages/sfml.js-rmlui/native/rmlui-callback-leases.h": "2e9a2d2a62a67fa045d21a802ec7ee15871a50147da9a52df62db7c631ac5f35",
+    "packages/sfml.js-rmlui/native/rmlui-plugin.cc": "cbb46b87d404cb4e07270eb6784ae0183a50306d5f00852d54c8770687e04224",
+    "packages/sfml.js-rmlui/native/rmlui-property-specification.cc": "9ef36004e70b520c56a3dda0d356cbda72cf77aa1b48981b7f0f3c308a0c1f10",
+    "packages/sfml.js-rmlui/native/rmlui-mesh.cc": "f87ac10798f4d608c6722600c18796d220ddff4c971c4c30f13fc502296203e7",
+    "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc": "8389639b2bd62950422cbdf262eefce75596ceb006a61c3de373d0656f37f5a4",
+    "packages/sfml.js-rmlui/native/rmlui-rtti.cc": "3831f18f309b2d299ff569d81ede9bcdead8ece7f972c6ed3f62a420a20e23d7",
+    "packages/sfml.js-rmlui/native/render-interface-sfml.cc": "38ed92ff9a29a3ca1bba85b78f80493235199491ee3f4be6c59549436d50a756",
+    "packages/sfml.js-rmlui/src/log.ts": "9b97300c394321c32be1821da9694127f95b8d18fe7d6b1c255c11ad873f87c7",
+    "packages/sfml.js-rmlui/src/core.ts": "8a9c7c53de9e5ffd9f18d26a83d988566cdb9002a01ae6a0055cdd1df913c726",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "79ee78eb5fccfe770427e345de7df36aa0958077e9eccd3c74ad06bb15f847b1",
+    "packages/sfml.js-rmlui/test/log.test.cjs": "99b8d8ddf488e724a9d02a09f69b35b88b024a5a6a996af3e3fe508166274435",
+    "packages/sfml.js-rmlui/test/log.ts": "531b8517d9deacb3287b0fa35db9db9d62c6f1e1e872db90526506027c2193b1",
+    "packages/sfml.js-rmlui/test/native/support-contracts.cc": "1703e39ebc6e30fa36573f080b2a11ae1c4e2a239ece1b1a91cdc4535a2965f2",
+    "packages/sfml.js-rmlui/test/native/build-support-contracts.py": "ccba1e9bab34d798696347f800a9bdf8dbfa61c50aba2de8f5c950b2e362312d",
+    "packages/sfml.js-rmlui/binding.gyp": "b0911d4997b1d3b02957e74ac21f062af39edd3bade3810f9692e672774b24fc",
+    "docs/rmlui/getting-started.md": "8d1c6416331b44701ac6b237a79dc2d4e23752d8bc87036c55422d007611ca42",
+    "docs/rmlui/getting-started.zh-CN.md": "636bcfef7addd19fb010201229574ee5d61ba3164ded1e980870b32684aa1b44",
+    "docs/rmlui/getting-started.ja.md": "c490bfb0dd68fa6e76b8ecf71ac77aaa5c357cb04b9d5f5c0f5e04e4ee5e7f0d",
+    "docs/rmlui/getting-started.ko.md": "78645b472441323b603f7480d54c516b27fb35b8e72fc1115b78e51bbb5d98b9"
+  },
+  "archive": {
+    "path": "/tmp/rmlui-63-completion/support-package/sfml.js-rmlui-1.2.1.tgz",
+    "sha256": "827343c217d90e917115dc76f793f7e14f3e7f3735d66ea9afd11d1355ab4cfd",
+    "entries": 598,
+    "bytes": 1512624,
+    "matched_current_paths": [
+      "src/log.ts",
+      "src/core.ts",
+      "src/internal/native.ts",
+      "native/rmlui-log.cc",
+      "native/rmlui-string.h",
+      "native/rmlui-string-format.cc",
+      "native/addon.cc",
+      "binding.gyp",
+      "dist/log.js",
+      "dist/log.d.ts",
+      "dist/core.js",
+      "dist/core.d.ts"
+    ],
+    "runtime_executed_from_archive": false,
+    "isolated_install_created": false
+  },
+  "representation": {
+    "maps": 12,
+    "represented": 3563,
+    "unrepresented": 363,
+    "is_pass_count": false
+  }
+}

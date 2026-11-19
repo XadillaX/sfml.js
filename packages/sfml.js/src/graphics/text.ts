@@ -379,8 +379,10 @@ function colorInteger(value: R<Color>): number {
   return value.toInteger();
 }
 
+/** Native text resource used by the public transformable wrapper. @inline */
 class TextResource extends Drawable {
   readonly [mutableValue] = true;
+  /** Native text capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'text'>;
   readonly [transformableState]: TransformableState;
   /**
@@ -544,7 +546,7 @@ class TextResource extends Drawable {
    * @ja 表示文字列を設定し、次回の照会または描画で再シェーピングします。
    * @ko 표시할 문자열을 설정하며 다음 조회 또는 그리기에서 다시 셰이핑합니다.
    */
-  setString(this: TextResource, value: string): void {
+  setString(this: this, value: string): void {
     this.checkIdle();
     if (typeof value !== 'string') {
       throw new TypeError('Expected a string');
@@ -570,7 +572,7 @@ class TextResource extends Drawable {
    * @ja フォントを設定し、その参照を保持します。
    * @ko 글꼴을 설정하고 참조를 유지합니다.
    */
-  setFont(this: TextResource, font: ReadonlyFont): void {
+  setFont(this: this, font: ReadonlyFont): void {
     this.checkIdle();
     if (!(font instanceof Font)) {
       throw new TypeError('Expected a Font');
@@ -595,7 +597,7 @@ class TextResource extends Drawable {
    * @ja 文字サイズをピクセル単位で設定します。
    * @ko 글자 크기를 픽셀 단위로 설정합니다.
    */
-  setCharacterSize(this: TextResource, size: number): void {
+  setCharacterSize(this: this, size: number): void {
     this.set(0, fontUnsigned(size));
   }
   /**
@@ -613,7 +615,7 @@ class TextResource extends Drawable {
    * @ja 文字間隔の倍率を設定します。1 は既定の間隔です。
    * @ko 자간 배율을 설정합니다. 1은 기본 간격입니다.
    */
-  setLetterSpacing(this: TextResource, factor: number): void {
+  setLetterSpacing(this: this, factor: number): void {
     this.set(1, textFloat(factor));
   }
   /**
@@ -631,7 +633,7 @@ class TextResource extends Drawable {
    * @ja 行間隔の倍率を設定します。1 はフォント既定の行間隔です。
    * @ko 줄 간격 배율을 설정합니다. 1은 글꼴의 기본 줄 간격입니다.
    */
-  setLineSpacing(this: TextResource, factor: number): void {
+  setLineSpacing(this: this, factor: number): void {
     this.set(2, textFloat(factor));
   }
   /**
@@ -649,7 +651,7 @@ class TextResource extends Drawable {
    * @ja TextStyle ビットフラグを設定します。太字や斜体などを組み合わせられます。
    * @ko TextStyle 비트 플래그를 설정하며 굵게, 기울임꼴 등의 스타일을 조합할 수 있습니다.
    */
-  setStyle(this: TextResource, style: TextStyle): void {
+  setStyle(this: this, style: TextStyle): void {
     this.set(3, fontUnsigned(style, 15));
   }
   /**
@@ -667,7 +669,7 @@ class TextResource extends Drawable {
    * @ja 塗りつぶし色をコピーします。既存ジオメトリは色のみを更新します。
    * @ko 채우기 색상을 복사합니다. 기존 기하 구조는 색상만 갱신합니다.
    */
-  setFillColor(this: TextResource, color: R<Color>): void {
+  setFillColor(this: this, color: R<Color>): void {
     this.setColor(4, colorInteger(color));
   }
   /**
@@ -685,7 +687,7 @@ class TextResource extends Drawable {
    * @ja 輪郭色をコピーします。既存ジオメトリは色のみを更新します。
    * @ko 윤곽선 색상을 복사합니다. 기존 기하 구조는 색상만 갱신합니다.
    */
-  setOutlineColor(this: TextResource, color: R<Color>): void {
+  setOutlineColor(this: this, color: R<Color>): void {
     this.setColor(5, colorInteger(color));
   }
   /**
@@ -703,7 +705,7 @@ class TextResource extends Drawable {
    * @ja 輪郭の太さをピクセル単位で設定します。
    * @ko 윤곽선 두께를 픽셀 단위로 설정합니다.
    */
-  setOutlineThickness(this: TextResource, thickness: number): void {
+  setOutlineThickness(this: this, thickness: number): void {
     this.set(6, textFloat(thickness));
   }
   /**
@@ -721,7 +723,7 @@ class TextResource extends Drawable {
    * @ja 複数行テキストの配置を設定します。
    * @ko 여러 줄 텍스트의 정렬을 설정합니다.
    */
-  setLineAlignment(this: TextResource, alignment: LineAlignment): void {
+  setLineAlignment(this: this, alignment: LineAlignment): void {
     this.set(7, fontUnsigned(alignment, 3));
   }
   /**
@@ -740,7 +742,7 @@ class TextResource extends Drawable {
    * @ko 가로쓰기 또는 세로쓰기 방향을 설정합니다.
    */
   setTextOrientation(
-    this: TextResource,
+    this: this,
     orientation: TextOrientation,
   ): void {
     this.set(8, fontUnsigned(orientation, 2));
@@ -760,7 +762,7 @@ class TextResource extends Drawable {
    * @ja シェーピング時のグリフクラスターのグループ化方針を設定します。
    * @ko 셰이핑 시 글리프 클러스터 그룹화 방식을 설정합니다.
    */
-  setClusterGrouping(this: TextResource, grouping: ClusterGrouping): void {
+  setClusterGrouping(this: this, grouping: ClusterGrouping): void {
     this.set(9, fontUnsigned(grouping, 2));
   }
   /**
@@ -781,7 +783,7 @@ class TextResource extends Drawable {
    * @ko 동기 글리프 외형 콜백을 설정하며 null은 해제합니다. 콜백은 기하 구조를 재구성할 때 실행됩니다.
    */
   setGlyphPreProcessor(
-    this: TextResource,
+    this: this,
     processor: GlyphPreProcessor | null,
   ): void {
     this.checkIdle();
@@ -1051,6 +1053,28 @@ class TextResource extends Drawable {
  * @ko 네이티브 꼭짓점 저장 공간과 배치 그리기 스냅샷을 사용하는 SFML 셰이핑입니다.
  */
 export class Text extends withTransformable(TextResource) {
+  /**
+   * Creates text from a font and options, or copies an existing text object.
+   * The copy retains its font and glyph preprocessor references.
+   * @zh 从字体和参数创建文本，或复制现有文本对象。副本保留字体和字形预处理器引用。
+   * @ja フォントと設定からテキストを作成するか、既存テキストをコピーします。
+   * コピーはフォントとグリフプリプロセッサーの参照を保持します。
+   * @ko 글꼴과 설정으로 텍스트를 만들거나 기존 텍스트 객체를 복사합니다.
+   * 복사본은 글꼴과 글리프 전처리기 참조를 유지합니다.
+   */
+  public constructor(options: TextOptions);
+
+  /**
+   * Copies text, retaining its font and glyph preprocessor references.
+   * @zh 复制文本，保留字体和字形预处理器引用。
+   * @ja フォントとグリフプリプロセッサーの参照を保持してテキストをコピーします。
+   * @ko 글꼴과 글리프 전처리기 참조를 유지하여 텍스트를 복사합니다.
+   */
+  public constructor(source: R<Text>);
+  public constructor(options: TextOptions | R<Text>) {
+    super(options);
+  }
+
   /**
    * Text style bit flags.
    * @zh 文本样式位标志。

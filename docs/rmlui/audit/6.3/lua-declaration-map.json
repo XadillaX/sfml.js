@@ -1,0 +1,1260 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "declaration_count": 55,
+  "mapping_complete": true,
+  "scope_complete": false,
+  "notice": "Every original Lua declaration has an exact mapping. Mapping does not imply complete runtime/type/customization acceptance.",
+  "counts": {
+    "locally-verified-managed-equivalent": 10,
+    "partial-external-vm-equivalent": 1,
+    "native-descriptor-mapped-follow-up": 8,
+    "native-template-mapped-follow-up": 20,
+    "native-source-mapped-runtime-follow-up": 14,
+    "native-value-mapped-runtime-follow-up": 2
+  },
+  "runtime_evidence": {
+    "functions": "/tmp/rmlui-63-completion/lua-functions-focused-4.log",
+    "functions_expected_scenarios": 13,
+    "managed_lua": "/tmp/rmlui-63-completion/lua-coroutines-runtime-3.log",
+    "managed_lua_expected_scenarios": 28
+  },
+  "records": [
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 6,
+      "kind": "TypedefDecl",
+      "name": "lua_State",
+      "signature": "lua_State",
+      "type": "lua_State",
+      "key": "Lua/Interpreter.h|6|TypedefDecl|lua_State|lua_State|lua_State",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost owns the real Lua 5.4.8 VM. Scoped interpreter selection and canonical coroutine lookup retain exact VM identity. Node receives a nominal host, not a raw lua_State address. No arbitrary foreign VM pointer input.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#real-lua-state-and-typed-calls",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-coroutines-share-the-managed-vm-and-own-call-stacks"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 17,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::GetLuaState",
+      "signature": "GetLuaState()",
+      "type": "lua_State *()",
+      "key": "Lua/Interpreter.h|17|FunctionDecl|Rml::Lua::Interpreter::GetLuaState|GetLuaState()|lua_State *()",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost owns the real Lua 5.4.8 VM. Scoped interpreter selection and canonical coroutine lookup retain exact VM identity. Node receives a nominal host, not a raw lua_State address. No arbitrary foreign VM pointer input.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#real-lua-state-and-typed-calls",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-coroutines-share-the-managed-vm-and-own-call-stacks"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 23,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::LoadFile",
+      "signature": "LoadFile(const String &)",
+      "type": "bool (const String &)",
+      "key": "Lua/Interpreter.h|23|FunctionDecl|Rml::Lua::Interpreter::LoadFile|LoadFile(const String &)|bool (const String &)",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost.executeFile(path) calls the actual native Interpreter.LoadFile under host/state/stack scopes. It reads through the active RmlUi FileInterface, executes once, preserves traceback source paths and restores outer globals.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Interpreter.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#file-execution-uses-selected-file-interface",
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#file-syntax-errors-are-not-silent"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 27,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::DoString",
+      "signature": "DoString(const String &, const String &)",
+      "type": "bool (const String &, const String &)",
+      "key": "Lua/Interpreter.h|27|FunctionDecl|Rml::Lua::Interpreter::DoString|DoString(const String &, const String &)|bool (const String &, const String &)",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost.execute(source,path,line) compiles then executes trusted text in the host VM, preserving source offsets and error/stack recovery. Native boolean failure is surfaced as the original checked Node exception.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#accurate-sources-and-stack-recovery"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 32,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::LoadString",
+      "signature": "LoadString(const String &, const String &)",
+      "type": "bool (const String &, const String &)",
+      "key": "Lua/Interpreter.h|32|FunctionDecl|Rml::Lua::Interpreter::LoadString|LoadString(const String &, const String &)|bool (const String &, const String &)",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost.compile(source,path,line) leaves a compiled, unexecuted chunk in a native-owned LuaFunction registry reference, rather than exposing a mutable VM stack. Side effects occur only when the chunk is called.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#compile-defers-side-effects-and-preserves-varargs",
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#compile-and-call-errors-restore-stack-and-source-lines"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 37,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::BeginCall",
+      "signature": "BeginCall(int)",
+      "type": "void (int)",
+      "key": "Lua/Interpreter.h|37|FunctionDecl|Rml::Lua::Interpreter::BeginCall|BeginCall(int)|void (int)",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost.getFunction(name) captures the actual registry function identity. LuaFunction.call/callResults push that reference under a stack scope, preserving it after global replacement, nil assignment and Lua GC.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#captured-function-keeps-identity-after-global-replacement"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 46,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::ExecuteCall",
+      "signature": "ExecuteCall(int, int)",
+      "type": "bool (int, int)",
+      "key": "Lua/Interpreter.h|46|FunctionDecl|Rml::Lua::Interpreter::ExecuteCall|ExecuteCall(int, int)|bool (int, int)",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaFunction.callResults(count,...args) makes one native call, invokes pcall with the exact result count, copies scalar results, pads nil with null and discards extras. Arguments/results obey the actual Lua stack limit. Arbitrary Lua tables, functions and userdata are not scalar return values.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#exact-result-count-discards-and-pads-with-nil",
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#argument-getter-release-revalidates-before-vm-access",
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#oversized-call-rejects-before-reading-argument-getters"
+      ]
+    },
+    {
+      "header": "Lua/Interpreter.h",
+      "line": 49,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Interpreter::EndCall",
+      "signature": "EndCall(int)",
+      "type": "void (int)",
+      "key": "Lua/Interpreter.h|49|FunctionDecl|Rml::Lua::Interpreter::EndCall|EndCall(int)|void (int)",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaStackScope automatically restores the exact outer Lua stack after result copy or exceptions. LuaFunction.release separately releases its retained registry reference; it does not expose unsafe caller-directed stack pops.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#compile-and-call-errors-restore-stack-and-source-lines",
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#captured-calls-preserve-enclosing-lua-globals",
+        "packages/sfml.js-rmlui/test/lua-functions.test.cjs#released-reference-allows-native-vm-finalization"
+      ]
+    },
+    {
+      "header": "Lua/Lua.h",
+      "line": 5,
+      "kind": "TypedefDecl",
+      "name": "lua_State",
+      "signature": "lua_State",
+      "type": "lua_State",
+      "key": "Lua/Lua.h|5|TypedefDecl|lua_State|lua_State|lua_State",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "LuaScriptHost owns the real Lua 5.4.8 VM. Scoped interpreter selection and canonical coroutine lookup retain exact VM identity. Node receives a nominal host, not a raw lua_State address. No arbitrary foreign VM pointer input.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#real-lua-state-and-typed-calls",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-coroutines-share-the-managed-vm-and-own-call-stacks"
+      ]
+    },
+    {
+      "header": "Lua/Lua.h",
+      "line": 12,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Initialise",
+      "signature": "Initialise()",
+      "type": "void ()",
+      "key": "Lua/Lua.h|12|FunctionDecl|Rml::Lua::Initialise|Initialise()|void ()",
+      "status": "locally-verified-managed-equivalent",
+      "representation": "new LuaScriptHost() allocates and registers the actual native VM after Core initialisation. Context.setScriptHost(existingHost) selects an already registered managed VM without global instancer replacement. The C++ Initialise(lua_State*) overload accepting an arbitrary external VM remains unverified and is not advertised by the Node API.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Lua.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-node-context-selection-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-created-context-inherits-the-active-host"
+      ]
+    },
+    {
+      "header": "Lua/Lua.h",
+      "line": 19,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::Initialise",
+      "signature": "Initialise(lua_State *)",
+      "type": "void (lua_State *)",
+      "key": "Lua/Lua.h|19|FunctionDecl|Rml::Lua::Initialise|Initialise(lua_State *)|void (lua_State *)",
+      "status": "partial-external-vm-equivalent",
+      "representation": "new LuaScriptHost() allocates and registers the actual native VM after Core initialisation. Context.setScriptHost(existingHost) selects an already registered managed VM without global instancer replacement. The C++ Initialise(lua_State*) overload accepting an arbitrary external VM remains unverified and is not advertised by the Node API.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Lua.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-node-context-selection-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-created-context-inherits-the-active-host"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 75,
+      "kind": "ClassTemplate",
+      "name": "Rml::Lua::RegType",
+      "signature": "RegType<T>",
+      "type": "",
+      "key": "Lua/LuaType.h|75|ClassTemplate|Rml::Lua::RegType|RegType<T>|",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 76,
+      "kind": "FieldDecl",
+      "name": "Rml::Lua::RegType::name",
+      "signature": "name",
+      "type": "const char *",
+      "key": "Lua/LuaType.h|76|FieldDecl|Rml::Lua::RegType::name|name|const char *",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 77,
+      "kind": "FieldDecl",
+      "name": "Rml::Lua::RegType::ftnptr",
+      "signature": "ftnptr",
+      "type": "int (*)(lua_State *, T *)",
+      "key": "Lua/LuaType.h|77|FieldDecl|Rml::Lua::RegType::ftnptr|ftnptr|int (*)(lua_State *, T *)",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 82,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::GetMethodTable",
+      "signature": "GetMethodTable()",
+      "type": "RegType<T> *()",
+      "key": "Lua/LuaType.h|82|FunctionTemplate|Rml::Lua::GetMethodTable|GetMethodTable()|RegType<T> *()",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Pinned RMLUI_LUATYPE_DEFINE specializations provide native method/getter/setter tables and canonical class names. LuaPlugin.RegisterTypesForBinding uses them for its explicit built-in type list. Method and property access is Native/Lua, not per-operation Node callbacks. Unregistered arbitrary user C++ T specializations require separate extension acceptance.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 85,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::GetAttrTable",
+      "signature": "GetAttrTable()",
+      "type": "luaL_Reg *()",
+      "key": "Lua/LuaType.h|85|FunctionTemplate|Rml::Lua::GetAttrTable|GetAttrTable()|luaL_Reg *()",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Pinned RMLUI_LUATYPE_DEFINE specializations provide native method/getter/setter tables and canonical class names. LuaPlugin.RegisterTypesForBinding uses them for its explicit built-in type list. Method and property access is Native/Lua, not per-operation Node callbacks. Unregistered arbitrary user C++ T specializations require separate extension acceptance.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 88,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::SetAttrTable",
+      "signature": "SetAttrTable()",
+      "type": "luaL_Reg *()",
+      "key": "Lua/LuaType.h|88|FunctionTemplate|Rml::Lua::SetAttrTable|SetAttrTable()|luaL_Reg *()",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Pinned RMLUI_LUATYPE_DEFINE specializations provide native method/getter/setter tables and canonical class names. LuaPlugin.RegisterTypesForBinding uses them for its explicit built-in type list. Method and property access is Native/Lua, not per-operation Node callbacks. Unregistered arbitrary user C++ T specializations require separate extension acceptance.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 91,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::GetTClassName",
+      "signature": "GetTClassName()",
+      "type": "const char *()",
+      "key": "Lua/LuaType.h|91|FunctionTemplate|Rml::Lua::GetTClassName|GetTClassName()|const char *()",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Pinned RMLUI_LUATYPE_DEFINE specializations provide native method/getter/setter tables and canonical class names. LuaPlugin.RegisterTypesForBinding uses them for its explicit built-in type list. Method and property access is Native/Lua, not per-operation Node callbacks. Unregistered arbitrary user C++ T specializations require separate extension acceptance.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 99,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::ExtraInit",
+      "signature": "ExtraInit(lua_State *, int)",
+      "type": "void (lua_State *, int)",
+      "key": "Lua/LuaType.h|99|FunctionTemplate|Rml::Lua::ExtraInit|ExtraInit(lua_State *, int)|void (lua_State *, int)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual compiled registration path installs Lua userdata metatables, native methods/getters/setters and ExtraInit inheritance for explicitly registered types. Managed element/data instancers expose checked callback extension paths. This does not establish arbitrary foreign C++ class registration or every registered type's complete Lua method surface.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-element-instancer-registration-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-model-arrays-replacement-and-events"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 106,
+      "kind": "ClassTemplate",
+      "name": "Rml::Lua::LuaType",
+      "signature": "LuaType<T>",
+      "type": "",
+      "key": "Lua/LuaType.h|106|ClassTemplate|Rml::Lua::LuaType|LuaType<T>|",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual compiled registration path installs Lua userdata metatables, native methods/getters/setters and ExtraInit inheritance for explicitly registered types. Managed element/data instancers expose checked callback extension paths. This does not establish arbitrary foreign C++ class registration or every registered type's complete Lua method surface.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-element-instancer-registration-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-model-arrays-replacement-and-events"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 108,
+      "kind": "TypedefDecl",
+      "name": "Rml::Lua::LuaType::ftnptr",
+      "signature": "ftnptr",
+      "type": "Rml::Lua::LuaType::ftnptr",
+      "key": "Lua/LuaType.h|108|TypedefDecl|Rml::Lua::LuaType::ftnptr|ftnptr|Rml::Lua::LuaType::ftnptr",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 110,
+      "kind": "StructDecl",
+      "name": "Rml::Lua::LuaType::RegType",
+      "signature": "RegType",
+      "type": "Rml::Lua::LuaType::RegType",
+      "key": "Lua/LuaType.h|110|StructDecl|Rml::Lua::LuaType::RegType|RegType|Rml::Lua::LuaType::RegType",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 111,
+      "kind": "FieldDecl",
+      "name": "Rml::Lua::LuaType::RegType::name",
+      "signature": "name",
+      "type": "const char *",
+      "key": "Lua/LuaType.h|111|FieldDecl|Rml::Lua::LuaType::RegType::name|name|const char *",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 112,
+      "kind": "FieldDecl",
+      "name": "Rml::Lua::LuaType::RegType::func",
+      "signature": "func",
+      "type": "ftnptr",
+      "key": "Lua/LuaType.h|112|FieldDecl|Rml::Lua::LuaType::RegType::func|func|ftnptr",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 113,
+      "kind": "TypedefDecl",
+      "name": "Rml::Lua::LuaType::RegType",
+      "signature": "RegType",
+      "type": "Rml::Lua::LuaType::RegType",
+      "key": "Lua/LuaType.h|113|TypedefDecl|Rml::Lua::LuaType::RegType|RegType|Rml::Lua::LuaType::RegType",
+      "status": "native-descriptor-mapped-follow-up",
+      "representation": "Compiled native RegType descriptors hold the actual method name and typed C function pointer consumed by LuaType._regfunctions/thunk. The descriptor is never marshalled as pointer bits to Node. Registered built-in Lua methods execute natively; arbitrary user C++ descriptor registration has no independently accepted managed contract.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 118,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::Register",
+      "signature": "Register(lua_State *)",
+      "type": "void (lua_State *)",
+      "key": "Lua/LuaType.h|118|CXXMethod|Rml::Lua::LuaType::Register|Register(lua_State *)|void (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual compiled registration path installs Lua userdata metatables, native methods/getters/setters and ExtraInit inheritance for explicitly registered types. Managed element/data instancers expose checked callback extension paths. This does not establish arbitrary foreign C++ class registration or every registered type's complete Lua method surface.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-element-instancer-registration-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-model-arrays-replacement-and-events"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 124,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::push",
+      "signature": "push(lua_State *, T *, bool)",
+      "type": "int (lua_State *, T *, bool)",
+      "key": "Lua/LuaType.h|124|CXXMethod|Rml::Lua::LuaType::push|push(lua_State *, T *, bool)|int (lua_State *, T *, bool)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Actual LuaType.push/check delegate to PushTypedLuaObject and CheckTypedLuaObject. Userdata retain typed ownership, observer-backed DOM/Context identity, event liveness and generation; incompatible and expired casts reject. The arbitrary user T registration surface remains unverified.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#named-handler-and-expired-event",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#owned-elements-and-listeners-survive-gc-and-shutdown"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 128,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::check",
+      "signature": "check(lua_State *, int)",
+      "type": "T *(lua_State *, int)",
+      "key": "Lua/LuaType.h|128|CXXMethod|Rml::Lua::LuaType::check|check(lua_State *, int)|T *(lua_State *, int)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Actual LuaType.push/check delegate to PushTypedLuaObject and CheckTypedLuaObject. Userdata retain typed ownership, observer-backed DOM/Context identity, event liveness and generation; incompatible and expired casts reject. The arbitrary user T registration surface remains unverified.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#named-handler-and-expired-event",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#owned-elements-and-listeners-survive-gc-and-shutdown"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 132,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::thunk",
+      "signature": "thunk(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.h|132|CXXMethod|Rml::Lua::LuaType::thunk|thunk(lua_State *)|int (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Native method thunk checks the userdata receiver, retains it through LuaAccessScope, removes self and calls the actual typed native method descriptor. Active subtree/model mutations and manual receiver GC reject without destroying the borrowed native frame. Arbitrary user T needs review.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#owned-elements-and-listeners-survive-gc-and-shutdown",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 134,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::tostring",
+      "signature": "tostring(char *, size_t, void *)",
+      "type": "void (char *, size_t, void *)",
+      "key": "Lua/LuaType.h|134|CXXMethod|Rml::Lua::LuaType::tostring|tostring(char *, size_t, void *)|void (char *, size_t, void *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "The compiled native diagnostic formatter and __tostring method print pointer text after checked userdata access. Formatting is not an ownership handle and is never accepted as one. Exact diagnostic formatting has no new consumer runtime assertion in this checkpoint.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": []
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 140,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::gc_T",
+      "signature": "gc_T(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.h|140|CXXMethod|Rml::Lua::LuaType::gc_T|gc_T(lua_State *)|int (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual __gc delegates to CollectLuaObject. Only owned userdata release their value; observers and active receivers/models/proxies preserve native ownership. VM close is deferred out of V8 GC. Arbitrary T remains unverified.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#unused-vm-closes-outside-v8-gc",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-proxy-metamethods-cannot-destroy-active-storage"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 143,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::tostring_T",
+      "signature": "tostring_T(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.h|143|CXXMethod|Rml::Lua::LuaType::tostring_T|tostring_T(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "The compiled native diagnostic formatter and __tostring method print pointer text after checked userdata access. Formatting is not an ownership handle and is never accepted as one. Exact diagnostic formatting has no new consumer runtime assertion in this checkpoint.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": []
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 145,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::eq_T",
+      "signature": "eq_T(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.h|145|CXXMethod|Rml::Lua::LuaType::eq_T|eq_T(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "Native __eq compares checked actual object identity. Existing nested-event assertions exercise valid Event/Document equality; exhaustive registered type/null/expired equality behavior still needs dedicated consumer coverage.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#nested-event-globals-and-lua-attached-functions"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 148,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::index",
+      "signature": "index(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.h|148|CXXMethod|Rml::Lua::LuaType::index|index(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "LuaType scoped __index/__newindex dispatch to the actual LuaTypeImpl method/getter/setter/inheritance tables. Native access scopes check liveness and mutation safety. Existing proxy/control tests cover exercised operations, not every built-in or arbitrary C++ type.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 151,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::newindex",
+      "signature": "newindex(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.h|151|CXXMethod|Rml::Lua::LuaType::newindex|newindex(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "LuaType scoped __index/__newindex dispatch to the actual LuaTypeImpl method/getter/setter/inheritance tables. Native access scopes check liveness and mutation safety. Existing proxy/control tests cover exercised operations, not every built-in or arbitrary C++ type.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 156,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::_regfunctions",
+      "signature": "_regfunctions(lua_State *, int, int)",
+      "type": "void (lua_State *, int, int)",
+      "key": "Lua/LuaType.h|156|CXXMethod|Rml::Lua::LuaType::_regfunctions|_regfunctions(lua_State *, int, int)|void (lua_State *, int, int)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual compiled registration path installs Lua userdata metatables, native methods/getters/setters and ExtraInit inheritance for explicitly registered types. Managed element/data instancers expose checked callback extension paths. This does not establish arbitrary foreign C++ class registration or every registered type's complete Lua method surface.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-element-instancer-registration-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-model-arrays-replacement-and-events"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 165,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::LuaTypeImpl::index",
+      "signature": "index(lua_State *, const char *)",
+      "type": "int (lua_State *, const char *)",
+      "key": "Lua/LuaType.h|165|FunctionDecl|Rml::Lua::LuaTypeImpl::index|index(lua_State *, const char *)|int (lua_State *, const char *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "LuaType scoped __index/__newindex dispatch to the actual LuaTypeImpl method/getter/setter/inheritance tables. Native access scopes check liveness and mutation safety. Existing proxy/control tests cover exercised operations, not every built-in or arbitrary C++ type.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.h",
+      "line": 166,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::LuaTypeImpl::newindex",
+      "signature": "newindex(lua_State *, const char *)",
+      "type": "int (lua_State *, const char *)",
+      "key": "Lua/LuaType.h|166|FunctionDecl|Rml::Lua::LuaTypeImpl::newindex|newindex(lua_State *, const char *)|int (lua_State *, const char *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "LuaType scoped __index/__newindex dispatch to the actual LuaTypeImpl method/getter/setter/inheritance tables. Native access scopes check liveness and mutation safety. Existing proxy/control tests cover exercised operations, not every built-in or arbitrary C++ type.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 5,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::Register",
+      "signature": "Register(lua_State *)",
+      "type": "void (lua_State *)",
+      "key": "Lua/LuaType.inl|5|CXXMethod|Rml::Lua::LuaType::Register|Register(lua_State *)|void (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual compiled registration path installs Lua userdata metatables, native methods/getters/setters and ExtraInit inheritance for explicitly registered types. Managed element/data instancers expose checked callback extension paths. This does not establish arbitrary foreign C++ class registration or every registered type's complete Lua method surface.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-element-instancer-registration-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-model-arrays-replacement-and-events"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 51,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::push",
+      "signature": "push(lua_State *, T *, bool)",
+      "type": "int (lua_State *, T *, bool)",
+      "key": "Lua/LuaType.inl|51|CXXMethod|Rml::Lua::LuaType::push|push(lua_State *, T *, bool)|int (lua_State *, T *, bool)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Actual LuaType.push/check delegate to PushTypedLuaObject and CheckTypedLuaObject. Userdata retain typed ownership, observer-backed DOM/Context identity, event liveness and generation; incompatible and expired casts reject. The arbitrary user T registration surface remains unverified.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#named-handler-and-expired-event",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#owned-elements-and-listeners-survive-gc-and-shutdown"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 102,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::check",
+      "signature": "check(lua_State *, int)",
+      "type": "T *(lua_State *, int)",
+      "key": "Lua/LuaType.inl|102|CXXMethod|Rml::Lua::LuaType::check|check(lua_State *, int)|T *(lua_State *, int)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Actual LuaType.push/check delegate to PushTypedLuaObject and CheckTypedLuaObject. Userdata retain typed ownership, observer-backed DOM/Context identity, event liveness and generation; incompatible and expired casts reject. The arbitrary user T registration surface remains unverified.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#named-handler-and-expired-event",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#owned-elements-and-listeners-survive-gc-and-shutdown"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 113,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::thunk",
+      "signature": "thunk(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.inl|113|CXXMethod|Rml::Lua::LuaType::thunk|thunk(lua_State *)|int (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "Native method thunk checks the userdata receiver, retains it through LuaAccessScope, removes self and calls the actual typed native method descriptor. Active subtree/model mutations and manual receiver GC reject without destroying the borrowed native frame. Arbitrary user T needs review.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#owned-elements-and-listeners-survive-gc-and-shutdown",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 132,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::tostring",
+      "signature": "tostring(char *, size_t, void *)",
+      "type": "void (char *, size_t, void *)",
+      "key": "Lua/LuaType.inl|132|CXXMethod|Rml::Lua::LuaType::tostring|tostring(char *, size_t, void *)|void (char *, size_t, void *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "The compiled native diagnostic formatter and __tostring method print pointer text after checked userdata access. Formatting is not an ownership handle and is never accepted as one. Exact diagnostic formatting has no new consumer runtime assertion in this checkpoint.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": []
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 138,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::gc_T",
+      "signature": "gc_T(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.inl|138|CXXMethod|Rml::Lua::LuaType::gc_T|gc_T(lua_State *)|int (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual __gc delegates to CollectLuaObject. Only owned userdata release their value; observers and active receivers/models/proxies preserve native ownership. VM close is deferred out of V8 GC. Arbitrary T remains unverified.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-host.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#unused-vm-closes-outside-v8-gc",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-proxy-metamethods-cannot-destroy-active-storage"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 168,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::tostring_T",
+      "signature": "tostring_T(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.inl|168|CXXMethod|Rml::Lua::LuaType::tostring_T|tostring_T(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "The compiled native diagnostic formatter and __tostring method print pointer text after checked userdata access. Formatting is not an ownership handle and is never accepted as one. Exact diagnostic formatting has no new consumer runtime assertion in this checkpoint.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": []
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 179,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::eq_T",
+      "signature": "eq_T(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.inl|179|CXXMethod|Rml::Lua::LuaType::eq_T|eq_T(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "Native __eq compares checked actual object identity. Existing nested-event assertions exercise valid Event/Document equality; exhaustive registered type/null/expired equality behavior still needs dedicated consumer coverage.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#nested-event-globals-and-lua-attached-functions"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 190,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::index",
+      "signature": "index(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.inl|190|CXXMethod|Rml::Lua::LuaType::index|index(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "LuaType scoped __index/__newindex dispatch to the actual LuaTypeImpl method/getter/setter/inheritance tables. Native access scopes check liveness and mutation safety. Existing proxy/control tests cover exercised operations, not every built-in or arbitrary C++ type.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 197,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::newindex",
+      "signature": "newindex(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/LuaType.inl|197|CXXMethod|Rml::Lua::LuaType::newindex|newindex(lua_State *)|int (lua_State *)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "LuaType scoped __index/__newindex dispatch to the actual LuaTypeImpl method/getter/setter/inheritance tables. Native access scopes check liveness and mutation safety. Existing proxy/control tests cover exercised operations, not every built-in or arbitrary C++ type.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-object.h"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/LuaType.inl",
+      "line": 204,
+      "kind": "CXXMethod",
+      "name": "Rml::Lua::LuaType::_regfunctions",
+      "signature": "_regfunctions(lua_State *, int, int)",
+      "type": "void (lua_State *, int, int)",
+      "key": "Lua/LuaType.inl|204|CXXMethod|Rml::Lua::LuaType::_regfunctions|_regfunctions(lua_State *, int, int)|void (lua_State *, int, int)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual compiled registration path installs Lua userdata metatables, native methods/getters/setters and ExtraInit inheritance for explicitly registered types. Managed element/data instancers expose checked callback extension paths. This does not establish arbitrary foreign C++ class registration or every registered type's complete Lua method surface.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-element-instancer-registration-and-direct-factory",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-data-model-arrays-replacement-and-events"
+      ]
+    },
+    {
+      "header": "Lua/Utilities.h",
+      "line": 30,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::PushVariant",
+      "signature": "PushVariant(lua_State *, const Variant *)",
+      "type": "void (lua_State *, const Variant *)",
+      "key": "Lua/Utilities.h|30|FunctionDecl|Rml::Lua::PushVariant|PushVariant(lua_State *, const Variant *)|void (lua_State *, const Variant *)",
+      "status": "native-value-mapped-runtime-follow-up",
+      "representation": "Actual Utilities PushVariant/GetVariant preserve registered native scalar, tuple, aggregate and guarded pointer values in managed Lua. Owned userdata keep native storage/expiry identity and callable closures through actual VM owners; native versus collectible JS roots stay separate. Lua NONE becomes nil; a table becomes native NONE; guarded null pointers remain explicit values. Foreign non-null native opaque/script pointers still require an independently accepted external owner adapter. This evidence accepts only the executed managed VM scope and promotes no unrelated native extension or Core/Supplemental declaration.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Utilities.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Element.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Event.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-variant.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-variant.cc",
+        "packages/sfml.js-rmlui/native/rmlui-script-host.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-model.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc",
+        "packages/sfml.js-rmlui/native/rmlui-element-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-state.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-effect-callbacks.cc",
+        "packages/sfml.js-rmlui/tools/patch-rmlui-lua.cjs",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/EventParametersProxy.cpp",
+        "packages/sfml.js-rmlui/test/lua-variants.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-ownership-performance.test.cjs",
+        "packages/sfml.js-rmlui/native/rmlui-variant-objects.h",
+        "packages/sfml.js-rmlui/native/rmlui-variant-objects.cc",
+        "packages/sfml.js-rmlui/native/rmlui-script-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-script-object.cc",
+        "packages/sfml.js-rmlui/native/rmlui-value-callbacks.cc",
+        "packages/sfml.js-rmlui/test/native/external-variant-adapters.cc",
+        "packages/sfml.js-rmlui/test/native/build-external-variant-adapters.py",
+        "packages/sfml.js-rmlui/test/external-variant-adapters.cjs",
+        "packages/sfml.js-rmlui/native/rmlui-variant-pointers.h",
+        "packages/sfml.js-rmlui/native/rmlui-variant-pointers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-variant.h",
+        "packages/sfml.js-rmlui/native/rmlui-variant.cc",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.h",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-events.cc",
+        "packages/sfml.js-rmlui/src/types.ts",
+        "packages/sfml.js-rmlui/src/core.ts",
+        "packages/sfml.js-rmlui/src/internal/animation-values.ts",
+        "packages/sfml.js-rmlui/test/owned-variant.types.ts"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-variants.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-ownership-performance.test.cjs",
+        "packages/sfml.js-rmlui/test/external-variant-adapters.cjs"
+      ],
+      "managed_runtime_acceptance": {
+        "status": "locally-verified-managed-values-macos-arm64",
+        "focused": {
+          "lua-variants-scalar-matrix-6.log": {
+            "exit_code": 0,
+            "passed_scenarios": 23,
+            "sha256": "a19a6c457da32485786ed4280458280746e9ba77b19cb78fa1e2e384d523ef43"
+          },
+          "lua-callbacks-native-owners-green-2.log": {
+            "exit_code": 0,
+            "passed_scenarios": 14,
+            "sha256": "b36c61e4d20e450e54cd63a5a8be525741faa0a6375851088df96d85e581fdbd"
+          },
+          "lua-owner-load-green-3.log": {
+            "exit_code": 0,
+            "passed_scenarios": 6,
+            "sha256": "66c861aadb21a424f72c8eb88503f1fd1cf503dc2c718ff2c4cda972518e8031"
+          }
+        },
+        "package": {
+          "log": "/tmp/rmlui-63-completion/lua-owner-load-package-final-1.log",
+          "exit_code": 0,
+          "runtime_files": 109,
+          "passed_lines": 1096,
+          "sha256": "18e421662a47312484a824f23a4b6e1581f1d8e693dd1f0b274144263747db08"
+        },
+        "site": {
+          "log": "/tmp/rmlui-63-completion/lua-variants-site-final-1.log",
+          "exit_code": 0,
+          "tests": 81,
+          "localized_pages": 152,
+          "api_pages_per_language": 1595,
+          "languages": 4,
+          "redirects": 303,
+          "rendered_browser_acceptance_implied": false,
+          "unrelated_sfml_type_reference_warnings_remain": true
+        },
+        "external_native_adapter_accepted": false,
+        "whole_scope_complete": false
+      },
+      "registered_external_native_adapter_acceptance": {
+        "status": "locally-verified-registered-native-adapters-macos-arm64",
+        "evidence": "external-native-adapter-evidence.json",
+        "accepted_voidptr_and_scriptobject_sources_only": true,
+        "arbitrary_scriptinterface_variant_wrapper_accepted": false,
+        "whole_scope_complete": false
+      },
+      "external_script_variant_acceptance": {
+        "status": "locally-verified-external-script-variants-macos-arm64",
+        "evidence": "external-script-variant-evidence.json",
+        "registered_arbitrary_native_source_only": true,
+        "whole_scope_complete": false
+      }
+    },
+    {
+      "header": "Lua/Utilities.h",
+      "line": 33,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::GetVariant",
+      "signature": "GetVariant(lua_State *, int, Variant *)",
+      "type": "void (lua_State *, int, Variant *)",
+      "key": "Lua/Utilities.h|33|FunctionDecl|Rml::Lua::GetVariant|GetVariant(lua_State *, int, Variant *)|void (lua_State *, int, Variant *)",
+      "status": "native-value-mapped-runtime-follow-up",
+      "representation": "Actual Utilities PushVariant/GetVariant preserve registered native scalar, tuple, aggregate and guarded pointer values in managed Lua. Owned userdata keep native storage/expiry identity and callable closures through actual VM owners; native versus collectible JS roots stay separate. Lua NONE becomes nil; a table becomes native NONE; guarded null pointers remain explicit values. Foreign non-null native opaque/script pointers still require an independently accepted external owner adapter. This evidence accepts only the executed managed VM scope and promotes no unrelated native extension or Core/Supplemental declaration.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Utilities.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Element.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Event.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-lua-variant.h",
+        "packages/sfml.js-rmlui/native/rmlui-lua-variant.cc",
+        "packages/sfml.js-rmlui/native/rmlui-script-host.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-function.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-model.cc",
+        "packages/sfml.js-rmlui/native/rmlui-lua-instancer.cc",
+        "packages/sfml.js-rmlui/native/rmlui-element-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-state.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-effect-callbacks.cc",
+        "packages/sfml.js-rmlui/tools/patch-rmlui-lua.cjs",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/EventParametersProxy.cpp",
+        "packages/sfml.js-rmlui/test/lua-variants.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-ownership-performance.test.cjs",
+        "packages/sfml.js-rmlui/native/rmlui-variant-objects.h",
+        "packages/sfml.js-rmlui/native/rmlui-variant-objects.cc",
+        "packages/sfml.js-rmlui/native/rmlui-script-object.h",
+        "packages/sfml.js-rmlui/native/rmlui-script-object.cc",
+        "packages/sfml.js-rmlui/native/rmlui-value-callbacks.cc",
+        "packages/sfml.js-rmlui/test/native/external-variant-adapters.cc",
+        "packages/sfml.js-rmlui/test/native/build-external-variant-adapters.py",
+        "packages/sfml.js-rmlui/test/external-variant-adapters.cjs",
+        "packages/sfml.js-rmlui/native/rmlui-variant-pointers.h",
+        "packages/sfml.js-rmlui/native/rmlui-variant-pointers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-variant.h",
+        "packages/sfml.js-rmlui/native/rmlui-variant.cc",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.h",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-events.cc",
+        "packages/sfml.js-rmlui/src/types.ts",
+        "packages/sfml.js-rmlui/src/core.ts",
+        "packages/sfml.js-rmlui/src/internal/animation-values.ts",
+        "packages/sfml.js-rmlui/test/owned-variant.types.ts"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-variants.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/lua-variant-ownership-performance.test.cjs",
+        "packages/sfml.js-rmlui/test/external-variant-adapters.cjs"
+      ],
+      "managed_runtime_acceptance": {
+        "status": "locally-verified-managed-values-macos-arm64",
+        "focused": {
+          "lua-variants-scalar-matrix-6.log": {
+            "exit_code": 0,
+            "passed_scenarios": 23,
+            "sha256": "a19a6c457da32485786ed4280458280746e9ba77b19cb78fa1e2e384d523ef43"
+          },
+          "lua-callbacks-native-owners-green-2.log": {
+            "exit_code": 0,
+            "passed_scenarios": 14,
+            "sha256": "b36c61e4d20e450e54cd63a5a8be525741faa0a6375851088df96d85e581fdbd"
+          },
+          "lua-owner-load-green-3.log": {
+            "exit_code": 0,
+            "passed_scenarios": 6,
+            "sha256": "66c861aadb21a424f72c8eb88503f1fd1cf503dc2c718ff2c4cda972518e8031"
+          }
+        },
+        "package": {
+          "log": "/tmp/rmlui-63-completion/lua-owner-load-package-final-1.log",
+          "exit_code": 0,
+          "runtime_files": 109,
+          "passed_lines": 1096,
+          "sha256": "18e421662a47312484a824f23a4b6e1581f1d8e693dd1f0b274144263747db08"
+        },
+        "site": {
+          "log": "/tmp/rmlui-63-completion/lua-variants-site-final-1.log",
+          "exit_code": 0,
+          "tests": 81,
+          "localized_pages": 152,
+          "api_pages_per_language": 1595,
+          "languages": 4,
+          "redirects": 303,
+          "rendered_browser_acceptance_implied": false,
+          "unrelated_sfml_type_reference_warnings_remain": true
+        },
+        "external_native_adapter_accepted": false,
+        "whole_scope_complete": false
+      },
+      "registered_external_native_adapter_acceptance": {
+        "status": "locally-verified-registered-native-adapters-macos-arm64",
+        "evidence": "external-native-adapter-evidence.json",
+        "accepted_voidptr_and_scriptobject_sources_only": true,
+        "arbitrary_scriptinterface_variant_wrapper_accepted": false,
+        "whole_scope_complete": false
+      },
+      "external_script_variant_acceptance": {
+        "status": "locally-verified-external-script-variants-macos-arm64",
+        "evidence": "external-script-variant-evidence.json",
+        "registered_arbitrary_native_source_only": true,
+        "whole_scope_complete": false
+      }
+    },
+    {
+      "header": "Lua/Utilities.h",
+      "line": 36,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::PushIndex",
+      "signature": "PushIndex(lua_State *, int)",
+      "type": "void (lua_State *, int)",
+      "key": "Lua/Utilities.h|36|FunctionDecl|Rml::Lua::PushIndex|PushIndex(lua_State *, int)|void (lua_State *, int)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "Actual native utilities translate Core zero-based indices to Lua one-based indices and back. Lua select/proxy operations exercise ordinary indices; exact integer-range/boundary conversions require follow-up.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Utilities.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Elements/SelectOptionsProxy.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/Utilities.h",
+      "line": 41,
+      "kind": "FunctionDecl",
+      "name": "Rml::Lua::GetIndex",
+      "signature": "GetIndex(lua_State *, int)",
+      "type": "int (lua_State *, int)",
+      "key": "Lua/Utilities.h|41|FunctionDecl|Rml::Lua::GetIndex|GetIndex(lua_State *, int)|int (lua_State *, int)",
+      "status": "native-source-mapped-runtime-follow-up",
+      "representation": "Actual native utilities translate Core zero-based indices to Lua one-based indices and back. Lua select/proxy operations exercise ordinary indices; exact integer-range/boundary conversions require follow-up.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Utilities.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Elements/SelectOptionsProxy.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/Utilities.h",
+      "line": 46,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::CastFromElementTo",
+      "signature": "CastFromElementTo(lua_State *)",
+      "type": "int (lua_State *)",
+      "key": "Lua/Utilities.h|46|FunctionTemplate|Rml::Lua::CastFromElementTo|CastFromElementTo(lua_State *)|int (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual Element.As table holds native RTTI casts for the explicitly registered control/document types. Incompatible casts return nil and checked expired receivers reject. Arbitrary user C++ target registration and exhaustive casts require separate coverage.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/Utilities.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    },
+    {
+      "header": "Lua/Utilities.h",
+      "line": 56,
+      "kind": "FunctionTemplate",
+      "name": "Rml::Lua::AddTypeToElementAsTable",
+      "signature": "AddTypeToElementAsTable(lua_State *)",
+      "type": "void (lua_State *)",
+      "key": "Lua/Utilities.h|56|FunctionTemplate|Rml::Lua::AddTypeToElementAsTable|AddTypeToElementAsTable(lua_State *)|void (lua_State *)",
+      "status": "native-template-mapped-follow-up",
+      "representation": "The actual Element.As table holds native RTTI casts for the explicitly registered control/document types. Incompatible casts return nil and checked expired receivers reject. Arbitrary user C++ target registration and exhaustive casts require separate coverage.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/Utilities.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaPlugin.cpp"
+      ],
+      "scenarios": [
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#checked-dom-proxies-and-invalid-casts",
+        "packages/sfml.js-rmlui/test/lua-scripts.test.cjs#lua-widget-mutations-preserve-active-targets"
+      ]
+    }
+  ]
+}

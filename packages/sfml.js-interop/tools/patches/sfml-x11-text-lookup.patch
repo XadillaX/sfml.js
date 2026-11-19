@@ -1,0 +1,59 @@
+--- a/src/SFML/Window/Unix/WindowImplX11.cpp
++++ b/src/SFML/Window/Unix/WindowImplX11.cpp
+@@ -29,5 +29,6 @@
+ 
+ #include <SFML/Window/EventSource.hpp>
++#include <SFML/Window/platform/x11/utf8-lookup.h>
+ #include <SFML/Window/InputImpl.hpp>
+ #include <SFML/Window/Unix/ClipboardImpl.hpp>
+ #include <SFML/Window/Unix/Display.hpp>
+@@ -2018,30 +2019,28 @@
+                 {
+-                    Status                       status = 0;
+-                    std::array<std::uint8_t, 64> keyBuffer{};
+-
+-                    const int length = Xutf8LookupString(m_inputContext,
+-                                                         &windowEvent.xkey,
+-                                                         reinterpret_cast<char*>(keyBuffer.data()),
+-                                                         keyBuffer.size(),
+-                                                         nullptr,
+-                                                         &status);
+-
+-                    if (status == XBufferOverflow)
+-                        err() << "A TextEntered event has more than 64 bytes of UTF-8 input, and "
+-                                 "has been discarded\nThis means either you have typed a very long string "
+-                                 "(more than 20 chars), or your input method is broken in obscure ways."
+-                              << std::endl;
+-                    else if (status == XLookupChars)
++                    sfmljs::interop::detail::LookupUtf8(
++                        [this, &windowEvent](char* buffer, int capacity)
++                        {
++                            Status status = 0;
++                            const int length = Xutf8LookupString(m_inputContext,
++                                                                 &windowEvent.xkey,
++                                                                 buffer,
++                                                                 capacity,
++                                                                 nullptr,
++                                                                 &status);
++                            return sfmljs::interop::detail::Utf8LookupResult{
++                                length, status == XBufferOverflow, status == XLookupChars || status == XLookupBoth};
++                        },
++                        [this](std::string_view keyBuffer)
+                     {
+                         // There might be more than 1 characters in this event,
+                         // so we must iterate it
+-                        char32_t      unicode = 0;
+-                        std::uint8_t* iter    = keyBuffer.data();
+-                        while (iter < keyBuffer.data() + length)
++                        char32_t unicode = 0;
++                        auto iter = keyBuffer.begin();
++                        while (iter < keyBuffer.end())
+                         {
+-                            iter = Utf8::decode(iter, keyBuffer.data() + length, unicode, 0);
++                            iter = Utf8::decode(iter, keyBuffer.end(), unicode, 0);
+                             if (unicode != 0)
+                                 pushEvent(Event::TextEntered{unicode});
+                         }
+-                    }
++                    });
+                 }

@@ -82,7 +82,10 @@ export namespace Glsl {
       undefined
     );
     registerSiteTheme(app, {
-      locale: { id: 'en', reference: 'API reference', contents: 'Contents' },
+      locale: {
+        id: 'en', reference: 'API reference', contents: 'Contents',
+        extensions: 'Extensions',
+      },
       languages: [], home: '/', localeHref: () => '/',
     });
     const project = await app.convert();
@@ -159,6 +162,29 @@ export namespace Glsl {
     const overview = parse(
       await readFile(resolve(directory, 'out/index.html'), 'utf8')
     );
+    for (const page of [ overview, windowPage ]) {
+      const headerNav = elements(page, node =>
+        attr(node, 'id') === 'sf-api-nav'
+      )[0];
+      const extensions = elements(headerNav, node =>
+        node.tagName === 'details'
+      )[0];
+      assert.ok(extensions, 'API headers group extensions in a dropdown');
+      assert.equal(attr(extensions, 'open'), undefined);
+      assert.equal(text(elements(extensions, node =>
+        node.tagName === 'summary'
+      )[0]), 'Extensions');
+      assert.deepEqual(
+        elements(extensions, node => node.tagName === 'a').map(node =>
+          attr(node, 'href')),
+        [ '/imgui/', '/rmlui/' ]
+      );
+      assert.equal(
+        headerNav.childNodes.filter(node => node.tagName === 'a').length,
+        3,
+        'only guide, examples and reference remain direct links'
+      );
+    }
     for (const name of [ 'graphics', 'system' ]) {
       assert.ok(
         elements(

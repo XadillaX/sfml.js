@@ -1,0 +1,175 @@
+--- /dev/null
++++ b/src/SFML/Window/EventSource.hpp
+@@ -0,0 +1,52 @@
++// sfml.js extension: opaque provenance for native key and text events.
++// Public SFML event and window layouts remain unchanged.
++
++#pragma once
++
++#include <SFML/Window/Export.hpp>
++#include <SFML/Window/WindowHandle.hpp>
++
++#include "window-input-scope.h"
++
++#include <memory>
++#include <utility>
++
++extern "C" SFML_WINDOW_API void sfmljsSetEventSource(const void* source);
++extern "C" SFML_WINDOW_API void sfmljsTakeEventSource(void* source);
++extern "C" SFML_WINDOW_API bool sfmljsRegisterWindowInput(
++    uintptr_t handle, const sfmljs::interop::WindowInputCallbacks* callbacks);
++
++namespace sfmljs_backend
++{
++std::shared_ptr<void>& currentEventSource();
++sfmljs::interop::detail::WindowInputRegistry& windowInputs();
++
++inline uintptr_t windowInputHandle(sf::WindowHandle handle)
++{
++#if defined(SFML_SYSTEM_WINDOWS) || defined(SFML_SYSTEM_MACOS)
++    return reinterpret_cast<uintptr_t>(handle);
++#else
++    return static_cast<uintptr_t>(handle);
++#endif
++}
++
++// Responder delivery may nest. Restore the outer capture on every return.
++class EventSourceScope
++{
++public:
++    EventSourceScope() : m_previous(std::move(currentEventSource()))
++    {
++    }
++
++    ~EventSourceScope()
++    {
++        currentEventSource() = std::move(m_previous);
++    }
++
++    EventSourceScope(const EventSourceScope&) = delete;
++    EventSourceScope& operator=(const EventSourceScope&) = delete;
++
++private:
++    std::shared_ptr<void> m_previous;
++};
++} // namespace sfmljs_backend
+--- a/src/SFML/Window/WindowImpl.hpp
++++ b/src/SFML/Window/WindowImpl.hpp
+@@ -360,7 +360,13 @@
+     ////////////////////////////////////////////////////////////
+     // Member data
+     ////////////////////////////////////////////////////////////
+-    std::queue<Event>                                m_events;             //!< Queue of available events
++    struct QueuedEvent
++    {
++        Event event;
++        std::shared_ptr<void> source;
++    };
++
++    std::queue<QueuedEvent>                          m_events;             //!< Queue of available events
+     std::unique_ptr<JoystickStatesImpl>              m_joystickStatesImpl; //!< Previous state of the joysticks (PImpl)
+     EnumArray<Sensor::Type, Vector3f, Sensor::Count> m_sensorValue;        //!< Previous value of the sensors
+     float m_joystickThreshold{0.1f}; //!< Joystick threshold (minimum motion for "move" event to be generated)
+--- a/src/SFML/Window/WindowImpl.cpp
++++ b/src/SFML/Window/WindowImpl.cpp
+@@ -26,6 +26,7 @@
+ // Headers
+ ////////////////////////////////////////////////////////////
+ #include <SFML/Window/Event.hpp>
++#include <SFML/Window/EventSource.hpp>
+ #include <SFML/Window/JoystickImpl.hpp>
+ #include <SFML/Window/JoystickManager.hpp>
+ #include <SFML/Window/SensorManager.hpp>
+@@ -91,6 +92,43 @@
+ 
+ #endif
+ 
++
++namespace sfmljs_backend
++{
++sfmljs::interop::detail::WindowInputRegistry& windowInputs()
++{
++    static thread_local sfmljs::interop::detail::WindowInputRegistry registry;
++    return registry;
++}
++
++std::shared_ptr<void>& currentEventSource()
++{
++    static thread_local std::shared_ptr<void> source;
++    return source;
++}
++
++std::shared_ptr<void>& poppedEventSource()
++{
++    static thread_local std::shared_ptr<void> source;
++    return source;
++}
++} // namespace sfmljs_backend
++
++extern "C" SFML_WINDOW_API void sfmljsSetEventSource(const void* source)
++{
++    sfmljs_backend::currentEventSource() = *static_cast<const std::shared_ptr<void>*>(source);
++}
++
++extern "C" SFML_WINDOW_API void sfmljsTakeEventSource(void* source)
++{
++    *static_cast<std::shared_ptr<void>*>(source) = std::move(sfmljs_backend::poppedEventSource());
++}
++
++extern "C" SFML_WINDOW_API bool sfmljsRegisterWindowInput(
++    uintptr_t handle, const sfmljs::interop::WindowInputCallbacks* callbacks)
++{
++    return sfmljs_backend::windowInputs().Attach(handle, callbacks);
++}
+ 
+ namespace
+ {
+@@ -265,10 +291,12 @@
+ std::optional<Event> WindowImpl::popEvent()
+ {
+     std::optional<Event> event; // Use a single local variable for NRVO
++    sfmljs_backend::poppedEventSource().reset();
+ 
+     if (!m_events.empty())
+     {
+-        event.emplace(m_events.front());
++        event.emplace(m_events.front().event);
++        sfmljs_backend::poppedEventSource() = std::move(m_events.front().source);
+         m_events.pop();
+     }
+ 
+@@ -279,7 +319,14 @@
+ ////////////////////////////////////////////////////////////
+ void WindowImpl::pushEvent(const Event& event)
+ {
+-    m_events.push(event);
++    // Provenance belongs to the queued entry, including discarded entries.
++    // No key-value lookup or global history survives polling or window close.
++    const bool keyboard = event.is<Event::KeyPressed>() || event.is<Event::TextEntered>();
++    auto source = sfmljs::interop::detail::WindowInputScope::Capture(
++        sfmljs_backend::windowInputs(), sfmljs_backend::windowInputHandle(getNativeHandle()), event);
++    if (!source && keyboard)
++        source = sfmljs_backend::currentEventSource();
++    m_events.push({event, std::move(source)});
+ }
+ 
+ 
+--- a/src/SFML/Window/macOS/SFOpenGLView+keyboard.mm
++++ b/src/SFML/Window/macOS/SFOpenGLView+keyboard.mm
+@@ -27,6 +27,7 @@
+ // Headers
+ ////////////////////////////////////////////////////////////
+ #include <SFML/Window/macOS/HIDInputManager.hpp> // For localizedKeys and nonLocalizedKeys
++#include <SFML/Window/EventSource.hpp>
+ #import <SFML/Window/macOS/SFKeyboardModifiersHelper.h>
+ #import <SFML/Window/macOS/SFOpenGLView+keyboard_priv.h>
+ #include <SFML/Window/macOS/WindowImplCocoa.hpp>
+@@ -75,6 +76,8 @@
+ ////////////////////////////////////////////////////////
+ - (void)keyDown:(NSEvent*)theEvent
+ {
++    const sfmljs_backend::EventSourceScope sourceScope;
++
+     // Transmit to non-SFML responder
+     [[self nextResponder] keyDown:theEvent];
+ 

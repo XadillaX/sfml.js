@@ -50,7 +50,6 @@ function view(mapping: AudioBufferMapping) {
 export type ReadonlySoundBuffer = Readonly<
 Pick<
 SoundBuffer,
-| typeof audioHandle
 | 'getSamples'
 | 'getSampleCount'
 | 'getSampleRate'
@@ -59,7 +58,10 @@ SoundBuffer,
 | 'getDuration'
 | 'saveToFile'
 >
->;
+> & SoundBufferIdentity;
+
+/** Native buffer identity retained by const references. @inline */
+type SoundBufferIdentity = Pick<SoundBuffer, typeof audioHandle>;
 
 export const adoptAudioBuffer: unique symbol = Symbol('Audio.adoptBuffer');
 
@@ -70,6 +72,7 @@ export const adoptAudioBuffer: unique symbol = Symbol('Audio.adoptBuffer');
  * @ko 뷰는 자신을 얻은 원래 네이티브 메모리 할당을 그대로 유지합니다.
  */
 export class SoundBuffer {
+  /** Native audio buffer capability. @internal */
   readonly [audioHandle]: AudioHandle<'buffer'>;
   private state: ReturnType<typeof view>;
   private readonly queue = new AudioQueue();

@@ -1,0 +1,212 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "1b2b7601ea73bdfcb26fcc6d4128ed16dda4aac4589b181e2c941cfbdc758ed6",
+  "scope_complete": false,
+  "whole_rmlui_accepted": false,
+  "platform": "macOS arm64",
+  "checks": {
+    "runtime": {
+      "path": "/tmp/rmlui-63-completion/debugger-runtime-7.log",
+      "sha256": "7edf120d9af1a14a85ee8e9a58f4a3ab318fe856a7899ef54d3a09147bae28ab",
+      "exit_code": 0,
+      "literal_pass_lines": 18
+    },
+    "integration": {
+      "path": "/tmp/rmlui-63-completion/debugger-integration-1.log",
+      "sha256": "b37c7e0fd48e4c7706da1fb5baf6f4d50b1ffb6e3c658514b3ea711a6c3c6265",
+      "exit_code": 0,
+      "literal_pass_lines": 95
+    },
+    "lint": {
+      "path": "/tmp/rmlui-63-completion/debugger-lint-7.log",
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "types": {
+      "path": "/tmp/rmlui-63-completion/debugger-types-4.log",
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "cpplint": {
+      "path": "/tmp/rmlui-63-completion/debugger-cpplint-4.log",
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "format": {
+      "path": "/tmp/rmlui-63-completion/debugger-format-5.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "naming": {
+      "path": "/tmp/rmlui-63-completion/debugger-naming-3.log",
+      "sha256": "58cb4baa1ae440e270fe4976722b16fcd7bd9a48ce1be6bf5e3a7abb5ef4f0cd",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "patch": {
+      "path": "/tmp/rmlui-63-completion/debugger-patch-2.log",
+      "sha256": "36a120c4bf207d49f6e15142ec3fbdab06600c64fa81536afcb9f7e37cd89427",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "build": {
+      "path": "/tmp/rmlui-63-completion/debugger-build-8.log",
+      "sha256": "baaf39e821f3a0e5c9babf1e3fa87978b6fc2ea437d92b5ccb3e1b7bc825613f",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    }
+  },
+  "runtime_scenarios": [
+    "all-five-operations-and-separate-contexts",
+    "host-removal-releases-plugin-before-native-context",
+    "target-removal-preserves-host-and-allows-retargeting",
+    "individual-debugger-documents-cannot-be-unloaded",
+    "unload-all-target-documents-detaches-inspection",
+    "shutdown-clears-only-owned-native-instancer-entries",
+    "shutdown-preserves-host-instancer-replacements",
+    "unload-all-host-documents-shuts-down-debugger",
+    "runtime-restart-has-no-debugger-state",
+    "strict-arguments-and-callback-reentry",
+    "log-messages-reach-native-debugger-document",
+    "debugger-forwards-logs-and-restores-selected-system-interface",
+    "native-data-model-reflection-updates-and-retargets",
+    "owned-context-host-and-target-use-the-same-release-contract",
+    "native-custom-struct-array-reflection-and-error-propagation",
+    "retired-hooks-outlive-plugin-and-release-after-reinitialization",
+    "borrowed-debugger-allocators-outlive-the-plugin",
+    "pointer-interaction-at-one-and-two-times-density"
+  ],
+  "consumer_suites": 9,
+  "consumer_passes": 113,
+  "positive_native_execution": {
+    "debugger_sources_compiled": 9,
+    "embedded_fonts_loaded": true,
+    "native_model_reflection": true,
+    "native_log_capture": true,
+    "pointer_density_ratios": [
+      1,
+      2
+    ],
+    "separate_and_owned_contexts": true,
+    "retargets_without_target_updates": 16,
+    "borrowed_allocator_types": 5
+  },
+  "production_corrections": {
+    "static_stateless_allocators": true,
+    "registration_cleanup_preserves_host_replacements": true,
+    "failed_initialization_uses_cleanup": true,
+    "host_and_target_release_hooks": true,
+    "individual_internal_document_unload_rejected": true,
+    "no_added_target_update_on_retarget": true
+  },
+  "red_evidence": {
+    "debugger-red-1.log": {
+      "path": "/tmp/rmlui-63-completion/debugger-red-1.log",
+      "sha256": "0e730d85cf392a3c3533f8243421126e69b73478e43ae295cb8122e50f924e71"
+    },
+    "debugger-runtime-3.log": {
+      "path": "/tmp/rmlui-63-completion/debugger-runtime-3.log",
+      "sha256": "b323c1a1f54dc4afe0d8a62049c3617eb202a66f8774cd01756eebc9aa52ea73"
+    },
+    "debugger-reflection-lldb-2.log": {
+      "path": "/tmp/rmlui-63-completion/debugger-reflection-lldb-2.log",
+      "sha256": "d1b0d5c7358972f4399351bc537c2a638fef366803ee0311c9c5bba41313ac4f"
+    },
+    "debugger-borrowed-red-1.log": {
+      "path": "/tmp/rmlui-63-completion/debugger-borrowed-red-1.log",
+      "sha256": "c2c5bea71c6e0a44c454a0b8bd73a86d1e2870e245248404bde16eb3ee911d7d"
+    }
+  },
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/debugger-source-review.md",
+    "sha256": "41c23182c6272cfc5855cb57f8246254dca693199f67bceb41be686d9f28dc64",
+    "independent": false
+  },
+  "previous_input_map_fingerprints": {
+    "renderer-declaration-map.json": "7455a3d56434b10f2a7ffe8c7f756d2d25e7a53727c44dc9299a3c2f7f34042c",
+    "core-scroll-iterator-declaration-map.json": "d212466db3168769ade1a81fefc9dc4b67b5f7e4e34cc6c9ad232d1f29732a4c",
+    "xml-declaration-map.json": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+    "core-input-event-declaration-map.json": "9b7c10a3529e45a7fa996067abf98aba10ea9af7934a1f0560431f2e1019ee62",
+    "utility-declaration-map.json": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+    "numeric-declaration-map.json": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+    "string-url-declaration-map.json": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+    "lua-declaration-map.json": "77d67a9b5b8f13763dfa6c15dc4bf0a5404215116cd32b748c0444db00643dae",
+    "type-converter-declaration-map.json": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+    "supplemental-type-declaration-map.json": "7e97be4c7146e6fa792e897d8a0dcffc3f5e0516e29eb5b5be76603077e2a9e1",
+    "id-scroll-declaration-map.json": "beeb1646e29b151bc10d6d6fa46d1c25848a65b80d222a9053dce0c33b4eac57",
+    "core-type-declaration-map.json": "bf0977bdba57cd9565897244224cadadf5fe852b5f4f6d1cbec5a0fa97796499",
+    "support-declaration-map.json": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+    "stylesheet-types-declaration-map.json": "4cf738dd12550d498d2bc3da967786d995e29a20923fca891e30af4554a6060e",
+    "font-declaration-map.json": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44",
+    "data-operation-ledger.json": "cc0d49cad43e1a2a7dd8ecabd06d6c1851ebf3d917ae2a723b865470726d8c5b"
+  },
+  "source_fingerprints": {
+    "docs/rmlui/README.ja.md": "3ef098afbd336998885d2ef52f84cd0308a1167024d29b923c72d8e5c15d2d89",
+    "docs/rmlui/README.ko.md": "f36df106af6b6fd9ffffadc0c72388f78109a90003130e2ec9a542c7aa3a3edd",
+    "docs/rmlui/README.md": "aeec466e2cc3183a53084abbb5cf141e153128f64bfb8757d90254cf223debed",
+    "docs/rmlui/README.zh-CN.md": "ab0bd944d3e3c94faf1e2fb1858c779562bc2d170e84172b8abc672b9b1b3a73",
+    "docs/rmlui/debugger.ja.md": "133a6c88def4bc46d286e83d6f98767fab7db1920892aa355d8457287afeaa27",
+    "docs/rmlui/debugger.ko.md": "c4872aef05a46174a6bde3fc3114f127e4587a095c53fbc0fe2e27adbbbc3d7f",
+    "docs/rmlui/debugger.md": "0f39e75f14580e712c7fb643a29d6ec0cdc8fca1275c5b194fae11742630a5c5",
+    "docs/rmlui/debugger.zh-CN.md": "33398163eb015108da4bdc8a7c339d5bf31a4e2b3d91f42fede54facd4593876",
+    "packages/sfml.js-rmlui/README.ja.md": "9e0d13aec9f689e5cb0de0dcbadf8a94efbd73fe3e385e4ad735afdb2f852510",
+    "packages/sfml.js-rmlui/README.ko.md": "87d547bc28099dd6ddcce9694a5fd1f13fca1842d560067c93d0184757338137",
+    "packages/sfml.js-rmlui/README.md": "37867558d3b23a340f86040586fb6ce40c3c9a7a586cd8147947970ec973f9b9",
+    "packages/sfml.js-rmlui/README.zh-CN.md": "bd09a2b1661ed99eefa97bdbb0745a22c85baaeec1fec3fca2f5c9932fb980bd",
+    "packages/sfml.js-rmlui/binding.gyp": "2c8b5d630dc290f242f1893a95cf14dac32f28c9fb87ff44602c348785ff70c9",
+    "packages/sfml.js-rmlui/native/addon.cc": "252133ea1228914de65ba9e221674016f6d7b56ebf70aa354171204881af8a88",
+    "packages/sfml.js-rmlui/native/rmlui-context-documents.cc": "a07cf57af7a1a3a8939ae8b4dcf3016ff62829e1a6bcd9a84ab511941f18146a",
+    "packages/sfml.js-rmlui/native/rmlui-debugger.cc": "74d3b24256763159a35b007f8dc643ac126f060fe307310eb416628be3eb3be9",
+    "packages/sfml.js-rmlui/native/rmlui-debugger.h": "754f3081cb2c2c51a42789359b5b0bde56a2c2b2c60ae546b6999cda02f12cf5",
+    "packages/sfml.js-rmlui/native/rmlui-document.cc": "9971cb657fb3a14f61e1d4d2d7974e15791e691c86b1664e9d652edf858a3080",
+    "packages/sfml.js-rmlui/native/rmlui-state.cc": "5d6f1779e4c36b17a8199438db1d9444b6977756839c9f627cdee182111d8208",
+    "packages/sfml.js-rmlui/package.json": "fe9f3ff8cd4e1e8c9491592d0f5100848d3153c55ea48303df7069811fdc2d8d",
+    "packages/sfml.js-rmlui/src/debugger.ts": "1a90b4bdd9836501c8f0c5febd4733579ee40a64bf8e8f3ad7f6898641dc363d",
+    "packages/sfml.js-rmlui/src/index.ts": "fdd0f279b67490ccb571bf73a256ae1ec8c5b8051be2256fb9d04f8c767c06eb",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "51237aab57ffd8bf462ef29bd6d4f423ad4aaeaf5c9285fc61921e2e52eb67b4",
+    "packages/sfml.js-rmlui/test/debugger.test.cjs": "4d30fd7723bbec7a757fa9964250e2a93ba3ffa8014c2b2a4bf77d040f5ed36c",
+    "packages/sfml.js-rmlui/test/debugger.types.ts": "54748787a07ee97341448a303075215191c0f424b50898b9b2bee425deb47a9d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h": "6f67dc90c819cb16ce61f4dbbca82e5aee959991c982025aa27464768f3756a6",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/BeaconSource.h": "b6ccdd0aa162f7e38b4a71a89350d5a24919b63610f9b7b394809c7f312812bb",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/CommonSource.h": "f36ff5ed42f803be371a90c7b4f6862db841b819f6f5fe491fa677a497acfcf6",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/DataModelsSource.h": "2726c200626b643ccfe1bfa7d739059be2bb5c733f5c9264510433f8223de35b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp": "918de8dffc04e3c2dcdd78501db5e800e14121ceb322b2dae6cd10a0c3edfa2b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/DebuggerPlugin.cpp": "abf684e38375dd1d357bcebd46aedbfa7801062f99f4a72e8944c06b32d2f382",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/DebuggerPlugin.h": "beefdc168efb040136095512461c8fe3a045ba03c4df9e1caca02e466af23f56",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/DebuggerSystemInterface.cpp": "42ffb6b42a5d384829a4eda07ae382784a479d99cc944b74f8090d4585a6c1f5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/DebuggerSystemInterface.h": "066260da72857eeee891d8184447320ba9d18c1d85f0eefbd7a6a63fa35f05af",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementContextHook.cpp": "2b21099a22ef4f2b524f09f53462f76a2d6dd6601dab42de3a9409b688e6a8b6",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementContextHook.h": "af2e6cce2359346b02b530e2a8a3d8fa350937b5d4f9437dcb85874df5bebb49",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementDataModels.cpp": "34a3838496d2ce5c40b2864ebd8d96c5282ff5cc5df5292aa1a4e3226a7ef432",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementDataModels.h": "aab73aa6c5be62e68913fde1d46b95fd5b03893c33253200e90fb15fa2b6cf81",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementDebugDocument.cpp": "3626c3e76acbc1cc9deaf1f65d2d035eebfda3b93d69cc22fc295caa6bcc89c8",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementDebugDocument.h": "01adc9a9d517282fab02a9c2a3726cc2ded73a0bb9e82bbe9fc3ae634851c691",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementInfo.cpp": "d0a68107473d67f6ff169a91357f073fa825682d42e1327346b2df3154d94302",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementInfo.h": "44f6dd2fa95e0f6f1de70fcba2ec3fa6c694fcfdca4795310cc9491fb0bd402c",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementLog.cpp": "e2280b9dd1f19bb0eb732341e9d2c52ea01a0ed043db6dec2a20fc089a0b523c",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/ElementLog.h": "71e65b2aee930a3bc0aa48fcc944fea8224e351f6083359555a49835bfb2759b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/FontSource.h": "57dac9d8ab9c23e187c33fa28f7d649094a926f3034ca299d9ffc5c079d54af9",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Geometry.cpp": "8d24078d2047e1601c33bf5f1cf6373c1e2aae5c3e97269e0331d8a1cb3e5013",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Geometry.h": "5184f9734d467accb2aec4d67063f58dace660b7dfab98444a15a86a83fa49ef",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/InfoSource.h": "076dfa5e46c266bc2485dfc3c83c036ff3262710b48d87c6adc20b04450c73de",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/LogSource.h": "ba0486aa90b261eb77f8ebddcf4e02a78952040406c81e82ff03307a13942a32",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/MenuSource.h": "200bde4c028ae4a0b9c688483dd25a1d1eb9a39639d4738a4db96ea5aaec8e58",
+    "packages/sfml.js-rmlui/tools/deps_downloader.cjs": "622903842ebf061b2d94b96d887663648b9bf1840593e157cac36d7547395337",
+    "packages/sfml.js-rmlui/tools/patch-rmlui-debugger.cjs": "ae575d8aaefb618fc8dc7f91b4ddddc39c0292691ea5f161df5c60b1e3b7163d"
+  },
+  "representation_snapshot": {
+    "maps": 19,
+    "represented": 3902,
+    "unrepresented": 24,
+    "is_pass_count": false
+  },
+  "gpu_timing_measured": false,
+  "full_package_runtime_repeated": false,
+  "isolated_environment_created": false,
+  "other_platforms_executed": false
+}

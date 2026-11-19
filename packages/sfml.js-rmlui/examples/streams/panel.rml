@@ -1,0 +1,13 @@
+<rml>
+  <head>
+    <title>RmlUi byte streams</title>
+    <link type="text/rcss" href="panel.rcss"/>
+  </head>
+  <body>
+    <h1>RmlUi byte streams</h1>
+    <div class="row" id="file">File: document and relative stylesheet</div>
+    <div class="row" id="memory">Memory: immutable bytes and writable RCSS</div>
+    <div class="row" id="custom">Callback: synchronous native parser input</div>
+    <div class="hint">Esc exits. Each source retains its own URL and cursor.</div>
+  </body>
+</rml>

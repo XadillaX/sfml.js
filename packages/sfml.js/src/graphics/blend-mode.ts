@@ -123,6 +123,7 @@ export enum BlendEquation {
   Max,
 }
 
+/** Default, copy, shared-factor and separate-factor construction. @inline */
 type Arguments = [] | [source: Readonly<BlendMode>] |
 [source: BlendFactor, destination: BlendFactor, equation?: BlendEquation] |
 [

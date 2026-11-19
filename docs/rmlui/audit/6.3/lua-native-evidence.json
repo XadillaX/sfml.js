@@ -1,0 +1,1047 @@
+{
+  "recorded_date": "2026-11-18",
+  "platform": "macos-arm64",
+  "scope": "concrete native Lua consumers in the existing managed VM",
+  "scope_complete": false,
+  "independent_review": false,
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "historical_input_fingerprints": {
+    "renderer-declaration-map.json": "7455a3d56434b10f2a7ffe8c7f756d2d25e7a53727c44dc9299a3c2f7f34042c",
+    "core-scroll-iterator-declaration-map.json": "d212466db3168769ade1a81fefc9dc4b67b5f7e4e34cc6c9ad232d1f29732a4c",
+    "xml-declaration-map.json": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+    "core-input-event-declaration-map.json": "9b7c10a3529e45a7fa996067abf98aba10ea9af7934a1f0560431f2e1019ee62",
+    "utility-declaration-map.json": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+    "debugger-declaration-map.json": "1b2b7601ea73bdfcb26fcc6d4128ed16dda4aac4589b181e2c941cfbdc758ed6",
+    "numeric-declaration-map.json": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+    "string-url-declaration-map.json": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+    "lua-declaration-map.json": "77d67a9b5b8f13763dfa6c15dc4bf0a5404215116cd32b748c0444db00643dae",
+    "type-converter-declaration-map.json": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+    "supplemental-type-declaration-map.json": "7e97be4c7146e6fa792e897d8a0dcffc3f5e0516e29eb5b5be76603077e2a9e1",
+    "id-scroll-declaration-map.json": "beeb1646e29b151bc10d6d6fa46d1c25848a65b80d222a9053dce0c33b4eac57",
+    "core-type-declaration-map.json": "bf0977bdba57cd9565897244224cadadf5fe852b5f4f6d1cbec5a0fa97796499",
+    "support-declaration-map.json": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+    "stylesheet-types-declaration-map.json": "4cf738dd12550d498d2bc3da967786d995e29a20923fca891e30af4554a6060e",
+    "font-declaration-map.json": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44",
+    "data-operation-ledger.json": "cc0d49cad43e1a2a7dd8ecabd06d6c1851ebf3d917ae2a723b865470726d8c5b",
+    "vector-declaration-map.json": "364da8137d5ecbb490183793faa46be2b91f5891e8ee0726ccfe8fc62647be8a"
+  },
+  "declaration_map_modified": false,
+  "declarations": [
+    {
+      "key": "Lua/Interpreter.h|6|TypedefDecl|lua_State|lua_State|lua_State",
+      "header": "Lua/Interpreter.h",
+      "signature": "lua_State",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|17|FunctionDecl|Rml::Lua::Interpreter::GetLuaState|GetLuaState()|lua_State *()",
+      "header": "Lua/Interpreter.h",
+      "signature": "GetLuaState()",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|23|FunctionDecl|Rml::Lua::Interpreter::LoadFile|LoadFile(const String &)|bool (const String &)",
+      "header": "Lua/Interpreter.h",
+      "signature": "LoadFile(const String &)",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|27|FunctionDecl|Rml::Lua::Interpreter::DoString|DoString(const String &, const String &)|bool (const String &, const String &)",
+      "header": "Lua/Interpreter.h",
+      "signature": "DoString(const String &, const String &)",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|32|FunctionDecl|Rml::Lua::Interpreter::LoadString|LoadString(const String &, const String &)|bool (const String &, const String &)",
+      "header": "Lua/Interpreter.h",
+      "signature": "LoadString(const String &, const String &)",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|37|FunctionDecl|Rml::Lua::Interpreter::BeginCall|BeginCall(int)|void (int)",
+      "header": "Lua/Interpreter.h",
+      "signature": "BeginCall(int)",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|46|FunctionDecl|Rml::Lua::Interpreter::ExecuteCall|ExecuteCall(int, int)|bool (int, int)",
+      "header": "Lua/Interpreter.h",
+      "signature": "ExecuteCall(int, int)",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Interpreter.h|49|FunctionDecl|Rml::Lua::Interpreter::EndCall|EndCall(int)|void (int)",
+      "header": "Lua/Interpreter.h",
+      "signature": "EndCall(int)",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Lua.h|5|TypedefDecl|lua_State|lua_State|lua_State",
+      "header": "Lua/Lua.h",
+      "signature": "lua_State",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Lua.h|12|FunctionDecl|Rml::Lua::Initialise|Initialise()|void ()",
+      "header": "Lua/Lua.h",
+      "signature": "Initialise()",
+      "original_status": "locally-verified-managed-equivalent",
+      "consumer_status": "previously-recorded-managed-consumer",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/Lua.h|19|FunctionDecl|Rml::Lua::Initialise|Initialise(lua_State *)|void (lua_State *)",
+      "header": "Lua/Lua.h",
+      "signature": "Initialise(lua_State *)",
+      "original_status": "partial-external-vm-equivalent",
+      "consumer_status": "pending-external-vm",
+      "native_scenarios": []
+    },
+    {
+      "key": "Lua/LuaType.h|75|ClassTemplate|Rml::Lua::RegType|RegType<T>|",
+      "header": "Lua/LuaType.h",
+      "signature": "RegType<T>",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|76|FieldDecl|Rml::Lua::RegType::name|name|const char *",
+      "header": "Lua/LuaType.h",
+      "signature": "name",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|77|FieldDecl|Rml::Lua::RegType::ftnptr|ftnptr|int (*)(lua_State *, T *)",
+      "header": "Lua/LuaType.h",
+      "signature": "ftnptr",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|82|FunctionTemplate|Rml::Lua::GetMethodTable|GetMethodTable()|RegType<T> *()",
+      "header": "Lua/LuaType.h",
+      "signature": "GetMethodTable()",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|85|FunctionTemplate|Rml::Lua::GetAttrTable|GetAttrTable()|luaL_Reg *()",
+      "header": "Lua/LuaType.h",
+      "signature": "GetAttrTable()",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|88|FunctionTemplate|Rml::Lua::SetAttrTable|SetAttrTable()|luaL_Reg *()",
+      "header": "Lua/LuaType.h",
+      "signature": "SetAttrTable()",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|91|FunctionTemplate|Rml::Lua::GetTClassName|GetTClassName()|const char *()",
+      "header": "Lua/LuaType.h",
+      "signature": "GetTClassName()",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|99|FunctionTemplate|Rml::Lua::ExtraInit|ExtraInit(lua_State *, int)|void (lua_State *, int)",
+      "header": "Lua/LuaType.h",
+      "signature": "ExtraInit(lua_State *, int)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|106|ClassTemplate|Rml::Lua::LuaType|LuaType<T>|",
+      "header": "Lua/LuaType.h",
+      "signature": "LuaType<T>",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|108|TypedefDecl|Rml::Lua::LuaType::ftnptr|ftnptr|Rml::Lua::LuaType::ftnptr",
+      "header": "Lua/LuaType.h",
+      "signature": "ftnptr",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|110|StructDecl|Rml::Lua::LuaType::RegType|RegType|Rml::Lua::LuaType::RegType",
+      "header": "Lua/LuaType.h",
+      "signature": "RegType",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|111|FieldDecl|Rml::Lua::LuaType::RegType::name|name|const char *",
+      "header": "Lua/LuaType.h",
+      "signature": "name",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|112|FieldDecl|Rml::Lua::LuaType::RegType::func|func|ftnptr",
+      "header": "Lua/LuaType.h",
+      "signature": "func",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|113|TypedefDecl|Rml::Lua::LuaType::RegType|RegType|Rml::Lua::LuaType::RegType",
+      "header": "Lua/LuaType.h",
+      "signature": "RegType",
+      "original_status": "native-descriptor-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|118|CXXMethod|Rml::Lua::LuaType::Register|Register(lua_State *)|void (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "Register(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|124|CXXMethod|Rml::Lua::LuaType::push|push(lua_State *, T *, bool)|int (lua_State *, T *, bool)",
+      "header": "Lua/LuaType.h",
+      "signature": "push(lua_State *, T *, bool)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|128|CXXMethod|Rml::Lua::LuaType::check|check(lua_State *, int)|T *(lua_State *, int)",
+      "header": "Lua/LuaType.h",
+      "signature": "check(lua_State *, int)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|132|CXXMethod|Rml::Lua::LuaType::thunk|thunk(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "thunk(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-check-errors-and-stack-recovery",
+        "generic-method-error-unwinds-receiver"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|134|CXXMethod|Rml::Lua::LuaType::tostring|tostring(char *, size_t, void *)|void (char *, size_t, void *)",
+      "header": "Lua/LuaType.h",
+      "signature": "tostring(char *, size_t, void *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-equality-and-pointer-formatting"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|140|CXXMethod|Rml::Lua::LuaType::gc_T|gc_T(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "gc_T(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-owned-and-borrowed-gc",
+        "generic-method-error-unwinds-receiver"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|143|CXXMethod|Rml::Lua::LuaType::tostring_T|tostring_T(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "tostring_T(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-equality-and-pointer-formatting"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|145|CXXMethod|Rml::Lua::LuaType::eq_T|eq_T(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "eq_T(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-equality-and-pointer-formatting"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|148|CXXMethod|Rml::Lua::LuaType::index|index(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "index(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-index-functions-and-fallbacks",
+        "generic-check-errors-and-stack-recovery"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|151|CXXMethod|Rml::Lua::LuaType::newindex|newindex(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.h",
+      "signature": "newindex(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-index-functions-and-fallbacks",
+        "generic-check-errors-and-stack-recovery"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|156|CXXMethod|Rml::Lua::LuaType::_regfunctions|_regfunctions(lua_State *, int, int)|void (lua_State *, int, int)",
+      "header": "Lua/LuaType.h",
+      "signature": "_regfunctions(lua_State *, int, int)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|165|FunctionDecl|Rml::Lua::LuaTypeImpl::index|index(lua_State *, const char *)|int (lua_State *, const char *)",
+      "header": "Lua/LuaType.h",
+      "signature": "index(lua_State *, const char *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-index-functions-and-fallbacks",
+        "generic-check-errors-and-stack-recovery"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.h|166|FunctionDecl|Rml::Lua::LuaTypeImpl::newindex|newindex(lua_State *, const char *)|int (lua_State *, const char *)",
+      "header": "Lua/LuaType.h",
+      "signature": "newindex(lua_State *, const char *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-index-functions-and-fallbacks",
+        "generic-check-errors-and-stack-recovery"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|5|CXXMethod|Rml::Lua::LuaType::Register|Register(lua_State *)|void (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "Register(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|51|CXXMethod|Rml::Lua::LuaType::push|push(lua_State *, T *, bool)|int (lua_State *, T *, bool)",
+      "header": "Lua/LuaType.inl",
+      "signature": "push(lua_State *, T *, bool)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|102|CXXMethod|Rml::Lua::LuaType::check|check(lua_State *, int)|T *(lua_State *, int)",
+      "header": "Lua/LuaType.inl",
+      "signature": "check(lua_State *, int)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|113|CXXMethod|Rml::Lua::LuaType::thunk|thunk(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "thunk(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-check-errors-and-stack-recovery",
+        "generic-method-error-unwinds-receiver"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|132|CXXMethod|Rml::Lua::LuaType::tostring|tostring(char *, size_t, void *)|void (char *, size_t, void *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "tostring(char *, size_t, void *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-equality-and-pointer-formatting"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|138|CXXMethod|Rml::Lua::LuaType::gc_T|gc_T(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "gc_T(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-owned-and-borrowed-gc",
+        "generic-method-error-unwinds-receiver"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|168|CXXMethod|Rml::Lua::LuaType::tostring_T|tostring_T(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "tostring_T(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-equality-and-pointer-formatting"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|179|CXXMethod|Rml::Lua::LuaType::eq_T|eq_T(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "eq_T(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-equality-and-pointer-formatting"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|190|CXXMethod|Rml::Lua::LuaType::index|index(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "index(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-index-functions-and-fallbacks",
+        "generic-check-errors-and-stack-recovery"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|197|CXXMethod|Rml::Lua::LuaType::newindex|newindex(lua_State *)|int (lua_State *)",
+      "header": "Lua/LuaType.inl",
+      "signature": "newindex(lua_State *)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-index-functions-and-fallbacks",
+        "generic-check-errors-and-stack-recovery"
+      ]
+    },
+    {
+      "key": "Lua/LuaType.inl|204|CXXMethod|Rml::Lua::LuaType::_regfunctions|_regfunctions(lua_State *, int, int)|void (lua_State *, int, int)",
+      "header": "Lua/LuaType.inl",
+      "signature": "_regfunctions(lua_State *, int, int)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-descriptors-register-and-dispatch",
+        "generic-extra-init-inherits-and-overrides",
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/Utilities.h|30|FunctionDecl|Rml::Lua::PushVariant|PushVariant(lua_State *, const Variant *)|void (lua_State *, const Variant *)",
+      "header": "Lua/Utilities.h",
+      "signature": "PushVariant(lua_State *, const Variant *)",
+      "original_status": "native-value-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "native-variant-utilities-and-null-contracts"
+      ]
+    },
+    {
+      "key": "Lua/Utilities.h|33|FunctionDecl|Rml::Lua::GetVariant|GetVariant(lua_State *, int, Variant *)|void (lua_State *, int, Variant *)",
+      "header": "Lua/Utilities.h",
+      "signature": "GetVariant(lua_State *, int, Variant *)",
+      "original_status": "native-value-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "native-variant-utilities-and-null-contracts"
+      ]
+    },
+    {
+      "key": "Lua/Utilities.h|36|FunctionDecl|Rml::Lua::PushIndex|PushIndex(lua_State *, int)|void (lua_State *, int)",
+      "header": "Lua/Utilities.h",
+      "signature": "PushIndex(lua_State *, int)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "native-index-push-full-int-domain"
+      ]
+    },
+    {
+      "key": "Lua/Utilities.h|41|FunctionDecl|Rml::Lua::GetIndex|GetIndex(lua_State *, int)|int (lua_State *, int)",
+      "header": "Lua/Utilities.h",
+      "signature": "GetIndex(lua_State *, int)",
+      "original_status": "native-source-mapped-runtime-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "native-index-read-full-int-domain-and-sentinel",
+        "native-index-rejects-before-narrowing"
+      ]
+    },
+    {
+      "key": "Lua/Utilities.h|46|FunctionTemplate|Rml::Lua::CastFromElementTo|CastFromElementTo(lua_State *)|int (lua_State *)",
+      "header": "Lua/Utilities.h",
+      "signature": "CastFromElementTo(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    },
+    {
+      "key": "Lua/Utilities.h|56|FunctionTemplate|Rml::Lua::AddTypeToElementAsTable|AddTypeToElementAsTable(lua_State *)|void (lua_State *)",
+      "header": "Lua/Utilities.h",
+      "signature": "AddTypeToElementAsTable(lua_State *)",
+      "original_status": "native-template-mapped-follow-up",
+      "consumer_status": "locally-verified-concrete-native-consumer",
+      "native_scenarios": [
+        "generic-element-casts-and-borrowed-expiry",
+        "generic-registration-preserves-vm-isolation"
+      ]
+    }
+  ],
+  "native_binary": {
+    "path": "packages/sfml.js-rmlui/build/Release/rmlui.node",
+    "bytes": 13084328,
+    "sha256": "6e6f7ebf79e03ec15670ac1820c8764705beb0d0fd042f6c1fe93b4b97db2fba"
+  },
+  "consumer_extension": {
+    "path": "/tmp/rmlui-63-completion/lua-contracts-final.node",
+    "sha256": "80538c4faea10bf05aa079347d9c10190125641af7b4b1f0665c24a67a930b93",
+    "reuses_loaded_package": true,
+    "compile_utilities_override": false
+  },
+  "native_runtime": {
+    "path": "/tmp/rmlui-63-completion/lua-contracts-final-runtime-3.log",
+    "sha256": "b70140a55a2903aa193c4321a9414d9b5fe5fac578d99b125eebf65b2fc47614",
+    "exit_code": 0,
+    "scenario_count": 13,
+    "scenarios": [
+      "native-variant-utilities-and-null-contracts",
+      "native-index-push-full-int-domain",
+      "native-index-read-full-int-domain-and-sentinel",
+      "native-index-rejects-before-narrowing",
+      "generic-descriptors-register-and-dispatch",
+      "generic-extra-init-inherits-and-overrides",
+      "generic-index-functions-and-fallbacks",
+      "generic-check-errors-and-stack-recovery",
+      "generic-equality-and-pointer-formatting",
+      "generic-owned-and-borrowed-gc",
+      "generic-method-error-unwinds-receiver",
+      "generic-element-casts-and-borrowed-expiry",
+      "generic-registration-preserves-vm-isolation"
+    ]
+  },
+  "package_runtime": {
+    "path": "/tmp/rmlui-63-completion/lua-contracts-full-runtime-1.log",
+    "sha256": "87a3390113a6e039a345cf6e14a630cf09157021470889ea08d9da0da22efb37",
+    "exit_code": 0,
+    "suite_count": 128,
+    "literal_pass_lines": 1220,
+    "suites": [
+      "animation/animation-values.test.cjs",
+      "animation/animation.test.cjs",
+      "data/data-addresses.test.cjs",
+      "data/data-batch.test.cjs",
+      "data/data-custom.test.cjs",
+      "data/data-defaults.test.cjs",
+      "data/data-definition.test.cjs",
+      "data/data-diagnostics.test.cjs",
+      "data/data-factory.test.cjs",
+      "data/data-initialization.test.cjs",
+      "data/data-members.test.cjs",
+      "data/data-model.test.cjs",
+      "data/data-owned.test.cjs",
+      "data/data-references.test.cjs",
+      "data/data-schema.test.cjs",
+      "data/data-transforms.test.cjs",
+      "data/official-data.test.cjs",
+      "dom/box.test.cjs",
+      "dom/controls.test.cjs",
+      "dom/document-header.test.cjs",
+      "dom/documents.test.cjs",
+      "dom/dom.test.cjs",
+      "dom/element-background-border.test.cjs",
+      "dom/element-commands.test.cjs",
+      "dom/element-components.test.cjs",
+      "dom/element-constructors.test.cjs",
+      "dom/element-instancers.test.cjs",
+      "dom/element-state.test.cjs",
+      "dom/element-style.test.cjs",
+      "dom/element-utilities.test.cjs",
+      "dom/factory-documents.test.cjs",
+      "dom/factory.test.cjs",
+      "dom/form-control-instancer.test.cjs",
+      "dom/layout.test.cjs",
+      "dom/owned-scroll.test.cjs",
+      "dom/rtti-default-action.test.cjs",
+      "dom/text-panels.test.cjs",
+      "dom/vector-modules.test.cjs",
+      "dom/xml-parser.test.cjs",
+      "events/default-events.test.cjs",
+      "events/event-dispatcher.test.cjs",
+      "events/event-instancers.test.cjs",
+      "events/event-listener-instancers.test.cjs",
+      "events/event-registration.test.cjs",
+      "events/events.test.cjs",
+      "events/listeners.test.cjs",
+      "fonts/font-backends.test.cjs",
+      "fonts/font-effect-alpha.test.cjs",
+      "fonts/font-effect-callbacks.test.cjs",
+      "fonts/font-effect-native-ownership.test.cjs",
+      "fonts/font-effect-ownership.test.cjs",
+      "fonts/font-engine-custom.test.cjs",
+      "fonts/font-engine.test.cjs",
+      "fonts/font-fields.test.cjs",
+      "fonts/font-measure-buffer.test.cjs",
+      "fonts/fonts.test.cjs",
+      "io/file-interface.test.cjs",
+      "io/streams.test.cjs",
+      "platform/density.test.cjs",
+      "density 1x pixels/input/resize passed",
+      "density 2x pixels/input/resize passed",
+      "glyph heights: [ { ratio: 1, height: 15 }, { ratio: 2, height: 29 } ]",
+      "platform/input.test.cjs",
+      "platform/system-interface.test.cjs",
+      "platform/text-input-startup.test.cjs",
+      "platform/text-input.test.cjs",
+      "rendering/callback-textures.test.cjs",
+      "rendering/compiled-resources.test.cjs",
+      "rendering/geometry.test.cjs",
+      "rendering/mesh-utilities.test.cjs",
+      "rendering/render-batching.test.cjs",
+      "rendering/render-interface-startup.test.cjs",
+      "rendering/render-layers.test.cjs",
+      "rendering/render-state.test.cjs",
+      "rendering/resource-preload.test.cjs",
+      "rendering/resource-release.test.cjs",
+      "rendering/resources.test.cjs",
+      "resource root and theme interaction passed",
+      "runtime/basic.test.cjs",
+      "basic smoke test passed",
+      "runtime/callback-ownership-performance.test.cjs",
+      "runtime/context-construction.test.cjs",
+      "runtime/context-edge-cases.test.cjs",
+      "runtime/context-instancers.test.cjs",
+      "runtime/context-state.test.cjs",
+      "runtime/debugger.test.cjs",
+      "runtime/lifetime.test.cjs",
+      "runtime/log.test.cjs",
+      "runtime/ownership-performance.test.cjs",
+      "runtime/performance-diagnostics.test.cjs",
+      "runtime/plugin.test.cjs",
+      "runtime/utility-performance.test.cjs",
+      "scripting/lua-functions.test.cjs",
+      "scripting/lua-scripts.test.cjs",
+      "scripting/lua-variant-callbacks.test.cjs",
+      "scripting/lua-variant-ownership-performance.test.cjs",
+      "scripting/lua-variants.test.cjs",
+      "scripting/script-interface.test.cjs",
+      "scripting/scripts.test.cjs",
+      "style/computed-values.test.cjs",
+      "style/convolution-filter.test.cjs",
+      "style/decoration-values.test.cjs",
+      "style/decorator-callbacks.test.cjs",
+      "style/decorator.test.cjs",
+      "style/effect-instancers.test.cjs",
+      "style/effect-values.test.cjs",
+      "style/filter-callbacks.test.cjs",
+      "style/filter-instancers.test.cjs",
+      "style/property-dictionary.test.cjs",
+      "style/property-specification.test.cjs",
+      "style/property.test.cjs",
+      "style/specification-ids.test.cjs",
+      "style/style-sheet-specification.test.cjs",
+      "style/style-sheet.test.cjs",
+      "style/style-structs.test.cjs",
+      "style/transform.test.cjs",
+      "tooling/dependency-components.test.cjs",
+      "tooling/font-configuration.test.cjs",
+      "values/numeric-value.test.cjs",
+      "values/owned-variant.test.cjs",
+      "values/string-format.test.cjs",
+      "values/string-performance.test.cjs",
+      "values/string-url.test.cjs",
+      "values/variant-elements.test.cjs",
+      "values/variant-scalars.test.cjs",
+      "values/variant-scriptinterfaces.test.cjs",
+      "values/variant-template-destinations.test.cjs",
+      "values/variant-void-pointers.test.cjs"
+    ],
+    "failures": 0
+  },
+  "check_logs": {
+    "lua-contracts-package-build-1.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-package-build-1.log",
+      "sha256": "4ec23022ca1ecc0a50df6976de0dc98425be605c34bfb21ec44d2c2cf1a205f3",
+      "exit_code": 0
+    },
+    "lua-contracts-package-build-2.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-package-build-2.log",
+      "sha256": "f10f6389d47c2819cbff66ccdb3443b77bc7a6fc08bcdb996f56c2758d6fde7f",
+      "exit_code": 0
+    },
+    "lua-contracts-final-build-3.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-final-build-3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "lua-contracts-lint-3.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-lint-3.log",
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "exit_code": 0
+    },
+    "lua-contracts-types-1.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-types-1.log",
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4",
+      "exit_code": 0
+    },
+    "lua-contracts-cpplint-2.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-cpplint-2.log",
+      "sha256": "7d9dd9e0810f662312d87fe80f0e9d68662642fe0b31c055f436e747014d7ef2",
+      "exit_code": 0
+    },
+    "lua-contracts-format-3.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-format-3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "lua-contracts-naming-2.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-naming-2.log",
+      "sha256": "0acb2181d3ef7d58826e87be737dfbab9f8f293ecdcb735801bb4275e4ec11b9",
+      "exit_code": 0
+    },
+    "lua-contracts-dependencies-1.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-dependencies-1.log",
+      "sha256": "5627c36b12675bb26d949e6ff00ccc60d9d3b8d348bf7cbf3c130bda6a1c2977",
+      "exit_code": 0
+    },
+    "lua-contracts-four-language-1.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-four-language-1.log",
+      "sha256": "a6450d1f149cd00ff99a3030e227ad5d2efd6c29e0e7bdb89a6c1b446781d51d",
+      "exit_code": 0
+    },
+    "lua-contracts-doc-links-1.log": {
+      "path": "/tmp/rmlui-63-completion/lua-contracts-doc-links-1.log",
+      "sha256": "d3ba463cafd86f734be143091da762de7bdc61917134b658d0271960cd2aff4c",
+      "exit_code": 0
+    }
+  },
+  "source_fingerprints": {
+    "docs/rmlui/audit/6.3/README.md": "e245412b9949ce8b5f9debfeda0324e7ceb046e901fe33af6dc03ac320f95b75",
+    "docs/rmlui/audit/6.3/lua-native-contracts.md": "998911ca4a45513fa12f456d2dc7a106661be20ac9b1ee656be2c2921f228208",
+    "docs/rmlui/plans/2026-11-14-rmlui-63-completion.md": "cb4efd0120ca334c6235d70b58f12cfdd0190edabf4a128869bcc3e9ae424b33",
+    "docs/rmlui/scripts.ja.md": "8a6a7f7b170e12f302a55f218ba7b0111f24f3ff64ae90b560b56ca34c9f35b4",
+    "docs/rmlui/scripts.ko.md": "e6547e65e122df9e7a3caf85d6d37c3cf76d834829b67ff34cb3d9efe41fcdcf",
+    "docs/rmlui/scripts.md": "9df1cefba5006ccac48e171e016c27f98598ad8daf028e4337ffa1cf53fb3856",
+    "docs/rmlui/scripts.zh-CN.md": "ea190ad1845aef3b235ff57adea3e7a3e91acc5eaa831a6f7e8f6d8155393238",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-function.cc": "83662e3e7117f3d776a1ca2b18f3249972d2533549461da488709dbb1caa1606",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-host.cc": "ab70da9caff0b18db59551c5071535fbef38f8cb976161d597a774ce18d763e8",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-host.h": "918396324f4147098132e2acfadc688afccc9915bfecc456286ef60f41461446",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-instancer.cc": "a63ddfd4bc70488a721ce68fe4540e9e80f34e019057edb974459b4073b3a06a",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-instancer.h": "a6b57939e354c9e9569dc44babeb176b9dbce1827ddcefdfe6902b5befe62ae6",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-model.cc": "64a386dddae1aa0f2ce2ad23b091ad3a828793d5627274f93f30b167684a7e0d",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-model.h": "94e3a14a984636ccd642fac2f39c47bd5ec0ae3a72669ba59e6e2486ee5adf34",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-object.cc": "886b67548b8aea92955e6623f7dc735901580c2e71050d130e04a75a0954386d",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-object.h": "191badde02f8a49392c535b88fa6bb663b28a66b9d7d61cb9fa8118f98fef52e",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-variant.cc": "b2e514ae4fee84d6c3ce63bcddc2fa2b121acbaba915e5cff78c67e007acc9e8",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-variant.h": "25279da5ea3e6c8b14b59ea888cb414ba6e8b2b7b891b95c024994e00be86542",
+    "packages/sfml.js-rmlui/test/animation/animation-values.test.cjs": "5f1764b792b1aa25201280af336bd16765dc355b410871fe1e4db18ec71c3fb4",
+    "packages/sfml.js-rmlui/test/animation/animation.test.cjs": "333fa98560b5a2103018dad15a0e9dd28222833c66524ae619574df1430b3b5a",
+    "packages/sfml.js-rmlui/test/data/data-addresses.test.cjs": "1a5f89637d387f004e48d495cfb9f7bf021ab3129702b76d889ec982985c71c2",
+    "packages/sfml.js-rmlui/test/data/data-batch.test.cjs": "2acc49eeb472dbec862308191db8016bc01cb6c76fcde5983f01e5de2b93cbfb",
+    "packages/sfml.js-rmlui/test/data/data-custom.test.cjs": "8c266a73129e192e1bf217fad7ed5a9d232ce75d7b596082494be49da46bf8ea",
+    "packages/sfml.js-rmlui/test/data/data-defaults.test.cjs": "c0cc5f8571bc0d44d4270ede5191944014563d9693e1d5b6c5463e0a3853003b",
+    "packages/sfml.js-rmlui/test/data/data-definition.test.cjs": "1b1f46de55652f38937977a3a51a2464d6fe3cb6d92cf9868aa5ab337da5b88c",
+    "packages/sfml.js-rmlui/test/data/data-diagnostics.test.cjs": "b220de76daddb2ba87f429c71ca8a1e6ba6e0e940c792bec2bafdb233dfd54a1",
+    "packages/sfml.js-rmlui/test/data/data-factory.test.cjs": "15f2ade478589ca4c77069e4d5676d690e78285b119d422722afde1df2f3f624",
+    "packages/sfml.js-rmlui/test/data/data-initialization.test.cjs": "358bf4caf561edaba91f07339f3a9d6d7a6f6e1ac1f07f2361f6fd9c1172f544",
+    "packages/sfml.js-rmlui/test/data/data-members.test.cjs": "0d5ef587d3f561d02b08f848987afe1f68c5966ce3d6fb268d5bb4445b3f3df9",
+    "packages/sfml.js-rmlui/test/data/data-model.test.cjs": "7c41a70613166006ac6a1f0a9dbfec9bda5b6e78b27ec3107a21613493fd3eda",
+    "packages/sfml.js-rmlui/test/data/data-owned.test.cjs": "23d5ca61a6d90495f32a3d55ce08ade332f61911057e5d797924fbd79088dacc",
+    "packages/sfml.js-rmlui/test/data/data-references.test.cjs": "0d213a35d0ba5c30b16818becde4946d1a008301c3733477b19e6bed34b7aabc",
+    "packages/sfml.js-rmlui/test/data/data-schema.test.cjs": "59358ef9bfb1060332eac08da581e05bf86afdc16dbc683015d3c5136efdc3f0",
+    "packages/sfml.js-rmlui/test/data/data-transforms.test.cjs": "9aab6283bf77ff9031fb852a216848e5a07756c5017e77fc8ef3a4fdf042ddb5",
+    "packages/sfml.js-rmlui/test/data/official-data.test.cjs": "88195844cef65744918ce011e1b12a8ad0b27aa7ec0c6cb676a2bbcced708b52",
+    "packages/sfml.js-rmlui/test/dom/box.test.cjs": "9e173f854edf839cead9d77326133df7262ed81b9d3adc58ab63cebe83e5505a",
+    "packages/sfml.js-rmlui/test/dom/controls.test.cjs": "7a528106aeca3d7cd1959133b4766bdf9118fc4300f055c305e3cd4f2d340940",
+    "packages/sfml.js-rmlui/test/dom/document-header.test.cjs": "5808e323db70ae5c98e2d623a58ad660b0c25407e75b9a562e1fa38548405b98",
+    "packages/sfml.js-rmlui/test/dom/documents.test.cjs": "335f6d679e5187363900bdd5e62b2f25cb9e4526b3d2e6a3e4e3abe4dcb5e555",
+    "packages/sfml.js-rmlui/test/dom/dom.test.cjs": "94002f744a312e71573f8fae750e6e47a69ae20f73b10f64f138958e686a3e95",
+    "packages/sfml.js-rmlui/test/dom/element-background-border.test.cjs": "0b776722080a431fbe28531fbd97e733fe60b86c6756aaad95c6c7b7ba4fa203",
+    "packages/sfml.js-rmlui/test/dom/element-commands.test.cjs": "e5f87579ad5d91124ba174268e0c3becc683cc5bc24cae22ea0099b3c781b850",
+    "packages/sfml.js-rmlui/test/dom/element-components.test.cjs": "29ca2a51fd75602f73e28e482e0f1ae830057121ed9476739d36aedf7f00966b",
+    "packages/sfml.js-rmlui/test/dom/element-constructors.test.cjs": "d88caebf518acd90ed3377da7424c819cf1f289fe537e350d8dffd8331a50760",
+    "packages/sfml.js-rmlui/test/dom/element-instancers.test.cjs": "56402bb8ac71fc52e2886ec347cdbd75b1a3b99ece2b697f07f756c8eb4a583d",
+    "packages/sfml.js-rmlui/test/dom/element-state.test.cjs": "6f49879cbafea13226256ede8ca2192e911c7b18fff1cd31aaaff88bb8e86733",
+    "packages/sfml.js-rmlui/test/dom/element-style.test.cjs": "d2586bf7c5f498a61fb4ef56e4824b9ef1a950b7ac62b3d274f7c00b03a04cc9",
+    "packages/sfml.js-rmlui/test/dom/element-utilities.test.cjs": "2cb6e8872f091f87ceb97ee2a03a5e1cf9c3212b512bb416d6c7ea8a1b475e7a",
+    "packages/sfml.js-rmlui/test/dom/factory-documents.test.cjs": "037964aee9f2e8d82449e855461d8c9a9fe2741a34e84331b2f1cf53b195da1f",
+    "packages/sfml.js-rmlui/test/dom/factory.test.cjs": "a76fd0bdb882f4218fd776d2c1cdcabc947c7ca64c756bdc7bcf1cdec2f38420",
+    "packages/sfml.js-rmlui/test/dom/form-control-instancer.test.cjs": "dedf27e4ade77f8f24168e888669fc508d69718fc4968d1b664cdac60b2d8f48",
+    "packages/sfml.js-rmlui/test/dom/layout.test.cjs": "fecc0a1be03f3728ae4b843a2f7be0e3d969ee52fd06e8a5d07685ac1f0762e2",
+    "packages/sfml.js-rmlui/test/dom/owned-scroll.test.cjs": "51102fda30dbdc025fe664977abf8238ebafdbfeced96ea10211a50824c2a1bf",
+    "packages/sfml.js-rmlui/test/dom/rtti-default-action.test.cjs": "14139f421bafdc2caacf231310919aad4251d36f9d7baf08000800f020bdabf3",
+    "packages/sfml.js-rmlui/test/dom/text-panels.test.cjs": "c0c721609dda9a05580322c64f2f82494ac063c27420a140f679c01ad20f71f7",
+    "packages/sfml.js-rmlui/test/dom/vector-modules.test.cjs": "7146a308cbeee381bda3a05f1a661acd28a2f6aa126ac386ddb1b62f555e74ef",
+    "packages/sfml.js-rmlui/test/dom/xml-parser.test.cjs": "837e8622a3894a4833ffc656d4f4eea920119b8e760c90fefe191881b08df4ad",
+    "packages/sfml.js-rmlui/test/events/default-events.test.cjs": "8a74be080348ca51a23125874eba7ade95111f999eb09971d35fbae60d577ae3",
+    "packages/sfml.js-rmlui/test/events/event-dispatcher.test.cjs": "61fc72173b2c4c56ac58032b3bfb6112054e4b69cf2ddac760b7e24c9944cf28",
+    "packages/sfml.js-rmlui/test/events/event-instancers.test.cjs": "3b1f76d80b47f55504fb0d5f4761e881b2adb1318fc63857b532f72d4582d340",
+    "packages/sfml.js-rmlui/test/events/event-listener-instancers.test.cjs": "5bc23d5d7db40480f5aaf08e2e08acb4fcb74ffc47a4dd9518e8d4c586070582",
+    "packages/sfml.js-rmlui/test/events/event-registration.test.cjs": "a31afbfe01c636707e4d848f46cde2a385e7c1a72dffcc38886d6373c2fcb372",
+    "packages/sfml.js-rmlui/test/events/events.test.cjs": "b9d1def8430a2cd893b1ee2a437256a1cad43ad7ffae13b69f959763055e00ad",
+    "packages/sfml.js-rmlui/test/events/listeners.test.cjs": "9b254e2d062419bb7bda443c2f9aae90f3284751381d61d9313f2c574dd6e4d2",
+    "packages/sfml.js-rmlui/test/fonts/font-backends.test.cjs": "e21bd42dd440cc4875ca2ebbe2808eacb247ef4bc9c0016f186e6f893998bbe7",
+    "packages/sfml.js-rmlui/test/fonts/font-effect-alpha.test.cjs": "f7d4fd86c884b22c90f7d1e3bf288006e7f8588cee9c994b741b366b267ee505",
+    "packages/sfml.js-rmlui/test/fonts/font-effect-callbacks.test.cjs": "7a5ee56565d553c0a179d9d6efb4e71ed7b26325bba7a44db3d9439ce23f4bdb",
+    "packages/sfml.js-rmlui/test/fonts/font-effect-native-ownership.test.cjs": "0253b9972f6c9e168753da27c8fc02d93b98ae7c94de1d13cb4c4184d50f0632",
+    "packages/sfml.js-rmlui/test/fonts/font-effect-ownership.test.cjs": "28b12420a62d99049054bf3603cfed0f77480b8875503acf89a352c17571eb28",
+    "packages/sfml.js-rmlui/test/fonts/font-engine-custom.test.cjs": "d65f3738d20968d5772ebd56b390dfdef581da5983ccec3e47f24db21ed64e9c",
+    "packages/sfml.js-rmlui/test/fonts/font-engine.test.cjs": "dc1faec79000c3d7d8e097a44965d531785ee8056ed598821f348acfd45561e2",
+    "packages/sfml.js-rmlui/test/fonts/font-fields.test.cjs": "0320d389c0261049ca6a23f9a7386fcf6065e92a99e4d12f611a3506a96f94aa",
+    "packages/sfml.js-rmlui/test/fonts/font-measure-buffer.test.cjs": "4ce0a81a4ec75cb4e74809c096829d97da1cb901acabcf1054490af43b8fc214",
+    "packages/sfml.js-rmlui/test/fonts/fonts.test.cjs": "557f8344660ce29dc5bf7afb138a4c5aac18894a4cc1d567a31673771f9361d6",
+    "packages/sfml.js-rmlui/test/io/file-interface.test.cjs": "bc9ed03a24c6d01bc3cbebe1094932374aa5b56a2964c44c37520e669c4c6e1c",
+    "packages/sfml.js-rmlui/test/io/streams.test.cjs": "37fc235eda0838167ee225f3458b4fe7cf14acf2b165448006a8eb8a3f17a4e5",
+    "packages/sfml.js-rmlui/test/native/scripting/build-lua-contracts.py": "b7fe8a3cf4e74ee27970fc7ab4030b6f069c5217f8c85162c406fbfcfb560dc5",
+    "packages/sfml.js-rmlui/test/native/scripting/lua-contract-types.cc": "af19ad44727bea5ac0d6d7113d904f885eda5db994bec35183209c43f0a1cfe7",
+    "packages/sfml.js-rmlui/test/native/scripting/lua-contract-types.h": "e0ba45f697c9b6646a656fe26c1d10d57d65a879502d458212bad28f248a8996",
+    "packages/sfml.js-rmlui/test/native/scripting/lua-contracts.cc": "daed9c997988ffd38846ed328f74e0f40e2c6508f219ee868e5aaa85d656d30d",
+    "packages/sfml.js-rmlui/test/platform/density.test.cjs": "c4fe4f31eca6b7922fe4ca52626567a8eaaddcc41c8374b0c24641ce4ff1cdab",
+    "packages/sfml.js-rmlui/test/platform/input.test.cjs": "ea6c5f82aa65a96723fd51569fd6067cb4ad409c9ed4a34810fb740e2b557b0c",
+    "packages/sfml.js-rmlui/test/platform/system-interface.test.cjs": "c3e77998fae98b0cf6379e277aa6dc663829f7f6e1954b3878b9760bb19de278",
+    "packages/sfml.js-rmlui/test/platform/text-input-startup.test.cjs": "4ecf1a303a2bc1602b858b2255ffd3485976ddcbd2e4a8ab9502f99f71803b26",
+    "packages/sfml.js-rmlui/test/platform/text-input.test.cjs": "769f8708b2205665a4a8d6a9004565aa90b0dbd5f8698988c657290673067bec",
+    "packages/sfml.js-rmlui/test/rendering/callback-textures.test.cjs": "7897a8f43fbdd9cb15b9c804c4fe86cc095a9d1c4f35f25c3b3402a326192c02",
+    "packages/sfml.js-rmlui/test/rendering/compiled-resources.test.cjs": "0f7aa38268cca7b067486ba74553e8ca42433e5f19a476276b43ffccc4925256",
+    "packages/sfml.js-rmlui/test/rendering/geometry.test.cjs": "3d7a2f1719f6ddf196caab0090fa7bcea19083baeb427bf0e5c3557b128a2adc",
+    "packages/sfml.js-rmlui/test/rendering/mesh-utilities.test.cjs": "28d745c95e6e46cb5e00c7154b8bb93ea017732c69816810ad26cd9ef83d7b4d",
+    "packages/sfml.js-rmlui/test/rendering/render-batching.test.cjs": "d23c7ff8ff12e0b5b3364681cfe73217d6201bda2dc47b738e80e309fdce8ce8",
+    "packages/sfml.js-rmlui/test/rendering/render-interface-startup.test.cjs": "939630975c17ccdc59f226f64d1520b72e639ceafe83af68bfbdf2cc1e3a657a",
+    "packages/sfml.js-rmlui/test/rendering/render-layers.test.cjs": "9d325988e668d5ee1c29a55c2c23783e0bf1c4da6b20bf226e4b6930a2a77c68",
+    "packages/sfml.js-rmlui/test/rendering/render-state.test.cjs": "4f1e8334ea92a6c5c19f50499a39a941412cbaef68deb67b3d01b0efc816b381",
+    "packages/sfml.js-rmlui/test/rendering/resource-preload.test.cjs": "3d6a989611dc3bf76aa1ff0e4080498021037be2f401f0502f56dd4f3273a4ca",
+    "packages/sfml.js-rmlui/test/rendering/resource-release.test.cjs": "02edf314ae6bd0c2d1e8b533236aaeb22faffc5f53f41ebf8d7d452b4c4c98d0",
+    "packages/sfml.js-rmlui/test/rendering/resources.test.cjs": "1e62a62179faa0dc8b2a58f1064dedbc83fb34e896421e48de156539781da8cb",
+    "packages/sfml.js-rmlui/test/runtime/basic.test.cjs": "dad147731bd4e600e0e885ffe8f8a513f4d2b17f63f734954b43271bdfa9f60e",
+    "packages/sfml.js-rmlui/test/runtime/callback-ownership-performance.test.cjs": "e56b030f9d62063473bf58f221be6a48596b31f6701a0dfd6bcce848e0124f04",
+    "packages/sfml.js-rmlui/test/runtime/context-construction.test.cjs": "2e0e8fb034b5c40d1d76b65d18f7d2726cc7d4e799b0fc92b5f1f31063ff0912",
+    "packages/sfml.js-rmlui/test/runtime/context-edge-cases.test.cjs": "b713aaea07361e7a956e0b0a71798ac4f1fbcb1d0dcabd1e426b39cfd56d93bc",
+    "packages/sfml.js-rmlui/test/runtime/context-instancers.test.cjs": "4f39d99c5af25c711c87c76fe8b09944a787301a5128f4c658590226dc6c3b0c",
+    "packages/sfml.js-rmlui/test/runtime/context-state.test.cjs": "be87736a8f44646ac46c9de5593f137774a59b342120612160e567025146ad08",
+    "packages/sfml.js-rmlui/test/runtime/debugger.test.cjs": "213a445394efa6bef3990a71ff6b339f2797515fb7033d8053661f1810d920b6",
+    "packages/sfml.js-rmlui/test/runtime/lifetime.test.cjs": "bfb80f43fe71e1d84a7ad431c7439412054cdc7d70792eff7f7c02ce39041a2c",
+    "packages/sfml.js-rmlui/test/runtime/log.test.cjs": "c8062b89dc43714985ebe61079bc83a7a7f38d70dec12c28f923c0760f63b9cb",
+    "packages/sfml.js-rmlui/test/runtime/ownership-performance.test.cjs": "f3be913d664bcf087b95020442eca4157be38cede5a18da4e64e00400abad7ab",
+    "packages/sfml.js-rmlui/test/runtime/performance-diagnostics.test.cjs": "5847e61542bc0aec4c5a708b927826a27d18cfd04be18aec2db8df94f39c2daa",
+    "packages/sfml.js-rmlui/test/runtime/plugin.test.cjs": "0f1bbbee13a917e1460257e2ea5f23548e75e462bf473bbc748070e7865564ec",
+    "packages/sfml.js-rmlui/test/runtime/utility-performance.test.cjs": "fff3cb9c984d412c19222b6d49dfeda2991c26668d495489ef18fdbe7e82e22c",
+    "packages/sfml.js-rmlui/test/scripting/lua-functions.test.cjs": "3ba0a4e5f1843499c8844b1aeccf0e925aed7aef6c6695b9246f870068ef8420",
+    "packages/sfml.js-rmlui/test/scripting/lua-native-contracts.cjs": "8a64fc1afb6fa2c6513cb13ef2fb3313fa25e7be48b581846c61f7db02d683a2",
+    "packages/sfml.js-rmlui/test/scripting/lua-scripts.test.cjs": "fe5375cf4133e242f78e40aa5518d026531314b3b1679feac64e3eddfa6ed33c",
+    "packages/sfml.js-rmlui/test/scripting/lua-variant-callbacks.test.cjs": "6352d6bad39ef3ce60fdc1dc7092624746c63ee85317cbcedab0999c81369172",
+    "packages/sfml.js-rmlui/test/scripting/lua-variant-ownership-performance.test.cjs": "c31f12d05ac36b645fc14e67d4a6ba7099d7d04459618afd28ea8310404e9d8f",
+    "packages/sfml.js-rmlui/test/scripting/lua-variants.test.cjs": "180ffd1783f7567b3a91c89b406d3163471bb461f743fa80e3603384ec104721",
+    "packages/sfml.js-rmlui/test/scripting/script-interface.test.cjs": "c74cca18547ab070220b856675895a39c293184b9a616bc43df298db4e35cb1b",
+    "packages/sfml.js-rmlui/test/scripting/scripts.test.cjs": "0ebade8dc73ada9c54bff33e54dcc8c6ecc3312bb87b658d8f152ad2dcaebd17",
+    "packages/sfml.js-rmlui/test/style/computed-values.test.cjs": "44bc2372833437a65c6ec349a7d94e65ed6d9d465f46672b7d2129207a11b355",
+    "packages/sfml.js-rmlui/test/style/convolution-filter.test.cjs": "2b74fa98b9db0b2184555cb938363a7805e701eb95beb74cc1ddb51edb5542dd",
+    "packages/sfml.js-rmlui/test/style/decoration-values.test.cjs": "3ebd1075c7ff22aba2e33275fa8196b761d47c09aefa3cc4861a8f880d070cf3",
+    "packages/sfml.js-rmlui/test/style/decorator-callbacks.test.cjs": "3e38d20a6ac07a5c0b968417f16dc1a435c47d7965615929e4f5bf35f4f6a65c",
+    "packages/sfml.js-rmlui/test/style/decorator.test.cjs": "b5856703e1c1b19f219a6da2f892c6d20890f2524d477edf0a3d5e1eed282d90",
+    "packages/sfml.js-rmlui/test/style/effect-instancers.test.cjs": "b7fce20380702806ae4db82234869d04a4a9d2f051e8d3769f75b5a94aaa037c",
+    "packages/sfml.js-rmlui/test/style/effect-values.test.cjs": "227443efd39512451e8a55177a28233d63cf2e1218fc4fab416f6714115940dd",
+    "packages/sfml.js-rmlui/test/style/filter-callbacks.test.cjs": "acafe10b2e0b7d376cf1a2db86b3fe152df5aed02ff527d148631a97d7b3026a",
+    "packages/sfml.js-rmlui/test/style/filter-instancers.test.cjs": "5a0f1be0aa20bcfa4baae0b95c27a19bb3acf0b01724f55c87ecee742451703b",
+    "packages/sfml.js-rmlui/test/style/property-dictionary.test.cjs": "5806ab2221b38b90e89d4401d9c53a3f973ae84c3f9f2687507fe4afa44a34ac",
+    "packages/sfml.js-rmlui/test/style/property-specification.test.cjs": "d41ea5111ecffa646f112f0cc7d1c76986b364cc0396cf651782edb675ceb954",
+    "packages/sfml.js-rmlui/test/style/property.test.cjs": "23425fc95dffa1a9ef8524d432a89fc8f001e3b77b7add009cb593cc5f240c3a",
+    "packages/sfml.js-rmlui/test/style/specification-ids.test.cjs": "f46cba4a34785a4fb440dc5d0b00b6faf3f2a1454aaa831886dc7701e33fc006",
+    "packages/sfml.js-rmlui/test/style/style-sheet-specification.test.cjs": "0032c4d99b6ce13521df69c3ea2e50f4ebd0bb812fef6b8c03f7128b44c1ce4a",
+    "packages/sfml.js-rmlui/test/style/style-sheet.test.cjs": "e488e99320a03c9f4ccd001e4a72b55fd6ae979c4a36b5f2dca5629ba8105ed2",
+    "packages/sfml.js-rmlui/test/style/style-structs.test.cjs": "568566a338ba55f09462789161676259a0a320b608d648ea37b1b8a9d74cdcc7",
+    "packages/sfml.js-rmlui/test/style/transform.test.cjs": "7f26f24bea08a2dcd1cbfaeb22994121a6c11f06d3d764735f0b21b442ead8d8",
+    "packages/sfml.js-rmlui/test/tooling/dependency-components.test.cjs": "7fde9757aeccacfa51a81afc1c5052852ff285174dda3f2df715e2d24e291fed",
+    "packages/sfml.js-rmlui/test/tooling/font-configuration.test.cjs": "e5e5f45ad4d67c957315162983161ce001ad8488d75d3a83b03e09f59e75fa4b",
+    "packages/sfml.js-rmlui/test/values/numeric-value.test.cjs": "155bf45d6d926c38866901da862c602d29bc2b5e4c252cbf853bcb7a1528fcd9",
+    "packages/sfml.js-rmlui/test/values/owned-variant.test.cjs": "fdbeb13e514a90a1216521bfa676e5e3e5896dc34f2bfc2dc7aa828b1615b25d",
+    "packages/sfml.js-rmlui/test/values/string-format.test.cjs": "39238f1f7fcc27a46b9d7a242884909fd1862be43103f4580f5e4bbd5055f301",
+    "packages/sfml.js-rmlui/test/values/string-performance.test.cjs": "b02f3dfac1215737e31dde23a0a44bbea1efc4828d0ca916f16c02ec530c6326",
+    "packages/sfml.js-rmlui/test/values/string-url.test.cjs": "afd6f3831f971fbf1eb06a314eead107444fa7f9278d82d96bace56d302d9b5f",
+    "packages/sfml.js-rmlui/test/values/variant-elements.test.cjs": "ed501085db1b2a1139f0da0ffe52ee35bbf2a3ffa997fffad7390a72fb0d891b",
+    "packages/sfml.js-rmlui/test/values/variant-scalars.test.cjs": "71166c3f7fc19fecfc87548b7c445ea15337668dd4b2143c075269560d5f8365",
+    "packages/sfml.js-rmlui/test/values/variant-scriptinterfaces.test.cjs": "71a9252d7ed59f884d6e6a30035d996eb0f9dd2aaa403a4a138e0efc1a98a7fc",
+    "packages/sfml.js-rmlui/test/values/variant-template-destinations.test.cjs": "2128e829fef4c0465280029038e4f38e71880501555255e9fd5b76f867057d47",
+    "packages/sfml.js-rmlui/test/values/variant-void-pointers.test.cjs": "9ff1921ab0bfa5da2f045e76b155425a4bf1585f652ad85e2fdd6096458ccf7e",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.h": "b38b8c51ce1567f5f859507ef2267377dabcb735e3e62e6c5087fa45b5279a21",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/LuaType.inl": "f987bbe700787f1ec07b8538c5dad79d2aa60958e61fb77861579a1ea3005f40",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Lua/Utilities.h": "667c96766f64d6ef51b1b0717d05609d31f6bbed8491c4daadb315ccb76309ef",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/LuaType.cpp": "61e12eaa5fdfab933dfd57e563251c3e9e0ac741c4ddfdf8bc23e5326bede965",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Lua/Utilities.cpp": "5011f34798bb1f2acec40874dabfab059b26607d863a2f80a90fa5898db56e18",
+    "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui-lua.cjs": "045c33628ac6caee23755dd91df2360fdef5c7fb309b3f3b7dcce193ace46f1d"
+  },
+  "retained_red_logs": [
+    "lua-contracts-red-1.log",
+    "lua-contracts-red-2.log",
+    "lua-contracts-green-1.log",
+    "lua-contracts-types-build-1.log",
+    "lua-contracts-types-runtime-2.log"
+  ],
+  "limits": [
+    "Only the actual custom value and native Element subclass are instantiated.",
+    "Borrowed custom allocations remain the native extension owner's responsibility.",
+    "External raw-VM registration is not accepted.",
+    "No isolated environment, archive, installation, commit or publication.",
+    "Complete Core, renderer/GPU/IME/modules/applications/editor/package/CI review remains open."
+  ]
+}

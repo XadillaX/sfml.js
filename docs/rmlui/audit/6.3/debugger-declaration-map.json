@@ -1,0 +1,160 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "original_records": 6,
+  "header_counts": {
+    "Debugger/Debugger.h": 6
+  },
+  "scope_complete": false,
+  "whole_rmlui_accepted": false,
+  "notice": "Five executed Native Debugger operations and one source-reviewed Context forward. This is a local Debugger checkpoint, not acceptance of every RmlUi module or any unexecuted platform.",
+  "consumer_scenarios": [
+    "all-five-operations-and-separate-contexts",
+    "host-removal-releases-plugin-before-native-context",
+    "target-removal-preserves-host-and-allows-retargeting",
+    "individual-debugger-documents-cannot-be-unloaded",
+    "unload-all-target-documents-detaches-inspection",
+    "shutdown-clears-only-owned-native-instancer-entries",
+    "shutdown-preserves-host-instancer-replacements",
+    "unload-all-host-documents-shuts-down-debugger",
+    "runtime-restart-has-no-debugger-state",
+    "strict-arguments-and-callback-reentry",
+    "log-messages-reach-native-debugger-document",
+    "debugger-forwards-logs-and-restores-selected-system-interface",
+    "native-data-model-reflection-updates-and-retargets",
+    "owned-context-host-and-target-use-the-same-release-contract",
+    "native-custom-struct-array-reflection-and-error-propagation",
+    "retired-hooks-outlive-plugin-and-release-after-reinitialization",
+    "borrowed-debugger-allocators-outlive-the-plugin",
+    "pointer-interaction-at-one-and-two-times-density"
+  ],
+  "records": [
+    {
+      "inventory_index": 3841,
+      "header": "Debugger/Debugger.h",
+      "line": 7,
+      "kind": "ClassDecl",
+      "name": "Rml::Context",
+      "signature": "Context",
+      "type": "Rml::Context",
+      "exact_key": "Debugger/Debugger.h|7|ClassDecl|Rml::Context|Context|Rml::Context",
+      "surface": "Context",
+      "status": "source-reviewed-forward-to-existing-definition",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h",
+        "packages/sfml.js-rmlui/src/context.ts",
+        "packages/sfml.js-rmlui/native/rmlui-debugger.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/debugger.test.cjs",
+      "platform": "macOS arm64",
+      "whole_module_acceptance_implied": false
+    },
+    {
+      "inventory_index": 3842,
+      "header": "Debugger/Debugger.h",
+      "line": 15,
+      "kind": "FunctionDecl",
+      "name": "Rml::Debugger::Initialise",
+      "signature": "Initialise(Context *)",
+      "type": "bool (Context *)",
+      "exact_key": "Debugger/Debugger.h|15|FunctionDecl|Rml::Debugger::Initialise|Initialise(Context *)|bool (Context *)",
+      "surface": "Debugger.initialise(host)",
+      "status": "locally-verified-native-api",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h",
+        "packages/sfml.js-rmlui/src/debugger.ts",
+        "packages/sfml.js-rmlui/native/rmlui-debugger.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/debugger.test.cjs",
+      "platform": "macOS arm64",
+      "whole_module_acceptance_implied": false
+    },
+    {
+      "inventory_index": 3843,
+      "header": "Debugger/Debugger.h",
+      "line": 20,
+      "kind": "FunctionDecl",
+      "name": "Rml::Debugger::Shutdown",
+      "signature": "Shutdown()",
+      "type": "void ()",
+      "exact_key": "Debugger/Debugger.h|20|FunctionDecl|Rml::Debugger::Shutdown|Shutdown()|void ()",
+      "surface": "Debugger.shutdown()",
+      "status": "locally-verified-native-api",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h",
+        "packages/sfml.js-rmlui/src/debugger.ts",
+        "packages/sfml.js-rmlui/native/rmlui-debugger.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/debugger.test.cjs",
+      "platform": "macOS arm64",
+      "whole_module_acceptance_implied": false
+    },
+    {
+      "inventory_index": 3844,
+      "header": "Debugger/Debugger.h",
+      "line": 25,
+      "kind": "FunctionDecl",
+      "name": "Rml::Debugger::SetContext",
+      "signature": "SetContext(Context *)",
+      "type": "bool (Context *)",
+      "exact_key": "Debugger/Debugger.h|25|FunctionDecl|Rml::Debugger::SetContext|SetContext(Context *)|bool (Context *)",
+      "surface": "Debugger.setContext(target | null)",
+      "status": "locally-verified-native-api",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h",
+        "packages/sfml.js-rmlui/src/debugger.ts",
+        "packages/sfml.js-rmlui/native/rmlui-debugger.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/debugger.test.cjs",
+      "platform": "macOS arm64",
+      "whole_module_acceptance_implied": false
+    },
+    {
+      "inventory_index": 3845,
+      "header": "Debugger/Debugger.h",
+      "line": 29,
+      "kind": "FunctionDecl",
+      "name": "Rml::Debugger::SetVisible",
+      "signature": "SetVisible(bool)",
+      "type": "void (bool)",
+      "exact_key": "Debugger/Debugger.h|29|FunctionDecl|Rml::Debugger::SetVisible|SetVisible(bool)|void (bool)",
+      "surface": "Debugger.setVisible(boolean)",
+      "status": "locally-verified-native-api",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h",
+        "packages/sfml.js-rmlui/src/debugger.ts",
+        "packages/sfml.js-rmlui/native/rmlui-debugger.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/debugger.test.cjs",
+      "platform": "macOS arm64",
+      "whole_module_acceptance_implied": false
+    },
+    {
+      "inventory_index": 3846,
+      "header": "Debugger/Debugger.h",
+      "line": 32,
+      "kind": "FunctionDecl",
+      "name": "Rml::Debugger::IsVisible",
+      "signature": "IsVisible()",
+      "type": "bool ()",
+      "exact_key": "Debugger/Debugger.h|32|FunctionDecl|Rml::Debugger::IsVisible|IsVisible()|bool ()",
+      "surface": "Debugger.isVisible()",
+      "status": "locally-verified-native-api",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Debugger/Debugger.h",
+        "packages/sfml.js-rmlui/src/debugger.ts",
+        "packages/sfml.js-rmlui/native/rmlui-debugger.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Debugger/Debugger.cpp"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/debugger.test.cjs",
+      "platform": "macOS arm64",
+      "whole_module_acceptance_implied": false
+    }
+  ]
+}

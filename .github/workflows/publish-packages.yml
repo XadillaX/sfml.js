@@ -12,22 +12,27 @@ permissions:
   contents: write
 
 jobs:
+  rmlui:
+    uses: ./.github/workflows/rmlui.yml
+    with:
+      require-publication: true
   publish:
+    needs: [rmlui]
     runs-on: ubuntu-24.04
     env:
       LIBGL_ALWAYS_SOFTWARE: "1"
       NODE_OPTIONS: --max-old-space-size=4096
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         # Rush creates a version/bump branch and merges it into main.
         fetch-depth: 0
-    - name: Use Node.js 20
-      uses: actions/setup-node@v4
+    - name: Use Node.js 22
+      uses: actions/setup-node@v7
       with:
-        node-version: "20.x"
-    - uses: actions/setup-python@v5
+        node-version: "22.x"
+    - uses: actions/setup-python@v7
       with:
         python-version: "3.11"
     - name: Install graphics and audio dependencies
@@ -50,6 +55,8 @@ jobs:
         npm --prefix packages/sfml.js-imgui run cpplint
         npm --prefix packages/sfml.js-imgui run test:types
         env NODE_OPTIONS="$NODE_OPTIONS --require $GITHUB_WORKSPACE/packages/sfml.js-imgui/tools/disable-imgui-cursor.cjs" xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js-imgui run test:runtime
+    - name: Verify source package before publication
+      run: npm --prefix packages/sfml.js-rmlui run test:package
     - name: Prepare git for Rush
       run: |
         git config user.name "sfml.js release bot"

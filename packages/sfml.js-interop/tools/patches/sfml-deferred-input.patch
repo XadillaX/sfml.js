@@ -1,0 +1,235 @@
+--- a/src/SFML/Window/WindowImpl.hpp
++++ b/src/SFML/Window/WindowImpl.hpp
+@@ -41,2 +41,4 @@
+ #include <SFML/Window/WindowHandle.hpp>
++#include "platform/event-queue.h"
++#include "window-input-callbacks.h"
+ 
+@@ -106,2 +109,4 @@
+     virtual ~WindowImpl();
++    // Private extension: release queued input and retain an active native host.
++    void closeEventQueue(std::shared_ptr<WindowImpl> retirement);
+ 
+@@ -325,2 +331,5 @@
+     void pushEvent(const Event& event);
++    void deferEvent(std::function<void()> interpret);
++    void deferGuardedEvent(std::function<sfmljs::interop::WindowInputResult()> interpret);
++    bool isInterpretingEvents() const;
+ 
+@@ -363,8 +372,3 @@
+-    struct QueuedEvent
+-    {
+-        Event event;
+-        std::shared_ptr<void> source;
+-    };
+-
+-    std::queue<QueuedEvent>                          m_events;             //!< Queue of available events
++    sfmljs::interop::detail::WindowEventQueue m_events;
++    std::shared_ptr<sfmljs::interop::WindowInputCallbacks> m_retiredInputClient;
+     std::unique_ptr<JoystickStatesImpl>              m_joystickStatesImpl; //!< Previous state of the joysticks (PImpl)
+--- a/src/SFML/Window/WindowImpl.cpp
++++ b/src/SFML/Window/WindowImpl.cpp
+@@ -267,14 +267,17 @@
+-    // If the event queue is empty, let's first check if new events are available from the OS
+-    if (m_events.empty())
+-        populateEventQueue();
+-
+-    // Here we use a manual wait loop instead of the optimized wait-event provided by the OS,
+-    // so that we don't skip joystick events (which require polling)
+-    while (m_events.empty() && !timedOut())
++    const auto polling = m_events.PollingScope();
++    if (m_events.Active())
++        return {};
++
++    // A native delivery may produce only IME callbacks. Interpret it before
++    // deciding whether to wait for more OS/joystick input.
++    while (!polling.Closed())
+     {
++        if (m_events.Empty())
++            populateEventQueue();
++        auto event = popEvent();
++        if (event || polling.Closed() || m_events.Blocked() || timedOut())
++            return event;
+         sleep(milliseconds(10));
+-        populateEventQueue();
+     }
+-
+-    return popEvent();
++    return {};
+ }
+@@ -289,3 +290,7 @@
+ std::optional<Event> WindowImpl::pollEvent()
+ {
++    const auto polling = m_events.PollingScope();
++    if (m_events.Active() || polling.Closed())
++        return {};
++
+     // If the event queue is empty, let's first check if new events are available from the OS
+@@ -292,2 +297,2 @@
+-    if (m_events.empty())
++    if (m_events.Empty())
+         populateEventQueue();
+@@ -303,12 +308,6 @@
+-    std::optional<Event> event; // Use a single local variable for NRVO
+-    sfmljs_backend::poppedEventSource().reset();
+-
+-    if (!m_events.empty())
+-    {
+-        event.emplace(m_events.front().event);
+-        sfmljs_backend::poppedEventSource() = std::move(m_events.front().source);
+-        m_events.pop();
+-    }
+-
+-    return event;
++    // Interpretation may poll another window; publish provenance only after
++    // it returns, so nested delivery cannot overwrite this event's source.
++    auto delivery = m_events.Pop();
++    sfmljs_backend::poppedEventSource() = delivery ? std::move(delivery->source) : nullptr;
++    return delivery ? std::optional<Event>(std::move(delivery->event)) : std::nullopt;
+ }
+@@ -330,8 +333,32 @@
+     if (!source && keyboard)
+         source = sfmljs_backend::currentEventSource();
+-    m_events.push({event, std::move(source)});
++    m_events.Push(event, std::move(source));
+ }
++
++void WindowImpl::deferEvent(std::function<void()> interpret)
++{
++    m_events.Defer(std::move(interpret));
++}
++
++void WindowImpl::deferGuardedEvent(std::function<sfmljs::interop::WindowInputResult()> interpret)
++{
++    m_events.DeferGuarded(std::move(interpret));
++}
++
++bool WindowImpl::isInterpretingEvents() const
++{
++    return m_events.Active();
++}
++
++void WindowImpl::closeEventQueue(std::shared_ptr<WindowImpl> retirement)
++{
++    // Reject new attachment immediately, retaining client_data through the
++    // derived native destructor and XDestroyIC after active polling returns.
++    m_retiredInputClient = sfmljs_backend::windowInputs().Close(
++        sfmljs_backend::windowInputHandle(getNativeHandle()));
++    m_events.Close(std::move(retirement));
++}
+ 
+ 
+ ////////////////////////////////////////////////////////////
+ void WindowImpl::processJoystickEvents()
+--- a/src/SFML/Window/WindowBase.cpp
++++ b/src/SFML/Window/WindowBase.cpp
+@@ -130,3 +130,5 @@
+-    // Delete the window implementation
+-    m_impl.reset();
++    // Public layout remains unique_ptr; only an active private poll retires it.
++    auto retirement = std::shared_ptr<priv::WindowImpl>(std::move(m_impl));
++    if (retirement)
++        retirement->closeEventQueue(retirement);
+ }
+@@ -149,3 +150,6 @@
+-    event = m_impl->pollEvent();
++    auto* implementation = m_impl.get();
++    event = implementation->pollEvent();
++    if (m_impl.get() != implementation)
++        return {};
+ 
+     if (event.has_value())
+@@ -166,3 +170,6 @@
+-    event = m_impl->waitEvent(timeout);
++    auto* implementation = m_impl.get();
++    event = implementation->waitEvent(timeout);
++    if (m_impl.get() != implementation)
++        return {};
+ 
+     if (event.has_value())
+--- a/src/SFML/Window/Unix/WindowImplX11.hpp
++++ b/src/SFML/Window/Unix/WindowImplX11.hpp
+@@ -149,3 +149,4 @@
+     ////////////////////////////////////////////////////////////
+-    bool processEvent(XEvent& windowEvent);
++    void deferEvent(XEvent windowEvent);
++    bool processEvent(XEvent& windowEvent, bool inputCurrent = true);
+ 
+--- a/src/SFML/Window/Unix/WindowImplX11.cpp
++++ b/src/SFML/Window/Unix/WindowImplX11.cpp
+@@ -867,3 +867,3 @@
+                 // so process the KeyRelease event normally,
+-                processEvent(event);
++                deferEvent(event);
+                 // but loop because the next event can be the first half
+@@ -881,3 +881,3 @@
+         {
+-            processEvent(event);
++            deferEvent(event);
+         }
+@@ -1686,3 +1686,7 @@
+     sfmljs_backend::windowInputs().Open(m_window, [this](const auto* callbacks)
+     {
++        // A font/runtime callback may detach while XFilterEvent is on-stack.
++        // Preserve that XIC and its client_data until native delivery returns.
++        if (isInterpretingEvents())
++            return false;
+         XIC replacement = nullptr;
+@@ -1843,8 +1843,27 @@
+-bool WindowImplX11::processEvent(XEvent& windowEvent)
++void WindowImplX11::deferEvent(XEvent windowEvent)
++{
++    const auto delivery = sfmljs_backend::windowInputs().Delivery(m_window);
++    WindowImpl::deferGuardedEvent([this, windowEvent, delivery]() mutable
++    {
++        const bool current = delivery.Current();
++        const auto client = current ? sfmljs_backend::windowInputs().Client(m_window) : nullptr;
++        if (client && client->interpret)
++        {
++            return client->interpret(client->owner, [&]
++            {
++                processEvent(windowEvent, true);
++            });
++        }
++        processEvent(windowEvent, current);
++        return sfmljs::interop::WindowInputResult::kComplete;
++    });
++}
++
++bool WindowImplX11::processEvent(XEvent& windowEvent, bool inputCurrent)
+ {
+     using namespace WindowImplX11Impl;
+ 
+     const sfmljs::interop::detail::WindowInputScope inputScope(
+-        sfmljs_backend::windowInputs(), m_window, &windowEvent);
++        sfmljs_backend::windowInputs(), m_window, &windowEvent, inputCurrent);
+ 
+     // Convert the X11 event to a sf::Event
+@@ -1868,5 +1887,5 @@
+         case FocusIn:
+         {
+             // Update the input context
+-            if (m_inputContext)
++            if (inputCurrent && m_inputContext)
+                 XSetICFocus(m_inputContext);
+@@ -1919,5 +1938,5 @@
+         case FocusOut:
+         {
+             // Update the input context
+-            if (m_inputContext)
++            if (inputCurrent && m_inputContext)
+                 XUnsetICFocus(m_inputContext);
+@@ -1940,3 +1950,3 @@
+             // Input methods might want random ClientMessage events
+-            if (!XFilterEvent(&windowEvent, None))
++            if (!inputCurrent || !XFilterEvent(&windowEvent, None))
+             {
+@@ -1988,2 +1998,2 @@
+-            const bool filtered = XFilterEvent(&windowEvent, None);
++            const bool filtered = inputCurrent && XFilterEvent(&windowEvent, None);
+             sfmljs::interop::detail::WindowInputScope::Filtered(filtered);
+@@ -2014,3 +2024,3 @@
+             // Generate TextEntered events if needed
+-            if (!filtered)
++            if (!filtered && inputCurrent)
+             {

@@ -1,0 +1,77 @@
+--- a/src/SFML/Window/macOS/SFOpenGLView.mm
++++ b/src/SFML/Window/macOS/SFOpenGLView.mm
+@@ -219,7 +219,7 @@
+     point = [self convertPointToScreen:point];
+ 
+     // Flip screen coordinates to match CGDisplayMoveCursorToPoint referential.
+-    const double screenHeight = [[[self window] screen] frame].size.height;
++    const double screenHeight = [[NSScreen screens] firstObject].frame.size.height;
+     point.y                   = screenHeight - point.y;
+ 
+     return point;
+@@ -228,6 +228,18 @@
+ 
+ 
+ ////////////////////////////////////////////////////////
++// Keep SFML coordinates in sync when an application enables a Retina surface
++// through the public NSOpenGLView API after creating its window.
++- (void)setWantsBestResolutionOpenGLSurface:(BOOL)enabled
++{
++    [super setWantsBestResolutionOpenGLSurface:enabled];
++    m_highDpi = enabled ? YES : NO;
++    if ([self window])
++        [self updateScaleFactor];
++}
++
++
++////////////////////////////////////////////////////////
+ - (CGFloat)displayScaleFactor
+ {
+     return m_scaleFactor;
+--- a/src/SFML/Window/macOS/InputImpl.mm
++++ b/src/SFML/Window/macOS/InputImpl.mm
+@@ -198,8 +198,8 @@
+     // Use -cursorPositionFromEvent: with nil.
+     const NSPoint pos = [view cursorPositionFromEvent:nil];
+ 
+-    const int scale = static_cast<int>([view displayScaleFactor]);
+-    return Vector2i(static_cast<int>(pos.x), static_cast<int>(pos.y)) * scale;
++    const CGFloat scale = [view displayScaleFactor];
++    return Vector2i(static_cast<int>(pos.x * scale), static_cast<int>(pos.y * scale));
+ }
+ 
+ 
+@@ -230,7 +230,8 @@
+-    const int scale = static_cast<int>([view displayScaleFactor]);
++    const CGFloat scale = [view displayScaleFactor];
+     NSPoint   p     = NSMakePoint(position.x / scale, position.y / scale);
+     p               = [view computeGlobalPositionOfRelativePoint:p];
+-    setMousePosition(sf::Vector2i(static_cast<int>(p.x), static_cast<int>(p.y)) * scale);
++    // Global Cocoa points do not use the window's framebuffer scale.
++    CGWarpMouseCursorPosition(CGPointMake(p.x, p.y));
+ }
+ 
+ 
+--- a/src/SFML/Window/macOS/WindowImplCocoa.mm
++++ b/src/SFML/Window/macOS/WindowImplCocoa.mm
+@@ -389,8 +389,9 @@
+ {
+     WindowImpl::setMinimumSize(minimumSize);
+     const AutoreleasePool pool;
+-    const NSSize          size = minimumSize ? NSMakeSize(minimumSize->x, minimumSize->y) : NSMakeSize(0, 0);
++    const CGFloat        scale = [m_delegate displayScaleFactor];
++    const NSSize size = minimumSize ? NSMakeSize(minimumSize->x / scale, minimumSize->y / scale) : NSMakeSize(0, 0);
+     [m_delegate setMinimumSize:size];
+ }
+ 
+ 
+@@ -400,7 +401,8 @@
+     WindowImpl::setMaximumSize(maximumSize);
+     const AutoreleasePool pool;
+-    const NSSize          size = maximumSize ? NSMakeSize(maximumSize->x, maximumSize->y)
++    const CGFloat        scale = [m_delegate displayScaleFactor];
++    const NSSize          size = maximumSize ? NSMakeSize(maximumSize->x / scale, maximumSize->y / scale)
+                                              : NSMakeSize(std::numeric_limits<CGFloat>::max(), std::numeric_limits<CGFloat>::max());
+     [m_delegate setMaximumSize:size];
+ }
+ 

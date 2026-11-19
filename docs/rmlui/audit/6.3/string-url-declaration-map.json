@@ -1,0 +1,1094 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "string_url_original_records": 88,
+  "whole_scope_complete": false,
+  "notice": "Every row uses the original fingerprinted index and exact header, line, kind, name, signature and type. Pointer domains retain native support and expose checked retained views with numeric positions. Native varargs remain native; managed formatting uses typed scalars. Type declarations and operators are not independent runtime tests.",
+  "native_groups": {
+    "url-codec": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "CheckUrlEncoding",
+      "literal_pass_line": "native-url-byte-codec"
+    },
+    "url-state": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "CheckUrlState",
+      "literal_pass_line": "native-url-replacement-and-cache"
+    },
+    "url-mutation": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "CheckUrlMutation",
+      "literal_pass_line": "native-url-component-mutations"
+    },
+    "string-rules": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "CheckStringRules",
+      "literal_pass_line": "native-string-rml-ascii-and-format"
+    },
+    "views": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "CheckListsAndViews",
+      "literal_pass_line": "native-string-list-and-byte-view"
+    },
+    "unicode": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "CheckUnicodeOffsets",
+      "literal_pass_line": "native-string-unicode-offsets-and-iterator"
+    },
+    "empty-search": {
+      "source": "packages/sfml.js-rmlui/test/native/string-url-contracts.cc",
+      "functions": "main",
+      "literal_pass_line": "native-string-empty-search-noop"
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 2481,
+      "exact_key": "Core/StringUtilities.h|12|ClassDecl|Rml::StringView|StringView|Rml::StringView",
+      "surface": "StringView",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed-type",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2482,
+      "exact_key": "Core/StringUtilities.h|15|FunctionDecl|Rml::CreateString|CreateString(const char *, ...)|String (const char *, ...)",
+      "surface": "createString",
+      "source": "packages/sfml.js-rmlui/src/string-format.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "checked-scalar-format-and-native-varargs",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2483,
+      "exact_key": "Core/StringUtilities.h|18|FunctionDecl|Rml::FormatString|FormatString(String &, const char *, ...)|int (String &, const char *, ...)",
+      "surface": "formatString",
+      "source": "packages/sfml.js-rmlui/src/string-format.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "checked-scalar-format-and-native-varargs",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2484,
+      "exact_key": "Core/StringUtilities.h|27|FunctionDecl|Rml::StringUtilities::ExpandString|ExpandString(StringList &, const String &, const char, bool)|void (StringList &, const String &, const char, bool)",
+      "surface": "StringUtilities.expandString",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2485,
+      "exact_key": "Core/StringUtilities.h|36|FunctionDecl|Rml::StringUtilities::ExpandString|ExpandString(StringList &, const String &, const char, char, char, bool)|void (StringList &, const String &, const char, char, char, bool)",
+      "surface": "StringUtilities.expandString",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2486,
+      "exact_key": "Core/StringUtilities.h|42|FunctionDecl|Rml::StringUtilities::JoinString|JoinString(String &, const StringList &, const char)|void (String &, const StringList &, const char)",
+      "surface": "StringUtilities.joinString",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2487,
+      "exact_key": "Core/StringUtilities.h|45|FunctionDecl|Rml::StringUtilities::ToLower|ToLower(String)|String (String)",
+      "surface": "StringUtilities.toLower",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2488,
+      "exact_key": "Core/StringUtilities.h|47|FunctionDecl|Rml::StringUtilities::ToUpper|ToUpper(String)|String (String)",
+      "surface": "StringUtilities.toUpper",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2489,
+      "exact_key": "Core/StringUtilities.h|50|FunctionDecl|Rml::StringUtilities::EncodeRml|EncodeRml(const String &)|String (const String &)",
+      "surface": "StringUtilities.encodeRml",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2490,
+      "exact_key": "Core/StringUtilities.h|53|FunctionDecl|Rml::StringUtilities::DecodeRml|DecodeRml(const String &)|String (const String &)",
+      "surface": "StringUtilities.decodeRml",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2491,
+      "exact_key": "Core/StringUtilities.h|56|FunctionDecl|Rml::StringUtilities::Replace|Replace(String, const String &, const String &)|String (String, const String &, const String &)",
+      "surface": "StringUtilities.replace",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules",
+        "empty-search"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2492,
+      "exact_key": "Core/StringUtilities.h|58|FunctionDecl|Rml::StringUtilities::Replace|Replace(String, char, char)|String (String, char, char)",
+      "surface": "StringUtilities.replace",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2493,
+      "exact_key": "Core/StringUtilities.h|61|FunctionDecl|Rml::StringUtilities::IsWhitespace|IsWhitespace(const char)|bool (const char)",
+      "surface": "StringUtilities.isWhitespace",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2494,
+      "exact_key": "Core/StringUtilities.h|67|FunctionDecl|Rml::StringUtilities::StripWhitespace|StripWhitespace(const String &)|String (const String &)",
+      "surface": "StringUtilities.stripWhitespace",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2495,
+      "exact_key": "Core/StringUtilities.h|70|FunctionDecl|Rml::StringUtilities::StripWhitespace|StripWhitespace(StringView)|String (StringView)",
+      "surface": "StringUtilities.stripWhitespace",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2496,
+      "exact_key": "Core/StringUtilities.h|74|FunctionDecl|Rml::StringUtilities::TrimTrailingDotZeros|TrimTrailingDotZeros(String &)|void (String &)",
+      "surface": "StringUtilities.trimTrailingDotZeros",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "checked-decimal-and-native-preconditions",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2497,
+      "exact_key": "Core/StringUtilities.h|77|FunctionDecl|Rml::StringUtilities::StartsWith|StartsWith(StringView, StringView)|bool (StringView, StringView)",
+      "surface": "StringUtilities.startsWith",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2498,
+      "exact_key": "Core/StringUtilities.h|79|FunctionDecl|Rml::StringUtilities::EndsWith|EndsWith(StringView, StringView)|bool (StringView, StringView)",
+      "surface": "StringUtilities.endsWith",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2499,
+      "exact_key": "Core/StringUtilities.h|82|FunctionDecl|Rml::StringUtilities::StringCompareCaseInsensitive|StringCompareCaseInsensitive(StringView, StringView)|bool (StringView, StringView)",
+      "surface": "StringUtilities.stringCompareCaseInsensitive",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "string-rules"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2500,
+      "exact_key": "Core/StringUtilities.h|85|FunctionDecl|Rml::StringUtilities::ToCharacter|ToCharacter(const char *, const char *)|Character (const char *, const char *)",
+      "surface": "StringUtilities.toCharacter",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2501,
+      "exact_key": "Core/StringUtilities.h|88|FunctionDecl|Rml::StringUtilities::BytesUTF8|BytesUTF8(Character)|size_t (Character)",
+      "surface": "StringUtilities.bytesUTF8",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2502,
+      "exact_key": "Core/StringUtilities.h|91|FunctionDecl|Rml::StringUtilities::ToUTF8|ToUTF8(Character)|String (Character)",
+      "surface": "StringUtilities.toUTF8",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2503,
+      "exact_key": "Core/StringUtilities.h|94|FunctionDecl|Rml::StringUtilities::ToUTF8|ToUTF8(const Character *, int)|String (const Character *, int)",
+      "surface": "StringUtilities.toUTF8",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2504,
+      "exact_key": "Core/StringUtilities.h|97|FunctionDecl|Rml::StringUtilities::LengthUTF8|LengthUTF8(StringView)|size_t (StringView)",
+      "surface": "StringUtilities.lengthUTF8",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2505,
+      "exact_key": "Core/StringUtilities.h|100|FunctionDecl|Rml::StringUtilities::SeekForwardUTF8|SeekForwardUTF8(const char *, const char *)|const char *(const char *, const char *)",
+      "surface": "StringUtilities.seekForwardUTF8",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2506,
+      "exact_key": "Core/StringUtilities.h|107|FunctionDecl|Rml::StringUtilities::SeekBackwardUTF8|SeekBackwardUTF8(const char *, const char *)|const char *(const char *, const char *)",
+      "surface": "StringUtilities.seekBackwardUTF8",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2507,
+      "exact_key": "Core/StringUtilities.h|115|FunctionDecl|Rml::StringUtilities::ConvertCharacterOffsetToByteOffset|ConvertCharacterOffsetToByteOffset(StringView, int)|int (StringView, int)",
+      "surface": "StringUtilities.convertCharacterOffsetToByteOffset",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2508,
+      "exact_key": "Core/StringUtilities.h|118|FunctionDecl|Rml::StringUtilities::ConvertByteOffsetToCharacterOffset|ConvertByteOffsetToCharacterOffset(StringView, int)|int (StringView, int)",
+      "surface": "StringUtilities.convertByteOffsetToCharacterOffset",
+      "source": "packages/sfml.js-rmlui/src/string-utilities.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2509,
+      "exact_key": "Core/StringUtilities.h|127|ClassDecl|Rml::StringView|StringView|Rml::StringView",
+      "surface": "StringView",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed-type",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2510,
+      "exact_key": "Core/StringUtilities.h|129|CXXConstructor|Rml::StringView::StringView|StringView()|void ()",
+      "surface": "new StringView()",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2511,
+      "exact_key": "Core/StringUtilities.h|130|CXXConstructor|Rml::StringView::StringView|StringView(const char *, const char *)|void (const char *, const char *)",
+      "surface": "new StringView(view, offset, count)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "retained-numeric-range-and-native-pointer-range",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2512,
+      "exact_key": "Core/StringUtilities.h|131|CXXConstructor|Rml::StringView::StringView|StringView(const String &)|void (const String &)",
+      "surface": "new StringView(string)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2513,
+      "exact_key": "Core/StringUtilities.h|132|CXXConstructor|Rml::StringView::StringView|StringView(const String &, size_t)|void (const String &, size_t)",
+      "surface": "new StringView(string, offset)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2514,
+      "exact_key": "Core/StringUtilities.h|133|CXXConstructor|Rml::StringView::StringView|StringView(const String &, size_t, size_t)|void (const String &, size_t, size_t)",
+      "surface": "new StringView(string, offset, count)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2515,
+      "exact_key": "Core/StringUtilities.h|137|FunctionTemplate|Rml::StringView::StringView|StringView(const char (&)[N])|void (const char (&)[N])",
+      "surface": "new StringView(string)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed-string-and-native-literal-template",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2516,
+      "exact_key": "Core/StringUtilities.h|143|CXXMethod|Rml::StringView::operator==|operator==(const StringView &)|bool (const StringView &) const",
+      "surface": "StringView.equals",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2517,
+      "exact_key": "Core/StringUtilities.h|144|CXXMethod|Rml::StringView::operator!=|operator!=(const StringView &)|bool (const StringView &) const",
+      "surface": "!StringView.equals",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2518,
+      "exact_key": "Core/StringUtilities.h|146|CXXMethod|Rml::StringView::begin|begin()|const char *() const",
+      "surface": "StringView.begin",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "view-relative-numeric-pointer",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2519,
+      "exact_key": "Core/StringUtilities.h|147|CXXMethod|Rml::StringView::end|end()|const char *() const",
+      "surface": "StringView.end",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "view-relative-numeric-pointer",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2520,
+      "exact_key": "Core/StringUtilities.h|149|CXXMethod|Rml::StringView::empty|empty()|bool () const",
+      "surface": "StringView.empty",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2521,
+      "exact_key": "Core/StringUtilities.h|150|CXXMethod|Rml::StringView::size|size()|size_t () const",
+      "surface": "StringView.size",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "views"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2522,
+      "exact_key": "Core/StringUtilities.h|167|ClassDecl|Rml::StringIteratorU8|StringIteratorU8|Rml::StringIteratorU8",
+      "surface": "StringIteratorU8",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed-type",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2523,
+      "exact_key": "Core/StringUtilities.h|169|CXXConstructor|Rml::StringIteratorU8::StringIteratorU8|StringIteratorU8(const char *, const char *, const char *)|void (const char *, const char *, const char *)",
+      "surface": "new StringIteratorU8(view, offset, count)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "retained-numeric-range-and-native-pointer-range",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2524,
+      "exact_key": "Core/StringUtilities.h|170|CXXConstructor|Rml::StringIteratorU8::StringIteratorU8|StringIteratorU8(StringView)|void (StringView)",
+      "surface": "new StringIteratorU8(view)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2525,
+      "exact_key": "Core/StringUtilities.h|171|CXXConstructor|Rml::StringIteratorU8::StringIteratorU8|StringIteratorU8(const String &)|void (const String &)",
+      "surface": "new StringIteratorU8(string)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2526,
+      "exact_key": "Core/StringUtilities.h|172|CXXConstructor|Rml::StringIteratorU8::StringIteratorU8|StringIteratorU8(const String &, size_t)|void (const String &, size_t)",
+      "surface": "new StringIteratorU8(string, offset)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2527,
+      "exact_key": "Core/StringUtilities.h|173|CXXConstructor|Rml::StringIteratorU8::StringIteratorU8|StringIteratorU8(const String &, size_t, size_t)|void (const String &, size_t, size_t)",
+      "surface": "new StringIteratorU8(string, offset, count)",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2528,
+      "exact_key": "Core/StringUtilities.h|176|CXXMethod|Rml::StringIteratorU8::operator++|operator++()|StringIteratorU8 &()",
+      "surface": "StringIteratorU8.increment",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2529,
+      "exact_key": "Core/StringUtilities.h|178|CXXMethod|Rml::StringIteratorU8::operator--|operator--()|StringIteratorU8 &()",
+      "surface": "StringIteratorU8.decrement",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2530,
+      "exact_key": "Core/StringUtilities.h|181|CXXMethod|Rml::StringIteratorU8::operator*|operator*()|Character () const",
+      "surface": "StringIteratorU8.value",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2531,
+      "exact_key": "Core/StringUtilities.h|186|CXXMethod|Rml::StringIteratorU8::operator==|operator==(const StringIteratorU8 &)|bool (const StringIteratorU8 &) const",
+      "surface": "StringIteratorU8.equals",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2532,
+      "exact_key": "Core/StringUtilities.h|187|CXXMethod|Rml::StringIteratorU8::operator!=|operator!=(const StringIteratorU8 &)|bool (const StringIteratorU8 &) const",
+      "surface": "!StringIteratorU8.equals",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2533,
+      "exact_key": "Core/StringUtilities.h|190|CXXMethod|Rml::StringIteratorU8::get|get()|const char *() const",
+      "surface": "StringIteratorU8.get",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "view-relative-numeric-pointer",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2534,
+      "exact_key": "Core/StringUtilities.h|193|CXXMethod|Rml::StringIteratorU8::offset|offset()|std::ptrdiff_t () const",
+      "surface": "StringIteratorU8.offset",
+      "source": "packages/sfml.js-rmlui/src/string-view.ts",
+      "native_groups": [
+        "unicode"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3525,
+      "exact_key": "Core/URL.h|8|ClassDecl|Rml::URL|URL|Rml::URL",
+      "surface": "URL",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed-type",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3526,
+      "exact_key": "Core/URL.h|11|CXXConstructor|Rml::URL::URL|URL()|void ()",
+      "surface": "new URL()",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3527,
+      "exact_key": "Core/URL.h|13|CXXConstructor|Rml::URL::URL|URL(const String &)|void (const String &)",
+      "surface": "new URL(string)",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3528,
+      "exact_key": "Core/URL.h|16|CXXConstructor|Rml::URL::URL|URL(const char *)|void (const char *)",
+      "surface": "new URL(string)",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed-string-and-native-c-string",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3529,
+      "exact_key": "Core/URL.h|18|CXXDestructor|Rml::URL::~URL|~URL()|void () noexcept",
+      "surface": "native URL owner collection",
+      "source": "packages/sfml.js-rmlui/native/rmlui-url.cc",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "native-owned-automatic-release",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3530,
+      "exact_key": "Core/URL.h|22|CXXMethod|Rml::URL::SetURL|SetURL(const String &)|bool (const String &)",
+      "surface": "URL.setURL",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-state"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3531,
+      "exact_key": "Core/URL.h|24|CXXMethod|Rml::URL::GetURL|GetURL()|const String &() const",
+      "surface": "URL.getURL",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-state"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3532,
+      "exact_key": "Core/URL.h|27|CXXMethod|Rml::URL::SetProtocol|SetProtocol(const String &)|bool (const String &)",
+      "surface": "URL.setProtocol",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3533,
+      "exact_key": "Core/URL.h|29|CXXMethod|Rml::URL::GetProtocol|GetProtocol()|const String &() const",
+      "surface": "URL.getProtocol",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3534,
+      "exact_key": "Core/URL.h|32|CXXMethod|Rml::URL::SetLogin|SetLogin(const String &)|bool (const String &)",
+      "surface": "URL.setLogin",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3535,
+      "exact_key": "Core/URL.h|34|CXXMethod|Rml::URL::GetLogin|GetLogin()|const String &() const",
+      "surface": "URL.getLogin",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3536,
+      "exact_key": "Core/URL.h|37|CXXMethod|Rml::URL::SetPassword|SetPassword(const String &)|bool (const String &)",
+      "surface": "URL.setPassword",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3537,
+      "exact_key": "Core/URL.h|39|CXXMethod|Rml::URL::GetPassword|GetPassword()|const String &() const",
+      "surface": "URL.getPassword",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3538,
+      "exact_key": "Core/URL.h|42|CXXMethod|Rml::URL::SetHost|SetHost(const String &)|bool (const String &)",
+      "surface": "URL.setHost",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3539,
+      "exact_key": "Core/URL.h|44|CXXMethod|Rml::URL::GetHost|GetHost()|const String &() const",
+      "surface": "URL.getHost",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3540,
+      "exact_key": "Core/URL.h|47|CXXMethod|Rml::URL::SetPort|SetPort(int)|bool (int)",
+      "surface": "URL.setPort",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3541,
+      "exact_key": "Core/URL.h|49|CXXMethod|Rml::URL::GetPort|GetPort()|int () const",
+      "surface": "URL.getPort",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3542,
+      "exact_key": "Core/URL.h|52|CXXMethod|Rml::URL::SetPath|SetPath(const String &)|bool (const String &)",
+      "surface": "URL.setPath",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3543,
+      "exact_key": "Core/URL.h|54|CXXMethod|Rml::URL::PrefixPath|PrefixPath(const String &)|bool (const String &)",
+      "surface": "URL.prefixPath",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3544,
+      "exact_key": "Core/URL.h|56|CXXMethod|Rml::URL::GetPath|GetPath()|const String &() const",
+      "surface": "URL.getPath",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3545,
+      "exact_key": "Core/URL.h|59|CXXMethod|Rml::URL::SetFileName|SetFileName(const String &)|bool (const String &)",
+      "surface": "URL.setFileName",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3546,
+      "exact_key": "Core/URL.h|61|CXXMethod|Rml::URL::GetFileName|GetFileName()|const String &() const",
+      "surface": "URL.getFileName",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3547,
+      "exact_key": "Core/URL.h|64|CXXMethod|Rml::URL::SetExtension|SetExtension(const String &)|bool (const String &)",
+      "surface": "URL.setExtension",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3548,
+      "exact_key": "Core/URL.h|66|CXXMethod|Rml::URL::GetExtension|GetExtension()|const String &() const",
+      "surface": "URL.getExtension",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3549,
+      "exact_key": "Core/URL.h|69|TypedefDecl|Rml::URL::Parameters|Parameters|Rml::URL::Parameters",
+      "surface": "Record<string, string>",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed-type",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3550,
+      "exact_key": "Core/URL.h|70|CXXMethod|Rml::URL::GetParameters|GetParameters()|const Parameters &() const",
+      "surface": "URL.getParameters",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3551,
+      "exact_key": "Core/URL.h|71|CXXMethod|Rml::URL::SetParameter|SetParameter(const String &, const String &)|void (const String &, const String &)",
+      "surface": "URL.setParameter",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3552,
+      "exact_key": "Core/URL.h|72|CXXMethod|Rml::URL::SetParameters|SetParameters(const Parameters &)|void (const Parameters &)",
+      "surface": "URL.setParameters",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3553,
+      "exact_key": "Core/URL.h|73|CXXMethod|Rml::URL::ClearParameters|ClearParameters()|void ()",
+      "surface": "URL.clearParameters",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-state"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3554,
+      "exact_key": "Core/URL.h|76|CXXMethod|Rml::URL::GetPathedFileName|GetPathedFileName()|String () const",
+      "surface": "URL.getPathedFileName",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3555,
+      "exact_key": "Core/URL.h|78|CXXMethod|Rml::URL::GetQueryString|GetQueryString()|String () const",
+      "surface": "URL.getQueryString",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3556,
+      "exact_key": "Core/URL.h|81|CXXMethod|Rml::URL::operator<|operator<(const URL &)|bool (const URL &) const",
+      "surface": "URL.lessThan",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-mutation"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3557,
+      "exact_key": "Core/URL.h|85|CXXMethod|Rml::URL::UrlEncode|UrlEncode(const String &)|String (const String &)",
+      "surface": "URL.urlEncode",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-codec"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 3558,
+      "exact_key": "Core/URL.h|86|CXXMethod|Rml::URL::UrlDecode|UrlDecode(const String &)|String (const String &)",
+      "surface": "URL.urlDecode",
+      "source": "packages/sfml.js-rmlui/src/url.ts",
+      "native_groups": [
+        "url-codec"
+      ],
+      "domain": "managed",
+      "status": "locally-verified-native-managed-contract-macos-arm64"
+    }
+  ],
+  "managed_extensions_not_original_records": [
+    "StringView.subview",
+    "StringView.toBytes",
+    "StringView.toString",
+    "StringIteratorU8.valid",
+    "StringUtilities.convertCharacterOffsetsToByteOffsets",
+    "StringUtilities.convertByteOffsetsToCharacterOffsets",
+    "StringInput",
+    "FormattedString"
+  ],
+  "guarded_domains": {
+    "pointers": "Native pointer/literal constructors remain supported. Managed view positions use retained bytes and checked numeric offsets. Managed iterators accept cached boundaries; sentinels are numbers.",
+    "formatting": "Managed scalar printf rejects raw pointers, length modifiers, positional arguments, embedded format NUL and unbounded dimensions. Native CreateString/FormatString retain C++ varargs.",
+    "decimal": "Managed trim requires a decimal representation with a dot; native ill-defined inputs retain caller preconditions."
+  },
+  "consumer_suites": {
+    "string-url.test.cjs": [
+      "URL replacement clears previous components and cached parameters",
+      "URL component edits reconstruct the native resource path",
+      "URL parameters preserve hostile keys without exposing native state",
+      "URL codecs retain native UTF8 NUL and permissive escape rules",
+      "ASCII RML and whitespace operations retain native semantics",
+      "List expansion distinguishes default and custom quote rules",
+      "Byte views retain owners and compare bytes after embedded NUL",
+      "UTF8 offsets count codepoints and round interior bytes forward",
+      "Iterator sentinels never form dangling pointers",
+      "Byte slices preserve truncated native UTF8 decoding",
+      "Iterator backward movement skips initial continuation bytes",
+      "Offset batches reuse output and reject invalid storage atomically",
+      "Overlapping offset subarrays preserve the original input",
+      "Iterator equality follows the retained owner across aliased views",
+      "Native owners survive source collection and runtime shutdown"
+    ],
+    "string-format.test.cjs": [
+      "Typed formatting preserves native ASCII and UTF8 byte lengths",
+      "Typed integer formatting uses native signed and unsigned domains",
+      "Dynamic width and precision consume explicit typed arguments",
+      "Formatting preserves the native small and large NUL buffer branches",
+      "Unsafe C ABI formats and mismatched values are rejected"
+    ],
+    "string-performance.test.cjs": [
+      "first-batch-builds-one-native-index",
+      "warm-batch-one-entry-no-copy-allocation-or-owner-scan",
+      "managed-iteration-has-zero-native-entries",
+      "warm-native-batch-has-zero-main-thread-malloc"
+    ],
+    "system-interface.test.cjs": [
+      "native-default-clipboard-writes-utf8",
+      "native-default-clipboard-reads-utf8",
+      "pending-selection-and-native-default",
+      "default-identity-and-shutdown",
+      "setup-replacement-rejection-and-invalidation",
+      "all-eight-host-hooks-use-native-virtuals",
+      "native-document-translation-and-resource-path",
+      "shared-clock-has-no-frame-callbacks-or-owner-scans",
+      "exceptions-invalid-results-and-recursive-mutation",
+      "callback-getters-captured-once-and-input-authenticity",
+      "unselected-cycles-collect-and-selected-callbacks-survive",
+      "retained-clock-and-wrapper-do-not-retain-shutdown-callbacks",
+      "preinit-native-virtuals-and-result-accessor-reentry",
+      "foreign-environment-cannot-read-or-replace-pending-interface"
+    ],
+    "lifetime.test.cjs": [
+      "font-before-initialise",
+      "subtree-aliases",
+      "close-update",
+      "unload-update",
+      "same-name-context",
+      "retained-dimensions",
+      "shutdown-reinitialise",
+      "font-after-shutdown",
+      "document-type-check",
+      "wrapper-gc",
+      "foreign-worker",
+      "environment-cleanup",
+      "foreign-worker-contention"
+    ]
+  }
+}

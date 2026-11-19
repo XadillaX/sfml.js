@@ -23,11 +23,15 @@ export interface TransformableState {
   cache?: TransformCache;
 }
 
+/** Native state required by transform mutation methods. @inline */
 export interface TransformableHost {
+  /** Native mutable-value brand. @internal */
   readonly [mutableValue]: true;
+  /** Native transform mapping. @internal */
   readonly [transformableState]: TransformableState;
 }
 
+/** Public transform methods shared by all transformable objects. @inline */
 export interface TransformableMethods extends TransformableHost {
   /**
    * Set the object's origin in parent coordinates, copying position.

@@ -1,0 +1,136 @@
+{
+  "status": "locally-verified-native-numeric-support-macos-arm64",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping": "docs/rmlui/audit/6.3/numeric-declaration-map.json",
+  "mapping_sha256": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+  "numeric_original_records": 459,
+  "record_roles": {
+    "instantiated-native-type": 70,
+    "native-operation": 370,
+    "native-value-field": 16,
+    "native-compile-time-domain-rejection": 3
+  },
+  "native_runtime_groups": 15,
+  "supported_compile_controls": 1,
+  "expected_compile_rejections": 5,
+  "native_runtime_failures": 0,
+  "compiler_rejections_are_runtime_failures": false,
+  "native": {
+    "path": "/tmp/rmlui-63-completion/numeric-permanent-runner-3.log",
+    "sha256": "d3d6cf94e58da6c0cb0745de48749529eb1586a68dfe5a13ca1936d2a93dae95",
+    "literal_pass_lines": 21
+  },
+  "package": {
+    "path": "/tmp/rmlui-63-completion/numeric-template-package-3.log",
+    "sha256": "24b874c7ca742532b79cbef6e3917fbbca22759d9fa9a3334797c97587bc8806",
+    "literal_pass_lines": 1099,
+    "runtime_files": 109,
+    "failures": 0,
+    "native_compiler_errors": 0,
+    "native_compiler_warnings": 1,
+    "status": "runtime-passed-native-warning-open",
+    "open_warnings": [
+      "../native/system-interface-sfml.cc:82:10: warning: 'operator basic_string' is deprecated: Use toAnsiString() instead [-Wdeprecated-declarations]"
+    ]
+  },
+  "native_style": {
+    "path": "/tmp/rmlui-63-completion/numeric-native-style-7.log",
+    "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+    "literal_pass_lines": 0
+  },
+  "native_format": {
+    "path": "/tmp/rmlui-63-completion/numeric-native-format-5.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_pass_lines": 0
+  },
+  "native_naming": {
+    "path": "/tmp/rmlui-63-completion/numeric-native-naming-4.log",
+    "sha256": "e5e774d23b1c875bdf2449c3c88e2d1518eb49a8bf2477ed7a48b4864e591c59",
+    "literal_pass_lines": 4
+  },
+  "patch_integrity": {
+    "path": "/tmp/rmlui-63-completion/numeric-patch-integrity-4.log",
+    "sha256": "ac8d6ccad7ce9f33cbc226032c03e45abf29ca5bfb1230730b410285ceb70988",
+    "literal_pass_lines": 4
+  },
+  "patch_lint": {
+    "path": "/tmp/rmlui-63-completion/numeric-patch-lint-2.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_pass_lines": 0
+  },
+  "original_regressions": [
+    {
+      "path": "/tmp/rmlui-63-completion/numeric-matrix-contract-red-1.log",
+      "sha256": "e09ded96c2f41d4296f9498a0654f7c4f0e169bd28af9a63964541f085543633",
+      "literal_pass_lines": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/numeric-upstream-anomalies-2.log",
+      "sha256": "a7aa421a661ab701812d72541be366aabc0521266ed8eea8646ac9f41dab7b46",
+      "literal_pass_lines": 0
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/numeric-matrix-alias-red-1.log",
+      "sha256": "0ed9dc7ae21c1c554ecfdc3fd234d26a3a9959c60448f18decc9318682ea3e4d",
+      "literal_pass_lines": 2
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/numeric-random-native-red-1.log",
+      "sha256": "56212c0257c9d48bb9e386ff2b850a393fc9bb73e213d342783a95e007a0b3aa",
+      "literal_pass_lines": 0
+    }
+  ],
+  "stopped_package_runs_not_acceptance": [
+    "numeric-template-package-1.log",
+    "numeric-template-package-2.log"
+  ],
+  "native_probes_in_ordinary_package_pass_count": false,
+  "new_js_per_element_math_api": false,
+  "native_build_environment_isolated": false,
+  "full_core_19_accepted": false,
+  "whole_scope_complete": false,
+  "default_clipboard_utf8_accepted": false,
+  "open_package_follow_up": "The complete package exits zero with 1099 PASS, but contains one deprecated sf::String-to-std::string conversion in the SFML default clipboard read path. Existing Unicode clipboard tests exercise custom callbacks. Native default UTF-8 behavior still needs direct verification and correction; no zero-warning package claim.",
+  "source_sha256": {
+    "packages/sfml.js-rmlui/native/rmlui-decoration-values.cc": "75e538dddd1af19bb1d92e9941252a135fde56f3a5bfb158560ef0d2009fd65f",
+    "packages/sfml.js-rmlui/native/rmlui-geometry.cc": "a787f53838caac90e80c9a04734f5441fb59a5a6280b57dbdce4b8ab978f2b13",
+    "packages/sfml.js-rmlui/native/rmlui-render-state.cc": "81e4f20886257301bd2e571c8ef4739e818fa0620d60814a34a68dc54f5b931b",
+    "packages/sfml.js-rmlui/native/rmlui-transform-state.cc": "3511b10f4074681cd2924f2761c12b0058c4c3fa6d6b0fd27673015aa1896d67",
+    "packages/sfml.js-rmlui/native/rmlui-transform.cc": "520351b619026680a5bf45013974e2c9e1c5d1e0b315dcbc82bdaf7093a53472",
+    "packages/sfml.js-rmlui/native/rmlui-variant-conversion.cc": "ef676d89e941565f47ea07496aff4c8191c50182114ef43d4802167ca531bd56",
+    "packages/sfml.js-rmlui/native/system-interface-sfml.cc": "be4b41da9f9e6ccc90e69a6f5765e0728405d38793ae166abe0f08c8092e06e9",
+    "packages/sfml.js-rmlui/package.json": "435de4b4f5e3fb15277e95259630c108209a43e7d8829fbb39e30ddfe589f6ad",
+    "packages/sfml.js-rmlui/src/decoration-values.ts": "5f15403a27c8b9b92f89ced5d1aa4a8c72cb18f5e2b64b9822ced69c20dbf608",
+    "packages/sfml.js-rmlui/src/geometry.ts": "e101991a8caa9fda14a66e470bd96c819248bd2117d415df54967491e06ed42a",
+    "packages/sfml.js-rmlui/src/render-state.ts": "ae66f3c62303d669206c241027e6135fdf9709960bd35d51be21ae872a15c452",
+    "packages/sfml.js-rmlui/src/transform-state.ts": "d78c899746ff9efebbfa55218937a8a4dbffc5252ee66b2f8dc0af6ad59f9c3c",
+    "packages/sfml.js-rmlui/src/transform.ts": "fc79db54ef82a221562a6b9319a9906dfb675f904d92c2a60b88aa67378e7669",
+    "packages/sfml.js-rmlui/src/variant.ts": "4c102fcbf62c6ebd7d0b579c1a0e649019f3597830602fa026d1c819961d15d3",
+    "packages/sfml.js-rmlui/test/decoration-values.test.cjs": "d3286bacf65435974709b0b28e9f123012553581f139bcf0c5e63950e6332ece",
+    "packages/sfml.js-rmlui/test/element-components.test.cjs": "4f9961dd395e1b1afd8c88669bbf761efaa569a6377a594a5ffb283ded1c76ef",
+    "packages/sfml.js-rmlui/test/geometry.test.cjs": "5080846384f80f2c32a2d9280893fe7fdd06080217736ba1b370c07f2303d6c1",
+    "packages/sfml.js-rmlui/test/native/build-numeric-contracts.py": "01f2e848f203ae7473f385db1e7d65af869ef889a19b099b5345fbb4ddef7b88",
+    "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc": "568c6de22123adeb87def880eea818602bf603e205377f71b0f37c0fb2ab285d",
+    "packages/sfml.js-rmlui/test/native/numeric-random-contracts.cc": "ce3676d63d30d58e094772409ce7772968e0977c324eb1db78f03bdde802155a",
+    "packages/sfml.js-rmlui/test/native/numeric-unsupported.cc": "7a9ebff16887ad580a0683a7fbc25ac87e922db2b1aaf3eddae97e42c3fbfcbe",
+    "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc": "013fba0138450a8752d9aa73f3455c9301804d5a407e7ee910af485f82b9cf6a",
+    "packages/sfml.js-rmlui/test/render-state.test.cjs": "6246b4584d76320a14953b933202c58060b197cbdd13a1ba8ea9eb048f17a261",
+    "packages/sfml.js-rmlui/test/transform.test.cjs": "17ecb71d1979985a8319c26c7a6c53f8e79a0514d906fae4430b9f95b768ec23",
+    "packages/sfml.js-rmlui/test/variant-template-destinations.test.cjs": "47817a1a3c9ea0e6c56970ba0f3beb35dc9dab393f427d9a857b1ffea4d54a20",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Colour.h": "47aa21fc1c1c83f08d18527ed3a4e4fffe379ddc24252e2d727b7f350d627bcc",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Colour.inl": "a82fc3ea761e76ba93261342732a7a3c95b02e1dbd528bef8f6181e6478f1390",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Math.h": "3f7c748593544a0b4b313a2c02ba4260d8659804370c9d1c637e1f6439be43a2",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Matrix4.h": "35122a57723cd2a39efa4ad3802b208a3e45d5ff699388e16fbc8e837d4aaec2",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Matrix4.inl": "623ec2f6f2ffc9c3749600d443a25b22799782fc38dd5e25acca4513c36db4da",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Rectangle.h": "c605f22081bbc8951e4383851fcf06182e2f6ad4b1a78a88848525ee18ddb22a",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Vector2.h": "d46b6c8fbcd43921deeac2c3081a14f905811954f04b239f6ef24b30df887460",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Vector2.inl": "842ffe0a9fe5fb90cb22ecb827f461166f16700b20d5046c6efec4e1de0a6290",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Vector3.h": "2ed96fa88b7c3ddaa0415a2634a293d223f57da2c1f9d3526987c1f702dd1e95",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Vector3.inl": "1693515fdec58dbd6db8a45c9259a428e2b5608fb14605e5273e6cac12b77bf5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Vector4.h": "fecd81bf883805b70d4b17b421190268052d927d3f3a350a250ce4ae6413c9c2",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Vector4.inl": "0f44d03ce496e8c3a615e6f8169b1a83792b94ff720add64d647fcbe14ccc877",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Math.cpp": "7db32e0f46d85264dd1138301840ea4e76cc99e491996dc557243556c7b074c5",
+    "packages/sfml.js-rmlui/tools/patch-rmlui-numeric.cjs": "44f95aff0379f55fd31c0ea1dd8970b52f59e81a269e163eb31710aeb4b676aa",
+    "packages/sfml.js-rmlui/tools/patch-rmlui.cjs": "bd1b6e3db6e30d1f44b0495e4a4a426b20426c0d86c1c108f355acc918fbe225"
+  }
+}

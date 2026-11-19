@@ -79,6 +79,7 @@ const documentGroups = [
   [ 'packages/sfml.js/examples/features/README', '/examples/features' ],
   [ 'packages/sfml.js/examples/official/README', '/examples/official' ],
   [ 'packages/sfml.js-imgui/examples/README', '/examples/imgui' ],
+  [ 'packages/sfml.js-rmlui/examples/README', '/examples/rmlui' ],
   [ 'packages/sfml.js/examples/projects/README', '/examples/projects' ],
   [ 'docs/imgui/README', '/imgui/' ],
   ...[
@@ -88,6 +89,15 @@ const documentGroups = [
     name => [ `docs/imgui/${name}`, `/imgui/${name}` ]
   ),
   [ 'docs/interop/README', '/interop/' ],
+  [ 'docs/rmlui/README', '/rmlui/' ],
+  ...[
+    'getting-started', 'rml-rcss', 'documents', 'streams', 'strings',
+    'element-state', 'element-utilities', 'layout', 'boxes', 'controls',
+    'text-panels', 'vector-elements', 'rtti-default-actions',
+    'numeric-values', 'properties', 'animation', 'geometry-utilities',
+    'data-models', 'fonts', 'resources', 'render-state', 'rendering',
+    'plugins', 'scripts', 'debugger', 'performance', 'source-layout', 'api',
+  ].map(name => [ `docs/rmlui/${name}`, `/rmlui/${name}` ]),
 ];
 
 export function buildManifest() {
@@ -189,6 +199,10 @@ export function createLinkMapper(
       const relative = target.slice('packages/sfml.js/assets/'.length);
       return `/media/${relative}${suffix}`;
     }
+    const guideAsset = target.match(/^docs\/(imgui|rmlui)\/assets\/(.+)$/);
+    if (guideAsset) {
+      return `/media/${guideAsset[1]}/assets/${guideAsset[2]}${suffix}`;
+    }
     if (
       target.startsWith('packages/sfml.js/examples/official/screenshots/')
     ) {
@@ -197,6 +211,10 @@ export function createLinkMapper(
     if (target.startsWith('packages/sfml.js-imgui/examples/screenshots/')) {
       const relative = target.slice('packages/sfml.js-imgui/'.length);
       return `/media/imgui/${relative}${suffix}`;
+    }
+    if (target.startsWith('packages/sfml.js-rmlui/examples/screenshots/')) {
+      const relative = target.slice('packages/sfml.js-rmlui/'.length);
+      return `/media/rmlui/${relative}${suffix}`;
     }
     const kind = isDirectory(target) ? 'tree' : 'blob';
     const encoded = target

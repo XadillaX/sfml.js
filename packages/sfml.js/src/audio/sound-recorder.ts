@@ -35,7 +35,9 @@ const cleanup = new FinalizationRegistry<AudioRecorderSession>(session => {
  * @ko 장치 오디오를 캡처하고 Node Worker에서 16비트 인터리브 PCM을 처리합니다.
  */
 export class SoundRecorder {
+  /** Native recorder capability. @internal */
   readonly [audioHandle]: AudioHandle<'recorder'>;
+  /** Serializes asynchronous recorder operations. @internal */
   protected readonly queue = new AudioQueue();
   private readonly values: Uint32Array;
   private readonly options?: AudioWorkerOptions;
@@ -360,6 +362,7 @@ export class SoundRecorder {
    * @ko 필요에 따라 소속 JS 스레드의 녹음 콜백을 활성화합니다.
    * 일반 Worker 녹음기는 이 파이프라인을 사용하지 않습니다.
    */
+  /** Retrieves the internal recording-session callbacks. @internal */
   protected recorderCallbacks(): AudioRecorderCallbacks | undefined {
     return undefined;
   }
@@ -369,6 +372,7 @@ export class SoundRecorder {
    * @ja 完成した Native 録音バッファーを受け取ります。
    * @ko 완성된 Native 녹음 버퍼를 받습니다.
    */
+  /** Adopts the completed native recording buffer. @internal */
   protected onBuffer(buffer: AudioHandle<'bufferData'>): void {
     void buffer;
   }

@@ -1,0 +1,62 @@
+--- a/src/SFML/Window/macOS/SFOpenGLView+keyboard.mm
++++ b/src/SFML/Window/macOS/SFOpenGLView+keyboard.mm
+@@ -34,6 +34,12 @@
+ 
+ #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+ 
++// Optional responder contract. Only an explicitly claimed event bypasses
++// SFML's hidden text client; opaque event provenance alone does not claim it.
++@interface NSResponder (SFMLTextInputOwner)
++- (BOOL)sfmljsOwnsTextInputEvent:(NSEvent*)event;
++@end
++
+ ////////////////////////////////////////////////////////////
+ /// In this file, we implement keyboard handling for SFOpenGLView
+ ///
+@@ -43,6 +49,25 @@
+ @implementation SFOpenGLView (keyboard)
+ 
+ 
+++ (BOOL)sfmljsSupportsNativeTextInput
++{
++    return YES;
++}
++
++
++// AppKit obtains the active input context from the first responder, which
++// remains this SFML view. Expose the installed client's context so the system
++// input method sends composition callbacks to that same client.
++- (NSTextInputContext*)inputContext
++{
++    NSResponder* responder = [self nextResponder];
++    if ([responder respondsToSelector:@selector(sfmljsOwnsTextInputEvent:)])
++        if (NSTextInputContext* context = [responder inputContext])
++            return context;
++    return [super inputContext];
++}
++
++
+ ////////////////////////////////////////////////////////
+ - (BOOL)acceptsFirstResponder
+ {
+@@ -80,7 +105,10 @@
+     const sfmljs_backend::EventSourceScope sourceScope;
+ 
+     // Transmit to non-SFML responder
+-    [[self nextResponder] keyDown:theEvent];
++    NSResponder* textResponder = [self nextResponder];
++    [textResponder keyDown:theEvent];
++    const BOOL ownsText = [textResponder respondsToSelector:@selector(sfmljsOwnsTextInputEvent:)] &&
++                          [textResponder sfmljsOwnsTextInputEvent:theEvent];
+ 
+     if (m_requester == nil)
+         return;
+@@ -97,7 +125,7 @@
+ 
+     // Handle text entered event:
+     // Ignore event if we don't want repeated keystrokes
+-    if (m_useKeyRepeat || ![theEvent isARepeat])
++    if (!ownsText && (m_useKeyRepeat || ![theEvent isARepeat]))
+     {
+         // Ignore escape key and other non text keycode (See NSEvent.h)
+         // because they produce a sound alert.

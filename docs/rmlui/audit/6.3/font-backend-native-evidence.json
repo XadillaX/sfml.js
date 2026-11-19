@@ -1,0 +1,333 @@
+{
+  "recorded_date": "2026-11-18",
+  "platform": "macos-arm64",
+  "scope": "local native font backends and runtime capabilities",
+  "scope_complete": false,
+  "independent_review": false,
+  "inventory": {
+    "path": "docs/rmlui/audit/6.3/upstream-api.json",
+    "sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+    "declarations": 3926,
+    "declaration_maps_modified": false
+  },
+  "font_libraries": {
+    "rmlui": "6.3",
+    "freetype": "2.13.3",
+    "harfbuzz": "15.1.0",
+    "freetype_linkage": "one compiled FreeType source group in rmlui target",
+    "harfbuzz_engine_helpers": 11,
+    "bitmap_engine_helpers": 2,
+    "sample_main_compiled": false,
+    "optional_os_shapers_enabled": false
+  },
+  "native_binary": {
+    "path": "packages/sfml.js-rmlui/build/Release/rmlui.node",
+    "bytes": 13084328,
+    "sha256": "c94d0361ee92c3255fff8900e2617601999696ca79e6cb6ff746436fb70909ae",
+    "default_configuration_restored": true
+  },
+  "default_inactive_capabilities": {
+    "rmluiVersion": "6.3",
+    "initialized": false,
+    "selectedFontEngine": null,
+    "modules": {
+      "debugger": { "compiled": true, "available": false },
+      "svg": { "compiled": true, "available": false },
+      "lottie": { "compiled": true, "available": false },
+      "lua": { "compiled": true, "available": false }
+    },
+    "fonts": {
+      "freetype": {
+        "compiled": true,
+        "available": false,
+        "memoryLoading": true,
+        "effects": true,
+        "shaping": false,
+        "kerningControl": true,
+        "priorCharacter": true,
+        "letterSpacing": true,
+        "scalable": true,
+        "strictFamilyMatching": true
+      },
+      "harfbuzz": {
+        "compiled": true,
+        "available": false,
+        "memoryLoading": true,
+        "effects": true,
+        "shaping": true,
+        "kerningControl": true,
+        "priorCharacter": false,
+        "letterSpacing": true,
+        "scalable": true,
+        "strictFamilyMatching": true
+      },
+      "bitmap": {
+        "compiled": true,
+        "available": false,
+        "memoryLoading": false,
+        "effects": false,
+        "shaping": false,
+        "kerningControl": false,
+        "priorCharacter": true,
+        "letterSpacing": false,
+        "scalable": false,
+        "strictFamilyMatching": false
+      }
+    }
+  },
+  "verification": {
+    "backend_scenarios": 11,
+    "existing_font_scenarios": 43,
+    "render_resource_scenarios": 31,
+    "dependency_scenarios": 4,
+    "named_native_units": 4,
+    "source_comment_languages": 4,
+    "complete_package_runtime_repeated": false
+  },
+  "scenario_logs": {
+    "font-backends-runtime-4.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-runtime-4.log",
+      "sha256": "37af4afd9d8f91e02d095e4d9d73ace1f0ceaf80ae8ca4a95f395c1afd1477b3",
+      "exit_code": 0,
+      "passed_scenarios": [
+        "compiled-capabilities-and-runtime-selection",
+        "harfbuzz-ligature-versus-native-freetype",
+        "harfbuzz-arabic-joining-versus-native-freetype",
+        "harfbuzz-memory-ownership-and-resource-generations",
+        "harfbuzz-file-metadata-and-named-overloads",
+        "harfbuzz-named-file-short-reads-and-close-ownership",
+        "font-atlas-replacement-invalidates-borrowed-textures",
+        "harfbuzz-native-kerning-and-letter-spacing",
+        "registered-language-controls-native-auto-direction",
+        "bitmap-atlas-uv-advance-and-kerning-oracle",
+        "language-registration-validation-and-lifecycle"
+      ]
+    },
+    "font-backends-default-3.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-default-3.log",
+      "sha256": "b2c40752ca2eea458bd4643917189c537fb8abec3c2448265bdd6ef66dad4d83",
+      "exit_code": 0,
+      "passed_count": 9
+    },
+    "font-backends-custom-2.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-custom-2.log",
+      "sha256": "8e4d37977dddd54245bd406e19252524fdfb5056692ffd815a3bce49e9847a2a",
+      "exit_code": 0,
+      "passed_count": 18
+    },
+    "font-backends-measure-2.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-measure-2.log",
+      "sha256": "54e9a54f0c00bd9d076c50770db9a3cee65f5026b8199660fb3b186642c9fcb1",
+      "exit_code": 0,
+      "passed_count": 9
+    },
+    "font-backends-fields-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-fields-1.log",
+      "sha256": "f857ae4645b04e96b493cd4752ccd6c6352456f3f0c60a891ca2029a4b7fffe2",
+      "exit_code": 0,
+      "passed_count": 7
+    },
+    "font-backends-geometry-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-geometry-1.log",
+      "sha256": "b7d62b472ddbff49d147c771b6ec76b69fd8000a429d268a86ae019f314f0adc",
+      "exit_code": 0,
+      "passed_count": 12
+    },
+    "font-backends-release-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-release-1.log",
+      "sha256": "a489d6d7a1760e7247b783e1bd1b6e69284c56ef44a47c7e33e2366090217659",
+      "exit_code": 0,
+      "passed_count": 6
+    },
+    "font-backends-textures-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-textures-1.log",
+      "sha256": "7a749b507a36eac7b1bfd85fd3a8f54a7cbb75e6a404e83e90f2674b52bac422",
+      "exit_code": 0,
+      "passed_count": 13
+    },
+    "font-backends-dependencies-2.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-dependencies-2.log",
+      "sha256": "ff56ab4d10438a9ab963b2f038aa4165735c43de8387e8320f9ba01409a6e83d",
+      "exit_code": 0,
+      "passed_count": 4
+    }
+  },
+  "configuration_matrix": [
+    {
+      "name": "without-harfbuzz",
+      "harfbuzz": 0,
+      "bitmap": 1,
+      "build_exit": 0,
+      "test_exit": 0,
+      "build_log": "/tmp/rmlui-63-completion/font-configuration-without-harfbuzz-build-1.log",
+      "test_log": "/tmp/rmlui-63-completion/font-configuration-without-harfbuzz-test-1.log",
+      "seconds": 93.382,
+      "build_sha256": "76e46cd43a88508af336f70a5cde944964a26b52922044713c5ca83e6b18d481",
+      "test_sha256": "3bbc2cb987d25280f1dc845756dc3b41b3c47d3d8a02e5a9daf757b45b3855fe"
+    },
+    {
+      "name": "without-bitmap",
+      "harfbuzz": 1,
+      "bitmap": 0,
+      "build_exit": 0,
+      "test_exit": 0,
+      "build_log": "/tmp/rmlui-63-completion/font-configuration-without-bitmap-build-1.log",
+      "test_log": "/tmp/rmlui-63-completion/font-configuration-without-bitmap-test-1.log",
+      "seconds": 110.204,
+      "build_sha256": "a28f48118858d0863faa3e663b44e660c19bbf7cb3ff7fc35eaa14c8d48680e6",
+      "test_sha256": "3bbc2cb987d25280f1dc845756dc3b41b3c47d3d8a02e5a9daf757b45b3855fe"
+    },
+    {
+      "name": "freetype-only",
+      "harfbuzz": 0,
+      "bitmap": 0,
+      "build_exit": 0,
+      "test_exit": 0,
+      "build_log": "/tmp/rmlui-63-completion/font-configuration-freetype-only-build-1.log",
+      "test_log": "/tmp/rmlui-63-completion/font-configuration-freetype-only-test-1.log",
+      "seconds": 92.829,
+      "build_sha256": "f057316cbf08c8eda8ba7b881983dba399580855616e8a0f5d1118b7f7e0050c",
+      "test_sha256": "3bbc2cb987d25280f1dc845756dc3b41b3c47d3d8a02e5a9daf757b45b3855fe"
+    },
+    {
+      "name": "default-restored",
+      "harfbuzz": 1,
+      "bitmap": 1,
+      "build_exit": 0,
+      "test_exit": 0,
+      "build_log": "/tmp/rmlui-63-completion/font-configuration-default-restored-build-1.log",
+      "test_log": "/tmp/rmlui-63-completion/font-configuration-default-restored-test-1.log",
+      "seconds": 116.031,
+      "build_sha256": "19e4b4cd14008ced71d83000001797480933b71cc523f208ac13e445798db249",
+      "test_sha256": "3bbc2cb987d25280f1dc845756dc3b41b3c47d3d8a02e5a9daf757b45b3855fe"
+    }
+  ],
+  "check_logs": {
+    "font-backends-build-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-build-1.log",
+      "sha256": "c9add749652f0baab596e389db3e1a949e3c5c61875864957874f3a699bb6921",
+      "exit_code": 0
+    },
+    "font-backends-build-2.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-build-2.log",
+      "sha256": "8b2783a8d4a06c19e98991dc19032c388f223d68771473de65cf76dac088838d",
+      "exit_code": 0
+    },
+    "font-backends-build-3.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-build-3.log",
+      "sha256": "c18ec3ad3e8c42288fabaf67a423a0291793e7a06d0046dc5dc76ea073dc2901",
+      "exit_code": 0
+    },
+    "font-backends-build-4.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-build-4.log",
+      "sha256": "b5977a11b30eeab8f5ea5f3f87768cdd20624a6774b8f780c59a1ee4710fd4bc",
+      "exit_code": 0
+    },
+    "font-backends-lint-10.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-lint-10.log",
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "exit_code": 0
+    },
+    "font-backends-types-3.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-types-3.log",
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4",
+      "exit_code": 0
+    },
+    "font-backends-cpplint-4.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-cpplint-4.log",
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c",
+      "exit_code": 0
+    },
+    "font-backends-format-4.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-format-4.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "font-backends-naming-2.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-naming-2.log",
+      "sha256": "dabcf4264f0899ceae6889a9de75e5fc240127f531580f5247b05c7b1d58798e",
+      "exit_code": 0
+    },
+    "font-backends-four-language-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-four-language-1.log",
+      "sha256": "d246abd7ff614a8cf3bc187bfbaaf2d821780618bd78b1ea6b5ce798e0a941fb",
+      "exit_code": 0
+    },
+    "font-backends-doc-links-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-doc-links-1.log",
+      "sha256": "e9cff6df7257de3fcf6cac9c5a6a4894c3cab3bf9df61248aa5baa089d038c24",
+      "exit_code": 0
+    },
+    "font-backends-config-final-1.log": {
+      "path": "/tmp/rmlui-63-completion/font-backends-config-final-1.log",
+      "sha256": "3bbc2cb987d25280f1dc845756dc3b41b3c47d3d8a02e5a9daf757b45b3855fe",
+      "exit_code": 0
+    }
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/binding.gyp": "cf0532d308d488844c8509205aac86249fd1fec75bf91de062e638fd4cff8c88",
+    "packages/sfml.js-rmlui/package.json": "d14b03a25284e0bca5cc61296cbc513a11f0ec9178a9ff9cfce656b62881b941",
+    "packages/sfml.js-rmlui/native/addon.cc": "05742fd02e1db7900c871b964a78118965683fd7bba49559d50b8fc99b13779e",
+    "packages/sfml.js-rmlui/native/fonts/rmlui-font-backends.h": "05ea277a19a61290813a759536de9e2ac96e05edbf25790edfd60da1d266177d",
+    "packages/sfml.js-rmlui/native/fonts/rmlui-font-backends.cc": "48e65266da501588b8cc1dd40b2dfd77f7cf5c848c3b11ac559b28814328b103",
+    "packages/sfml.js-rmlui/native/fonts/rmlui-font-engine.h": "4df7f2da31f64eca6426b16af7ed71eefd7a276a614ecccf53880c7059b7590a",
+    "packages/sfml.js-rmlui/native/fonts/rmlui-font-engine.cc": "a46e3764396941ab104169baa9d2545907ce857d840597f73e8cbd2c1872aa13",
+    "packages/sfml.js-rmlui/native/fonts/rmlui-fonts.cc": "fa3f92256f7d62afd9726c9570657f1edde1f279aa01ab75d010ad1f0e1145a4",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-capabilities.cc": "c96219eea66fc0d05c61aff9ed008b09c73130e73636b288504d50fbf3286d9f",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-core.cc": "af9674cbe56052e36a555593be64cb52ce93349cee6385250d24a6d0e82dda5b",
+    "packages/sfml.js-rmlui/native/rendering/rmlui-geometry.cc": "ecd20349f9eddb57f76d9f95d8403325fc54e1c24eb17e4b3d91c4ad7afc36ca",
+    "packages/sfml.js-rmlui/native/generated/rmlui-deps.gypi": "c4d3dba395c5250e3c031cd78dfd914303cc9e9caa5f48d4f0a5b8bbb50984a5",
+    "packages/sfml.js-rmlui/src/fonts/font-engine-kind.ts": "7a1c3cc95013c8732b81ab49d01c67650be52b781f5a6f3ce3bda2e0f37b566f",
+    "packages/sfml.js-rmlui/src/fonts/font-engine.ts": "27715ca3ab7f5fd7e84037672a07fface759980d8e442e1d78ca3da460867e23",
+    "packages/sfml.js-rmlui/src/runtime/capabilities.ts": "744c83810803b50d38467d76dc7ed7db4f96e554f616eedf345a06d08fca0345",
+    "packages/sfml.js-rmlui/src/runtime/core.ts": "c59de9b070ff26a2849ffe3583b9d3421a0702bf3a7fc1c17704b3b3d8a1e932",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "2da7acc7e9dee778d0d030857e8009a09cd36e23b3f27c71a844b68ab9d8e848",
+    "packages/sfml.js-rmlui/test/fonts/font-backends.test.cjs": "e21bd42dd440cc4875ca2ebbe2808eacb247ef4bc9c0016f186e6f893998bbe7",
+    "packages/sfml.js-rmlui/test/fonts/font-engine-consumer.ts": "0f1a8bbfc1d947d7998e99118f6ecdd4fdd89253cb7a88f32313dd028bc81657",
+    "packages/sfml.js-rmlui/test/tooling/font-configuration.test.cjs": "e5e5f45ad4d67c957315162983161ce001ad8488d75d3a83b03e09f59e75fa4b",
+    "packages/sfml.js-rmlui/test/tooling/dependency-components.test.cjs": "c36d1ea01d857bc245e10988d0535596ae21ae2a4323c5a7125f36fdb71cac82",
+    "packages/sfml.js-rmlui/tools/dependencies/deps_downloader.cjs": "d65e7fcfeb730ae1003c444127d2bf05c0b067231567da089697c0e7bf0ae02f",
+    "packages/sfml.js-rmlui/tools/dependencies/optional-dependencies.json": "1abfbf3baebfd8b09a929c47134fde16fe0666f09bb273de93a37484c811a2d0",
+    "packages/sfml.js-rmlui/tools/dependencies/patches/patch-rmlui-fonts.cjs": "69a10cb7eeae8603433dfd0f2c1f633c66ae0d66aecec5b15c8f725bd247a5da",
+    "packages/sfml.js-rmlui/third_party/harfbuzz/src/harfbuzz.cc": "2dbf1ffa1228a3fcad35a369fef67a469326b847786d7fa5add6a6b7716d1e44",
+    "packages/sfml.js-rmlui/third_party/harfbuzz/src/hb-version.h": "559ec7d3e02b9f081af67f685608aaec72d9ef8f0abbff984692a5395a60dc77",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/harfbuzz/src/FontEngineInterfaceHarfBuzz.h": "e3f39bfaa28e4fc8732a15699b978fe350707c47247c4a7656b85468b717d0b9",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/harfbuzz/src/FontEngineInterfaceHarfBuzz.cpp": "ace680823b12ce808311f635d1331fcaf0802e063fed65c26047e4626e7a40a5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/harfbuzz/src/FontFaceHandleHarfBuzz.cpp": "0baa64913e70e662f4d9440c9041e550b1784a5007824792cf2b0e012f19f598",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/harfbuzz/src/FontProvider.cpp": "8704e736dec2db1937825445771cd9a007477df9631260bbf08298dbfef93dc5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/bitmap_font/src/FontEngineInterfaceBitmap.h": "f44facb29103b33498d49c1414484d6f07a45b85c77dd000af018f32ced6a566",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/bitmap_font/src/FontEngineInterfaceBitmap.cpp": "dbb04ba7329f589c764f9b0e9c68fa56d4b35ca467a51dd67ed80e8e53239cf5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/bitmap_font/src/FontEngineBitmap.cpp": "02a58932c27779d73c83dc2fdc1e3324b1da5c58133975aa1431a225d46ca11d",
+    "docs/rmlui/fonts.md": "6e2488d2147abe171021b4467f7e135f6d98a2f798397d5a2e398b3ecd0aad71",
+    "docs/rmlui/fonts.ja.md": "2aadb27fb3faae8ba0cb33824cb0341f2a7311a0859a0d1c3865fb8890a21ea0",
+    "docs/rmlui/fonts.zh-CN.md": "bf51dc5326db6cf57a21df4738d511539fbf923ec3cc341dd14fa9d79d3825f4",
+    "docs/rmlui/fonts.ko.md": "1cc6cbcb4a8b00f0d0daebf8b3f44d5112afb6a1d3da9b1aff34f2163f6f8be2"
+  },
+  "package": {
+    "mode": "ignore-scripts dry-run",
+    "metadata_path": "/tmp/rmlui-63-completion/font-backends-pack-2.json",
+    "metadata_sha256": "8890c6b6fd826d5bd205d1c586b5baaf9cf2f06e8d630479738f99e5824f6cb0",
+    "files": 640,
+    "unpacked_bytes": 8626078,
+    "archive_created": false,
+    "isolated_install": false,
+    "published": false,
+    "packaged_runtime_smoke_test": false
+  },
+  "retained_intermediate_logs": [
+    "/tmp/rmlui-63-completion/font-backends-red-1.log",
+    "/tmp/rmlui-63-completion/font-backends-runtime-1.log",
+    "/tmp/rmlui-63-completion/font-backends-runtime-2.log",
+    "/tmp/rmlui-63-completion/font-backends-runtime-3.log",
+    "/tmp/rmlui-63-completion/font-atlas-replacement-red-1.log",
+    "/tmp/rmlui-63-completion/font-backends-naming-1.log"
+  ],
+  "unfinished_acceptance": [
+    "Linux and Windows runtime verification",
+    "official font applications and visual comparison",
+    "GPU performance",
+    "independent module and resource-lifetime review",
+    "remaining Lua, Core, renderer, platform, editor and package gates",
+    "whole-project acceptance"
+  ]
+}

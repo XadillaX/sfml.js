@@ -2,6 +2,7 @@ import { EventEmitter } from 'node:events';
 import { Time } from '../system/time';
 import type { ReadonlyValue } from '../internal/value-storage';
 
+/** Timeout duration, preserving the caller's Time value. @inline */
 export type NetworkTime = ReadonlyValue<Time>;
 export function millisecondsOf(time: NetworkTime): number {
   if (!(time instanceof Time)) {

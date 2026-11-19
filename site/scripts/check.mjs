@@ -17,6 +17,7 @@ function inspectHtml(html) {
   const ids = new Set();
   const links = [];
   const iconErrors = new Set();
+  const contentErrors = new Set();
   const frameworkIcons = new Set([
     // Official brand identifiers are the explicit exception to the UI rule.
     'vpi-social-github',
@@ -27,7 +28,21 @@ function inspectHtml(html) {
     'vpi-chevron-up', 'vpi-square-pen', 'vpi-delete',
     'vpi-corner-down-left',
   ]);
-  function walk(node) {
+  function textContent(node) {
+    return node.nodeName === '#text' ? node.value :
+      (node.childNodes || []).map(textContent).join('');
+  }
+  function hasHeading(node) {
+    return (node.tagName === 'h1' && textContent(node).trim().length > 0) ||
+      (node.childNodes || []).some(hasHeading);
+  }
+  function walk(node, guide = false) {
+    guide ||= node.attrs?.some(attr => attr.name === 'class' &&
+      attr.value.split(/\s+/).includes('VPDoc')) || false;
+    if (guide && node.attrs?.some(attr => attr.name === 'class' &&
+      attr.value.split(/\s+/).includes('vp-doc')) && !hasHeading(node)) {
+      contentErrors.add('Guide body has no rendered title');
+    }
     if (node.tagName === 'svg' &&
       !node.attrs?.some(attr => attr.name === 'data-game-icon')) {
       iconErrors.add('SVG icon without an attributed Game Icons source');
@@ -58,11 +73,11 @@ function inspectHtml(html) {
       }
     }
     for (const child of node.childNodes || []) {
-      walk(child);
+      walk(child, guide);
     }
   }
   walk(parse(html));
-  return { ids, links, iconErrors };
+  return { ids, links, iconErrors, contentErrors };
 }
 
 function resolveOutputFile(directory, pathname) {
@@ -94,7 +109,7 @@ export async function auditHtmlFiles(directory) {
   }
   const errors = new Set();
   for (const [ file, page ] of pages) {
-    for (const error of page.iconErrors) {
+    for (const error of [ ...page.iconErrors, ...page.contentErrors ]) {
       errors.add(`${file}: ${error}`);
     }
     for (const link of page.links) {
@@ -148,6 +163,17 @@ async function checkSite() {
         'imgui/index.html',
         'imgui/modules/ImGui.html',
         'imgui/modules/SFML.html',
+        'rmlui/index.html',
+        'rmlui/classes/Context.html',
+        'rmlui/classes/Document.html',
+        'rmlui/classes/Element.html',
+        'rmlui/interfaces/InitialiseOptions.html',
+        'rmlui/interfaces/ContextDimensions.html',
+        'rmlui/classes/RmlEvent.html',
+        'rmlui/classes/LuaScriptHost.html',
+        'rmlui/functions/loadFontFace.html',
+        'rmlui/types/RmlEventListener.html',
+        'rmlui/functions/initialise.html',
       ].map(file => `${prefix}reference/${file}`);
     }),
     'media/sfml-js-symbol-pentagon.svg',

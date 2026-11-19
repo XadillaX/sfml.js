@@ -31,6 +31,60 @@ const imguiDescriptions = {
     '글꼴 아틀라스, 글리프 범위와 스타일 색상.',
   ],
 };
+const rmluiLabels = {
+  en: [
+    [
+      'Runtime and contexts',
+      'Initialization, fonts, events and frame rendering.',
+    ],
+    [
+      'Documents and elements',
+      'RML loading, element properties and native lifetimes.',
+    ],
+    [
+      'Event data',
+      'Copied event payloads and JavaScript listener signatures.',
+    ],
+  ],
+  zh: [
+    [ '运行时与上下文', '初始化、字体、事件传递与帧渲染。' ],
+    [ '文档与元素', 'RML 加载、元素属性与原生对象生命周期。' ],
+    [ '事件数据', '事件数据副本与 JavaScript 监听器签名。' ],
+  ],
+  ja: [
+    [ 'ランタイムとコンテキスト', '初期化、フォント、イベント処理、フレーム描画。' ],
+    [ '文書と要素', 'RML の読み込み、要素のプロパティ、ネイティブの有効期間。' ],
+    [ 'イベントデータ', 'イベントデータのコピーと JavaScript リスナーのシグネチャ。' ],
+  ],
+  ko: [
+    [ '런타임과 컨텍스트', '초기화, 글꼴, 이벤트 전달과 프레임 렌더링.' ],
+    [ '문서와 요소', 'RML 로드, 요소 속성과 네이티브 객체 수명.' ],
+    [ '이벤트 데이터', '복사된 이벤트 데이터와 JavaScript 리스너 시그니처.' ],
+  ],
+};
+
+/**
+ * Group RmlUi declarations by their owning source, including class members.
+ * @param {object} reflection - TypeDoc declaration or member.
+ */
+function rmluiGroupOf(reflection) {
+  for (let item = reflection; item; item = item.parent) {
+    for (const source of item.sources || []) {
+      const file = (source.fullFileName || source.fileName)
+        .replaceAll('\\', '/');
+      if (/(?:^|\/)(document|element)\.ts$/.test(file)) {
+        return 'documents';
+      }
+      if (/(?:^|\/)types\.ts$/.test(file)) {
+        return 'events';
+      }
+      if (/(?:^|\/)(core|context)\.ts$/.test(file)) {
+        return 'runtime';
+      }
+    }
+  }
+  return 'runtime';
+}
 
 /**
  * Reuse the locally vendored Game-icons assets in the API toolbar.
@@ -178,15 +232,44 @@ export function registerSiteTheme(
       const context = super.getRenderContext(page);
       const allMembers = documentMembers(context, page.project);
       const isImGui = page.project.name === 'sfml.js-imgui';
+      const isRmlUi = page.project.name === 'sfml.js-rmlui';
       const groupOf = reflection => {
+        if (isRmlUi) {
+          return rmluiGroupOf(reflection);
+        }
         if (!isImGui) {
           return moduleOf(reflection);
         }
         const name = apiName(reflection).split('.')[0];
         return [ 'SFML', 'ImGui' ].includes(name) ? name : 'fonts';
       };
-      const definitions = isImGui
-        ? [
+      let definitions;
+      let descriptions;
+      if (isRmlUi) {
+        descriptions = rmluiLabels[locale.id].map(item => item[1]);
+        definitions = [
+          {
+            id: 'runtime',
+            icon: 'window',
+            featured: [ 'initialise', 'createContext', 'Context' ],
+          },
+          {
+            id: 'documents',
+            icon: 'document',
+            featured: [ 'Document', 'Element' ],
+          },
+          {
+            id: 'events',
+            icon: 'list',
+            featured: [ 'RmlEvent', 'RmlEventListener' ],
+          },
+        ].map((group, index) => ({
+          ...group,
+          name: rmluiLabels[locale.id][index][0],
+        }));
+      } else if (isImGui) {
+        descriptions = imguiDescriptions[locale.id];
+        definitions = [
           {
             id: 'SFML',
             name: 'SFML',
@@ -209,19 +292,20 @@ export function registerSiteTheme(
             icon: 'document',
             featured: [ 'getFontAtlas', 'getStyleColors' ],
           },
-        ]
-        : [
+        ];
+      } else {
+        descriptions = labels.moduleDescriptions;
+        definitions = [
           ...modules,
           ...(allMembers.some(item => moduleOf(item) === 'other')
             ? [{ id: 'other', name: labels.other, featured: [] }]
             : []),
         ];
+      }
       const moduleGroups = definitions
         .map((module, index) => ({
           ...module,
-          description: isImGui
-            ? (imguiDescriptions[locale.id] || imguiDescriptions.en)[index]
-            : labels.moduleDescriptions[index],
+          description: descriptions[index],
           children: allMembers
             .filter(item => groupOf(item) === module.id)
             .sort((a, b) => apiName(a).localeCompare(apiName(b), 'en')),
@@ -339,6 +423,11 @@ export function registerSiteTheme(
             'a',
             { href: `${home}reference/imgui/`, class: 'sf-api-overview' },
             'sfml.js-imgui'
+          ),
+          element(
+            'a',
+            { href: `${home}reference/rmlui/`, class: 'sf-api-overview' },
+            'sfml.js-rmlui'
           ),
           element('div', { class: 'sf-api-nav-label' }, labels.modules),
           ...moduleGroups.map(module => {
@@ -730,9 +819,8 @@ export function registerSiteTheme(
           element(
             'p',
             { class: 'sf-api-intro' },
-            isImGui
-              ? (imguiDescriptions[locale.id] || imguiDescriptions.en)
-                .join(' ')
+            isRmlUi || isImGui
+              ? descriptions.join(' ')
               : labels.intro
           ),
           ...moduleGroups.map(module => {
@@ -913,7 +1001,22 @@ export function registerSiteTheme(
                   locale.guide
                 ),
                 element('a', { href: `${home}examples` }, locale.examples),
-                element('a', { href: `${home}imgui/` }, 'ImGui'),
+                element(
+                  'details',
+                  { class: 'sf-api-extensions' },
+                  element(
+                    'summary',
+                    null,
+                    locale.extensions,
+                    icon('arrow', 'sf-api-chevron')
+                  ),
+                  element(
+                    'div',
+                    { class: 'sf-api-extension-menu' },
+                    element('a', { href: `${home}imgui/` }, 'ImGui'),
+                    element('a', { href: `${home}rmlui/` }, 'RmlUi')
+                  )
+                ),
                 element(
                   'a',
                   {

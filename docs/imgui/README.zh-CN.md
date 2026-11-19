@@ -1,8 +1,18 @@
 # ImGui 指南
 
+<p><a class="library-brand" href="https://www.dearimgui.com/"><img src="assets/dear-imgui.jpg" width="240" height="84" alt="Dear ImGui，Logo 绘制：Albane Kim"></a></p>
+
 使用 `sfml.js-imgui`，在 SFML 窗口中构建调试面板、场景检查器和原生编辑器控件。本指南从第一段帧循环出发，逐步加入状态编辑、表格、文本输入、字体和自定义渲染。
 
 当前源码面向 Dear ImGui 1.91.9b 和 imgui-sfml 3.0，示例使用 JavaScript 与 SFML 3.1 API。需要 JavaScript 和 [SFML 窗口](../sfml/window.zh-CN.md)基础，不要求 C++ 知识。
+
+## 什么是 Dear ImGui
+
+[Dear ImGui](https://www.dearimgui.com/) 是面向交互工具的 C++ 图形界面库。它使用即时模式（Immediate Mode）：每一帧通过函数调用描述要显示的控件，例如调用按钮函数、检查是否点击，再更新应用状态。ImGui 保留内部交互状态并生成绘制命令，SFML 集成层把这些命令显示到窗口中。
+
+它适合调试面板、性能分析器、关卡编辑器和实时数据检查器。在本绑定中，控件由 JavaScript 代码组合，无需单独编写标记文档。需要用样式表设计具有持久元素树的界面时，可阅读 [RmlUi 指南](../rmlui/README.zh-CN.md)。
+
+[官方仓库](https://github.com/ocornut/imgui) · [官方 Wiki](https://github.com/ocornut/imgui/wiki) · [常见问题](https://www.dearimgui.com/faq/)
 
 ## 学习路径
 

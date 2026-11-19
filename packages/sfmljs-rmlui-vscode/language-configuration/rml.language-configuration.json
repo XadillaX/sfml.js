@@ -1,0 +1,91 @@
+{
+  "comments": {
+    "blockComment": [
+      "<!--",
+      "-->"
+    ]
+  },
+  "brackets": [
+    [
+      "<",
+      ">"
+    ],
+    [
+      "<!--",
+      "-->"
+    ],
+    [
+      "{",
+      "}"
+    ],
+    [
+      "(",
+      ")"
+    ]
+  ],
+  "autoClosingPairs": [
+    {
+      "open": "<",
+      "close": ">"
+    },
+    {
+      "open": "<!--",
+      "close": "-->"
+    },
+    {
+      "open": "{",
+      "close": "}"
+    },
+    {
+      "open": "(",
+      "close": ")"
+    },
+    {
+      "open": "'",
+      "close": "'",
+      "notIn": [
+        "string"
+      ]
+    },
+    {
+      "open": "\"",
+      "close": "\"",
+      "notIn": [
+        "string"
+      ]
+    },
+    {
+      "open": "<![CDATA[",
+      "close": "]]>"
+    }
+  ],
+  "surroundingPairs": [
+    [
+      "<",
+      ">"
+    ],
+    [
+      "(",
+      ")"
+    ],
+    [
+      "{",
+      "}"
+    ],
+    [
+      "'",
+      "'"
+    ],
+    [
+      "\"",
+      "\""
+    ]
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*<(?!(?:area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)\\b)[a-zA-Z][^>]*[^/]>\\s*$",
+      "end": "^\\s*</"
+    }
+  },
+  "wordPattern": "[\\w\\-:#$.]+"
+}

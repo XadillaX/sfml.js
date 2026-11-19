@@ -13,7 +13,9 @@ sfml.js-interop 为两个绑定包提供共享原生头文件和 SFML SDK 路径
 }
 ```
 
-`sfml-js-interop.h` 提供 `SFMLJS_INTEROP_VERSION`（当前为 1），并导入 `shared-handle.h`、`exception-boundary.h` 和 `numeric-fields.h`。扩展需匹配宿主绑定所用的契约与 SFML 版本。`RenderWindowFrom` 接收绑定内部的原生窗口句柄，不接收公开 JavaScript RenderWindow 对象。
+`sfml-js-interop.h` 提供 `SFMLJS_INTEROP_VERSION`（当前为 2），并导入 `shared-handle.h`、`exception-boundary.h`、`numeric-fields.h` 和 `window-event-source.h`。扩展需匹配宿主绑定所用的契约与 SFML 版本。`RenderWindowFrom` 接收绑定内部的原生窗口句柄，不接收公开 JavaScript RenderWindow 对象。
+
+macOS 事件来源扩展将不透明的来源与实际 SFML 队列项和轮询生成的 JavaScript 快照一同保留。原生扩展据此识别平台按键和文本的重复投递，宿主事件流保持完整。公开 `Event` 构造函数只复制事件数据，生成独立事件。
 
 原生拥有者管理生命周期，视图和借用指针不能超出拥有者、上下文或窗口的生命周期。已录制绘制需要保活资源并保持调用时的快照语义。向 V8 暴露 C++ 回调时使用共享异常边界。版本宏相同，本身不保证采用不同构建配置的二进制之间 ABI 兼容。
 

@@ -39,7 +39,8 @@ Reference both include directories from `binding.gyp` instead of hardcoding a si
 
 ## Contract
 
-- `sfml-js-interop.h` exposes `SFMLJS_INTEROP_VERSION` (currently 1) and pulls in `shared-handle.h`, `exception-boundary.h` and `numeric-fields.h`.
+- `sfml-js-interop.h` exposes `SFMLJS_INTEROP_VERSION` (currently 2) and pulls in `shared-handle.h`, `exception-boundary.h`, `numeric-fields.h` and `window-event-source.h`.
+- `window-event-source.h` carries opaque native event provenance across addon boundaries. On macOS, captured key/text sources follow the actual SFML queue entry and the polled JS snapshot; public `Event` copies remain independent.
 - Match the contract and SFML versions used by the host binding. A matching version macro alone does not guarantee ABI compatibility across independently configured binaries.
 - `RenderWindowFrom` accepts the binding's internal native window handle, not a public JavaScript RenderWindow object.
 - Native owners control lifetime: a view or borrowed pointer must not outlive its owner, context or window.

@@ -99,6 +99,7 @@ export type { Version } from './system/version';
 export * as Unicode from './system/unicode';
 export { Vector2, Vector2i, Vector2u, Vector2f } from './system/vector2';
 export type { ScalarType } from './system/vector2';
+export type { Scalar } from './internal/scalar';
 export { Vector3, Vector3i, Vector3u, Vector3f } from './system/vector3';
 export { Angle, degrees, radians } from './system/angle';
 export { Time, seconds, milliseconds, microseconds } from './system/time';
@@ -135,6 +136,8 @@ export * from './window/gen/constants';
 export { ContextAttribute } from './window/context-settings';
 export type { ContextSettings } from './window/context-settings';
 export type { ReadonlyValue } from './internal/value-storage';
+/** @internal */
+export { mutableValue } from './internal/value-storage';
 export {
   add,
   subtract,
@@ -178,6 +181,7 @@ export type {
 } from './graphics/text';
 export type { ReadonlyPixels } from './graphics/image';
 export { Color } from './graphics/color';
+export type { Rect } from './graphics/rect';
 export { FloatRect, IntRect } from './graphics/rect';
 export { Vertex } from './graphics/vertex';
 export { VertexArray } from './graphics/vertex-array';

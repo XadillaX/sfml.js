@@ -1,0 +1,1761 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "record_count": 67,
+  "mapping_complete": true,
+  "scope_complete": false,
+  "notice": "Type/forward representations only. Callable, template, resource, platform and full Core 19 acceptance are separate. No original ledger status is promoted by this source-reconciliation artifact.",
+  "review_basis": "docs/rmlui/audit/6.3/core.md",
+  "review_basis_line": 416,
+  "counts": {
+    "managed-type-source-reconciled": 54,
+    "native-private-forward-source-reconciled": 13
+  },
+  "records": [
+    {
+      "header": "Core/Context.h",
+      "line": 13,
+      "kind": "ClassDecl",
+      "name": "Rml::ContextInstancer",
+      "signature": "ContextInstancer",
+      "type": "Rml::ContextInstancer",
+      "key": "Core/Context.h|Rml::ContextInstancer|ContextInstancer|Rml::ContextInstancer",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Typed native context allocator; registrations, produced Contexts and Factory facades retain their original allocator and native lifetime.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/context-instancer.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ContextInstancer.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/context-instancers.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/context-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 16,
+        "sha256": "6a4181bfbfce55bf61eac67d65f40f34f2daef36982756eef0e375ba402f18d8",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 14,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementDocument",
+      "signature": "ElementDocument",
+      "type": "Rml::ElementDocument",
+      "key": "Core/Context.h|Rml::ElementDocument|ElementDocument|Rml::ElementDocument",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native ElementDocument represented by Document; typed Factory ownership, document state, scripting and DOM contracts are independently recorded.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/document.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementDocument.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 15,
+      "kind": "ClassDecl",
+      "name": "Rml::EventListener",
+      "signature": "EventListener",
+      "type": "Rml::EventListener",
+      "key": "Core/Context.h|Rml::EventListener|EventListener|Rml::EventListener",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Typed native listener facade with checked callback/registration leases and exact native detach behavior.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/event-listener.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventListener.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "2f6945cded9da3f709fdf6100189bac7c4231959a1789e97faecb4fcc7aaa43e",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 16,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModel",
+      "signature": "DataModel",
+      "type": "Rml::DataModel",
+      "key": "Core/Context.h|Rml::DataModel|DataModel|Rml::DataModel",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native model identity represented by DataModelHandle/DataModelConstructor. Element and Context lookup return the managed constructor for that actual model, not a copied data-table replacement.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/data-model.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/DataModel.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4bb029789d40c423636fa6d6c671fed79928e5c5c0c91a919105e22f9364b5a7",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 17,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModelConstructor",
+      "signature": "DataModelConstructor",
+      "type": "Rml::DataModelConstructor",
+      "key": "Core/Context.h|Rml::DataModelConstructor|DataModelConstructor|Rml::DataModelConstructor",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Managed DataModelConstructor wraps the native constructor and preserves register/model identity, binding operations, ownership and invalidation.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/data-model.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/DataModelHandle.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4bb029789d40c423636fa6d6c671fed79928e5c5c0c91a919105e22f9364b5a7",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 18,
+      "kind": "ClassDecl",
+      "name": "Rml::DataTypeRegister",
+      "signature": "DataTypeRegister",
+      "type": "Rml::DataTypeRegister",
+      "key": "Core/Context.h|Rml::DataTypeRegister|DataTypeRegister|Rml::DataTypeRegister",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Managed DataTypeRegister retains native type families and definitions; its exact template and registration operation rows remain separate.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/data-schema.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/DataTypeRegister.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/data-schema.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/data-schema.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "7c87ecb53804f65e1277fb5e7935b44e51bc2859f6148b4337b93089a204dd47",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 19,
+      "kind": "ClassDecl",
+      "name": "Rml::ScrollController",
+      "signature": "ScrollController",
+      "type": "Rml::ScrollController",
+      "key": "Core/Context.h|Rml::ScrollController|ScrollController|Rml::ScrollController",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Context private UniquePtr<ScrollController>. Native update/input and smooth/instant scrolling use the original controller; no public constructor or controller pointer accessor exists at this forward site.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ScrollController.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/context-state.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/context-state.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "0dd9b7bf39888509bf92fe44e02df0742333cbc43f260ce13262d34bcbbd3d88",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 22,
+      "kind": "EnumDecl",
+      "name": "Rml::EventId",
+      "signature": "EventId",
+      "type": "Rml::EventId",
+      "key": "Core/Context.h|Rml::EventId|EventId|Rml::EventId",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Generated EventId enum and checked numeric event registration. This is the same concrete dependency used by Context/Element listeners.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/gen/events.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ID.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/event-registration.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/event-registration.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "75fc5ad9032acd217be29977e2cbddb752442f963e297d948e5534b36b3a81be",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Context.h",
+      "line": 28,
+      "kind": "ClassDecl",
+      "name": "Rml::Context",
+      "signature": "Context",
+      "type": "Rml::Context",
+      "key": "Core/Context.h|Rml::Context|Context|Rml::Context",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned Context with nominal registration/owned facades, ScriptInterface base and independently tracked callable contracts.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/context.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Context.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+        "exit_code": 0,
+        "pass_count": 21,
+        "sha256": "66091ca0d9df0421ab395dd181f65631f84e8e88dac1973f23c9d0394a6d7e52",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Core.h",
+      "line": 11,
+      "kind": "ClassDecl",
+      "name": "Rml::Context",
+      "signature": "Context",
+      "type": "Rml::Context",
+      "key": "Core/Core.h|Rml::Context|Context|Rml::Context",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned Context with nominal registration/owned facades, ScriptInterface base and independently tracked callable contracts.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/context.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Context.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+        "exit_code": 0,
+        "pass_count": 21,
+        "sha256": "66091ca0d9df0421ab395dd181f65631f84e8e88dac1973f23c9d0394a6d7e52",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Core.h",
+      "line": 14,
+      "kind": "ClassDecl",
+      "name": "Rml::RenderInterface",
+      "signature": "RenderInterface",
+      "type": "Rml::RenderInterface",
+      "key": "Core/Core.h|Rml::RenderInterface|RenderInterface|Rml::RenderInterface",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Nominal runtime-owned SFML RenderInterface references selected before initialisation or per Context. Renderer protocol/GPU/platform acceptance is not implied by this type representation.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/resources.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterface.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "bf26eda1c70d67d63fa9754f8ec34262266a1116bd7150b97503796c00a4563b",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Core.h",
+      "line": 17,
+      "kind": "EnumDecl",
+      "name": "Rml::DefaultActionPhase",
+      "signature": "DefaultActionPhase",
+      "type": "Rml::DefaultActionPhase",
+      "key": "Core/Core.h|Rml::DefaultActionPhase|DefaultActionPhase|Rml::DefaultActionPhase",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Concrete native None/Target/TargetAndBubble flag values and explicit default-action dispatch; the forward site adds no second enum.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/event.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Event.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "76a53bba1ee59118cf737536044d3490a6c05797d63b9dc7ed16078c2d4b8461",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 19,
+      "kind": "ClassDecl",
+      "name": "Rml::Context",
+      "signature": "Context",
+      "type": "Rml::Context",
+      "key": "Core/Element.h|Rml::Context|Context|Rml::Context",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned Context with nominal registration/owned facades, ScriptInterface base and independently tracked callable contracts.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/context.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Context.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+        "exit_code": 0,
+        "pass_count": 21,
+        "sha256": "66091ca0d9df0421ab395dd181f65631f84e8e88dac1973f23c9d0394a6d7e52",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 20,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModel",
+      "signature": "DataModel",
+      "type": "Rml::DataModel",
+      "key": "Core/Element.h|Rml::DataModel|DataModel|Rml::DataModel",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native model identity represented by DataModelHandle/DataModelConstructor. Element and Context lookup return the managed constructor for that actual model, not a copied data-table replacement.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/data-model.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/DataModel.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4bb029789d40c423636fa6d6c671fed79928e5c5c0c91a919105e22f9364b5a7",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 21,
+      "kind": "ClassDecl",
+      "name": "Rml::Decorator",
+      "signature": "Decorator",
+      "type": "Rml::Decorator",
+      "key": "Core/Element.h|Rml::Decorator|Decorator|Rml::Decorator",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Actual native Decorator instances and synchronous allocator callbacks, with resource/payload ownership distinct from stylesheet cache aliases.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/decorator.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Decorator.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/decorator-callbacks.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/decorator-callbacks.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "73bbbef45aac1201d2af1dc6957a31c553b76f5895ded4c80617af0cd0215073",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 22,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementInstancer",
+      "signature": "ElementInstancer",
+      "type": "Rml::ElementInstancer",
+      "key": "Core/Element.h|Rml::ElementInstancer|ElementInstancer|Rml::ElementInstancer",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native allocator facade with produced Element ownership and original release chains preserved across tag registration replacement.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-instancer.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementInstancer.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-instancers.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "aeaedf93ad62def7df680bd8b75afbd68a0ef4e540f93880d902441580ad4f59",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 23,
+      "kind": "ClassDecl",
+      "name": "Rml::EventDispatcher",
+      "signature": "EventDispatcher",
+      "type": "Rml::EventDispatcher",
+      "key": "Core/Element.h|Rml::EventDispatcher|EventDispatcher|Rml::EventDispatcher",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Checked borrowed view of the actual element-owned dispatcher. The public-header forward declaration does not expose an independent dispatcher constructor from its private implementation header.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/event-dispatcher.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/EventDispatcher.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "76a53bba1ee59118cf737536044d3490a6c05797d63b9dc7ed16078c2d4b8461",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 24,
+      "kind": "ClassDecl",
+      "name": "Rml::EventListener",
+      "signature": "EventListener",
+      "type": "Rml::EventListener",
+      "key": "Core/Element.h|Rml::EventListener|EventListener|Rml::EventListener",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Typed native listener facade with checked callback/registration leases and exact native detach behavior.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/event-listener.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventListener.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "2f6945cded9da3f709fdf6100189bac7c4231959a1789e97faecb4fcc7aaa43e",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 25,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementBackgroundBorder",
+      "signature": "ElementBackgroundBorder",
+      "type": "Rml::ElementBackgroundBorder",
+      "key": "Core/Element.h|Rml::ElementBackgroundBorder|ElementBackgroundBorder|Rml::ElementBackgroundBorder",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Checked element-owned component, native rendering and independent clip geometry snapshots; its complete definition lives in Source/Core.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-background-border.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementBackgroundBorder.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-background-border.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-background-border.test.cjs",
+        "exit_code": 0,
+        "pass_count": 7,
+        "sha256": "3b9d2eee37a3a960910f4b7a20625801111051e77b39caa356b44925cd3b9adc",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 27,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementDocument",
+      "signature": "ElementDocument",
+      "type": "Rml::ElementDocument",
+      "key": "Core/Element.h|Rml::ElementDocument|ElementDocument|Rml::ElementDocument",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native ElementDocument represented by Document; typed Factory ownership, document state, scripting and DOM contracts are independently recorded.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/document.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementDocument.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 28,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementScroll",
+      "signature": "ElementScroll",
+      "type": "Rml::ElementScroll",
+      "key": "Core/Element.h|Rml::ElementScroll|ElementScroll|Rml::ElementScroll",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Canonical borrowed component and separate actual native ElementScroll(element) allocation; exact public declarations and release/destroy/GC contracts are now mapped separately.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementScroll.h",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "2e9467b12e1070e0570e30553922bb147d3385cc73a6bf570b85d17c64cb58b1",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 29,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementStyle",
+      "signature": "ElementStyle",
+      "type": "Rml::ElementStyle",
+      "key": "Core/Element.h|Rml::ElementStyle|ElementStyle|Rml::ElementStyle",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Checked element-owned style component; native definitions, local property iteration and computed-value update paths remain native.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-style.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementStyle.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-style.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-style.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "d41044a9d303ef70f34fbf4c9972b50abac4b06ab932f7e2d920fdaaa23b0d4a",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 30,
+      "kind": "ClassDecl",
+      "name": "Rml::LayoutEngine",
+      "signature": "LayoutEngine",
+      "type": "Rml::LayoutEngine",
+      "key": "Core/Element.h|Rml::LayoutEngine|LayoutEngine|Rml::LayoutEngine",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private native layout engine friended by Element. Context/Document update and geometry/style operations run the original layout algorithms.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/LayoutEngine.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+        "exit_code": 0,
+        "pass_count": 16,
+        "sha256": "b004df82409e48cfec7d8490db6132424b598bb4aaf8e347e7994b8ece70de16",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 31,
+      "kind": "ClassDecl",
+      "name": "Rml::ContainerBox",
+      "signature": "ContainerBox",
+      "type": "Rml::ContainerBox",
+      "key": "Core/Element.h|Rml::ContainerBox|ContainerBox|Rml::ContainerBox",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private native layout container friend used by block/flex layout; the public Box/value APIs are distinct recorded concrete declarations.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/ContainerBox.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+        "exit_code": 0,
+        "pass_count": 16,
+        "sha256": "b004df82409e48cfec7d8490db6132424b598bb4aaf8e347e7994b8ece70de16",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 32,
+      "kind": "ClassDecl",
+      "name": "Rml::InlineLevelBox",
+      "signature": "InlineLevelBox",
+      "type": "Rml::InlineLevelBox",
+      "key": "Core/Element.h|Rml::InlineLevelBox|InlineLevelBox|Rml::InlineLevelBox",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private native inline layout friend; actual text/line layout remains in C++, while managed line/box queries return independent values.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/InlineLevelBox.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "17c8ebc665149d636a38c4c76c7d57c450e84a6eb8476e350a558186475b0e37",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 33,
+      "kind": "ClassDecl",
+      "name": "Rml::ReplacedBox",
+      "signature": "ReplacedBox",
+      "type": "Rml::ReplacedBox",
+      "key": "Core/Element.h|Rml::ReplacedBox|ReplacedBox|Rml::ReplacedBox",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private native replaced-element layout box friend. Intrinsic geometry uses its original formatting context; this is not public Rml::Box.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/ReplacedFormattingContext.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+        "exit_code": 0,
+        "pass_count": 16,
+        "sha256": "b004df82409e48cfec7d8490db6132424b598bb4aaf8e347e7994b8ece70de16",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 34,
+      "kind": "ClassDecl",
+      "name": "Rml::PropertiesIteratorView",
+      "signature": "PropertiesIteratorView",
+      "type": "Rml::PropertiesIteratorView",
+      "key": "Core/Element.h|Rml::PropertiesIteratorView|PropertiesIteratorView|Rml::PropertiesIteratorView",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Element.iterateLocalProperties returns one native-order snapshot of name/property pairs with exact inheritance filtering; no mutable raw iterator escapes the native traversal.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/property.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "60621c2b592dc02028201ae801b2f16ae9ed71fd90def1edc054dff1fb7ddac9",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 35,
+      "kind": "ClassDecl",
+      "name": "Rml::PropertyDictionary",
+      "signature": "PropertyDictionary",
+      "type": "Rml::PropertyDictionary",
+      "key": "Core/Element.h|Rml::PropertyDictionary|PropertyDictionary|Rml::PropertyDictionary",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Managed native dictionary with copied values and owner-aware Variant storage. Pointer/template acceptance is tracked by its own rows.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/property-dictionary.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertyDictionary.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property-dictionary.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/property-dictionary.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "04ffe162f38acc416dcafe6c27fb04fc9ef8b0cb9384a0d9d1903c1fc9864f01",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 37,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheet",
+      "signature": "StyleSheet",
+      "type": "Rml::StyleSheet",
+      "key": "Core/Element.h|Rml::StyleSheet|StyleSheet|Rml::StyleSheet",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native compiled stylesheet views or owned combinations. Matching, combine/merge/index, metadata and manager-local decorator instancing are implemented; loading occurs through StyleSheetContainer.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 38,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheetContainer",
+      "signature": "StyleSheetContainer",
+      "type": "Rml::StyleSheetContainer",
+      "key": "Core/Element.h|Rml::StyleSheetContainer|StyleSheetContainer|Rml::StyleSheetContainer",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned parsed container accepts text, StreamMemory, StreamFile and checked custom Stream. Media recompilation, attachment and immutable compiled-view lifetime are tracked natively.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheetContainer.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "97db53e36d9fd4c889ed79159f6fd19ffcaed1c78e97af5d385ad97142864c6c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 39,
+      "kind": "ClassDecl",
+      "name": "Rml::TransformState",
+      "signature": "TransformState",
+      "type": "Rml::TransformState",
+      "key": "Core/Element.h|Rml::TransformState|TransformState|Rml::TransformState",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Independent native TransformState values or checked const element-owned views; matrix reads copy values and shared batch output owns storage.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/transform-state.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Transform.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-components.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-components.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4f9961dd395e1b1afd8c88669bbf761efaa569a6377a594a5ffb283ded1c76ef",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 40,
+      "kind": "StructDecl",
+      "name": "Rml::ElementMeta",
+      "signature": "ElementMeta",
+      "type": "Rml::ElementMeta",
+      "key": "Core/Element.h|Rml::ElementMeta|ElementMeta|Rml::ElementMeta",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private Element metadata allocation used by native selectors/address/attributes and observers. No standalone metadata pointer API is exposed.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementMeta.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-state.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-state.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "ed5b3c248575f17b6744a921810d4f43c824af73ee5adc61d76fa8ebd679c2b3",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 41,
+      "kind": "StructDecl",
+      "name": "Rml::StackingContextChild",
+      "signature": "StackingContextChild",
+      "type": "Rml::StackingContextChild",
+      "key": "Core/Element.h|Rml::StackingContextChild|StackingContextChild|Rml::StackingContextChild",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private struct declared in Element.cpp for ordered native stacking context traversal. Render order is retained in the native pipeline.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Element.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-background-border.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-background-border.test.cjs",
+        "exit_code": 0,
+        "pass_count": 7,
+        "sha256": "3b9d2eee37a3a960910f4b7a20625801111051e77b39caa356b44925cd3b9adc",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Element.h",
+      "line": 47,
+      "kind": "ClassDecl",
+      "name": "Rml::Element",
+      "signature": "Element",
+      "type": "Rml::Element",
+      "key": "Core/Element.h|Rml::Element|Element|Rml::Element",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native Element/derived identity and ScriptInterface base. Detached and attached ownership remain Native; method/template rows retain their own acceptance status.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "45ef394110b29351a69e5b4b7f7ead5303d8a3d7b3f54d0d72d804cabc27c32d",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementDocument.h",
+      "line": 7,
+      "kind": "ClassDecl",
+      "name": "Rml::Context",
+      "signature": "Context",
+      "type": "Rml::Context",
+      "key": "Core/ElementDocument.h|Rml::Context|Context|Rml::Context",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned Context with nominal registration/owned facades, ScriptInterface base and independently tracked callable contracts.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/context.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Context.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+        "exit_code": 0,
+        "pass_count": 21,
+        "sha256": "66091ca0d9df0421ab395dd181f65631f84e8e88dac1973f23c9d0394a6d7e52",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementDocument.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementText",
+      "signature": "ElementText",
+      "type": "Rml::ElementText",
+      "key": "Core/ElementDocument.h|Rml::ElementText|ElementText|Rml::ElementText",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Typed native text element and owned line/value snapshots obtained through Factory or managed construction; text/layout methods are separate rows.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-text.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementText.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "17c8ebc665149d636a38c4c76c7d57c450e84a6eb8476e350a558186475b0e37",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementDocument.h",
+      "line": 11,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheet",
+      "signature": "StyleSheet",
+      "type": "Rml::StyleSheet",
+      "key": "Core/ElementDocument.h|Rml::StyleSheet|StyleSheet|Rml::StyleSheet",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native compiled stylesheet views or owned combinations. Matching, combine/merge/index, metadata and manager-local decorator instancing are implemented; loading occurs through StyleSheetContainer.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementDocument.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheetContainer",
+      "signature": "StyleSheetContainer",
+      "type": "Rml::StyleSheetContainer",
+      "key": "Core/ElementDocument.h|Rml::StyleSheetContainer|StyleSheetContainer|Rml::StyleSheetContainer",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned parsed container accepts text, StreamMemory, StreamFile and checked custom Stream. Media recompilation, attachment and immutable compiled-view lifetime are tracked natively.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheetContainer.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "97db53e36d9fd4c889ed79159f6fd19ffcaed1c78e97af5d385ad97142864c6c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementDocument.h",
+      "line": 13,
+      "kind": "EnumDecl",
+      "name": "Rml::NavigationSearchDirection",
+      "signature": "NavigationSearchDirection",
+      "type": "Rml::NavigationSearchDirection",
+      "key": "Core/ElementDocument.h|Rml::NavigationSearchDirection|NavigationSearchDirection|Rml::NavigationSearchDirection",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private Up/Down/Left/Right enum defined only in ElementDocument.cpp and used by its private FindNextNavigationElement. Public tab traversal takes a boolean direction; the forward is not an unbound public enum.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementDocument.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/input.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/input.test.cjs",
+        "exit_code": 0,
+        "pass_count": 13,
+        "sha256": "ec6b8ec3fa1f62ff6b87fb8bb0e7304eb6c326dd40853f4a2e433db47e79f5bc",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementDocument.h",
+      "line": 38,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementDocument",
+      "signature": "ElementDocument",
+      "type": "Rml::ElementDocument",
+      "key": "Core/ElementDocument.h|Rml::ElementDocument|ElementDocument|Rml::ElementDocument",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native ElementDocument represented by Document; typed Factory ownership, document state, scripting and DOM contracts are independently recorded.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/document.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementDocument.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/ElementText.h",
+      "line": 9,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementText",
+      "signature": "ElementText",
+      "type": "Rml::ElementText",
+      "key": "Core/ElementText.h|Rml::ElementText|ElementText|Rml::ElementText",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Typed native text element and owned line/value snapshots obtained through Factory or managed construction; text/layout methods are separate rows.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-text.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementText.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "17c8ebc665149d636a38c4c76c7d57c450e84a6eb8476e350a558186475b0e37",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementForm.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementForm",
+      "signature": "ElementForm",
+      "type": "Rml::ElementForm",
+      "key": "Core/Elements/ElementForm.h|Rml::ElementForm|ElementForm|Rml::ElementForm",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native form subtype, typed ownership and exact native submission rules.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/form.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementForm.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControl.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementFormControl",
+      "signature": "ElementFormControl",
+      "type": "Rml::ElementFormControl",
+      "key": "Core/Elements/ElementFormControl.h|Rml::ElementFormControl|ElementFormControl|Rml::ElementFormControl",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Actual abstract native form-control subtype represented by checked managed callbacks and derived control facades.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/form-control.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControl.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/form-control-instancer.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/form-control-instancer.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "f9e201d17d3142c7e08fe26771eb673fe4b50d5c3eb987b29b928f2fc4a195e5",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControlInput.h",
+      "line": 8,
+      "kind": "ClassDecl",
+      "name": "Rml::InputType",
+      "signature": "InputType",
+      "type": "Rml::InputType",
+      "key": "Core/Elements/ElementFormControlInput.h|Rml::InputType|InputType|Rml::InputType",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private input strategy owned by ElementFormControlInput; native type changes choose handlers for text/password/checkbox/radio/button/range.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/InputType.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControlInput.h",
+      "line": 14,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementFormControlInput",
+      "signature": "ElementFormControlInput",
+      "type": "Rml::ElementFormControlInput",
+      "key": "Core/Elements/ElementFormControlInput.h|Rml::ElementFormControlInput|ElementFormControlInput|Rml::ElementFormControlInput",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native input subtype; type-specific handlers execute in C++, including submission, selection and composition behavior.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/form-control-input.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControlInput.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControlSelect.h",
+      "line": 8,
+      "kind": "ClassDecl",
+      "name": "Rml::WidgetDropDown",
+      "signature": "WidgetDropDown",
+      "type": "Rml::WidgetDropDown",
+      "key": "Core/Elements/ElementFormControlSelect.h|Rml::WidgetDropDown|WidgetDropDown|Rml::WidgetDropDown",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private dropdown widget owned by the native select control. Managed select methods use the actual widget rather than recreating it in JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetDropDown.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControlSelect.h",
+      "line": 14,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementFormControlSelect",
+      "signature": "ElementFormControlSelect",
+      "type": "Rml::ElementFormControlSelect",
+      "key": "Core/Elements/ElementFormControlSelect.h|Rml::ElementFormControlSelect|ElementFormControlSelect|Rml::ElementFormControlSelect",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native select subtype with checked option insertion/removal, selection, popup visibility and original default actions.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/form-control-select.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControlSelect.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControlTextArea.h",
+      "line": 8,
+      "kind": "ClassDecl",
+      "name": "Rml::WidgetTextInputMultiLine",
+      "signature": "WidgetTextInputMultiLine",
+      "type": "Rml::WidgetTextInputMultiLine",
+      "key": "Core/Elements/ElementFormControlTextArea.h|Rml::WidgetTextInputMultiLine|WidgetTextInputMultiLine|Rml::WidgetTextInputMultiLine",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private native textarea widget retains selection, wrapping and composition implementation; the textarea facade owns only its lease.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetTextInputMultiLine.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "17c8ebc665149d636a38c4c76c7d57c450e84a6eb8476e350a558186475b0e37",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementFormControlTextArea.h",
+      "line": 14,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementFormControlTextArea",
+      "signature": "ElementFormControlTextArea",
+      "type": "Rml::ElementFormControlTextArea",
+      "key": "Core/Elements/ElementFormControlTextArea.h|Rml::ElementFormControlTextArea|ElementFormControlTextArea|Rml::ElementFormControlTextArea",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native textarea subtype, Unicode selection/composition and native row/column/wrap/value semantics.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/form-control-text-area.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControlTextArea.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "17c8ebc665149d636a38c4c76c7d57c450e84a6eb8476e350a558186475b0e37",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementProgress.h",
+      "line": 31,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementProgress",
+      "signature": "ElementProgress",
+      "type": "Rml::ElementProgress",
+      "key": "Core/Elements/ElementProgress.h|Rml::ElementProgress|ElementProgress|Rml::ElementProgress",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native progress subtype with native default/max/clamped values.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/progress.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementProgress.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Elements/ElementTabSet.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementTabSet",
+      "signature": "ElementTabSet",
+      "type": "Rml::ElementTabSet",
+      "key": "Core/Elements/ElementTabSet.h|Rml::ElementTabSet|ElementTabSet|Rml::ElementTabSet",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native tabset subtype preserving owned-node/string replacements, active tab state and native tabchange delivery.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/tab-set.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementTabSet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Event.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::Factory",
+      "signature": "Factory",
+      "type": "Rml::Factory",
+      "key": "Core/Event.h|Rml::Factory|Factory|Rml::Factory",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Concrete native Factory operations and allocator registries; nominal facades preserve original allocation/release identity.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/factory.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Factory.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/factory.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/factory.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "c5f2cd3b71469e2c47c920bad254313e5f7454d7803671bfe76bb12643f193b7",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Event.h",
+      "line": 11,
+      "kind": "ClassDecl",
+      "name": "Rml::Element",
+      "signature": "Element",
+      "type": "Rml::Element",
+      "key": "Core/Event.h|Rml::Element|Element|Rml::Element",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native Element/derived identity and ScriptInterface base. Detached and attached ownership remain Native; method/template rows retain their own acceptance status.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "45ef394110b29351a69e5b4b7f7ead5303d8a3d7b3f54d0d72d804cabc27c32d",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Event.h",
+      "line": 13,
+      "kind": "StructDecl",
+      "name": "Rml::EventSpecification",
+      "signature": "EventSpecification",
+      "type": "Rml::EventSpecification",
+      "key": "Core/Event.h|Rml::EventSpecification|EventSpecification|Rml::EventSpecification",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native event specification represented by checked registration metadata snapshots, including propagation and default-action flags.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/event.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/EventSpecification.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/event-registration.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/event-registration.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "75fc5ad9032acd217be29977e2cbddb752442f963e297d948e5534b36b3a81be",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/Event.h",
+      "line": 23,
+      "kind": "ClassDecl",
+      "name": "Rml::Event",
+      "signature": "Event",
+      "type": "Rml::Event",
+      "key": "Core/Event.h|Rml::Event|Event|Rml::Event",
+      "original_status": "partial-event-templates-and-script-interface",
+      "review": "managed-type-source-reconciled",
+      "representation": "Actual native Event with owned/dispatch leases and non-null managed ScriptInterface associations. The separate GetParameter<T> row remains partial until its complete destination/lifetime mapping is reviewed.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/event.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Event.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/script-interface.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/script-interface.test.cjs",
+        "exit_code": 0,
+        "pass_count": 25,
+        "sha256": "bb73f4905a1309950bac3d5f51b2606b200acb9dbdde40ecda5e814fcf97e967",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::Element",
+      "signature": "Element",
+      "type": "Rml::Element",
+      "key": "Core/StyleSheet.h|Rml::Element|Element|Rml::Element",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native Element/derived identity and ScriptInterface base. Detached and attached ownership remain Native; method/template rows retain their own acceptance status.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "45ef394110b29351a69e5b4b7f7ead5303d8a3d7b3f54d0d72d804cabc27c32d",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheetNode",
+      "signature": "StyleSheetNode",
+      "type": "Rml::StyleSheetNode",
+      "key": "Core/StyleSheet.h|Rml::StyleSheetNode|StyleSheetNode|Rml::StyleSheetNode",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private native stylesheet selector tree root and indexes, built by the original parser/combination pipeline.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetNode.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 13,
+      "kind": "ClassDecl",
+      "name": "Rml::Decorator",
+      "signature": "Decorator",
+      "type": "Rml::Decorator",
+      "key": "Core/StyleSheet.h|Rml::Decorator|Decorator|Rml::Decorator",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Actual native Decorator instances and synchronous allocator callbacks, with resource/payload ownership distinct from stylesheet cache aliases.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/decorator.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Decorator.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/decorator-callbacks.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/decorator-callbacks.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "73bbbef45aac1201d2af1dc6957a31c553b76f5895ded4c80617af0cd0215073",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 15,
+      "kind": "ClassDecl",
+      "name": "Rml::SpritesheetList",
+      "signature": "SpritesheetList",
+      "type": "Rml::SpritesheetList",
+      "key": "Core/StyleSheet.h|Rml::SpritesheetList|SpritesheetList|Rml::SpritesheetList",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Actual native spritesheet cache compiled by the stylesheet parser; managed named Sprite/definition lists represent its public uses.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/spritesheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Spritesheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 16,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheetContainer",
+      "signature": "StyleSheetContainer",
+      "type": "Rml::StyleSheetContainer",
+      "key": "Core/StyleSheet.h|Rml::StyleSheetContainer|StyleSheetContainer|Rml::StyleSheetContainer",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned parsed container accepts text, StreamMemory, StreamFile and checked custom Stream. Media recompilation, attachment and immutable compiled-view lifetime are tracked natively.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheetContainer.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "97db53e36d9fd4c889ed79159f6fd19ffcaed1c78e97af5d385ad97142864c6c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 17,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheetParser",
+      "signature": "StyleSheetParser",
+      "type": "Rml::StyleSheetParser",
+      "key": "Core/StyleSheet.h|Rml::StyleSheetParser|StyleSheetParser|Rml::StyleSheetParser",
+      "original_status": "pending-exact-review",
+      "review": "native-private-forward-source-reconciled",
+      "representation": "Private stylesheet parser friended by StyleSheet; managed loading uses native text/Stream parsing, source metadata and callback-error guards.",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+      "type_acceptance": "reviewed-native-private-forward",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "97db53e36d9fd4c889ed79159f6fd19ffcaed1c78e97af5d385ad97142864c6c",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 18,
+      "kind": "StructDecl",
+      "name": "Rml::PropertySource",
+      "signature": "PropertySource",
+      "type": "Rml::PropertySource",
+      "key": "Core/StyleSheet.h|Rml::PropertySource|PropertySource|Rml::PropertySource",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Copied native PropertySource metadata supplied to parsing and decorator instancing without exposing a borrowed source address.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/property.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Property.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/property.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "60621c2b592dc02028201ae801b2f16ae9ed71fd90def1edc054dff1fb7ddac9",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 19,
+      "kind": "StructDecl",
+      "name": "Rml::Sprite",
+      "signature": "Sprite",
+      "type": "Rml::Sprite",
+      "key": "Core/StyleSheet.h|Rml::Sprite|Sprite|Rml::Sprite",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native Sprite source/rectangle metadata copied by stylesheet queries; checked resources retain renderer affinity and source ownership.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/spritesheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Spritesheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 21,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DecoratorPtrList",
+      "signature": "DecoratorPtrList",
+      "type": "Rml::DecoratorPtrList",
+      "key": "Core/StyleSheet.h|Rml::DecoratorPtrList|DecoratorPtrList|Rml::DecoratorPtrList",
+      "original_status": "pending-exact-review",
+      "review": "managed-type-source-reconciled",
+      "representation": "StyleSheet.instanceDecorators returns typed Decorator arrays from the actual native manager-specific cache, preserving order and ownership.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheet.h",
+      "line": 28,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheet",
+      "signature": "StyleSheet",
+      "type": "Rml::StyleSheet",
+      "key": "Core/StyleSheet.h|Rml::StyleSheet|StyleSheet|Rml::StyleSheet",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native compiled stylesheet views or owned combinations. Matching, combine/merge/index, metadata and manager-local decorator instancing are implemented; loading occurs through StyleSheetContainer.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheetContainer.h",
+      "line": 9,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheet",
+      "signature": "StyleSheet",
+      "type": "Rml::StyleSheet",
+      "key": "Core/StyleSheetContainer.h|Rml::StyleSheet|StyleSheet|Rml::StyleSheet",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native compiled stylesheet views or owned combinations. Matching, combine/merge/index, metadata and manager-local decorator instancing are implemented; loading occurs through StyleSheetContainer.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f",
+        "callable_acceptance_implied": false
+      }
+    },
+    {
+      "header": "Core/StyleSheetContainer.h",
+      "line": 16,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheetContainer",
+      "signature": "StyleSheetContainer",
+      "type": "Rml::StyleSheetContainer",
+      "key": "Core/StyleSheetContainer.h|Rml::StyleSheetContainer|StyleSheetContainer|Rml::StyleSheetContainer",
+      "original_status": "partial-follow-up-required",
+      "review": "managed-type-source-reconciled",
+      "representation": "Native-owned parsed container accepts text, StreamMemory, StreamFile and checked custom Stream. Media recompilation, attachment and immutable compiled-view lifetime are tracked natively.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/style-sheet.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheetContainer.h"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+      "type_acceptance": "locally-verified-managed-type-macos-arm64",
+      "runtime_evidence": {
+        "log": "/tmp/rmlui-63-completion/type-forward-runtime.log",
+        "file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "97db53e36d9fd4c889ed79159f6fd19ffcaed1c78e97af5d385ad97142864c6c",
+        "callable_acceptance_implied": false
+      }
+    }
+  ],
+  "runtime_acceptance": {
+    "scope": "67 exact type and forward declaration sites",
+    "runtime_files": 29,
+    "runtime_passes": 318,
+    "failed_files": 0,
+    "type_status_counts": {
+      "locally-verified-managed-type-macos-arm64": 54,
+      "reviewed-native-private-forward": 13
+    },
+    "full_core_19_accepted": false,
+    "report": "docs/rmlui/audit/6.3/core-type-runtime-acceptance.md"
+  }
+}

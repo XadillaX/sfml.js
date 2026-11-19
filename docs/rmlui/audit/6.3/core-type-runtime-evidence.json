@@ -1,0 +1,292 @@
+{
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "type_sites": 67,
+  "formerly_pending_sites": 58,
+  "formerly_type_partial_sites": 9,
+  "type_status_counts": {
+    "locally-verified-managed-type-macos-arm64": 54,
+    "reviewed-native-private-forward": 13
+  },
+  "runtime": {
+    "files": [
+      {
+        "file": "packages/sfml.js-rmlui/test/context-construction.test.cjs",
+        "exit_code": 0,
+        "pass_count": 21,
+        "sha256": "66091ca0d9df0421ab395dd181f65631f84e8e88dac1973f23c9d0394a6d7e52"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/context-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 16,
+        "sha256": "6a4181bfbfce55bf61eac67d65f40f34f2daef36982756eef0e375ba402f18d8"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/context-state.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "0dd9b7bf39888509bf92fe44e02df0742333cbc43f260ce13262d34bcbbd3d88"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/controls.test.cjs",
+        "exit_code": 0,
+        "pass_count": 8,
+        "sha256": "ebc378e73704912076fed73bed94c55050504bcea51dbbcccd6100b3e253414c"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/data-model.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4bb029789d40c423636fa6d6c671fed79928e5c5c0c91a919105e22f9364b5a7"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/data-schema.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "7c87ecb53804f65e1277fb5e7935b44e51bc2859f6148b4337b93089a204dd47"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/decorator-callbacks.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "73bbbef45aac1201d2af1dc6957a31c553b76f5895ded4c80617af0cd0215073"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/documents.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/element-background-border.test.cjs",
+        "exit_code": 0,
+        "pass_count": 7,
+        "sha256": "3b9d2eee37a3a960910f4b7a20625801111051e77b39caa356b44925cd3b9adc"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/element-components.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "4f9961dd395e1b1afd8c88669bbf761efaa569a6377a594a5ffb283ded1c76ef"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/element-constructors.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "45ef394110b29351a69e5b4b7f7ead5303d8a3d7b3f54d0d72d804cabc27c32d"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/element-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "aeaedf93ad62def7df680bd8b75afbd68a0ef4e540f93880d902441580ad4f59"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/element-state.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "ed5b3c248575f17b6744a921810d4f43c824af73ee5adc61d76fa8ebd679c2b3"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/element-style.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "d41044a9d303ef70f34fbf4c9972b50abac4b06ab932f7e2d920fdaaa23b0d4a"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "76a53bba1ee59118cf737536044d3490a6c05797d63b9dc7ed16078c2d4b8461"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "2f6945cded9da3f709fdf6100189bac7c4231959a1789e97faecb4fcc7aaa43e"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/event-registration.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "75fc5ad9032acd217be29977e2cbddb752442f963e297d948e5534b36b3a81be"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/factory.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "c5f2cd3b71469e2c47c920bad254313e5f7454d7803671bfe76bb12643f193b7"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/form-control-instancer.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "f9e201d17d3142c7e08fe26771eb673fe4b50d5c3eb987b29b928f2fc4a195e5"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/input.test.cjs",
+        "exit_code": 0,
+        "pass_count": 13,
+        "sha256": "ec6b8ec3fa1f62ff6b87fb8bb0e7304eb6c326dd40853f4a2e433db47e79f5bc"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/layout.test.cjs",
+        "exit_code": 0,
+        "pass_count": 16,
+        "sha256": "b004df82409e48cfec7d8490db6132424b598bb4aaf8e347e7994b8ece70de16"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "2e9467b12e1070e0570e30553922bb147d3385cc73a6bf570b85d17c64cb58b1"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/property-dictionary.test.cjs",
+        "exit_code": 0,
+        "pass_count": 5,
+        "sha256": "04ffe162f38acc416dcafe6c27fb04fc9ef8b0cb9384a0d9d1903c1fc9864f01"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/property.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "60621c2b592dc02028201ae801b2f16ae9ed71fd90def1edc054dff1fb7ddac9"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+        "exit_code": 0,
+        "pass_count": 11,
+        "sha256": "bf26eda1c70d67d63fa9754f8ec34262266a1116bd7150b97503796c00a4563b"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/script-interface.test.cjs",
+        "exit_code": 0,
+        "pass_count": 25,
+        "sha256": "bb73f4905a1309950bac3d5f51b2606b200acb9dbdde40ecda5e814fcf97e967"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/streams.test.cjs",
+        "exit_code": 0,
+        "pass_count": 9,
+        "sha256": "97db53e36d9fd4c889ed79159f6fd19ffcaed1c78e97af5d385ad97142864c6c"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+        "exit_code": 0,
+        "pass_count": 12,
+        "sha256": "1b7e90aa9605d7da5aa8d3da68a805fd03edf67ac5d745076e1063755783fc5f"
+      },
+      {
+        "file": "packages/sfml.js-rmlui/test/text-panels.test.cjs",
+        "exit_code": 0,
+        "pass_count": 10,
+        "sha256": "17c8ebc665149d636a38c4c76c7d57c450e84a6eb8476e350a558186475b0e37"
+      }
+    ],
+    "file_count": 29,
+    "pass_count": 318,
+    "failed_files": 0
+  },
+  "native_iterator_transfers": {
+    "inventory_indices": [
+      2076,
+      2077,
+      2078
+    ],
+    "runtime_scenarios": 3,
+    "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+    "probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+    "managed_consumer": "packages/sfml.js-rmlui/test/property.test.cjs",
+    "native_entries": 1,
+    "native_callbacks": 0,
+    "whole_scope_complete": false
+  },
+  "source_sha256": {
+    "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc": "811d06a7393e204b29d7f68d2916bc1849467c56ced91a86bb67762ab67834ce",
+    "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc": "c14bf594bfa6dd1214bf705f2c9caf2185d978faaa8ef46116d6674d6b11177d",
+    "packages/sfml.js-rmlui/src/context-instancer.ts": "7ae526caff021a9ab51020047a67698ecd2351d68732378cdfcce2683bf554f8",
+    "packages/sfml.js-rmlui/src/context.ts": "dfc96493eb5534ea219477e9d2f76a9022fa6f431e64426b58217a3312d27160",
+    "packages/sfml.js-rmlui/src/data-model.ts": "ab5b5e8413a661d17fcd15c220d4222496973abb9dc7527feadfef2e899f9589",
+    "packages/sfml.js-rmlui/src/data-schema.ts": "56b7127a52ea0dcf7e54ffee129b4e40e464fdd6f69c4efc807f264060a7834d",
+    "packages/sfml.js-rmlui/src/decorator.ts": "867b613316d3027664a9cd75703eb8f6dc58d2064d2c400fcac550965e46c5f0",
+    "packages/sfml.js-rmlui/src/document.ts": "8eb00d1b0b7bec6cbc476eb97fd1574881f4e2b243bf3582d5572e51ce97d7e3",
+    "packages/sfml.js-rmlui/src/element-background-border.ts": "0fd67af87d8d0b31034c37a2e1162b6e129d1a7345e1b290305dafa3edee8523",
+    "packages/sfml.js-rmlui/src/element-instancer.ts": "d1a4724e4cb5b8bb93ffd39e9b4e75af9dcc32cc4e66c97681e7982347ae1e06",
+    "packages/sfml.js-rmlui/src/element-scroll.ts": "53b4201ff84b50c833fc7b682e414e10b433177b734974010a41389f0690166d",
+    "packages/sfml.js-rmlui/src/element-style.ts": "6a673777b54a2645fdc368d2069675c37e38abd967a04cebfadd392c6dbc7a2f",
+    "packages/sfml.js-rmlui/src/element-text.ts": "5dcf8990170b8a0f8a2e706be698bfbc5e691d4b1dd8b5a3217d535c8141761e",
+    "packages/sfml.js-rmlui/src/element.ts": "492cb78cd82e7f4ae0b670c2cb2d10bafb40739944cd3f0cf6b5af8305d2f279",
+    "packages/sfml.js-rmlui/src/event-dispatcher.ts": "9cf809e828461bd9e4a0796217b47289412833729066aeef4ff14cc9d2e9139d",
+    "packages/sfml.js-rmlui/src/event-listener.ts": "9214b583caf84ee43673c921403f8351272d60e06620f544049dd7e72d75d611",
+    "packages/sfml.js-rmlui/src/event.ts": "ac8451d4d12e60d0093100cbc7bc87ac427481ea2d7815d698244bdebd92e8e6",
+    "packages/sfml.js-rmlui/src/factory.ts": "5923673549ef569e7c4d4b345da220baa3c5a31039ddb47cfbc2b96bc34a58b3",
+    "packages/sfml.js-rmlui/src/form-control-input.ts": "833e81737fe8b911b3f869b28b7fc192020a95982339442fcdfe6e4d01f43be6",
+    "packages/sfml.js-rmlui/src/form-control-select.ts": "1f48cd067ea4d90be9892b91590a63e32b52bf7356e538494602cc4c59e126a5",
+    "packages/sfml.js-rmlui/src/form-control-text-area.ts": "879cc8145502c14070dc1209a25e297127580068a962e78b9ddbc9c96dc1b3c0",
+    "packages/sfml.js-rmlui/src/form-control.ts": "e1bb44024247156477c5189fb774fcdede98d18c8b54f46f83f378a76d40f4da",
+    "packages/sfml.js-rmlui/src/form.ts": "b1ff7f9fa00e506edb873e02cf0b1a56bdeab69f69ddc140cab27753e16fa738",
+    "packages/sfml.js-rmlui/src/gen/events.ts": "d61fd72c2c6931dc0a00180dfc8930c7ac30853f00fe9474820161a086f5261a",
+    "packages/sfml.js-rmlui/src/progress.ts": "c2b5f7283bca482f6a89c29f54670b7bc63e8fe88ed34a3fd1cf65ac5a828523",
+    "packages/sfml.js-rmlui/src/property-dictionary.ts": "e2b5d7db567e0c079deb6a85b4d3d1d8b4a13573406adc0eacf39066f771a2d7",
+    "packages/sfml.js-rmlui/src/property.ts": "9d8f4525a8487e961b6037d4fa1923ba59cec99fe32ca7137070ad4d692509a6",
+    "packages/sfml.js-rmlui/src/resources.ts": "19014a010e71e9f36a79560b9cd4dcc37d970b8b999aec7de09d751ae5eaa927",
+    "packages/sfml.js-rmlui/src/spritesheet.ts": "879b9761c5af7a725d28d9a46d30beb459c28656ff7c226ece4c02848ad33b45",
+    "packages/sfml.js-rmlui/src/style-sheet.ts": "7c0a0d9933fb9dd71165c656489333fdaae9c00e4a6d6c57d68a2859ff400ae4",
+    "packages/sfml.js-rmlui/src/tab-set.ts": "2d7931bf6c44aed1679a2c1b606bf79a55430a6021884714f0cf8f3c92e6e19a",
+    "packages/sfml.js-rmlui/src/transform-state.ts": "d78c899746ff9efebbfa55218937a8a4dbffc5252ee66b2f8dc0af6ad59f9c3c",
+    "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc": "ecd241b1b77b4d9d314d2cce0f627eabbf5e076b616a8aed9c7a7efb96baec38",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Context.h": "4bbf478d1d8b6c9981102a683affb4e83fd7d18309cfdb0f05569b0b351014ff",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ContextInstancer.h": "6cf3281d11829f116695e1318b62033d5a648a5d99295f0b1b1b60c932f0b283",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/DataModelHandle.h": "f30a336a47ca01ee4a5ad85b6bdb70210a8119adcf9b72620aee8cfc696bf447",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/DataTypeRegister.h": "ee446a1cf0bb904545dbb750b716b45c06b6d83b07c1e2c461a92b4a61e2d0ae",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Decorator.h": "45a36ab072f3a279561d7255f4eb2789cb9e2252a0de7ef76bd92bc4f9a3308b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h": "069232d35843eee5b201b2ab7e9192d4dfdeafa74022d4a8a141c711a5d31224",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementDocument.h": "d931572ab8071331a3a988e1b36e7243ca2ecd931db828b7ea1a333719e63978",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementInstancer.h": "ded47b6528174be1c8a1f1fea0c0518177bd7ef7cf19b9f1fee211b4d847b361",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementScroll.h": "9ebddcbb5f5e2d311b925bd5fad62d3edebb6ae3db95a045762cdf95067e3bb0",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ElementText.h": "7df497c89c558d2d9d635a8d7a05faab0e5dfef025ea317dcfcb2341ca0e8b4e",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementForm.h": "e6e6d39a88d2a0df0f3dad38367fdebdc6e02767fd4719ba43e16a6aa94615d3",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControl.h": "853d47c9885e18fc958117d039fdbbe2f655749f1275a4aa8cc9c8534f468b1f",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControlInput.h": "082232282ad349326ace31682a8c789b3c23cca8056eb6f8208e434baf2a9f9f",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControlSelect.h": "9d19e68dec875f044cfb3913fea232e4a38127b1912d67d37bae5657e891e97e",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementFormControlTextArea.h": "f7f5fe96bb34d5ed64f1a9961cbb8229bad7945cfb6113eb3684b52e8eab0ce5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementProgress.h": "76dec0b080542396915e7b7d460f41a51e513cb9562f6b56b12cd13cec5cc66e",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Elements/ElementTabSet.h": "7e4f9b8d02335147aa67c8fd0be4b47508869d1784485ded2e404c8130dea6fa",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Event.h": "bb8147b3a8fcb539d34a19a6d7e9f71f32e382072b8df830aa381089265cd7eb",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventListener.h": "8dee993a4f09f0eb33c685714a819709d85f89f3334b12668d2f12bf849e8050",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Factory.h": "857e0d8cf8f0b9c838bcd529c986f4b8bd85d67eebd6b29763e486800e3389be",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ID.h": "6e6e7e0ac394d80d38f3634ec2245bc308333cfad638b5bdeed8a70aab266bc7",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h": "2ff2d95c53e02743e58012952597fe0902d2c5249ddc0a7cade5bc6cf4519c1f",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Property.h": "08ec9c93cbc3dcce479490d75d7ccb24aaed0d12fd20c97d58269e08f8e717a8",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertyDictionary.h": "f3a15ae6587695d0caf037a820c101d42e79d6672fc8f63ad69548bae50b0544",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterface.h": "5182152438d3c84265b62925b6fb161dac4932ca120b4d57e1912d0ddb8cd34b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Spritesheet.h": "9e32b6229eb221c433179bc2136b807148e698149dad321df5feec6f6c9ee872",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h": "d61c73defa36505f408196b3494adb249c19e9ffa13f4cf8effac5b184f8ab62",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheetContainer.h": "5b262d96746fee15ea16cfc374dada84ca6c966621f4ffb60676dcbbc3d28aed",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Transform.h": "fbf9ecdde6820db57ec2c36a43cc0060642f3f369274885eda9794da25b9d44d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/DataModel.h": "92989ae341567a0dcb585421ab6450f95b043136771a8c71305c77f1a5da5e96",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Element.cpp": "c004f713646e68e5fd089c48cfabc2b85a56d50bb8bb4f0807ce84ec5e377912",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementBackgroundBorder.h": "d6b1fe639d5d35c137c5bc208470000ea16eef7c4dd459762f22e8bc85ff70f0",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementDocument.cpp": "1bc7e51092f05d5441f9d848704d62bd1c01aa8cadc932e3c6c20712daff438d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementMeta.h": "559296086491654036548eb24e98b77f4a8a773f092a37f196aad1f7e240a10b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp": "8973e73807e3536c3ddae5a0c9864af4ab47b901470a60d5cc6097891c5dcaff",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementStyle.h": "25503b46be9aa6670530d39cbe4fbbface6a6325dabdf1039cd58617b510270c",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/InputType.h": "233a4e04760ca822cb4805c710fbdfe75242b70cc7ecc1ee26f543e5a142ceb7",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetDropDown.h": "8b405985e89bbd43a092249a297dfd19ca9ab8fb206fee0cc511c394ffdcba40",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Elements/WidgetTextInputMultiLine.h": "0f6c96168cd9f5210fec3ccd49446cdfe493cbc2ef0418dfcf1329e42deef5ce",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/EventDispatcher.h": "7701e3cfc4606f213f676a1a08a7a6516ff8ed6afb43652aa649c47d657c6d49",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/EventSpecification.h": "5f21e70f3bf39c01520c5a8f00dfd4359c8649533d06ab95605fdf3adfd5bf7d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/ContainerBox.h": "19f104373cb534c6799b4fcaaefc2d2aa850f48024a1095d984d2c54383d0c4c",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/InlineLevelBox.h": "35df49ebe5288cd03619ccf7beaf398c020b49e5301de0ce5ab412814daa7800",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/LayoutEngine.h": "aae6dc507a9c804415db9ebbe2d8332ddc3644090b2467549bbf480fee5df993",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Layout/ReplacedFormattingContext.h": "bb91f6fe8c7e3a5df31bfc7e7b637ce82f34dcc8130baf70876cf015e42c77d9",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ScrollController.h": "6257289d7da69afb6a3914d0f930ee3f6e2242f53893e5f1b00844f78a862aed",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetNode.h": "6c510692fa421438e071b42daf6396744f3cea299e2cedf4b748c85787d67ec4",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.h": "ee2d1878cf7bfcc7ce341902493e24ed850d7a0691c93573369fd9e45a91f7ba",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp": "1167b12fba81d32599452c836c2deddec74ed530655492caf8c08ad497ad35e2"
+  },
+  "scope_complete": false,
+  "full_core_19_accepted": false,
+  "report": "docs/rmlui/audit/6.3/core-type-runtime-acceptance.md"
+}

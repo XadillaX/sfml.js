@@ -1,0 +1,52 @@
+{
+  "scope": "Original basic/demo application local acceptance",
+  "platform": "macOS arm64",
+  "full_task_9_acceptance": false,
+  "whole_scope_acceptance": false,
+  "native_reference": {
+    "upstream_sources": [
+      "Samples/basic/demo/src/DemoWindow.cpp",
+      "Samples/basic/demo/src/DemoEventListener.cpp"
+    ],
+    "driver": "packages/sfml.js-rmlui/test/native/examples/basic/demo/original-application.cc",
+    "builder": "packages/sfml.js-rmlui/test/native/examples/basic/demo/build-original-application.py",
+    "times": [0, 0.25, 0.7, 1, 1.999, 2, 2.5, 3, 3.999, 4],
+    "progress_absolute_tolerance": 1e-7,
+    "labels_and_form_output": "exact",
+    "passed_scenarios": 4
+  },
+  "binding_scenarios": {
+    "demo": 6,
+    "system_interface": 15,
+    "style_sheet": 15,
+    "form_controls": 8,
+    "basic_application_behavior": 5,
+    "application_controls": 8,
+    "document_transfer": 9,
+    "total": 66
+  },
+  "site_tests_passed": 30,
+  "build_and_style": {
+    "native_build": "passed",
+    "typescript_build": "passed",
+    "type_checks": "passed",
+    "package_eslint": "passed",
+    "clang_format": "passed",
+    "cpplint": "passed",
+    "compiler_naming_units_passed": 4
+  },
+  "screenshots": {
+    "width": 2048,
+    "height": 1138,
+    "form_capture_state": "submission in progress"
+  },
+  "sha256": {
+    "packages/sfml.js-rmlui/examples/official/basic/demo/main.cjs": "04e9d7eee2b986c141f930d9ea37840ebed96e899ff258f818e9221a49b946d5",
+    "packages/sfml.js-rmlui/examples/official/basic/demo/DemoWindow.cjs": "a8c7311ca5910aef56219c0c89e3028ce58ac0307a12affd161d8d18d1565f66",
+    "packages/sfml.js-rmlui/examples/official/basic/demo/DemoEventListener.cjs": "87a8592fc15044471d04f1385db2bb453833b791956c1cbb59b7bf5de864145c",
+    "packages/sfml.js-rmlui/examples/screenshots/basic-demo-sandbox.png": "afcba61b95e65dbb620e71540426c1442caf1f2dd3db9773b583bc1ebda3a3f4",
+    "packages/sfml.js-rmlui/examples/screenshots/basic-demo-controls.png": "51cd15773608fd98981f1fa30d63ebd42571545b42e8278e6095bf7c44441bd3",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/demo/src/DemoWindow.cpp": "25fddaf1dbf3278a51ac864a52efedb66f58c9d6e7e25863c04a7e2de32bd66d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Samples/basic/demo/src/DemoEventListener.cpp": "3b20f65ac804be1a973e2451227b7e0c62b080d4dba268c8e3e16753e679e769"
+  }
+}

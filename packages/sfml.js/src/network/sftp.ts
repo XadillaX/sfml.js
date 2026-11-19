@@ -12,6 +12,7 @@ import { EventEmitter } from 'node:events';
 import { createHash } from 'node:crypto';
 import { IpAddress } from './ip-address';
 import { Time } from '../system/time';
+import type { ReadonlyValue } from '../internal/value-storage';
 import { TimeoutWithPredicate } from '../system/timeout-with-predicate';
 import {
   SerialQueue,
@@ -19,7 +20,6 @@ import {
   bytes,
   uint,
   waitFor,
-  type NetworkTime,
 } from './common';
 import { SftpResultValue as Value, SftpHostKeyType } from './gen/constants';
 
@@ -33,7 +33,7 @@ export { SftpResultValue, SftpHostKeyType } from './gen/constants';
  * @ko 진행이 없을 때의 제한 시간 설정. 데이터 수신 또는 RPC 완료 시 타이머를
  * 재설정하며 기간이 0이면 제한 시간이 없습니다.
  */
-export type SftpTimeout = NetworkTime | TimeoutWithPredicate;
+export type SftpTimeout = ReadonlyValue<Time> | TimeoutWithPredicate;
 /**
  * SFTP operation status and message.
  * @zh SFTP 操作状态和消息。

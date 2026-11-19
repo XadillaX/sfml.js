@@ -1,0 +1,236 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "beeb1646e29b151bc10d6d6fa46d1c25848a65b80d222a9053dce0c33b4eac57",
+  "scope_complete": false,
+  "complete_package_verification": {
+    "path": "/tmp/rmlui-63-completion/id-scroll-package-1.log",
+    "sha256": "fb7f9fb68b8a438829b7abffbcd9d72e88a8e87999d94ca9ae6cc1d15b4adb90",
+    "exit_code": 0,
+    "literal_pass_lines": 1177,
+    "runtime_files": 119,
+    "failures": 0,
+    "native_compiler_warnings": 0,
+    "native_compiler_errors": 0
+  },
+  "checks": {
+    "native_probe": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-native-4.log",
+      "sha256": "8ad7e0beb7cfbde743a6cc874715c68b730a0ccbc3fcb2d46ae015d9fb07b6ef",
+      "exit_code": 0,
+      "literal_pass_lines": 3
+    },
+    "native_managed_comparison": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-native-comparison-2.log",
+      "sha256": "8d67018247fb95b6553b23cf3c74a72e8c84abd0bd34371254aa48cb3a288090",
+      "exit_code": 0,
+      "literal_pass_lines": 3
+    },
+    "native_naming": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-naming-1.log",
+      "sha256": "999e68939e1b81effad885d5b4e5452c731510aca3b71c43756e4cd44e9de633",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "native_format": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-format-2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "native_fixture_style": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-fixture-style-1.log",
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "four_language_and_routes": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-four-language-2.log",
+      "sha256": "5faada58495d469ad46b03d2968f376b809bcfa79d816626dd20d1bfe4edbfbc",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "guide_and_media_routes": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-routes-1.log",
+      "sha256": "b8f0cb39fc5e6b1f093dc47f3ed93e150667df62b213e86e71667038a5409731",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "whitespace": {
+      "path": "/tmp/rmlui-63-completion/id-scroll-whitespace-1.log",
+      "sha256": "2d834611ff65175c45ad3492c7fa783c690de3b2611dfcf0c047e5ad4b944343",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    }
+  },
+  "consumer_suites": {
+    "specification-ids.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+      "sha256": "df7ac02b3eec70a7997ec137a515d8421943bd951dec9be0172aef020b8ee07e",
+      "scenarios": [
+        "local-specification-enums-have-zero-bridge-access",
+        "all-media-features-follow-context-state",
+        "font-face-local-fields-preserve-defaults-and-source-order"
+      ],
+      "pass_count": 3
+    },
+    "layout.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/layout.test.cjs",
+      "sha256": "346ea1f67b6c3198bff10d219979256a639f32067c4ed38b5d0c538a22461867",
+      "scenarios": [
+        "manual-offset-parent-scroll-fixed-and-detachment",
+        "manual-offset-conversion-rechecks-receiver-and-parent",
+        "closest-scroll-container-self-axes-containment-and-lifetime",
+        "box-metrics-and-offsets",
+        "computed-visibility-and-hit-test",
+        "scroll-clamping-events-and-overflow",
+        "scroll-into-view-overloads",
+        "all-scroll-alignments-on-both-axes",
+        "transform-projection-and-clip-area",
+        "invalid-values-and-getter-lifetime",
+        "detached-offset-lifetime",
+        "scroll-callback-exception",
+        "nested-scroll-parentage",
+        "smooth-and-auto-scroll",
+        "detached-descendants-reattach-and-replace",
+        "snapshot-gc-and-own-properties",
+        "vector-getter-invalidation"
+      ],
+      "pass_count": 17
+    },
+    "documents.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/documents.test.cjs",
+      "sha256": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6",
+      "scenarios": [
+        "registry",
+        "unloading",
+        "stacking",
+        "show-focus-tabs",
+        "hover-modal-unfocus",
+        "layout-scroll-flags",
+        "invalid-references",
+        "callback-protection",
+        "transformed-clipped-hit",
+        "unload-exception"
+      ],
+      "pass_count": 10
+    }
+  },
+  "native_oracle": {
+    "reference_path": "/tmp/rmlui-63-completion/id-scroll-native-reference.json",
+    "reference_sha256": "24e8075d12447ed23f64c8e81b10dea9b6d6a6b3fb4b5c98d0de06c18eef0887",
+    "local_constants": 24,
+    "scroll_constants": 10,
+    "media_features": 14,
+    "font_calls": 3,
+    "scroll_alignments": 5,
+    "measured_axes": 2,
+    "vendor_object_selection": "active build/rmlui.target.mk link list",
+    "basic_setup_renderer_only": true,
+    "binding_lua_cleanup_hook_without_models": true,
+    "lua_models_exercised": false
+  },
+  "constant_access_contract": {
+    "iterations": 100000,
+    "native_entries": 0,
+    "native_callbacks": 0,
+    "complete_frame_or_gpu_timing": false
+  },
+  "archive": {
+    "path": "/tmp/rmlui-63-completion/id-scroll-package/sfml.js-rmlui-1.2.1.tgz",
+    "sha256": "2d37954c55a306766bcfd064be1bf1223970a8040445dfa7df8708223b9a832e",
+    "bytes": 1573175,
+    "entries": 618,
+    "matched_current_paths": [
+      "tools/generate-property-ids.cjs",
+      "src/core.ts",
+      "src/gen/media-query-ids.ts",
+      "src/gen/font-face-ids.ts",
+      "src/document-flags.ts",
+      "src/layout.ts",
+      "src/element.ts",
+      "native/rmlui-layout.cc",
+      "dist/gen/media-query-ids.js",
+      "dist/gen/media-query-ids.d.ts",
+      "dist/gen/font-face-ids.js",
+      "dist/gen/font-face-ids.d.ts",
+      "dist/core.js",
+      "dist/core.d.ts",
+      "dist/document-flags.js",
+      "dist/document-flags.d.ts",
+      "dist/layout.js",
+      "dist/layout.d.ts",
+      "dist/element.js",
+      "dist/element.d.ts"
+    ],
+    "runtime_executed_from_archive": false,
+    "isolated_install_created": false
+  },
+  "representation": {
+    "maps": 16,
+    "represented": 3703,
+    "unrepresented": 223,
+    "is_pass_count": false
+  },
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/id-scroll-source-review.md",
+    "sha256": "5dd17dc157077ba5204aa84ddd1fa70b5a02a8cccaa32bc3e1bbbac3b966ef93",
+    "independent": false
+  },
+  "previous_accepted_map_fingerprints": {
+    "data-operation-ledger.json": "cc0d49cad43e1a2a7dd8ecabd06d6c1851ebf3d917ae2a723b865470726d8c5b",
+    "lua-declaration-map.json": "77d67a9b5b8f13763dfa6c15dc4bf0a5404215116cd32b748c0444db00643dae",
+    "core-type-declaration-map.json": "bf0977bdba57cd9565897244224cadadf5fe852b5f4f6d1cbec5a0fa97796499",
+    "core-scroll-iterator-declaration-map.json": "d212466db3168769ade1a81fefc9dc4b67b5f7e4e34cc6c9ad232d1f29732a4c",
+    "core-input-event-declaration-map.json": "9b7c10a3529e45a7fa996067abf98aba10ea9af7934a1f0560431f2e1019ee62",
+    "supplemental-type-declaration-map.json": "7e97be4c7146e6fa792e897d8a0dcffc3f5e0516e29eb5b5be76603077e2a9e1",
+    "numeric-declaration-map.json": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+    "string-url-declaration-map.json": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+    "support-declaration-map.json": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+    "type-converter-declaration-map.json": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+    "xml-declaration-map.json": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+    "utility-declaration-map.json": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+    "font-declaration-map.json": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44"
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/tools/generate-property-ids.cjs": "e941a07b7ca42896c66fcaa479ea66d3027636ba057a00d0bf4e52bdb572f6c4",
+    "packages/sfml.js-rmlui/src/core.ts": "66d80bfaa36d6f6ed3757f6f7cfae5c950b84de8a41b80ba77b2b9e1442198fc",
+    "packages/sfml.js-rmlui/src/gen/media-query-ids.ts": "0bb19ad9dd798ce6fdb0e4a6789845aab36f9baa97ff1ff20dd31e48655b85cb",
+    "packages/sfml.js-rmlui/src/gen/font-face-ids.ts": "fe1aa9ffd1164e1553b70b4351288a4ce40c4f8dc0fda1084a74e290339f8fe2",
+    "packages/sfml.js-rmlui/src/document-flags.ts": "28b0031ddaf7c645aafff72975fc5a08359593160c4ebed4117ddd23cc2d8cf7",
+    "packages/sfml.js-rmlui/src/layout.ts": "b6c99fb666bdbb741183be7c4bea847f8d9e76a0590edc2f937f4114f739ed99",
+    "packages/sfml.js-rmlui/src/element.ts": "492cb78cd82e7f4ae0b670c2cb2d10bafb40739944cd3f0cf6b5af8305d2f279",
+    "packages/sfml.js-rmlui/native/rmlui-layout.cc": "ea897aa6ce0f1e71871e372f016e3cb6b0baa36034c67e5eed50643a7e278eea",
+    "packages/sfml.js-rmlui/dist/gen/media-query-ids.js": "c84b88811eb985c7acaa9a7c6f0dc74bbb7587d303b38f04381593fcd7e5f2ee",
+    "packages/sfml.js-rmlui/dist/gen/media-query-ids.d.ts": "5824c4281590fc5b3d03d30161c9dc0948b39a20b68d26b139569cce4ad30850",
+    "packages/sfml.js-rmlui/dist/gen/font-face-ids.js": "1847c08f503c05fcf25fae376750a1637debcc2a3f38bc6268f8786afe56d375",
+    "packages/sfml.js-rmlui/dist/gen/font-face-ids.d.ts": "30e7bad19c2eff13a9984b3696e2b54fecdc70f70c7029686063c8f1b0faec00",
+    "packages/sfml.js-rmlui/dist/core.js": "3f8903508f975b97c502bd5368f714a7f40b5dbb22f9810bf27febe2f2104033",
+    "packages/sfml.js-rmlui/dist/core.d.ts": "f156f24808b470cad88db142a58887cdc000c0abb2d48b322f04ec6a6c5f3ceb",
+    "packages/sfml.js-rmlui/dist/document-flags.js": "8261bb7a59c868c7a9f6b9f7143b1342047c6bdf0c53ec01e7160238335867c2",
+    "packages/sfml.js-rmlui/dist/document-flags.d.ts": "16404863ce1692966790b1fc470697d978034d123399a73aedd41a60e7472043",
+    "packages/sfml.js-rmlui/dist/layout.js": "ee8b629c731f5dd7858736d754e229c8d01de27fb40142fda974c38fa09420af",
+    "packages/sfml.js-rmlui/dist/layout.d.ts": "3409fea3211d626d9533139b7005e8a492e21a77149f142f9c01917d70434155",
+    "packages/sfml.js-rmlui/dist/element.js": "7ed8dc699ccd8b452c3f46292d8b0f71d2b2f1569d46ac8e404e222e24619c64",
+    "packages/sfml.js-rmlui/dist/element.d.ts": "e142323eb791577fa432a8d627070fb20044bb94176c6bd713dd0f921459e668",
+    "packages/sfml.js-rmlui/test/specification-ids.test.cjs": "df7ac02b3eec70a7997ec137a515d8421943bd951dec9be0172aef020b8ee07e",
+    "packages/sfml.js-rmlui/test/layout.test.cjs": "346ea1f67b6c3198bff10d219979256a639f32067c4ed38b5d0c538a22461867",
+    "packages/sfml.js-rmlui/test/documents.test.cjs": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6",
+    "packages/sfml.js-rmlui/test/layout.ts": "cdb948b9d76570094599d7ece2d5f332c96e90325c31b4bc08660c980e525956",
+    "packages/sfml.js-rmlui/test/specification-ids.ts": "afabd9180b67663886fc5533fdbf5283304036c3e488741dbd3cc18d5de7bfae",
+    "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc": "d2990b104a35287c3e4d4930a46b7e262006d23d7870f333c8d3811f044a1cb0",
+    "packages/sfml.js-rmlui/test/native/build-id-scroll-contracts.py": "b5b71dba58aa0cf668b062294b0bb1982d7b09835cdd81d5bcedb5d763dd916a",
+    "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs": "76e4674c9aee2dc9947225288bf8f24430b74ef36dc49cc0578c9bc7ea4fdf6c",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ID.h": "6e6e7e0ac394d80d38f3634ec2245bc308333cfad638b5bdeed8a70aab266bc7",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ScrollTypes.h": "f00e34ec763b3ef9391b597b55b87ca83c36185a9ec84026f82172081fb08356",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp": "c047b32e50566db6c98a2562c46a44e8e8765567e6fdf204f436b0a96610ae78",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp": "651485d207a89cbf3849c2e7485ce77d2bfac6934eca787c74eb4e600da77a74",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ScrollController.cpp": "0cdf898c3f0e8fbe73ebee4c7da2408bc0fd35e70193b866a296ec92901c901a",
+    "docs/rmlui/properties.md": "92b4670a1ed4103818ff9b06a86e1229f609de17e04cc280e3f472e479f7a8b1",
+    "docs/rmlui/properties.zh-CN.md": "a5881a260943a2fdb4cb732f2ef155b4362ea637a9adb28b85a919609bbbcc8a",
+    "docs/rmlui/properties.ja.md": "516a265afffb9d9d3b13c028d1918d7e16a2006771d1da45f53b4ca71f341249",
+    "docs/rmlui/properties.ko.md": "ecffe7de22acef0bf0123a728563549e9bad16db3f6791000cb7e793c65525de",
+    "site/scripts/examples-site.test.mjs": "89598cb2c2c37ab2caf3888d74c06795fd93d5a1f150934c0f16c5a985e4938b"
+  },
+  "notice": "Local ID and scroll contracts only. No initialization-cost, full CPU-frame, GPU, platform or renderer acceptance follows."
+}

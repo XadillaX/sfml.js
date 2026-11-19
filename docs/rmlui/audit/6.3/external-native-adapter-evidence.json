@@ -1,0 +1,68 @@
+{
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "exact_declaration_keys": [
+    "Core/ScriptInterface.h|19|CXXMethod|Rml::ScriptInterface::GetScriptObject|GetScriptObject()|ScriptObject () const",
+    "Lua/Utilities.h|30|FunctionDecl|Rml::Lua::PushVariant|PushVariant(lua_State *, const Variant *)|void (lua_State *, const Variant *)",
+    "Lua/Utilities.h|33|FunctionDecl|Rml::Lua::GetVariant|GetVariant(lua_State *, int, Variant *)|void (lua_State *, int, Variant *)"
+  ],
+  "status": "locally-verified-registered-native-adapters-macos-arm64",
+  "accepted_sources": [
+    "real C++ void* allocation with native-owned expiry registration",
+    "real C++ Element GetScriptObject override with registered JS owner",
+    "native-only non-Element ScriptInterface GetScriptObject override"
+  ],
+  "arbitrary_scriptinterface_variant_wrapper_accepted": false,
+  "unregistered_native_pointer_accepted": false,
+  "whole_scope_complete": false,
+  "focused": {
+    "path": "/tmp/rmlui-63-completion/external-variant-adapters-matrix-3.log",
+    "sha256": "1372d84f261e6db35217bc9843106c1c3174a983b1905de626866b611a6c0e8c",
+    "exit_code": 0,
+    "passed_scenarios": 17
+  },
+  "package": {
+    "path": "/tmp/rmlui-63-completion/external-variant-adapters-package-1.log",
+    "sha256": "0e12b6adc6ffe75e45bf820f07e3de34d4d629f4756b568cebf910900a6dfd11",
+    "exit_code": 0,
+    "runtime_files": 109,
+    "passed_lines": 1096
+  },
+  "standalone_scenarios_in_package_count": false,
+  "site": {
+    "path": "/tmp/rmlui-63-completion/external-variant-adapters-site-1.log",
+    "sha256": "d3df30b96dcb2542f9e497eb273b2bd7ca2da362dde1aaf88bf80fc87b510140",
+    "exit_code": 0,
+    "tests": 81,
+    "localized_pages": 152,
+    "api_pages_per_language": 1595,
+    "languages": 4,
+    "redirects": 303,
+    "rendered_browser_acceptance_implied": false
+  },
+  "static_frame_counters": {
+    "frames": 16,
+    "callbackSnapshotVisits": 0,
+    "elementOwnershipVisits": 0,
+    "callbackOwnershipPasses.scriptObject": 0,
+    "callbackLeaseVisits.scriptObject": 0
+  },
+  "initialization_frame_malloc_gpu_acceptance_implied": false,
+  "source_sha256": {
+    "packages/sfml.js-rmlui/native/rmlui-variant-objects.h": "dd35d472a2ada702fda4f14db2201a74ee9b181b6b8b87822b0c2d0c238abf44",
+    "packages/sfml.js-rmlui/native/rmlui-variant-objects.cc": "b98d960ed956c69ee2ade059aae6bc81109132bca5cf20c345942d4963d96f56",
+    "packages/sfml.js-rmlui/native/rmlui-script-object.h": "46acf9a9aed31827332320a20a90e3c5b828abe65e65961e1e9054985b5e57d0",
+    "packages/sfml.js-rmlui/native/rmlui-script-object.cc": "88d33f3cc9d11bf54f7484880cd45918a70528ee47e36c21111fff97c2872026",
+    "packages/sfml.js-rmlui/native/rmlui-lua-variant.cc": "ab4cc6a9416266ac38f9eeaba3afae320c2c8836f3218a32422b825c784011de",
+    "packages/sfml.js-rmlui/native/rmlui-value-callbacks.cc": "91080c3c6f0146608e62f03d11eb4ec4480214e7c6cbd012969002aa28692a88",
+    "packages/sfml.js-rmlui/test/native/external-variant-adapters.cc": "5871014560d408057f7ec78fb3aebfd4d9576982d719b4b471ec24cf6ff01da4",
+    "packages/sfml.js-rmlui/test/native/build-external-variant-adapters.py": "ee4dab8b0127b644c929189fbbffa925b004e905e6850a32b4d94e7e30497adc",
+    "packages/sfml.js-rmlui/test/external-variant-adapters.cjs": "8b913bdc8f8d9e104db8036ad73dd6455b45e0054216a1499eec7b46e8cd7490"
+  },
+  "compiler_naming": {
+    "path": "/tmp/rmlui-63-completion/external-variant-adapters-naming-1.log",
+    "sha256": "5db1275cf8e3b1b90c17d25342a2e95c0cc5d73f8138cb908dadd27ebfd1b2de",
+    "exit_code": 0,
+    "maintained_units": 3,
+    "external_header_diagnostics_retained_in_log": true
+  }
+}

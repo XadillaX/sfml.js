@@ -1,0 +1,150 @@
+--- a/src/SFML/Window/Win32/WindowImplWin32.cpp
++++ b/src/SFML/Window/Win32/WindowImplWin32.cpp
+@@ -27,5 +27,6 @@
+ // Headers
+ ////////////////////////////////////////////////////////////
++#include <SFML/Window/EventSource.hpp>
+ #include <SFML/Window/JoystickImpl.hpp>
+ #include <SFML/Window/Win32/WindowImplWin32.hpp>
+ #include <SFML/Window/WindowEnums.hpp>
+@@ -178,6 +179,7 @@
+         // We change the event procedure of the control (it is important to save the old one)
+         SetWindowLongPtrW(m_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
+         m_callback = SetWindowLongPtrW(m_handle, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&WindowImplWin32::globalOnEvent));
++        sfmljs_backend::windowInputs().Open(sfmljs_backend::windowInputHandle(m_handle));
+     }
+ }
+ 
+@@ -248,6 +250,7 @@
+         }
+ 
+         ++handleCount;
++        sfmljs_backend::windowInputs().Open(sfmljs_backend::windowInputHandle(m_handle));
+     }
+ 
+     // By default, the OS limits the size of the window the the desktop size,
+@@ -267,6 +270,8 @@
+ ////////////////////////////////////////////////////////////
+ WindowImplWin32::~WindowImplWin32()
+ {
++    sfmljs_backend::windowInputs().Close(sfmljs_backend::windowInputHandle(m_handle));
++
+     // TODO should we restore the cursor shape and visibility?
+ 
+     // Destroy the custom icon, if any
+@@ -530,6 +535,8 @@
+ ////////////////////////////////////////////////////////////
+ void WindowImplWin32::cleanup()
+ {
++    sfmljs_backend::windowInputs().Close(sfmljs_backend::windowInputHandle(m_handle));
++
+     // Restore the previous video mode (in case we were running in fullscreen)
+     if (fullscreenWindow == this)
+     {
+@@ -1327,6 +1334,11 @@
+     // Get the WindowImpl instance corresponding to the window handle
+     WindowImplWin32* window = handle ? reinterpret_cast<WindowImplWin32*>(GetWindowLongPtr(handle, GWLP_USERDATA)) : nullptr;
+ 
++    sfmljs::interop::WindowInputMessage inputMessage{message, wParam, lParam};
++    const sfmljs::interop::detail::WindowInputScope inputScope(
++        sfmljs_backend::windowInputs(), sfmljs_backend::windowInputHandle(handle), &inputMessage);
++    lParam = inputMessage.lparam;
++
+     // Forward the event to the appropriate function
+     if (window)
+     {
+--- a/src/SFML/Window/Unix/WindowImplX11.cpp
++++ b/src/SFML/Window/Unix/WindowImplX11.cpp
+@@ -28,5 +28,6 @@
+ ////////////////////////////////////////////////////////////
+ 
++#include <SFML/Window/EventSource.hpp>
+ #include <SFML/Window/InputImpl.hpp>
+ #include <SFML/Window/Unix/ClipboardImpl.hpp>
+ #include <SFML/Window/Unix/Display.hpp>
+@@ -798,8 +799,4 @@
+ 
+-    // Destroy the input context
+-    if (m_inputContext)
+-        XDestroyIC(m_inputContext);
+-
+     // Destroy the window
+     if (m_window && !m_isExternal)
+     {
+@@ -1685,6 +1682,41 @@
+         err() << "Failed to create input context for window -- TextEntered event won't be able to return unicode"
+               << std::endl;
+ 
++    sfmljs_backend::windowInputs().Open(m_window, [this](const auto* callbacks)
++    {
++        XIC replacement = nullptr;
++        if (callbacks)
++        {
++            if (!callbacks->configure)
++                return false;
++            replacement = static_cast<XIC>(callbacks->configure(
++                callbacks->owner, m_display.get(), m_inputMethod.get(), m_inputContext));
++        }
++        else if (m_inputMethod)
++        {
++            replacement = XCreateIC(m_inputMethod.get(),
++                                    XNClientWindow, m_window,
++                                    XNFocusWindow, m_window,
++                                    XNInputStyle, XIMPreeditNothing | XIMStatusNothing,
++                                    nullptr);
++        }
++        if (!replacement)
++            return false;
++        if (replacement != m_inputContext)
++        {
++            const bool focused = hasFocus();
++            if (m_inputContext)
++            {
++                XUnsetICFocus(m_inputContext);
++                XDestroyIC(m_inputContext);
++            }
++            m_inputContext = replacement;
++            if (focused)
++                XSetICFocus(m_inputContext);
++        }
++        return true;
++    });
++
+     if (isFeatureSupported("_NET_WM_WINDOW_TYPE") && isFeatureSupported("_NET_WM_WINDOW_TYPE_NORMAL"))
+     {
+         static const auto wmWindowType       = getAtom("_NET_WM_WINDOW_TYPE");
+@@ -1789,6 +1821,16 @@
+ ////////////////////////////////////////////////////////////
+ void WindowImplX11::cleanup()
+ {
++    const auto inputClient = sfmljs_backend::windowInputs().Close(m_window);
++    if (m_inputContext)
++    {
++        XUnsetICFocus(m_inputContext);
++        XDestroyIC(m_inputContext);
++        m_inputContext = nullptr;
++    }
++    // Keep native client_data alive until XDestroyIC has returned.
++    (void)inputClient;
++
+     // Restore the previous video mode (in case we were running in fullscreen)
+     resetVideoMode();
+ 
+@@ -1802,6 +1844,9 @@
+ {
+     using namespace WindowImplX11Impl;
+ 
++    const sfmljs::interop::detail::WindowInputScope inputScope(
++        sfmljs_backend::windowInputs(), m_window, &windowEvent);
++
+     // Convert the X11 event to a sf::Event
+     switch (windowEvent.type)
+     {
+@@ -1941,6 +1986,7 @@
+             event.system   = windowEvent.xkey.state & Mod4Mask;
+ 
+             const bool filtered = XFilterEvent(&windowEvent, None);
++            sfmljs::interop::detail::WindowInputScope::Filtered(filtered);
+ 
+             // Generate a KeyPressed event if needed
+             if (filtered)

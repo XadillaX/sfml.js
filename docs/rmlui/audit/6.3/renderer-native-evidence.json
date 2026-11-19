@@ -1,0 +1,227 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "7455a3d56434b10f2a7ffe8c7f756d2d25e7a53727c44dc9299a3c2f7f34042c",
+  "scope_complete": false,
+  "full_renderer_semantics_accepted": false,
+  "checks": {
+    "native_probe": {
+      "path": "/tmp/rmlui-63-completion/renderer-native-2.log",
+      "sha256": "bf7d28ff3fdd5c9110a0c63dc5ec2dc723237be7f3f46619aaf596732805aa0c",
+      "exit_code": 0,
+      "literal_pass_lines": 6
+    },
+    "consumer_suites": {
+      "path": "/tmp/rmlui-63-completion/renderer-runtime-1.log",
+      "sha256": "cc9a191c333bcbba133fb07dda181464ae4b974e7c893f2d7eae8666174ebb41",
+      "exit_code": 0,
+      "literal_pass_lines": 68
+    },
+    "lint": {
+      "path": "/tmp/rmlui-63-completion/renderer-lint-1.log",
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "native_format": {
+      "path": "/tmp/rmlui-63-completion/renderer-format-3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "native_fixture_style": {
+      "path": "/tmp/rmlui-63-completion/renderer-fixture-style-2.log",
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "native_naming": {
+      "path": "/tmp/rmlui-63-completion/renderer-naming-1.log",
+      "sha256": "eb3307721f6c1b9f3ae680ae240f7687f942d668a03e27b641313f6461191de9",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    }
+  },
+  "consumer_suites": {
+    "render-interface-startup.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+      "sha256": "bf26eda1c70d67d63fa9754f8ec34262266a1116bd7150b97503796c00a4563b",
+      "scenarios": [
+        "preinit-selection-survives-initialization",
+        "reset-and-unselected-generations",
+        "distinct-system-and-render-windows",
+        "shutdown-clears-setup-and-invalidates-retained-tokens",
+        "unused-renderer-releases-native-window",
+        "selected-native-window-and-manager-borrow-survive-gc",
+        "unselected-window-token-cycles-are-collectible",
+        "forged-values-and-callback-selection-reject",
+        "retained-shutdown-token-releases-window-edge",
+        "static-selected-renderer-does-not-add-host-callbacks",
+        "foreign-worker-cannot-read-or-change-setup"
+      ],
+      "pass_count": 11
+    },
+    "geometry.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+      "sha256": "5080846384f80f2c32a2d9280893fe7fdd06080217736ba1b370c07f2303d6c1",
+      "scenarios": [
+        "vertex-and-sprite-snapshots-survive-owner-gc",
+        "spritesheet-list-overwrite-merge-and-snapshot",
+        "spritesheet-validation-and-accessor-reentry",
+        "typed-vertex-shared-fields-and-resize-lifetime",
+        "texture-source-cache-manager-removal-and-aggregate",
+        "native-mesh-views-and-snapshot-transfer",
+        "rendered-mesh-pixels-and-submission-snapshot",
+        "textured-and-shaded-geometry-pixels",
+        "native-texture-views-sources-and-lazy-loading",
+        "geometry-rendering-and-resource-affinity",
+        "invalid-mesh-and-getter-reentry",
+        "views-manager-gc-and-shutdown"
+      ],
+      "pass_count": 12
+    },
+    "render-state.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+      "sha256": "8d2b33d9000aa92a2bd976aa2fdd31ae91d6d56f098c5c858585e7955df0d653",
+      "scenarios": [
+        "viewport-and-scissor-native-defaults",
+        "state-transform-copy-and-reset",
+        "clip-mask-list-owned-roundtrip",
+        "scissor-and-transform-pixels",
+        "single-mask-and-list-transform-pixels",
+        "inverse-and-intersect-mask-pixels-and-disable",
+        "mask-pointer-equality",
+        "invalid-input-transaction-and-manager-ownership",
+        "state-getter-restart-revalidates-manager",
+        "integer-coordinates-preserve-full-int32-precision",
+        "matrix-buffer-boundaries",
+        "event-callback-state-mutation-guard",
+        "active-borrowed-mask-survives-manager-wrapper-gc",
+        "decorator-render-state-scope",
+        "retained-state-after-source-document-close",
+        "state-gc-and-shutdown-release"
+      ],
+      "pass_count": 16
+    },
+    "render-layers.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+      "sha256": "f829c7baf8935f706f0eeeea0891b1ceeaea945eb8890766184394693629e834",
+      "scenarios": [
+        "balanced-stack-and-stale-pool-token",
+        "nested-blend-and-replace-pixels",
+        "filters-consumed-in-order-and-self-composite",
+        "invalid-resources-leave-layer-stack-unchanged",
+        "saved-mask-snapshot-affects-pixels",
+        "event-callback-cannot-mutate-layers",
+        "decorator-layer-scope-and-upstream-ownership",
+        "unbalanced-decorator-return-and-exception-restore-stack",
+        "shutdown-releases-unbalanced-owned-layers"
+      ],
+      "pass_count": 9
+    },
+    "render-batching.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-batching.test.cjs",
+      "sha256": "5ed90d51effe9f06ae70a91acd854ccb7d26951d2cb84072772aa1bdf40401ee",
+      "scenarios": [
+        "distinct-geometry-dirty-and-static-bounded-batches",
+        "ordered-alpha-scissor-transform-and-frame-end",
+        "callback-sees-submitted-pixels-and-exception-recovers",
+        "shared-texture-switch-and-released-source-snapshots",
+        "native-layer-filter-and-stencil-boundaries",
+        "cache-slot-overflow-streams-and-frame-trims-unused-buffers",
+        "partial-upload-offsets-and-shape-change-pixels"
+      ],
+      "pass_count": 7
+    },
+    "callback-textures.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+      "sha256": "ef7977c4827e09f24525224c0d916b133815f5288209c1b03e663fb524513e05",
+      "scenarios": [
+        "lazy-generate-cache-scope-and-premultiplied-pixels",
+        "failed-and-throwing-callbacks-do-not-retry",
+        "resource-reentry-is-rejected-before-mutation",
+        "released-alias-never-revives-on-index-reuse",
+        "source-per-manager-cache-and-alias-owner-gc",
+        "callback-owner-gc-and-cycles",
+        "source-cache-survives-collected-temporary-views",
+        "instancing-can-create-and-load-callback-textures",
+        "source-evicts-only-retired-manager-cache",
+        "raw-handle-transfer-validates-owner-size-and-once",
+        "decorator-retains-callback-texture-view-and-gc-cycles",
+        "save-layer-snapshot-and-invalid-scissor",
+        "buffer-bounds-accessors-and-shutdown"
+      ],
+      "pass_count": 13
+    }
+  },
+  "native_oracle": {
+    "groups": 6,
+    "vendor_object_selection": "active existing build/rmlui.target.mk link list",
+    "gpu_rendering_exercised": false,
+    "lua_models_exercised": false,
+    "binding_only_no_model_cleanup_hooks": true,
+    "core_contexts_created": false,
+    "javascript_runtime_created": false
+  },
+  "pixel_evidence": {
+    "platform": "macOS arm64",
+    "stencil_bits": 8,
+    "inverse_intersection_and_disable": true,
+    "geometry_texture_custom_glsl_scissor_blend_blur_saved_mask": true,
+    "full_effect_protocol": false,
+    "gpu_timing_measured": false
+  },
+  "representation": {
+    "maps": 17,
+    "represented": 3761,
+    "unrepresented": 165,
+    "is_pass_count": false
+  },
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/renderer-source-review.md",
+    "sha256": "c3a70561482db11644b19a56930ec6c074d86824a1c4fd6be8b07cbe6183a51d",
+    "independent": false
+  },
+  "previous_accepted_map_fingerprints": {
+    "core-scroll-iterator-declaration-map.json": "d212466db3168769ade1a81fefc9dc4b67b5f7e4e34cc6c9ad232d1f29732a4c",
+    "xml-declaration-map.json": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+    "core-input-event-declaration-map.json": "9b7c10a3529e45a7fa996067abf98aba10ea9af7934a1f0560431f2e1019ee62",
+    "utility-declaration-map.json": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+    "numeric-declaration-map.json": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+    "string-url-declaration-map.json": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+    "lua-declaration-map.json": "77d67a9b5b8f13763dfa6c15dc4bf0a5404215116cd32b748c0444db00643dae",
+    "type-converter-declaration-map.json": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+    "supplemental-type-declaration-map.json": "7e97be4c7146e6fa792e897d8a0dcffc3f5e0516e29eb5b5be76603077e2a9e1",
+    "id-scroll-declaration-map.json": "beeb1646e29b151bc10d6d6fa46d1c25848a65b80d222a9053dce0c33b4eac57",
+    "core-type-declaration-map.json": "bf0977bdba57cd9565897244224cadadf5fe852b5f4f6d1cbec5a0fa97796499",
+    "support-declaration-map.json": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+    "font-declaration-map.json": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44",
+    "data-operation-ledger.json": "cc0d49cad43e1a2a7dd8ecabd06d6c1851ebf3d917ae2a723b865470726d8c5b"
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/render-interface-sfml.h": "fd25a46de7bca2d02950bdda2fd536b47f6fa9dd4e81b51294718f38ca43bae8",
+    "packages/sfml.js-rmlui/native/render-interface-sfml.cc": "38ed92ff9a29a3ca1bba85b78f80493235199491ee3f4be6c59549436d50a756",
+    "packages/sfml.js-rmlui/src/resources.ts": "19014a010e71e9f36a79560b9cd4dcc37d970b8b999aec7de09d751ae5eaa927",
+    "packages/sfml.js-rmlui/src/render-manager.ts": "c6348cf94370bc384a59787285ee6a08cd1b2ef83768e8f0bfd746476aedf65c",
+    "packages/sfml.js-rmlui/src/render-state.ts": "ae66f3c62303d669206c241027e6135fdf9709960bd35d51be21ae872a15c452",
+    "packages/sfml.js-rmlui/src/geometry.ts": "e101991a8caa9fda14a66e470bd96c819248bd2117d415df54967491e06ed42a",
+    "packages/sfml.js-rmlui/src/compiled-resources.ts": "57574008c59272a9ecb3ece47db50d9bfee75a41fa09281e82490cdcbe0064e9",
+    "packages/sfml.js-rmlui/src/callback-texture.ts": "1704b06567ed67db18bb84c8b13572040cd6c2ee9724f15bc262c539f5a94719",
+    "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc": "d32a41ce53e1af38f3cc9f127bfc80a5b55339a8caecdbce8e60b1f3a4a43a18",
+    "packages/sfml.js-rmlui/test/native/build-render-interface-contracts.py": "a772c3488b9199d053086e9cebddc63b7f92e6f57441eb3f69ab67b18d266cb7",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterface.h": "5182152438d3c84265b62925b6fb161dac4932ca120b4d57e1912d0ddb8cd34b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h": "d3e5b4b9eba33c2f6fa0aef2b53d7e9479341395f57518fa32b9fa3855cd666e",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp": "f2388a175b2f430f55255312e7b7c2b4f301a8c3d40876eb62d9adb5c11f5dd1",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp": "833b5a2cf4bc822def31dc448514f7cff212f199d4aa26c86ed75698639739bf",
+    "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs": "bf26eda1c70d67d63fa9754f8ec34262266a1116bd7150b97503796c00a4563b",
+    "packages/sfml.js-rmlui/test/geometry.test.cjs": "5080846384f80f2c32a2d9280893fe7fdd06080217736ba1b370c07f2303d6c1",
+    "packages/sfml.js-rmlui/test/render-state.test.cjs": "8d2b33d9000aa92a2bd976aa2fdd31ae91d6d56f098c5c858585e7955df0d653",
+    "packages/sfml.js-rmlui/test/render-layers.test.cjs": "f829c7baf8935f706f0eeeea0891b1ceeaea945eb8890766184394693629e834",
+    "packages/sfml.js-rmlui/test/render-batching.test.cjs": "5ed90d51effe9f06ae70a91acd854ccb7d26951d2cb84072772aa1bdf40401ee",
+    "packages/sfml.js-rmlui/test/callback-textures.test.cjs": "ef7977c4827e09f24525224c0d916b133815f5288209c1b03e663fb524513e05"
+  },
+  "production_implementation_changed": false,
+  "complete_package_build_repeated": false,
+  "isolated_install_created": false,
+  "notice": "Focused renderer verification only; preceding full package reports retain their original source fingerprints. No new full package build, complete renderer semantic acceptance or GPU timing claim."
+}

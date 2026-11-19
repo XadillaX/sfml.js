@@ -78,6 +78,7 @@ export let imageFromMapping: (mapping: NativeImageResource) => Image;
  * @ko 비동기 파일 및 코덱 연산을 지원하는 네이티브 소유 RGBA8 픽셀입니다.
  */
 export class Image {
+  /** Native image capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'image'>;
   /**
    * Native image metadata and RGBA pixel view.

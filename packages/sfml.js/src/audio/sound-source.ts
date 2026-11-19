@@ -41,11 +41,13 @@ export abstract class SoundSource {
    * @ko 지향성 원뿔 설정 타입입니다.
    */
   static readonly Cone = Cone;
+  /** Native audio source capability. @internal */
   readonly [audioHandle]: AudioHandle<'source'>;
   protected readonly values: Float32Array;
   protected readonly times: BigInt64Array;
   private effect?: EffectProcessor;
 
+  /** Initializes a native-created source mapping. @internal */
   protected constructor(mapping: AudioSourceMapping) {
     this[audioHandle] = mapping.handle;
     this.values = new Float32Array(mapping.values);

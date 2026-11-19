@@ -1,0 +1,20 @@
+# Dependencies and generated output
+node_modules/
+/build/
+/dist/
+/third_party/rmlui/
+/third_party/freetype/
+/third_party/.deps-*/
+/third_party/.installed
+native/generated/rmlui-deps.gypi
+compile_commands.json
+*.tsbuildinfo
+*.tgz
+
+# Logs and local caches
+logs/
+*.log
+coverage/
+.nyc_output
+.eslintcache
+.DS_Store

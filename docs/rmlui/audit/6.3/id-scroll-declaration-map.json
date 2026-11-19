@@ -1,0 +1,1475 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "original_records": 45,
+  "whole_scope_complete": false,
+  "notice": "26 Core/ID.h records and 19 Core/ScrollTypes.h records. Enum declarations and fields are records, not runtime scenarios.",
+  "consumer_suites": {
+    "specification-ids.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+      "sha256": "df7ac02b3eec70a7997ec137a515d8421943bd951dec9be0172aef020b8ee07e",
+      "scenarios": [
+        "local-specification-enums-have-zero-bridge-access",
+        "all-media-features-follow-context-state",
+        "font-face-local-fields-preserve-defaults-and-source-order"
+      ],
+      "pass_count": 3
+    },
+    "layout.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/layout.test.cjs",
+      "sha256": "346ea1f67b6c3198bff10d219979256a639f32067c4ed38b5d0c538a22461867",
+      "scenarios": [
+        "manual-offset-parent-scroll-fixed-and-detachment",
+        "manual-offset-conversion-rechecks-receiver-and-parent",
+        "closest-scroll-container-self-axes-containment-and-lifetime",
+        "box-metrics-and-offsets",
+        "computed-visibility-and-hit-test",
+        "scroll-clamping-events-and-overflow",
+        "scroll-into-view-overloads",
+        "all-scroll-alignments-on-both-axes",
+        "transform-projection-and-clip-area",
+        "invalid-values-and-getter-lifetime",
+        "detached-offset-lifetime",
+        "scroll-callback-exception",
+        "nested-scroll-parentage",
+        "smooth-and-auto-scroll",
+        "detached-descendants-reattach-and-replace",
+        "snapshot-gc-and-own-properties",
+        "vector-getter-invalidation"
+      ],
+      "pass_count": 17
+    },
+    "documents.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/documents.test.cjs",
+      "sha256": "4adbf26115a731fc28539b66e8acbbe344501a92180a1b005b7c6130ef086fb6",
+      "scenarios": [
+        "registry",
+        "unloading",
+        "stacking",
+        "show-focus-tabs",
+        "hover-modal-unfocus",
+        "layout-scroll-flags",
+        "invalid-references",
+        "callback-protection",
+        "transformed-clipped-hit",
+        "unload-exception"
+      ],
+      "pass_count": 10
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 1504,
+      "exact_key": "Core/ID.h|167|EnumDecl|Rml::MediaQueryId|MediaQueryId|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId",
+      "surface": "MediaQueryId",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1505,
+      "exact_key": "Core/ID.h|168|EnumConstantDecl|Rml::MediaQueryId::Invalid|Invalid|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::Invalid",
+      "surface": "MediaQueryId.Invalid",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1506,
+      "exact_key": "Core/ID.h|170|EnumConstantDecl|Rml::MediaQueryId::Width|Width|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::Width",
+      "surface": "MediaQueryId.Width",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1507,
+      "exact_key": "Core/ID.h|171|EnumConstantDecl|Rml::MediaQueryId::MinWidth|MinWidth|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MinWidth",
+      "surface": "MediaQueryId.MinWidth",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1508,
+      "exact_key": "Core/ID.h|172|EnumConstantDecl|Rml::MediaQueryId::MaxWidth|MaxWidth|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MaxWidth",
+      "surface": "MediaQueryId.MaxWidth",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1509,
+      "exact_key": "Core/ID.h|173|EnumConstantDecl|Rml::MediaQueryId::Height|Height|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::Height",
+      "surface": "MediaQueryId.Height",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1510,
+      "exact_key": "Core/ID.h|174|EnumConstantDecl|Rml::MediaQueryId::MinHeight|MinHeight|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MinHeight",
+      "surface": "MediaQueryId.MinHeight",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1511,
+      "exact_key": "Core/ID.h|175|EnumConstantDecl|Rml::MediaQueryId::MaxHeight|MaxHeight|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MaxHeight",
+      "surface": "MediaQueryId.MaxHeight",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1512,
+      "exact_key": "Core/ID.h|176|EnumConstantDecl|Rml::MediaQueryId::AspectRatio|AspectRatio|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::AspectRatio",
+      "surface": "MediaQueryId.AspectRatio",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1513,
+      "exact_key": "Core/ID.h|177|EnumConstantDecl|Rml::MediaQueryId::MinAspectRatio|MinAspectRatio|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MinAspectRatio",
+      "surface": "MediaQueryId.MinAspectRatio",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1514,
+      "exact_key": "Core/ID.h|178|EnumConstantDecl|Rml::MediaQueryId::MaxAspectRatio|MaxAspectRatio|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MaxAspectRatio",
+      "surface": "MediaQueryId.MaxAspectRatio",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1515,
+      "exact_key": "Core/ID.h|179|EnumConstantDecl|Rml::MediaQueryId::Resolution|Resolution|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::Resolution",
+      "surface": "MediaQueryId.Resolution",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1516,
+      "exact_key": "Core/ID.h|180|EnumConstantDecl|Rml::MediaQueryId::MinResolution|MinResolution|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MinResolution",
+      "surface": "MediaQueryId.MinResolution",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1517,
+      "exact_key": "Core/ID.h|181|EnumConstantDecl|Rml::MediaQueryId::MaxResolution|MaxResolution|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::MaxResolution",
+      "surface": "MediaQueryId.MaxResolution",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1518,
+      "exact_key": "Core/ID.h|182|EnumConstantDecl|Rml::MediaQueryId::Orientation|Orientation|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::Orientation",
+      "surface": "MediaQueryId.Orientation",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1519,
+      "exact_key": "Core/ID.h|183|EnumConstantDecl|Rml::MediaQueryId::Theme|Theme|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::Theme",
+      "surface": "MediaQueryId.Theme",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1520,
+      "exact_key": "Core/ID.h|185|EnumConstantDecl|Rml::MediaQueryId::NumDefinedIds|NumDefinedIds|Rml::MediaQueryId",
+      "native_symbol": "Rml::MediaQueryId::NumDefinedIds",
+      "surface": "MediaQueryId.NumDefinedIds",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/media-query-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "all-media-features-follow-context-state"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1521,
+      "exact_key": "Core/ID.h|188|EnumDecl|Rml::FontFaceId|FontFaceId|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId",
+      "surface": "FontFaceId",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1522,
+      "exact_key": "Core/ID.h|189|EnumConstantDecl|Rml::FontFaceId::Invalid|Invalid|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::Invalid",
+      "surface": "FontFaceId.Invalid",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1523,
+      "exact_key": "Core/ID.h|192|EnumConstantDecl|Rml::FontFaceId::FontFamily|FontFamily|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::FontFamily",
+      "surface": "FontFaceId.FontFamily",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1524,
+      "exact_key": "Core/ID.h|193|EnumConstantDecl|Rml::FontFaceId::FontWeight|FontWeight|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::FontWeight",
+      "surface": "FontFaceId.FontWeight",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1525,
+      "exact_key": "Core/ID.h|194|EnumConstantDecl|Rml::FontFaceId::FontStyle|FontStyle|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::FontStyle",
+      "surface": "FontFaceId.FontStyle",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1526,
+      "exact_key": "Core/ID.h|195|EnumConstantDecl|Rml::FontFaceId::Src|Src|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::Src",
+      "surface": "FontFaceId.Src",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1527,
+      "exact_key": "Core/ID.h|198|EnumConstantDecl|Rml::FontFaceId::FallbackFace|FallbackFace|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::FallbackFace",
+      "surface": "FontFaceId.FallbackFace",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1528,
+      "exact_key": "Core/ID.h|199|EnumConstantDecl|Rml::FontFaceId::FaceIndex|FaceIndex|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::FaceIndex",
+      "surface": "FontFaceId.FaceIndex",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 1529,
+      "exact_key": "Core/ID.h|201|EnumConstantDecl|Rml::FontFaceId::NumDefinedIds|NumDefinedIds|Rml::FontFaceId",
+      "native_symbol": "Rml::FontFaceId::NumDefinedIds",
+      "surface": "FontFaceId.NumDefinedIds",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/gen/font-face-ids.ts",
+        "packages/sfml.js-rmlui/src/core.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "font-face-local-fields-preserve-defaults-and-source-order"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+          "scenario": "local-specification-enums-have-zero-bridge-access"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "local-specification-constant-and-native-parser-consumer",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2368,
+      "exact_key": "Core/ScrollTypes.h|5|EnumDecl|Rml::ScrollBehavior|ScrollBehavior|Rml::ScrollBehavior",
+      "native_symbol": "Rml::ScrollBehavior",
+      "surface": "ScrollBehavior",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2369,
+      "exact_key": "Core/ScrollTypes.h|6|EnumConstantDecl|Rml::ScrollBehavior::Auto|Auto|Rml::ScrollBehavior",
+      "native_symbol": "Rml::ScrollBehavior::Auto",
+      "surface": "ScrollBehavior.Auto",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2370,
+      "exact_key": "Core/ScrollTypes.h|7|EnumConstantDecl|Rml::ScrollBehavior::Smooth|Smooth|Rml::ScrollBehavior",
+      "native_symbol": "Rml::ScrollBehavior::Smooth",
+      "surface": "ScrollBehavior.Smooth",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2371,
+      "exact_key": "Core/ScrollTypes.h|8|EnumConstantDecl|Rml::ScrollBehavior::Instant|Instant|Rml::ScrollBehavior",
+      "native_symbol": "Rml::ScrollBehavior::Instant",
+      "surface": "ScrollBehavior.Instant",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2372,
+      "exact_key": "Core/ScrollTypes.h|11|EnumDecl|Rml::ScrollAlignment|ScrollAlignment|Rml::ScrollAlignment",
+      "native_symbol": "Rml::ScrollAlignment",
+      "surface": "ScrollAlignment",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2373,
+      "exact_key": "Core/ScrollTypes.h|12|EnumConstantDecl|Rml::ScrollAlignment::Start|Start|Rml::ScrollAlignment",
+      "native_symbol": "Rml::ScrollAlignment::Start",
+      "surface": "ScrollAlignment.Start",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2374,
+      "exact_key": "Core/ScrollTypes.h|13|EnumConstantDecl|Rml::ScrollAlignment::Center|Center|Rml::ScrollAlignment",
+      "native_symbol": "Rml::ScrollAlignment::Center",
+      "surface": "ScrollAlignment.Center",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2375,
+      "exact_key": "Core/ScrollTypes.h|14|EnumConstantDecl|Rml::ScrollAlignment::End|End|Rml::ScrollAlignment",
+      "native_symbol": "Rml::ScrollAlignment::End",
+      "surface": "ScrollAlignment.End",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2376,
+      "exact_key": "Core/ScrollTypes.h|15|EnumConstantDecl|Rml::ScrollAlignment::Nearest|Nearest|Rml::ScrollAlignment",
+      "native_symbol": "Rml::ScrollAlignment::Nearest",
+      "surface": "ScrollAlignment.Nearest",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2377,
+      "exact_key": "Core/ScrollTypes.h|16|EnumConstantDecl|Rml::ScrollAlignment::Adaptive|Adaptive|Rml::ScrollAlignment",
+      "native_symbol": "Rml::ScrollAlignment::Adaptive",
+      "surface": "ScrollAlignment.Adaptive",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2378,
+      "exact_key": "Core/ScrollTypes.h|19|EnumDecl|Rml::ScrollParentage|ScrollParentage|Rml::ScrollParentage",
+      "native_symbol": "Rml::ScrollParentage",
+      "surface": "ScrollParentage",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2379,
+      "exact_key": "Core/ScrollTypes.h|20|EnumConstantDecl|Rml::ScrollParentage::All|All|Rml::ScrollParentage",
+      "native_symbol": "Rml::ScrollParentage::All",
+      "surface": "ScrollParentage.All",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2380,
+      "exact_key": "Core/ScrollTypes.h|21|EnumConstantDecl|Rml::ScrollParentage::Closest|Closest|Rml::ScrollParentage",
+      "native_symbol": "Rml::ScrollParentage::Closest",
+      "surface": "ScrollParentage.Closest",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2381,
+      "exact_key": "Core/ScrollTypes.h|27|StructDecl|Rml::ScrollIntoViewOptions|ScrollIntoViewOptions|Rml::ScrollIntoViewOptions",
+      "native_symbol": "Rml::ScrollIntoViewOptions",
+      "surface": "ScrollIntoViewOptions",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2382,
+      "exact_key": "Core/ScrollTypes.h|28|CXXConstructor|Rml::ScrollIntoViewOptions::ScrollIntoViewOptions|ScrollIntoViewOptions(ScrollAlignment, ScrollAlignment, ScrollBehavior, ScrollParentage)|void (ScrollAlignment, ScrollAlignment, ScrollBehavior, ScrollParentage)",
+      "native_symbol": "Rml::ScrollIntoViewOptions::ScrollIntoViewOptions",
+      "surface": "Element.scrollIntoView(options) / actual Native constructor",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2383,
+      "exact_key": "Core/ScrollTypes.h|32|FieldDecl|Rml::ScrollIntoViewOptions::vertical|vertical|ScrollAlignment",
+      "native_symbol": "Rml::ScrollIntoViewOptions::vertical",
+      "surface": "ScrollIntoViewOptions.vertical",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2384,
+      "exact_key": "Core/ScrollTypes.h|33|FieldDecl|Rml::ScrollIntoViewOptions::horizontal|horizontal|ScrollAlignment",
+      "native_symbol": "Rml::ScrollIntoViewOptions::horizontal",
+      "surface": "ScrollIntoViewOptions.horizontal",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2385,
+      "exact_key": "Core/ScrollTypes.h|34|FieldDecl|Rml::ScrollIntoViewOptions::behavior|behavior|ScrollBehavior",
+      "native_symbol": "Rml::ScrollIntoViewOptions::behavior",
+      "surface": "ScrollIntoViewOptions.behavior",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    },
+    {
+      "inventory_index": 2386,
+      "exact_key": "Core/ScrollTypes.h|35|FieldDecl|Rml::ScrollIntoViewOptions::parentage|parentage|ScrollParentage",
+      "native_symbol": "Rml::ScrollIntoViewOptions::parentage",
+      "surface": "ScrollIntoViewOptions.parentage",
+      "managed_sources": [
+        "packages/sfml.js-rmlui/src/layout.ts",
+        "packages/sfml.js-rmlui/src/document-flags.ts",
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/rmlui-layout.cc"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "all-scroll-alignments-on-both-axes"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "scroll-into-view-overloads"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "nested-scroll-parentage"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/layout.test.cjs",
+          "scenario": "smooth-and-auto-scroll"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/id-scroll-contracts.cc",
+      "native_comparison": "packages/sfml.js-rmlui/test/native/compare-id-scroll-contracts.cjs",
+      "domain": "existing-native-scroll-options-and-managed-adapter",
+      "status": "locally-verified-id-scroll-contract-macos-arm64"
+    }
+  ]
+}

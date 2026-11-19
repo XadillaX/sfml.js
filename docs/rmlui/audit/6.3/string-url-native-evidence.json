@@ -1,0 +1,222 @@
+{
+  "status": "locally-verified-native-managed-string-url-macos-arm64",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping": "docs/rmlui/audit/6.3/string-url-declaration-map.json",
+  "mapping_sha256": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+  "string_url_original_records": 88,
+  "record_domains": {
+    "managed-type": 5,
+    "checked-scalar-format-and-native-varargs": 2,
+    "managed": 72,
+    "checked-decimal-and-native-preconditions": 1,
+    "retained-numeric-range-and-native-pointer-range": 2,
+    "managed-string-and-native-literal-template": 1,
+    "view-relative-numeric-pointer": 3,
+    "managed-string-and-native-c-string": 1,
+    "native-owned-automatic-release": 1
+  },
+  "native": {
+    "path": "/tmp/rmlui-63-completion/string-url-permanent-runner-3.log",
+    "sha256": "84618e5cf7b5e98886bc9c58f6a220b5115a22ab0ca35790230b12b549b0429c",
+    "literal_pass_lines": 8
+  },
+  "native_runtime_groups": 7,
+  "native_runtime_failures": 0,
+  "package": {
+    "path": "/tmp/rmlui-63-completion/string-url-package-2.log",
+    "sha256": "2b2ef80325852d2a40593dbf09b5f5d1c3d6c3c8edbc9de029285888d540701a",
+    "literal_pass_lines": 1125,
+    "exit_code": 0,
+    "runtime_files": 112,
+    "failures": 0,
+    "native_compiler_warnings": 0,
+    "native_compiler_errors": 0,
+    "host_dependency_notices": "Node/Python dependency deprecation notices are separate from native compiler diagnostics."
+  },
+  "consumer_suites": {
+    "string-url.test.cjs": [
+      "URL replacement clears previous components and cached parameters",
+      "URL component edits reconstruct the native resource path",
+      "URL parameters preserve hostile keys without exposing native state",
+      "URL codecs retain native UTF8 NUL and permissive escape rules",
+      "ASCII RML and whitespace operations retain native semantics",
+      "List expansion distinguishes default and custom quote rules",
+      "Byte views retain owners and compare bytes after embedded NUL",
+      "UTF8 offsets count codepoints and round interior bytes forward",
+      "Iterator sentinels never form dangling pointers",
+      "Byte slices preserve truncated native UTF8 decoding",
+      "Iterator backward movement skips initial continuation bytes",
+      "Offset batches reuse output and reject invalid storage atomically",
+      "Overlapping offset subarrays preserve the original input",
+      "Iterator equality follows the retained owner across aliased views",
+      "Native owners survive source collection and runtime shutdown"
+    ],
+    "string-format.test.cjs": [
+      "Typed formatting preserves native ASCII and UTF8 byte lengths",
+      "Typed integer formatting uses native signed and unsigned domains",
+      "Dynamic width and precision consume explicit typed arguments",
+      "Formatting preserves the native small and large NUL buffer branches",
+      "Unsafe C ABI formats and mismatched values are rejected"
+    ],
+    "string-performance.test.cjs": [
+      "first-batch-builds-one-native-index",
+      "warm-batch-one-entry-no-copy-allocation-or-owner-scan",
+      "managed-iteration-has-zero-native-entries",
+      "warm-native-batch-has-zero-main-thread-malloc"
+    ],
+    "system-interface.test.cjs": [
+      "native-default-clipboard-writes-utf8",
+      "native-default-clipboard-reads-utf8",
+      "pending-selection-and-native-default",
+      "default-identity-and-shutdown",
+      "setup-replacement-rejection-and-invalidation",
+      "all-eight-host-hooks-use-native-virtuals",
+      "native-document-translation-and-resource-path",
+      "shared-clock-has-no-frame-callbacks-or-owner-scans",
+      "exceptions-invalid-results-and-recursive-mutation",
+      "callback-getters-captured-once-and-input-authenticity",
+      "unselected-cycles-collect-and-selected-callbacks-survive",
+      "retained-clock-and-wrapper-do-not-retain-shutdown-callbacks",
+      "preinit-native-virtuals-and-result-accessor-reentry",
+      "foreign-environment-cannot-read-or-replace-pending-interface"
+    ],
+    "lifetime.test.cjs": [
+      "font-before-initialise",
+      "subtree-aliases",
+      "close-update",
+      "unload-update",
+      "same-name-context",
+      "retained-dimensions",
+      "shutdown-reinitialise",
+      "font-after-shutdown",
+      "document-type-check",
+      "wrapper-gc",
+      "foreign-worker",
+      "environment-cleanup",
+      "foreign-worker-contention"
+    ]
+  },
+  "four_language": {
+    "path": "/tmp/rmlui-63-completion/string-url-four-language-4.log",
+    "sha256": "84ef9c39457d59ce914cd650134e807ee3c04933624e1c3fbcbf02b12319c668",
+    "literal_pass_lines": 0,
+    "exit_code": 0,
+    "languages": 4,
+    "failures": 0
+  },
+  "guide_runtime": {
+    "path": "/tmp/rmlui-63-completion/string-url-guide-runtime-1.log",
+    "sha256": "3653df0d4c67ec783d7c7b4f640ad2a09f223d5c0a6c54c9c78366fc6cb901eb",
+    "literal_pass_lines": 1
+  },
+  "public_lint": {
+    "path": "/tmp/rmlui-63-completion/string-url-public-lint-11.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_pass_lines": 0
+  },
+  "public_types": {
+    "path": "/tmp/rmlui-63-completion/string-url-public-types-4.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_pass_lines": 0
+  },
+  "guide_routing": {
+    "path": "/tmp/rmlui-63-completion/string-url-guide-routing-1.log",
+    "sha256": "e9f73ae7d9e9a0a63b2b85a8acee296663093ec81616ee1614826a5d67d4b3e1",
+    "literal_pass_lines": 0
+  },
+  "site_lint": {
+    "path": "/tmp/rmlui-63-completion/string-url-site-lint-2.log",
+    "sha256": "995c6b0094984a10487e2b2bd003b6d4cc5a0cf6c49ec1c4adeea5c92fbe9fc4",
+    "literal_pass_lines": 0
+  },
+  "native_fixture_style": {
+    "path": "/tmp/rmlui-63-completion/string-url-fixture-style-1.log",
+    "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+    "literal_pass_lines": 0
+  },
+  "native_fixture_format": {
+    "path": "/tmp/rmlui-63-completion/string-url-fixture-format-2.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_pass_lines": 0
+  },
+  "public_native_naming": {
+    "path": "/tmp/rmlui-63-completion/string-url-public-naming-3.log",
+    "sha256": "10d741a8e067b0c573d4f21ee5309e7dbd92f1a8d7bca4289d977fe948b74fae",
+    "literal_pass_lines": 4
+  },
+  "patch_integrity": {
+    "path": "/tmp/rmlui-63-completion/string-url-patch-integrity-1.log",
+    "sha256": "69301362da8edf3ef7ca06126909f9c4a5b5eff76ce209a38d6f793d4105b9ad",
+    "literal_pass_lines": 3
+  },
+  "focused_byte_boundaries": {
+    "path": "/tmp/rmlui-63-completion/string-view-boundaries-green-1.log",
+    "sha256": "6e596b0ceb17211ddc38cb0bca722ee4c2086f06cc90715021f3bf7dafaaa5a2",
+    "literal_pass_lines": 15
+  },
+  "original_byte_boundary_regression": {
+    "path": "/tmp/rmlui-63-completion/string-view-boundaries-red-1.log",
+    "sha256": "cd305ec68c935014ae1050db7d1c15e19b476927c21f2eff47f2d91ba68e5957",
+    "literal_pass_lines": 14
+  },
+  "independent_worker_resource_entries": 40,
+  "default_clipboard_utf8_accepted_macos": true,
+  "historical_numeric_evidence_modified": false,
+  "historical_numeric_evidence_sha256": "55a8dc44cda1e7d25e0e15d2d963f135a0d2835998fb1e52f7b8b5ce244a2ffe",
+  "native_build_environment_isolated": false,
+  "full_core_19_accepted": false,
+  "whole_scope_complete": false,
+  "gpu_or_complete_frame_measured_by_string_suite": false,
+  "source_sha256": {
+    "docs/rmlui/strings.ja.md": "2545afd1117d8764e3272a9d107a1624ec41dea7f16f3fef7ce070cebf712986",
+    "docs/rmlui/strings.ko.md": "ee36b76ffb1a0e156fd71d0a786b44bf657d602b30455e8b06aa43ba4061b1ff",
+    "docs/rmlui/strings.md": "cb62dd118c4a8b9a31ff8c40d89d96bd2c1da8eaff3817b50ba65b0fbae5f930",
+    "docs/rmlui/strings.zh-CN.md": "cf6783e906d4a0176925c78f9ee249720e07694db7dcd5003c7ba4018fec545e",
+    "packages/sfml.js-rmlui/binding.gyp": "abe87bdd585afd032f30627a55869a3b7ff18a5b54da3eb96d930bb0ab4e223a",
+    "packages/sfml.js-rmlui/native/addon.cc": "8a2a7aa68ef9102e495b1308053a50da6053e9bff826a6edb86d14a18c3aa350",
+    "packages/sfml.js-rmlui/native/rmlui-data-diagnostics.cc": "886161f1cdcf62bf04de17a2a641bff16ee714d2ef7c1319c97fa20e0a27971c",
+    "packages/sfml.js-rmlui/native/rmlui-data-diagnostics.h": "d44fa8857657a59bfaa78af4cada743cbfe35af36d8f4f3f20f421d186c4355d",
+    "packages/sfml.js-rmlui/native/rmlui-string-format.cc": "6870b71f2be3f28710ce22d4386b30f443767d345c281be6eb740c639fd1604b",
+    "packages/sfml.js-rmlui/native/rmlui-string.cc": "6d31325908e0a2f7c29d4c7680bd3bfdfa4e9113d4996a871183c2f2c35d4f1f",
+    "packages/sfml.js-rmlui/native/rmlui-string.h": "2982eca4fb7c90733cb182e7d8c0d36d5da8a9f5a34785915cee549a333eba54",
+    "packages/sfml.js-rmlui/native/rmlui-url.cc": "5b3865cb7b00adf3daa0b63514cf42b8aad0028a02e8c42f4de0162256e2ef50",
+    "packages/sfml.js-rmlui/native/system-interface-sfml.cc": "37149980826d9b2d169f881f944eaf6ef82654c847da1fb3c0982debb611ce18",
+    "packages/sfml.js-rmlui/package.json": "d9a663bb6e32e7b2e4cbdcb2e9d04ec963ed4cbe533e1078b934d05b1574b608",
+    "packages/sfml.js-rmlui/src/core.ts": "91aa7efb13a6a9fd72f31f80eddbda39c27996dbeb4fa0945e1e156718ab3ef0",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "dadb7cbf3932cd16092a6a0b6c92fcdf42a80121934cecfc14d374617b0c10d5",
+    "packages/sfml.js-rmlui/src/string-format.ts": "66c83be9d88d25044bf954f38aa9595a41cfddebfb9c550fab305eb05d1e179a",
+    "packages/sfml.js-rmlui/src/string-utilities.ts": "6bb8eb7efe0efbfc6e1127957cef074f1b298855871ac8787545432f9395fd87",
+    "packages/sfml.js-rmlui/src/string-view.ts": "1e96ebb738d993767e8689a8b16ae35c3bf6d30383129dba74ea65158aed6f93",
+    "packages/sfml.js-rmlui/src/url.ts": "18b1704855e517a69bffae914bb628a707b746c2ca52cd84a48caeb275f10b11",
+    "packages/sfml.js-rmlui/test/lifetime.test.cjs": "fa814ef59bb3db5dde3e6a1a26c3041e0351c85a479c76ebb05e968cf7fbf461",
+    "packages/sfml.js-rmlui/test/native/build-string-url-contracts.py": "6b7ca9f4eac8389122a9e4ce64f384f171dd3d3fc5e8f20dc38ece260053a27d",
+    "packages/sfml.js-rmlui/test/native/string-url-contracts.cc": "75a807869a13442b4f94ba471d7d868c433a5daff1d960cda596461fa6c28980",
+    "packages/sfml.js-rmlui/test/string-format.test.cjs": "d87903f884a266d52c7ca614a99513eb2402910bc7f8bf70fddd8d58c4cbdba8",
+    "packages/sfml.js-rmlui/test/string-performance.test.cjs": "9961976c872a2f42c77b474fe6b4ce31f4006a51589352d4c71ff8da5b0d66f3",
+    "packages/sfml.js-rmlui/test/string-url.test.cjs": "cf3a8bb99cb4541e56f9b8219283a31d583027113c0c631023d281f496d6bd99",
+    "packages/sfml.js-rmlui/test/string-url.types.ts": "04e5639368d8c2fc05681a214eb9dde3e1e5702f7de42111d50c63a2e02cf789",
+    "packages/sfml.js-rmlui/test/system-interface.test.cjs": "e1aa3b5b3ed6780e640883c4300cc2554ff8cdc352d62b1f74f63d055888cfc1",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StringUtilities.h": "3168327678f74a165d6eca506c84f5dece64c3426ed28a817102a11d37e26140",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/URL.h": "76e3bf54ef5ae13b40fda5ef394be9d644491d24ceb49d34609c62416199fc0b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StringUtilities.cpp": "ee7549fd2700a0a909659dcf6d791422e268491961f0527e8df469c18756c8ad",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/URL.cpp": "a1be77723356fa1d5c086c12965a2a2d8bc48e67da84b6d5aed182bb6ffe2698",
+    "packages/sfml.js-rmlui/tools/patch-rmlui-strings.cjs": "40f45ff7960fa8ddb97194149b8c62302e9795cd8b94df48525ab732616de73d",
+    "packages/sfml.js-rmlui/tools/patch-rmlui.cjs": "960d0eb94a5eb0ebd65ef4f305791c5d939e98ccec3546d78d488a9ab82badf1",
+    "site/.vitepress/config.mts": "2fb5556355a92c394355a0956bfbed4023a20b207ee140e7a7d0d064d1da7025",
+    "site/scripts/content.mjs": "6011dc04d900f1a422bd92ce729b831fff2eafe52f0406fdfbe45d8995299d03",
+    "site/scripts/content.test.mjs": "cfb9da30bed1eec192a110133b19f0c978036f995c67b7a55689094a5b5cc79c"
+  },
+  "package_archive": {
+    "path": "/tmp/rmlui-63-completion/sfml.js-rmlui-1.2.1.tgz",
+    "sha256": "b4e3420dbe58f7ac784d9a21aa8cf7cb98b149fd2f90eed7a6382581dffaa2a1",
+    "entry_count": 594,
+    "size_bytes": 1508511,
+    "verification": {
+      "path": "/tmp/rmlui-63-completion/string-url-pack-verify-1.log",
+      "sha256": "9541a834f7f42b7d8cc8e9f77678a00538767e146ac93d16a95f2f547c37955d",
+      "literal_pass_lines": 2
+    },
+    "runtime_executed_from_archive": false,
+    "isolated_install_created": false
+  }
+}

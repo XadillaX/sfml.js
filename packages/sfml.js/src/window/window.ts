@@ -120,6 +120,7 @@ export function registerMixedWindow(window: Window): void {
  * @ko OpenGL 컨텍스트가 있는 OS 윈도우. Texture.update()에서 사용할 수 있다.
  */
 export class Window {
+  /** Native window capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'window'>;
 
   static [Symbol.hasInstance](value: unknown): boolean {

@@ -1,0 +1,99 @@
+{
+  "scope": "SFML native input hooks, loaded-module protocol and Windows delivery lineage",
+  "platform": "darwin-arm64",
+  "whole_acceptance": false,
+  "implementation": {
+    "sfml_native_callback_hooks": true,
+    "loaded_module_registration_api": true,
+    "queue_owned_event_sources": true,
+    "actual_x11_filter_reporting": true,
+    "host_owned_x11_input_context_configuration": true,
+    "windows_composition_lineage": true,
+    "windows_adapter": false,
+    "linux_adapter": false,
+    "physical_candidate_observation": false
+  },
+  "verification": {
+    "sfml_window_build": {
+      "exit_code": 0,
+      "log": "/tmp/rmlui-63-completion/platform-hook-window-final-build.log"
+    },
+    "loaded_library_and_registry": {
+      "exit_code": 0,
+      "test_files": 2,
+      "loaded_library_contracts": 3,
+      "registry_and_delivery_contracts": 8,
+      "log": "/tmp/rmlui-63-completion/platform-hook-interop-final.log"
+    },
+    "windows_delivery_lineage": {
+      "exit_code": 0,
+      "synthetic_contracts": 3,
+      "log": "/tmp/rmlui-63-completion/platform-windows-lineage-final.log",
+      "failing_before_log": "/tmp/rmlui-63-completion/platform-windows-lineage-red.log"
+    },
+    "unchanged_installer_reuse": {
+      "exit_code": 0,
+      "log": "/tmp/rmlui-63-completion/platform-hook-installer-reuse.log",
+      "assertion": "Two preparation calls leave installed library inode and modification time unchanged"
+    },
+    "rmlui_runtime": {
+      "status": "passed",
+      "exit_code": 0,
+      "command_id": "htpmyfflsr",
+      "test_files": 150,
+      "literal_pass_markers": 1559,
+      "failed_files": 0,
+      "real_widget_and_cocoa_contracts": 46,
+      "collector_snapshot_excluded": "test/platform/windows-delivery.test.cjs; its three contracts passed separately after addition",
+      "native_build_log": "/tmp/rmlui-63-completion/platform-hook-final-native-build.log",
+      "real_widget_and_cocoa_log": "/tmp/rmlui-63-completion/platform-hook-final-cocoa.log",
+      "runtime_log": "/tmp/rmlui-63-completion/platform-hook-final-runtime.log"
+    },
+    "rmlui_lint": "/tmp/rmlui-63-completion/platform-hook-final-rmlui-lint.log",
+    "rmlui_cpplint": "/tmp/rmlui-63-completion/platform-hook-final-rmlui-cpplint.log",
+    "interop_cpplint": "/tmp/rmlui-63-completion/platform-hook-interop-final-cpplint.log",
+    "shared_helper_js_lint": "/tmp/rmlui-63-completion/platform-hook-interop-js-lint.log",
+    "whole_native_format": "/tmp/rmlui-63-completion/platform-hook-whole-format.log",
+    "whole_native_format_file_count": 384,
+    "windows_lineage_format": "/tmp/rmlui-63-completion/platform-windows-lineage-format.log",
+    "protocol_compiler_naming": "/tmp/rmlui-63-completion/platform-hook-naming.log",
+    "windows_lineage_compiler_naming": "/tmp/rmlui-63-completion/platform-windows-lineage-naming.log",
+    "failing_before_logs": [
+      "/tmp/rmlui-63-completion/platform-scope-red.log",
+      "/tmp/rmlui-63-completion/platform-filter-red.log",
+      "/tmp/rmlui-63-completion/platform-backend-red.log",
+      "/tmp/rmlui-63-completion/platform-backend-export-red.log",
+      "/tmp/rmlui-63-completion/platform-window-build-fixed.log"
+    ]
+  },
+  "sha256": {
+    "packages/sfml.js-interop/include/window-input-backend.h": "388d7d15cdb7cad613830688c252dd1cc3950e650f03f1ec6288dd638a62458f",
+    "packages/sfml.js-interop/include/window-input-callbacks.h": "56d564ba7f55067a2b2613c0b1dea6df75eb3d6a6f23b78aff468fa8cc0f5a5c",
+    "packages/sfml.js-interop/include/window-input-registry.h": "67b80fc7cee4ca95423167718f809c6be4336e4ca99630909479d14fb118d57c",
+    "packages/sfml.js-interop/include/window-input-scope.h": "8253f144b9582435d8980ec511b57f8320a1e5452104b0469af6e778b24e9d55",
+    "packages/sfml.js-interop/include/window-event-source.h": "f293caffd2185102b48b8be4a145ede6481abcf9b45364f15097f558a1ffb083",
+    "packages/sfml.js-interop/tools/sfml/prepare-source.cjs": "a7d9de749ea85f95682c447139f40395eb2d3a4f231e9dfeafee2961fde0feeb",
+    "packages/sfml.js-interop/tools/sfml/build-window.cjs": "447e15bed87b337d99c3707d3e45dd317e57e804c86bea8c8153a87c4de9177b",
+    "packages/sfml.js-interop/tools/patches/sfml-event-source.patch": "1fbf3ed9070f733c4cb4f0705e74f8bd258841925eee3198d90f30b36079f72b",
+    "packages/sfml.js-interop/tools/patches/sfml-native-input.patch": "2c3f49260dd34871dd4ecc4e138bce7c386f00a9e7b0f100a276856ccbdc84e3",
+    "packages/sfml.js-interop/tools/lib_downloader.cjs": "fc5899604c77ee6d6b1fd9b2bf6506d65d1920b9ef0632821e6d79d0b399dae3",
+    "packages/sfml.js-interop/tools/lib_downloader_macos.cjs": "f1c0cac7eeed427a79531b847be88475dc778c4e8f9d4b6e2a3e1b895e2ef57f",
+    "packages/sfml.js-rmlui/tools/dependencies/deps_downloader.cjs": "f24489dd79c4891230532f2d80bb82efdd75bd31ae686966e1233f31109d0eb3",
+    "packages/sfml.js-interop/test/native/window-input-backend.cc": "7b5f3ea15e91679cb04e40d231e167a61b52dc93b949593493441aa9e9aabd5d",
+    "packages/sfml.js-interop/test/native/window-input-registry.cc": "88ba8ac2bf9c4e061620a5e8cfe4bc0048fc4e29e1cefe434b99dca4e4ddcbb3",
+    "packages/sfml.js-interop/third_party/sfml/lib/libsfml-window.3.1.0.dylib": "0bc44db2204539d1abc5ed61427ef439442f7be2f9772286335d6830c93ee4bd",
+    "packages/sfml.js-interop/third_party/sfml-source-3.1.0/src/SFML/Window/WindowImpl.cpp": "baccc514cd2b4326dec25542f907c779969fbf40ca29751a098478f3ef55ffe9",
+    "packages/sfml.js-interop/third_party/sfml-source-3.1.0/src/SFML/Window/Win32/WindowImplWin32.cpp": "bd9a50e79e39aa342511ed023f1d08c306408d194d0ef2077d72d5eb931873d8",
+    "packages/sfml.js-interop/third_party/sfml-source-3.1.0/src/SFML/Window/Unix/WindowImplX11.cpp": "b668fc6f2d6000b82a2d4b6c35201d66dd68e282503c72ba034baba1167d34ae",
+    "packages/sfml.js-rmlui/native/platform/ime/windows/composition-delivery.h": "796a52eacd00abcf3843ddeb5883a010bc4f74ed96b70e2861be402a098d8434",
+    "packages/sfml.js-rmlui/build/Release/rmlui.node": "c0be341b2e0833094a6c92d957a82aed7c1f7e201ff5a798239e2a53d0275b2e"
+  },
+  "limits": [
+    "Only macOS compiled and executed the SFML extension in this continuation.",
+    "Windows/Linux native delivery branches exist but have no actual execution evidence.",
+    "The Windows message-lineage contracts are portable synthetic tests; they do not establish OS IME behavior.",
+    "The non-Apple NativeTextInput factory still returns no adapter.",
+    "Physical composition/candidate observations, six retained original visual contracts and independent whole-change acceptance remain open.",
+    "Earlier package/editor snapshots are historical; their fingerprints must not be refreshed without actual reruns."
+  ]
+}

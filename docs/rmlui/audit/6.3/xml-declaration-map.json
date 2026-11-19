@@ -1,0 +1,744 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "xml_original_records": 49,
+  "whole_scope_complete": false,
+  "notice": "49 exact records include repeated native forward declarations, types and lifecycle support. They are not 49 runtime scenarios. Base tokenization and default DOM processing remain native; custom structural callbacks are synchronous. ReleaseHandlers remains internal shutdown support.",
+  "native_groups": {
+    "base-virtuals": {
+      "source": "packages/sfml.js-rmlui/test/native/xml-contracts.cc",
+      "function": "CheckBaseVirtuals",
+      "literal_pass_line": "native-xml-base-public-virtual-dispatch"
+    },
+    "tokenization": {
+      "source": "packages/sfml.js-rmlui/test/native/xml-contracts.cc",
+      "function": "CheckNativeParse",
+      "literal_pass_line": "native-xml-tokenization-cdata-innerxml-source-lifetime"
+    },
+    "registry": {
+      "source": "packages/sfml.js-rmlui/test/native/xml-contracts.cc",
+      "function": "CheckNativeRegistry",
+      "literal_pass_line": "native-xml-registry-shared-ownership-and-release"
+    },
+    "frame-contracts": {
+      "source": "packages/sfml.js-rmlui/test/native/xml-contracts.cc",
+      "function": "CheckFrameContracts",
+      "literal_pass_line": "native-xml-frame-defaults-and-interface-contracts"
+    }
+  },
+  "consumer_suites": {
+    "xml": {
+      "source": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "sha256": "ee8f4b9de0dcb087f17cd320b1800fad6e604b20eca10fa987ce8643fb0c9bae",
+      "scenarios": [
+        "base-public-virtuals-dispatch-and-preserve-owned-attributes",
+        "base-callback-shape-rejects-nonfunctions-at-construction",
+        "xml-setup-callback-getter-cannot-cross-shutdown",
+        "base-native-batch-preserves-xml-data-and-source-lines",
+        "base-synchronous-callback-order-borrows-and-reentry",
+        "xml-default-native-dom-and-header-snapshot",
+        "xml-custom-handler-native-delegation-and-scoped-parser",
+        "xml-handler-replacement-invalidates-borrowed-native-targets",
+        "xml-callback-errors-unwind-and-invalid-return-values-reject",
+        "base-callbacks-reject-nonvoid-and-async-results",
+        "xml-handler-return-must-belong-to-active-subtree",
+        "xml-context-removal-invalidates-parser-root",
+        "xml-owned-root-gc-and-generation-lifetimes",
+        "xml-batch-and-default-path-fixed-native-crossings",
+        "xml-persistent-cdata-header-writeback-and-native-data-dispatch",
+        "xml-unregistered-callback-cycles-collect-and-registration-retains",
+        "xml-setup-registration-adopts-generation-and-shutdown-clears"
+      ],
+      "pass_count": 17
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 53,
+      "exact_key": "Core/BaseXMLParser.h|9|ClassDecl|Rml::Stream|Stream|Rml::Stream",
+      "native_symbol": "Rml::Stream",
+      "surface": "Stream / checked parser input",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 54,
+      "exact_key": "Core/BaseXMLParser.h|10|ClassDecl|Rml::URL|URL|Rml::URL",
+      "native_symbol": "Rml::URL",
+      "surface": "getSourceURL / copied native source text",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 55,
+      "exact_key": "Core/BaseXMLParser.h|11|TypeAliasDecl|Rml::XMLAttributes|XMLAttributes|Rml::XMLAttributes",
+      "native_symbol": "Rml::XMLAttributes",
+      "surface": "XMLAttributes / copied native Variants",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 56,
+      "exact_key": "Core/BaseXMLParser.h|13|EnumDecl|Rml::XMLDataType|XMLDataType|Rml::XMLDataType",
+      "native_symbol": "Rml::XMLDataType",
+      "surface": "XMLDataType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 57,
+      "exact_key": "Core/BaseXMLParser.h|13|EnumConstantDecl|Rml::XMLDataType::CDATA|CDATA|Rml::XMLDataType",
+      "native_symbol": "Rml::XMLDataType::CDATA",
+      "surface": "XMLDataType.CDATA",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 58,
+      "exact_key": "Core/BaseXMLParser.h|13|EnumConstantDecl|Rml::XMLDataType::InnerXML|InnerXML|Rml::XMLDataType",
+      "native_symbol": "Rml::XMLDataType::InnerXML",
+      "surface": "XMLDataType.InnerXML",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 59,
+      "exact_key": "Core/BaseXMLParser.h|13|EnumConstantDecl|Rml::XMLDataType::Text|Text|Rml::XMLDataType",
+      "native_symbol": "Rml::XMLDataType::Text",
+      "surface": "XMLDataType.Text",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 60,
+      "exact_key": "Core/BaseXMLParser.h|15|ClassDecl|Rml::BaseXMLParser|BaseXMLParser|Rml::BaseXMLParser",
+      "native_symbol": "Rml::BaseXMLParser",
+      "surface": "BaseXMLParser",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 61,
+      "exact_key": "Core/BaseXMLParser.h|17|CXXConstructor|Rml::BaseXMLParser::BaseXMLParser|BaseXMLParser()|void ()",
+      "native_symbol": "Rml::BaseXMLParser::BaseXMLParser",
+      "surface": "new BaseXMLParser",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 62,
+      "exact_key": "Core/BaseXMLParser.h|18|CXXDestructor|Rml::BaseXMLParser::~BaseXMLParser|~BaseXMLParser()|void () noexcept",
+      "native_symbol": "Rml::BaseXMLParser::~BaseXMLParser",
+      "surface": "Native owner GC / shutdown",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 63,
+      "exact_key": "Core/BaseXMLParser.h|23|CXXMethod|Rml::BaseXMLParser::RegisterCDATATag|RegisterCDATATag(const String &)|void (const String &)",
+      "native_symbol": "Rml::BaseXMLParser::RegisterCDATATag",
+      "surface": "registerCDATATag",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 64,
+      "exact_key": "Core/BaseXMLParser.h|27|CXXMethod|Rml::BaseXMLParser::IsCDATATag|IsCDATATag(const String &)|bool (const String &)",
+      "native_symbol": "Rml::BaseXMLParser::IsCDATATag",
+      "surface": "isCDATATag",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 65,
+      "exact_key": "Core/BaseXMLParser.h|35|CXXMethod|Rml::BaseXMLParser::RegisterInnerXMLAttribute|RegisterInnerXMLAttribute(const String &)|void (const String &)",
+      "native_symbol": "Rml::BaseXMLParser::RegisterInnerXMLAttribute",
+      "surface": "registerInnerXMLAttribute",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 66,
+      "exact_key": "Core/BaseXMLParser.h|39|CXXMethod|Rml::BaseXMLParser::Parse|Parse(Stream *)|void (Stream *)",
+      "native_symbol": "Rml::BaseXMLParser::Parse",
+      "surface": "parse / parseEvents",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 67,
+      "exact_key": "Core/BaseXMLParser.h|43|CXXMethod|Rml::BaseXMLParser::GetLineNumber|GetLineNumber()|int () const",
+      "native_symbol": "Rml::BaseXMLParser::GetLineNumber",
+      "surface": "getLineNumber",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 68,
+      "exact_key": "Core/BaseXMLParser.h|45|CXXMethod|Rml::BaseXMLParser::GetLineNumberOpenTag|GetLineNumberOpenTag()|int () const",
+      "native_symbol": "Rml::BaseXMLParser::GetLineNumberOpenTag",
+      "surface": "getLineNumberOpenTag",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 69,
+      "exact_key": "Core/BaseXMLParser.h|48|CXXMethod|Rml::BaseXMLParser::HandleElementStart|HandleElementStart(const String &, const XMLAttributes &)|void (const String &, const XMLAttributes &)",
+      "native_symbol": "Rml::BaseXMLParser::HandleElementStart",
+      "surface": "handleElementStart / constructor callback",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 70,
+      "exact_key": "Core/BaseXMLParser.h|50|CXXMethod|Rml::BaseXMLParser::HandleElementEnd|HandleElementEnd(const String &)|void (const String &)",
+      "native_symbol": "Rml::BaseXMLParser::HandleElementEnd",
+      "surface": "handleElementEnd / constructor callback",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 71,
+      "exact_key": "Core/BaseXMLParser.h|52|CXXMethod|Rml::BaseXMLParser::HandleData|HandleData(const String &, XMLDataType)|void (const String &, XMLDataType)",
+      "native_symbol": "Rml::BaseXMLParser::HandleData",
+      "surface": "handleData / constructor callback",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3811,
+      "exact_key": "Core/XMLNodeHandler.h|9|ClassDecl|Rml::Element|Element|Rml::Element",
+      "native_symbol": "Rml::Element",
+      "surface": "Checked retained Element root / handler result",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3812,
+      "exact_key": "Core/XMLNodeHandler.h|10|ClassDecl|Rml::XMLParser|XMLParser|Rml::XMLParser",
+      "native_symbol": "Rml::XMLParser",
+      "surface": "XMLParser",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3813,
+      "exact_key": "Core/XMLNodeHandler.h|11|EnumDecl|Rml::XMLDataType|XMLDataType|Rml::XMLDataType",
+      "native_symbol": "Rml::XMLDataType",
+      "surface": "XMLDataType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3814,
+      "exact_key": "Core/XMLNodeHandler.h|17|ClassDecl|Rml::XMLNodeHandler|XMLNodeHandler|Rml::XMLNodeHandler",
+      "native_symbol": "Rml::XMLNodeHandler",
+      "surface": "XMLNodeHandler",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3815,
+      "exact_key": "Core/XMLNodeHandler.h|19|CXXDestructor|Rml::XMLNodeHandler::~XMLNodeHandler|~XMLNodeHandler()|void ()",
+      "native_symbol": "Rml::XMLNodeHandler::~XMLNodeHandler",
+      "surface": "Shared native handler release",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3816,
+      "exact_key": "Core/XMLNodeHandler.h|26|CXXMethod|Rml::XMLNodeHandler::ElementStart|ElementStart(XMLParser *, const String &, const XMLAttributes &)|Element *(XMLParser *, const String &, const XMLAttributes &)",
+      "native_symbol": "Rml::XMLNodeHandler::ElementStart",
+      "surface": "elementStart / checked subtree return",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3817,
+      "exact_key": "Core/XMLNodeHandler.h|31|CXXMethod|Rml::XMLNodeHandler::ElementEnd|ElementEnd(XMLParser *, const String &)|bool (XMLParser *, const String &)",
+      "native_symbol": "Rml::XMLNodeHandler::ElementEnd",
+      "surface": "elementEnd / synchronous boolean",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3818,
+      "exact_key": "Core/XMLNodeHandler.h|36|CXXMethod|Rml::XMLNodeHandler::ElementData|ElementData(XMLParser *, const String &, XMLDataType)|bool (XMLParser *, const String &, XMLDataType)",
+      "native_symbol": "Rml::XMLNodeHandler::ElementData",
+      "surface": "elementData / synchronous boolean",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3819,
+      "exact_key": "Core/XMLParser.h|9|ClassDecl|Rml::DocumentHeader|DocumentHeader|Rml::DocumentHeader",
+      "native_symbol": "Rml::DocumentHeader",
+      "surface": "Owned DocumentHeader copy / active writeback",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3820,
+      "exact_key": "Core/XMLParser.h|10|ClassDecl|Rml::Element|Element|Rml::Element",
+      "native_symbol": "Rml::Element",
+      "surface": "Checked retained Element root / handler result",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3821,
+      "exact_key": "Core/XMLParser.h|11|ClassDecl|Rml::XMLNodeHandler|XMLNodeHandler|Rml::XMLNodeHandler",
+      "native_symbol": "Rml::XMLNodeHandler",
+      "surface": "XMLNodeHandler",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3822,
+      "exact_key": "Core/XMLParser.h|12|ClassDecl|Rml::URL|URL|Rml::URL",
+      "native_symbol": "Rml::URL",
+      "surface": "getSourceURL / copied native source text",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3823,
+      "exact_key": "Core/XMLParser.h|18|ClassDecl|Rml::XMLParser|XMLParser|Rml::XMLParser",
+      "native_symbol": "Rml::XMLParser",
+      "surface": "XMLParser",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3824,
+      "exact_key": "Core/XMLParser.h|20|CXXConstructor|Rml::XMLParser::XMLParser|XMLParser(Element *)|void (Element *)",
+      "native_symbol": "Rml::XMLParser::XMLParser",
+      "surface": "new XMLParser / retained native root",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3825,
+      "exact_key": "Core/XMLParser.h|21|CXXDestructor|Rml::XMLParser::~XMLParser|~XMLParser()|void () noexcept",
+      "native_symbol": "Rml::XMLParser::~XMLParser",
+      "surface": "Native owner GC / shutdown",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3826,
+      "exact_key": "Core/XMLParser.h|28|CXXMethod|Rml::XMLParser::RegisterPersistentCDATATag|RegisterPersistentCDATATag(const String &)|void (const String &)",
+      "native_symbol": "Rml::XMLParser::RegisterPersistentCDATATag",
+      "surface": "XMLParser.registerPersistentCDATATag",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3827,
+      "exact_key": "Core/XMLParser.h|34|CXXMethod|Rml::XMLParser::RegisterNodeHandler|RegisterNodeHandler(const String &, SharedPtr<XMLNodeHandler>)|XMLNodeHandler *(const String &, SharedPtr<XMLNodeHandler>)",
+      "native_symbol": "Rml::XMLParser::RegisterNodeHandler",
+      "surface": "XMLParser.registerNodeHandler",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3828,
+      "exact_key": "Core/XMLParser.h|38|CXXMethod|Rml::XMLParser::GetNodeHandler|GetNodeHandler(const String &)|XMLNodeHandler *(const String &)",
+      "native_symbol": "Rml::XMLParser::GetNodeHandler",
+      "surface": "XMLParser.getNodeHandler",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3829,
+      "exact_key": "Core/XMLParser.h|40|CXXMethod|Rml::XMLParser::ReleaseHandlers|ReleaseHandlers()|void ()",
+      "native_symbol": "Rml::XMLParser::ReleaseHandlers",
+      "surface": "Internal checked shutdown",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "registry"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-lifecycle-support",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3830,
+      "exact_key": "Core/XMLParser.h|44|CXXMethod|Rml::XMLParser::GetDocumentHeader|GetDocumentHeader()|DocumentHeader *()",
+      "native_symbol": "Rml::XMLParser::GetDocumentHeader",
+      "surface": "getDocumentHeader / setDocumentHeader",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3831,
+      "exact_key": "Core/XMLParser.h|47|StructDecl|Rml::XMLParser::ParseFrame|ParseFrame|Rml::XMLParser::ParseFrame",
+      "native_symbol": "Rml::XMLParser::ParseFrame",
+      "surface": "XMLParseFrame snapshot",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3832,
+      "exact_key": "Core/XMLParser.h|49|FieldDecl|Rml::XMLParser::ParseFrame::tag|tag|String",
+      "native_symbol": "Rml::XMLParser::ParseFrame::tag",
+      "surface": "XMLParseFrame.tag",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3833,
+      "exact_key": "Core/XMLParser.h|52|FieldDecl|Rml::XMLParser::ParseFrame::element|element|Element *",
+      "native_symbol": "Rml::XMLParser::ParseFrame::element",
+      "surface": "XMLParseFrame.element",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3834,
+      "exact_key": "Core/XMLParser.h|55|FieldDecl|Rml::XMLParser::ParseFrame::node_handler|node_handler|XMLNodeHandler *",
+      "native_symbol": "Rml::XMLParser::ParseFrame::node_handler",
+      "surface": "XMLParseFrame.nodeHandler",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3835,
+      "exact_key": "Core/XMLParser.h|58|FieldDecl|Rml::XMLParser::ParseFrame::child_handler|child_handler|XMLNodeHandler *",
+      "native_symbol": "Rml::XMLParser::ParseFrame::child_handler",
+      "surface": "XMLParseFrame.childHandler",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3836,
+      "exact_key": "Core/XMLParser.h|64|CXXMethod|Rml::XMLParser::PushHandler|PushHandler(const String &)|bool (const String &)",
+      "native_symbol": "Rml::XMLParser::PushHandler",
+      "surface": "pushHandler / active-only",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3837,
+      "exact_key": "Core/XMLParser.h|66|CXXMethod|Rml::XMLParser::PushDefaultHandler|PushDefaultHandler()|void ()",
+      "native_symbol": "Rml::XMLParser::PushDefaultHandler",
+      "surface": "pushDefaultHandler / active-only",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3838,
+      "exact_key": "Core/XMLParser.h|69|CXXMethod|Rml::XMLParser::GetParseFrame|GetParseFrame()|const ParseFrame *() const",
+      "native_symbol": "Rml::XMLParser::GetParseFrame",
+      "surface": "getParseFrame",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "frame-contracts"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3839,
+      "exact_key": "Core/XMLParser.h|72|CXXMethod|Rml::XMLParser::GetSourceURL|GetSourceURL()|const URL &() const",
+      "native_symbol": "Rml::XMLParser::GetSourceURL",
+      "surface": "getSourceURL / active copied source",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "tokenization"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    },
+    {
+      "inventory_index": 3840,
+      "exact_key": "Core/XMLParser.h|75|CXXMethod|Rml::XMLParser::HandleData|HandleData(const String &, XMLDataType)|void (const String &, XMLDataType)",
+      "native_symbol": "Rml::XMLParser::HandleData",
+      "surface": "handleData / active native handler dispatch",
+      "source": "packages/sfml.js-rmlui/native/rmlui-xml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/xml-parser.ts",
+      "native_groups": [
+        "base-virtuals"
+      ],
+      "runtime_suite": "packages/sfml.js-rmlui/test/xml-parser.test.cjs",
+      "domain": "native-parser-and-checked-managed-adapter",
+      "status": "locally-verified-native-xml-macos-arm64"
+    }
+  ]
+}

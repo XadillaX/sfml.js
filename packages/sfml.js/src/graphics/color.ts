@@ -122,6 +122,7 @@ export class Color {
     return this.state.values;
   }
 
+  /** Native view of the shared RGBA bytes. @internal */
   get [colorNative](): NativeValueHandle<'color'> {
     return nativeValue(this, colorNative, this.state);
   }

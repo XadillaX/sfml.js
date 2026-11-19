@@ -1,0 +1,42 @@
+{
+  "lunasvg": {
+    "version": "3.5.0",
+    "repository": "sammycage/lunasvg",
+    "commit": "83c58df8103dc7dca423dfd824992af94d49bed6",
+    "sha256": "eef27349e8bda119f0e91e9b7dcd5027ac8dd3faf64bb22294f41f22157c9fe7",
+    "header": "include/lunasvg.h",
+    "options": {
+      "static": true,
+      "examples": false,
+      "plutovg": "1.3.1",
+      "plutovgCommit": "6f46696db1da131749d7f97d9c19d697ff8aeb6b"
+    }
+  },
+  "rlottie": {
+    "version": "0.2",
+    "repository": "Samsung/rlottie",
+    "commit": "bf3d272df3916a0c34575ac8286cb0fe672fd0d4",
+    "sha256": "ffa001d34758b394a8ea1c85bad9d974f9a58808f028287bea6abb0165251cc6",
+    "header": "inc/rlottie.h",
+    "options": {
+      "static": true,
+      "imageModule": false,
+      "imageDecoder": "bundled-stb",
+      "thread": false,
+      "cache": true,
+      "examples": false
+    }
+  },
+  "harfbuzz": {
+    "version": "15.1.0",
+    "repository": "harfbuzz/harfbuzz",
+    "commit": "3df40d9b98d6b32f0e4288d4ecfbb158ddb3a372",
+    "sha256": "2fa9f8dae5e2d432d09ba06e915b33ee1ffe7bb38fed878257978c1d55df2d30",
+    "header": "src/hb.h",
+    "options": {
+      "static": true,
+      "freetype": "shared-package-build",
+      "utilities": false
+    }
+  }
+}

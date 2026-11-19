@@ -12,6 +12,7 @@ export abstract class GlslValue<K extends string, A extends ValueArray> {
   readonly [mutableValue] = true;
   private readonly state: LazyValue<K, A>;
 
+  /** Binds component storage to a native value view. @internal */
   protected constructor(
     values: A,
     wrap: (buffer: ArrayBuffer) => NativeValueMapping<K>,
@@ -23,6 +24,7 @@ export abstract class GlslValue<K extends string, A extends ValueArray> {
     return this.state.values;
   }
 
+  /** Native view bound to the shared GLSL component storage. @internal */
   get [glslNative](): NativeValueHandle<K> {
     return nativeValue(this, glslNative, this.state);
   }
@@ -40,6 +42,7 @@ Uint8Array
    */
   readonly scalarType = 'bool';
 
+  /** Converts native boolean component storage. @internal */
   protected constructor(
     components: readonly (number | bigint | boolean)[],
     wrap: (buffer: ArrayBuffer) => NativeValueMapping<K>,

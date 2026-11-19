@@ -1,0 +1,954 @@
+{
+  "version": "6.3",
+  "platform": "macos-arm64",
+  "scope_complete": false,
+  "criteria_reviewed": 19,
+  "independent_review_completed": false,
+  "notice": "Implementer criterion review; local observations do not close renderer/platform/application or independent whole-scope acceptance.",
+  "operation_evidence": {
+    "path": "docs/rmlui/audit/6.3/core-operation-acceptance.json",
+    "bytes": 1967131,
+    "sha256": "ff252d43d0485788e69fee0b26e618d6d1f9eadffb51400063585e51c791fc2d"
+  },
+  "consumer_overload_analysis": {
+    "path": "docs/rmlui/audit/6.3/consumer-overload-coverage.json",
+    "bytes": 1090834,
+    "sha256": "5e746333c1747a7e06bf6433568fffe8cc2ab403e2b73428f518d10258efe4fa",
+    "declarations": 973,
+    "covered": 963,
+    "uncovered": 10,
+    "public_declarations": 963,
+    "public_covered": 963,
+    "public_uncovered": 0,
+    "internal_declarations": 10,
+    "internal_with_allocation_calls": 10,
+    "negative_per_overload_review_complete": true,
+    "negative_evidence": {
+      "path": "docs/rmlui/audit/6.3/consumer-negative-contracts.json",
+      "bytes": 826454,
+      "sha256": "c01a679340b34d7fef24891ff3836bee4103fd0fd82c63efe8960a3778162ed4",
+      "rejected": 963,
+      "unresolved": 0
+    }
+  },
+  "criteria": [
+    {
+      "id": "A1",
+      "title": "Runtime/lifetime",
+      "requirement": "Version is the reviewed baseline, not merely any dotted number. Pre-init and post-shutdown operations reject safely. All aliases become invalid at the defined destruction point. Repeated remove/shutdown is defined. Reinitialisation and same-name contexts cannot revive old handles. One environment cannot destroy another's runtime.",
+      "source_line": 474,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Exact 6.3 assertion, deferred close, observer/generation invalidation, safe repeated shutdown/removal and foreign-environment rejection.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/basic.test.cjs",
+          "scenarios": [],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/lifetime.test.cjs",
+          "scenarios": [
+            "font-before-initialise",
+            "subtree-aliases",
+            "close-update",
+            "same-name-context",
+            "shutdown-reinitialise",
+            "font-after-shutdown",
+            "foreign-worker",
+            "foreign-worker-contention"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/core-boundaries.test.cjs",
+          "scenarios": [
+            "repeated-shutdown-and-preinit-calls-preserve-generations"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A2",
+      "title": "Listener ownership",
+      "requirement": "Shared function on multiple elements/phases works; wrong-tuple removal does nothing; duplicate add is deduplicated; callback/self/later-listener removal during dispatch is safe. Anonymous callbacks are released on subtree/document/context/runtime destruction.",
+      "source_line": 475,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Exact listener tuples, active-dispatch detach behavior and actual WeakRef collection of callback functions and captured payloads.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/events/listeners.test.cjs",
+          "scenarios": [
+            "shared-callback",
+            "wrong-capture",
+            "unmatched-removal",
+            "duplicate-add",
+            "distinct-capture",
+            "dispatch-removal",
+            "callback-exception",
+            "callback-release-remove",
+            "callback-release-subtree",
+            "callback-release-close",
+            "callback-release-unload",
+            "callback-release-context",
+            "callback-release-shutdown"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A3",
+      "title": "Event semantics",
+      "requirement": "Verify native capture/target/bubble order and callback ordering against an upstream oracle, not browser assumptions. Assert target/current identity with missing/duplicate ids, EventId, both stop functions, interruptible=false, default-action behavior, nested dispatch, thrown callbacks and expired event access.",
+      "source_line": 476,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Eight direct Native event traces agree with eight binding traces. RmlUi target listener order and observer expiry are explicit; this does not impose browser default-action semantics.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/events/events.test.cjs",
+          "scenarios": [
+            "identity",
+            "phases",
+            "stops",
+            "nested",
+            "exceptions"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/events/event-registration.test.cjs",
+          "scenarios": [
+            "numeric-listener-identity",
+            "built-in-default-action",
+            "default-action-phases",
+            "context-listeners"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/rtti-default-action.test.cjs",
+          "scenarios": [
+            "manual-tab-action",
+            "manual-input-action",
+            "action-lease"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A4",
+      "title": "Event values",
+      "requirement": "Round-trip supported booleans/numbers/strings/vectors/structured values and exact 64-bit integers. Missing parameters use documented defaults. Drag event yields the correct safe source Element. Transformed targets distinguish projected parameter coordinates from unprojected screen position.",
+      "source_line": 477,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Typed scalar/vector/color/owner-bearing values and exact 64-bit extrema, native defaults, drag identity and projected versus unprojected mouse coordinates have dedicated assertions.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/events/events.test.cjs",
+          "scenarios": [
+            "variants",
+            "parameter-defaults",
+            "parameter-value-copies",
+            "parameter-validation",
+            "parameter-dispatch-lifetime"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/platform/input.test.cjs",
+          "scenarios": [
+            "drag",
+            "pointer"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/values/variant-template-destinations.test.cjs",
+          "scenarios": [
+            "string-bool-and-float-conversions-retain-native-parse-rules",
+            "colour-string-failures-preserve-the-actual-native-destination",
+            "complex-string-destinations-preserve-append-and-replacement",
+            "integer-vectors-use-actual-native-string-converters",
+            "partial-failure-preserves-the-native-converted-prefix",
+            "character-uses-the-native-enum-int64-template",
+            "event-template-defaults-preserve-prefix-and-enum-results",
+            "selectors-do-not-invent-native-integer-vector-storage",
+            "template-accessors-cannot-use-expired-receivers"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A5",
+      "title": "Context registry/documents",
+      "requirement": "Name lookup miss is null; index lookup uses actual upstream clamp behavior; counts follow create/remove. Duplicate create failure is defined. Create empty documents, path/memory/stream loads with relative source resolution, document enumeration, unload-one/all and deferred destruction. Context document lookup's invalid index returns null, distinct from global GetContext's clamp.",
+      "source_line": 478,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Both registry index queries return null outside the actual native range. Duplicate names preserve identity. Memory/path/stream source resolution and deferred unload preserve the native contracts.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/context-state.test.cjs",
+          "scenarios": [
+            "registry"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/core-boundaries.test.cjs",
+          "scenarios": [
+            "duplicate-context-does-not-replace-live-identity"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/context-edge-cases.test.cjs",
+          "scenarios": [
+            "memory-source-url-resolves-relative-styles"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/documents.test.cjs",
+          "scenarios": [
+            "registry",
+            "unloading",
+            "unload-exception"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/io/streams.test.cjs",
+          "scenarios": [
+            "memory-and-file-streams-load-documents-and-styles",
+            "custom-stream-parsing-snapshots-and-native-overloads"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A6",
+      "title": "Context state/input",
+      "requirement": "Name/dimensions/density getters match upstream after set/resize/update; manual density override has an explicit auto-mode policy. Test root/focus/hover, ignored-subtree hit testing, document front/back/unfocus, context listeners. Key modifier snapshots and Page keys, UTF-8 string/codepoint input, wheel axes, mouse leave and touch move/start/end/cancel preserve identifiers and return semantics.",
+      "source_line": 479,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Resize/density shared mirrors, ignored-subtree hit testing, stacking, focus, key snapshot modifiers, Page keys, UTF-8/codepoints, wheel axes and touch identifiers are observed through Native-backed consumers.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/context-state.test.cjs",
+          "scenarios": [
+            "readonly-dimensions",
+            "manual-density",
+            "view-lifetime"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/documents.test.cjs",
+          "scenarios": [
+            "stacking",
+            "hover-modal-unfocus",
+            "transformed-clipped-hit"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/events/event-registration.test.cjs",
+          "scenarios": [
+            "context-listeners"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/platform/input.test.cjs",
+          "scenarios": [
+            "keyboard",
+            "sfml-keys",
+            "unicode",
+            "pointer",
+            "wheel",
+            "touch",
+            "sfml-touch"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/context-edge-cases.test.cjs",
+          "scenarios": [
+            "text-overloads-preserve-control-and-unicode-scalars",
+            "native-char-overload-accepts-ascii-and-ignores-high-bytes"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A7",
+      "title": "Scheduling/scroll",
+      "requirement": "RequestNextUpdate uses the earliest deadline; GetNextUpdateDelay preserves zero/finite/infinity. Mouse-interaction query respects pointer-events independently of paint opacity. Smooth/instant/auto scrolling, positive speed validation, all ScrollIntoView alignments and ancestor parentage behave like upstream.",
+      "source_line": 480,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Earliest deadline and infinity/zero behavior, six opacity/pointer combinations, positive speed checks and every alignment/parentage contract are asserted after the required Native update boundaries.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/context-state.test.cjs",
+          "scenarios": [
+            "scheduling"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/core-boundaries.test.cjs",
+          "scenarios": [
+            "mouse-interaction-follows-pointer-events-independently-of-opacity"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/documents.test.cjs",
+          "scenarios": [
+            "layout-scroll-flags"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/layout.test.cjs",
+          "scenarios": [
+            "all-scroll-alignments-on-both-axes",
+            "nested-scroll-parentage",
+            "smooth-and-auto-scroll"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A8",
+      "title": "DOM ownership",
+      "requirement": "Create/clone/text nodes are owned while detached; append/insert transfer once; remove/replace return valid owned nodes; reinsert works. Wrong-parent/cross-context/cycle inputs cannot double-own/free nodes. Non-DOM children obey count/traversal options. All return paths preserve native subtype.",
+      "source_line": 481,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Detached owners, single transfers, returned removed/replaced nodes, non-DOM traversal and typed wrapper identity retain the real Native tree. Cycles, wrong parents and resource-affine transfers reject.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/dom.test.cjs",
+          "scenarios": [
+            "transfer-and-query",
+            "clone-text-non-dom",
+            "non-dom-siblings",
+            "native-internal-ownership",
+            "invalid-ownership",
+            "listeners-survive-transfer",
+            "detached-descendant-retains-tree",
+            "detached-shutdown"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/controls.test.cjs",
+          "scenarios": [
+            "identity",
+            "types-lifetime"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/layout.test.cjs",
+          "scenarios": [
+            "detached-descendants-reattach-and-replace"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/rendering/resource-release.test.cjs",
+          "scenarios": [
+            "cross-renderer-subtree-transfer-guard"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A9",
+      "title": "DOM queries/state",
+      "requirement": "Class-list replacement, pseudo-class sets, attribute presence/bulk/typed/default behavior, id mutation, owner/context/parent/sibling/child traversal, Closest/Matches/Contains and collection queries match upstream. Explicitly distinguish whole-document GetElementById from utility-root lookup and descendant selectors.",
+      "source_line": 482,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Classes/pseudo sets, typed attributes and absence/defaults, id and relative traversal distinguish whole-document breadth-first IDs from utility roots and descendant selector order.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/element-state.test.cjs",
+          "scenarios": [
+            "classes-pseudo-address",
+            "raw-attributes-and-merge",
+            "native-default-conversions",
+            "integer-boundaries-and-owned-values"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/dom.test.cjs",
+          "scenarios": [
+            "transfer-and-query",
+            "id-search-document-breadth-first-and-selector-descendant-order",
+            "detached-id-search-starts-at-receiver-and-excludes-non-dom-children"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/element-utilities.test.cjs",
+          "scenarios": [
+            "breadth-first-queries-and-stop-tag"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A10",
+      "title": "Geometry/style",
+      "requirement": "After UpdateDocument, assert absolute/client/offset/scroll metrics, boxes and additional offsets, visibility ancestors, point/project success/failure, intrinsic dimensions, containing block, clipping and transformed bounding box. Check local versus resolved properties, inheritance-filtered snapshots and NumericValue resolution. Test animation options and key sequences via property observations/events.",
+      "source_line": 483,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Layout metrics, visibility ancestors, box copies, local/resolved style, unit resolution and animation observations are concrete. Transformed bounds use float32 tolerance below 0.0001 and return null on Native depth-clipping failure.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/layout.test.cjs",
+          "scenarios": [
+            "box-metrics-and-offsets",
+            "computed-visibility-and-hit-test",
+            "scroll-clamping-events-and-overflow",
+            "transform-projection-and-clip-area",
+            "manual-offset-parent-scroll-fixed-and-detachment"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/box.test.cjs",
+          "scenarios": [
+            "element-box-overloads-and-snapshots"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/style/property.test.cjs",
+          "scenarios": [
+            "native-local-iterator-class-inline-custom-and-inheritance-filter",
+            "element-snapshots-inheritance-custom-and-overloads"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/values/numeric-value.test.cjs",
+          "scenarios": [
+            "owned-numeric-values-and-native-equality",
+            "unit-flags-retain-upstream-values",
+            "resolve-all-native-numeric-units",
+            "invalid-values-never-reach-native-arithmetic",
+            "views-outlive-gc-and-runtime",
+            "prototype-setters-and-native-handle-checks",
+            "worker-values-do-not-use-the-main-runtime"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/animation/animation.test.cjs",
+          "scenarios": [
+            "animation-overloads-start-delay-key-sequence-and-snapshots",
+            "alternate-iterations-and-animationend"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/core-boundaries.test.cjs",
+          "scenarios": [
+            "transformed-bounds-use-rendered-native-matrices-and-box-areas"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A11",
+      "title": "Document controls",
+      "requirement": "All ModalFlag/FocusFlag/ScrollFlag combinations; hide/show with Keep modal/focus, autofocus and no-scroll; front/back ordering; IsModal and tab traversal with wrap on/off; title/source and explicit layout refresh. Closing fires unload under a safe deferred-lifetime contract.",
+      "source_line": 484,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "All 24 Modal/Focus/Scroll tuples run from both initial modal states. Hidden IsModal is false; Keep preserves the stored mode. Focus, autofocus scrolling, tab wrap and safe unload timing are asserted.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/document-flags.test.cjs",
+          "scenarios": [
+            "document-flags-false-0-0-0",
+            "document-flags-false-0-0-1",
+            "document-flags-false-0-1-0",
+            "document-flags-false-0-1-1",
+            "document-flags-false-0-2-0",
+            "document-flags-false-0-2-1",
+            "document-flags-false-0-3-0",
+            "document-flags-false-0-3-1",
+            "document-flags-false-1-0-0",
+            "document-flags-false-1-0-1",
+            "document-flags-false-1-1-0",
+            "document-flags-false-1-1-1",
+            "document-flags-false-1-2-0",
+            "document-flags-false-1-2-1",
+            "document-flags-false-1-3-0",
+            "document-flags-false-1-3-1",
+            "document-flags-false-2-0-0",
+            "document-flags-false-2-0-1",
+            "document-flags-false-2-1-0",
+            "document-flags-false-2-1-1",
+            "document-flags-false-2-2-0",
+            "document-flags-false-2-2-1",
+            "document-flags-false-2-3-0",
+            "document-flags-false-2-3-1",
+            "document-flags-true-0-0-0",
+            "document-flags-true-0-0-1",
+            "document-flags-true-0-1-0",
+            "document-flags-true-0-1-1",
+            "document-flags-true-0-2-0",
+            "document-flags-true-0-2-1",
+            "document-flags-true-0-3-0",
+            "document-flags-true-0-3-1",
+            "document-flags-true-1-0-0",
+            "document-flags-true-1-0-1",
+            "document-flags-true-1-1-0",
+            "document-flags-true-1-1-1",
+            "document-flags-true-1-2-0",
+            "document-flags-true-1-2-1",
+            "document-flags-true-1-3-0",
+            "document-flags-true-1-3-1",
+            "document-flags-true-2-0-0",
+            "document-flags-true-2-0-1",
+            "document-flags-true-2-1-0",
+            "document-flags-true-2-1-1",
+            "document-flags-true-2-2-0",
+            "document-flags-true-2-2-1",
+            "document-flags-true-2-3-0",
+            "document-flags-true-2-3-1"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/documents.test.cjs",
+          "scenarios": [
+            "stacking",
+            "show-focus-tabs",
+            "layout-scroll-flags"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/document-header.test.cjs",
+          "scenarios": [
+            "process-header-native-css-source-title-and-hide",
+            "metadata-hide-close-and-deferred-invalidation"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/lifetime.test.cjs",
+          "scenarios": [
+            "close-update"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A12",
+      "title": "Forms/input",
+      "requirement": "Submit(name,value) produces native parameters: disabled/unnamed/non-submitted controls skipped; duplicate names joined by `\", \"`; default submit key honored. Exercise checkbox/radio/text/password submission, input type changes, disabled=false removal, focus effects and change events. Do not impose browser form-array semantics on RmlUi.",
+      "source_line": 485,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Actual submit dictionaries skip disabled/unnamed/unchecked controls, join duplicate names with ', ', preserve the submit key and password raw value, and exercise form-local radio change ordering.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/controls.test.cjs",
+          "scenarios": [
+            "values-submission",
+            "callbacks"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/form-input-contracts.test.cjs",
+          "scenarios": [
+            "form-password-radio-checkbox-and-native-submission",
+            "form-radio-change-order-and-form-local-exclusivity",
+            "form-disabled-and-unchecked-controls-are-omitted",
+            "form-password-empty-unicode-selection-and-type-replacement"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A13",
+      "title": "Selection/textarea",
+      "requirement": "Text/password selection only where upstream supports it; select-all, reversed/clamped ranges, empty selection and Unicode characters; composition visual range without conflating it with committing text. Textarea rows/columns clamp to 1; defaults 2/20; negative maxlength unlimited; wrapping/default/raw-value behavior match native methods.",
+      "source_line": 486,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Codepoint clamping/reversal, password '*' display selection, Unicode and empty ranges, noncommitting composition and textarea defaults/bounds/raw setter behavior match the native widget methods.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/controls.test.cjs",
+          "scenarios": [
+            "unicode-selection",
+            "textarea"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/form-input-contracts.test.cjs",
+          "scenarios": [
+            "form-password-empty-unicode-selection-and-type-replacement"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/platform/text-input.test.cjs",
+          "scenarios": [
+            "native-unicode-editing-selection-and-composition",
+            "composition-replacement-applies-maxlength-to-remaining-text"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A14",
+      "title": "Select/progress/tabs",
+      "requirement": "Select add both overloads before first update; insertion order/index defaults, disabled/nonselectable options, removal of selected option, remove-all, value/selection synchronization, popup hide vs cancel, visibility and emitted change. Progress default/max/clamped getters. Tab string/owned-node replacements, active/removal behavior and native tabchange count.",
+      "source_line": 487,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Both option overloads precede first update. Disabled user clicks and direct selection intentionally differ. Selected removal, popup cancel/hide, progress clamping, tab ownership and event counts are asserted.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/controls.test.cjs",
+          "scenarios": [
+            "options",
+            "popup",
+            "callbacks"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/text-panels.test.cjs",
+          "scenarios": [
+            "progress",
+            "tab-ownership",
+            "tab-events"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/core-boundaries.test.cjs",
+          "scenarios": [
+            "disabled-option-user-action-and-programmatic-selection-use-native-rules"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A15",
+      "title": "Raw text/utilities",
+      "requirement": "CreateTextNode/SetText preserve literal markup characters; GetText returns raw source despite rendering whitespace normalization. GenerateLine consumed length/width/completion and flags, ClearLines/AddLine/GetLines snapshots, suppression/manual layout. Utility root/stop-tag traversal, no-context density=1, string kerning, clipping/bounds, FormatElement/BuildBox/PositionElement and data-controller application.",
+      "source_line": 488,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Raw text remains separate from generated normalized lines; consumed UTF-8 byte lengths and owned line snapshots are checked. Utilities retain root/stop-tag, no-context density, kerning, clipping, formatting and real data-controller contracts.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/text-panels.test.cjs",
+          "scenarios": [
+            "identity",
+            "text-byte-offsets",
+            "text-formatting",
+            "manual-lines",
+            "text-boundaries"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/element-utilities.test.cjs",
+          "scenarios": [
+            "breadth-first-queries-and-stop-tag",
+            "density-and-font-kerning",
+            "bounding-areas-and-ink-overflow",
+            "build-box-and-format",
+            "position-anchors",
+            "scissor-and-force-self",
+            "explicit-data-views-controllers-update-events-and-invalidation"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A16",
+      "title": "Stylesheets",
+      "requirement": "Parse RCSS with source/line errors; combine/merge precedence and media blocks; BuildNodeIndex/resolved definition; missing decorator/keyframes/sprite returns null. Resize/theme/reload/assignment invalidate old compiled views safely. Reload rereads style tags/external files while preserving inline style attributes as upstream specifies.",
+      "source_line": 489,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Merge/media/index/resolved definitions, null metadata, independent snapshots and reload/invalidation are observed. Actual malformed RCSS diagnostics preserve Unicode source URLs and both supplied starting lines; parser recovery still produces the following valid rule.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/style/style-sheet.test.cjs",
+          "scenarios": [
+            "reload-preserves-elements-and-inline-style",
+            "element-definition-matches-hierarchy-and-survives-merge",
+            "compile-media-invalidation-and-owned-combination",
+            "container-merge-preconditions-and-stylesheet-precedence",
+            "interface-invalidates-on-recompilation-and-restart",
+            "named-decorators-and-keyframes-are-independent-snapshots"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/io/streams.test.cjs",
+          "scenarios": [
+            "memory-and-file-streams-load-documents-and-styles"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/style/stylesheet-errors.test.cjs",
+          "scenarios": [
+            "malformed-rcss-source-and-start-line-1",
+            "malformed-rcss-source-and-start-line-40"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A17",
+      "title": "Resources/fonts",
+      "requirement": "All three LoadFontFace overloads, family/style/weight/face-index/fallback behavior; memory survives caller GC and buffer lifecycle. Texture source snapshots, release-existing/missing boolean, release-all/compiled geometry/font resources, then subsequent UI use reloads/regenerates as expected. ReleaseRenderManagers only releases unused managers and honors resource preconditions. No backend implementation verdict is implied.",
+      "source_line": 490,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Every font loading shape, fallback/index/weight and GC snapshot has Native consumers. Texture/geometry/font release and regeneration, missing-resource results and unused-manager preconditions are observed.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/fonts/fonts.test.cjs",
+          "scenarios": [
+            "file-face-index-and-weight",
+            "named-file-face",
+            "competing-weights",
+            "memory-slice-and-snapshot",
+            "memory-collection-index",
+            "caller-buffer-collectible",
+            "invalid-arguments",
+            "lifetime-and-reentrant-release",
+            "fallback-file",
+            "fallback-named-file",
+            "fallback-memory"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/fonts/font-engine.test.cjs",
+          "scenarios": [
+            "all-three-load-overloads"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/rendering/resource-release.test.cjs",
+          "scenarios": [
+            "scoped-release-and-source-snapshots",
+            "unused-manager-cleanup-and-reuse",
+            "detached-resources-block-manager-destruction"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/style/computed-values.test.cjs",
+          "scenarios": [
+            "font-resource-release-invalidates-owned-and-standalone-tokens"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A18",
+      "title": "Data/IME dependencies",
+      "requirement": "Define and test constructor/handle binding, dirty updates, model retrieval/enumeration/removal invalidation, late variables and data controllers; exercise per-runtime/per-context text handler ownership and composition lifecycle. These need a dependent-interface review before \u201cfull data binding/IME\u201d can be accepted.",
+      "source_line": 491,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "Data constructor/handle/type dependencies have a separate exact 131-row declaration ledger and real RML consumer assertions. Per-runtime/context text handlers retain native composition lifecycle. Actual OS candidate-window/device IME acceptance remains a platform gate.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/data/data-model.test.cjs",
+          "scenarios": [
+            "constructors-handles-and-context-invalidation",
+            "native-scalars-dirty-roots-and-live-rml-views",
+            "native-function-bindings-transforms-and-two-way-controls",
+            "late-binding-and-shutdown"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/data/data-defaults.test.cjs",
+          "scenarios": [
+            "attribute-class-style-if-visible-rml-and-text",
+            "value-checked-and-event-controllers-use-native-controls"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/platform/text-input-startup.test.cjs",
+          "scenarios": [
+            "getter-and-null-selection-before-initialise",
+            "pending-handler-adopted-and-callback-retained",
+            "setup-shutdown-invalidates-uninstalled-and-selected-handlers",
+            "rejected-initialise-preserves-pending-selection",
+            "preinit-null-selects-default-and-live-null-disables-selection",
+            "foreign-worker-cannot-touch-pending-owner",
+            "worker-setup-cleanup-releases-owner-without-initialise",
+            "natural-pending-cleanup-never-dispatches-js"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/platform/text-input.test.cjs",
+          "scenarios": [
+            "native-lifecycle-journal-and-canonical-context",
+            "native-unicode-editing-selection-and-composition",
+            "explicit-immediate-callback-order-and-safe-reentry",
+            "replacement-preserves-captured-handler-and-runtime-invalidates",
+            "type-replacement-invalidates-old-context-with-new-identity",
+            "owned-context-callback-cycle-collects",
+            "default-journal-and-unchanged-ownership-have-measured-crossings",
+            "registered-handler-survives-facade-gc-before-widget-creation",
+            "callback-error-propagates-and-next-input-remains-usable",
+            "composition-replacement-applies-maxlength-to-remaining-text",
+            "transferred-widget-retains-original-destroy-handler",
+            "transformed-detached-input-reports-failed-bounds-projection",
+            "explicit-shutdown-delivers-destroy-after-native-invalidation",
+            "environment-cleanup-does-not-dispatch-destroy-js"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    },
+    {
+      "id": "A19",
+      "title": "Public API contract",
+      "requirement": "Compile positive and negative TypeScript usage for each accepted overload and enum. Confirm runtime exports match declarations. Numeric shared views use owned backing storage and correct readonly/live semantics. Every inventory row has a test or an explicitly approved exclusion, not just a documentation entry.",
+      "source_line": 492,
+      "review_status": "locally-observed-managed-contract",
+      "observations": "All 209 runtime value exports match emitted declarations. Shared views retain owned storage and generation semantics. Exact declaration references are normalized. All 963 public callable signatures have resolved positive consumers and a compiler-rejected invalid usage. Ten internal signatures retain actual source allocation calls. This is bounded type-contract evidence, not exhaustive invalid-input or independent whole-scope acceptance.",
+      "assertions": [
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/public-api.test.cjs",
+          "scenarios": [
+            "public-runtime-exports-match-declarations"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/runtime/context-state.test.cjs",
+          "scenarios": [
+            "view-lifetime"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/dom/box.test.cjs",
+          "scenarios": [
+            "box-views-outlive-wrappers-and-runtime"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/style/property.test.cjs",
+          "scenarios": [
+            "mapped-metadata-outlives-collected-wrapper"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        },
+        {
+          "source": "packages/sfml.js-rmlui/test/rendering/mesh.test.cjs",
+          "scenarios": [
+            "resized-and-retired-views-survive-mesh-collection"
+          ],
+          "runtime_log": "/tmp/rmlui-63-completion/renderer-transform-full-runtime.log"
+        }
+      ],
+      "independent_acceptance": false
+    }
+  ],
+  "checks": {
+    "/tmp/rmlui-63-completion/core-19-boundaries-4.log": {
+      "bytes": 331,
+      "sha256": "4a4c80ee90fdb79d1d51ff54db1236b418aaf2131836fd532e43322025315072"
+    },
+    "/tmp/rmlui-63-completion/core-19-lint-6.log": {
+      "bytes": 76,
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397"
+    },
+    "/tmp/rmlui-63-completion/core-19-stylesheet-errors-2.log": {
+      "bytes": 89,
+      "sha256": "e5156c7360c099942dee01ab7b47686e835750ee890e7b939c169897684ee458"
+    },
+    "/tmp/rmlui-63-completion/core-19-consumer-types-3.log": {
+      "bytes": 63,
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4"
+    },
+    "/tmp/rmlui-63-completion/core-19-reconciliation-6.log": {
+      "bytes": 441,
+      "sha256": "618f2b63bd86006aa116b8d636b4f02ee8043f8bbfd2d2e612d2e5615ca047f7"
+    },
+    "/tmp/rmlui-63-completion/core-19-public-exports-2.log": {
+      "bytes": 51,
+      "sha256": "be5046c49d418365af43649ee63fbcf82cef48ca5a1e252aeb9d6dff3120a47f"
+    },
+    "/tmp/rmlui-63-completion/core-19-four-language-comments-2.log": {
+      "bytes": 744,
+      "sha256": "4c6815ad349c3fa38e7f89d7e8fff5e95cdda39612dab27dad8aa82bb627b803"
+    },
+    "/tmp/rmlui-63-completion/consumer-types-4.log": {
+      "bytes": 63,
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4"
+    },
+    "/tmp/rmlui-63-completion/consumer-lint-2.log": {
+      "bytes": 76,
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397"
+    },
+    "/tmp/rmlui-63-completion/consumer-negative-contracts-3.log": {
+      "bytes": 2297,
+      "sha256": "5aca545dd007e05f072ec682e869e8746ef414c074f35c5431f5385ecc6af01b"
+    }
+  },
+  "remaining": [
+    "Full renderer effects, pixels, readable base, perspective and failure protocols",
+    "Platform-device IME, startup/CPU/GPU and available OS checks",
+    "Twenty official applications and 113 VisualTests",
+    "Four-language rendered pages, editor, package/CI and independent whole review"
+  ]
+}

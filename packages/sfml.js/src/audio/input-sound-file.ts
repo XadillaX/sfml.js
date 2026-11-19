@@ -25,6 +25,7 @@ export const cancelAudioInput: unique symbol = Symbol('Audio.cancelInput');
  * @ko 호출 순서대로 16비트 인터리브 PCM을 비동기로 읽는 탐색 가능한 오디오 디코더입니다.
  */
 export class InputSoundFile {
+  /** Native input decoder capability. @internal */
   readonly [audioHandle]: AudioHandle<'input'>;
   private readonly queue = new AudioQueue();
   private u64: BigUint64Array;

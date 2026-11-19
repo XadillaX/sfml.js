@@ -1,0 +1,237 @@
+{
+  "scopeName": "text.rml",
+  "name": "RmlUi Markup",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#cdata"
+    },
+    {
+      "include": "#style-element"
+    },
+    {
+      "include": "#tags"
+    },
+    {
+      "include": "#entities"
+    },
+    {
+      "include": "#data-binding"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.rml",
+          "begin": "<!--",
+          "end": "-->",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.rml"
+            }
+          }
+        }
+      ]
+    },
+    "cdata": {
+      "patterns": [
+        {
+          "name": "string.unquoted.cdata.rml",
+          "begin": "<!\\[CDATA\\[",
+          "end": "\\]\\]>",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.cdata.begin.rml"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.cdata.end.rml"
+            }
+          }
+        }
+      ]
+    },
+    "style-element": {
+      "begin": "(<)(style)\\b[^>]*?(>)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.rml"
+        },
+        "2": {
+          "name": "entity.name.tag.style.rml"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.rml"
+        }
+      },
+      "end": "(</)(style)(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.rml"
+        },
+        "2": {
+          "name": "entity.name.tag.style.rml"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.rml"
+        }
+      },
+      "contentName": "meta.embedded.block.rcss",
+      "patterns": [
+        {
+          "include": "source.rcss"
+        }
+      ]
+    },
+    "tags": {
+      "patterns": [
+        {
+          "include": "#tag-open"
+        },
+        {
+          "include": "#tag-close"
+        }
+      ]
+    },
+    "tag-open": {
+      "begin": "(</?)([a-zA-Z][\\w-]*)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.rml"
+        },
+        "2": {
+          "name": "entity.name.tag.rml"
+        }
+      },
+      "end": "(/?>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.rml"
+        }
+      },
+      "contentName": "meta.tag.metadata.rml",
+      "patterns": [
+        {
+          "include": "#attributes"
+        }
+      ]
+    },
+    "tag-close": {
+      "begin": "(</)([a-zA-Z][\\w-]*)\\s*(>)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.rml"
+        },
+        "2": {
+          "name": "entity.name.tag.rml"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.rml"
+        }
+      },
+      "end": "(?=>)"
+    },
+    "attributes": {
+      "patterns": [
+        {
+          "include": "#style-attribute"
+        },
+        {
+          "include": "#quoted-attribute"
+        },
+        {
+          "include": "#unquoted-attribute"
+        }
+      ]
+    },
+    "style-attribute": {
+      "begin": "\\b(style)(\\s*=)(\\s*[\"])",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.other.attribute-name.rml"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.rml"
+        },
+        "3": {
+          "name": "string.quoted.double.rml punctuation.definition.string.begin.rml"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double.rml punctuation.definition.string.end.rml"
+        }
+      },
+      "contentName": "meta.embedded.inline.rcss",
+      "patterns": [
+        {
+          "include": "source.rcss"
+        }
+      ]
+    },
+    "quoted-attribute": {
+      "match": "([a-zA-Z_][\\w-]*)\\s*(=)\\s*((\"[^\"]*\")|('[^']*'))",
+      "captures": {
+        "1": {
+          "name": "entity.other.attribute-name.rml"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.rml"
+        },
+        "3": {
+          "name": "string.quoted.rml"
+        }
+      }
+    },
+    "unquoted-attribute": {
+      "match": "[a-zA-Z_][\\w-]*",
+      "captures": {
+        "0": {
+          "name": "entity.other.attribute-name.rml"
+        }
+      }
+    },
+    "entities": {
+      "patterns": [
+        {
+          "name": "constant.character.entity.named.rml",
+          "match": "&(lt|gt|quot|amp|nbsp);"
+        },
+        {
+          "name": "constant.character.entity.numeric.rml",
+          "match": "&#[xX]?[0-9a-fA-F]+;"
+        }
+      ]
+    },
+    "data-binding": {
+      "begin": "\\{\\{",
+      "end": "\\}\\}",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.data-binding.begin.rml"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.data-binding.end.rml"
+        }
+      },
+      "contentName": "meta.embedded.data-binding.rml",
+      "patterns": [
+        {
+          "name": "variable.other.data-expression.rml",
+          "match": "[\\w$.]+"
+        },
+        {
+          "name": "keyword.operator.data-expression.rml",
+          "match": "[+\\-*/%!=<>?:|&]+"
+        }
+      ]
+    }
+  }
+}

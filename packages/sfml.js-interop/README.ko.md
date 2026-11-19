@@ -39,7 +39,8 @@ const includeDir = require('sfml.js-interop');
 
 ## 계약
 
-- `sfml-js-interop.h`는 `SFMLJS_INTEROP_VERSION`(현재 1)을 제공하고 `shared-handle.h`, `exception-boundary.h`, `numeric-fields.h`를 가져옵니다.
+- `sfml-js-interop.h`는 `SFMLJS_INTEROP_VERSION`(현재 2)을 제공하고 `shared-handle.h`, `exception-boundary.h`, `numeric-fields.h`, `window-event-source.h`를 가져옵니다.
+- `window-event-source.h`는 애드온 간에 불투명한 네이티브 이벤트 출처를 전달합니다. macOS에서는 실제 SFML 큐 항목과 폴링한 JS 스냅샷이 키 및 텍스트 출처를 유지하며, 공개 `Event` 생성자로 복사한 이벤트는 독립적으로 처리됩니다.
 - 호스트 바인딩의 계약과 SFML 버전을 맞추세요. 버전 매크로가 같다는 것만으로 서로 다른 빌드 설정의 바이너리 간 ABI 호환성을 보장하지는 않습니다.
 - `RenderWindowFrom`은 공개 JavaScript RenderWindow 객체가 아닌 바인딩 내부 네이티브 창 핸들을 받습니다.
 - 네이티브 소유자가 수명을 관리합니다. 뷰와 빌린 포인터는 소유자, 컨텍스트, 창보다 오래 유지할 수 없습니다.

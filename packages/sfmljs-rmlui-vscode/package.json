@@ -1,0 +1,180 @@
+{
+  "name": "sfmljs-rmlui-vscode",
+  "displayName": "RmlUi (RML/RCSS) for sfml.js",
+  "description": "RmlUi RML/RCSS language support via the sfml.js RML language server: grammars, completion, hover documentation, diagnostics and color preview.",
+  "version": "1.2.1",
+  "private": true,
+  "publisher": "xadillax",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0",
+    "node": "^18.19.0 || >=20.5.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "rmlui",
+    "rml",
+    "rcss",
+    "sfml.js",
+    "language-server",
+    "lsp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/sfml.js.git",
+    "directory": "packages/sfmljs-rmlui-vscode"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:rml",
+    "onLanguage:rcss"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "rml",
+        "aliases": [
+          "RML",
+          "RmlUi Markup Language",
+          "rml"
+        ],
+        "extensions": [
+          ".rml"
+        ],
+        "configuration": "./language-configuration/rml.language-configuration.json"
+      },
+      {
+        "id": "rcss",
+        "aliases": [
+          "RCSS",
+          "RmlUi CSS",
+          "rcss"
+        ],
+        "extensions": [
+          ".rcss"
+        ],
+        "configuration": "./language-configuration/rcss.language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "rml",
+        "scopeName": "text.rml",
+        "path": "./syntaxes/rml.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.rcss": "rcss",
+          "meta.embedded.inline.rcss": "rcss"
+        }
+      },
+      {
+        "language": "rcss",
+        "scopeName": "source.rcss",
+        "path": "./syntaxes/rcss.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "rml",
+        "path": "./snippets/rml.code-snippets"
+      },
+      {
+        "language": "rcss",
+        "path": "./snippets/rcss.code-snippets"
+      }
+    ],
+    "commands": [
+      {
+        "command": "rmlui.openDocsRml",
+        "title": "Open RML syntax manual",
+        "category": "RmlUi"
+      },
+      {
+        "command": "rmlui.openDocsRcss",
+        "title": "Open RCSS syntax manual",
+        "category": "RmlUi"
+      },
+      {
+        "command": "rmlui.openDocsProperties",
+        "title": "Open RCSS property index",
+        "category": "RmlUi"
+      },
+      {
+        "command": "rmlui.openDocsDataBindings",
+        "title": "Open data binding manual",
+        "category": "RmlUi"
+      },
+      {
+        "command": "rmlui.restartLanguageServer",
+        "title": "Restart RmlUi language server",
+        "category": "RmlUi"
+      }
+    ],
+    "configuration": {
+      "title": "RmlUi (RML/RCSS)",
+      "properties": {
+        "rmlui.diagnostics.unknownRcssProperties": {
+          "type": "boolean",
+          "scope": "resource",
+          "default": true,
+          "description": "Report RCSS declarations whose property name is not part of the RmlUi 6.3 property set."
+        },
+        "rmlui.diagnostics.unknownRmlTags": {
+          "type": "boolean",
+          "scope": "resource",
+          "default": true,
+          "description": "Report RML tags that are not part of the built-in RmlUi element set as hints."
+        },
+        "rmlui.diagnostics.unknownPseudoClasses": {
+          "type": "boolean",
+          "scope": "resource",
+          "default": true,
+          "description": "Report RCSS pseudo-classes that RmlUi does not recognize."
+        },
+        "rmlui.completion.suggestWorkspaceIdsAndClasses": {
+          "type": "boolean",
+          "scope": "resource",
+          "default": true,
+          "description": "Suggest ids and classes collected from RML documents in the current workspace."
+        },
+        "rmlui.server.trace.server": {
+          "type": "string",
+          "scope": "window",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces communication between VSCode and the RmlUi language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "bundle": "node tools/bundle.cjs",
+    "build": "npm run typecheck && npm run bundle",
+    "lint": "eslint --max-warnings 0 --ext .ts,.js,.cjs .",
+    "test": "npm run lint && npm run build",
+    "test:editor": "node tools/testing/run-editor.cjs",
+    "vsix": "npx --yes @vscode/vsce@latest package --no-dependencies --baseContentUrl https://github.com/XadillaX/sfml.js/blob/HEAD/packages/sfmljs-rmlui-vscode/"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "@types/vscode": "1.80.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^8.57.1",
+    "eslint-config-egg": "^14.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-node": "^11.1.0",
+    "typescript": "5.0.4"
+  }
+}

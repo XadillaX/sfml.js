@@ -1,0 +1,1375 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "record_count": 225,
+  "mapping_complete": true,
+  "scope_complete": false,
+  "review": "generated-enum-source-reconciled",
+  "notice": "Indexed source mapping preserves all 188 Input and 37 EventId declarations without duplicating inventory signatures. Generated members, values, sources and runtime suites are identified exactly; this does not assert device/platform or per-value native execution acceptance. Other ID enums and all original primary statuses remain separate obligations.",
+  "groups": {
+    "Rml::Input::KeyIdentifier": {
+      "managed_type": "KeyIdentifier",
+      "source": "packages/sfml.js-rmlui/src/gen/input.ts",
+      "generator": "packages/sfml.js-rmlui/tools/generate-input.cjs",
+      "runtime_file": "packages/sfml.js-rmlui/test/input.test.cjs"
+    },
+    "Rml::Input::KeyModifier": {
+      "managed_type": "KeyModifier",
+      "source": "packages/sfml.js-rmlui/src/gen/input.ts",
+      "generator": "packages/sfml.js-rmlui/tools/generate-input.cjs",
+      "runtime_file": "packages/sfml.js-rmlui/test/input.test.cjs"
+    },
+    "Rml::EventId": {
+      "managed_type": "EventId",
+      "source": "packages/sfml.js-rmlui/src/gen/events.ts",
+      "generator": "packages/sfml.js-rmlui/tools/generate-events.cjs",
+      "runtime_file": "packages/sfml.js-rmlui/test/event-registration.test.cjs"
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 1530,
+      "group": "Rml::EventId"
+    },
+    {
+      "inventory_index": 1531,
+      "group": "Rml::EventId",
+      "managed_member": "Invalid",
+      "generated_value": 0
+    },
+    {
+      "inventory_index": 1532,
+      "group": "Rml::EventId",
+      "managed_member": "Mousedown",
+      "generated_value": 1
+    },
+    {
+      "inventory_index": 1533,
+      "group": "Rml::EventId",
+      "managed_member": "Mousescroll",
+      "generated_value": 2
+    },
+    {
+      "inventory_index": 1534,
+      "group": "Rml::EventId",
+      "managed_member": "Mouseover",
+      "generated_value": 3
+    },
+    {
+      "inventory_index": 1535,
+      "group": "Rml::EventId",
+      "managed_member": "Mouseout",
+      "generated_value": 4
+    },
+    {
+      "inventory_index": 1536,
+      "group": "Rml::EventId",
+      "managed_member": "Focus",
+      "generated_value": 5
+    },
+    {
+      "inventory_index": 1537,
+      "group": "Rml::EventId",
+      "managed_member": "Blur",
+      "generated_value": 6
+    },
+    {
+      "inventory_index": 1538,
+      "group": "Rml::EventId",
+      "managed_member": "Keydown",
+      "generated_value": 7
+    },
+    {
+      "inventory_index": 1539,
+      "group": "Rml::EventId",
+      "managed_member": "Keyup",
+      "generated_value": 8
+    },
+    {
+      "inventory_index": 1540,
+      "group": "Rml::EventId",
+      "managed_member": "Textinput",
+      "generated_value": 9
+    },
+    {
+      "inventory_index": 1541,
+      "group": "Rml::EventId",
+      "managed_member": "Mouseup",
+      "generated_value": 10
+    },
+    {
+      "inventory_index": 1542,
+      "group": "Rml::EventId",
+      "managed_member": "Click",
+      "generated_value": 11
+    },
+    {
+      "inventory_index": 1543,
+      "group": "Rml::EventId",
+      "managed_member": "Dblclick",
+      "generated_value": 12
+    },
+    {
+      "inventory_index": 1544,
+      "group": "Rml::EventId",
+      "managed_member": "Load",
+      "generated_value": 13
+    },
+    {
+      "inventory_index": 1545,
+      "group": "Rml::EventId",
+      "managed_member": "Unload",
+      "generated_value": 14
+    },
+    {
+      "inventory_index": 1546,
+      "group": "Rml::EventId",
+      "managed_member": "Show",
+      "generated_value": 15
+    },
+    {
+      "inventory_index": 1547,
+      "group": "Rml::EventId",
+      "managed_member": "Hide",
+      "generated_value": 16
+    },
+    {
+      "inventory_index": 1548,
+      "group": "Rml::EventId",
+      "managed_member": "Mousemove",
+      "generated_value": 17
+    },
+    {
+      "inventory_index": 1549,
+      "group": "Rml::EventId",
+      "managed_member": "Dragmove",
+      "generated_value": 18
+    },
+    {
+      "inventory_index": 1550,
+      "group": "Rml::EventId",
+      "managed_member": "Drag",
+      "generated_value": 19
+    },
+    {
+      "inventory_index": 1551,
+      "group": "Rml::EventId",
+      "managed_member": "Dragstart",
+      "generated_value": 20
+    },
+    {
+      "inventory_index": 1552,
+      "group": "Rml::EventId",
+      "managed_member": "Dragover",
+      "generated_value": 21
+    },
+    {
+      "inventory_index": 1553,
+      "group": "Rml::EventId",
+      "managed_member": "Dragdrop",
+      "generated_value": 22
+    },
+    {
+      "inventory_index": 1554,
+      "group": "Rml::EventId",
+      "managed_member": "Dragout",
+      "generated_value": 23
+    },
+    {
+      "inventory_index": 1555,
+      "group": "Rml::EventId",
+      "managed_member": "Dragend",
+      "generated_value": 24
+    },
+    {
+      "inventory_index": 1556,
+      "group": "Rml::EventId",
+      "managed_member": "Handledrag",
+      "generated_value": 25
+    },
+    {
+      "inventory_index": 1557,
+      "group": "Rml::EventId",
+      "managed_member": "Resize",
+      "generated_value": 26
+    },
+    {
+      "inventory_index": 1558,
+      "group": "Rml::EventId",
+      "managed_member": "Scroll",
+      "generated_value": 27
+    },
+    {
+      "inventory_index": 1559,
+      "group": "Rml::EventId",
+      "managed_member": "Animationend",
+      "generated_value": 28
+    },
+    {
+      "inventory_index": 1560,
+      "group": "Rml::EventId",
+      "managed_member": "Transitionend",
+      "generated_value": 29
+    },
+    {
+      "inventory_index": 1561,
+      "group": "Rml::EventId",
+      "managed_member": "Change",
+      "generated_value": 30
+    },
+    {
+      "inventory_index": 1562,
+      "group": "Rml::EventId",
+      "managed_member": "Submit",
+      "generated_value": 31
+    },
+    {
+      "inventory_index": 1563,
+      "group": "Rml::EventId",
+      "managed_member": "Tabchange",
+      "generated_value": 32
+    },
+    {
+      "inventory_index": 1564,
+      "group": "Rml::EventId",
+      "managed_member": "NumDefinedIds",
+      "generated_value": 33
+    },
+    {
+      "inventory_index": 1565,
+      "group": "Rml::EventId",
+      "managed_member": "FirstCustomId",
+      "generated_value": 33
+    },
+    {
+      "inventory_index": 1566,
+      "group": "Rml::EventId",
+      "managed_member": "MaxNumIds",
+      "generated_value": 65535
+    },
+    {
+      "inventory_index": 1567,
+      "group": "Rml::Input::KeyIdentifier"
+    },
+    {
+      "inventory_index": 1568,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_UNKNOWN",
+      "generated_value": 0
+    },
+    {
+      "inventory_index": 1569,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SPACE",
+      "generated_value": 1
+    },
+    {
+      "inventory_index": 1570,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_0",
+      "generated_value": 2
+    },
+    {
+      "inventory_index": 1571,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_1",
+      "generated_value": 3
+    },
+    {
+      "inventory_index": 1572,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_2",
+      "generated_value": 4
+    },
+    {
+      "inventory_index": 1573,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_3",
+      "generated_value": 5
+    },
+    {
+      "inventory_index": 1574,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_4",
+      "generated_value": 6
+    },
+    {
+      "inventory_index": 1575,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_5",
+      "generated_value": 7
+    },
+    {
+      "inventory_index": 1576,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_6",
+      "generated_value": 8
+    },
+    {
+      "inventory_index": 1577,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_7",
+      "generated_value": 9
+    },
+    {
+      "inventory_index": 1578,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_8",
+      "generated_value": 10
+    },
+    {
+      "inventory_index": 1579,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_9",
+      "generated_value": 11
+    },
+    {
+      "inventory_index": 1580,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_A",
+      "generated_value": 12
+    },
+    {
+      "inventory_index": 1581,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_B",
+      "generated_value": 13
+    },
+    {
+      "inventory_index": 1582,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_C",
+      "generated_value": 14
+    },
+    {
+      "inventory_index": 1583,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_D",
+      "generated_value": 15
+    },
+    {
+      "inventory_index": 1584,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_E",
+      "generated_value": 16
+    },
+    {
+      "inventory_index": 1585,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F",
+      "generated_value": 17
+    },
+    {
+      "inventory_index": 1586,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_G",
+      "generated_value": 18
+    },
+    {
+      "inventory_index": 1587,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_H",
+      "generated_value": 19
+    },
+    {
+      "inventory_index": 1588,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_I",
+      "generated_value": 20
+    },
+    {
+      "inventory_index": 1589,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_J",
+      "generated_value": 21
+    },
+    {
+      "inventory_index": 1590,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_K",
+      "generated_value": 22
+    },
+    {
+      "inventory_index": 1591,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_L",
+      "generated_value": 23
+    },
+    {
+      "inventory_index": 1592,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_M",
+      "generated_value": 24
+    },
+    {
+      "inventory_index": 1593,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_N",
+      "generated_value": 25
+    },
+    {
+      "inventory_index": 1594,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_O",
+      "generated_value": 26
+    },
+    {
+      "inventory_index": 1595,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_P",
+      "generated_value": 27
+    },
+    {
+      "inventory_index": 1596,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_Q",
+      "generated_value": 28
+    },
+    {
+      "inventory_index": 1597,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_R",
+      "generated_value": 29
+    },
+    {
+      "inventory_index": 1598,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_S",
+      "generated_value": 30
+    },
+    {
+      "inventory_index": 1599,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_T",
+      "generated_value": 31
+    },
+    {
+      "inventory_index": 1600,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_U",
+      "generated_value": 32
+    },
+    {
+      "inventory_index": 1601,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_V",
+      "generated_value": 33
+    },
+    {
+      "inventory_index": 1602,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_W",
+      "generated_value": 34
+    },
+    {
+      "inventory_index": 1603,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_X",
+      "generated_value": 35
+    },
+    {
+      "inventory_index": 1604,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_Y",
+      "generated_value": 36
+    },
+    {
+      "inventory_index": 1605,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_Z",
+      "generated_value": 37
+    },
+    {
+      "inventory_index": 1606,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_1",
+      "generated_value": 38
+    },
+    {
+      "inventory_index": 1607,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_PLUS",
+      "generated_value": 39
+    },
+    {
+      "inventory_index": 1608,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_COMMA",
+      "generated_value": 40
+    },
+    {
+      "inventory_index": 1609,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_MINUS",
+      "generated_value": 41
+    },
+    {
+      "inventory_index": 1610,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_PERIOD",
+      "generated_value": 42
+    },
+    {
+      "inventory_index": 1611,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_2",
+      "generated_value": 43
+    },
+    {
+      "inventory_index": 1612,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_3",
+      "generated_value": 44
+    },
+    {
+      "inventory_index": 1613,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_4",
+      "generated_value": 45
+    },
+    {
+      "inventory_index": 1614,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_5",
+      "generated_value": 46
+    },
+    {
+      "inventory_index": 1615,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_6",
+      "generated_value": 47
+    },
+    {
+      "inventory_index": 1616,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_7",
+      "generated_value": 48
+    },
+    {
+      "inventory_index": 1617,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_8",
+      "generated_value": 49
+    },
+    {
+      "inventory_index": 1618,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_102",
+      "generated_value": 50
+    },
+    {
+      "inventory_index": 1619,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD0",
+      "generated_value": 51
+    },
+    {
+      "inventory_index": 1620,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD1",
+      "generated_value": 52
+    },
+    {
+      "inventory_index": 1621,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD2",
+      "generated_value": 53
+    },
+    {
+      "inventory_index": 1622,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD3",
+      "generated_value": 54
+    },
+    {
+      "inventory_index": 1623,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD4",
+      "generated_value": 55
+    },
+    {
+      "inventory_index": 1624,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD5",
+      "generated_value": 56
+    },
+    {
+      "inventory_index": 1625,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD6",
+      "generated_value": 57
+    },
+    {
+      "inventory_index": 1626,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD7",
+      "generated_value": 58
+    },
+    {
+      "inventory_index": 1627,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD8",
+      "generated_value": 59
+    },
+    {
+      "inventory_index": 1628,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPAD9",
+      "generated_value": 60
+    },
+    {
+      "inventory_index": 1629,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMPADENTER",
+      "generated_value": 61
+    },
+    {
+      "inventory_index": 1630,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_MULTIPLY",
+      "generated_value": 62
+    },
+    {
+      "inventory_index": 1631,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ADD",
+      "generated_value": 63
+    },
+    {
+      "inventory_index": 1632,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SEPARATOR",
+      "generated_value": 64
+    },
+    {
+      "inventory_index": 1633,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SUBTRACT",
+      "generated_value": 65
+    },
+    {
+      "inventory_index": 1634,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_DECIMAL",
+      "generated_value": 66
+    },
+    {
+      "inventory_index": 1635,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_DIVIDE",
+      "generated_value": 67
+    },
+    {
+      "inventory_index": 1636,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_NEC_EQUAL",
+      "generated_value": 68
+    },
+    {
+      "inventory_index": 1637,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BACK",
+      "generated_value": 69
+    },
+    {
+      "inventory_index": 1638,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_TAB",
+      "generated_value": 70
+    },
+    {
+      "inventory_index": 1639,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_CLEAR",
+      "generated_value": 71
+    },
+    {
+      "inventory_index": 1640,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RETURN",
+      "generated_value": 72
+    },
+    {
+      "inventory_index": 1641,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_PAUSE",
+      "generated_value": 73
+    },
+    {
+      "inventory_index": 1642,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_CAPITAL",
+      "generated_value": 74
+    },
+    {
+      "inventory_index": 1643,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_KANA",
+      "generated_value": 75
+    },
+    {
+      "inventory_index": 1644,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_HANGUL",
+      "generated_value": 76
+    },
+    {
+      "inventory_index": 1645,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_JUNJA",
+      "generated_value": 77
+    },
+    {
+      "inventory_index": 1646,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_FINAL",
+      "generated_value": 78
+    },
+    {
+      "inventory_index": 1647,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_HANJA",
+      "generated_value": 79
+    },
+    {
+      "inventory_index": 1648,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_KANJI",
+      "generated_value": 80
+    },
+    {
+      "inventory_index": 1649,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ESCAPE",
+      "generated_value": 81
+    },
+    {
+      "inventory_index": 1650,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_CONVERT",
+      "generated_value": 82
+    },
+    {
+      "inventory_index": 1651,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NONCONVERT",
+      "generated_value": 83
+    },
+    {
+      "inventory_index": 1652,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ACCEPT",
+      "generated_value": 84
+    },
+    {
+      "inventory_index": 1653,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_MODECHANGE",
+      "generated_value": 85
+    },
+    {
+      "inventory_index": 1654,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_PRIOR",
+      "generated_value": 86
+    },
+    {
+      "inventory_index": 1655,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NEXT",
+      "generated_value": 87
+    },
+    {
+      "inventory_index": 1656,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_END",
+      "generated_value": 88
+    },
+    {
+      "inventory_index": 1657,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_HOME",
+      "generated_value": 89
+    },
+    {
+      "inventory_index": 1658,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LEFT",
+      "generated_value": 90
+    },
+    {
+      "inventory_index": 1659,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_UP",
+      "generated_value": 91
+    },
+    {
+      "inventory_index": 1660,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RIGHT",
+      "generated_value": 92
+    },
+    {
+      "inventory_index": 1661,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_DOWN",
+      "generated_value": 93
+    },
+    {
+      "inventory_index": 1662,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SELECT",
+      "generated_value": 94
+    },
+    {
+      "inventory_index": 1663,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_PRINT",
+      "generated_value": 95
+    },
+    {
+      "inventory_index": 1664,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_EXECUTE",
+      "generated_value": 96
+    },
+    {
+      "inventory_index": 1665,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SNAPSHOT",
+      "generated_value": 97
+    },
+    {
+      "inventory_index": 1666,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_INSERT",
+      "generated_value": 98
+    },
+    {
+      "inventory_index": 1667,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_DELETE",
+      "generated_value": 99
+    },
+    {
+      "inventory_index": 1668,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_HELP",
+      "generated_value": 100
+    },
+    {
+      "inventory_index": 1669,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LWIN",
+      "generated_value": 101
+    },
+    {
+      "inventory_index": 1670,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RWIN",
+      "generated_value": 102
+    },
+    {
+      "inventory_index": 1671,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_APPS",
+      "generated_value": 103
+    },
+    {
+      "inventory_index": 1672,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_POWER",
+      "generated_value": 104
+    },
+    {
+      "inventory_index": 1673,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SLEEP",
+      "generated_value": 105
+    },
+    {
+      "inventory_index": 1674,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_WAKE",
+      "generated_value": 106
+    },
+    {
+      "inventory_index": 1675,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F1",
+      "generated_value": 107
+    },
+    {
+      "inventory_index": 1676,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F2",
+      "generated_value": 108
+    },
+    {
+      "inventory_index": 1677,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F3",
+      "generated_value": 109
+    },
+    {
+      "inventory_index": 1678,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F4",
+      "generated_value": 110
+    },
+    {
+      "inventory_index": 1679,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F5",
+      "generated_value": 111
+    },
+    {
+      "inventory_index": 1680,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F6",
+      "generated_value": 112
+    },
+    {
+      "inventory_index": 1681,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F7",
+      "generated_value": 113
+    },
+    {
+      "inventory_index": 1682,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F8",
+      "generated_value": 114
+    },
+    {
+      "inventory_index": 1683,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F9",
+      "generated_value": 115
+    },
+    {
+      "inventory_index": 1684,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F10",
+      "generated_value": 116
+    },
+    {
+      "inventory_index": 1685,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F11",
+      "generated_value": 117
+    },
+    {
+      "inventory_index": 1686,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F12",
+      "generated_value": 118
+    },
+    {
+      "inventory_index": 1687,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F13",
+      "generated_value": 119
+    },
+    {
+      "inventory_index": 1688,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F14",
+      "generated_value": 120
+    },
+    {
+      "inventory_index": 1689,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F15",
+      "generated_value": 121
+    },
+    {
+      "inventory_index": 1690,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F16",
+      "generated_value": 122
+    },
+    {
+      "inventory_index": 1691,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F17",
+      "generated_value": 123
+    },
+    {
+      "inventory_index": 1692,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F18",
+      "generated_value": 124
+    },
+    {
+      "inventory_index": 1693,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F19",
+      "generated_value": 125
+    },
+    {
+      "inventory_index": 1694,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F20",
+      "generated_value": 126
+    },
+    {
+      "inventory_index": 1695,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F21",
+      "generated_value": 127
+    },
+    {
+      "inventory_index": 1696,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F22",
+      "generated_value": 128
+    },
+    {
+      "inventory_index": 1697,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F23",
+      "generated_value": 129
+    },
+    {
+      "inventory_index": 1698,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_F24",
+      "generated_value": 130
+    },
+    {
+      "inventory_index": 1699,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_NUMLOCK",
+      "generated_value": 131
+    },
+    {
+      "inventory_index": 1700,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_SCROLL",
+      "generated_value": 132
+    },
+    {
+      "inventory_index": 1701,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_FJ_JISHO",
+      "generated_value": 133
+    },
+    {
+      "inventory_index": 1702,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_FJ_MASSHOU",
+      "generated_value": 134
+    },
+    {
+      "inventory_index": 1703,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_FJ_TOUROKU",
+      "generated_value": 135
+    },
+    {
+      "inventory_index": 1704,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_FJ_LOYA",
+      "generated_value": 136
+    },
+    {
+      "inventory_index": 1705,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_FJ_ROYA",
+      "generated_value": 137
+    },
+    {
+      "inventory_index": 1706,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LSHIFT",
+      "generated_value": 138
+    },
+    {
+      "inventory_index": 1707,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RSHIFT",
+      "generated_value": 139
+    },
+    {
+      "inventory_index": 1708,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LCONTROL",
+      "generated_value": 140
+    },
+    {
+      "inventory_index": 1709,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RCONTROL",
+      "generated_value": 141
+    },
+    {
+      "inventory_index": 1710,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LMENU",
+      "generated_value": 142
+    },
+    {
+      "inventory_index": 1711,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RMENU",
+      "generated_value": 143
+    },
+    {
+      "inventory_index": 1712,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_BACK",
+      "generated_value": 144
+    },
+    {
+      "inventory_index": 1713,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_FORWARD",
+      "generated_value": 145
+    },
+    {
+      "inventory_index": 1714,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_REFRESH",
+      "generated_value": 146
+    },
+    {
+      "inventory_index": 1715,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_STOP",
+      "generated_value": 147
+    },
+    {
+      "inventory_index": 1716,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_SEARCH",
+      "generated_value": 148
+    },
+    {
+      "inventory_index": 1717,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_FAVORITES",
+      "generated_value": 149
+    },
+    {
+      "inventory_index": 1718,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_BROWSER_HOME",
+      "generated_value": 150
+    },
+    {
+      "inventory_index": 1719,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_VOLUME_MUTE",
+      "generated_value": 151
+    },
+    {
+      "inventory_index": 1720,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_VOLUME_DOWN",
+      "generated_value": 152
+    },
+    {
+      "inventory_index": 1721,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_VOLUME_UP",
+      "generated_value": 153
+    },
+    {
+      "inventory_index": 1722,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_MEDIA_NEXT_TRACK",
+      "generated_value": 154
+    },
+    {
+      "inventory_index": 1723,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_MEDIA_PREV_TRACK",
+      "generated_value": 155
+    },
+    {
+      "inventory_index": 1724,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_MEDIA_STOP",
+      "generated_value": 156
+    },
+    {
+      "inventory_index": 1725,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_MEDIA_PLAY_PAUSE",
+      "generated_value": 157
+    },
+    {
+      "inventory_index": 1726,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LAUNCH_MAIL",
+      "generated_value": 158
+    },
+    {
+      "inventory_index": 1727,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LAUNCH_MEDIA_SELECT",
+      "generated_value": 159
+    },
+    {
+      "inventory_index": 1728,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LAUNCH_APP1",
+      "generated_value": 160
+    },
+    {
+      "inventory_index": 1729,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LAUNCH_APP2",
+      "generated_value": 161
+    },
+    {
+      "inventory_index": 1730,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_AX",
+      "generated_value": 162
+    },
+    {
+      "inventory_index": 1731,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ICO_HELP",
+      "generated_value": 163
+    },
+    {
+      "inventory_index": 1732,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ICO_00",
+      "generated_value": 164
+    },
+    {
+      "inventory_index": 1733,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_PROCESSKEY",
+      "generated_value": 165
+    },
+    {
+      "inventory_index": 1734,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ICO_CLEAR",
+      "generated_value": 166
+    },
+    {
+      "inventory_index": 1735,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ATTN",
+      "generated_value": 167
+    },
+    {
+      "inventory_index": 1736,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_CRSEL",
+      "generated_value": 168
+    },
+    {
+      "inventory_index": 1737,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_EXSEL",
+      "generated_value": 169
+    },
+    {
+      "inventory_index": 1738,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_EREOF",
+      "generated_value": 170
+    },
+    {
+      "inventory_index": 1739,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_PLAY",
+      "generated_value": 171
+    },
+    {
+      "inventory_index": 1740,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_ZOOM",
+      "generated_value": 172
+    },
+    {
+      "inventory_index": 1741,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_PA1",
+      "generated_value": 173
+    },
+    {
+      "inventory_index": 1742,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_OEM_CLEAR",
+      "generated_value": 174
+    },
+    {
+      "inventory_index": 1743,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LMETA",
+      "generated_value": 175
+    },
+    {
+      "inventory_index": 1744,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_RMETA",
+      "generated_value": 176
+    },
+    {
+      "inventory_index": 1745,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_FIRST_CUSTOM_KEY",
+      "generated_value": 177
+    },
+    {
+      "inventory_index": 1746,
+      "group": "Rml::Input::KeyIdentifier",
+      "managed_member": "KI_LAST_CUSTOM_KEY",
+      "generated_value": 250
+    },
+    {
+      "inventory_index": 1747,
+      "group": "Rml::Input::KeyModifier"
+    },
+    {
+      "inventory_index": 1748,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_CTRL",
+      "generated_value": 1
+    },
+    {
+      "inventory_index": 1749,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_SHIFT",
+      "generated_value": 2
+    },
+    {
+      "inventory_index": 1750,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_ALT",
+      "generated_value": 4
+    },
+    {
+      "inventory_index": 1751,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_META",
+      "generated_value": 8
+    },
+    {
+      "inventory_index": 1752,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_CAPSLOCK",
+      "generated_value": 16
+    },
+    {
+      "inventory_index": 1753,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_NUMLOCK",
+      "generated_value": 32
+    },
+    {
+      "inventory_index": 1754,
+      "group": "Rml::Input::KeyModifier",
+      "managed_member": "KM_SCROLLLOCK",
+      "generated_value": 64
+    }
+  ]
+}

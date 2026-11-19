@@ -1,3 +1,5 @@
+#include <window-event-source.h>
+
 #include <limits>
 #include <string>
 #include <type_traits>
@@ -263,7 +265,9 @@ NAN_METHOD(PollWindowEvent) {
   auto* window = WindowHandle::From(info[0]);
   if (!window) return;
   if (auto event = window->owner()->pollEvent()) {
-    info.GetReturnValue().Set(sfmljs::WindowEvent(*event));
+    auto result = sfmljs::WindowEvent(*event);
+    sfmljs::interop::AttachWindowEventSource(result, *event);
+    info.GetReturnValue().Set(result);
   }
 }
 
@@ -273,7 +277,9 @@ NAN_METHOD(WaitWindowEvent) {
   sf::Time timeout;
   if (!sfmljs::ReadTime(info[1], timeout)) return;
   if (auto event = window->owner()->waitEvent(timeout)) {
-    info.GetReturnValue().Set(sfmljs::WindowEvent(*event));
+    auto result = sfmljs::WindowEvent(*event);
+    sfmljs::interop::AttachWindowEventSource(result, *event);
+    info.GetReturnValue().Set(result);
   }
 }
 

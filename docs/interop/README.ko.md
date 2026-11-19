@@ -13,7 +13,9 @@ sfml.js-interop은 두 바인딩에 공유 네이티브 헤더와 SFML SDK 경�
 }
 ```
 
-`sfml-js-interop.h`는 `SFMLJS_INTEROP_VERSION`(현재 1), `shared-handle.h`, `exception-boundary.h`, `numeric-fields.h`를 제공합니다. 호스트 바인딩의 계약과 SFML 버전을 맞추세요. `RenderWindowFrom`은 공개 JavaScript RenderWindow 객체가 아닌 바인딩 내부 네이티브 창 핸들을 받습니다.
+`sfml-js-interop.h`는 `SFMLJS_INTEROP_VERSION`(현재 2), `shared-handle.h`, `exception-boundary.h`, `numeric-fields.h`, `window-event-source.h`를 제공합니다. 호스트 바인딩의 계약과 SFML 버전을 맞추세요. `RenderWindowFrom`은 공개 JavaScript RenderWindow 객체가 아닌 바인딩 내부 네이티브 창 핸들을 받습니다.
+
+macOS 이벤트 출처 확장은 실제 SFML 큐 항목과 폴링한 JavaScript 스냅샷에 불투명한 출처를 유지합니다. 네이티브 애드온은 호스트 이벤트 스트림을 변경하지 않고 플랫폼 키 및 텍스트의 중복 전달을 식별할 수 있습니다. 공개 `Event` 생성자는 이벤트 데이터만 복사하여 독립적인 이벤트를 만듭니다.
 
 네이티브 소유자가 수명을 관리합니다. 뷰와 빌린 포인터는 소유자, 컨텍스트, 창보다 오래 유지할 수 없습니다. 기록된 그리기에 필요한 자원을 유지하고 호출 시점의 스냅샷을 보존하세요. C++ 콜백을 V8에 노출할 때는 공유 예외 경계를 사용합니다. 버전 매크로가 같다는 사실만으로 서로 다른 빌드 설정의 바이너리 간 ABI 호환성을 보장하지는 않습니다.
 

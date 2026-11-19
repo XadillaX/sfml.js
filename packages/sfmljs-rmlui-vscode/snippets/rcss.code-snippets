@@ -1,0 +1,95 @@
+{
+  "RCSS rule": {
+    "prefix": "rule",
+    "scope": "rcss",
+    "description": "Selector with a declaration block",
+    "body": [
+      "${1:selector} {",
+      "\t${2:property}: ${3:value};",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Media query": {
+    "prefix": "media",
+    "scope": "rcss",
+    "description": "Conditional @media block",
+    "body": [
+      "@media (${1|min-width,max-width,min-height,max-height,min-resolution,max-resolution,orientation,theme|}: ${2:value}) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Keyframes": {
+    "prefix": "keyframes",
+    "scope": "rcss",
+    "description": "Animation keyframes block",
+    "body": [
+      "@keyframes ${1:name} {",
+      "\tfrom {",
+      "\t\t${2:property}: ${3:value};",
+      "\t}",
+      "\tto {",
+      "\t\t${2:property}: ${4:value};",
+      "\t}",
+      "}"
+    ]
+  },
+  "Font face": {
+    "prefix": "font-face",
+    "scope": "rcss",
+    "description": "Declare a loadable font face",
+    "body": [
+      "@font-face {",
+      "\tfont-family: ${1:family};",
+      "\tsrc: ${2:font.ttf};",
+      "\tfont-weight: ${3|normal,bold|};",
+      "\tfont-style: ${4|normal,italic|};",
+      "}"
+    ]
+  },
+  "Sprite sheet": {
+    "prefix": "spritesheet",
+    "scope": "rcss",
+    "description": "Declare a sprite sheet and named sprite rectangles",
+    "body": [
+      "@spritesheet ${1:name} {",
+      "\timage: ${2:image.png};",
+      "\t${3:sprite}: ${4:0px} ${5:0px} ${6:32px} ${7:32px};",
+      "}"
+    ]
+  },
+  "Custom decorator": {
+    "prefix": "decorator",
+    "scope": "rcss",
+    "description": "Declare a named custom decorator",
+    "body": [
+      "@decorator ${1:name} : ${2|image,ninepatch,tiled-box,tiled-horizontal,tiled-vertical,gradient,linear-gradient,radial-gradient,conic-gradient,shader,text|} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Flex container": {
+    "prefix": "flex",
+    "scope": "rcss",
+    "description": "Block flex container with centered content",
+    "body": [
+      "display: flex;",
+      "flex-direction: ${1|row,row-reverse,column,column-reverse|};",
+      "align-items: ${2|flex-start,flex-end,center,baseline,stretch|};",
+      "justify-content: ${3|flex-start,flex-end,center,space-between,space-around,space-evenly|};",
+      "gap: ${4:8dp};"
+    ]
+  },
+  "Absolute center": {
+    "prefix": "center",
+    "scope": "rcss",
+    "description": "Absolutely position an element at the center of its containing block",
+    "body": [
+      "position: absolute;",
+      "left: 50%;",
+      "top: 50%;",
+      "transform: translate(-50%, -50%);"
+    ]
+  }
+}

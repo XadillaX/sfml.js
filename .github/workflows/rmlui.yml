@@ -1,0 +1,100 @@
+name: RmlUi and editor CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      require-publication:
+        description: Require the complete release certification ledger
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, macos-latest, windows-2022]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    env:
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      GALLIUM_DRIVER: llvmpipe
+      NODE_OPTIONS: --max-old-space-size=4096
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22.x"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Configure existing Windows C++ toolchain
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./tools/ci/configure-msvc.ps1
+      - name: Install Windows software OpenGL
+        if: runner.os == 'Windows'
+        uses: ssciwr/setup-mesa-dist-win@v3
+        with:
+          version: "26.0.3"
+      - name: Install Linux native dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential xvfb xauth libgl1-mesa-dev libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libfreetype-dev libflac-dev libvorbis-dev libopenal-dev libmbedtls-dev
+      - name: Prepare existing macOS toolchain
+        if: runner.os == 'macOS'
+        run: cmake --version
+      - name: Install workspace dependencies
+        run: node common/scripts/install-run-rush.js install
+      - name: Build workspace packages
+        run: node common/scripts/install-run-rush.js build
+      - name: Verify RmlUi declarations, styles and source package
+        run: |
+          npm --prefix packages/sfml.js-rmlui run lint
+          npm --prefix packages/sfml.js-rmlui run cpplint
+          npm --prefix packages/sfml.js-rmlui run test:types
+          npm --prefix packages/sfml.js-rmlui run test:package
+      - name: Verify diagnosed upstream parity policy
+        run: python -B packages/sfml.js-rmlui/test/visual/acceptance.test.py
+      - name: Run Linux RmlUi runtime suites
+        if: runner.os == 'Linux'
+        run: |
+          xvfb-run -a -s "-screen 0 1280x1024x24 -noreset" npm --prefix packages/sfml.js-rmlui run test:runtime
+      - name: Run macOS and Windows RmlUi runtime suites
+        if: runner.os != 'Linux'
+        run: npm --prefix packages/sfml.js-rmlui run test:runtime
+      - name: Verify original macOS game references and lifecycles
+        if: runner.os == 'macOS'
+        run: npm --prefix packages/sfml.js-rmlui run test:official-native
+      - name: Verify language server and extension
+        run: |
+          npm --prefix packages/sfmljs-rmlui-language-server test
+          npm --prefix packages/sfmljs-rmlui-vscode test
+          mkdir -p "$RUNNER_TEMP/rmlui-acceptance"
+          npm --prefix packages/sfmljs-rmlui-vscode run vsix -- --out "$RUNNER_TEMP/rmlui-acceptance/rmlui.vsix"
+          python packages/sfmljs-rmlui-vscode/tools/packaging/verify-vsix.py "$RUNNER_TEMP/rmlui-acceptance/rmlui.vsix"
+      - name: Preserve verified VSIX and native application inventory
+        uses: actions/upload-artifact@v7
+        with:
+          name: rmlui-${{ runner.os }}-${{ runner.arch }}
+          path: |
+            ${{ runner.temp }}/rmlui-acceptance/rmlui.vsix
+            packages/sfml.js-rmlui/build/Release/rmlui.node
+            packages/sfml.js-rmlui/build/Release/invaders.node
+            packages/sfml.js-rmlui/build/Release/lua_invaders.node
+          if-no-files-found: error
+      - name: Require complete acceptance before publication
+        if: inputs.require-publication == true
+        run: npm --prefix packages/sfml.js-rmlui run test:publication

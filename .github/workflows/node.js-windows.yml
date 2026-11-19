@@ -18,15 +18,17 @@ jobs:
         node-version: [20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v7
       with:
         python-version: "3.11"
-    - uses: microsoft/setup-msbuild@v2
+    - name: Configure existing Windows C++ toolchain
+      shell: powershell
+      run: ./tools/ci/configure-msvc.ps1
     # Mirrors ssciwr/setup-mesa-dist-win@v3 (download, "7z x", systemwidedeploy.cmd 1)
     # but retries the browser URL and falls back to the GitHub API asset endpoint,
     # whose CDN path survives github.com release 504 outages.

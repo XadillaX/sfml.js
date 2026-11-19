@@ -1,0 +1,2270 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "converter_records": 317,
+  "concrete_direct_specializations_executed": 152,
+  "generic_method_records": 4,
+  "consumer_records": 26,
+  "scope_complete": false,
+  "notice": "Exact source support and consumer reconciliation, not whole API acceptance. The original parser did not emit the unsupported-String partial specialization at TypeConverter.inl:416-429; its actual compile-time rejection is separately verified without fabricating an original declaration.",
+  "native_groups": {
+    "scalars": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-scalars.cc",
+      "function": "CheckScalars",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Explicit native numeric storage and checked scalar defaults; long widths are native C++ domains, not additional JS storage tags.",
+      "source_sha256": "4cba5f6c9b19bee8eae977cc7e181dbb59133c363999139a003e8d49f5dc7690"
+    },
+    "characters": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-scalars.cc",
+      "function": "CheckCharacters",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Direct char/Character conversions remain C++ support; Variant enums use their distinct int64 route and explicit character selectors.",
+      "source_sha256": "4cba5f6c9b19bee8eae977cc7e181dbb59133c363999139a003e8d49f5dc7690"
+    },
+    "aggregate-copies": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-scalars.cc",
+      "function": "CheckVectorsAndColours",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Typed vector/colour values; integer vectors are conversion destinations, with no invented Variant integer-vector storage.",
+      "source_sha256": "4cba5f6c9b19bee8eae977cc7e181dbb59133c363999139a003e8d49f5dc7690"
+    },
+    "pointer-string-copies": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-scalars.cc",
+      "function": "CheckPointersAndStrings",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Native pointer copies map to guarded ScriptInterface/opaque owners; strings and aggregate values retain snapshot semantics.",
+      "source_sha256": "4cba5f6c9b19bee8eae977cc7e181dbb59133c363999139a003e8d49f5dc7690"
+    },
+    "numeric-strings": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-strings.cc",
+      "function": "CheckNumericStrings",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Variant/Property/attribute/event typed numeric destinations preserve native decimal-prefix parsing and checked integer ranges.",
+      "source_sha256": "e2d46ba1e2c1b8ded59d55cf729832722455768ee83bdeb87530b2bab8bbf5e9"
+    },
+    "bool-char-pointer-strings": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-strings.cc",
+      "function": "CheckBoolCharAndPointers",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Bool parsing preserves case and whitespace rules; native-only pointer formatting remains unchanged and JS string consumers reject pointer serialization.",
+      "source_sha256": "e2d46ba1e2c1b8ded59d55cf729832722455768ee83bdeb87530b2bab8bbf5e9"
+    },
+    "vector-strings": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-strings.cc",
+      "function": "CheckVectorStrings",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Integer-vector prefix mutation and float-component atof semantics; native comma-separated text output.",
+      "source_sha256": "e2d46ba1e2c1b8ded59d55cf729832722455768ee83bdeb87530b2bab8bbf5e9"
+    },
+    "colour-generic-defaults": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-strings.cc",
+      "function": "CheckColoursAndDefaults",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Empty byte-colour strings preserve defaults; invalid nonempty strings reset to opaque black. Unsupported non-string destinations preserve native initial values and report false.",
+      "source_sha256": "e2d46ba1e2c1b8ded59d55cf729832722455768ee83bdeb87530b2bab8bbf5e9"
+    },
+    "units": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-complex.cc",
+      "function": "CheckUnits",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Native individual unit suffixes support property serialization; unsupported/composite units preserve the native String default.",
+      "source_sha256": "4b438a23a286b77d16108c2329714c8d70c3af09eee7e82e01630ff712394ed6"
+    },
+    "transforms": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-complex.cc",
+      "function": "CheckTransforms",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Shared native transform identity and replacement serialization.",
+      "source_sha256": "4b438a23a286b77d16108c2329714c8d70c3af09eee7e82e01630ff712394ed6"
+    },
+    "motion-lists": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-complex.cc",
+      "function": "CheckTransitionsAndAnimations",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Owned transition/animation snapshots and String append behavior.",
+      "source_sha256": "4b438a23a286b77d16108c2329714c8d70c3af09eee7e82e01630ff712394ed6"
+    },
+    "effects": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-complex.cc",
+      "function": "CheckDeclarationEffects",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Native shared declaration identity; JS writes create new snapshots. Empty values and cached append behavior are retained.",
+      "source_sha256": "4b438a23a286b77d16108c2329714c8d70c3af09eee7e82e01630ff712394ed6"
+    },
+    "stops-shadows": {
+      "source": "packages/sfml.js-rmlui/test/native/type-converter-complex.cc",
+      "function": "CheckStopsAndShadows",
+      "native_evidence": {
+        "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+        "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+        "literal_pass_lines": 25
+      },
+      "js_contract": "Typed premultiplied values, independent list copies, unit filtering and replacement serialization.",
+      "source_sha256": "4b438a23a286b77d16108c2329714c8d70c3af09eee7e82e01630ff712394ed6"
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 3100,
+      "exact_key": "Core/TypeConverter.h|13|EnumDecl|Rml::Unit|Unit|Rml::Unit",
+      "native_group": "units",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3101,
+      "exact_key": "Core/TypeConverter.h|23|ClassTemplate|Rml::TypeConverter|TypeConverter<SourceType, DestType>|",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3102,
+      "exact_key": "Core/TypeConverter.h|25|CXXMethod|Rml::TypeConverter::Convert|Convert(const SourceType &, DestType &)|bool (const SourceType &, DestType &)",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3103,
+      "exact_key": "Core/TypeConverter.h|29|FunctionTemplate|Rml::ToString|ToString(const T &, String)|String (const T &, String)",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3104,
+      "exact_key": "Core/TypeConverter.h|37|FunctionTemplate|Rml::FromString|FromString(const String &, T)|T (const String &, T)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3105,
+      "exact_key": "Core/TypeConverter.h|47|ClassDecl|Rml::TypeConverter|TypeConverter<Unit, String>|Rml::TypeConverter<Unit, String>",
+      "native_group": "units",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3106,
+      "exact_key": "Core/TypeConverter.h|49|CXXMethod|Rml::TypeConverter::Convert|Convert(const Unit &, String &)|bool (const Unit &, String &)",
+      "native_group": "units",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3107,
+      "exact_key": "Core/TypeConverter.h|52|ClassDecl|Rml::TypeConverter|TypeConverter<Colourb, String>|Rml::TypeConverter<Colourb, String>",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3108,
+      "exact_key": "Core/TypeConverter.h|54|CXXMethod|Rml::TypeConverter::Convert|Convert(const Colourb &, String &)|bool (const Colourb &, String &)",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3109,
+      "exact_key": "Core/TypeConverter.h|57|ClassDecl|Rml::TypeConverter|TypeConverter<String, Colourb>|Rml::TypeConverter<String, Colourb>",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3110,
+      "exact_key": "Core/TypeConverter.h|59|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Colourb &)|bool (const String &, Colourb &)",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3111,
+      "exact_key": "Core/TypeConverter.h|63|ClassDecl|Rml::TypeConverter|TypeConverter<TransformPtr, TransformPtr>|Rml::TypeConverter<TransformPtr, TransformPtr>",
+      "native_group": "transforms",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3112,
+      "exact_key": "Core/TypeConverter.h|65|CXXMethod|Rml::TypeConverter::Convert|Convert(const TransformPtr &, TransformPtr &)|bool (const TransformPtr &, TransformPtr &)",
+      "native_group": "transforms",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3113,
+      "exact_key": "Core/TypeConverter.h|69|ClassDecl|Rml::TypeConverter|TypeConverter<TransformPtr, String>|Rml::TypeConverter<TransformPtr, String>",
+      "native_group": "transforms",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3114,
+      "exact_key": "Core/TypeConverter.h|71|CXXMethod|Rml::TypeConverter::Convert|Convert(const TransformPtr &, String &)|bool (const TransformPtr &, String &)",
+      "native_group": "transforms",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3115,
+      "exact_key": "Core/TypeConverter.h|75|ClassDecl|Rml::TypeConverter|TypeConverter<TransitionList, TransitionList>|Rml::TypeConverter<TransitionList, TransitionList>",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3116,
+      "exact_key": "Core/TypeConverter.h|77|CXXMethod|Rml::TypeConverter::Convert|Convert(const TransitionList &, TransitionList &)|bool (const TransitionList &, TransitionList &)",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3117,
+      "exact_key": "Core/TypeConverter.h|80|ClassDecl|Rml::TypeConverter|TypeConverter<TransitionList, String>|Rml::TypeConverter<TransitionList, String>",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3118,
+      "exact_key": "Core/TypeConverter.h|82|CXXMethod|Rml::TypeConverter::Convert|Convert(const TransitionList &, String &)|bool (const TransitionList &, String &)",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3119,
+      "exact_key": "Core/TypeConverter.h|86|ClassDecl|Rml::TypeConverter|TypeConverter<AnimationList, AnimationList>|Rml::TypeConverter<AnimationList, AnimationList>",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3120,
+      "exact_key": "Core/TypeConverter.h|88|CXXMethod|Rml::TypeConverter::Convert|Convert(const AnimationList &, AnimationList &)|bool (const AnimationList &, AnimationList &)",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3121,
+      "exact_key": "Core/TypeConverter.h|91|ClassDecl|Rml::TypeConverter|TypeConverter<AnimationList, String>|Rml::TypeConverter<AnimationList, String>",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3122,
+      "exact_key": "Core/TypeConverter.h|93|CXXMethod|Rml::TypeConverter::Convert|Convert(const AnimationList &, String &)|bool (const AnimationList &, String &)",
+      "native_group": "motion-lists",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3123,
+      "exact_key": "Core/TypeConverter.h|97|ClassDecl|Rml::TypeConverter|TypeConverter<DecoratorsPtr, DecoratorsPtr>|Rml::TypeConverter<DecoratorsPtr, DecoratorsPtr>",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3124,
+      "exact_key": "Core/TypeConverter.h|99|CXXMethod|Rml::TypeConverter::Convert|Convert(const DecoratorsPtr &, DecoratorsPtr &)|bool (const DecoratorsPtr &, DecoratorsPtr &)",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3125,
+      "exact_key": "Core/TypeConverter.h|102|ClassDecl|Rml::TypeConverter|TypeConverter<DecoratorsPtr, String>|Rml::TypeConverter<DecoratorsPtr, String>",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3126,
+      "exact_key": "Core/TypeConverter.h|104|CXXMethod|Rml::TypeConverter::Convert|Convert(const DecoratorsPtr &, String &)|bool (const DecoratorsPtr &, String &)",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3127,
+      "exact_key": "Core/TypeConverter.h|107|ClassDecl|Rml::TypeConverter|TypeConverter<FiltersPtr, FiltersPtr>|Rml::TypeConverter<FiltersPtr, FiltersPtr>",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3128,
+      "exact_key": "Core/TypeConverter.h|109|CXXMethod|Rml::TypeConverter::Convert|Convert(const FiltersPtr &, FiltersPtr &)|bool (const FiltersPtr &, FiltersPtr &)",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3129,
+      "exact_key": "Core/TypeConverter.h|112|ClassDecl|Rml::TypeConverter|TypeConverter<FiltersPtr, String>|Rml::TypeConverter<FiltersPtr, String>",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3130,
+      "exact_key": "Core/TypeConverter.h|114|CXXMethod|Rml::TypeConverter::Convert|Convert(const FiltersPtr &, String &)|bool (const FiltersPtr &, String &)",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3131,
+      "exact_key": "Core/TypeConverter.h|118|ClassDecl|Rml::TypeConverter|TypeConverter<FontEffectsPtr, FontEffectsPtr>|Rml::TypeConverter<FontEffectsPtr, FontEffectsPtr>",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3132,
+      "exact_key": "Core/TypeConverter.h|120|CXXMethod|Rml::TypeConverter::Convert|Convert(const FontEffectsPtr &, FontEffectsPtr &)|bool (const FontEffectsPtr &, FontEffectsPtr &)",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3133,
+      "exact_key": "Core/TypeConverter.h|123|ClassDecl|Rml::TypeConverter|TypeConverter<FontEffectsPtr, String>|Rml::TypeConverter<FontEffectsPtr, String>",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3134,
+      "exact_key": "Core/TypeConverter.h|125|CXXMethod|Rml::TypeConverter::Convert|Convert(const FontEffectsPtr &, String &)|bool (const FontEffectsPtr &, String &)",
+      "native_group": "effects",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3135,
+      "exact_key": "Core/TypeConverter.h|129|ClassDecl|Rml::TypeConverter|TypeConverter<ColorStopList, ColorStopList>|Rml::TypeConverter<ColorStopList, ColorStopList>",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3136,
+      "exact_key": "Core/TypeConverter.h|131|CXXMethod|Rml::TypeConverter::Convert|Convert(const ColorStopList &, ColorStopList &)|bool (const ColorStopList &, ColorStopList &)",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3137,
+      "exact_key": "Core/TypeConverter.h|134|ClassDecl|Rml::TypeConverter|TypeConverter<ColorStopList, String>|Rml::TypeConverter<ColorStopList, String>",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3138,
+      "exact_key": "Core/TypeConverter.h|136|CXXMethod|Rml::TypeConverter::Convert|Convert(const ColorStopList &, String &)|bool (const ColorStopList &, String &)",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3139,
+      "exact_key": "Core/TypeConverter.h|140|ClassDecl|Rml::TypeConverter|TypeConverter<BoxShadowList, BoxShadowList>|Rml::TypeConverter<BoxShadowList, BoxShadowList>",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3140,
+      "exact_key": "Core/TypeConverter.h|142|CXXMethod|Rml::TypeConverter::Convert|Convert(const BoxShadowList &, BoxShadowList &)|bool (const BoxShadowList &, BoxShadowList &)",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3141,
+      "exact_key": "Core/TypeConverter.h|145|ClassDecl|Rml::TypeConverter|TypeConverter<BoxShadowList, String>|Rml::TypeConverter<BoxShadowList, String>",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3142,
+      "exact_key": "Core/TypeConverter.h|147|CXXMethod|Rml::TypeConverter::Convert|Convert(const BoxShadowList &, String &)|bool (const BoxShadowList &, String &)",
+      "native_group": "stops-shadows",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3143,
+      "exact_key": "Core/TypeConverter.inl|4|CXXMethod|Rml::TypeConverter::Convert|Convert(const SourceType &, DestType &)|bool (const SourceType &, DestType &)",
+      "native_group": "colour-generic-defaults",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3144,
+      "exact_key": "Core/TypeConverter.inl|49|ClassDecl|Rml::TypeConverter|TypeConverter<int, int>|Rml::TypeConverter<int, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3145,
+      "exact_key": "Core/TypeConverter.inl|49|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, int &)|bool (const int &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3146,
+      "exact_key": "Core/TypeConverter.inl|50|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, unsigned int>|Rml::TypeConverter<unsigned int, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3147,
+      "exact_key": "Core/TypeConverter.inl|50|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, unsigned int &)|bool (const unsigned int &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3148,
+      "exact_key": "Core/TypeConverter.inl|51|ClassDecl|Rml::TypeConverter|TypeConverter<long, long>|Rml::TypeConverter<long, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3149,
+      "exact_key": "Core/TypeConverter.inl|51|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, long &)|bool (const long &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3150,
+      "exact_key": "Core/TypeConverter.inl|52|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, unsigned long>|Rml::TypeConverter<unsigned long, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3151,
+      "exact_key": "Core/TypeConverter.inl|52|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, unsigned long &)|bool (const unsigned long &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3152,
+      "exact_key": "Core/TypeConverter.inl|53|ClassDecl|Rml::TypeConverter|TypeConverter<long long, long long>|Rml::TypeConverter<long long, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3153,
+      "exact_key": "Core/TypeConverter.inl|53|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, long long &)|bool (const long long &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3154,
+      "exact_key": "Core/TypeConverter.inl|54|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, unsigned long long>|Rml::TypeConverter<unsigned long long, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3155,
+      "exact_key": "Core/TypeConverter.inl|54|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, unsigned long long &)|bool (const unsigned long long &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3156,
+      "exact_key": "Core/TypeConverter.inl|55|ClassDecl|Rml::TypeConverter|TypeConverter<float, float>|Rml::TypeConverter<float, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3157,
+      "exact_key": "Core/TypeConverter.inl|55|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, float &)|bool (const float &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3158,
+      "exact_key": "Core/TypeConverter.inl|56|ClassDecl|Rml::TypeConverter|TypeConverter<double, double>|Rml::TypeConverter<double, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3159,
+      "exact_key": "Core/TypeConverter.inl|56|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, double &)|bool (const double &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3160,
+      "exact_key": "Core/TypeConverter.inl|57|ClassDecl|Rml::TypeConverter|TypeConverter<bool, bool>|Rml::TypeConverter<bool, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3161,
+      "exact_key": "Core/TypeConverter.inl|57|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, bool &)|bool (const bool &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3162,
+      "exact_key": "Core/TypeConverter.inl|58|ClassDecl|Rml::TypeConverter|TypeConverter<char, char>|Rml::TypeConverter<char, char>",
+      "native_group": "characters",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3163,
+      "exact_key": "Core/TypeConverter.inl|58|CXXMethod|Rml::TypeConverter::Convert|Convert(const char &, char &)|bool (const char &, char &)",
+      "native_group": "characters",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3164,
+      "exact_key": "Core/TypeConverter.inl|59|ClassDecl|Rml::TypeConverter|TypeConverter<Character, Character>|Rml::TypeConverter<Character, Character>",
+      "native_group": "characters",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3165,
+      "exact_key": "Core/TypeConverter.inl|59|CXXMethod|Rml::TypeConverter::Convert|Convert(const Character &, Character &)|bool (const Character &, Character &)",
+      "native_group": "characters",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3166,
+      "exact_key": "Core/TypeConverter.inl|60|ClassDecl|Rml::TypeConverter|TypeConverter<Vector2i, Vector2i>|Rml::TypeConverter<Vector2i, Vector2i>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3167,
+      "exact_key": "Core/TypeConverter.inl|60|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector2i &, Vector2i &)|bool (const Vector2i &, Vector2i &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3168,
+      "exact_key": "Core/TypeConverter.inl|61|ClassDecl|Rml::TypeConverter|TypeConverter<Vector2f, Vector2f>|Rml::TypeConverter<Vector2f, Vector2f>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3169,
+      "exact_key": "Core/TypeConverter.inl|61|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector2f &, Vector2f &)|bool (const Vector2f &, Vector2f &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3170,
+      "exact_key": "Core/TypeConverter.inl|62|ClassDecl|Rml::TypeConverter|TypeConverter<Vector3i, Vector3i>|Rml::TypeConverter<Vector3i, Vector3i>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3171,
+      "exact_key": "Core/TypeConverter.inl|62|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector3i &, Vector3i &)|bool (const Vector3i &, Vector3i &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3172,
+      "exact_key": "Core/TypeConverter.inl|63|ClassDecl|Rml::TypeConverter|TypeConverter<Vector3f, Vector3f>|Rml::TypeConverter<Vector3f, Vector3f>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3173,
+      "exact_key": "Core/TypeConverter.inl|63|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector3f &, Vector3f &)|bool (const Vector3f &, Vector3f &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3174,
+      "exact_key": "Core/TypeConverter.inl|64|ClassDecl|Rml::TypeConverter|TypeConverter<Vector4i, Vector4i>|Rml::TypeConverter<Vector4i, Vector4i>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3175,
+      "exact_key": "Core/TypeConverter.inl|64|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector4i &, Vector4i &)|bool (const Vector4i &, Vector4i &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3176,
+      "exact_key": "Core/TypeConverter.inl|65|ClassDecl|Rml::TypeConverter|TypeConverter<Vector4f, Vector4f>|Rml::TypeConverter<Vector4f, Vector4f>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3177,
+      "exact_key": "Core/TypeConverter.inl|65|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector4f &, Vector4f &)|bool (const Vector4f &, Vector4f &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3178,
+      "exact_key": "Core/TypeConverter.inl|66|ClassDecl|Rml::TypeConverter|TypeConverter<Colourf, Colourf>|Rml::TypeConverter<Colourf, Colourf>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3179,
+      "exact_key": "Core/TypeConverter.inl|66|CXXMethod|Rml::TypeConverter::Convert|Convert(const Colourf &, Colourf &)|bool (const Colourf &, Colourf &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3180,
+      "exact_key": "Core/TypeConverter.inl|67|ClassDecl|Rml::TypeConverter|TypeConverter<Colourb, Colourb>|Rml::TypeConverter<Colourb, Colourb>",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3181,
+      "exact_key": "Core/TypeConverter.inl|67|CXXMethod|Rml::TypeConverter::Convert|Convert(const Colourb &, Colourb &)|bool (const Colourb &, Colourb &)",
+      "native_group": "aggregate-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3182,
+      "exact_key": "Core/TypeConverter.inl|68|ClassDecl|Rml::TypeConverter|TypeConverter<String, String>|Rml::TypeConverter<String, String>",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3183,
+      "exact_key": "Core/TypeConverter.inl|68|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, String &)|bool (const String &, String &)",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3184,
+      "exact_key": "Core/TypeConverter.inl|71|ClassDecl|Rml::ScriptInterface|ScriptInterface|Rml::ScriptInterface",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3185,
+      "exact_key": "Core/TypeConverter.inl|72|TypedefDecl|Rml::ScriptInterfacePtr|ScriptInterfacePtr|Rml::ScriptInterfacePtr",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3186,
+      "exact_key": "Core/TypeConverter.inl|73|ClassDecl|Rml::TypeConverter|TypeConverter<ScriptInterfacePtr, ScriptInterfacePtr>|Rml::TypeConverter<ScriptInterfacePtr, ScriptInterfacePtr>",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3187,
+      "exact_key": "Core/TypeConverter.inl|73|CXXMethod|Rml::TypeConverter::Convert|Convert(const ScriptInterfacePtr &, ScriptInterfacePtr &)|bool (const ScriptInterfacePtr &, ScriptInterfacePtr &)",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3188,
+      "exact_key": "Core/TypeConverter.inl|74|TypedefDecl|Rml::voidPtr|voidPtr|Rml::voidPtr",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3189,
+      "exact_key": "Core/TypeConverter.inl|75|ClassDecl|Rml::TypeConverter|TypeConverter<voidPtr, voidPtr>|Rml::TypeConverter<voidPtr, voidPtr>",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3190,
+      "exact_key": "Core/TypeConverter.inl|75|CXXMethod|Rml::TypeConverter::Convert|Convert(const voidPtr &, voidPtr &)|bool (const voidPtr &, voidPtr &)",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3191,
+      "exact_key": "Core/TypeConverter.inl|80|ClassDecl|Rml::TypeConverter|TypeConverter<bool, int>|Rml::TypeConverter<bool, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3192,
+      "exact_key": "Core/TypeConverter.inl|80|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, int &)|bool (const bool &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3193,
+      "exact_key": "Core/TypeConverter.inl|81|ClassDecl|Rml::TypeConverter|TypeConverter<bool, unsigned int>|Rml::TypeConverter<bool, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3194,
+      "exact_key": "Core/TypeConverter.inl|81|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, unsigned int &)|bool (const bool &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3195,
+      "exact_key": "Core/TypeConverter.inl|82|ClassDecl|Rml::TypeConverter|TypeConverter<bool, long>|Rml::TypeConverter<bool, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3196,
+      "exact_key": "Core/TypeConverter.inl|82|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, long &)|bool (const bool &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3197,
+      "exact_key": "Core/TypeConverter.inl|83|ClassDecl|Rml::TypeConverter|TypeConverter<bool, unsigned long>|Rml::TypeConverter<bool, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3198,
+      "exact_key": "Core/TypeConverter.inl|83|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, unsigned long &)|bool (const bool &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3199,
+      "exact_key": "Core/TypeConverter.inl|84|ClassDecl|Rml::TypeConverter|TypeConverter<bool, long long>|Rml::TypeConverter<bool, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3200,
+      "exact_key": "Core/TypeConverter.inl|84|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, long long &)|bool (const bool &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3201,
+      "exact_key": "Core/TypeConverter.inl|85|ClassDecl|Rml::TypeConverter|TypeConverter<bool, unsigned long long>|Rml::TypeConverter<bool, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3202,
+      "exact_key": "Core/TypeConverter.inl|85|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, unsigned long long &)|bool (const bool &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3203,
+      "exact_key": "Core/TypeConverter.inl|86|ClassDecl|Rml::TypeConverter|TypeConverter<bool, float>|Rml::TypeConverter<bool, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3204,
+      "exact_key": "Core/TypeConverter.inl|86|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, float &)|bool (const bool &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3205,
+      "exact_key": "Core/TypeConverter.inl|87|ClassDecl|Rml::TypeConverter|TypeConverter<bool, double>|Rml::TypeConverter<bool, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3206,
+      "exact_key": "Core/TypeConverter.inl|87|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, double &)|bool (const bool &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3207,
+      "exact_key": "Core/TypeConverter.inl|89|ClassDecl|Rml::TypeConverter|TypeConverter<int, bool>|Rml::TypeConverter<int, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3208,
+      "exact_key": "Core/TypeConverter.inl|89|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, bool &)|bool (const int &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3209,
+      "exact_key": "Core/TypeConverter.inl|90|ClassDecl|Rml::TypeConverter|TypeConverter<int, unsigned int>|Rml::TypeConverter<int, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3210,
+      "exact_key": "Core/TypeConverter.inl|90|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, unsigned int &)|bool (const int &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3211,
+      "exact_key": "Core/TypeConverter.inl|91|ClassDecl|Rml::TypeConverter|TypeConverter<int, long>|Rml::TypeConverter<int, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3212,
+      "exact_key": "Core/TypeConverter.inl|91|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, long &)|bool (const int &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3213,
+      "exact_key": "Core/TypeConverter.inl|92|ClassDecl|Rml::TypeConverter|TypeConverter<int, unsigned long>|Rml::TypeConverter<int, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3214,
+      "exact_key": "Core/TypeConverter.inl|92|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, unsigned long &)|bool (const int &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3215,
+      "exact_key": "Core/TypeConverter.inl|93|ClassDecl|Rml::TypeConverter|TypeConverter<int, long long>|Rml::TypeConverter<int, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3216,
+      "exact_key": "Core/TypeConverter.inl|93|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, long long &)|bool (const int &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3217,
+      "exact_key": "Core/TypeConverter.inl|94|ClassDecl|Rml::TypeConverter|TypeConverter<int, unsigned long long>|Rml::TypeConverter<int, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3218,
+      "exact_key": "Core/TypeConverter.inl|94|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, unsigned long long &)|bool (const int &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3219,
+      "exact_key": "Core/TypeConverter.inl|95|ClassDecl|Rml::TypeConverter|TypeConverter<int, float>|Rml::TypeConverter<int, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3220,
+      "exact_key": "Core/TypeConverter.inl|95|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, float &)|bool (const int &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3221,
+      "exact_key": "Core/TypeConverter.inl|96|ClassDecl|Rml::TypeConverter|TypeConverter<int, double>|Rml::TypeConverter<int, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3222,
+      "exact_key": "Core/TypeConverter.inl|96|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, double &)|bool (const int &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3223,
+      "exact_key": "Core/TypeConverter.inl|98|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, bool>|Rml::TypeConverter<unsigned int, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3224,
+      "exact_key": "Core/TypeConverter.inl|98|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, bool &)|bool (const unsigned int &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3225,
+      "exact_key": "Core/TypeConverter.inl|99|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, int>|Rml::TypeConverter<unsigned int, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3226,
+      "exact_key": "Core/TypeConverter.inl|99|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, int &)|bool (const unsigned int &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3227,
+      "exact_key": "Core/TypeConverter.inl|100|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, long>|Rml::TypeConverter<unsigned int, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3228,
+      "exact_key": "Core/TypeConverter.inl|100|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, long &)|bool (const unsigned int &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3229,
+      "exact_key": "Core/TypeConverter.inl|101|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, unsigned long>|Rml::TypeConverter<unsigned int, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3230,
+      "exact_key": "Core/TypeConverter.inl|101|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, unsigned long &)|bool (const unsigned int &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3231,
+      "exact_key": "Core/TypeConverter.inl|102|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, long long>|Rml::TypeConverter<unsigned int, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3232,
+      "exact_key": "Core/TypeConverter.inl|102|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, long long &)|bool (const unsigned int &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3233,
+      "exact_key": "Core/TypeConverter.inl|103|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, unsigned long long>|Rml::TypeConverter<unsigned int, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3234,
+      "exact_key": "Core/TypeConverter.inl|103|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, unsigned long long &)|bool (const unsigned int &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3235,
+      "exact_key": "Core/TypeConverter.inl|104|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, float>|Rml::TypeConverter<unsigned int, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3236,
+      "exact_key": "Core/TypeConverter.inl|104|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, float &)|bool (const unsigned int &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3237,
+      "exact_key": "Core/TypeConverter.inl|105|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, double>|Rml::TypeConverter<unsigned int, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3238,
+      "exact_key": "Core/TypeConverter.inl|105|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, double &)|bool (const unsigned int &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3239,
+      "exact_key": "Core/TypeConverter.inl|107|ClassDecl|Rml::TypeConverter|TypeConverter<long, bool>|Rml::TypeConverter<long, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3240,
+      "exact_key": "Core/TypeConverter.inl|107|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, bool &)|bool (const long &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3241,
+      "exact_key": "Core/TypeConverter.inl|108|ClassDecl|Rml::TypeConverter|TypeConverter<long, int>|Rml::TypeConverter<long, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3242,
+      "exact_key": "Core/TypeConverter.inl|108|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, int &)|bool (const long &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3243,
+      "exact_key": "Core/TypeConverter.inl|109|ClassDecl|Rml::TypeConverter|TypeConverter<long, unsigned int>|Rml::TypeConverter<long, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3244,
+      "exact_key": "Core/TypeConverter.inl|109|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, unsigned int &)|bool (const long &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3245,
+      "exact_key": "Core/TypeConverter.inl|110|ClassDecl|Rml::TypeConverter|TypeConverter<long, unsigned long>|Rml::TypeConverter<long, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3246,
+      "exact_key": "Core/TypeConverter.inl|110|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, unsigned long &)|bool (const long &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3247,
+      "exact_key": "Core/TypeConverter.inl|111|ClassDecl|Rml::TypeConverter|TypeConverter<long, long long>|Rml::TypeConverter<long, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3248,
+      "exact_key": "Core/TypeConverter.inl|111|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, long long &)|bool (const long &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3249,
+      "exact_key": "Core/TypeConverter.inl|112|ClassDecl|Rml::TypeConverter|TypeConverter<long, unsigned long long>|Rml::TypeConverter<long, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3250,
+      "exact_key": "Core/TypeConverter.inl|112|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, unsigned long long &)|bool (const long &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3251,
+      "exact_key": "Core/TypeConverter.inl|113|ClassDecl|Rml::TypeConverter|TypeConverter<long, float>|Rml::TypeConverter<long, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3252,
+      "exact_key": "Core/TypeConverter.inl|113|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, float &)|bool (const long &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3253,
+      "exact_key": "Core/TypeConverter.inl|114|ClassDecl|Rml::TypeConverter|TypeConverter<long, double>|Rml::TypeConverter<long, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3254,
+      "exact_key": "Core/TypeConverter.inl|114|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, double &)|bool (const long &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3255,
+      "exact_key": "Core/TypeConverter.inl|116|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, bool>|Rml::TypeConverter<unsigned long, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3256,
+      "exact_key": "Core/TypeConverter.inl|116|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, bool &)|bool (const unsigned long &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3257,
+      "exact_key": "Core/TypeConverter.inl|117|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, int>|Rml::TypeConverter<unsigned long, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3258,
+      "exact_key": "Core/TypeConverter.inl|117|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, int &)|bool (const unsigned long &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3259,
+      "exact_key": "Core/TypeConverter.inl|118|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, unsigned int>|Rml::TypeConverter<unsigned long, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3260,
+      "exact_key": "Core/TypeConverter.inl|118|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, unsigned int &)|bool (const unsigned long &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3261,
+      "exact_key": "Core/TypeConverter.inl|119|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, long>|Rml::TypeConverter<unsigned long, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3262,
+      "exact_key": "Core/TypeConverter.inl|119|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, long &)|bool (const unsigned long &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3263,
+      "exact_key": "Core/TypeConverter.inl|120|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, long long>|Rml::TypeConverter<unsigned long, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3264,
+      "exact_key": "Core/TypeConverter.inl|120|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, long long &)|bool (const unsigned long &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3265,
+      "exact_key": "Core/TypeConverter.inl|121|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, unsigned long long>|Rml::TypeConverter<unsigned long, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3266,
+      "exact_key": "Core/TypeConverter.inl|121|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, unsigned long long &)|bool (const unsigned long &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3267,
+      "exact_key": "Core/TypeConverter.inl|122|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, float>|Rml::TypeConverter<unsigned long, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3268,
+      "exact_key": "Core/TypeConverter.inl|122|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, float &)|bool (const unsigned long &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3269,
+      "exact_key": "Core/TypeConverter.inl|123|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, double>|Rml::TypeConverter<unsigned long, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3270,
+      "exact_key": "Core/TypeConverter.inl|123|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, double &)|bool (const unsigned long &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3271,
+      "exact_key": "Core/TypeConverter.inl|125|ClassDecl|Rml::TypeConverter|TypeConverter<long long, bool>|Rml::TypeConverter<long long, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3272,
+      "exact_key": "Core/TypeConverter.inl|125|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, bool &)|bool (const long long &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3273,
+      "exact_key": "Core/TypeConverter.inl|126|ClassDecl|Rml::TypeConverter|TypeConverter<long long, int>|Rml::TypeConverter<long long, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3274,
+      "exact_key": "Core/TypeConverter.inl|126|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, int &)|bool (const long long &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3275,
+      "exact_key": "Core/TypeConverter.inl|127|ClassDecl|Rml::TypeConverter|TypeConverter<long long, unsigned int>|Rml::TypeConverter<long long, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3276,
+      "exact_key": "Core/TypeConverter.inl|127|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, unsigned int &)|bool (const long long &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3277,
+      "exact_key": "Core/TypeConverter.inl|128|ClassDecl|Rml::TypeConverter|TypeConverter<long long, long>|Rml::TypeConverter<long long, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3278,
+      "exact_key": "Core/TypeConverter.inl|128|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, long &)|bool (const long long &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3279,
+      "exact_key": "Core/TypeConverter.inl|129|ClassDecl|Rml::TypeConverter|TypeConverter<long long, unsigned long>|Rml::TypeConverter<long long, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3280,
+      "exact_key": "Core/TypeConverter.inl|129|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, unsigned long &)|bool (const long long &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3281,
+      "exact_key": "Core/TypeConverter.inl|130|ClassDecl|Rml::TypeConverter|TypeConverter<long long, unsigned long long>|Rml::TypeConverter<long long, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3282,
+      "exact_key": "Core/TypeConverter.inl|130|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, unsigned long long &)|bool (const long long &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3283,
+      "exact_key": "Core/TypeConverter.inl|131|ClassDecl|Rml::TypeConverter|TypeConverter<long long, float>|Rml::TypeConverter<long long, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3284,
+      "exact_key": "Core/TypeConverter.inl|131|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, float &)|bool (const long long &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3285,
+      "exact_key": "Core/TypeConverter.inl|132|ClassDecl|Rml::TypeConverter|TypeConverter<long long, double>|Rml::TypeConverter<long long, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3286,
+      "exact_key": "Core/TypeConverter.inl|132|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, double &)|bool (const long long &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3287,
+      "exact_key": "Core/TypeConverter.inl|134|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, bool>|Rml::TypeConverter<unsigned long long, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3288,
+      "exact_key": "Core/TypeConverter.inl|134|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, bool &)|bool (const unsigned long long &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3289,
+      "exact_key": "Core/TypeConverter.inl|135|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, int>|Rml::TypeConverter<unsigned long long, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3290,
+      "exact_key": "Core/TypeConverter.inl|135|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, int &)|bool (const unsigned long long &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3291,
+      "exact_key": "Core/TypeConverter.inl|136|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, unsigned int>|Rml::TypeConverter<unsigned long long, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3292,
+      "exact_key": "Core/TypeConverter.inl|136|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, unsigned int &)|bool (const unsigned long long &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3293,
+      "exact_key": "Core/TypeConverter.inl|137|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, long>|Rml::TypeConverter<unsigned long long, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3294,
+      "exact_key": "Core/TypeConverter.inl|137|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, long &)|bool (const unsigned long long &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3295,
+      "exact_key": "Core/TypeConverter.inl|138|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, unsigned long>|Rml::TypeConverter<unsigned long long, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3296,
+      "exact_key": "Core/TypeConverter.inl|138|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, unsigned long &)|bool (const unsigned long long &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3297,
+      "exact_key": "Core/TypeConverter.inl|139|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, long long>|Rml::TypeConverter<unsigned long long, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3298,
+      "exact_key": "Core/TypeConverter.inl|139|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, long long &)|bool (const unsigned long long &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3299,
+      "exact_key": "Core/TypeConverter.inl|140|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, float>|Rml::TypeConverter<unsigned long long, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3300,
+      "exact_key": "Core/TypeConverter.inl|140|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, float &)|bool (const unsigned long long &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3301,
+      "exact_key": "Core/TypeConverter.inl|141|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, double>|Rml::TypeConverter<unsigned long long, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3302,
+      "exact_key": "Core/TypeConverter.inl|141|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, double &)|bool (const unsigned long long &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3303,
+      "exact_key": "Core/TypeConverter.inl|143|ClassDecl|Rml::TypeConverter|TypeConverter<float, bool>|Rml::TypeConverter<float, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3304,
+      "exact_key": "Core/TypeConverter.inl|143|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, bool &)|bool (const float &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3305,
+      "exact_key": "Core/TypeConverter.inl|144|ClassDecl|Rml::TypeConverter|TypeConverter<float, int>|Rml::TypeConverter<float, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3306,
+      "exact_key": "Core/TypeConverter.inl|144|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, int &)|bool (const float &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3307,
+      "exact_key": "Core/TypeConverter.inl|145|ClassDecl|Rml::TypeConverter|TypeConverter<float, long>|Rml::TypeConverter<float, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3308,
+      "exact_key": "Core/TypeConverter.inl|145|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, long &)|bool (const float &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3309,
+      "exact_key": "Core/TypeConverter.inl|146|ClassDecl|Rml::TypeConverter|TypeConverter<float, unsigned long>|Rml::TypeConverter<float, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3310,
+      "exact_key": "Core/TypeConverter.inl|146|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, unsigned long &)|bool (const float &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3311,
+      "exact_key": "Core/TypeConverter.inl|147|ClassDecl|Rml::TypeConverter|TypeConverter<float, long long>|Rml::TypeConverter<float, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3312,
+      "exact_key": "Core/TypeConverter.inl|147|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, long long &)|bool (const float &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3313,
+      "exact_key": "Core/TypeConverter.inl|148|ClassDecl|Rml::TypeConverter|TypeConverter<float, unsigned long long>|Rml::TypeConverter<float, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3314,
+      "exact_key": "Core/TypeConverter.inl|148|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, unsigned long long &)|bool (const float &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3315,
+      "exact_key": "Core/TypeConverter.inl|149|ClassDecl|Rml::TypeConverter|TypeConverter<float, double>|Rml::TypeConverter<float, double>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3316,
+      "exact_key": "Core/TypeConverter.inl|149|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, double &)|bool (const float &, double &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3317,
+      "exact_key": "Core/TypeConverter.inl|150|ClassDecl|Rml::TypeConverter|TypeConverter<float, unsigned int>|Rml::TypeConverter<float, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3318,
+      "exact_key": "Core/TypeConverter.inl|150|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, unsigned int &)|bool (const float &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3319,
+      "exact_key": "Core/TypeConverter.inl|152|ClassDecl|Rml::TypeConverter|TypeConverter<double, bool>|Rml::TypeConverter<double, bool>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3320,
+      "exact_key": "Core/TypeConverter.inl|152|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, bool &)|bool (const double &, bool &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3321,
+      "exact_key": "Core/TypeConverter.inl|153|ClassDecl|Rml::TypeConverter|TypeConverter<double, int>|Rml::TypeConverter<double, int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3322,
+      "exact_key": "Core/TypeConverter.inl|153|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, int &)|bool (const double &, int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3323,
+      "exact_key": "Core/TypeConverter.inl|154|ClassDecl|Rml::TypeConverter|TypeConverter<double, long>|Rml::TypeConverter<double, long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3324,
+      "exact_key": "Core/TypeConverter.inl|154|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, long &)|bool (const double &, long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3325,
+      "exact_key": "Core/TypeConverter.inl|155|ClassDecl|Rml::TypeConverter|TypeConverter<double, unsigned long>|Rml::TypeConverter<double, unsigned long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3326,
+      "exact_key": "Core/TypeConverter.inl|155|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, unsigned long &)|bool (const double &, unsigned long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3327,
+      "exact_key": "Core/TypeConverter.inl|156|ClassDecl|Rml::TypeConverter|TypeConverter<double, long long>|Rml::TypeConverter<double, long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3328,
+      "exact_key": "Core/TypeConverter.inl|156|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, long long &)|bool (const double &, long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3329,
+      "exact_key": "Core/TypeConverter.inl|157|ClassDecl|Rml::TypeConverter|TypeConverter<double, unsigned long long>|Rml::TypeConverter<double, unsigned long long>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3330,
+      "exact_key": "Core/TypeConverter.inl|157|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, unsigned long long &)|bool (const double &, unsigned long long &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3331,
+      "exact_key": "Core/TypeConverter.inl|158|ClassDecl|Rml::TypeConverter|TypeConverter<double, float>|Rml::TypeConverter<double, float>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3332,
+      "exact_key": "Core/TypeConverter.inl|158|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, float &)|bool (const double &, float &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3333,
+      "exact_key": "Core/TypeConverter.inl|159|ClassDecl|Rml::TypeConverter|TypeConverter<double, unsigned int>|Rml::TypeConverter<double, unsigned int>",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3334,
+      "exact_key": "Core/TypeConverter.inl|159|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, unsigned int &)|bool (const double &, unsigned int &)",
+      "native_group": "scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3335,
+      "exact_key": "Core/TypeConverter.inl|161|ClassDecl|Rml::TypeConverter|TypeConverter<char, Character>|Rml::TypeConverter<char, Character>",
+      "native_group": "characters",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3336,
+      "exact_key": "Core/TypeConverter.inl|161|CXXMethod|Rml::TypeConverter::Convert|Convert(const char &, Character &)|bool (const char &, Character &)",
+      "native_group": "characters",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3337,
+      "exact_key": "Core/TypeConverter.inl|177|ClassDecl|Rml::TypeConverter|TypeConverter<String, float>|Rml::TypeConverter<String, float>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3338,
+      "exact_key": "Core/TypeConverter.inl|177|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, float &)|bool (const String &, float &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3339,
+      "exact_key": "Core/TypeConverter.inl|178|ClassDecl|Rml::TypeConverter|TypeConverter<String, double>|Rml::TypeConverter<String, double>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3340,
+      "exact_key": "Core/TypeConverter.inl|178|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, double &)|bool (const String &, double &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3341,
+      "exact_key": "Core/TypeConverter.inl|181|ClassDecl|Rml::TypeConverter|TypeConverter<String, int>|Rml::TypeConverter<String, int>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3342,
+      "exact_key": "Core/TypeConverter.inl|183|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, int &)|bool (const String &, int &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3343,
+      "exact_key": "Core/TypeConverter.inl|187|ClassDecl|Rml::TypeConverter|TypeConverter<String, unsigned int>|Rml::TypeConverter<String, unsigned int>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3344,
+      "exact_key": "Core/TypeConverter.inl|189|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, unsigned int &)|bool (const String &, unsigned int &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3345,
+      "exact_key": "Core/TypeConverter.inl|193|ClassDecl|Rml::TypeConverter|TypeConverter<String, long>|Rml::TypeConverter<String, long>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3346,
+      "exact_key": "Core/TypeConverter.inl|195|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, long &)|bool (const String &, long &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3347,
+      "exact_key": "Core/TypeConverter.inl|199|ClassDecl|Rml::TypeConverter|TypeConverter<String, unsigned long>|Rml::TypeConverter<String, unsigned long>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3348,
+      "exact_key": "Core/TypeConverter.inl|201|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, unsigned long &)|bool (const String &, unsigned long &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3349,
+      "exact_key": "Core/TypeConverter.inl|205|ClassDecl|Rml::TypeConverter|TypeConverter<String, long long>|Rml::TypeConverter<String, long long>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3350,
+      "exact_key": "Core/TypeConverter.inl|207|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, long long &)|bool (const String &, long long &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3351,
+      "exact_key": "Core/TypeConverter.inl|211|ClassDecl|Rml::TypeConverter|TypeConverter<String, unsigned long long>|Rml::TypeConverter<String, unsigned long long>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3352,
+      "exact_key": "Core/TypeConverter.inl|213|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, unsigned long long &)|bool (const String &, unsigned long long &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3353,
+      "exact_key": "Core/TypeConverter.inl|217|ClassDecl|Rml::TypeConverter|TypeConverter<String, byte>|Rml::TypeConverter<String, byte>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3354,
+      "exact_key": "Core/TypeConverter.inl|219|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, byte &)|bool (const String &, byte &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3355,
+      "exact_key": "Core/TypeConverter.inl|223|ClassDecl|Rml::TypeConverter|TypeConverter<String, bool>|Rml::TypeConverter<String, bool>",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3356,
+      "exact_key": "Core/TypeConverter.inl|225|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, bool &)|bool (const String &, bool &)",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3357,
+      "exact_key": "Core/TypeConverter.inl|243|ClassTemplate|Rml::TypeConverterStringVector|TypeConverterStringVector<DestType, InternalType, count>|",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3358,
+      "exact_key": "Core/TypeConverter.inl|245|CXXMethod|Rml::TypeConverterStringVector::Convert|Convert(const String &, DestType &)|bool (const String &, DestType &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3359,
+      "exact_key": "Core/TypeConverter.inl|270|ClassDecl|Rml::TypeConverter|TypeConverter<String, Vector2i>|Rml::TypeConverter<String, Vector2i>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3360,
+      "exact_key": "Core/TypeConverter.inl|270|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Vector2i &)|bool (const String &, Vector2i &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3361,
+      "exact_key": "Core/TypeConverter.inl|271|ClassDecl|Rml::TypeConverter|TypeConverter<String, Vector2f>|Rml::TypeConverter<String, Vector2f>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3362,
+      "exact_key": "Core/TypeConverter.inl|271|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Vector2f &)|bool (const String &, Vector2f &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3363,
+      "exact_key": "Core/TypeConverter.inl|272|ClassDecl|Rml::TypeConverter|TypeConverter<String, Vector3i>|Rml::TypeConverter<String, Vector3i>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3364,
+      "exact_key": "Core/TypeConverter.inl|272|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Vector3i &)|bool (const String &, Vector3i &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3365,
+      "exact_key": "Core/TypeConverter.inl|273|ClassDecl|Rml::TypeConverter|TypeConverter<String, Vector3f>|Rml::TypeConverter<String, Vector3f>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3366,
+      "exact_key": "Core/TypeConverter.inl|273|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Vector3f &)|bool (const String &, Vector3f &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3367,
+      "exact_key": "Core/TypeConverter.inl|274|ClassDecl|Rml::TypeConverter|TypeConverter<String, Vector4i>|Rml::TypeConverter<String, Vector4i>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3368,
+      "exact_key": "Core/TypeConverter.inl|274|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Vector4i &)|bool (const String &, Vector4i &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3369,
+      "exact_key": "Core/TypeConverter.inl|275|ClassDecl|Rml::TypeConverter|TypeConverter<String, Vector4f>|Rml::TypeConverter<String, Vector4f>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3370,
+      "exact_key": "Core/TypeConverter.inl|275|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Vector4f &)|bool (const String &, Vector4f &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3371,
+      "exact_key": "Core/TypeConverter.inl|276|ClassDecl|Rml::TypeConverter|TypeConverter<String, Colourf>|Rml::TypeConverter<String, Colourf>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3372,
+      "exact_key": "Core/TypeConverter.inl|276|CXXMethod|Rml::TypeConverter::Convert|Convert(const String &, Colourf &)|bool (const String &, Colourf &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3373,
+      "exact_key": "Core/TypeConverter.inl|294|ClassDecl|Rml::TypeConverter|TypeConverter<float, String>|Rml::TypeConverter<float, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3374,
+      "exact_key": "Core/TypeConverter.inl|294|CXXMethod|Rml::TypeConverter::Convert|Convert(const float &, String &)|bool (const float &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3375,
+      "exact_key": "Core/TypeConverter.inl|295|ClassDecl|Rml::TypeConverter|TypeConverter<double, String>|Rml::TypeConverter<double, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3376,
+      "exact_key": "Core/TypeConverter.inl|295|CXXMethod|Rml::TypeConverter::Convert|Convert(const double &, String &)|bool (const double &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3377,
+      "exact_key": "Core/TypeConverter.inl|298|ClassDecl|Rml::TypeConverter|TypeConverter<int, String>|Rml::TypeConverter<int, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3378,
+      "exact_key": "Core/TypeConverter.inl|300|CXXMethod|Rml::TypeConverter::Convert|Convert(const int &, String &)|bool (const int &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3379,
+      "exact_key": "Core/TypeConverter.inl|304|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned int, String>|Rml::TypeConverter<unsigned int, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3380,
+      "exact_key": "Core/TypeConverter.inl|306|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned int &, String &)|bool (const unsigned int &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3381,
+      "exact_key": "Core/TypeConverter.inl|310|ClassDecl|Rml::TypeConverter|TypeConverter<long, String>|Rml::TypeConverter<long, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3382,
+      "exact_key": "Core/TypeConverter.inl|312|CXXMethod|Rml::TypeConverter::Convert|Convert(const long &, String &)|bool (const long &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3383,
+      "exact_key": "Core/TypeConverter.inl|316|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long, String>|Rml::TypeConverter<unsigned long, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3384,
+      "exact_key": "Core/TypeConverter.inl|318|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long &, String &)|bool (const unsigned long &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3385,
+      "exact_key": "Core/TypeConverter.inl|322|ClassDecl|Rml::TypeConverter|TypeConverter<long long, String>|Rml::TypeConverter<long long, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3386,
+      "exact_key": "Core/TypeConverter.inl|324|CXXMethod|Rml::TypeConverter::Convert|Convert(const long long &, String &)|bool (const long long &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3387,
+      "exact_key": "Core/TypeConverter.inl|328|ClassDecl|Rml::TypeConverter|TypeConverter<unsigned long long, String>|Rml::TypeConverter<unsigned long long, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3388,
+      "exact_key": "Core/TypeConverter.inl|330|CXXMethod|Rml::TypeConverter::Convert|Convert(const unsigned long long &, String &)|bool (const unsigned long long &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3389,
+      "exact_key": "Core/TypeConverter.inl|334|ClassDecl|Rml::TypeConverter|TypeConverter<byte, String>|Rml::TypeConverter<byte, String>",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3390,
+      "exact_key": "Core/TypeConverter.inl|336|CXXMethod|Rml::TypeConverter::Convert|Convert(const byte &, String &)|bool (const byte &, String &)",
+      "native_group": "numeric-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3391,
+      "exact_key": "Core/TypeConverter.inl|340|ClassDecl|Rml::TypeConverter|TypeConverter<bool, String>|Rml::TypeConverter<bool, String>",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3392,
+      "exact_key": "Core/TypeConverter.inl|342|CXXMethod|Rml::TypeConverter::Convert|Convert(const bool &, String &)|bool (const bool &, String &)",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3393,
+      "exact_key": "Core/TypeConverter.inl|350|ClassDecl|Rml::TypeConverter|TypeConverter<char *, String>|Rml::TypeConverter<char *, String>",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3394,
+      "exact_key": "Core/TypeConverter.inl|352|CXXMethod|Rml::TypeConverter::Convert|Convert(char *const &, String &)|bool (char *const &, String &)",
+      "native_group": "pointer-string-copies",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3395,
+      "exact_key": "Core/TypeConverter.inl|360|ClassDecl|Rml::TypeConverter|TypeConverter<void *, String>|Rml::TypeConverter<void *, String>",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3396,
+      "exact_key": "Core/TypeConverter.inl|362|CXXMethod|Rml::TypeConverter::Convert|Convert(void *const &, String &)|bool (void *const &, String &)",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3397,
+      "exact_key": "Core/TypeConverter.inl|366|ClassDecl|Rml::TypeConverter|TypeConverter<ScriptInterface *, String>|Rml::TypeConverter<ScriptInterface *, String>",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3398,
+      "exact_key": "Core/TypeConverter.inl|368|CXXMethod|Rml::TypeConverter::Convert|Convert(ScriptInterface *const &, String &)|bool (ScriptInterface *const &, String &)",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3399,
+      "exact_key": "Core/TypeConverter.inl|372|ClassDecl|Rml::TypeConverter|TypeConverter<char, String>|Rml::TypeConverter<char, String>",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3400,
+      "exact_key": "Core/TypeConverter.inl|374|CXXMethod|Rml::TypeConverter::Convert|Convert(const char &, String &)|bool (const char &, String &)",
+      "native_group": "bool-char-pointer-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3401,
+      "exact_key": "Core/TypeConverter.inl|378|ClassTemplate|Rml::TypeConverterVectorString|TypeConverterVectorString<SourceType, InternalType, count>|",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3402,
+      "exact_key": "Core/TypeConverter.inl|380|CXXMethod|Rml::TypeConverterVectorString::Convert|Convert(const SourceType &, String &)|bool (const SourceType &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3403,
+      "exact_key": "Core/TypeConverter.inl|407|ClassDecl|Rml::TypeConverter|TypeConverter<Vector2i, String>|Rml::TypeConverter<Vector2i, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3404,
+      "exact_key": "Core/TypeConverter.inl|407|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector2i &, String &)|bool (const Vector2i &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3405,
+      "exact_key": "Core/TypeConverter.inl|408|ClassDecl|Rml::TypeConverter|TypeConverter<Vector2f, String>|Rml::TypeConverter<Vector2f, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3406,
+      "exact_key": "Core/TypeConverter.inl|408|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector2f &, String &)|bool (const Vector2f &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3407,
+      "exact_key": "Core/TypeConverter.inl|409|ClassDecl|Rml::TypeConverter|TypeConverter<Vector3i, String>|Rml::TypeConverter<Vector3i, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3408,
+      "exact_key": "Core/TypeConverter.inl|409|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector3i &, String &)|bool (const Vector3i &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3409,
+      "exact_key": "Core/TypeConverter.inl|410|ClassDecl|Rml::TypeConverter|TypeConverter<Vector3f, String>|Rml::TypeConverter<Vector3f, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3410,
+      "exact_key": "Core/TypeConverter.inl|410|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector3f &, String &)|bool (const Vector3f &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3411,
+      "exact_key": "Core/TypeConverter.inl|411|ClassDecl|Rml::TypeConverter|TypeConverter<Vector4i, String>|Rml::TypeConverter<Vector4i, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3412,
+      "exact_key": "Core/TypeConverter.inl|411|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector4i &, String &)|bool (const Vector4i &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3413,
+      "exact_key": "Core/TypeConverter.inl|412|ClassDecl|Rml::TypeConverter|TypeConverter<Vector4f, String>|Rml::TypeConverter<Vector4f, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3414,
+      "exact_key": "Core/TypeConverter.inl|412|CXXMethod|Rml::TypeConverter::Convert|Convert(const Vector4f &, String &)|bool (const Vector4f &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3415,
+      "exact_key": "Core/TypeConverter.inl|413|ClassDecl|Rml::TypeConverter|TypeConverter<Colourf, String>|Rml::TypeConverter<Colourf, String>",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3416,
+      "exact_key": "Core/TypeConverter.inl|413|CXXMethod|Rml::TypeConverter::Convert|Convert(const Colourf &, String &)|bool (const Colourf &, String &)",
+      "native_group": "vector-strings",
+      "status": "locally-verified-native-support-macos-arm64"
+    }
+  ],
+  "consumers": [
+    {
+      "inventory_index": 832,
+      "exact_key": "Core/Element.h|199|FunctionTemplate|Rml::Element::GetProperty|GetProperty(const String &)|T (const String &)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getProperty(name, type): native T{} destination; raw Property reads return owned snapshots.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 853,
+      "exact_key": "Core/Element.h|287|FunctionTemplate|Rml::Element::SetAttribute|SetAttribute(const String &, const T &)|void (const String &, const T &)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.setAttribute(name, value): checked native Variant copy, retained owner edges and atomic validation.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 854,
+      "exact_key": "Core/Element.h|291|CXXMethod|Rml::Element::GetAttribute|GetAttribute(const String &)|Variant *(const String &)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getAttributeValue(name): independent output snapshot; setAttribute performs writes. A borrowed C++ Variant pointer is not exposed as a dangling JS reference.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 855,
+      "exact_key": "Core/Element.h|293|CXXMethod|Rml::Element::GetAttribute|GetAttribute(const String &)|const Variant *(const String &) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getAttributeValue(name): independent output snapshot; setAttribute performs writes. A borrowed C++ Variant pointer is not exposed as a dangling JS reference.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 856,
+      "exact_key": "Core/Element.h|298|FunctionTemplate|Rml::Element::GetAttribute|GetAttribute(const String &, const T &)|T (const String &, const T &) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getAttribute(name, default): native conversion and caller default, including partial output mutation.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 859,
+      "exact_key": "Core/Element.h|308|CXXMethod|Rml::Element::SetAttributes|SetAttributes(const ElementAttributes &)|void (const ElementAttributes &)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.setAttributes(record): validated native dictionary copies with guarded values and retained callback owners.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 860,
+      "exact_key": "Core/Element.h|311|CXXMethod|Rml::Element::GetAttributes|GetAttributes()|const ElementAttributes &() const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getAttributes(): independent dictionary snapshot with checked pointer identity and native storage types.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 933,
+      "exact_key": "Core/Element.inl|4|FunctionTemplate|Rml::Element::GetProperty|GetProperty(const String &)|T (const String &)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getProperty(name, type): native T{} destination; raw Property reads return owned snapshots.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 934,
+      "exact_key": "Core/Element.inl|16|FunctionTemplate|Rml::Element::SetAttribute|SetAttribute(const String &, const T &)|void (const String &, const T &)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.setAttribute(name, value): checked native Variant copy, retained owner edges and atomic validation.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 935,
+      "exact_key": "Core/Element.inl|26|FunctionTemplate|Rml::Element::GetAttribute|GetAttribute(const String &, const T &)|T (const String &, const T &) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "Element.getAttribute(name, default): native conversion and caller default, including partial output mutation.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 1213,
+      "exact_key": "Core/Event.h|78|FunctionTemplate|Rml::Event::GetParameter|GetParameter(const String &, const T &)|T (const String &, const T &) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckElementAndEventTemplates",
+      "js_contract": "RmlEvent.getParameter(key, default): native conversion, caller default and dispatch-bound pointer lifetime.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 2093,
+      "exact_key": "Core/Property.h|25|FunctionTemplate|Rml::Property::Property|Property(PropertyType, Unit, int)|void (PropertyType, Unit, int)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "new Property(value, unit, specificity): explicit native value/unit constructor and snapshot ownership.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 2097,
+      "exact_key": "Core/Property.h|42|FunctionTemplate|Rml::Property::Get|Get()|T () const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Property.get(type): native T{} destination; the selector chooses a type rather than a fallback.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 2100,
+      "exact_key": "Core/Property.h|50|FieldDecl|Rml::Property::value|value|Variant",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Property.value: checked native Variant copy on read/write with shared lifetime slots and collectible owner edges.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3607,
+      "exact_key": "Core/Variant.h|18|ClassDecl|Rml::Variant|Variant|Rml::Variant",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3641,
+      "exact_key": "Core/Variant.h|59|FunctionTemplate|Rml::Variant::Variant|Variant(T &&)|void (T &&)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3642,
+      "exact_key": "Core/Variant.h|63|FunctionTemplate|Rml::Variant::operator=|operator=(T &&)|Variant &(T &&)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3645,
+      "exact_key": "Core/Variant.h|74|FunctionTemplate|Rml::Variant::Get|Get(T)|T (T) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3646,
+      "exact_key": "Core/Variant.h|82|FunctionTemplate|Rml::Variant::GetInto|GetInto(T &)|bool (T &) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3647,
+      "exact_key": "Core/Variant.h|87|FunctionTemplate|Rml::Variant::GetReference|GetReference()|const T &() const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3650,
+      "exact_key": "Core/Variant.inl|3|CXXMethod|Rml::Variant::GetType|GetType()|Variant::Type () const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3651,
+      "exact_key": "Core/Variant.inl|9|FunctionTemplate|Rml::Variant::Variant|Variant(T &&)|void (T &&)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3652,
+      "exact_key": "Core/Variant.inl|15|FunctionTemplate|Rml::Variant::operator=|operator=(T &&)|Variant &(T &&)",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3653,
+      "exact_key": "Core/Variant.inl|23|FunctionTemplate|Rml::Variant::GetInto|GetInto(T &)|bool (T &) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3654,
+      "exact_key": "Core/Variant.inl|72|FunctionTemplate|Rml::Variant::Get|Get(T)|T (T) const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    },
+    {
+      "inventory_index": 3655,
+      "exact_key": "Core/Variant.inl|79|FunctionTemplate|Rml::Variant::GetReference|GetReference()|const T &() const",
+      "native_source": "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc",
+      "native_function": "CheckAllStorage + CheckConversionDestinations",
+      "js_contract": "Owned Variant construction/assignment/get/getInto/getReference and shared type inspection: exact storage, native defaults, checked snapshot reads and retained pointer/callback lifetimes.",
+      "status": "locally-verified-template-consumer-macos-arm64"
+    }
+  ]
+}

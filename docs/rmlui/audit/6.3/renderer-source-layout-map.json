@@ -1,0 +1,76 @@
+{
+  "description": "Renderer subsystem relocation following source-layout-map.json; historical maps remain unchanged.",
+  "scope_complete": false,
+  "moves": {
+    "native/rendering/rmlui-geometry.cc": "native/rendering/geometry/rmlui-geometry.cc",
+    "native/rendering/rmlui-geometry.h": "native/rendering/geometry/rmlui-geometry.h",
+    "native/rendering/rmlui-mesh.cc": "native/rendering/geometry/rmlui-mesh.cc",
+    "native/rendering/rmlui-mesh.h": "native/rendering/geometry/rmlui-mesh.h",
+    "native/rendering/rmlui-mesh-utilities.cc": "native/rendering/geometry/rmlui-mesh-utilities.cc",
+    "native/rendering/rmlui-render-manager.cc": "native/rendering/manager/rmlui-render-manager.cc",
+    "native/rendering/rmlui-render-manager.h": "native/rendering/manager/rmlui-render-manager.h",
+    "native/rendering/rmlui-render-state.cc": "native/rendering/manager/rmlui-render-state.cc",
+    "native/rendering/rmlui-render-state.h": "native/rendering/manager/rmlui-render-state.h",
+    "native/rendering/rmlui-render-layers.cc": "native/rendering/manager/rmlui-render-layers.cc",
+    "native/rendering/rmlui-render-layers.h": "native/rendering/manager/rmlui-render-layers.h",
+    "native/rendering/rmlui-callback-texture.cc": "native/rendering/textures/rmlui-callback-texture.cc",
+    "native/rendering/rmlui-callback-texture.h": "native/rendering/textures/rmlui-callback-texture.h",
+    "native/rendering/rmlui-texture-source.cc": "native/rendering/textures/rmlui-texture-source.cc",
+    "native/rendering/rmlui-texture-source.h": "native/rendering/textures/rmlui-texture-source.h",
+    "native/rendering/rmlui-resource-preload.cc": "native/rendering/textures/rmlui-resource-preload.cc",
+    "native/rendering/rmlui-resource-preload.h": "native/rendering/textures/rmlui-resource-preload.h",
+    "native/rendering/rmlui-resources.cc": "native/rendering/textures/rmlui-resources.cc",
+    "native/rendering/rmlui-resources.h": "native/rendering/textures/rmlui-resources.h",
+    "native/rendering/rmlui-spritesheet.cc": "native/rendering/textures/rmlui-spritesheet.cc",
+    "native/rendering/rmlui-spritesheet.h": "native/rendering/textures/rmlui-spritesheet.h",
+    "native/rendering/rmlui-shaders.h": "native/rendering/effects/postprocess-shaders.h"
+  },
+  "native_contracts": {
+    "textures": [
+      "test/native/rendering/textures/texture-contracts.cc"
+    ],
+    "initialization": [
+      "test/native/rendering/initialization/startup-contracts.cc",
+      "test/native/rendering/initialization/sfml-faults.cc",
+      "test/native/rendering/initialization/sfml-faults.h"
+    ],
+    "layers": [
+      "test/native/rendering/layers/render-target-contracts.cc",
+      "test/native/rendering/layers/sfml-target-faults.cc",
+      "test/native/rendering/layers/sfml-target-faults.h"
+    ],
+    "css": [
+      "test/native/rendering/css/effect-scenes.h",
+      "test/native/rendering/css/css-effect-contracts.cc",
+      "test/native/rendering/css/native-context-boundary.cc",
+      "test/native/rendering/reference/gl3-css-capture.cc"
+    ]
+  },
+  "split": {
+    "native/rendering/render-interface-sfml.cc": [
+      "native/rendering/render-interface-sfml.cc",
+      "native/rendering/geometry/render-geometry.cc",
+      "native/rendering/geometry/geometry-batching.cc",
+      "native/rendering/clipping/clip-masks.cc",
+      "native/rendering/textures/render-textures.cc",
+      "native/rendering/shaders/render-shaders.cc",
+      "native/rendering/shaders/compile-shaders.cc",
+      "native/rendering/shaders/gradient-program.cc",
+      "native/rendering/shaders/gradient-program.h",
+      "native/rendering/shaders/creation-program.h",
+      "native/rendering/shaders/geometry-program.h",
+      "native/rendering/effects/render-filters.cc",
+      "native/rendering/effects/render-blur.cc",
+      "native/rendering/effects/blur-kernel.h",
+      "native/rendering/effects/postprocess-bounds.h"
+    ],
+    "native/rendering/render-interface-sfml.h": [
+      "native/rendering/render-interface-sfml.h",
+      "native/rendering/shaders/shader-record.h"
+    ],
+    "native/rendering/layers/render-session.cc": [
+      "native/rendering/layers/render-frame.cc",
+      "native/runtime/context-render-session.cc"
+    ]
+  }
+}

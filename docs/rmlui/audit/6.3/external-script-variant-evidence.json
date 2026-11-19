@@ -1,0 +1,90 @@
+{
+  "snapshot": "historical-before-guarded-element-consumer-fix",
+  "followup_evidence": "guarded-element-consumer-evidence.json",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "exact_declaration_keys": [
+    "Core/Element.h|199|FunctionTemplate|Rml::Element::GetProperty|GetProperty(const String &)|T (const String &)",
+    "Core/Element.h|287|FunctionTemplate|Rml::Element::SetAttribute|SetAttribute(const String &, const T &)|void (const String &, const T &)",
+    "Core/Element.h|291|CXXMethod|Rml::Element::GetAttribute|GetAttribute(const String &)|Variant *(const String &)",
+    "Core/Element.h|293|CXXMethod|Rml::Element::GetAttribute|GetAttribute(const String &)|const Variant *(const String &) const",
+    "Core/Element.h|298|FunctionTemplate|Rml::Element::GetAttribute|GetAttribute(const String &, const T &)|T (const String &, const T &) const",
+    "Core/Element.h|308|CXXMethod|Rml::Element::SetAttributes|SetAttributes(const ElementAttributes &)|void (const ElementAttributes &)",
+    "Core/Element.h|311|CXXMethod|Rml::Element::GetAttributes|GetAttributes()|const ElementAttributes &() const",
+    "Core/Event.h|78|FunctionTemplate|Rml::Event::GetParameter|GetParameter(const String &, const T &)|T (const String &, const T &) const",
+    "Core/Property.h|25|FunctionTemplate|Rml::Property::Property|Property(PropertyType, Unit, int)|void (PropertyType, Unit, int)",
+    "Core/Property.h|42|FunctionTemplate|Rml::Property::Get|Get()|T () const",
+    "Core/Property.h|50|FieldDecl|Rml::Property::value|value|Variant",
+    "Core/ScriptInterface.h|19|CXXMethod|Rml::ScriptInterface::GetScriptObject|GetScriptObject()|ScriptObject () const",
+    "Core/Variant.h|18|ClassDecl|Rml::Variant|Variant|Rml::Variant",
+    "Core/Variant.h|59|FunctionTemplate|Rml::Variant::Variant|Variant(T &&)|void (T &&)",
+    "Core/Variant.h|63|FunctionTemplate|Rml::Variant::operator=|operator=(T &&)|Variant &(T &&)",
+    "Core/Variant.h|74|FunctionTemplate|Rml::Variant::Get|Get(T)|T (T) const",
+    "Core/Variant.h|82|FunctionTemplate|Rml::Variant::GetInto|GetInto(T &)|bool (T &) const",
+    "Core/Variant.h|87|FunctionTemplate|Rml::Variant::GetReference|GetReference()|const T &() const",
+    "Lua/Utilities.h|30|FunctionDecl|Rml::Lua::PushVariant|PushVariant(lua_State *, const Variant *)|void (lua_State *, const Variant *)",
+    "Lua/Utilities.h|33|FunctionDecl|Rml::Lua::GetVariant|GetVariant(lua_State *, int, Variant *)|void (lua_State *, int, Variant *)"
+  ],
+  "status": "locally-verified-external-script-variants-macos-arm64",
+  "registered_arbitrary_scriptinterface_variant_source_accepted": true,
+  "unregistered_native_pointer_or_slot_accepted": false,
+  "unregistered_external_event_constructor_parameter_verified": false,
+  "get_script_object_query_virtual_calls": 1,
+  "explicit_native_unregister_and_null_transitions_accepted": true,
+  "external_context_and_event_ownership_roots_accepted": true,
+  "whole_scope_complete": false,
+  "focused": {
+    "path": "/tmp/rmlui-63-completion/external-script-variants-matrix-6.log",
+    "sha256": "a242431867c45417f757b339602c67767b3b86c72b789f3c657d72621f7a6d9c",
+    "exit_code": 0,
+    "passed_scenarios": 31
+  },
+  "package": {
+    "path": "/tmp/rmlui-63-completion/external-script-variants-package-4.log",
+    "sha256": "b5829c9c75aaa048343a57e2e2c8ded447b35b897eb705a8f880ad4638d98ab7",
+    "exit_code": 0,
+    "runtime_files": 109,
+    "passed_lines": 1096
+  },
+  "standalone_scenarios_in_package_count": false,
+  "site": {
+    "path": "/tmp/rmlui-63-completion/external-script-variants-site-1.log",
+    "sha256": "27f5fc868854781f65fde03f0557c174457fbed3cdb96844a83a5345bc796f97",
+    "exit_code": 0,
+    "tests": 81,
+    "localized_pages": 152,
+    "api_pages_per_language": 1596,
+    "languages": 4,
+    "redirects": 303,
+    "rendered_browser_acceptance_implied": false
+  },
+  "compiler_naming": {
+    "path": "/tmp/rmlui-63-completion/external-script-variants-naming-3.log",
+    "sha256": "1f7fc8f0436c800b25f8a2c927a4688efedc4ae42fe2e0290401e172ad72167f",
+    "exit_code": 0,
+    "maintained_units": 6,
+    "external_header_diagnostics_retained_in_log": true
+  },
+  "static_frame_counters": {
+    "frames": 16,
+    "callbackSnapshotVisits": 0,
+    "elementOwnershipVisits": 0
+  },
+  "initialization_frame_malloc_gpu_acceptance_implied": false,
+  "source_sha256": {
+    "packages/sfml.js-rmlui/native/rmlui-variant-pointers.h": "43f37969adc1e2848d05ce7460d108de746d3eaf5fde1f81b993c0635bc7f1a3",
+    "packages/sfml.js-rmlui/native/rmlui-variant-pointers.cc": "6e8b76115c96e081a9e01fb8bae99b9f48f9523a32df457a79890683f11ad47c",
+    "packages/sfml.js-rmlui/native/rmlui-variant.h": "2402880b51afda0c05a16c03347e02e977194ab3640013d839a2269a6e26df12",
+    "packages/sfml.js-rmlui/native/rmlui-variant.cc": "b09bab0cf4d628fe5b52f23bd1ee143bd5921e1b7256c6a37dee236a6806e7d5",
+    "packages/sfml.js-rmlui/native/rmlui-script-object.cc": "c0e6f0493877c711ec3cc70ca29d290be9898f55bf3bb37c87180723839b2a14",
+    "packages/sfml.js-rmlui/native/rmlui-event-instancers.h": "656a0375578a010528f609dd819b18c74a321ddb2fe078312be6ed7bb4c27172",
+    "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc": "e13deee07c8ab75a141c8da8be4b9895ec74e75fba7948285c910483239530f7",
+    "packages/sfml.js-rmlui/native/rmlui-events.cc": "9991826c0aeb818810a5235500be661145deee900441d35f753470b361176c7f",
+    "packages/sfml.js-rmlui/native/rmlui-state.cc": "4755a11cc8de97bdabb874120d683b6ecf9a64e05bcfa5cc53ec17b2a99fcd8a",
+    "packages/sfml.js-rmlui/src/types.ts": "95aab9869cee16858a3c83b624b3ebdb80a1d1d0c276c9fa06e59e14b0b421d8",
+    "packages/sfml.js-rmlui/src/core.ts": "524bc7f290b3c8975d8bb56e28035ab1df9506af75b60793d89ce484b8ef34ed",
+    "packages/sfml.js-rmlui/src/internal/animation-values.ts": "30dc954e0a53ae04cde301bc38fd6d1afd44d85ec8d7663ded634c22b4e4fd8d",
+    "packages/sfml.js-rmlui/test/native/external-variant-adapters.cc": "1a0d5d1e629d3495bf9a6407fbd3a309d799a06b4d4d16d71b839fed982be592",
+    "packages/sfml.js-rmlui/test/external-variant-adapters.cjs": "752ab84766cf02e23567fec81ebdf891b20bd2112faeaabfca9139649a35d53d",
+    "packages/sfml.js-rmlui/test/owned-variant.types.ts": "83d6a929bfa315f24c6e424b5388aac16dc1592990dd45d070d4ed9ea179b15e"
+  }
+}

@@ -1,0 +1,17 @@
+<rml>
+  <head>
+    <title>sfml.js-rmlui tutorial</title>
+    <link type="text/rcss" href="tutorial.rcss" />
+  </head>
+  <body>
+    <div id="window">
+      <div id="title">RmlUi on sfml.js</div>
+      <div id="counter">Clicks: 0</div>
+      <button id="increment">Increment</button>
+      <div id="blurred">Gaussian blur filter via SFML shader.</div>
+      <div id="clipped">
+        <div class="wide">Rounded overflow clipped through the stencil mask.</div>
+      </div>
+    </div>
+  </body>
+</rml>

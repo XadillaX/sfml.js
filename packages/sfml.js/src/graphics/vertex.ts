@@ -118,6 +118,7 @@ export class Vertex {
     return this.state.values;
   }
 
+  /** Native view of the shared vertex bytes. @internal */
   get [vertexNative](): NativeValueHandle<'vertex'> {
     return nativeValue(this, vertexNative, this.state);
   }

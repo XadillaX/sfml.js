@@ -118,6 +118,7 @@ export class SoundBufferRecorder extends SoundRecorder {
    * @ko 콜백을 재정의한 하위 클래스만 큐를 활성화하며,
    * 일반 인스턴스는 Native 고속 경로를 유지합니다.
    */
+  /** Selects the native-buffer recording path. @internal */
   protected recorderCallbacks(): AudioRecorderCallbacks | undefined {
     if (
       this.onStart === SoundBufferRecorder.prototype.onStart &&
@@ -157,6 +158,7 @@ export class SoundBufferRecorder extends SoundRecorder {
    * @ko 독립적인 Native 버퍼를 받습니다.
    * 이후 녹음은 이미 반환한 SoundBuffer를 수정하지 않습니다.
    */
+  /** Adopts the native recording result. @internal */
   protected onBuffer(buffer: AudioHandle<'bufferData'>): void {
     this.buffer = SoundBuffer[adoptAudioBuffer](buffer);
   }

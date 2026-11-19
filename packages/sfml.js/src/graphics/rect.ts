@@ -19,6 +19,7 @@ import {
   vector2FromState,
 } from '../system/vector2';
 
+/** Integer or floating-point rectangle coordinates. @inline */
 type RectScalar = 'i32' | 'f32';
 type RectArguments<T extends RectScalar> =
   | []
@@ -66,6 +67,7 @@ export class Rect<T extends RectScalar> {
    */
   private sizeView?: Vector2<T>;
 
+  /** Initializes the native rectangle representation. @internal */
   protected constructor(type: T, ...args: RectArguments<T>) {
     this.type = type;
     this.state = new LazyValue(new scalarArrays[type](4), buffer =>
@@ -101,6 +103,7 @@ export class Rect<T extends RectScalar> {
     return this.state.values;
   }
 
+  /** Native view of the shared rectangle coordinates. @internal */
   get [rectNative](): NativeValueHandle<'rect'> {
     return nativeValue(this, rectNative, this.state);
   }
@@ -239,6 +242,7 @@ export class Rect<T extends RectScalar> {
     ) as Vector2<T>;
   }
 
+  /** Allocates an independent rectangle of the same scalar type. @internal */
   protected createResult(): Rect<T> {
     return new Rect(this.type);
   }

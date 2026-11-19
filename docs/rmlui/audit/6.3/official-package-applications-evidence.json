@@ -1,0 +1,75 @@
+{
+  "scope": "Package-built original Invaders and Lua Invaders",
+  "date": "2026-11-19",
+  "platform": "macOS arm64",
+  "full_task_9_acceptance": false,
+  "whole_scope_acceptance": false,
+  "build_directory": "packages/sfml.js-rmlui/build",
+  "build": "passed",
+  "runtime_linkage": "Both game modules reuse the binding Core/Lua runtime",
+  "upstream_source_trees": "Byte-unchanged; both tree hashes match official-invaders-evidence.json",
+  "counts": {
+    "package_loading_contracts": 2,
+    "native_original_game_scenarios": 10,
+    "integrated_game_lifecycle_scenarios": 2,
+    "site_tests": 87,
+    "site_failures": 0
+  },
+  "contracts": {
+    "load_without_compiler_or_additional_build_directory": "passed",
+    "shared_runtime_application_slot": "passed for both module orders; runtime restart permits another application",
+    "original_game_menu_input_pause_gameover_and_persistence": "passed",
+    "source_package_application_inventory": "passed",
+    "source_package_install_in_existing_tree": "passed with shipped package-local helpers; no isolated consumer environment",
+    "current_full_runtime": "149 suites and 1550 PASS markers, zero FAIL; final helper guards and publication contracts rechecked separately",
+    "windows_utf8_score_path_and_import_library": "implemented; platform build and runtime unverified",
+    "linux_global_symbol_loading": "implemented; platform build and runtime unverified"
+  },
+  "editor": {
+    "language_server": "lint, build and five runtime test files passed",
+    "vscode_extension": "lint, typecheck and bundled extension/server passed",
+    "actual_editor_and_vsix": "five actual VS Code 1.146.0 host contracts and verified bundled VSIX passed"
+  },
+  "logs": {
+    "native_build": "/tmp/rmlui-63-completion/source-package-install.log",
+    "shared_runtime_build": "/tmp/rmlui-63-completion/official-package-runtime-slot-build.log",
+    "package_loading": "/tmp/rmlui-63-completion/official-package-loader-final.log",
+    "native_and_integrated_games": "/tmp/rmlui-63-completion/source-package-games.log",
+    "shared_runtime_slot_before_fix": "/tmp/rmlui-63-completion/official-package-runtime-slot-red.log",
+    "package_lint": "/tmp/rmlui-63-completion/official-package-lint-final.log",
+    "four_locale_site": "/tmp/rmlui-63-completion/inline-code-ssr-site-build.log",
+    "language_server": "/tmp/rmlui-63-completion/official-editor-language-server.log",
+    "vscode_extension": "/tmp/rmlui-63-completion/official-editor-extension.log",
+    "source_package_inventory": "/tmp/rmlui-63-completion/official-package-dry-run.json",
+    "pre_correction_runtime_run": "/tmp/rmlui-63-completion/official-package-full-runtime.log",
+    "current_full_runtime": "/tmp/rmlui-63-completion/source-package-full-runtime.log",
+    "current_delivery_evidence": "docs/rmlui/audit/6.3/source-package-editor-evidence.json"
+  },
+  "notes": [
+    "The pre-correction full runtime run was stopped to rebuild the shared application slot; it is not final acceptance.",
+    "The prior POSIX builder and its fingerprints remain historical evidence in official-invaders-evidence.json.",
+    "Windows GYP input-only evaluation has not completed and does not establish compilation or execution.",
+    "No checkout, clone, worktree, isolated build/test environment, commit, push or publication was created."
+  ],
+  "sha256": {
+    "packages/sfml.js-rmlui/binding.gyp": "7ae54d40e87ce7040a3b2b26a9051423f70a8f18c8d1294c8d33274e1cdc3487",
+    "packages/sfml.js-rmlui/package.json": "4152c4740ec81af58238f14bdd9263c1141942882a9b6c2ecc9040529559d8e4",
+    "packages/sfml.js-rmlui/examples/official/shell/applications.gypi": "772615996c08ebde6a6600b826eef26740d6600a8dff3a2a465d1b4f3a3d0724",
+    "packages/sfml.js-rmlui/examples/official/shell/application-target.gypi": "808320639471a86ecb7efef8f695e3cbff51507defecef1e019071f440be09da",
+    "packages/sfml.js-rmlui/examples/official/shell/native-application.cc": "9ff0da57d801125579f9463a2371c3c98c1d6756fde8ec530c5a475548a0447a",
+    "packages/sfml.js-rmlui/examples/official/shell/native-application.cjs": "2cc8645540a0bd00e9454167189963a9b27bcdb85bb0fac8aab57fdbaf5a8800",
+    "packages/sfml.js-rmlui/examples/official/invaders/native/high-scores.cc": "741f744c9b867a7bbf74e9b96a792cffe502fd095c8013b19fd12efc04c77fd5",
+    "packages/sfml.js-rmlui/examples/official/lua_invaders/native/high-scores.cc": "b73a450a172daa6a36d6a20f7e5f44129c586d9553fe943ac746a182146e6db1",
+    "packages/sfml.js-rmlui/native/runtime/native-module-symbols.cc": "83baa3077fdedc59d69dc03a1497e032d3e3885a894a21974ec4a3d14d8f3cdd",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-exports.h": "79cc2e657ad3943e0b4d8a3d968844a91fcd8c846177de7d1b74e67b1c3d5649",
+    "packages/sfml.js-rmlui/native/runtime/rmlui-state.h": "50d14f15c7541bb38f378342f68f40e2a7daa29d6b0d0b02c6e723fc0ad639de",
+    "packages/sfml.js-rmlui/native/scripting/lua/rmlui-lua-host.h": "e064b8640b31a2765608d783bc831990f20ca3bc911e6359a17f0d30c5dc9872",
+    "packages/sfml.js-rmlui/native/addon.cc": "9c4012837ff17d6dd75110ec44b27b0c5f4b0486a02186e0e17c9f2f9102f7a5",
+    "packages/sfml.js-rmlui/tools/build/compile-lua-cxx.cjs": "64881f8ebf0a7f39691ef955e9e71c7dae35072d8b0e28864dc18c17d7b6f6dc",
+    "packages/sfml.js-rmlui/test/examples/native-loader.test.cjs": "def0455142f9e9184823e0c4d06cc26597e2568ceb3e5e7f39f2db9bc7c3a216",
+    "packages/sfml.js-rmlui/test/examples/invaders-application.cjs": "6e0e249610a6985d9d558dcc4aea77bb8a1bdfcf324a8cf96683a60824f1e9ce",
+    "packages/sfml.js-rmlui/build/Release/rmlui.node": "91087e42a62a43fac11f41496322d7de02a03da3ea15f6702545381a98b9b1d9",
+    "packages/sfml.js-rmlui/build/Release/invaders.node": "cfecce66a3f5c0b3c5cea08f9778baad978b568070633972d73c881f79c2890a",
+    "packages/sfml.js-rmlui/build/Release/lua_invaders.node": "fbaf0d76531b749cc0aaca50d67669916468cd3745ffe1ea23d6d61ca64122f5"
+  }
+}

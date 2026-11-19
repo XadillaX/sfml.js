@@ -1,0 +1,358 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "4cf738dd12550d498d2bc3da967786d995e29a20923fca891e30af4554a6060e",
+  "scope_complete": false,
+  "full_core_19_accepted": false,
+  "checks": {
+    "native": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-types-native-3.log",
+      "sha256": "bedf7830856032794f9741911e59e277401e00aae6c5b49f9c74707deac71fcf",
+      "exit_code": 0,
+      "literal_pass_lines": 6
+    },
+    "stylesheet": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-runtime-3.log",
+      "sha256": "5ab54ee28d8051640008a2f3927f386a1faf70fad28df0dc811395da6f9570ec",
+      "exit_code": 0,
+      "literal_pass_lines": 14
+    },
+    "consumers": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-types-consumers-1.log",
+      "sha256": "73a9e16d3a0acf01c49f4e5996f2488ef2d526f0d703443afade08c444a9e80f",
+      "exit_code": 0,
+      "literal_pass_lines": 87
+    },
+    "lint": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-lint-3.log",
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "types": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-types-1.log",
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "format": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-format-2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "fixture_style": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-fixture-style-2.log",
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "naming": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-naming-1.log",
+      "sha256": "b0044aca198ec600f01abdf74ea43ffb6e0ab1f6363bda4c438c1ead0dfd4b2d",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "patch_idempotence": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-patch-3.log",
+      "sha256": "65ece908f40bf68d1a2b087673d55d60af2284d9454768a172c3909d2b059bec",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "incremental_build": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-native-build-1.log",
+      "sha256": "c899a438c4db2b500c978d7b6e0f6afb1d81531c0f0af1a569795286284eb2da",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    }
+  },
+  "consumer_suites": {
+    "specification-ids.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/specification-ids.test.cjs",
+      "sha256": "df7ac02b3eec70a7997ec137a515d8421943bd951dec9be0172aef020b8ee07e",
+      "pass_count": 3,
+      "scenarios": [
+        "local-specification-enums-have-zero-bridge-access",
+        "all-media-features-follow-context-state",
+        "font-face-local-fields-preserve-defaults-and-source-order"
+      ]
+    },
+    "input.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/input.test.cjs",
+      "sha256": "ec6b8ec3fa1f62ff6b87fb8bb0e7304eb6c326dd40853f4a2e433db47e79f5bc",
+      "pass_count": 13,
+      "scenarios": [
+        "constants",
+        "keyboard",
+        "sfml-keys",
+        "unicode",
+        "pointer",
+        "wheel",
+        "touch",
+        "sfml-touch",
+        "drag",
+        "exceptions",
+        "validation",
+        "getter-lifetime",
+        "sfml-validation"
+      ]
+    },
+    "variant-scalars.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/variant-scalars.test.cjs",
+      "sha256": "54d0d8fa99f9126ffc2f9af4ed317366cda821bf363b47f1cbf9ed2d641a87ba",
+      "pass_count": 5,
+      "scenarios": [
+        "native-storage-types-survive-copy-and-equality",
+        "property-and-element-template-conversions-use-native-defaults",
+        "event-parameters-preserve-explicit-types-and-fallbacks",
+        "input-ranges-and-unsafe-native-conversions-are-checked",
+        "scalar-accessors-cannot-use-expired-receivers"
+      ]
+    },
+    "animation-values.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/animation-values.test.cjs",
+      "sha256": "732c601cd246042ceb93ee1449d770fc637607b1c086461179d7a29b598658e5",
+      "pass_count": 10,
+      "scenarios": [
+        "defaults-equality-and-independent-tweens",
+        "parsed-lists-property-conversion-attributes-and-events",
+        "native-style-callback-copy-and-replacement",
+        "property-copy-does-not-root-element-lease",
+        "keyframe-animation-callback-pause-and-release",
+        "clone-rebinds-both-attribute-and-style-callbacks",
+        "native-accessors-cannot-install-expired-callbacks",
+        "attribute-transfer-event-snapshot-and-cycle-collection",
+        "property-self-cycle-and-value-replacement",
+        "invalid-input-atomicity-and-shutdown"
+      ]
+    },
+    "decoration-values.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/decoration-values.test.cjs",
+      "sha256": "d3286bacf65435974709b0b28e9f123012553581f139bcf0c5e63950e6332ece",
+      "pass_count": 7,
+      "scenarios": [
+        "decoration-lists-own-copies-and-preserve-native-equality",
+        "parsed-shadows-preserve-premultiplication-units-and-order",
+        "color-stop-parser-preserves-omitted-and-double-positions",
+        "decoration-attributes-and-event-defaults-use-native-lists",
+        "decoration-input-validation-and-nested-errors",
+        "decoration-nested-getter-cannot-revive-destroyed-receiver",
+        "decoration-snapshots-survive-gc-close-and-shutdown"
+      ]
+    },
+    "numeric-value.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/numeric-value.test.cjs",
+      "sha256": "32821357ac4fdfd8061e4b0755f66d2201c9a9785cdd2a077a1813546c4b7e64",
+      "pass_count": 7,
+      "scenarios": [
+        "owned-numeric-values-and-native-equality",
+        "unit-flags-retain-upstream-values",
+        "resolve-all-native-numeric-units",
+        "invalid-values-never-reach-native-arithmetic",
+        "views-outlive-gc-and-runtime",
+        "prototype-setters-and-native-handle-checks",
+        "worker-values-do-not-use-the-main-runtime"
+      ]
+    },
+    "script-interface.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/script-interface.test.cjs",
+      "sha256": "bb73f4905a1309950bac3d5f51b2606b200acb9dbdde40ecda5e814fcf97e967",
+      "pass_count": 25,
+      "scenarios": [
+        "context-inherits-actual-native-script-interface",
+        "registered-context-retains-script-until-removal",
+        "owned-context-script-cycle-is-collectible",
+        "owned-context-root-retains-script-through-gc",
+        "context-script-retention-survives-factory-transfer",
+        "owned-context-script-release-does-not-remove-registration",
+        "native-script-object-identity-replacement-and-clone",
+        "native-tree-retains-script-object-without-wrapper",
+        "detached-script-object-survives-parent-transfer",
+        "detached-script-object-wrapper-cycle-is-collectible",
+        "owned-event-script-object-cycle-is-collectible",
+        "borrowed-script-object-is-shared-by-native-event",
+        "script-object-survives-native-event-allocation-transfer",
+        "script-object-steady-state-has-no-ownership-scans",
+        "script-object-shutdown-restart-rejects-stale-owner",
+        "base-identity-before-initialization",
+        "actual-element-inheritance-and-null-script-object",
+        "event-inherits-native-base-identity",
+        "borrowed-and-nested-event-leases",
+        "typed-element-parameters-fallback-and-canonical-identity",
+        "owned-element-parameter-guards-destruction",
+        "borrowed-parameter-cannot-be-released-during-dispatch",
+        "receiver-and-native-capability-authenticity",
+        "shutdown-restart-and-dead-default-element",
+        "owned-event-element-edges-remain-collectible"
+      ]
+    },
+    "layout.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/layout.test.cjs",
+      "sha256": "346ea1f67b6c3198bff10d219979256a639f32067c4ed38b5d0c538a22461867",
+      "pass_count": 17,
+      "scenarios": [
+        "manual-offset-parent-scroll-fixed-and-detachment",
+        "manual-offset-conversion-rechecks-receiver-and-parent",
+        "closest-scroll-container-self-axes-containment-and-lifetime",
+        "box-metrics-and-offsets",
+        "computed-visibility-and-hit-test",
+        "scroll-clamping-events-and-overflow",
+        "scroll-into-view-overloads",
+        "all-scroll-alignments-on-both-axes",
+        "transform-projection-and-clip-area",
+        "invalid-values-and-getter-lifetime",
+        "detached-offset-lifetime",
+        "scroll-callback-exception",
+        "nested-scroll-parentage",
+        "smooth-and-auto-scroll",
+        "detached-descendants-reattach-and-replace",
+        "snapshot-gc-and-own-properties",
+        "vector-getter-invalidation"
+      ]
+    },
+    "style-sheet.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/style-sheet.test.cjs",
+      "sha256": "51eb382fc183e89f28972745744c935c781e94bb9a30f9fbc2eaf1325909e857",
+      "pass_count": 14,
+      "scenarios": [
+        "duplicate-keyframe-times-use-the-last-native-block",
+        "negated-media-query-evaluates-every-condition",
+        "decorator-cache-is-local-to-its-render-manager",
+        "decorator-cache-is-cleared-by-merge-and-manager-release",
+        "decorator-instancing-errors-and-result-retention",
+        "shared-container-updates-every-document",
+        "reload-preserves-elements-and-inline-style",
+        "element-definition-matches-hierarchy-and-survives-merge",
+        "document-stylesheet-ownership-media-and-clearing",
+        "compile-media-invalidation-and-owned-combination",
+        "container-merge-preconditions-and-stylesheet-precedence",
+        "explicit-interface-retains-owners-and-copies-source",
+        "interface-invalidates-on-recompilation-and-restart",
+        "named-decorators-and-keyframes-are-independent-snapshots"
+      ]
+    }
+  },
+  "production_change": {
+    "negated_media_conjunction_fixed": true,
+    "durable_patch": "packages/sfml.js-rmlui/tools/patch-rmlui.cjs",
+    "red_log": {
+      "path": "/tmp/rmlui-63-completion/stylesheet-negation-red-2.log",
+      "sha256": "4c0c36e7e1d74b4e1f9a5e05a244683d6cc5d5f73bdd3efea6f2aa30b424d0db",
+      "exit_code": 1,
+      "actual_width": 1,
+      "expected_width": 9,
+      "context_dimensions": [
+        80,
+        240
+      ]
+    }
+  },
+  "native_oracle": {
+    "groups": 6,
+    "contexts_created": true,
+    "javascript_runtime_created": false,
+    "lua_models_exercised": false,
+    "gpu_rendering_exercised": false,
+    "textures_loaded": false,
+    "binding_only_cleanup_hooks": true,
+    "matrix_configuration": "current package column-major Matrix4f"
+  },
+  "representation": {
+    "maps": 18,
+    "represented": 3896,
+    "unrepresented": 30,
+    "is_pass_count": false
+  },
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/stylesheet-types-source-review.md",
+    "sha256": "a8e1337f11c2b3de973fb582a22764e8546882195fd417e8b73bba4ff9e81a9a",
+    "independent": false
+  },
+  "previous_input_map_fingerprints": {
+    "renderer-declaration-map.json": "7455a3d56434b10f2a7ffe8c7f756d2d25e7a53727c44dc9299a3c2f7f34042c",
+    "core-scroll-iterator-declaration-map.json": "d212466db3168769ade1a81fefc9dc4b67b5f7e4e34cc6c9ad232d1f29732a4c",
+    "xml-declaration-map.json": "b1cefde8e8f4f3f204ff05bbab19a7528a53aad6cff858aace722b58e664d625",
+    "core-input-event-declaration-map.json": "9b7c10a3529e45a7fa996067abf98aba10ea9af7934a1f0560431f2e1019ee62",
+    "utility-declaration-map.json": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+    "numeric-declaration-map.json": "58f067d78bd5b2f668a64c2be648969affe025bbeebed7f456b36f52724e9984",
+    "string-url-declaration-map.json": "bc87552c6b4661a873fed16dad3fb9a54eedbc03026997483c8147032e3960be",
+    "lua-declaration-map.json": "77d67a9b5b8f13763dfa6c15dc4bf0a5404215116cd32b748c0444db00643dae",
+    "type-converter-declaration-map.json": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+    "supplemental-type-declaration-map.json": "7e97be4c7146e6fa792e897d8a0dcffc3f5e0516e29eb5b5be76603077e2a9e1",
+    "id-scroll-declaration-map.json": "beeb1646e29b151bc10d6d6fa46d1c25848a65b80d222a9053dce0c33b4eac57",
+    "core-type-declaration-map.json": "bf0977bdba57cd9565897244224cadadf5fe852b5f4f6d1cbec5a0fa97796499",
+    "support-declaration-map.json": "af17a41a4bae1312eefce858fd89edcd6244e49c0cec2869f10d22a6f0c7b21a",
+    "font-declaration-map.json": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44",
+    "data-operation-ledger.json": "cc0d49cad43e1a2a7dd8ecabd06d6c1851ebf3d917ae2a723b865470726d8c5b"
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/rmlui-context.cc": "77b2e8990efc999c2973775c5c300ccf8e3c275d2ed5223478cd4aa61234194c",
+    "packages/sfml.js-rmlui/native/rmlui-decorator.cc": "73f89a992c0dad67e843ccea7973527e624043c03fa71e7a91ea736ca7b92ee2",
+    "packages/sfml.js-rmlui/native/rmlui-effect-instancers.cc": "07c863602368700ad2b31ace8fdba923da3d75a85512c0a71d9368927333556f",
+    "packages/sfml.js-rmlui/native/rmlui-element-instancers.cc": "06d0836b3905617c0079b4aef90ad5f772a1e0cb3ff622bf76c1dc12e444075a",
+    "packages/sfml.js-rmlui/native/rmlui-element.cc": "3e9018c22999408a33b717f993d4ef81b9974642348e82aefb962e8169770f83",
+    "packages/sfml.js-rmlui/native/rmlui-events.cc": "f04602b9705fefb97588b40f9a057c556d41c9eac27cb4da80f1ffdd0bb83f58",
+    "packages/sfml.js-rmlui/native/rmlui-font-effect.cc": "4690506371abfaaa84e4526b5bf26274a9b043e5eb8e20ab3ff6c9dbea5ca24a",
+    "packages/sfml.js-rmlui/native/rmlui-geometry.cc": "a787f53838caac90e80c9a04734f5441fb59a5a6280b57dbdce4b8ab978f2b13",
+    "packages/sfml.js-rmlui/native/rmlui-property.cc": "6b073f8672851c9fad3afb119141080264ed0256c6e9f1a69f67127ab915bb44",
+    "packages/sfml.js-rmlui/native/rmlui-render-manager.cc": "fb7196c5f15c2c1b8c9a1ed0824719eebba33a95536e701030eb37a536a16a68",
+    "packages/sfml.js-rmlui/native/rmlui-string.cc": "6d31325908e0a2f7c29d4c7680bd3bfdfa4e9113d4996a871183c2f2c35d4f1f",
+    "packages/sfml.js-rmlui/native/rmlui-style-sheet.cc": "9f46b676592aad0ad01e1fdf93383844a9a4496310cfeb7bc6aa230761189b35",
+    "packages/sfml.js-rmlui/native/rmlui-transform.cc": "520351b619026680a5bf45013974e2c9e1c5d1e0b315dcbc82bdaf7093a53472",
+    "packages/sfml.js-rmlui/native/rmlui-variant.cc": "93ac414f6c7a8f522617c397254d2fb683e999663bc273c507b0c1809a196169",
+    "packages/sfml.js-rmlui/src/animation-values.ts": "bbcd6f14b5cc0bb620e820350f3fd274a36aebbda02eb2917c8582fee7b5d8a3",
+    "packages/sfml.js-rmlui/src/context.ts": "dfc96493eb5534ea219477e9d2f76a9022fa6f431e64426b58217a3312d27160",
+    "packages/sfml.js-rmlui/src/data-custom.ts": "fea15f2c5fdb509165ab2890570270e618aa3f1e505e76dd023ab4839c2bd0bb",
+    "packages/sfml.js-rmlui/src/decoration-values.ts": "5f15403a27c8b9b92f89ced5d1aa4a8c72cb18f5e2b64b9822ced69c20dbf608",
+    "packages/sfml.js-rmlui/src/decorator.ts": "867b613316d3027664a9cd75703eb8f6dc58d2064d2c400fcac550965e46c5f0",
+    "packages/sfml.js-rmlui/src/effect-instancers.ts": "3c5249feb3ebbd1fbbcd4d0603d47a48ffbee1d9540345a4f79d81a043312e12",
+    "packages/sfml.js-rmlui/src/effect-values.ts": "b679e2a90d96fd5d900834cab5ac272ef2677825d4f5ad7dd8d6499fd3fd9a9e",
+    "packages/sfml.js-rmlui/src/element-instancer.ts": "d1a4724e4cb5b8bb93ffd39e9b4e75af9dcc32cc4e66c97681e7982347ae1e06",
+    "packages/sfml.js-rmlui/src/element.ts": "492cb78cd82e7f4ae0b670c2cb2d10bafb40739944cd3f0cf6b5af8305d2f279",
+    "packages/sfml.js-rmlui/src/event.ts": "fa3ea70feb1f98980a59f980a98019733d98360b84cc78d60bd4875ce4bf0e41",
+    "packages/sfml.js-rmlui/src/font-effect.ts": "61b593be0c8c6bc83433011445028f411ec5765273020aa07c5869dc45972c31",
+    "packages/sfml.js-rmlui/src/input.ts": "40c22cfe76a57347be74c49536a5d739bc3903b32e884cb118b4699e9554392f",
+    "packages/sfml.js-rmlui/src/layout.ts": "b6c99fb666bdbb741183be7c4bea847f8d9e76a0590edc2f937f4114f739ed99",
+    "packages/sfml.js-rmlui/src/property-specification.ts": "9b1f7cbb8d277e02018809cde595f2289ab45db7a0051eed503b1706bf8d96a5",
+    "packages/sfml.js-rmlui/src/property.ts": "262d92fb80927d0bb4e3955e35991e8d41e991c8f7d1312f53f9449bf83bb863",
+    "packages/sfml.js-rmlui/src/render-manager.ts": "c6348cf94370bc384a59787285ee6a08cd1b2ef83768e8f0bfd746476aedf65c",
+    "packages/sfml.js-rmlui/src/resources.ts": "19014a010e71e9f36a79560b9cd4dcc37d970b8b999aec7de09d751ae5eaa927",
+    "packages/sfml.js-rmlui/src/script-interface.ts": "d481b8865f62baad8e0d2518eea4e876d74ae8ed321bd9437cac009748ff8a18",
+    "packages/sfml.js-rmlui/src/string-view.ts": "1e96ebb738d993767e8689a8b16ae35c3bf6d30383129dba74ea65158aed6f93",
+    "packages/sfml.js-rmlui/src/style-sheet.ts": "7c0a0d9933fb9dd71165c656489333fdaae9c00e4a6d6c57d68a2859ff400ae4",
+    "packages/sfml.js-rmlui/src/texture.ts": "b9d36942038b985fdac3d63bd2985b510340ec1fbe5c942919ace97f28937af5",
+    "packages/sfml.js-rmlui/src/transform.ts": "fc79db54ef82a221562a6b9319a9906dfb675f904d92c2a60b88aa67378e7669",
+    "packages/sfml.js-rmlui/src/types.ts": "95aab9869cee16858a3c83b624b3ebdb80a1d1d0c276c9fa06e59e14b0b421d8",
+    "packages/sfml.js-rmlui/src/variant.ts": "4c102fcbf62c6ebd7d0b579c1a0e649019f3597830602fa026d1c819961d15d3",
+    "packages/sfml.js-rmlui/test/animation-values.test.cjs": "732c601cd246042ceb93ee1449d770fc637607b1c086461179d7a29b598658e5",
+    "packages/sfml.js-rmlui/test/decoration-values.test.cjs": "d3286bacf65435974709b0b28e9f123012553581f139bcf0c5e63950e6332ece",
+    "packages/sfml.js-rmlui/test/input.test.cjs": "ec6b8ec3fa1f62ff6b87fb8bb0e7304eb6c326dd40853f4a2e433db47e79f5bc",
+    "packages/sfml.js-rmlui/test/layout.test.cjs": "346ea1f67b6c3198bff10d219979256a639f32067c4ed38b5d0c538a22461867",
+    "packages/sfml.js-rmlui/test/native/build-stylesheet-types-contracts.py": "d698511fc2b3aa8e127c13e030602d81b0874ca4960d6250f1ecb07ad62fb007",
+    "packages/sfml.js-rmlui/test/native/stylesheet-types-contracts.cc": "f717d64921f26821433845356395a7960556e347e1e70d6b3f45281b3901cebf",
+    "packages/sfml.js-rmlui/test/numeric-value.test.cjs": "32821357ac4fdfd8061e4b0755f66d2201c9a9785cdd2a077a1813546c4b7e64",
+    "packages/sfml.js-rmlui/test/script-interface.test.cjs": "bb73f4905a1309950bac3d5f51b2606b200acb9dbdde40ecda5e814fcf97e967",
+    "packages/sfml.js-rmlui/test/specification-ids.test.cjs": "df7ac02b3eec70a7997ec137a515d8421943bd951dec9be0172aef020b8ee07e",
+    "packages/sfml.js-rmlui/test/style-sheet.test.cjs": "51eb382fc183e89f28972745744c935c781e94bb9a30f9fbc2eaf1325909e857",
+    "packages/sfml.js-rmlui/test/variant-scalars.test.cjs": "54d0d8fa99f9126ffc2f9af4ed317366cda821bf363b47f1cbf9ed2d641a87ba",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Animation.h": "60a2df38e8ce94dc9f6b4928c30b57435eaca2b91d18685032b8c049911c7c88",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/DecorationTypes.h": "4b1ce79188ad35181f638b3590540034dde1cd49d60a0f4a817197dfa16a800d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ID.h": "6e6e7e0ac394d80d38f3634ec2245bc308333cfad638b5bdeed8a70aab266bc7",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertyIdSet.h": "488949753331e87e6db721523416d0285289e258f5361af25f90ded29c4f8388",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheetTypes.h": "93f0ad0b0eeb3ebf95d85bb09e7f7ca407dec5be9b69852c1481988cc1b1de49",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h": "5c36f4c96e2b0a417d65816abf753603ef398e53e26adf34703fc7ae79752e2a",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Types.h": "1fa9db6217c2bb85b05ed56a0490fd3b8f603b8cc9a485a36073d56cda53824b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Utilities.h": "7a7b4e3ba8724515fc03529adc472e124e9e2bbd2e632657cc692f9125721952",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/DataController.h": "dd2e45933827f8865484223ad865f66482adcdbd19a90bba1a2fbe4b1d5e6298",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/DataView.h": "c3d226db851ef85b18c8c19420ff9f39fa40e390896f6856e110ce364ae924e5",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementAnimation.h": "5193c783f92fc2275dff0e62d5949c3f0d91db3455cc5ac4b8087ea203ff8bf0",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheet.cpp": "1378a7d322de573fd39d44f803ec9b885466df5698a1a25fe19d7873c8e8c31d",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetContainer.cpp": "dcc1229e00e9835454cb3e85de94e6227810022e97223050ea5d8b6fd784b6da",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetNode.cpp": "c048a4bd004f1723d35a4deb0b2914ad857e34edbcf7ee443a54d2853e345d55",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetNode.h": "6c510692fa421438e071b42daf6396744f3cea299e2cedf4b748c85787d67ec4",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/StyleSheetParser.cpp": "c047b32e50566db6c98a2562c46a44e8e8765567e6fdf204f436b0a96610ae78",
+    "packages/sfml.js-rmlui/tools/patch-rmlui.cjs": "42ac32e99b7b68b125fff3178a70e3d5076099ef2be47049be462354336eb6fb"
+  },
+  "complete_package_build_repeated": false,
+  "isolated_install_created": false
+}

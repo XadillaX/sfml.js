@@ -1,0 +1,236 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "bf56d74b203c9a04a9b3d83b68edec890df0c6034c42ddb303a4c11aa62344ca",
+  "scope_complete": false,
+  "notice": "Local Native utility acceptance only. Timing excludes command setup, mesh reset, layout, rendering and GPU. No isolated installation, archive runtime or whole-integration pass is claimed.",
+  "complete_package_verification": {
+    "path": "/tmp/rmlui-63-completion/utility-package-3.log",
+    "sha256": "cc5f40d2b597f0e1e1d42b6265dbbc795aeec7e41805844cbad1e075a0cec045",
+    "exit_code": 0,
+    "literal_pass_lines": 1166,
+    "runtime_files": 117,
+    "failures": 0,
+    "native_compiler_warnings": 0,
+    "native_compiler_errors": 0,
+    "host_dependency_notices": "Node/Python deprecations are separate from native diagnostics."
+  },
+  "native_probe": {
+    "path": "/tmp/rmlui-63-completion/utility-native-contracts-1.log",
+    "sha256": "caa1fbcc9a3fe7b265e30528664143cf05beaced6c7624b14cb8b10502713abf",
+    "exit_code": 0,
+    "literal_pass_lines": 4
+  },
+  "native_managed_comparison": {
+    "path": "/tmp/rmlui-63-completion/utility-native-comparison-1.log",
+    "sha256": "d722eb7e770670d51f5c6a17a97b997b238990820c428098f6a86021216fa71e",
+    "exit_code": 0,
+    "literal_pass_lines": 5
+  },
+  "performance_contracts": {
+    "path": "/tmp/rmlui-63-completion/utility-performance-1.log",
+    "sha256": "7cacafb1b229efa416c544d0c4f2623e6861619cd52bd301a05b97a738b2bfb0",
+    "exit_code": 0,
+    "literal_pass_lines": 4
+  },
+  "performance": {
+    "path": "/Users/bytedance/Workspace/github/sfml.js/docs/rmlui/audit/6.3/utility-performance-results.json",
+    "sha256": "35a28aac07a3e4970ec58f238d5fa497eacc71fbc91009dcde8119c50fa1ac1a",
+    "timed_groups": 9,
+    "timed_samples": 720,
+    "counted_samples": 45
+  },
+  "consumer_suites": {
+    "convolution-filter.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "sha256": "9ef96d0366c3564e7f6e7a548ca64ed2ccc1c7705fab8fc0db759c313b527662",
+      "scenarios": [
+        "sum-writes-alpha-and-retains-rgb-stride-and-subarray",
+        "dilation-uses-rgba-alpha-and-source-offset",
+        "reinitialisation-keeps-exported-rows-independent",
+        "invalid-buffers-and-kernels-do-not-partially-write",
+        "negative-sum-weights-are-safe-when-output-stays-nonnegative",
+        "empty-regions-and-detached-or-shared-buffers",
+        "native-kernel-and-byte-views-survive-wrapper-collection"
+      ],
+      "pass_count": 7
+    },
+    "mesh-utilities.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "sha256": "7529a6099563b7b6506b79a82d037af9a3b60987b1bd5c99e751dbc1951026d4",
+      "scenarios": [
+        "quad-overloads-append-and-preserve-exported-storage",
+        "line-snaps-both-edges-to-the-pixel-grid",
+        "background-and-border-use-box-offsets-and-native-triangles",
+        "bulk-shared-commands-preserve-order-and-reuse-input",
+        "invalid-batch-does-not-append-a-valid-prefix",
+        "convenience-arguments-do-not-silently-coerce-or-round-colours",
+        "shared-command-and-geometry-views-survive-owner-collection"
+      ],
+      "pass_count": 7
+    },
+    "utility-performance.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/utility-performance.test.cjs",
+      "sha256": "28e361496c4b95ba59d1dcaed51e41cd28520c7dbb9669d05c153624eea3aacc",
+      "scenarios": [
+        "utility-batch-fixed-entry-and-no-input-allocation",
+        "utility-retained-view-one-prefix-copy",
+        "utility-growth-bounded-without-exported-views",
+        "utility-convolution-allocation-free-steady-state"
+      ],
+      "pass_count": 4
+    }
+  },
+  "four_language_contracts": {
+    "path": "/tmp/rmlui-63-completion/utility-four-language-1.log",
+    "sha256": "4cbc59ebf8688234c25b5ae98870ab9d20e85277e5e1c24b6143592178e461c6",
+    "exit_code": 0,
+    "literal_pass_lines": 0
+  },
+  "checks": {
+    "utility-naming-1.log": {
+      "path": "/tmp/rmlui-63-completion/utility-naming-1.log",
+      "sha256": "4f29de37da2b83c3e729772a556e905d654ad8f71398c7dcf91ec9f7fa082134",
+      "exit_code": 0,
+      "literal_pass_lines": 5
+    },
+    "utility-format-3.log": {
+      "path": "/tmp/rmlui-63-completion/utility-format-3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "utility-native-fixture-style-1.log": {
+      "path": "/tmp/rmlui-63-completion/utility-native-fixture-style-1.log",
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "utility-whitespace-1.log": {
+      "path": "/tmp/rmlui-63-completion/utility-whitespace-1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "utility-guide-routing-1.log": {
+      "path": "/tmp/rmlui-63-completion/utility-guide-routing-1.log",
+      "sha256": "d58988a1a7744b13f61e54d6592cd68c20a83759e5d26ae5743ea1b6bbf1d34f",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "utility-guide-runtime-1.log": {
+      "path": "/tmp/rmlui-63-completion/utility-guide-runtime-1.log",
+      "sha256": "28296ec33620b36cf99f6895d4e7e6aa0e8e99d0e1fbfb3b5c2eb53fa6c7c2cf",
+      "exit_code": 0,
+      "literal_pass_lines": 4
+    },
+    "utility-guide-links-1.log": {
+      "path": "/tmp/rmlui-63-completion/utility-guide-links-1.log",
+      "sha256": "465d0765cde7a7fd51be3fec81254946476d27540d0143b72e61dfa57fe89c3a",
+      "exit_code": 0,
+      "literal_pass_lines": 1
+    },
+    "utility-source-review.log": {
+      "path": "/tmp/rmlui-63-completion/utility-source-review.log",
+      "sha256": "ce413ccb423f0aaca09d47dfdb1494b234ab7fdb0d84adaa7d97204ac5c0fff4",
+      "exit_code": 0,
+      "literal_pass_lines": 5
+    }
+  },
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/utility-source-review.md",
+    "sha256": "7d452e9d5151f94e6e2251c030254dc4d968b2c3ff7464473c2d1de767772fa3",
+    "independent": false
+  },
+  "archive": {
+    "path": "/tmp/rmlui-63-completion/utility-package/sfml.js-rmlui-1.2.1.tgz",
+    "sha256": "83b54b65e5a6a0772c89e2fd9fe413b97f8e72b0fa222ac7834d7efcfd4e27cd",
+    "bytes": 1568682,
+    "entries": 612,
+    "matched_current_paths": [
+      "native/rmlui-convolution.cc",
+      "native/rmlui-mesh-utilities.cc",
+      "native/rmlui-mesh.cc",
+      "native/rmlui-mesh.h",
+      "native/rmlui-data-diagnostics.cc",
+      "native/rmlui-data-diagnostics.h",
+      "native/addon.cc",
+      "binding.gyp",
+      "src/convolution-filter.ts",
+      "src/mesh-utilities.ts",
+      "src/mesh.ts",
+      "src/render-box.ts",
+      "src/core.ts",
+      "src/internal/native.ts",
+      "dist/convolution-filter.js",
+      "dist/convolution-filter.d.ts",
+      "dist/mesh-utilities.js",
+      "dist/mesh-utilities.d.ts",
+      "dist/render-box.js",
+      "dist/render-box.d.ts",
+      "dist/core.js",
+      "dist/core.d.ts",
+      "dist/internal/native.js",
+      "dist/internal/native.d.ts"
+    ],
+    "runtime_executed_from_archive": false,
+    "isolated_install_created": false
+  },
+  "representation": {
+    "maps": 14,
+    "represented": 3629,
+    "unrepresented": 297,
+    "is_pass_count": false
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/rmlui-convolution.cc": "577ed797e051ce0673707b939f23e1f07f1186a1f3531c0bb9e1f4818e8390c3",
+    "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc": "c43dfaa71fea6dd6714616a1b75389b9223744776dff2c03bd298f65cfe54395",
+    "packages/sfml.js-rmlui/native/rmlui-mesh.cc": "150622fe15af7c3194f2b7eaf037e92d2b7eec3cd2a9ef8d21ced1dc20839c25",
+    "packages/sfml.js-rmlui/native/rmlui-mesh.h": "c5050dbec171b3671d60a6fc123e3c9368043bbf07943aa8a4fd6320841ccf05",
+    "packages/sfml.js-rmlui/native/rmlui-data-diagnostics.cc": "df1bbf21b90b9bb9954a658dc9c1623d0db9e09da123e001d1ccf312fdc515aa",
+    "packages/sfml.js-rmlui/native/rmlui-data-diagnostics.h": "5752742d9bc18c4d227418d7a706f950704a32b2f10d6ca5a53866d072d4aa0c",
+    "packages/sfml.js-rmlui/native/addon.cc": "3e47520d874d6abdc2f7cbc1776619fe89f3adb0003cd4fc27cbbd855ffcb32e",
+    "packages/sfml.js-rmlui/binding.gyp": "a6f3a21e1d6b7940fa778001e8681db5a81ea3baa99b86eefa00b9087eec56bd",
+    "packages/sfml.js-rmlui/src/convolution-filter.ts": "5d8d742c0f8374c807dae99e8893706147b627b6c2eab3287abdf33afe62f5e5",
+    "packages/sfml.js-rmlui/src/mesh-utilities.ts": "8c8d9c27d9eea7dc512404d42ad944c1b95a807da08d43c4c05ab371263c37fe",
+    "packages/sfml.js-rmlui/src/mesh.ts": "f07b53af7b5957e31546c90512afa2f7748fa80610aca31415c953876a267ca9",
+    "packages/sfml.js-rmlui/src/render-box.ts": "2c456de7bbc4ec6937841cb722f4ca50191d6eb0dd4fe60ca528df6e559025f6",
+    "packages/sfml.js-rmlui/src/core.ts": "65ad7022ec101ad0d8480f4646b91503c3856896fb771c29779155799e2a5715",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "a4174debeda7dd3ead6ae5c00c032c70c6c94ad74d4e0030e282ce6b15ff0be1",
+    "packages/sfml.js-rmlui/dist/convolution-filter.js": "8626d478cc1055e83414c0cdb12716a7086dcb4136c71fe78126a86053a730f0",
+    "packages/sfml.js-rmlui/dist/convolution-filter.d.ts": "9c745e6dded6bf58494a05e241cd5c213b4d9ff328cc306775388a76794c0df8",
+    "packages/sfml.js-rmlui/dist/mesh-utilities.js": "6bf370efbbf9376190ea841f547a4948f1154d2e4db0c156e7bf066186f30cd1",
+    "packages/sfml.js-rmlui/dist/mesh-utilities.d.ts": "92baf918879d296944c770f5d8fe3bef46be52289db6116ef9b9ed1bae64ee71",
+    "packages/sfml.js-rmlui/dist/render-box.js": "34dde34e480843c6a00cd5164b8760cac0bdb6b9133de986d3de8ea0bcec227a",
+    "packages/sfml.js-rmlui/dist/render-box.d.ts": "c356ded04d5d689a3f3bac419a5dd34672c043c0ead418d54aa0feed68e54ac2",
+    "packages/sfml.js-rmlui/dist/core.js": "ba8d715d86eaf70a3f4d43a525e49bb0ce2b1e01cbb484d5a849a63c59658a11",
+    "packages/sfml.js-rmlui/dist/core.d.ts": "f7e4913db900e93acff29bcb7402ea7113890e7e8fec707f4ffae110654d6ae2",
+    "packages/sfml.js-rmlui/dist/internal/native.js": "ce3c5229abc9ffb6ab880bb03eefe083107d7106a818b1fcf45bfbab0cc8984c",
+    "packages/sfml.js-rmlui/dist/internal/native.d.ts": "e6471f4113227121b9ae5432d4b1c92712eba87f55a80846a3fd5860be49ca60",
+    "packages/sfml.js-rmlui/test/native/utility-contracts.cc": "64160aebe2374b5d7130307568dedbad8610435340cdceb425ef2d5828fcf10b",
+    "packages/sfml.js-rmlui/test/native/build-utility-contracts.py": "188a39fae6f6af212fd21533fea16040295b47f898edcc96f7d211ce2dfd03b4",
+    "packages/sfml.js-rmlui/test/native/compare-utility-contracts.cjs": "3ca9a4347ec12412cd59890801ca3f663de7fc39d9958f6501dd922c871b7480",
+    "packages/sfml.js-rmlui/test/convolution-filter.test.cjs": "9ef96d0366c3564e7f6e7a548ca64ed2ccc1c7705fab8fc0db759c313b527662",
+    "packages/sfml.js-rmlui/test/convolution-filter.ts": "4d28d9e6f5b027504c01c8090622368968fbb5675e7e32c664d2fa143403ccfb",
+    "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs": "7529a6099563b7b6506b79a82d037af9a3b60987b1bd5c99e751dbc1951026d4",
+    "packages/sfml.js-rmlui/test/mesh-utilities.ts": "7c6ceffa00bfe2698ebcb496773da634d43110ce1d308629b761074399e9225e",
+    "packages/sfml.js-rmlui/test/utility-performance.test.cjs": "28e361496c4b95ba59d1dcaed51e41cd28520c7dbb9669d05c153624eea3aacc",
+    "packages/sfml.js-rmlui/test/lifetime.test.cjs": "70bf7aea417578b647de4b29cec4ea0b90b8fbc94637ca3ac76df576c1f39dd8",
+    "packages/sfml.js-rmlui/tools/measure-utility-performance.cjs": "cfff43f128a8aa9205925767264b959d0ef86eccae5cc57311519f6267d50366",
+    "site/scripts/content.mjs": "6e71111ed71930ff18605bbe599b13c59644bce080bf407df42892f6c900756c",
+    "site/scripts/content.test.mjs": "b279d6712da34759bff3dd4bf60e76361f198f2bf9e567b6b0bff40f13a87119",
+    "docs/rmlui/geometry-utilities.md": "605540d398cd793e4968eba6946d6215e04f4d032cb23999a69feabece7e41a6",
+    "docs/rmlui/geometry-utilities.zh-CN.md": "15cb08bb1f1998e8b549e9700606268ddc8c37f58207699d91686e578206c094",
+    "docs/rmlui/geometry-utilities.ja.md": "5a54b0cd22f34e6815b99da3381a0a726d61b80c5049a77d42cf12cca0e536bf",
+    "docs/rmlui/geometry-utilities.ko.md": "2e5820bb7526088f95db966f8dd901f56a9704c5160a0473d57de2e99c2bc805",
+    "docs/rmlui/README.md": "38dca50be21a08ccac19a76a5dc96e42613a2908f6358e6b8cc2c97b6076e803",
+    "docs/rmlui/README.zh-CN.md": "a699b8aaa2e7b9eb8161dac4c445efb1a2f2e1d32aad97fa826cb1aa84972fac",
+    "docs/rmlui/README.ja.md": "1dd59d549d8d7931edfc47860e977478d01c3b55b62ef3072de31c7a10ef25dc",
+    "docs/rmlui/README.ko.md": "665be176dab7126c8d6f6766aef07083920dfba70d459eebce746b699dd38226",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/ConvolutionFilter.h": "d16a519be73211688a242c763ce32ae6ca30b07be61dbdfc05e4301529c8fa71",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/MeshUtilities.h": "b9a18b70ce292cf0c288b28ea6bcd2d16b4155c83426a34624e5f8e7eecad8bf",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ConvolutionFilter.cpp": "5763992e33995681b52027ab79c77471d4794b632deb9a391028b61016e791a7",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/MeshUtilities.cpp": "3c3ce9c9f0bdbf9d6d571c629c6ef3945f2368aafa8a671f64ca0b2d6dc4aefd",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/GeometryBackgroundBorder.cpp": "aa984f55603c900d98c37d8aba756ff9121e4bffd89dc1061fb95da84ef6453d"
+  }
+}

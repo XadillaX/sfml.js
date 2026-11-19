@@ -39,7 +39,8 @@ const includeDir = require('sfml.js-interop');
 
 ## 契約
 
-- `sfml-js-interop.h` は `SFMLJS_INTEROP_VERSION`（現在は 1）を公開し、`shared-handle.h`、`exception-boundary.h`、`numeric-fields.h` を取り込みます。
+- `sfml-js-interop.h` は `SFMLJS_INTEROP_VERSION`（現在は 2）を公開し、`shared-handle.h`、`exception-boundary.h`、`numeric-fields.h`、`window-event-source.h` を取り込みます。
+- `window-event-source.h` はアドオン間で不透明なネイティブイベントの発生元を渡します。macOS ではキーとテキストの発生元を実際の SFML キュー項目とポーリングした JS スナップショットが保持し、公開 `Event` コンストラクターによるコピーは独立したイベントになります。
 - ホストバインディングの契約と SFML バージョンに合わせてください。バージョンマクロの一致だけでは、独立したビルド設定のバイナリー間の ABI 互換性を保証しません。
 - `RenderWindowFrom` が受け取るのは公開 JavaScript RenderWindow オブジェクトではなく、バインディング内部のネイティブウィンドウハンドルです。
 - 寿命はネイティブ所有者が管理します。ビューや借用ポインターは所有者、コンテキスト、ウィンドウより長く保持できません。

@@ -1,0 +1,2217 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "support_original_records": 157,
+  "whole_scope_complete": false,
+  "notice": "157 exact original declaration records are not 157 runtime tests. Native ABI aliases, declarations, private observer fields, sentinels and deleted special members remain support facilities. Managed consumers use records, retained typed arrays, checked resource handles or ID snapshots. Native varargs and pointer syntax remain native; application logs use checked scalar formatting. Each support group and consuming API requires separate execution evidence.",
+  "native_groups": {
+    "configuration": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckConfiguration",
+      "literal_pass_line": "native-support-configured-container-abi"
+    },
+    "dictionary": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckDictionary",
+      "literal_pass_line": "native-support-dictionary-default-and-conversion"
+    },
+    "log": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckNativeLog",
+      "literal_pass_line": "native-support-original-varargs-log"
+    },
+    "observers": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckObservers",
+      "literal_pass_line": "native-support-observer-copy-move-and-shutdown"
+    },
+    "property-sets": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckPropertySets",
+      "literal_pass_line": "native-support-property-set-algebra-and-iteration"
+    },
+    "span": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckSpan",
+      "literal_pass_line": "native-support-span-borrowed-storage"
+    },
+    "stable-vector": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckStableVector",
+      "literal_pass_line": "native-support-stable-vector-index-reuse"
+    },
+    "traits": {
+      "source": "packages/sfml.js-rmlui/test/native/support-contracts.cc",
+      "function": "CheckTraits",
+      "literal_pass_line": "native-support-releaser-and-type-family"
+    }
+  },
+  "rulings": {
+    "containers": "No standalone JS STL/container library. Span borrows upstream storage; managed mesh views retain native owners and resize snapshots. StableVector indices may reuse erased slots; managed texture handles apply their native validity checks.",
+    "observers": "Observer control blocks and pool lifetime remain native. Copy and move track the same observed object; copied observed objects keep independent blocks. Expired managed handles reject dereference.",
+    "property_sets": "Native bitset algebra and iterator operations remain native. Registered property sets are ordered detached PropertyId[] snapshots; operators have no separate JS syntax.",
+    "log_sentinel": "LT_MAX is a native count sentinel, not a legal managed severity. LogType retains the six legal values; both log routes reject 6.",
+    "debug": "Assert routes through the selected native log sink. Assertion macros, native debugger breaks and Tracy remain build facilities.",
+    "traits": "Native deleted special members enforce ownership; type-name and family templates remain native ABI support. Scriptable class identity uses checked opaque tokens and concrete wrappers."
+  },
+  "records": [
+    {
+      "inventory_index": 0,
+      "exact_key": "Config/Config.h|50|TypeAliasTemplateDecl|Rml::Vector|Vector|",
+      "native_symbol": "Rml::Vector",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1,
+      "exact_key": "Config/Config.h|52|TypeAliasTemplateDecl|Rml::Array|Array|",
+      "native_symbol": "Rml::Array",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2,
+      "exact_key": "Config/Config.h|54|TypeAliasTemplateDecl|Rml::Stack|Stack|",
+      "native_symbol": "Rml::Stack",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3,
+      "exact_key": "Config/Config.h|56|TypeAliasTemplateDecl|Rml::List|List|",
+      "native_symbol": "Rml::List",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 4,
+      "exact_key": "Config/Config.h|58|TypeAliasTemplateDecl|Rml::Queue|Queue|",
+      "native_symbol": "Rml::Queue",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 5,
+      "exact_key": "Config/Config.h|60|TypeAliasTemplateDecl|Rml::Pair|Pair|",
+      "native_symbol": "Rml::Pair",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 6,
+      "exact_key": "Config/Config.h|62|TypeAliasTemplateDecl|Rml::StableMap|StableMap|",
+      "native_symbol": "Rml::StableMap",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 7,
+      "exact_key": "Config/Config.h|64|TypeAliasTemplateDecl|Rml::StableUnorderedMap|StableUnorderedMap|",
+      "native_symbol": "Rml::StableUnorderedMap",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 8,
+      "exact_key": "Config/Config.h|66|TypeAliasTemplateDecl|Rml::UnorderedMultimap|UnorderedMultimap|",
+      "native_symbol": "Rml::UnorderedMultimap",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 9,
+      "exact_key": "Config/Config.h|83|TypeAliasTemplateDecl|Rml::UnorderedMap|UnorderedMap|",
+      "native_symbol": "Rml::UnorderedMap",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 10,
+      "exact_key": "Config/Config.h|85|TypeAliasTemplateDecl|Rml::SmallUnorderedMap|SmallUnorderedMap|",
+      "native_symbol": "Rml::SmallUnorderedMap",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 11,
+      "exact_key": "Config/Config.h|87|TypeAliasTemplateDecl|Rml::SmallOrderedMap|SmallOrderedMap|",
+      "native_symbol": "Rml::SmallOrderedMap",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 12,
+      "exact_key": "Config/Config.h|89|TypeAliasTemplateDecl|Rml::UnorderedSet|UnorderedSet|",
+      "native_symbol": "Rml::UnorderedSet",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 13,
+      "exact_key": "Config/Config.h|91|TypeAliasTemplateDecl|Rml::SmallUnorderedSet|SmallUnorderedSet|",
+      "native_symbol": "Rml::SmallUnorderedSet",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 14,
+      "exact_key": "Config/Config.h|93|TypeAliasTemplateDecl|Rml::SmallOrderedSet|SmallOrderedSet|",
+      "native_symbol": "Rml::SmallOrderedSet",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 15,
+      "exact_key": "Config/Config.h|98|TypeAliasTemplateDecl|Rml::Hash|Hash|",
+      "native_symbol": "Rml::Hash",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 16,
+      "exact_key": "Config/Config.h|100|TypeAliasTemplateDecl|Rml::Function|Function|",
+      "native_symbol": "Rml::Function",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 17,
+      "exact_key": "Config/Config.h|102|FunctionTemplate|Rml::MakeMoveIterator|MakeMoveIterator(Iterator)|std::move_iterator<Iterator> (Iterator)",
+      "native_symbol": "Rml::MakeMoveIterator",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 18,
+      "exact_key": "Config/Config.h|108|TypeAliasDecl|Rml::String|String|Rml::String",
+      "native_symbol": "Rml::String",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 19,
+      "exact_key": "Config/Config.h|109|TypeAliasDecl|Rml::StringList|StringList|Rml::StringList",
+      "native_symbol": "Rml::StringList",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 20,
+      "exact_key": "Config/Config.h|113|TypeAliasTemplateDecl|Rml::UniquePtr|UniquePtr|",
+      "native_symbol": "Rml::UniquePtr",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 21,
+      "exact_key": "Config/Config.h|115|ClassTemplate|Rml::Releaser|Releaser<T>|",
+      "native_symbol": "Rml::Releaser",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 22,
+      "exact_key": "Config/Config.h|117|TypeAliasTemplateDecl|Rml::UniqueReleaserPtr|UniqueReleaserPtr|",
+      "native_symbol": "Rml::UniqueReleaserPtr",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 23,
+      "exact_key": "Config/Config.h|119|TypeAliasTemplateDecl|Rml::SharedPtr|SharedPtr|",
+      "native_symbol": "Rml::SharedPtr",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 24,
+      "exact_key": "Config/Config.h|121|TypeAliasTemplateDecl|Rml::WeakPtr|WeakPtr|",
+      "native_symbol": "Rml::WeakPtr",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 25,
+      "exact_key": "Config/Config.h|123|FunctionTemplate|Rml::MakeShared|MakeShared(Args &&...)|SharedPtr<T> (Args &&...)",
+      "native_symbol": "Rml::MakeShared",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 26,
+      "exact_key": "Config/Config.h|128|FunctionTemplate|Rml::MakeUnique|MakeUnique(Args &&...)|UniquePtr<T> (Args &&...)",
+      "native_symbol": "Rml::MakeUnique",
+      "surface": "Configured native containers and owner pointers",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Config/Config.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-mesh.cc",
+      "native_groups": [
+        "configuration"
+      ],
+      "domain": "native-abi-configuration",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 724,
+      "exact_key": "Core/Debug.h|40|FunctionDecl|Rml::Assert|Assert(const char *, const char *, int)|bool (const char *, const char *, int)",
+      "native_symbol": "Rml::Assert",
+      "surface": "Native assertion routing; application messages use Log",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Log.cpp",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-debug-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 762,
+      "exact_key": "Core/Dictionary.h|8|FunctionDecl|Rml::GetIf|GetIf(Dictionary &, const String &)|Variant *(Dictionary &, const String &)",
+      "native_symbol": "Rml::GetIf",
+      "surface": "Event parameter records and typed defaults",
+      "source": "packages/sfml.js-rmlui/native/rmlui-events.cc",
+      "consumer": "packages/sfml.js-rmlui/src/event.ts",
+      "native_groups": [
+        "dictionary"
+      ],
+      "domain": "managed-record-and-native-variant",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 763,
+      "exact_key": "Core/Dictionary.h|15|FunctionDecl|Rml::GetIf|GetIf(const Dictionary &, const String &)|const Variant *(const Dictionary &, const String &)",
+      "native_symbol": "Rml::GetIf",
+      "surface": "Event parameter records and typed defaults",
+      "source": "packages/sfml.js-rmlui/native/rmlui-events.cc",
+      "consumer": "packages/sfml.js-rmlui/src/event.ts",
+      "native_groups": [
+        "dictionary"
+      ],
+      "domain": "managed-record-and-native-variant",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 764,
+      "exact_key": "Core/Dictionary.h|23|FunctionTemplate|Rml::Get|Get(const Dictionary &, const String &, const T &)|T (const Dictionary &, const String &, const T &)",
+      "native_symbol": "Rml::Get",
+      "surface": "Event parameter records and typed defaults",
+      "source": "packages/sfml.js-rmlui/native/rmlui-events.cc",
+      "consumer": "packages/sfml.js-rmlui/src/event.ts",
+      "native_groups": [
+        "dictionary"
+      ],
+      "domain": "managed-record-and-native-variant",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1755,
+      "exact_key": "Core/Log.h|12|ClassDecl|Rml::Log|Log|Rml::Log",
+      "native_symbol": "Rml::Log",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1756,
+      "exact_key": "Core/Log.h|14|EnumDecl|Rml::Log::Type|Type|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1757,
+      "exact_key": "Core/Log.h|15|EnumConstantDecl|Rml::Log::Type::LT_ALWAYS|LT_ALWAYS|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_ALWAYS",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1758,
+      "exact_key": "Core/Log.h|16|EnumConstantDecl|Rml::Log::Type::LT_ERROR|LT_ERROR|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_ERROR",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1759,
+      "exact_key": "Core/Log.h|17|EnumConstantDecl|Rml::Log::Type::LT_ASSERT|LT_ASSERT|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_ASSERT",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1760,
+      "exact_key": "Core/Log.h|18|EnumConstantDecl|Rml::Log::Type::LT_WARNING|LT_WARNING|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_WARNING",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1761,
+      "exact_key": "Core/Log.h|19|EnumConstantDecl|Rml::Log::Type::LT_INFO|LT_INFO|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_INFO",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1762,
+      "exact_key": "Core/Log.h|20|EnumConstantDecl|Rml::Log::Type::LT_DEBUG|LT_DEBUG|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_DEBUG",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1763,
+      "exact_key": "Core/Log.h|21|EnumConstantDecl|Rml::Log::Type::LT_MAX|LT_MAX|Rml::Log::Type",
+      "native_symbol": "Rml::Log::Type::LT_MAX",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1764,
+      "exact_key": "Core/Log.h|27|CXXMethod|Rml::Log::Message|Message(Type, const char *, ...)|void (Type, const char *, ...)",
+      "native_symbol": "Rml::Log::Message",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1765,
+      "exact_key": "Core/Log.h|33|CXXMethod|Rml::Log::ParseError|ParseError(const String &, int, const char *, ...)|void (const String &, int, const char *, ...)",
+      "native_symbol": "Rml::Log::ParseError",
+      "surface": "Log.message / Log.parseError / LogType",
+      "source": "packages/sfml.js-rmlui/native/rmlui-log.cc",
+      "consumer": "packages/sfml.js-rmlui/src/log.ts",
+      "native_groups": [
+        "log"
+      ],
+      "domain": "native-varargs-and-checked-managed-scalars",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2027,
+      "exact_key": "Core/ObserverPtr.h|10|StructDecl|Rml::Detail::ObserverPtrBlock|ObserverPtrBlock|Rml::Detail::ObserverPtrBlock",
+      "native_symbol": "Rml::Detail::ObserverPtrBlock",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2028,
+      "exact_key": "Core/ObserverPtr.h|11|FieldDecl|Rml::Detail::ObserverPtrBlock::num_observers|num_observers|int",
+      "native_symbol": "Rml::Detail::ObserverPtrBlock::num_observers",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2029,
+      "exact_key": "Core/ObserverPtr.h|12|FieldDecl|Rml::Detail::ObserverPtrBlock::pointed_to_object|pointed_to_object|void *",
+      "native_symbol": "Rml::Detail::ObserverPtrBlock::pointed_to_object",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2030,
+      "exact_key": "Core/ObserverPtr.h|14|FunctionDecl|Rml::Detail::AllocateObserverPtrBlock|AllocateObserverPtrBlock()|ObserverPtrBlock *()",
+      "native_symbol": "Rml::Detail::AllocateObserverPtrBlock",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2031,
+      "exact_key": "Core/ObserverPtr.h|15|FunctionDecl|Rml::Detail::DeallocateObserverPtrBlockIfEmpty|DeallocateObserverPtrBlockIfEmpty(ObserverPtrBlock *)|void (ObserverPtrBlock *)",
+      "native_symbol": "Rml::Detail::DeallocateObserverPtrBlockIfEmpty",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2032,
+      "exact_key": "Core/ObserverPtr.h|16|FunctionDecl|Rml::Detail::InitializeObserverPtrPool|InitializeObserverPtrPool()|void ()",
+      "native_symbol": "Rml::Detail::InitializeObserverPtrPool",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2033,
+      "exact_key": "Core/ObserverPtr.h|17|FunctionDecl|Rml::Detail::ShutdownObserverPtrPool|ShutdownObserverPtrPool()|void ()",
+      "native_symbol": "Rml::Detail::ShutdownObserverPtrPool",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2034,
+      "exact_key": "Core/ObserverPtr.h|21|ClassTemplate|Rml::EnableObserverPtr|EnableObserverPtr<T>|",
+      "native_symbol": "Rml::EnableObserverPtr",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2035,
+      "exact_key": "Core/ObserverPtr.h|42|ClassTemplate|Rml::ObserverPtr|ObserverPtr<T>|",
+      "native_symbol": "Rml::ObserverPtr",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2036,
+      "exact_key": "Core/ObserverPtr.h|44|CXXConstructor|Rml::ObserverPtr::ObserverPtr<T>|ObserverPtr<T>()|void () noexcept",
+      "native_symbol": "Rml::ObserverPtr::ObserverPtr<T>",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2037,
+      "exact_key": "Core/ObserverPtr.h|45|CXXConstructor|Rml::ObserverPtr::ObserverPtr<T>|ObserverPtr<T>(std::nullptr_t)|void (std::nullptr_t) noexcept",
+      "native_symbol": "Rml::ObserverPtr::ObserverPtr<T>",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2038,
+      "exact_key": "Core/ObserverPtr.h|46|CXXDestructor|Rml::ObserverPtr::~ObserverPtr<T>|~ObserverPtr<T>()|void () noexcept",
+      "native_symbol": "Rml::ObserverPtr::~ObserverPtr<T>",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2039,
+      "exact_key": "Core/ObserverPtr.h|49|CXXConstructor|Rml::ObserverPtr::ObserverPtr<T>|ObserverPtr<T>(const ObserverPtr<T> &)|void (const ObserverPtr<T> &) noexcept",
+      "native_symbol": "Rml::ObserverPtr::ObserverPtr<T>",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2040,
+      "exact_key": "Core/ObserverPtr.h|54|CXXMethod|Rml::ObserverPtr::operator=|operator=(const ObserverPtr<T> &)|ObserverPtr<T> &(const ObserverPtr<T> &) noexcept",
+      "native_symbol": "Rml::ObserverPtr::operator=",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2041,
+      "exact_key": "Core/ObserverPtr.h|66|CXXConstructor|Rml::ObserverPtr::ObserverPtr<T>|ObserverPtr<T>(ObserverPtr<T> &&)|void (ObserverPtr<T> &&) noexcept",
+      "native_symbol": "Rml::ObserverPtr::ObserverPtr<T>",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2042,
+      "exact_key": "Core/ObserverPtr.h|67|CXXMethod|Rml::ObserverPtr::operator=|operator=(ObserverPtr<T> &&)|ObserverPtr<T> &(ObserverPtr<T> &&) noexcept",
+      "native_symbol": "Rml::ObserverPtr::operator=",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2043,
+      "exact_key": "Core/ObserverPtr.h|80|CXXMethod|Rml::ObserverPtr::operator==|operator==(const T *)|bool (const T *) const noexcept",
+      "native_symbol": "Rml::ObserverPtr::operator==",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2044,
+      "exact_key": "Core/ObserverPtr.h|81|CXXMethod|Rml::ObserverPtr::operator==|operator==(const ObserverPtr<T> &)|bool (const ObserverPtr<T> &) const noexcept",
+      "native_symbol": "Rml::ObserverPtr::operator==",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2045,
+      "exact_key": "Core/ObserverPtr.h|84|CXXMethod|Rml::ObserverPtr::get|get()|T *() const noexcept",
+      "native_symbol": "Rml::ObserverPtr::get",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2046,
+      "exact_key": "Core/ObserverPtr.h|86|CXXMethod|Rml::ObserverPtr::operator->|operator->()|T *() const noexcept",
+      "native_symbol": "Rml::ObserverPtr::operator->",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2047,
+      "exact_key": "Core/ObserverPtr.h|90|CXXMethod|Rml::ObserverPtr::reset|reset()|void () noexcept",
+      "native_symbol": "Rml::ObserverPtr::reset",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2048,
+      "exact_key": "Core/ObserverPtr.h|113|ClassTemplate|Rml::EnableObserverPtr|EnableObserverPtr<T>|",
+      "native_symbol": "Rml::EnableObserverPtr",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2049,
+      "exact_key": "Core/ObserverPtr.h|115|CXXMethod|Rml::EnableObserverPtr::GetObserverPtr|GetObserverPtr()|ObserverPtr<T> ()",
+      "native_symbol": "Rml::EnableObserverPtr::GetObserverPtr",
+      "surface": "Checked native handles and destruction-aware leases",
+      "source": "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-leases.h",
+      "native_groups": [
+        "observers"
+      ],
+      "domain": "native-weak-observer-and-checked-handle",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2050,
+      "exact_key": "Core/Plugin.h|8|ClassDecl|Rml::Element|Element|Rml::Element",
+      "native_symbol": "Rml::Element",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2051,
+      "exact_key": "Core/Plugin.h|9|ClassDecl|Rml::ElementDocument|ElementDocument|Rml::ElementDocument",
+      "native_symbol": "Rml::ElementDocument",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2052,
+      "exact_key": "Core/Plugin.h|10|ClassDecl|Rml::Context|Context|Rml::Context",
+      "native_symbol": "Rml::Context",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2053,
+      "exact_key": "Core/Plugin.h|16|ClassDecl|Rml::Plugin|Plugin|Rml::Plugin",
+      "native_symbol": "Rml::Plugin",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2054,
+      "exact_key": "Core/Plugin.h|18|CXXDestructor|Rml::Plugin::~Plugin|~Plugin()|void ()",
+      "native_symbol": "Rml::Plugin::~Plugin",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2055,
+      "exact_key": "Core/Plugin.h|20|EnumDecl|Rml::Plugin::EventClasses|EventClasses|Rml::Plugin::EventClasses",
+      "native_symbol": "Rml::Plugin::EventClasses",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2056,
+      "exact_key": "Core/Plugin.h|21|EnumConstantDecl|Rml::Plugin::EventClasses::EVT_BASIC|EVT_BASIC|Rml::Plugin::EventClasses",
+      "native_symbol": "Rml::Plugin::EventClasses::EVT_BASIC",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2057,
+      "exact_key": "Core/Plugin.h|22|EnumConstantDecl|Rml::Plugin::EventClasses::EVT_DOCUMENT|EVT_DOCUMENT|Rml::Plugin::EventClasses",
+      "native_symbol": "Rml::Plugin::EventClasses::EVT_DOCUMENT",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2058,
+      "exact_key": "Core/Plugin.h|23|EnumConstantDecl|Rml::Plugin::EventClasses::EVT_ELEMENT|EVT_ELEMENT|Rml::Plugin::EventClasses",
+      "native_symbol": "Rml::Plugin::EventClasses::EVT_ELEMENT",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2059,
+      "exact_key": "Core/Plugin.h|24|EnumConstantDecl|Rml::Plugin::EventClasses::EVT_DATA_MODEL|EVT_DATA_MODEL|Rml::Plugin::EventClasses",
+      "native_symbol": "Rml::Plugin::EventClasses::EVT_DATA_MODEL",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2060,
+      "exact_key": "Core/Plugin.h|26|EnumConstantDecl|Rml::Plugin::EventClasses::EVT_ALL|EVT_ALL|Rml::Plugin::EventClasses",
+      "native_symbol": "Rml::Plugin::EventClasses::EVT_ALL",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2061,
+      "exact_key": "Core/Plugin.h|29|CXXMethod|Rml::Plugin::GetEventClasses|GetEventClasses()|int ()",
+      "native_symbol": "Rml::Plugin::GetEventClasses",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2062,
+      "exact_key": "Core/Plugin.h|33|CXXMethod|Rml::Plugin::OnInitialise|OnInitialise()|void ()",
+      "native_symbol": "Rml::Plugin::OnInitialise",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2063,
+      "exact_key": "Core/Plugin.h|35|CXXMethod|Rml::Plugin::OnShutdown|OnShutdown()|void ()",
+      "native_symbol": "Rml::Plugin::OnShutdown",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2064,
+      "exact_key": "Core/Plugin.h|38|CXXMethod|Rml::Plugin::OnContextCreate|OnContextCreate(Context *)|void (Context *)",
+      "native_symbol": "Rml::Plugin::OnContextCreate",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2065,
+      "exact_key": "Core/Plugin.h|40|CXXMethod|Rml::Plugin::OnContextDestroy|OnContextDestroy(Context *)|void (Context *)",
+      "native_symbol": "Rml::Plugin::OnContextDestroy",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2066,
+      "exact_key": "Core/Plugin.h|43|CXXMethod|Rml::Plugin::OnDocumentOpen|OnDocumentOpen(Context *, const String &)|void (Context *, const String &)",
+      "native_symbol": "Rml::Plugin::OnDocumentOpen",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2067,
+      "exact_key": "Core/Plugin.h|46|CXXMethod|Rml::Plugin::OnDocumentLoad|OnDocumentLoad(ElementDocument *)|void (ElementDocument *)",
+      "native_symbol": "Rml::Plugin::OnDocumentLoad",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2068,
+      "exact_key": "Core/Plugin.h|49|CXXMethod|Rml::Plugin::OnDocumentUnload|OnDocumentUnload(ElementDocument *)|void (ElementDocument *)",
+      "native_symbol": "Rml::Plugin::OnDocumentUnload",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2069,
+      "exact_key": "Core/Plugin.h|52|CXXMethod|Rml::Plugin::OnElementCreate|OnElementCreate(Element *)|void (Element *)",
+      "native_symbol": "Rml::Plugin::OnElementCreate",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2070,
+      "exact_key": "Core/Plugin.h|54|CXXMethod|Rml::Plugin::OnElementDestroy|OnElementDestroy(Element *)|void (Element *)",
+      "native_symbol": "Rml::Plugin::OnElementDestroy",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2071,
+      "exact_key": "Core/Plugin.h|57|CXXMethod|Rml::Plugin::OnDataModelCreate|OnDataModelCreate(Context *, const String &)|void (Context *, const String &)",
+      "native_symbol": "Rml::Plugin::OnDataModelCreate",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2072,
+      "exact_key": "Core/Plugin.h|61|CXXMethod|Rml::Plugin::OnDataModelDestroy|OnDataModelDestroy(Context *, const String &)|void (Context *, const String &)",
+      "native_symbol": "Rml::Plugin::OnDataModelDestroy",
+      "surface": "Plugin / PluginEventClasses / captured callbacks",
+      "source": "packages/sfml.js-rmlui/native/rmlui-plugin.cc",
+      "consumer": "packages/sfml.js-rmlui/src/plugin.ts",
+      "native_groups": [],
+      "domain": "native-owned-plugin-and-managed-callbacks",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2145,
+      "exact_key": "Core/PropertyIdSet.h|9|ClassDecl|Rml::PropertyIdSetIterator|PropertyIdSetIterator|Rml::PropertyIdSetIterator",
+      "native_symbol": "Rml::PropertyIdSetIterator",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2146,
+      "exact_key": "Core/PropertyIdSet.h|19|ClassDecl|Rml::PropertyIdSet|PropertyIdSet|Rml::PropertyIdSet",
+      "native_symbol": "Rml::PropertyIdSet",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2147,
+      "exact_key": "Core/PropertyIdSet.h|25|CXXConstructor|Rml::PropertyIdSet::PropertyIdSet|PropertyIdSet()|void ()",
+      "native_symbol": "Rml::PropertyIdSet::PropertyIdSet",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2148,
+      "exact_key": "Core/PropertyIdSet.h|27|CXXMethod|Rml::PropertyIdSet::Insert|Insert(PropertyId)|void (PropertyId)",
+      "native_symbol": "Rml::PropertyIdSet::Insert",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2149,
+      "exact_key": "Core/PropertyIdSet.h|33|CXXMethod|Rml::PropertyIdSet::Clear|Clear()|void ()",
+      "native_symbol": "Rml::PropertyIdSet::Clear",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2150,
+      "exact_key": "Core/PropertyIdSet.h|34|CXXMethod|Rml::PropertyIdSet::Erase|Erase(PropertyId)|void (PropertyId)",
+      "native_symbol": "Rml::PropertyIdSet::Erase",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2151,
+      "exact_key": "Core/PropertyIdSet.h|40|CXXMethod|Rml::PropertyIdSet::Empty|Empty()|bool () const",
+      "native_symbol": "Rml::PropertyIdSet::Empty",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2152,
+      "exact_key": "Core/PropertyIdSet.h|41|CXXMethod|Rml::PropertyIdSet::Contains|Contains(PropertyId)|bool (PropertyId) const",
+      "native_symbol": "Rml::PropertyIdSet::Contains",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2153,
+      "exact_key": "Core/PropertyIdSet.h|43|CXXMethod|Rml::PropertyIdSet::Size|Size()|size_t () const",
+      "native_symbol": "Rml::PropertyIdSet::Size",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2154,
+      "exact_key": "Core/PropertyIdSet.h|46|CXXMethod|Rml::PropertyIdSet::operator|=|operator|=(const PropertyIdSet &)|PropertyIdSet &(const PropertyIdSet &)",
+      "native_symbol": "Rml::PropertyIdSet::operator|=",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2155,
+      "exact_key": "Core/PropertyIdSet.h|51|CXXMethod|Rml::PropertyIdSet::operator||operator|(const PropertyIdSet &)|PropertyIdSet (const PropertyIdSet &) const",
+      "native_symbol": "Rml::PropertyIdSet::operator|",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2156,
+      "exact_key": "Core/PropertyIdSet.h|59|CXXMethod|Rml::PropertyIdSet::operator&=|operator&=(const PropertyIdSet &)|PropertyIdSet &(const PropertyIdSet &)",
+      "native_symbol": "Rml::PropertyIdSet::operator&=",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2157,
+      "exact_key": "Core/PropertyIdSet.h|64|CXXMethod|Rml::PropertyIdSet::operator&|operator&(const PropertyIdSet &)|PropertyIdSet (const PropertyIdSet &) const",
+      "native_symbol": "Rml::PropertyIdSet::operator&",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2158,
+      "exact_key": "Core/PropertyIdSet.h|73|CXXMethod|Rml::PropertyIdSet::begin|begin()|PropertyIdSetIterator () const",
+      "native_symbol": "Rml::PropertyIdSet::begin",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2159,
+      "exact_key": "Core/PropertyIdSet.h|74|CXXMethod|Rml::PropertyIdSet::end|end()|PropertyIdSetIterator () const",
+      "native_symbol": "Rml::PropertyIdSet::end",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2160,
+      "exact_key": "Core/PropertyIdSet.h|78|CXXMethod|Rml::PropertyIdSet::Erase|Erase(PropertyIdSetIterator)|PropertyIdSetIterator (PropertyIdSetIterator)",
+      "native_symbol": "Rml::PropertyIdSet::Erase",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2161,
+      "exact_key": "Core/PropertyIdSet.h|81|ClassDecl|Rml::PropertyIdSetIterator|PropertyIdSetIterator|Rml::PropertyIdSetIterator",
+      "native_symbol": "Rml::PropertyIdSetIterator",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2162,
+      "exact_key": "Core/PropertyIdSet.h|83|CXXConstructor|Rml::PropertyIdSetIterator::PropertyIdSetIterator|PropertyIdSetIterator()|void ()",
+      "native_symbol": "Rml::PropertyIdSetIterator::PropertyIdSetIterator",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2163,
+      "exact_key": "Core/PropertyIdSet.h|84|CXXConstructor|Rml::PropertyIdSetIterator::PropertyIdSetIterator|PropertyIdSetIterator(const PropertyIdSet *, size_t)|void (const PropertyIdSet *, size_t)",
+      "native_symbol": "Rml::PropertyIdSetIterator::PropertyIdSetIterator",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2164,
+      "exact_key": "Core/PropertyIdSet.h|86|CXXMethod|Rml::PropertyIdSetIterator::operator++|operator++()|PropertyIdSetIterator &()",
+      "native_symbol": "Rml::PropertyIdSetIterator::operator++",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2165,
+      "exact_key": "Core/PropertyIdSet.h|93|CXXMethod|Rml::PropertyIdSetIterator::operator==|operator==(const PropertyIdSetIterator &)|bool (const PropertyIdSetIterator &) const",
+      "native_symbol": "Rml::PropertyIdSetIterator::operator==",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2166,
+      "exact_key": "Core/PropertyIdSet.h|94|CXXMethod|Rml::PropertyIdSetIterator::operator!=|operator!=(const PropertyIdSetIterator &)|bool (const PropertyIdSetIterator &) const",
+      "native_symbol": "Rml::PropertyIdSetIterator::operator!=",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2167,
+      "exact_key": "Core/PropertyIdSet.h|95|CXXMethod|Rml::PropertyIdSetIterator::operator*|operator*()|PropertyId () const",
+      "native_symbol": "Rml::PropertyIdSetIterator::operator*",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2168,
+      "exact_key": "Core/PropertyIdSet.h|113|CXXMethod|Rml::PropertyIdSet::begin|begin()|PropertyIdSetIterator () const",
+      "native_symbol": "Rml::PropertyIdSet::begin",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2169,
+      "exact_key": "Core/PropertyIdSet.h|120|CXXMethod|Rml::PropertyIdSet::end|end()|PropertyIdSetIterator () const",
+      "native_symbol": "Rml::PropertyIdSet::end",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2170,
+      "exact_key": "Core/PropertyIdSet.h|125|CXXMethod|Rml::PropertyIdSet::Erase|Erase(PropertyIdSetIterator)|PropertyIdSetIterator (PropertyIdSetIterator)",
+      "native_symbol": "Rml::PropertyIdSet::Erase",
+      "surface": "PropertySpecification registered PropertyId[] snapshots",
+      "source": "packages/sfml.js-rmlui/native/rmlui-property-specification.cc",
+      "consumer": "packages/sfml.js-rmlui/src/property-specification.ts",
+      "native_groups": [
+        "property-sets"
+      ],
+      "domain": "native-set-and-managed-id-snapshot",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2387,
+      "exact_key": "Core/Span.h|15|ClassTemplate|Rml::Span|Span<T>|",
+      "native_symbol": "Rml::Span",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2388,
+      "exact_key": "Core/Span.h|17|CXXConstructor|Rml::Span::Span<T>|Span<T>()|void ()",
+      "native_symbol": "Rml::Span::Span<T>",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2389,
+      "exact_key": "Core/Span.h|18|CXXConstructor|Rml::Span::Span<T>|Span<T>(T *, size_t)|void (T *, size_t)",
+      "native_symbol": "Rml::Span::Span<T>",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2390,
+      "exact_key": "Core/Span.h|20|CXXConstructor|Rml::Span::Span<T>|Span<T>(const Vector<typename std::remove_const_t<T>> &)|void (const Vector<typename std::remove_const_t<T>> &)",
+      "native_symbol": "Rml::Span::Span<T>",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2391,
+      "exact_key": "Core/Span.h|21|CXXConstructor|Rml::Span::Span<T>|Span<T>(Vector<T> &)|void (Vector<T> &)",
+      "native_symbol": "Rml::Span::Span<T>",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2392,
+      "exact_key": "Core/Span.h|23|CXXMethod|Rml::Span::operator[]|operator[](size_t)|T &(size_t) const",
+      "native_symbol": "Rml::Span::operator[]",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2393,
+      "exact_key": "Core/Span.h|29|CXXMethod|Rml::Span::data|data()|T *() const",
+      "native_symbol": "Rml::Span::data",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2394,
+      "exact_key": "Core/Span.h|30|CXXMethod|Rml::Span::size|size()|size_t () const",
+      "native_symbol": "Rml::Span::size",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2395,
+      "exact_key": "Core/Span.h|31|CXXMethod|Rml::Span::empty|empty()|bool () const",
+      "native_symbol": "Rml::Span::empty",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2396,
+      "exact_key": "Core/Span.h|33|CXXMethod|Rml::Span::begin|begin()|T *() const",
+      "native_symbol": "Rml::Span::begin",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2397,
+      "exact_key": "Core/Span.h|34|CXXMethod|Rml::Span::end|end()|T *() const",
+      "native_symbol": "Rml::Span::end",
+      "surface": "Native mesh/glyph spans with retained typed-array storage",
+      "source": "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh.ts",
+      "native_groups": [
+        "span"
+      ],
+      "domain": "native-borrowed-span-and-retained-managed-storage",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2417,
+      "exact_key": "Core/StableVector.h|19|ClassTemplate|Rml::StableVector|StableVector<T>|",
+      "native_symbol": "Rml::StableVector",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2418,
+      "exact_key": "Core/StableVector.h|21|CXXConstructor|Rml::StableVector::StableVector<T>|StableVector<T>()|void ()",
+      "native_symbol": "Rml::StableVector::StableVector<T>",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2419,
+      "exact_key": "Core/StableVector.h|23|CXXMethod|Rml::StableVector::insert|insert(T)|StableVectorIndex (T)",
+      "native_symbol": "Rml::StableVector::insert",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2420,
+      "exact_key": "Core/StableVector.h|41|CXXMethod|Rml::StableVector::empty|empty()|bool () const",
+      "native_symbol": "Rml::StableVector::empty",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2421,
+      "exact_key": "Core/StableVector.h|42|CXXMethod|Rml::StableVector::size|size()|size_t () const",
+      "native_symbol": "Rml::StableVector::size",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2422,
+      "exact_key": "Core/StableVector.h|44|CXXMethod|Rml::StableVector::reserve|reserve(size_t)|void (size_t)",
+      "native_symbol": "Rml::StableVector::reserve",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2423,
+      "exact_key": "Core/StableVector.h|46|CXXMethod|Rml::StableVector::clear|clear()|void ()",
+      "native_symbol": "Rml::StableVector::clear",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2424,
+      "exact_key": "Core/StableVector.h|51|CXXMethod|Rml::StableVector::erase|erase(StableVectorIndex)|T (StableVectorIndex)",
+      "native_symbol": "Rml::StableVector::erase",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2425,
+      "exact_key": "Core/StableVector.h|58|CXXMethod|Rml::StableVector::operator[]|operator[](StableVectorIndex)|T &(StableVectorIndex)",
+      "native_symbol": "Rml::StableVector::operator[]",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2426,
+      "exact_key": "Core/StableVector.h|63|CXXMethod|Rml::StableVector::operator[]|operator[](StableVectorIndex)|const T &(StableVectorIndex) const",
+      "native_symbol": "Rml::StableVector::operator[]",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2427,
+      "exact_key": "Core/StableVector.h|71|FunctionTemplate|Rml::StableVector::for_each|for_each(Func &&)|void (Func &&)",
+      "native_symbol": "Rml::StableVector::for_each",
+      "surface": "Native callback texture registry and checked resource handles",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TextureDatabase.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-callback-texture.cc",
+      "native_groups": [
+        "stable-vector"
+      ],
+      "domain": "native-stable-index-and-checked-texture",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2917,
+      "exact_key": "Core/Traits.h|14|ClassDecl|Rml::NonCopyMoveable|NonCopyMoveable|Rml::NonCopyMoveable",
+      "native_symbol": "Rml::NonCopyMoveable",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2918,
+      "exact_key": "Core/Traits.h|16|CXXConstructor|Rml::NonCopyMoveable::NonCopyMoveable|NonCopyMoveable()|void ()",
+      "native_symbol": "Rml::NonCopyMoveable::NonCopyMoveable",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2919,
+      "exact_key": "Core/Traits.h|17|CXXDestructor|Rml::NonCopyMoveable::~NonCopyMoveable|~NonCopyMoveable()|void () noexcept",
+      "native_symbol": "Rml::NonCopyMoveable::~NonCopyMoveable",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2920,
+      "exact_key": "Core/Traits.h|18|CXXConstructor|Rml::NonCopyMoveable::NonCopyMoveable|NonCopyMoveable(const NonCopyMoveable &)|void (const NonCopyMoveable &)",
+      "native_symbol": "Rml::NonCopyMoveable::NonCopyMoveable",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2921,
+      "exact_key": "Core/Traits.h|19|CXXMethod|Rml::NonCopyMoveable::operator=|operator=(const NonCopyMoveable &)|NonCopyMoveable &(const NonCopyMoveable &)",
+      "native_symbol": "Rml::NonCopyMoveable::operator=",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2922,
+      "exact_key": "Core/Traits.h|20|CXXConstructor|Rml::NonCopyMoveable::NonCopyMoveable|NonCopyMoveable(NonCopyMoveable &&)|void (NonCopyMoveable &&)",
+      "native_symbol": "Rml::NonCopyMoveable::NonCopyMoveable",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2923,
+      "exact_key": "Core/Traits.h|21|CXXMethod|Rml::NonCopyMoveable::operator=|operator=(NonCopyMoveable &&)|NonCopyMoveable &(NonCopyMoveable &&)",
+      "native_symbol": "Rml::NonCopyMoveable::operator=",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2924,
+      "exact_key": "Core/Traits.h|24|ClassDecl|Rml::ReleaserBase|ReleaserBase|Rml::ReleaserBase",
+      "native_symbol": "Rml::ReleaserBase",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2925,
+      "exact_key": "Core/Traits.h|26|ClassDecl|Rml::Releasable|Releasable|Rml::Releasable",
+      "native_symbol": "Rml::Releasable",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2926,
+      "exact_key": "Core/Traits.h|33|ClassDecl|Rml::ReleaserBase|ReleaserBase|Rml::ReleaserBase",
+      "native_symbol": "Rml::ReleaserBase",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2927,
+      "exact_key": "Core/Traits.h|39|ClassTemplate|Rml::Releaser|Releaser<T>|",
+      "native_symbol": "Rml::Releaser",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2928,
+      "exact_key": "Core/Traits.h|41|CXXMethod|Rml::Releaser::operator()|operator()(T *)|void (T *) const",
+      "native_symbol": "Rml::Releaser::operator()",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2929,
+      "exact_key": "Core/Traits.h|48|EnumDecl|Rml::FamilyId|FamilyId|Rml::FamilyId",
+      "native_symbol": "Rml::FamilyId",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2930,
+      "exact_key": "Core/Traits.h|50|ClassDecl|Rml::FamilyBase|FamilyBase|Rml::FamilyBase",
+      "native_symbol": "Rml::FamilyBase",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2931,
+      "exact_key": "Core/Traits.h|56|ClassTemplate|Rml::Family|Family<T>|",
+      "native_symbol": "Rml::Family",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2932,
+      "exact_key": "Core/Traits.h|60|CXXMethod|Rml::Family::Id|Id()|FamilyId ()",
+      "native_symbol": "Rml::Family::Id",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2933,
+      "exact_key": "Core/Traits.h|67|TypeAliasDecl|Rml::ClassId|ClassId|Rml::ClassId",
+      "native_symbol": "Rml::ClassId",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2934,
+      "exact_key": "Core/Traits.h|110|FunctionTemplate|rmlui_dynamic_cast|rmlui_dynamic_cast(Base)|Derived (Base)",
+      "native_symbol": "rmlui_dynamic_cast",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2935,
+      "exact_key": "Core/Traits.h|124|FunctionTemplate|rmlui_static_cast|rmlui_static_cast(Base)|Derived (Base)",
+      "native_symbol": "rmlui_static_cast",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2936,
+      "exact_key": "Core/Traits.h|136|FunctionTemplate|rmlui_type_name|rmlui_type_name(const T &)|const char *(const T &)",
+      "native_symbol": "rmlui_type_name",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2937,
+      "exact_key": "Core/Traits.h|141|FunctionTemplate|rmlui_type_name|rmlui_type_name()|const char *()",
+      "native_symbol": "rmlui_type_name",
+      "surface": "Native releasers, type families and checked class identity",
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Traits.h",
+      "consumer": "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+      "native_groups": [
+        "traits"
+      ],
+      "domain": "native-ownership-and-rtti-support",
+      "status": "locally-verified-native-support-macos-arm64"
+    }
+  ],
+  "consumer_suites": {
+    "log": {
+      "source": "packages/sfml.js-rmlui/test/log.test.cjs",
+      "sha256": "99b8d8ddf488e724a9d02a09f69b35b88b024a5a6a996af3e3fe508166274435",
+      "scenarios": [
+        "log-routes-through-selected-native-system-before-and-after-initialisation",
+        "log-parse-errors-use-native-filename-and-negative-line-rules",
+        "log-keeps-native-byte-truncation-percent-and-nul-semantics",
+        "log-rejects-invalid-input-before-dispatch",
+        "log-callback-exceptions-and-reentry-return-to-the-owning-boundary",
+        "log-foreign-worker-cannot-dispatch-through-the-selected-interface"
+      ],
+      "pass_count": 6
+    },
+    "plugin": {
+      "source": "packages/sfml.js-rmlui/test/plugin.test.cjs",
+      "sha256": "791b0a3002a2ec9a9b8f16a9b8aaa0fd4f74da7c1c459c671e681eed61f0fffd",
+      "scenarios": [
+        "plugin-late-registration-and-fixed-event-mask",
+        "plugin-self-removal-keeps-notification-order",
+        "plugin-context-and-element-borrows-expire",
+        "plugin-preinitialisation-and-global-shutdown-masks",
+        "plugin-all-eleven-notifications-use-live-native-objects",
+        "plugin-late-initialise-can-cancel-its-own-registration",
+        "plugin-removal-and-addition-during-traversal",
+        "plugin-errors-preserve-native-teardown-and-expire-borrows",
+        "plugin-rejects-invalid-masks-callbacks-and-async-returns",
+        "plugin-registered-native-owner-and-collected-unregistered-cycle",
+        "plugin-static-frames-add-zero-host-callbacks"
+      ],
+      "pass_count": 11
+    },
+    "geometry": {
+      "source": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+      "sha256": "5080846384f80f2c32a2d9280893fe7fdd06080217736ba1b370c07f2303d6c1",
+      "scenarios": [
+        "vertex-and-sprite-snapshots-survive-owner-gc",
+        "spritesheet-list-overwrite-merge-and-snapshot",
+        "spritesheet-validation-and-accessor-reentry",
+        "typed-vertex-shared-fields-and-resize-lifetime",
+        "texture-source-cache-manager-removal-and-aggregate",
+        "native-mesh-views-and-snapshot-transfer",
+        "rendered-mesh-pixels-and-submission-snapshot",
+        "textured-and-shaded-geometry-pixels",
+        "native-texture-views-sources-and-lazy-loading",
+        "geometry-rendering-and-resource-affinity",
+        "invalid-mesh-and-getter-reentry",
+        "views-manager-gc-and-shutdown"
+      ],
+      "pass_count": 12
+    },
+    "events": {
+      "source": "packages/sfml.js-rmlui/test/events.test.cjs",
+      "sha256": "d705161208d77aca3f80fb7125ab7d539204dc9e484d8ee62e18ee6fe4e58693",
+      "scenarios": [
+        "identity",
+        "phases",
+        "stops",
+        "nested",
+        "exceptions",
+        "variants",
+        "parameter-defaults",
+        "parameter-value-copies",
+        "parameter-validation",
+        "parameter-callback-lifetime",
+        "getter-receiver-lifetime",
+        "getter-runtime-lifetime",
+        "getter-parameter-lifetime",
+        "parameter-dispatch-lifetime",
+        "getter-error",
+        "snapshot-own-properties"
+      ],
+      "pass_count": 16
+    },
+    "lifetime": {
+      "source": "packages/sfml.js-rmlui/test/lifetime.test.cjs",
+      "sha256": "fa814ef59bb3db5dde3e6a1a26c3041e0351c85a479c76ebb05e968cf7fbf461",
+      "scenarios": [
+        "font-before-initialise",
+        "subtree-aliases",
+        "close-update",
+        "unload-update",
+        "same-name-context",
+        "retained-dimensions",
+        "shutdown-reinitialise",
+        "font-after-shutdown",
+        "document-type-check",
+        "wrapper-gc",
+        "foreign-worker",
+        "environment-cleanup",
+        "foreign-worker-contention"
+      ],
+      "pass_count": 13
+    },
+    "property-specification": {
+      "source": "packages/sfml.js-rmlui/test/property-specification.test.cjs",
+      "sha256": "a18e2d3f0ff6f66e65819a7a7b4368042b6bec64d754f416c06099edb3031b3a",
+      "scenarios": [
+        "registration-lookup-and-id-sets",
+        "shorthand-parsing-and-owned-snapshots",
+        "all-shorthand-types-and-partial-failure",
+        "bounded-ids-collisions-and-invalid-shorthands",
+        "gc-borrowed-definitions-and-generation-invalidation"
+      ],
+      "pass_count": 5
+    },
+    "rtti-default-action": {
+      "source": "packages/sfml.js-rmlui/test/rtti-default-action.test.cjs",
+      "sha256": "20ce76964efc7ab283e3d55336d92e7a2cc1b1126c47d3a67c66294b2f85349a",
+      "scenarios": [
+        "native-class-identity",
+        "class-lifetime",
+        "manual-tab-action",
+        "manual-input-action",
+        "manual-base-action",
+        "automatic-action-retained",
+        "nested-manual-actions",
+        "action-lease",
+        "action-reentry",
+        "action-exceptions"
+      ],
+      "pass_count": 10
+    },
+    "string-format": {
+      "source": "packages/sfml.js-rmlui/test/string-format.test.cjs",
+      "sha256": "d87903f884a266d52c7ca614a99513eb2402910bc7f8bf70fddd8d58c4cbdba8",
+      "scenarios": [
+        "Typed formatting preserves native ASCII and UTF8 byte lengths",
+        "Typed integer formatting uses native signed and unsigned domains",
+        "Dynamic width and precision consume explicit typed arguments",
+        "Formatting preserves the native small and large NUL buffer branches",
+        "Unsafe C ABI formats and mismatched values are rejected"
+      ],
+      "pass_count": 5
+    },
+    "string-performance": {
+      "source": "packages/sfml.js-rmlui/test/string-performance.test.cjs",
+      "sha256": "9961976c872a2f42c77b474fe6b4ce31f4006a51589352d4c71ff8da5b0d66f3",
+      "scenarios": [
+        "first-batch-builds-one-native-index",
+        "warm-batch-one-entry-no-copy-allocation-or-owner-scan",
+        "managed-iteration-has-zero-native-entries",
+        "warm-native-batch-has-zero-main-thread-malloc"
+      ],
+      "pass_count": 4
+    }
+  },
+  "native_groups_log": {
+    "path": "/tmp/rmlui-63-completion/support-native-5.log",
+    "sha256": "dca108d02a1a64b51623e1706e76cac99ffc37f025977c3c38be8cd6ca3ac73a",
+    "literal_pass_lines": 8,
+    "exit_code": 0,
+    "runtime_groups": 8
+  },
+  "acceptance_scope": {
+    "platform": "macOS arm64",
+    "native_support": true,
+    "application_log": true,
+    "managed_consumer_contracts": true,
+    "full_core_nineteen_groups": false,
+    "whole_rmlui_63_integration": false
+  }
+}

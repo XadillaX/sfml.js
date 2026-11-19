@@ -22,9 +22,11 @@ function githubHeaders() {
 }
 
 async function resolveGitHubReleaseAsset(url) {
-  const match = decodeURIComponent(url).match(
-    /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/releases\/download\/([^/]+)\/([^?]+)/
+  const pattern = new RegExp(
+    '^https://github\\.com/([^/]+)/([^/]+)/releases/download/' +
+    '([^/]+)/([^?]+)'
   );
+  const match = decodeURIComponent(url).match(pattern);
   if (!match) {
     return null;
   }
@@ -82,7 +84,7 @@ async function downloadWithRetry(...args) {
  * Validate the actual version and the headers required by code generation,
  * so a stale installation left over from another branch is never reused.
  * @param {string} directory SFML install or extraction directory.
- * @param {string} library Relative path of the system library for this platform.
+ * @param {string} library System library path relative to the SDK.
  */
 async function validateInstallation(directory, library) {
   const config = await fs.readFile(
@@ -109,7 +111,11 @@ async function validateInstallation(directory, library) {
   ]);
 }
 
-async function main() {
+/**
+ * Ensure the pinned SDK archive is present and complete before native builds.
+ * @return {Promise<void>} Resolves after validation or replacement.
+ */
+async function ensureSdk() {
   const url = urls.get();
   const parent = path.join(__dirname, '../third_party');
   const target = path.join(parent, 'sfml');
@@ -121,14 +127,18 @@ async function main() {
     win32: 'lib/sfml-system.lib',
   }[process.platform];
 
+  let reusable = false;
   try {
     if ((await fs.readFile(marker, 'utf8')) === identity) {
       await validateInstallation(target, library);
-      console.log(`[sfml.js-interop] Using SFML ${identity}`);
-      return;
+      reusable = true;
     }
   } catch {
     // No complete installation for this version and architecture yet.
+  }
+  if (reusable) {
+    console.log(`[sfml.js-interop] Using SFML ${identity}`);
+    return;
   }
 
   await fs.mkdir(parent, { recursive: true });
@@ -140,7 +150,9 @@ async function main() {
       extract: true,
       strip: 1,
       filter(file) {
-        if (file.type !== 'link') return true;
+        if (file.type !== 'link') {
+          return true;
+        }
         hardLinks.push(file);
         return false;
       },
@@ -161,7 +173,21 @@ async function main() {
   }
 }
 
-main().catch(error => {
-  console.error(`[sfml.js-interop] ${error.message}`);
-  process.exitCode = 1;
-});
+/**
+ * Prepare the SDK and its native Window extension for an actual package build.
+ * @return {Promise<void>} Resolves after the extension has been installed.
+ */
+async function main() {
+  await ensureSdk();
+  const { prepareWindowInput } = require('./sfml/build-window.cjs');
+  await prepareWindowInput();
+}
+
+module.exports = { ensureSdk };
+
+if (require.main === module) {
+  main().catch(error => {
+    console.error(`[sfml.js-interop] ${error.message}`);
+    process.exitCode = 1;
+  });
+}

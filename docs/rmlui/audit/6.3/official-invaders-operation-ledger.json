@@ -1,0 +1,126 @@
+{
+  "scope": "Original Invaders and Lua Invaders local operation acceptance",
+  "platform": "macOS arm64",
+  "full_task_9_acceptance": false,
+  "whole_scope_acceptance": false,
+  "applications": ["invaders", "lua_invaders"],
+  "operations": [
+    {
+      "name": "package-built-applications-without-runtime-compilation",
+      "status": "local-passed",
+      "evidence": "Both GYP module targets load from the existing package build tree with compiler spawning prohibited"
+    },
+    {
+      "name": "one-original-application-per-shared-runtime",
+      "status": "local-passed",
+      "evidence": "Each game rejects the other module before initialization; runtime restart releases the generation slot"
+    },
+    {
+      "name": "original-native-game-and-decorators",
+      "status": "local-passed",
+      "evidence": "Compiles original application sources excluding main.cpp; real native SFML captures"
+    },
+    {
+      "name": "original-options-save-reopen",
+      "status": "local-passed",
+      "evidence": "Both integrated applications change graphics, reverb and 3D settings then reopen"
+    },
+    {
+      "name": "difficulty-and-defender-colour",
+      "status": "local-passed",
+      "evidence": "Original setup controls select hard and Denim; native state is exact"
+    },
+    {
+      "name": "initial-formation-and-hud",
+      "status": "local-passed",
+      "evidence": "Independent original C++ reference and integrated HUD comparison"
+    },
+    {
+      "name": "native-movement-fire-and-collision",
+      "status": "local-passed",
+      "evidence": "Original key events move the defender, fire a real bullet and increase score"
+    },
+    {
+      "name": "pause-resume-and-end-game",
+      "status": "local-passed",
+      "evidence": "Original native key-up and Lua key-down Escape behavior; original Quit? menu"
+    },
+    {
+      "name": "next-wave",
+      "status": "native-source-reference-passed",
+      "evidence": "All 55 invaders are hit through public collision API; original code recreates wave 2",
+      "limit": "No full-wave keyboard play-through is claimed"
+    },
+    {
+      "name": "game-restart-and-natural-game-over",
+      "status": "local-passed",
+      "evidence": "New original game resets HUD; real bombs or descending formation open High Scores"
+    },
+    {
+      "name": "lua-startup-document-events-and-game-table",
+      "status": "local-passed",
+      "evidence": "Unchanged start.lua, inline menu scripts, native Game table and actual gameover menu"
+    },
+    {
+      "name": "score-name-and-runtime-persistence",
+      "status": "local-passed",
+      "evidence": "Original parser/serializer retain both prior and new named records; restart reloads model"
+    },
+    {
+      "name": "menu-exit",
+      "status": "local-passed",
+      "evidence": "Original menu calls backend exit; app.update observes exit request"
+    },
+    {
+      "name": "application-close-and-debugger-preservation",
+      "status": "local-passed",
+      "evidence": "Own application documents and model close; debugger documents remain; double close succeeds"
+    },
+    {
+      "name": "context-removal",
+      "status": "local-passed",
+      "evidence": "Scores save, native state becomes closed, repeated Lua/native close avoids expired context"
+    },
+    {
+      "name": "runtime-restart-and-parser-lifetimes",
+      "status": "local-passed",
+      "evidence": "Reconstructs original decorator instancers; startup defaults and preserved scores pass"
+    },
+    {
+      "name": "four-language-gallery",
+      "status": "local-passed",
+      "evidence": "29 entries in each locale; commands, native sources, controls, screenshots and platform limits"
+    },
+    {
+      "name": "source-package-install-and-inventory",
+      "status": "local-passed",
+      "evidence": "Actual existing-tree install, eight helper contracts, 727 shipped files and 57 install/build/application entries",
+      "record": "source-package-editor-evidence.json"
+    },
+    {
+      "name": "current-full-runtime",
+      "status": "local-passed",
+      "evidence": "149 runtime suites, 1550 PASS and zero FAIL; final tooling contracts separately rechecked",
+      "record": "source-package-editor-evidence.json"
+    },
+    {
+      "name": "editor-vsix-and-four-language-browser",
+      "status": "local-passed",
+      "evidence": "Five actual VS Code host contracts, verified VSIX and 1920 RmlUi pages at three widths; all 56 guides rechecked after SSR fix",
+      "record": "source-package-editor-evidence.json"
+    }
+  ],
+  "platforms": {
+    "macOS-arm64": "local-passed",
+    "Linux": "unverified",
+    "Windows": "build-and-loader-implemented-platform-unverified"
+  },
+  "remaining_acceptance": [
+    "Linux build and application evidence",
+    "Windows package build, import library, UTF-8 score path and application execution evidence",
+    "113 separate VisualTests with content assertions and independent reference comparisons",
+    "Physical IME and independent platform/lifecycle evidence",
+    "Actual Linux/Windows CI execution",
+    "Independent whole-change review"
+  ]
+}

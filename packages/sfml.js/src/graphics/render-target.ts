@@ -468,6 +468,7 @@ export abstract class RenderTarget {
     return this.pendingShapes;
   }
 
+  /** Records native shape appearance at draw time. @internal */
   [recordShape](shape: ShapeCommandSource, states: RenderStates): void {
     validateRenderStates(states);
     const appearance = shape[shapeState];
@@ -488,6 +489,7 @@ export abstract class RenderTarget {
     }
   }
 
+  /** Records native sprite appearance at draw time. @internal */
   [recordSprite](sprite: SpriteCommandSource, states: RenderStates): void {
     // Validation precedes reservation so a rejected call leaves no command.
     validateRenderStates(states);

@@ -1,0 +1,51 @@
+{
+  "platform": "darwin-arm64",
+  "accepted": false,
+  "scope": "Bounded actual-input-method attempt with synthetic NSEvents",
+  "selected_input_source_during_attempt": "com.sogou.inputmethod.sogou.pinyin",
+  "restored_input_source": "com.apple.keylayout.ABC",
+  "input_source_restore_verified": true,
+  "before_after_inventory_byte_identical": true,
+  "foreground_restore_verified": false,
+  "application_active": false,
+  "native_key_window": false,
+  "process_foreground_status": -13066,
+  "actual_engine_preedit_verified": false,
+  "actual_engine_chinese_commit_verified": false,
+  "physical_keyboard_verified": false,
+  "candidate_window_observed": false,
+  "child_bounds_seconds": {
+    "direct_process": 15,
+    "application_watchdog": 12,
+    "launch_services": 20
+  },
+  "observations": [
+    "The native input context selected Sogou Pinyin with unrestricted input-source locales.",
+    "The initial unfocused attempt delivered English insertText callbacks at runtime; no marked-text callback was observed.",
+    "Subsequent attempts reject input before typing when actual foreground/key-window focus is unavailable.",
+    "SetFrontProcess returned -13066; native application and key-window status remained false.",
+    "Launching the same bounded executable through an application bundle did not establish native foreground focus.",
+    "Launch Services returned zero while the application reported UNACCEPTED; its exit alone is not an input-method acceptance result.",
+    "The restoration parent reported successful source restoration, and the independent post-run inventory matches the pre-run bytes."
+  ],
+  "sha256": {
+    "/tmp/rmlui-63-completion/sogou-engine": "d9201bcb8ac775890ab21fe874949ca3b0894228a54ba6ea58a3ae7281e1ec14",
+    "probe_source_at_application_attempt": "389ea8427607ae58eadad98fac47839bfb066dd18f1de969b43bf9eea9a8081f",
+    "/tmp/rmlui-63-completion/preserve-input-source": "8b288892fc2d39683163870d51f91da10e3e67a6eb5e02921ca2defb598a2037",
+    "/tmp/rmlui-63-completion/preserve-input-source.mm": "e22b24f2991b403ee46c7b143102c4e08b22921cf1d76d5fe34bb19772f9aa53",
+    "/tmp/rmlui-63-completion/sogou-focus-run.log": "b3bfc557e424f86179ca9cf9da435796f1ced489bd6703d160ab430e1d4fa921",
+    "/tmp/rmlui-63-completion/sogou-process-run.log": "9d797730bf9debc0ae1193e7ca841f0b8bff307c0b183d9e4d98c7dccb9f3a61",
+    "/tmp/rmlui-63-completion/sogou-app-launch.log": "9f3ae153d183e5006032bc9fe6a3025939b49415b2543b73917ad70903853853",
+    "/tmp/rmlui-63-completion/sogou-app-engine.log": "8a85a21aef9372e933bc862caa8047c72adf1e31a4ac1df906c1c73be4aed2fe",
+    "/tmp/rmlui-63-completion/sogou-app-stderr.log": "852b25339e4ffa86b60794b592fc8cb43f9306a4907a7633ebc2dfab2f06e2d1",
+    "/tmp/rmlui-63-completion/sogou-app-before.json": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231",
+    "/tmp/rmlui-63-completion/sogou-app-after.json": "ba09ed79bcf5214d7ed1f18b6467018bb6bd32dad66f76994a2e09bedbc42231"
+  },
+  "limits": [
+    "No inference about real Chinese engine behavior is valid without native key-window focus.",
+    "Synthetic events are not physical keyboard acceptance.",
+    "No candidate screenshot or candidate placement acceptance is established.",
+    "The temporary probe source has subsequently changed only its relocated fixture include paths; the source fingerprint above records its bytes at the attempted execution.",
+    "Actual Sogou behavior must be established before treating the observed dual Cocoa interpretation paths as an engine defect."
+  ]
+}

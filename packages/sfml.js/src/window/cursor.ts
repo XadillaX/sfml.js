@@ -48,6 +48,7 @@ export class Cursor {
    * @ko 시스템 커서 모양 열거형.
    */
   static readonly Type = CursorType;
+  /** Native cursor capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'cursor'>;
 
   /**

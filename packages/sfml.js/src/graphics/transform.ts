@@ -11,6 +11,7 @@ import { Vector2, Vector2f } from '../system/vector2';
 import { Angle } from '../system/angle';
 import { Rect, FloatRect } from './rect';
 
+/** Row-major coefficients of a 3×3 transformation matrix. @inline */
 type Components = [
   a00: number,
   a01: number,
@@ -22,6 +23,7 @@ type Components = [
   a21: number,
   a22: number,
 ];
+/** Default, copied or nine-component transformation matrix. @inline */
 type Arguments = [] | [source: R<Transform>] | Components;
 type State = LazyValue<'transform', Float32Array> & {
   matrix?: readonly number[];
@@ -120,6 +122,7 @@ export class Transform {
     return this.state.values;
   }
 
+  /** Native view of the shared transform matrix. @internal */
   get [transformNative](): NativeValueHandle<'transform'> {
     return nativeValue(this, transformNative, this.state);
   }

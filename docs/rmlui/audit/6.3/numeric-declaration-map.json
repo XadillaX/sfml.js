@@ -1,0 +1,4933 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "numeric_original_records": 459,
+  "whole_scope_complete": false,
+  "notice": "Native numeric support for float row/column matrices, six float/int vector types, byte/float colours and int/float rectangles. Records include definitions and declarations, type aliases and fields. Supporting operations remain native; related JS consumers are not new JS arithmetic APIs. No arbitrary custom type/platform claim. The parser omitted conversion operators and private multiplier specializations; source-only findings are separate.",
+  "native_groups": {
+    "matrix-proxies": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc",
+      "functions": "CheckStorageProxies",
+      "literal_pass_line": "matrix-packed-strided-proxy-and-const-conversion",
+      "contract": "Actual float packed/strided storage, indexed writes, copied const columns and mutable packed references."
+    },
+    "matrix-storage": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc",
+      "functions": "CheckStorage",
+      "literal_pass_line": "matrix-row-column-storage-and-transpose-alias",
+      "contract": "Float row/column constructors, copies, raw layout, diagonal, const/mutable indexing, row/column setters and transpose aliases; same-storage arithmetic and scalar division."
+    },
+    "matrix-mixed": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc",
+      "functions": "CheckMixedOperations",
+      "literal_pass_line": "matrix-cross-storage-assignment-arithmetic-and-equality",
+      "contract": "Both cross-storage assignments, addition/subtraction, comparisons and in-place assignment/addition/subtraction of one's transposed view."
+    },
+    "matrix-multiplication": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc",
+      "functions": "CheckMultiplication",
+      "literal_pass_line": "matrix-four-storage-multiplication-combinations",
+      "contract": "Independent component products for all four float storage pairs; in-place matrix multiplication and both vector multipliers."
+    },
+    "matrix-inversion": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc",
+      "functions": "CheckInversion",
+      "literal_pass_line": "matrix-inverse-and-singular-destination-preservation",
+      "contract": "Both float storages: determinant, inverse in both product orders and unchanged singular destination."
+    },
+    "matrix-transforms": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-matrix-contracts.cc",
+      "functions": "CheckTransforms",
+      "literal_pass_line": "matrix-native-projection-rotation-skew-and-translation",
+      "contract": "Float translation/scaling, normalized axis rotations, skew, perspective/orthographic projections and independent Compose values including nonidentity quaternion and perspective."
+    },
+    "vector-arithmetic": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckVectorArithmetic",
+      "literal_pass_line": "six-native-vector-arithmetic-and-pointer-layout-types",
+      "contract": "Six float/int Vector2/3/4 types: constructors, layout, component pointers, unary/scalar/vector arithmetic, dot/magnitudes, comparisons and float normalization including zero/near-zero preservation."
+    },
+    "vector-specials": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckVectors",
+      "literal_pass_line": "vector-rounding-cross-product-and-dimensional-casts",
+      "contract": "Float/int Vector2 component arithmetic and rotation, both rounding specializations, casts, float/int cross products and perspective divide."
+    },
+    "colour-byte": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckColours",
+      "literal_pass_line": "byte-colour-wrap-truncation-and-premultiplied-alpha",
+      "contract": "Byte constructors, wrapping/truncating channel arithmetic, layout, alpha conversion, opacity, zero-alpha and rounded interpolation."
+    },
+    "colour-float": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckColours",
+      "literal_pass_line": "float-colour-arithmetic-and-channel-layout",
+      "contract": "Float constructors, channel arithmetic, comparison and pointer layout."
+    },
+    "rectangles": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckRectangle",
+      "literal_pass_line": "integer-float-rectangle-edges-invalidity-and-casts",
+      "contract": "Int/float corners, fields, dimensions, inclusive containment, strict overlap, invalidity, extension/join/translation and truncating casts."
+    },
+    "math": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckMath",
+      "literal_pass_line": "native-math-functions-and-distinct-negative-rounding",
+      "contract": "Actual native functions, scalar and float/int Vector2 min/max/clamp, interpolation, angles, distinct negative rounding, hexadecimal and power-of-two conversion."
+    },
+    "pixel-grid": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-value-contracts.cc",
+      "functions": "CheckMath",
+      "literal_pass_line": "native-pixel-grid-snap-and-expansion-overloads",
+      "contract": "All five native snapping/expansion overloads use explicit edge results."
+    },
+    "random-real": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-random-contracts.cc",
+      "functions": "CheckReal",
+      "literal_pass_line": "random-real-strict-positive-upper-bound",
+      "contract": "Actual Math object with controlled rand endpoints; positive finite strict bounds from the minimum positive normal float to its maximum."
+    },
+    "random-integer": {
+      "source": "packages/sfml.js-rmlui/test/native/numeric-random-contracts.cc",
+      "functions": "main",
+      "literal_pass_line": "random-integer-bool-and-zero-scale-native-contracts",
+      "contract": "Actual Math object: positive integer modulus, boolean endpoints and zero floating scale; no runtime lifecycle stubs."
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 120,
+      "exact_key": "Core/Colour.h|8|TypeAliasDecl|Rml::byte|byte|Rml::byte",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 121,
+      "exact_key": "Core/Colour.h|15|ClassTemplate|Rml::Colour|Colour<ColourType, AlphaDefault, PremultipliedAlpha>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 122,
+      "exact_key": "Core/Colour.h|20|CXXConstructor|Rml::Colour::Colour<ColourType, AlphaDefault, PremultipliedAlpha>|Colour<ColourType, AlphaDefault, PremultipliedAlpha>(ColourType, ColourType)|void (ColourType, ColourType)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 123,
+      "exact_key": "Core/Colour.h|26|CXXConstructor|Rml::Colour::Colour<ColourType, AlphaDefault, PremultipliedAlpha>|Colour<ColourType, AlphaDefault, PremultipliedAlpha>(ColourType, ColourType, ColourType, ColourType)|void (ColourType, ColourType, ColourType, ColourType)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 124,
+      "exact_key": "Core/Colour.h|31|CXXMethod|Rml::Colour::operator+|operator+(Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (Colour<ColourType, AlphaDefault, PremultipliedAlpha>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 125,
+      "exact_key": "Core/Colour.h|35|CXXMethod|Rml::Colour::operator-|operator-(Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (Colour<ColourType, AlphaDefault, PremultipliedAlpha>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 126,
+      "exact_key": "Core/Colour.h|39|CXXMethod|Rml::Colour::operator*|operator*(float)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 127,
+      "exact_key": "Core/Colour.h|43|CXXMethod|Rml::Colour::operator/|operator/(float)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 128,
+      "exact_key": "Core/Colour.h|47|CXXMethod|Rml::Colour::operator+=|operator+=(Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|void (Colour<ColourType, AlphaDefault, PremultipliedAlpha>)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 129,
+      "exact_key": "Core/Colour.h|50|CXXMethod|Rml::Colour::operator-=|operator-=(Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|void (Colour<ColourType, AlphaDefault, PremultipliedAlpha>)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 130,
+      "exact_key": "Core/Colour.h|53|CXXMethod|Rml::Colour::operator*=|operator*=(float)|void (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 131,
+      "exact_key": "Core/Colour.h|56|CXXMethod|Rml::Colour::operator/=|operator/=(float)|void (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 132,
+      "exact_key": "Core/Colour.h|61|CXXMethod|Rml::Colour::operator==|operator==(Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|bool (Colour<ColourType, AlphaDefault, PremultipliedAlpha>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 133,
+      "exact_key": "Core/Colour.h|65|CXXMethod|Rml::Colour::operator!=|operator!=(Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|bool (Colour<ColourType, AlphaDefault, PremultipliedAlpha>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 134,
+      "exact_key": "Core/Colour.h|77|FunctionTemplate|Rml::Colour::ToPremultiplied|ToPremultiplied()|Colour<ColourType, AlphaDefault, true> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-float_premultiplied"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 135,
+      "exact_key": "Core/Colour.h|89|FunctionTemplate|Rml::Colour::ToPremultiplied|ToPremultiplied(float)|Colour<ColourType, AlphaDefault, true> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-float_premultiplied"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 136,
+      "exact_key": "Core/Colour.h|103|FunctionTemplate|Rml::Colour::ToNonPremultiplied|ToNonPremultiplied()|Colour<ColourType, AlphaDefault, false> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 137,
+      "exact_key": "Core/Colour.h|113|FieldDecl|Rml::Colour::alpha|alpha|ColourType",
+      "role": "native-value-field",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 138,
+      "exact_key": "Core/Colour.h|113|FieldDecl|Rml::Colour::blue|blue|ColourType",
+      "role": "native-value-field",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 139,
+      "exact_key": "Core/Colour.h|113|FieldDecl|Rml::Colour::green|green|ColourType",
+      "role": "native-value-field",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 140,
+      "exact_key": "Core/Colour.h|113|FieldDecl|Rml::Colour::red|red|ColourType",
+      "role": "native-value-field",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 141,
+      "exact_key": "Core/Colour.inl|4|CXXConstructor|Rml::Colour::Colour<ColourType, AlphaDefault, PremultipliedAlpha>|Colour<ColourType, AlphaDefault, PremultipliedAlpha>(ColourType, ColourType)|void (ColourType, ColourType)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 142,
+      "exact_key": "Core/Colour.inl|8|CXXConstructor|Rml::Colour::Colour<ColourType, AlphaDefault, PremultipliedAlpha>|Colour<ColourType, AlphaDefault, PremultipliedAlpha>(ColourType, ColourType, ColourType, ColourType)|void (ColourType, ColourType, ColourType, ColourType)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 143,
+      "exact_key": "Core/Colour.inl|13|CXXMethod|Rml::Colour::operator+|operator+(const Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (const Colour<ColourType, AlphaDefault, PremultipliedAlpha>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 144,
+      "exact_key": "Core/Colour.inl|19|CXXMethod|Rml::Colour::operator-|operator-(const Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (const Colour<ColourType, AlphaDefault, PremultipliedAlpha>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 145,
+      "exact_key": "Core/Colour.inl|25|CXXMethod|Rml::Colour::operator*|operator*(float)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 146,
+      "exact_key": "Core/Colour.inl|31|CXXMethod|Rml::Colour::operator/|operator/(float)|Colour<ColourType, AlphaDefault, PremultipliedAlpha> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 147,
+      "exact_key": "Core/Colour.inl|37|CXXMethod|Rml::Colour::operator+=|operator+=(const Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|void (const Colour<ColourType, AlphaDefault, PremultipliedAlpha>)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 148,
+      "exact_key": "Core/Colour.inl|46|CXXMethod|Rml::Colour::operator-=|operator-=(const Colour<ColourType, AlphaDefault, PremultipliedAlpha>)|void (const Colour<ColourType, AlphaDefault, PremultipliedAlpha>)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 149,
+      "exact_key": "Core/Colour.inl|55|CXXMethod|Rml::Colour::operator*=|operator*=(float)|void (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 150,
+      "exact_key": "Core/Colour.inl|64|CXXMethod|Rml::Colour::operator/=|operator/=(float)|void (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte",
+        "colour-float"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1766,
+      "exact_key": "Core/Math.h|8|TypeAliasDecl|Rml::byte|byte|Rml::byte",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1767,
+      "exact_key": "Core/Math.h|10|ClassTemplate|Rml::Colour|Colour<ColourType, AlphaDefault, PremultipliedAlpha>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1768,
+      "exact_key": "Core/Math.h|11|TypeAliasDecl|Rml::Colourb|Colourb|Rml::Colourb",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1769,
+      "exact_key": "Core/Math.h|12|TypeAliasDecl|Rml::ColourbPremultiplied|ColourbPremultiplied|Rml::ColourbPremultiplied",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1770,
+      "exact_key": "Core/Math.h|14|ClassTemplate|Rml::Vector2|Vector2<Type>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "vector-arithmetic",
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1771,
+      "exact_key": "Core/Math.h|15|TypeAliasDecl|Rml::Vector2f|Vector2f|Rml::Vector2f",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "vector-arithmetic",
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1772,
+      "exact_key": "Core/Math.h|16|TypeAliasDecl|Rml::Vector2i|Vector2i|Rml::Vector2i",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "vector-arithmetic",
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1773,
+      "exact_key": "Core/Math.h|18|ClassTemplate|Rml::Rectangle|Rectangle<Type>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "rectangles",
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1774,
+      "exact_key": "Core/Math.h|19|TypeAliasDecl|Rml::Rectanglef|Rectanglef|Rml::Rectanglef",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "rectangles",
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1775,
+      "exact_key": "Core/Math.h|23|VarDecl|Rml::Math::RMLUI_PI|RMLUI_PI|const float",
+      "role": "native-value-field",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1776,
+      "exact_key": "Core/Math.h|26|FunctionTemplate|Rml::Math::Max|Max(Type, Type)|Type (Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1777,
+      "exact_key": "Core/Math.h|32|FunctionTemplate|Rml::Math::Min|Min(Type, Type)|Type (Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1778,
+      "exact_key": "Core/Math.h|38|FunctionTemplate|Rml::Math::Clamp|Clamp(Type, Type, Type)|Type (Type, Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1779,
+      "exact_key": "Core/Math.h|44|FunctionTemplate|Rml::Math::Lerp|Lerp(float, Type, Type)|Type (float, Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-byte_colour_lerp"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1780,
+      "exact_key": "Core/Math.h|52|FunctionDecl|Rml::Math::Max|Max<>(Vector2f, Vector2f)|Vector2f (Vector2f, Vector2f)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1781,
+      "exact_key": "Core/Math.h|54|FunctionDecl|Rml::Math::Max|Max<>(Vector2i, Vector2i)|Vector2i (Vector2i, Vector2i)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1782,
+      "exact_key": "Core/Math.h|57|FunctionDecl|Rml::Math::Min|Min<>(Vector2f, Vector2f)|Vector2f (Vector2f, Vector2f)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1783,
+      "exact_key": "Core/Math.h|59|FunctionDecl|Rml::Math::Min|Min<>(Vector2i, Vector2i)|Vector2i (Vector2i, Vector2i)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1784,
+      "exact_key": "Core/Math.h|62|FunctionDecl|Rml::Math::Clamp|Clamp<>(Vector2f, Vector2f, Vector2f)|Vector2f (Vector2f, Vector2f, Vector2f)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1785,
+      "exact_key": "Core/Math.h|64|FunctionDecl|Rml::Math::Clamp|Clamp<>(Vector2i, Vector2i, Vector2i)|Vector2i (Vector2i, Vector2i, Vector2i)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1786,
+      "exact_key": "Core/Math.h|67|FunctionDecl|Rml::Math::RoundedLerp|RoundedLerp(float, ColourbPremultiplied, ColourbPremultiplied)|ColourbPremultiplied (float, ColourbPremultiplied, ColourbPremultiplied)",
+      "role": "native-operation",
+      "native_groups": [
+        "colour-byte"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1787,
+      "exact_key": "Core/Math.h|72|FunctionDecl|Rml::Math::IsCloseToZero|IsCloseToZero(float)|bool (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1788,
+      "exact_key": "Core/Math.h|77|FunctionDecl|Rml::Math::Absolute|Absolute(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1789,
+      "exact_key": "Core/Math.h|81|FunctionDecl|Rml::Math::Absolute|Absolute(int)|int (int)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1790,
+      "exact_key": "Core/Math.h|85|FunctionDecl|Rml::Math::Absolute|Absolute(Vector2f)|Vector2f (Vector2f)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1791,
+      "exact_key": "Core/Math.h|90|FunctionDecl|Rml::Math::Cos|Cos(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1792,
+      "exact_key": "Core/Math.h|94|FunctionDecl|Rml::Math::ACos|ACos(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1793,
+      "exact_key": "Core/Math.h|98|FunctionDecl|Rml::Math::Sin|Sin(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1794,
+      "exact_key": "Core/Math.h|102|FunctionDecl|Rml::Math::ASin|ASin(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1795,
+      "exact_key": "Core/Math.h|106|FunctionDecl|Rml::Math::Tan|Tan(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1796,
+      "exact_key": "Core/Math.h|111|FunctionDecl|Rml::Math::ATan2|ATan2(float, float)|float (float, float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1797,
+      "exact_key": "Core/Math.h|115|FunctionDecl|Rml::Math::Exp|Exp(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1798,
+      "exact_key": "Core/Math.h|119|FunctionDecl|Rml::Math::Log2|Log2(int)|int (int)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1799,
+      "exact_key": "Core/Math.h|124|FunctionDecl|Rml::Math::RadiansToDegrees|RadiansToDegrees(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1800,
+      "exact_key": "Core/Math.h|128|FunctionDecl|Rml::Math::DegreesToRadians|DegreesToRadians(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1801,
+      "exact_key": "Core/Math.h|132|FunctionDecl|Rml::Math::NormaliseAngle|NormaliseAngle(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1802,
+      "exact_key": "Core/Math.h|137|FunctionDecl|Rml::Math::SquareRoot|SquareRoot(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1803,
+      "exact_key": "Core/Math.h|142|FunctionDecl|Rml::Math::Round|Round(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1804,
+      "exact_key": "Core/Math.h|146|FunctionDecl|Rml::Math::Round|Round(double)|double (double)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1805,
+      "exact_key": "Core/Math.h|150|FunctionDecl|Rml::Math::RoundUp|RoundUp(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1806,
+      "exact_key": "Core/Math.h|154|FunctionDecl|Rml::Math::RoundDown|RoundDown(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1807,
+      "exact_key": "Core/Math.h|158|FunctionDecl|Rml::Math::RoundToInteger|RoundToInteger(float)|int (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1808,
+      "exact_key": "Core/Math.h|162|FunctionDecl|Rml::Math::RoundUpToInteger|RoundUpToInteger(float)|int (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1809,
+      "exact_key": "Core/Math.h|166|FunctionDecl|Rml::Math::RoundDownToInteger|RoundDownToInteger(float)|int (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1810,
+      "exact_key": "Core/Math.h|172|FunctionDecl|Rml::Math::DecomposeFractionalIntegral|DecomposeFractionalIntegral(float, float *)|float (float, float *)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1811,
+      "exact_key": "Core/Math.h|177|FunctionDecl|Rml::Math::SnapToPixelGrid|SnapToPixelGrid(float &, float &)|void (float &, float &)",
+      "role": "native-operation",
+      "native_groups": [
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1812,
+      "exact_key": "Core/Math.h|181|FunctionDecl|Rml::Math::SnapToPixelGrid|SnapToPixelGrid(Vector2f &, Vector2f &)|void (Vector2f &, Vector2f &)",
+      "role": "native-operation",
+      "native_groups": [
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1813,
+      "exact_key": "Core/Math.h|184|FunctionDecl|Rml::Math::SnapToPixelGrid|SnapToPixelGrid(Rectanglef &)|void (Rectanglef &)",
+      "role": "native-operation",
+      "native_groups": [
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1814,
+      "exact_key": "Core/Math.h|188|FunctionDecl|Rml::Math::ExpandToPixelGrid|ExpandToPixelGrid(Vector2f &, Vector2f &)|void (Vector2f &, Vector2f &)",
+      "role": "native-operation",
+      "native_groups": [
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1815,
+      "exact_key": "Core/Math.h|191|FunctionDecl|Rml::Math::ExpandToPixelGrid|ExpandToPixelGrid(Rectanglef &)|void (Rectanglef &)",
+      "role": "native-operation",
+      "native_groups": [
+        "pixel-grid"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1816,
+      "exact_key": "Core/Math.h|196|FunctionDecl|Rml::Math::ToPowerOfTwo|ToPowerOfTwo(int)|int (int)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1817,
+      "exact_key": "Core/Math.h|201|FunctionDecl|Rml::Math::HexToDecimal|HexToDecimal(char)|int (char)",
+      "role": "native-operation",
+      "native_groups": [
+        "math"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1818,
+      "exact_key": "Core/Math.h|206|FunctionDecl|Rml::Math::RandomReal|RandomReal(float)|float (float)",
+      "role": "native-operation",
+      "native_groups": [
+        "random-real"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1819,
+      "exact_key": "Core/Math.h|210|FunctionDecl|Rml::Math::RandomInteger|RandomInteger(int)|int (int)",
+      "role": "native-operation",
+      "native_groups": [
+        "random-integer"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1820,
+      "exact_key": "Core/Math.h|213|FunctionDecl|Rml::Math::RandomBool|RandomBool()|bool ()",
+      "role": "native-operation",
+      "native_groups": [
+        "random-integer"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1821,
+      "exact_key": "Core/Matrix4.h|13|ClassTemplate|Rml::MatrixStorageBase|MatrixStorageBase<Component>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1822,
+      "exact_key": "Core/Matrix4.h|14|TypedefDecl|Rml::MatrixStorageBase::ComponentType|ComponentType|Rml::MatrixStorageBase::ComponentType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1823,
+      "exact_key": "Core/Matrix4.h|15|TypedefDecl|Rml::MatrixStorageBase::VectorType|VectorType|Rml::MatrixStorageBase::VectorType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1824,
+      "exact_key": "Core/Matrix4.h|16|TypedefDecl|Rml::MatrixStorageBase::VectorsType|VectorsType|Rml::MatrixStorageBase::VectorsType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1825,
+      "exact_key": "Core/Matrix4.h|18|ClassDecl|Rml::MatrixStorageBase::StrideVector|StrideVector|Rml::MatrixStorageBase::StrideVector",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1826,
+      "exact_key": "Core/Matrix4.h|23|CXXConstructor|Rml::MatrixStorageBase::StrideVector::StrideVector|StrideVector(VectorsType &, int)|void (VectorsType &, int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1827,
+      "exact_key": "Core/Matrix4.h|24|CXXMethod|Rml::MatrixStorageBase::StrideVector::operator[]|operator[](int)|ComponentType &(int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1828,
+      "exact_key": "Core/Matrix4.h|25|CXXMethod|Rml::MatrixStorageBase::StrideVector::operator=|operator=(const VectorType &)|StrideVector &(const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1829,
+      "exact_key": "Core/Matrix4.h|35|ClassDecl|Rml::MatrixStorageBase::StrideAccess|StrideAccess|Rml::MatrixStorageBase::StrideAccess",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1830,
+      "exact_key": "Core/Matrix4.h|39|CXXConstructor|Rml::MatrixStorageBase::StrideAccess::StrideAccess|StrideAccess(VectorsType &)|void (VectorsType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1831,
+      "exact_key": "Core/Matrix4.h|40|CXXMethod|Rml::MatrixStorageBase::StrideAccess::operator[]|operator[](int)|StrideVector (int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1832,
+      "exact_key": "Core/Matrix4.h|42|ClassDecl|Rml::MatrixStorageBase::ConstStrideVector|ConstStrideVector|Rml::MatrixStorageBase::ConstStrideVector",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1833,
+      "exact_key": "Core/Matrix4.h|47|CXXConstructor|Rml::MatrixStorageBase::ConstStrideVector::ConstStrideVector|ConstStrideVector(const VectorsType &, int)|void (const VectorsType &, int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1834,
+      "exact_key": "Core/Matrix4.h|48|CXXMethod|Rml::MatrixStorageBase::ConstStrideVector::operator[]|operator[](int)|const ComponentType &(int) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1835,
+      "exact_key": "Core/Matrix4.h|51|ClassDecl|Rml::MatrixStorageBase::ConstStrideAccess|ConstStrideAccess|Rml::MatrixStorageBase::ConstStrideAccess",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1836,
+      "exact_key": "Core/Matrix4.h|55|CXXConstructor|Rml::MatrixStorageBase::ConstStrideAccess::ConstStrideAccess|ConstStrideAccess(const VectorsType &)|void (const VectorsType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1837,
+      "exact_key": "Core/Matrix4.h|56|CXXMethod|Rml::MatrixStorageBase::ConstStrideAccess::operator[]|operator[](int)|ConstStrideVector (int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1838,
+      "exact_key": "Core/Matrix4.h|59|ClassDecl|Rml::MatrixStorageBase::PackedVector|PackedVector|Rml::MatrixStorageBase::PackedVector",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1839,
+      "exact_key": "Core/Matrix4.h|63|CXXConstructor|Rml::MatrixStorageBase::PackedVector::PackedVector|PackedVector(VectorType &)|void (VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1840,
+      "exact_key": "Core/Matrix4.h|64|CXXMethod|Rml::MatrixStorageBase::PackedVector::operator[]|operator[](int)|ComponentType &(int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1841,
+      "exact_key": "Core/Matrix4.h|65|CXXMethod|Rml::MatrixStorageBase::PackedVector::operator=|operator=(const VectorType &)|PackedVector &(const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1842,
+      "exact_key": "Core/Matrix4.h|70|CXXMethod|Rml::MatrixStorageBase::PackedVector::operator=|operator=(StrideVector &)|PackedVector &(StrideVector &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1843,
+      "exact_key": "Core/Matrix4.h|78|CXXMethod|Rml::MatrixStorageBase::PackedVector::operator=|operator=(ConstStrideVector &)|PackedVector &(ConstStrideVector &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1844,
+      "exact_key": "Core/Matrix4.h|88|ClassDecl|Rml::MatrixStorageBase::PackedAccess|PackedAccess|Rml::MatrixStorageBase::PackedAccess",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1845,
+      "exact_key": "Core/Matrix4.h|92|CXXConstructor|Rml::MatrixStorageBase::PackedAccess::PackedAccess|PackedAccess(VectorsType &)|void (VectorsType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1846,
+      "exact_key": "Core/Matrix4.h|93|CXXMethod|Rml::MatrixStorageBase::PackedAccess::operator[]|operator[](int)|PackedVector (int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1847,
+      "exact_key": "Core/Matrix4.h|96|ClassDecl|Rml::MatrixStorageBase::ConstPackedAccess|ConstPackedAccess|Rml::MatrixStorageBase::ConstPackedAccess",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1848,
+      "exact_key": "Core/Matrix4.h|100|CXXConstructor|Rml::MatrixStorageBase::ConstPackedAccess::ConstPackedAccess|ConstPackedAccess(const VectorsType &)|void (const VectorsType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1849,
+      "exact_key": "Core/Matrix4.h|101|CXXMethod|Rml::MatrixStorageBase::ConstPackedAccess::operator[]|operator[](int)|const VectorType &(int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-proxies"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1850,
+      "exact_key": "Core/Matrix4.h|106|ClassTemplate|Rml::RowMajorStorage|RowMajorStorage<Component>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1851,
+      "exact_key": "Core/Matrix4.h|108|ClassTemplate|Rml::ColumnMajorStorage|ColumnMajorStorage<Component>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1852,
+      "exact_key": "Core/Matrix4.h|114|ClassTemplate|Rml::RowMajorStorage|RowMajorStorage<Component>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1853,
+      "exact_key": "Core/Matrix4.h|115|TypedefDecl|Rml::RowMajorStorage::ComponentType|ComponentType|Rml::RowMajorStorage::ComponentType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1854,
+      "exact_key": "Core/Matrix4.h|116|TypedefDecl|Rml::RowMajorStorage::VectorType|VectorType|Rml::RowMajorStorage::VectorType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1855,
+      "exact_key": "Core/Matrix4.h|117|TypedefDecl|Rml::RowMajorStorage::ThisType|ThisType|Rml::RowMajorStorage::ThisType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1856,
+      "exact_key": "Core/Matrix4.h|118|TypedefDecl|Rml::RowMajorStorage::TransposeType|TransposeType|Rml::RowMajorStorage::TransposeType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1857,
+      "exact_key": "Core/Matrix4.h|120|TypedefDecl|Rml::RowMajorStorage::Row|Row|Rml::RowMajorStorage::Row",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1858,
+      "exact_key": "Core/Matrix4.h|121|TypedefDecl|Rml::RowMajorStorage::Rows|Rows|Rml::RowMajorStorage::Rows",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1859,
+      "exact_key": "Core/Matrix4.h|122|TypedefDecl|Rml::RowMajorStorage::ConstRow|ConstRow|Rml::RowMajorStorage::ConstRow",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1860,
+      "exact_key": "Core/Matrix4.h|123|TypedefDecl|Rml::RowMajorStorage::ConstRows|ConstRows|Rml::RowMajorStorage::ConstRows",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1861,
+      "exact_key": "Core/Matrix4.h|124|TypedefDecl|Rml::RowMajorStorage::Column|Column|Rml::RowMajorStorage::Column",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1862,
+      "exact_key": "Core/Matrix4.h|125|TypedefDecl|Rml::RowMajorStorage::Columns|Columns|Rml::RowMajorStorage::Columns",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1863,
+      "exact_key": "Core/Matrix4.h|126|TypedefDecl|Rml::RowMajorStorage::ConstColumn|ConstColumn|Rml::RowMajorStorage::ConstColumn",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1864,
+      "exact_key": "Core/Matrix4.h|127|TypedefDecl|Rml::RowMajorStorage::ConstColumns|ConstColumns|Rml::RowMajorStorage::ConstColumns",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1865,
+      "exact_key": "Core/Matrix4.h|134|ClassTemplate|Rml::ColumnMajorStorage|ColumnMajorStorage<Component>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1866,
+      "exact_key": "Core/Matrix4.h|135|TypedefDecl|Rml::ColumnMajorStorage::ComponentType|ComponentType|Rml::ColumnMajorStorage::ComponentType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1867,
+      "exact_key": "Core/Matrix4.h|136|TypedefDecl|Rml::ColumnMajorStorage::VectorType|VectorType|Rml::ColumnMajorStorage::VectorType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1868,
+      "exact_key": "Core/Matrix4.h|137|TypedefDecl|Rml::ColumnMajorStorage::ThisType|ThisType|Rml::ColumnMajorStorage::ThisType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1869,
+      "exact_key": "Core/Matrix4.h|138|TypedefDecl|Rml::ColumnMajorStorage::TransposeType|TransposeType|Rml::ColumnMajorStorage::TransposeType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1870,
+      "exact_key": "Core/Matrix4.h|140|TypedefDecl|Rml::ColumnMajorStorage::Column|Column|Rml::ColumnMajorStorage::Column",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1871,
+      "exact_key": "Core/Matrix4.h|141|TypedefDecl|Rml::ColumnMajorStorage::Columns|Columns|Rml::ColumnMajorStorage::Columns",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1872,
+      "exact_key": "Core/Matrix4.h|142|TypedefDecl|Rml::ColumnMajorStorage::ConstColumn|ConstColumn|Rml::ColumnMajorStorage::ConstColumn",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1873,
+      "exact_key": "Core/Matrix4.h|143|TypedefDecl|Rml::ColumnMajorStorage::ConstColumns|ConstColumns|Rml::ColumnMajorStorage::ConstColumns",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1874,
+      "exact_key": "Core/Matrix4.h|144|TypedefDecl|Rml::ColumnMajorStorage::Row|Row|Rml::ColumnMajorStorage::Row",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1875,
+      "exact_key": "Core/Matrix4.h|145|TypedefDecl|Rml::ColumnMajorStorage::Rows|Rows|Rml::ColumnMajorStorage::Rows",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1876,
+      "exact_key": "Core/Matrix4.h|146|TypedefDecl|Rml::ColumnMajorStorage::ConstRow|ConstRow|Rml::ColumnMajorStorage::ConstRow",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1877,
+      "exact_key": "Core/Matrix4.h|147|TypedefDecl|Rml::ColumnMajorStorage::ConstRows|ConstRows|Rml::ColumnMajorStorage::ConstRows",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1878,
+      "exact_key": "Core/Matrix4.h|155|ClassTemplate|Rml::Matrix4|Matrix4<Component, Storage>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1879,
+      "exact_key": "Core/Matrix4.h|157|TypedefDecl|Rml::Matrix4::ComponentType|ComponentType|Rml::Matrix4::ComponentType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1880,
+      "exact_key": "Core/Matrix4.h|158|TypedefDecl|Rml::Matrix4::VectorType|VectorType|Rml::Matrix4::VectorType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1881,
+      "exact_key": "Core/Matrix4.h|159|TypedefDecl|Rml::Matrix4::ThisType|ThisType|Rml::Matrix4::ThisType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1882,
+      "exact_key": "Core/Matrix4.h|161|TypedefDecl|Rml::Matrix4::StorageType|StorageType|Rml::Matrix4::StorageType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1883,
+      "exact_key": "Core/Matrix4.h|162|TypedefDecl|Rml::Matrix4::Row|Row|Rml::Matrix4::Row",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1884,
+      "exact_key": "Core/Matrix4.h|163|TypedefDecl|Rml::Matrix4::Rows|Rows|Rml::Matrix4::Rows",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1885,
+      "exact_key": "Core/Matrix4.h|164|TypedefDecl|Rml::Matrix4::ConstRow|ConstRow|Rml::Matrix4::ConstRow",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1886,
+      "exact_key": "Core/Matrix4.h|165|TypedefDecl|Rml::Matrix4::ConstRows|ConstRows|Rml::Matrix4::ConstRows",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1887,
+      "exact_key": "Core/Matrix4.h|166|TypedefDecl|Rml::Matrix4::Column|Column|Rml::Matrix4::Column",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1888,
+      "exact_key": "Core/Matrix4.h|167|TypedefDecl|Rml::Matrix4::Columns|Columns|Rml::Matrix4::Columns",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1889,
+      "exact_key": "Core/Matrix4.h|168|TypedefDecl|Rml::Matrix4::ConstColumn|ConstColumn|Rml::Matrix4::ConstColumn",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1890,
+      "exact_key": "Core/Matrix4.h|169|TypedefDecl|Rml::Matrix4::ConstColumns|ConstColumns|Rml::Matrix4::ConstColumns",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1891,
+      "exact_key": "Core/Matrix4.h|171|TypedefDecl|Rml::Matrix4::TransposeStorageType|TransposeStorageType|Rml::Matrix4::TransposeStorageType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1892,
+      "exact_key": "Core/Matrix4.h|172|TypedefDecl|Rml::Matrix4::TransposeType|TransposeType|Rml::Matrix4::TransposeType",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1893,
+      "exact_key": "Core/Matrix4.h|207|CXXConstructor|Rml::Matrix4::Matrix4<Component, Storage>|Matrix4<Component, Storage>()|void () noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1894,
+      "exact_key": "Core/Matrix4.h|210|CXXConstructor|Rml::Matrix4::Matrix4<Component, Storage>|Matrix4<Component, Storage>(const ThisType &)|void (const ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1895,
+      "exact_key": "Core/Matrix4.h|211|CXXConstructor|Rml::Matrix4::Matrix4<Component, Storage>|Matrix4<Component, Storage>(const TransposeType &)|void (const TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1896,
+      "exact_key": "Core/Matrix4.h|214|CXXMethod|Rml::Matrix4::operator=|operator=(const ThisType &)|const ThisType &(const ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1897,
+      "exact_key": "Core/Matrix4.h|215|CXXMethod|Rml::Matrix4::operator=|operator=(const TransposeType &)|const ThisType &(const TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1898,
+      "exact_key": "Core/Matrix4.h|218|CXXMethod|Rml::Matrix4::FromRows|FromRows(const VectorType &, const VectorType &, const VectorType &, const VectorType &)|const ThisType (const VectorType &, const VectorType &, const VectorType &, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1899,
+      "exact_key": "Core/Matrix4.h|221|CXXMethod|Rml::Matrix4::FromColumns|FromColumns(const VectorType &, const VectorType &, const VectorType &, const VectorType &)|const ThisType (const VectorType &, const VectorType &, const VectorType &, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1900,
+      "exact_key": "Core/Matrix4.h|224|CXXMethod|Rml::Matrix4::FromRowMajor|FromRowMajor(const ComponentType *)|const ThisType (const ComponentType *) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1901,
+      "exact_key": "Core/Matrix4.h|225|CXXMethod|Rml::Matrix4::FromColumnMajor|FromColumnMajor(const ComponentType *)|const ThisType (const ComponentType *) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1902,
+      "exact_key": "Core/Matrix4.h|228|CXXMethod|Rml::Matrix4::data|data()|Component *() noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1903,
+      "exact_key": "Core/Matrix4.h|229|CXXMethod|Rml::Matrix4::data|data()|const Component *() const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1904,
+      "exact_key": "Core/Matrix4.h|232|CXXMethod|Rml::Matrix4::GetRow|GetRow(int)|Row (int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1905,
+      "exact_key": "Core/Matrix4.h|238|CXXMethod|Rml::Matrix4::GetRow|GetRow(int)|ConstRow (int) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1906,
+      "exact_key": "Core/Matrix4.h|244|CXXMethod|Rml::Matrix4::SetRow|SetRow(int, const VectorType &)|void (int, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1907,
+      "exact_key": "Core/Matrix4.h|250|CXXMethod|Rml::Matrix4::SetRows|SetRows(const VectorType &, const VectorType &, const VectorType &, const VectorType &)|void (const VectorType &, const VectorType &, const VectorType &, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1908,
+      "exact_key": "Core/Matrix4.h|253|CXXMethod|Rml::Matrix4::GetColumn|GetColumn(int)|Column (int) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1909,
+      "exact_key": "Core/Matrix4.h|259|CXXMethod|Rml::Matrix4::GetColumn|GetColumn(int)|ConstColumn (int) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1910,
+      "exact_key": "Core/Matrix4.h|265|CXXMethod|Rml::Matrix4::SetColumn|SetColumn(int, const VectorType &)|void (int, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1911,
+      "exact_key": "Core/Matrix4.h|271|CXXMethod|Rml::Matrix4::SetColumns|SetColumns(const VectorType &, const VectorType &, const VectorType &, const VectorType &)|void (const VectorType &, const VectorType &, const VectorType &, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1912,
+      "exact_key": "Core/Matrix4.h|275|CXXMethod|Rml::Matrix4::Transpose|Transpose()|const TransposeType &() const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1913,
+      "exact_key": "Core/Matrix4.h|279|CXXMethod|Rml::Matrix4::Invert|Invert()|bool () noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-inversion"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1914,
+      "exact_key": "Core/Matrix4.h|283|CXXMethod|Rml::Matrix4::Determinant|Determinant()|float () const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-inversion"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1915,
+      "exact_key": "Core/Matrix4.h|287|CXXMethod|Rml::Matrix4::operator-|operator-()|ThisType () const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1916,
+      "exact_key": "Core/Matrix4.h|292|CXXMethod|Rml::Matrix4::operator+=|operator+=(const ThisType &)|const ThisType &(const ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1917,
+      "exact_key": "Core/Matrix4.h|293|CXXMethod|Rml::Matrix4::operator+=|operator+=(const TransposeType &)|const ThisType &(const TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1918,
+      "exact_key": "Core/Matrix4.h|297|CXXMethod|Rml::Matrix4::operator-=|operator-=(const ThisType &)|const ThisType &(const ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1919,
+      "exact_key": "Core/Matrix4.h|298|CXXMethod|Rml::Matrix4::operator-=|operator-=(const TransposeType &)|const ThisType &(const TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1920,
+      "exact_key": "Core/Matrix4.h|302|CXXMethod|Rml::Matrix4::operator*=|operator*=(Component)|const ThisType &(Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1921,
+      "exact_key": "Core/Matrix4.h|306|CXXMethod|Rml::Matrix4::operator/=|operator/=(Component)|const ThisType &(Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1922,
+      "exact_key": "Core/Matrix4.h|308|CXXMethod|Rml::Matrix4::operator[]|operator[](size_t)|const VectorType &(size_t) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1923,
+      "exact_key": "Core/Matrix4.h|309|CXXMethod|Rml::Matrix4::operator[]|operator[](size_t)|VectorType &(size_t) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1924,
+      "exact_key": "Core/Matrix4.h|314|CXXMethod|Rml::Matrix4::operator+|operator+(const ThisType &)|const ThisType (const ThisType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1925,
+      "exact_key": "Core/Matrix4.h|320|CXXMethod|Rml::Matrix4::operator+|operator+(const TransposeType &)|const ThisType (const TransposeType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1926,
+      "exact_key": "Core/Matrix4.h|329|CXXMethod|Rml::Matrix4::operator-|operator-(const ThisType &)|const ThisType (const ThisType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1927,
+      "exact_key": "Core/Matrix4.h|335|CXXMethod|Rml::Matrix4::operator-|operator-(const TransposeType &)|const ThisType (const TransposeType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1928,
+      "exact_key": "Core/Matrix4.h|344|CXXMethod|Rml::Matrix4::operator*|operator*(Component)|const ThisType (Component) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1929,
+      "exact_key": "Core/Matrix4.h|353|CXXMethod|Rml::Matrix4::operator/|operator/(Component)|const ThisType (Component) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1930,
+      "exact_key": "Core/Matrix4.h|363|CXXMethod|Rml::Matrix4::operator*|operator*(const VectorType &)|const VectorType (const VectorType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-multiplication"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1931,
+      "exact_key": "Core/Matrix4.h|369|FunctionTemplate|Rml::Matrix4::operator*|operator*(const Matrix4<Component, Storage2> &)|const ThisType (const Matrix4<Component, Storage2> &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-multiplication"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1932,
+      "exact_key": "Core/Matrix4.h|376|CXXMethod|Rml::Matrix4::operator*=|operator*=(const ThisType &)|const ThisType &(const ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-multiplication"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1933,
+      "exact_key": "Core/Matrix4.h|381|CXXMethod|Rml::Matrix4::operator*=|operator*=(const TransposeType &)|const ThisType &(const TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-multiplication"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1934,
+      "exact_key": "Core/Matrix4.h|390|CXXMethod|Rml::Matrix4::operator==|operator==(const ThisType &)|bool (const ThisType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1935,
+      "exact_key": "Core/Matrix4.h|391|CXXMethod|Rml::Matrix4::operator==|operator==(const TransposeType &)|bool (const TransposeType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1936,
+      "exact_key": "Core/Matrix4.h|395|CXXMethod|Rml::Matrix4::operator!=|operator!=(const ThisType &)|bool (const ThisType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1937,
+      "exact_key": "Core/Matrix4.h|396|CXXMethod|Rml::Matrix4::operator!=|operator!=(const TransposeType &)|bool (const TransposeType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1938,
+      "exact_key": "Core/Matrix4.h|400|CXXMethod|Rml::Matrix4::Identity|Identity()|const ThisType &() noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1939,
+      "exact_key": "Core/Matrix4.h|403|CXXMethod|Rml::Matrix4::Diag|Diag(Component, Component, Component, Component)|ThisType (Component, Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1940,
+      "exact_key": "Core/Matrix4.h|413|CXXMethod|Rml::Matrix4::ProjectOrtho|ProjectOrtho(Component, Component, Component, Component, Component, Component)|ThisType (Component, Component, Component, Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1941,
+      "exact_key": "Core/Matrix4.h|422|CXXMethod|Rml::Matrix4::ProjectPerspective|ProjectPerspective(Component, Component, Component, Component, Component, Component)|ThisType (Component, Component, Component, Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1942,
+      "exact_key": "Core/Matrix4.h|425|CXXMethod|Rml::Matrix4::Perspective|Perspective(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1943,
+      "exact_key": "Core/Matrix4.h|429|CXXMethod|Rml::Matrix4::Translate|Translate(const Vector3<Component> &)|ThisType (const Vector3<Component> &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1944,
+      "exact_key": "Core/Matrix4.h|430|CXXMethod|Rml::Matrix4::Translate|Translate(Component, Component, Component)|ThisType (Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1945,
+      "exact_key": "Core/Matrix4.h|431|CXXMethod|Rml::Matrix4::TranslateX|TranslateX(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1946,
+      "exact_key": "Core/Matrix4.h|432|CXXMethod|Rml::Matrix4::TranslateY|TranslateY(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1947,
+      "exact_key": "Core/Matrix4.h|433|CXXMethod|Rml::Matrix4::TranslateZ|TranslateZ(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1948,
+      "exact_key": "Core/Matrix4.h|437|CXXMethod|Rml::Matrix4::Scale|Scale(Component, Component, Component)|ThisType (Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1949,
+      "exact_key": "Core/Matrix4.h|438|CXXMethod|Rml::Matrix4::ScaleX|ScaleX(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1950,
+      "exact_key": "Core/Matrix4.h|439|CXXMethod|Rml::Matrix4::ScaleY|ScaleY(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1951,
+      "exact_key": "Core/Matrix4.h|440|CXXMethod|Rml::Matrix4::ScaleZ|ScaleZ(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1952,
+      "exact_key": "Core/Matrix4.h|444|CXXMethod|Rml::Matrix4::Rotate|Rotate(const Vector3<Component> &, Component)|ThisType (const Vector3<Component> &, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1953,
+      "exact_key": "Core/Matrix4.h|445|CXXMethod|Rml::Matrix4::RotateX|RotateX(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1954,
+      "exact_key": "Core/Matrix4.h|446|CXXMethod|Rml::Matrix4::RotateY|RotateY(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1955,
+      "exact_key": "Core/Matrix4.h|447|CXXMethod|Rml::Matrix4::RotateZ|RotateZ(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1956,
+      "exact_key": "Core/Matrix4.h|451|CXXMethod|Rml::Matrix4::Skew|Skew(Component, Component)|ThisType (Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1957,
+      "exact_key": "Core/Matrix4.h|452|CXXMethod|Rml::Matrix4::SkewX|SkewX(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1958,
+      "exact_key": "Core/Matrix4.h|453|CXXMethod|Rml::Matrix4::SkewY|SkewY(Component)|ThisType (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1959,
+      "exact_key": "Core/Matrix4.h|455|CXXMethod|Rml::Matrix4::Compose|Compose(const Vector3<Component> &, const Vector3<Component> &, const Vector3<Component> &, const Vector4<Component> &, const Vector4<Component> &)|ThisType (const Vector3<Component> &, const Vector3<Component> &, const Vector3<Component> &, const Vector4<Component> &, const Vector4<Component> &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1960,
+      "exact_key": "Core/Matrix4.inl|15|CXXConstructor|Rml::Matrix4::Matrix4<Component, Storage>|Matrix4<Component, Storage>()|void () noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1961,
+      "exact_key": "Core/Matrix4.inl|19|CXXConstructor|Rml::Matrix4::Matrix4<Component, Storage>|Matrix4<Component, Storage>(const typename Matrix4<Component, Storage>::ThisType &)|void (const typename Matrix4<Component, Storage>::ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1962,
+      "exact_key": "Core/Matrix4.inl|28|CXXConstructor|Rml::Matrix4::Matrix4<Component, Storage>|Matrix4<Component, Storage>(const typename Matrix4<Component, Storage>::TransposeType &)|void (const typename Matrix4<Component, Storage>::TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1963,
+      "exact_key": "Core/Matrix4.inl|39|CXXMethod|Rml::Matrix4::operator=|operator=(const typename Matrix4<Component, Storage>::ThisType &)|const typename Matrix4<Component, Storage>::ThisType &(const typename Matrix4<Component, Storage>::ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1964,
+      "exact_key": "Core/Matrix4.inl|50|CXXMethod|Rml::Matrix4::operator=|operator=(const typename Matrix4<Component, Storage>::TransposeType &)|const typename Matrix4<Component, Storage>::ThisType &(const typename Matrix4<Component, Storage>::TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1965,
+      "exact_key": "Core/Matrix4.inl|63|CXXMethod|Rml::Matrix4::FromRows|FromRows(const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &)|const typename Matrix4<Component, Storage>::ThisType (const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1966,
+      "exact_key": "Core/Matrix4.inl|73|CXXMethod|Rml::Matrix4::FromColumns|FromColumns(const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &)|const typename Matrix4<Component, Storage>::ThisType (const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &, const typename Matrix4<Component, Storage>::VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1967,
+      "exact_key": "Core/Matrix4.inl|83|CXXMethod|Rml::Matrix4::FromRowMajor|FromRowMajor(const Component *)|const typename Matrix4<Component, Storage>::ThisType (const Component *) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1968,
+      "exact_key": "Core/Matrix4.inl|97|CXXMethod|Rml::Matrix4::FromColumnMajor|FromColumnMajor(const Component *)|const typename Matrix4<Component, Storage>::ThisType (const Component *) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1969,
+      "exact_key": "Core/Matrix4.inl|112|CXXMethod|Rml::Matrix4::SetRows|SetRows(const VectorType &, const VectorType &, const VectorType &, const VectorType &)|void (const VectorType &, const VectorType &, const VectorType &, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1970,
+      "exact_key": "Core/Matrix4.inl|122|CXXMethod|Rml::Matrix4::SetColumns|SetColumns(const VectorType &, const VectorType &, const VectorType &, const VectorType &)|void (const VectorType &, const VectorType &, const VectorType &, const VectorType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1971,
+      "exact_key": "Core/Matrix4.inl|132|CXXMethod|Rml::Matrix4::Invert|Invert()|bool () noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-inversion"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1972,
+      "exact_key": "Core/Matrix4.inl|199|CXXMethod|Rml::Matrix4::Determinant|Determinant()|float () const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-inversion"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1973,
+      "exact_key": "Core/Matrix4.inl|222|CXXMethod|Rml::Matrix4::operator-|operator-()|typename Matrix4<Component, Storage>::ThisType () const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1974,
+      "exact_key": "Core/Matrix4.inl|228|CXXMethod|Rml::Matrix4::operator+=|operator+=(const typename Matrix4<Component, Storage>::ThisType &)|const typename Matrix4<Component, Storage>::ThisType &(const typename Matrix4<Component, Storage>::ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1975,
+      "exact_key": "Core/Matrix4.inl|238|CXXMethod|Rml::Matrix4::operator+=|operator+=(const typename Matrix4<Component, Storage>::TransposeType &)|const typename Matrix4<Component, Storage>::ThisType &(const typename Matrix4<Component, Storage>::TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1976,
+      "exact_key": "Core/Matrix4.inl|251|CXXMethod|Rml::Matrix4::operator-=|operator-=(const typename Matrix4<Component, Storage>::ThisType &)|const typename Matrix4<Component, Storage>::ThisType &(const typename Matrix4<Component, Storage>::ThisType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1977,
+      "exact_key": "Core/Matrix4.inl|261|CXXMethod|Rml::Matrix4::operator-=|operator-=(const typename Matrix4<Component, Storage>::TransposeType &)|const typename Matrix4<Component, Storage>::ThisType &(const typename Matrix4<Component, Storage>::TransposeType &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1978,
+      "exact_key": "Core/Matrix4.inl|274|CXXMethod|Rml::Matrix4::operator*=|operator*=(Component)|const typename Matrix4<Component, Storage>::ThisType &(Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1979,
+      "exact_key": "Core/Matrix4.inl|284|CXXMethod|Rml::Matrix4::operator/=|operator/=(Component)|const typename Matrix4<Component, Storage>::ThisType &(Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1980,
+      "exact_key": "Core/Matrix4.inl|294|CXXMethod|Rml::Matrix4::operator==|operator==(const typename Matrix4<Component, Storage>::ThisType &)|bool (const typename Matrix4<Component, Storage>::ThisType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1981,
+      "exact_key": "Core/Matrix4.inl|301|CXXMethod|Rml::Matrix4::operator==|operator==(const typename Matrix4<Component, Storage>::TransposeType &)|bool (const typename Matrix4<Component, Storage>::TransposeType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1982,
+      "exact_key": "Core/Matrix4.inl|309|CXXMethod|Rml::Matrix4::operator!=|operator!=(const typename Matrix4<Component, Storage>::ThisType &)|bool (const typename Matrix4<Component, Storage>::ThisType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1983,
+      "exact_key": "Core/Matrix4.inl|314|CXXMethod|Rml::Matrix4::operator!=|operator!=(const typename Matrix4<Component, Storage>::TransposeType &)|bool (const typename Matrix4<Component, Storage>::TransposeType &) const noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-mixed"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1984,
+      "exact_key": "Core/Matrix4.inl|322|CXXMethod|Rml::Matrix4::Identity|Identity()|const Matrix4<Component, Storage> &() noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1985,
+      "exact_key": "Core/Matrix4.inl|329|CXXMethod|Rml::Matrix4::Diag|Diag(Component, Component, Component, Component)|Matrix4<Component, Storage> (Component, Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-storage"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1986,
+      "exact_key": "Core/Matrix4.inl|337|CXXMethod|Rml::Matrix4::ProjectOrtho|ProjectOrtho(Component, Component, Component, Component, Component, Component)|Matrix4<Component, Storage> (Component, Component, Component, Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1987,
+      "exact_key": "Core/Matrix4.inl|346|CXXMethod|Rml::Matrix4::ProjectPerspective|ProjectPerspective(Component, Component, Component, Component, Component, Component)|Matrix4<Component, Storage> (Component, Component, Component, Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1988,
+      "exact_key": "Core/Matrix4.inl|356|CXXMethod|Rml::Matrix4::Perspective|Perspective(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1989,
+      "exact_key": "Core/Matrix4.inl|364|CXXMethod|Rml::Matrix4::Translate|Translate(const Vector3<Component> &)|Matrix4<Component, Storage> (const Vector3<Component> &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1990,
+      "exact_key": "Core/Matrix4.inl|370|CXXMethod|Rml::Matrix4::Translate|Translate(Component, Component, Component)|Matrix4<Component, Storage> (Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1991,
+      "exact_key": "Core/Matrix4.inl|378|CXXMethod|Rml::Matrix4::TranslateX|TranslateX(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1992,
+      "exact_key": "Core/Matrix4.inl|384|CXXMethod|Rml::Matrix4::TranslateY|TranslateY(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1993,
+      "exact_key": "Core/Matrix4.inl|390|CXXMethod|Rml::Matrix4::TranslateZ|TranslateZ(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1994,
+      "exact_key": "Core/Matrix4.inl|396|CXXMethod|Rml::Matrix4::Scale|Scale(Component, Component, Component)|Matrix4<Component, Storage> (Component, Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1995,
+      "exact_key": "Core/Matrix4.inl|402|CXXMethod|Rml::Matrix4::ScaleX|ScaleX(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1996,
+      "exact_key": "Core/Matrix4.inl|408|CXXMethod|Rml::Matrix4::ScaleY|ScaleY(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1997,
+      "exact_key": "Core/Matrix4.inl|414|CXXMethod|Rml::Matrix4::ScaleZ|ScaleZ(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1998,
+      "exact_key": "Core/Matrix4.inl|420|CXXMethod|Rml::Matrix4::Rotate|Rotate(const Vector3<Component> &, Component)|Matrix4<Component, Storage> (const Vector3<Component> &, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 1999,
+      "exact_key": "Core/Matrix4.inl|433|CXXMethod|Rml::Matrix4::RotateX|RotateX(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2000,
+      "exact_key": "Core/Matrix4.inl|443|CXXMethod|Rml::Matrix4::RotateY|RotateY(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2001,
+      "exact_key": "Core/Matrix4.inl|453|CXXMethod|Rml::Matrix4::RotateZ|RotateZ(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2002,
+      "exact_key": "Core/Matrix4.inl|463|CXXMethod|Rml::Matrix4::Skew|Skew(Component, Component)|Matrix4<Component, Storage> (Component, Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2003,
+      "exact_key": "Core/Matrix4.inl|473|CXXMethod|Rml::Matrix4::SkewX|SkewX(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2004,
+      "exact_key": "Core/Matrix4.inl|479|CXXMethod|Rml::Matrix4::SkewY|SkewY(Component)|Matrix4<Component, Storage> (Component) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2005,
+      "exact_key": "Core/Matrix4.inl|485|CXXMethod|Rml::Matrix4::Compose|Compose(const Vector3<Component> &, const Vector3<Component> &, const Vector3<Component> &, const Vector4<Component> &, const Vector4<Component> &)|Matrix4<Component, Storage> (const Vector3<Component> &, const Vector3<Component> &, const Vector3<Component> &, const Vector4<Component> &, const Vector4<Component> &) noexcept",
+      "role": "native-operation",
+      "native_groups": [
+        "matrix-transforms"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2205,
+      "exact_key": "Core/Rectangle.h|12|ClassTemplate|Rml::Rectangle|Rectangle<Type>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2206,
+      "exact_key": "Core/Rectangle.h|14|TypeAliasDecl|Rml::Rectangle::Vector2Type|Vector2Type|Rml::Rectangle::Vector2Type",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2207,
+      "exact_key": "Core/Rectangle.h|16|CXXConstructor|Rml::Rectangle::Rectangle<Type>|Rectangle<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2208,
+      "exact_key": "Core/Rectangle.h|18|CXXMethod|Rml::Rectangle::FromPosition|FromPosition(Vector2Type)|Rectangle<Type> (Vector2Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2209,
+      "exact_key": "Core/Rectangle.h|19|CXXMethod|Rml::Rectangle::FromPositionSize|FromPositionSize(Vector2Type, Vector2Type)|Rectangle<Type> (Vector2Type, Vector2Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2210,
+      "exact_key": "Core/Rectangle.h|20|CXXMethod|Rml::Rectangle::FromSize|FromSize(Vector2Type)|Rectangle<Type> (Vector2Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2211,
+      "exact_key": "Core/Rectangle.h|21|CXXMethod|Rml::Rectangle::FromCorners|FromCorners(Vector2Type, Vector2Type)|Rectangle<Type> (Vector2Type, Vector2Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2212,
+      "exact_key": "Core/Rectangle.h|22|CXXMethod|Rml::Rectangle::MakeInvalid|MakeInvalid()|Rectangle<Type> ()",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2213,
+      "exact_key": "Core/Rectangle.h|24|CXXMethod|Rml::Rectangle::Position|Position()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2214,
+      "exact_key": "Core/Rectangle.h|25|CXXMethod|Rml::Rectangle::Size|Size()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2215,
+      "exact_key": "Core/Rectangle.h|27|CXXMethod|Rml::Rectangle::TopLeft|TopLeft()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2216,
+      "exact_key": "Core/Rectangle.h|28|CXXMethod|Rml::Rectangle::TopRight|TopRight()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2217,
+      "exact_key": "Core/Rectangle.h|29|CXXMethod|Rml::Rectangle::BottomRight|BottomRight()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2218,
+      "exact_key": "Core/Rectangle.h|30|CXXMethod|Rml::Rectangle::BottomLeft|BottomLeft()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2219,
+      "exact_key": "Core/Rectangle.h|32|CXXMethod|Rml::Rectangle::Center|Center()|Vector2Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2220,
+      "exact_key": "Core/Rectangle.h|34|CXXMethod|Rml::Rectangle::Left|Left()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2221,
+      "exact_key": "Core/Rectangle.h|35|CXXMethod|Rml::Rectangle::Right|Right()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2222,
+      "exact_key": "Core/Rectangle.h|36|CXXMethod|Rml::Rectangle::Top|Top()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2223,
+      "exact_key": "Core/Rectangle.h|37|CXXMethod|Rml::Rectangle::Bottom|Bottom()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2224,
+      "exact_key": "Core/Rectangle.h|38|CXXMethod|Rml::Rectangle::Width|Width()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2225,
+      "exact_key": "Core/Rectangle.h|39|CXXMethod|Rml::Rectangle::Height|Height()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2226,
+      "exact_key": "Core/Rectangle.h|41|CXXMethod|Rml::Rectangle::Extend|Extend(Type)|Rectangle<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2227,
+      "exact_key": "Core/Rectangle.h|42|CXXMethod|Rml::Rectangle::Extend|Extend(Vector2Type)|Rectangle<Type> (Vector2Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2228,
+      "exact_key": "Core/Rectangle.h|43|CXXMethod|Rml::Rectangle::Extend|Extend(Vector2Type, Vector2Type)|Rectangle<Type> (Vector2Type, Vector2Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2229,
+      "exact_key": "Core/Rectangle.h|45|CXXMethod|Rml::Rectangle::Translate|Translate(Vector2Type)|Rectangle<Type> (Vector2Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2230,
+      "exact_key": "Core/Rectangle.h|47|CXXMethod|Rml::Rectangle::Join|Join(Vector2Type)|Rectangle<Type> (Vector2Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2231,
+      "exact_key": "Core/Rectangle.h|48|CXXMethod|Rml::Rectangle::Join|Join(Rectangle<Type>)|Rectangle<Type> (Rectangle<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2232,
+      "exact_key": "Core/Rectangle.h|50|CXXMethod|Rml::Rectangle::Intersect|Intersect(Rectangle<Type>)|Rectangle<Type> (Rectangle<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2233,
+      "exact_key": "Core/Rectangle.h|57|CXXMethod|Rml::Rectangle::IntersectIfValid|IntersectIfValid(Rectangle<Type>)|Rectangle<Type> (Rectangle<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2234,
+      "exact_key": "Core/Rectangle.h|64|CXXMethod|Rml::Rectangle::Intersects|Intersects(Rectangle<Type>)|bool (Rectangle<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2235,
+      "exact_key": "Core/Rectangle.h|65|CXXMethod|Rml::Rectangle::Contains|Contains(Vector2Type)|bool (Vector2Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2236,
+      "exact_key": "Core/Rectangle.h|67|CXXMethod|Rml::Rectangle::Valid|Valid()|bool () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2237,
+      "exact_key": "Core/Rectangle.h|69|CXXMethod|Rml::Rectangle::operator==|operator==(Rectangle<Type>)|bool (Rectangle<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2238,
+      "exact_key": "Core/Rectangle.h|70|CXXMethod|Rml::Rectangle::operator!=|operator!=(Rectangle<Type>)|bool (Rectangle<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2239,
+      "exact_key": "Core/Rectangle.h|73|FunctionTemplate|Rml::Rectangle::operator Rectangle<type-parameter-1-0>|operator Rectangle<type-parameter-1-0>()|Rectangle<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2240,
+      "exact_key": "Core/Rectangle.h|78|FieldDecl|Rml::Rectangle::p0|p0|Vector2Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 2241,
+      "exact_key": "Core/Rectangle.h|79|FieldDecl|Rml::Rectangle::p1|p1|Vector2Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "rectangles"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3656,
+      "exact_key": "Core/Vector2.h|13|ClassTemplate|Rml::Vector2|Vector2<Type>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3657,
+      "exact_key": "Core/Vector2.h|16|CXXConstructor|Rml::Vector2::Vector2<Type>|Vector2<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3658,
+      "exact_key": "Core/Vector2.h|19|CXXConstructor|Rml::Vector2::Vector2<Type>|Vector2<Type>(Type)|void (Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3659,
+      "exact_key": "Core/Vector2.h|23|CXXConstructor|Rml::Vector2::Vector2<Type>|Vector2<Type>(Type, Type)|void (Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3660,
+      "exact_key": "Core/Vector2.h|27|CXXMethod|Rml::Vector2::Magnitude|Magnitude()|float () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3661,
+      "exact_key": "Core/Vector2.h|30|CXXMethod|Rml::Vector2::SquaredMagnitude|SquaredMagnitude()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3662,
+      "exact_key": "Core/Vector2.h|33|CXXMethod|Rml::Vector2::Normalise|Normalise()|Vector2<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_2i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3663,
+      "exact_key": "Core/Vector2.h|36|CXXMethod|Rml::Vector2::Round|Round()|Vector2<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3664,
+      "exact_key": "Core/Vector2.h|41|CXXMethod|Rml::Vector2::DotProduct|DotProduct(Vector2<Type>)|Type (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3665,
+      "exact_key": "Core/Vector2.h|46|CXXMethod|Rml::Vector2::Rotate|Rotate(float)|Vector2<Type> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3666,
+      "exact_key": "Core/Vector2.h|50|CXXMethod|Rml::Vector2::operator-|operator-()|Vector2<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3667,
+      "exact_key": "Core/Vector2.h|55|CXXMethod|Rml::Vector2::operator+|operator+(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3668,
+      "exact_key": "Core/Vector2.h|59|CXXMethod|Rml::Vector2::operator-|operator-(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3669,
+      "exact_key": "Core/Vector2.h|63|CXXMethod|Rml::Vector2::operator*|operator*(Type)|Vector2<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3670,
+      "exact_key": "Core/Vector2.h|67|CXXMethod|Rml::Vector2::operator*|operator*(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3671,
+      "exact_key": "Core/Vector2.h|71|CXXMethod|Rml::Vector2::operator/|operator/(Type)|Vector2<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3672,
+      "exact_key": "Core/Vector2.h|75|CXXMethod|Rml::Vector2::operator/|operator/(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3673,
+      "exact_key": "Core/Vector2.h|80|CXXMethod|Rml::Vector2::operator+=|operator+=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3674,
+      "exact_key": "Core/Vector2.h|84|CXXMethod|Rml::Vector2::operator-=|operator-=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3675,
+      "exact_key": "Core/Vector2.h|88|CXXMethod|Rml::Vector2::operator*=|operator*=(Type)|Vector2<Type> &(Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3676,
+      "exact_key": "Core/Vector2.h|92|CXXMethod|Rml::Vector2::operator*=|operator*=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3677,
+      "exact_key": "Core/Vector2.h|96|CXXMethod|Rml::Vector2::operator/=|operator/=(Type)|Vector2<Type> &(Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3678,
+      "exact_key": "Core/Vector2.h|100|CXXMethod|Rml::Vector2::operator/=|operator/=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3679,
+      "exact_key": "Core/Vector2.h|105|CXXMethod|Rml::Vector2::operator==|operator==(Vector2<Type>)|bool (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3680,
+      "exact_key": "Core/Vector2.h|109|CXXMethod|Rml::Vector2::operator!=|operator!=(Vector2<Type>)|bool (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3681,
+      "exact_key": "Core/Vector2.h|121|FunctionTemplate|Rml::Vector2::operator Vector2<type-parameter-1-0>|operator Vector2<type-parameter-1-0>()|Vector2<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3682,
+      "exact_key": "Core/Vector2.h|124|FieldDecl|Rml::Vector2::x|x|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3683,
+      "exact_key": "Core/Vector2.h|125|FieldDecl|Rml::Vector2::y|y|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3684,
+      "exact_key": "Core/Vector2.inl|4|CXXConstructor|Rml::Vector2::Vector2<Type>|Vector2<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3685,
+      "exact_key": "Core/Vector2.inl|8|CXXConstructor|Rml::Vector2::Vector2<Type>|Vector2<Type>(Type)|void (Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3686,
+      "exact_key": "Core/Vector2.inl|12|CXXConstructor|Rml::Vector2::Vector2<Type>|Vector2<Type>(Type, Type)|void (Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3687,
+      "exact_key": "Core/Vector2.inl|16|CXXMethod|Rml::Vector2::Magnitude|Magnitude()|float () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3688,
+      "exact_key": "Core/Vector2.inl|22|CXXMethod|Rml::Vector2::SquaredMagnitude|SquaredMagnitude()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3689,
+      "exact_key": "Core/Vector2.inl|28|CXXMethod|Rml::Vector2::Normalise|Normalise()|Vector2<Type> () const",
+      "role": "native-compile-time-domain-rejection",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_2i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3690,
+      "exact_key": "Core/Vector2.inl|35|CXXMethod|Rml::Vector2::Normalise|Normalise()|Vector2<float> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_2i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3691,
+      "exact_key": "Core/Vector2.inl|45|CXXMethod|Rml::Vector2::Round|Round()|Vector2<float> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3692,
+      "exact_key": "Core/Vector2.inl|54|CXXMethod|Rml::Vector2::Round|Round()|Vector2<int> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3693,
+      "exact_key": "Core/Vector2.inl|60|CXXMethod|Rml::Vector2::DotProduct|DotProduct(Vector2<Type>)|Type (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3694,
+      "exact_key": "Core/Vector2.inl|66|CXXMethod|Rml::Vector2::Rotate|Rotate(float)|Vector2<Type> (float) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3695,
+      "exact_key": "Core/Vector2.inl|75|CXXMethod|Rml::Vector2::operator-|operator-()|Vector2<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3696,
+      "exact_key": "Core/Vector2.inl|81|CXXMethod|Rml::Vector2::operator+|operator+(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3697,
+      "exact_key": "Core/Vector2.inl|87|CXXMethod|Rml::Vector2::operator-|operator-(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3698,
+      "exact_key": "Core/Vector2.inl|93|CXXMethod|Rml::Vector2::operator*|operator*(Type)|Vector2<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3699,
+      "exact_key": "Core/Vector2.inl|99|CXXMethod|Rml::Vector2::operator*|operator*(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3700,
+      "exact_key": "Core/Vector2.inl|105|CXXMethod|Rml::Vector2::operator/|operator/(Type)|Vector2<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3701,
+      "exact_key": "Core/Vector2.inl|111|CXXMethod|Rml::Vector2::operator/|operator/(Vector2<Type>)|Vector2<Type> (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3702,
+      "exact_key": "Core/Vector2.inl|117|CXXMethod|Rml::Vector2::operator+=|operator+=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3703,
+      "exact_key": "Core/Vector2.inl|126|CXXMethod|Rml::Vector2::operator-=|operator-=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3704,
+      "exact_key": "Core/Vector2.inl|135|CXXMethod|Rml::Vector2::operator*=|operator*=(Type)|Vector2<Type> &(Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3705,
+      "exact_key": "Core/Vector2.inl|144|CXXMethod|Rml::Vector2::operator*=|operator*=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3706,
+      "exact_key": "Core/Vector2.inl|153|CXXMethod|Rml::Vector2::operator/=|operator/=(Type)|Vector2<Type> &(Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3707,
+      "exact_key": "Core/Vector2.inl|162|CXXMethod|Rml::Vector2::operator/=|operator/=(Vector2<Type>)|Vector2<Type> &(Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3708,
+      "exact_key": "Core/Vector2.inl|170|CXXMethod|Rml::Vector2::operator==|operator==(Vector2<Type>)|bool (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3709,
+      "exact_key": "Core/Vector2.inl|176|CXXMethod|Rml::Vector2::operator!=|operator!=(Vector2<Type>)|bool (Vector2<Type>) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3710,
+      "exact_key": "Core/Vector2.inl|195|FunctionTemplate|Rml::Vector2::operator Vector2<type-parameter-1-0>|operator Vector2<type-parameter-1-0>()|Vector2<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3711,
+      "exact_key": "Core/Vector2.inl|201|FunctionTemplate|Rml::operator*|operator*(Type, Vector2<Type>)|Vector2<Type> (Type, Vector2<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3712,
+      "exact_key": "Core/Vector3.h|13|ClassTemplate|Rml::Vector3|Vector3<Type>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3713,
+      "exact_key": "Core/Vector3.h|16|CXXConstructor|Rml::Vector3::Vector3<Type>|Vector3<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3714,
+      "exact_key": "Core/Vector3.h|19|CXXConstructor|Rml::Vector3::Vector3<Type>|Vector3<Type>(Type)|void (Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3715,
+      "exact_key": "Core/Vector3.h|24|CXXConstructor|Rml::Vector3::Vector3<Type>|Vector3<Type>(Type, Type, Type)|void (Type, Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3716,
+      "exact_key": "Core/Vector3.h|28|CXXMethod|Rml::Vector3::Magnitude|Magnitude()|float () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3717,
+      "exact_key": "Core/Vector3.h|31|CXXMethod|Rml::Vector3::SquaredMagnitude|SquaredMagnitude()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3718,
+      "exact_key": "Core/Vector3.h|34|CXXMethod|Rml::Vector3::Normalise|Normalise()|Vector3<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_3i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3719,
+      "exact_key": "Core/Vector3.h|39|CXXMethod|Rml::Vector3::DotProduct|DotProduct(const Vector3<Type> &)|Type (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3720,
+      "exact_key": "Core/Vector3.h|44|CXXMethod|Rml::Vector3::CrossProduct|CrossProduct(const Vector3<Type> &)|Vector3<Type> (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3721,
+      "exact_key": "Core/Vector3.h|48|CXXMethod|Rml::Vector3::operator-|operator-()|Vector3<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3722,
+      "exact_key": "Core/Vector3.h|53|CXXMethod|Rml::Vector3::operator+|operator+(const Vector3<Type> &)|Vector3<Type> (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3723,
+      "exact_key": "Core/Vector3.h|57|CXXMethod|Rml::Vector3::operator-|operator-(const Vector3<Type> &)|Vector3<Type> (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3724,
+      "exact_key": "Core/Vector3.h|61|CXXMethod|Rml::Vector3::operator*|operator*(Type)|Vector3<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3725,
+      "exact_key": "Core/Vector3.h|65|CXXMethod|Rml::Vector3::operator/|operator/(Type)|Vector3<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3726,
+      "exact_key": "Core/Vector3.h|70|CXXMethod|Rml::Vector3::operator+=|operator+=(const Vector3<Type> &)|Vector3<Type> &(const Vector3<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3727,
+      "exact_key": "Core/Vector3.h|74|CXXMethod|Rml::Vector3::operator-=|operator-=(const Vector3<Type> &)|Vector3<Type> &(const Vector3<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3728,
+      "exact_key": "Core/Vector3.h|78|CXXMethod|Rml::Vector3::operator*=|operator*=(const Type &)|Vector3<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3729,
+      "exact_key": "Core/Vector3.h|82|CXXMethod|Rml::Vector3::operator/=|operator/=(const Type &)|Vector3<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3730,
+      "exact_key": "Core/Vector3.h|87|CXXMethod|Rml::Vector3::operator==|operator==(const Vector3<Type> &)|bool (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3731,
+      "exact_key": "Core/Vector3.h|91|CXXMethod|Rml::Vector3::operator!=|operator!=(const Vector3<Type> &)|bool (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3732,
+      "exact_key": "Core/Vector3.h|103|FunctionTemplate|Rml::Vector3::operator Vector3<type-parameter-1-0>|operator Vector3<type-parameter-1-0>()|Vector3<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3733,
+      "exact_key": "Core/Vector3.h|109|FieldDecl|Rml::Vector3::x|x|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3734,
+      "exact_key": "Core/Vector3.h|110|FieldDecl|Rml::Vector3::y|y|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3735,
+      "exact_key": "Core/Vector3.h|111|FieldDecl|Rml::Vector3::z|z|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3736,
+      "exact_key": "Core/Vector3.inl|6|CXXConstructor|Rml::Vector3::Vector3<Type>|Vector3<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3737,
+      "exact_key": "Core/Vector3.inl|10|CXXConstructor|Rml::Vector3::Vector3<Type>|Vector3<Type>(Type)|void (Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3738,
+      "exact_key": "Core/Vector3.inl|14|CXXConstructor|Rml::Vector3::Vector3<Type>|Vector3<Type>(Type, Type, Type)|void (Type, Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3739,
+      "exact_key": "Core/Vector3.inl|18|CXXMethod|Rml::Vector3::Magnitude|Magnitude()|float () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3740,
+      "exact_key": "Core/Vector3.inl|24|CXXMethod|Rml::Vector3::SquaredMagnitude|SquaredMagnitude()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3741,
+      "exact_key": "Core/Vector3.inl|30|CXXMethod|Rml::Vector3::Normalise|Normalise()|Vector3<Type> () const",
+      "role": "native-compile-time-domain-rejection",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_3i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3742,
+      "exact_key": "Core/Vector3.inl|37|CXXMethod|Rml::Vector3::Normalise|Normalise()|Vector3<float> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_3i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3743,
+      "exact_key": "Core/Vector3.inl|47|CXXMethod|Rml::Vector3::DotProduct|DotProduct(const Vector3<Type> &)|Type (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3744,
+      "exact_key": "Core/Vector3.inl|53|CXXMethod|Rml::Vector3::CrossProduct|CrossProduct(const Vector3<Type> &)|Vector3<Type> (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3745,
+      "exact_key": "Core/Vector3.inl|59|CXXMethod|Rml::Vector3::operator-|operator-()|Vector3<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3746,
+      "exact_key": "Core/Vector3.inl|65|CXXMethod|Rml::Vector3::operator+|operator+(const Vector3<Type> &)|Vector3<Type> (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3747,
+      "exact_key": "Core/Vector3.inl|71|CXXMethod|Rml::Vector3::operator-|operator-(const Vector3<Type> &)|Vector3<Type> (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3748,
+      "exact_key": "Core/Vector3.inl|77|CXXMethod|Rml::Vector3::operator*|operator*(Type)|Vector3<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3749,
+      "exact_key": "Core/Vector3.inl|83|CXXMethod|Rml::Vector3::operator/|operator/(Type)|Vector3<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3750,
+      "exact_key": "Core/Vector3.inl|89|CXXMethod|Rml::Vector3::operator+=|operator+=(const Vector3<Type> &)|Vector3<Type> &(const Vector3<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3751,
+      "exact_key": "Core/Vector3.inl|99|CXXMethod|Rml::Vector3::operator-=|operator-=(const Vector3<Type> &)|Vector3<Type> &(const Vector3<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3752,
+      "exact_key": "Core/Vector3.inl|109|CXXMethod|Rml::Vector3::operator*=|operator*=(const Type &)|Vector3<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3753,
+      "exact_key": "Core/Vector3.inl|119|CXXMethod|Rml::Vector3::operator/=|operator/=(const Type &)|Vector3<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3754,
+      "exact_key": "Core/Vector3.inl|129|CXXMethod|Rml::Vector3::operator==|operator==(const Vector3<Type> &)|bool (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3755,
+      "exact_key": "Core/Vector3.inl|135|CXXMethod|Rml::Vector3::operator!=|operator!=(const Vector3<Type> &)|bool (const Vector3<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3756,
+      "exact_key": "Core/Vector3.inl|154|FunctionTemplate|Rml::Vector3::operator Vector3<type-parameter-1-0>|operator Vector3<type-parameter-1-0>()|Vector3<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3757,
+      "exact_key": "Core/Vector3.inl|166|FunctionTemplate|Rml::operator*|operator*(Type, Vector3<Type>)|Vector3<Type> (Type, Vector3<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3758,
+      "exact_key": "Core/Vector4.h|14|ClassTemplate|Rml::Vector4|Vector4<Type>|",
+      "role": "instantiated-native-type",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3759,
+      "exact_key": "Core/Vector4.h|17|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3760,
+      "exact_key": "Core/Vector4.h|20|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>(Type)|void (Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3761,
+      "exact_key": "Core/Vector4.h|26|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>(Type, Type, Type, Type)|void (Type, Type, Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3762,
+      "exact_key": "Core/Vector4.h|28|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>(const Vector3<Type> &, Type)|void (const Vector3<Type> &, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3763,
+      "exact_key": "Core/Vector4.h|32|CXXMethod|Rml::Vector4::Magnitude|Magnitude()|float () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3764,
+      "exact_key": "Core/Vector4.h|35|CXXMethod|Rml::Vector4::SquaredMagnitude|SquaredMagnitude()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3765,
+      "exact_key": "Core/Vector4.h|38|CXXMethod|Rml::Vector4::Normalise|Normalise()|Vector4<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_4i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3766,
+      "exact_key": "Core/Vector4.h|43|CXXMethod|Rml::Vector4::DotProduct|DotProduct(const Vector4<Type> &)|Type (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3767,
+      "exact_key": "Core/Vector4.h|46|CXXMethod|Rml::Vector4::PerspectiveDivide|PerspectiveDivide()|Vector3<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3768,
+      "exact_key": "Core/Vector4.h|50|CXXMethod|Rml::Vector4::operator-|operator-()|Vector4<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3769,
+      "exact_key": "Core/Vector4.h|55|CXXMethod|Rml::Vector4::operator+|operator+(const Vector4<Type> &)|Vector4<Type> (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3770,
+      "exact_key": "Core/Vector4.h|59|CXXMethod|Rml::Vector4::operator-|operator-(const Vector4<Type> &)|Vector4<Type> (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3771,
+      "exact_key": "Core/Vector4.h|63|CXXMethod|Rml::Vector4::operator*|operator*(Type)|Vector4<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3772,
+      "exact_key": "Core/Vector4.h|67|CXXMethod|Rml::Vector4::operator/|operator/(Type)|Vector4<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3773,
+      "exact_key": "Core/Vector4.h|72|CXXMethod|Rml::Vector4::operator+=|operator+=(const Vector4<Type> &)|Vector4<Type> &(const Vector4<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3774,
+      "exact_key": "Core/Vector4.h|76|CXXMethod|Rml::Vector4::operator-=|operator-=(const Vector4<Type> &)|Vector4<Type> &(const Vector4<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3775,
+      "exact_key": "Core/Vector4.h|80|CXXMethod|Rml::Vector4::operator*=|operator*=(const Type &)|Vector4<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3776,
+      "exact_key": "Core/Vector4.h|84|CXXMethod|Rml::Vector4::operator/=|operator/=(const Type &)|Vector4<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3777,
+      "exact_key": "Core/Vector4.h|89|CXXMethod|Rml::Vector4::operator==|operator==(const Vector4<Type> &)|bool (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3778,
+      "exact_key": "Core/Vector4.h|93|CXXMethod|Rml::Vector4::operator!=|operator!=(const Vector4<Type> &)|bool (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3779,
+      "exact_key": "Core/Vector4.h|105|FunctionTemplate|Rml::Vector4::operator Vector4<type-parameter-1-0>|operator Vector4<type-parameter-1-0>()|Vector4<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3780,
+      "exact_key": "Core/Vector4.h|113|FieldDecl|Rml::Vector4::x|x|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3781,
+      "exact_key": "Core/Vector4.h|114|FieldDecl|Rml::Vector4::y|y|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3782,
+      "exact_key": "Core/Vector4.h|115|FieldDecl|Rml::Vector4::z|z|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3783,
+      "exact_key": "Core/Vector4.h|116|FieldDecl|Rml::Vector4::w|w|Type",
+      "role": "native-value-field",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3784,
+      "exact_key": "Core/Vector4.inl|6|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>()|void ()",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3785,
+      "exact_key": "Core/Vector4.inl|10|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>(Type)|void (Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3786,
+      "exact_key": "Core/Vector4.inl|14|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>(Type, Type, Type, Type)|void (Type, Type, Type, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3787,
+      "exact_key": "Core/Vector4.inl|18|CXXConstructor|Rml::Vector4::Vector4<Type>|Vector4<Type>(const Vector3<Type> &, Type)|void (const Vector3<Type> &, Type)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3788,
+      "exact_key": "Core/Vector4.inl|22|CXXMethod|Rml::Vector4::Magnitude|Magnitude()|float () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3789,
+      "exact_key": "Core/Vector4.inl|28|CXXMethod|Rml::Vector4::SquaredMagnitude|SquaredMagnitude()|Type () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3790,
+      "exact_key": "Core/Vector4.inl|34|CXXMethod|Rml::Vector4::Normalise|Normalise()|Vector4<Type> () const",
+      "role": "native-compile-time-domain-rejection",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_4i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3791,
+      "exact_key": "Core/Vector4.inl|41|CXXMethod|Rml::Vector4::Normalise|Normalise()|Vector4<float> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [
+        "rejected-native-numeric-normalise_4i"
+      ],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3792,
+      "exact_key": "Core/Vector4.inl|51|CXXMethod|Rml::Vector4::DotProduct|DotProduct(const Vector4<Type> &)|Type (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3793,
+      "exact_key": "Core/Vector4.inl|57|CXXMethod|Rml::Vector4::PerspectiveDivide|PerspectiveDivide()|Vector3<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3794,
+      "exact_key": "Core/Vector4.inl|63|CXXMethod|Rml::Vector4::operator-|operator-()|Vector4<Type> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3795,
+      "exact_key": "Core/Vector4.inl|69|CXXMethod|Rml::Vector4::operator+|operator+(const Vector4<Type> &)|Vector4<Type> (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3796,
+      "exact_key": "Core/Vector4.inl|75|CXXMethod|Rml::Vector4::operator-|operator-(const Vector4<Type> &)|Vector4<Type> (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3797,
+      "exact_key": "Core/Vector4.inl|81|CXXMethod|Rml::Vector4::operator*|operator*(Type)|Vector4<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3798,
+      "exact_key": "Core/Vector4.inl|87|CXXMethod|Rml::Vector4::operator/|operator/(Type)|Vector4<Type> (Type) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3799,
+      "exact_key": "Core/Vector4.inl|93|CXXMethod|Rml::Vector4::operator+=|operator+=(const Vector4<Type> &)|Vector4<Type> &(const Vector4<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3800,
+      "exact_key": "Core/Vector4.inl|104|CXXMethod|Rml::Vector4::operator-=|operator-=(const Vector4<Type> &)|Vector4<Type> &(const Vector4<Type> &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3801,
+      "exact_key": "Core/Vector4.inl|115|CXXMethod|Rml::Vector4::operator*=|operator*=(const Type &)|Vector4<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3802,
+      "exact_key": "Core/Vector4.inl|126|CXXMethod|Rml::Vector4::operator/=|operator/=(const Type &)|Vector4<Type> &(const Type &)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3803,
+      "exact_key": "Core/Vector4.inl|137|CXXMethod|Rml::Vector4::operator==|operator==(const Vector4<Type> &)|bool (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3804,
+      "exact_key": "Core/Vector4.inl|143|CXXMethod|Rml::Vector4::operator!=|operator!=(const Vector4<Type> &)|bool (const Vector4<Type> &) const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3805,
+      "exact_key": "Core/Vector4.inl|162|FunctionTemplate|Rml::Vector4::operator Vector4<type-parameter-1-0>|operator Vector4<type-parameter-1-0>()|Vector4<U> () const",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-specials"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    },
+    {
+      "inventory_index": 3806,
+      "exact_key": "Core/Vector4.inl|180|FunctionTemplate|Rml::operator*|operator*(Type, Vector4<Type>)|Vector4<Type> (Type, Vector4<Type>)",
+      "role": "native-operation",
+      "native_groups": [
+        "vector-arithmetic"
+      ],
+      "compile_rejections": [],
+      "status": "locally-verified-native-support-macos-arm64"
+    }
+  ],
+  "js_consumers": [
+    {
+      "test": "packages/sfml.js-rmlui/test/element-components.test.cjs",
+      "native_source": "packages/sfml.js-rmlui/native/rmlui-transform-state.cc",
+      "facade": "packages/sfml.js-rmlui/src/transform-state.ts",
+      "related_native_groups": [
+        "matrix-storage",
+        "matrix-inversion",
+        "matrix-transforms"
+      ],
+      "reviewed_cases": [
+        "owned-transform-state-change-results-and-independent-lifetime",
+        "transform-buffer-batch-storage-flags-and-no-ownership-scan",
+        "transform-buffer-large-lists-use-one-native-entry"
+      ],
+      "observed_pass_lines": [
+        "scrollbars-native-sizes-identity-and-visibility",
+        "scrollbar-invalid-arguments-and-destroyed-host",
+        "scrollbar-instancer-failures-preserve-component-state",
+        "transform-state-native-null-column-order-and-readonly",
+        "transform-state-canonical-queries-reuse-native-token",
+        "owned-transform-state-change-results-and-independent-lifetime",
+        "transform-buffer-batch-storage-flags-and-no-ownership-scan",
+        "transform-buffer-large-lists-use-one-native-entry",
+        "transform-buffer-empty-invalid-and-conversion-invalidation",
+        "component-wrappers-detached-owner-and-buffer-gc"
+      ],
+      "contract": "Fixed column-major matrices and owned snapshots; 1k/10k/100k refresh uses one entry with zero callbacks, ownership visits and buffer allocations. Explicit matrix copies are measured, not claimed zero.",
+      "evidence": "numeric-template-package-3.log"
+    },
+    {
+      "test": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+      "native_source": "packages/sfml.js-rmlui/native/rmlui-render-state.cc",
+      "facade": "packages/sfml.js-rmlui/src/render-state.ts",
+      "related_native_groups": [
+        "matrix-storage",
+        "rectangles",
+        "vector-arithmetic"
+      ],
+      "reviewed_cases": [
+        "scissor-and-transform-pixels",
+        "single-mask-and-list-transform-pixels",
+        "integer-coordinates-preserve-full-int32-precision",
+        "matrix-buffer-boundaries"
+      ],
+      "observed_pass_lines": [
+        "viewport-and-scissor-native-defaults",
+        "state-transform-copy-and-reset",
+        "clip-mask-list-owned-roundtrip",
+        "scissor-and-transform-pixels",
+        "single-mask-and-list-transform-pixels",
+        "mask-pointer-equality",
+        "invalid-input-transaction-and-manager-ownership",
+        "state-getter-restart-revalidates-manager",
+        "integer-coordinates-preserve-full-int32-precision",
+        "matrix-buffer-boundaries",
+        "event-callback-state-mutation-guard",
+        "active-borrowed-mask-survives-manager-wrapper-gc",
+        "decorator-render-state-scope",
+        "retained-state-after-source-document-close",
+        "state-gc-and-shutdown-release"
+      ],
+      "contract": "Copied column-major transforms, exact int32 scissors, actual pixels, offset fixed buffers; detached/shared/resizable buffers rejected.",
+      "evidence": "numeric-template-package-3.log"
+    },
+    {
+      "test": "packages/sfml.js-rmlui/test/transform.test.cjs",
+      "native_source": "packages/sfml.js-rmlui/native/rmlui-transform.cc",
+      "facade": "packages/sfml.js-rmlui/src/transform.ts",
+      "related_native_groups": [
+        "matrix-transforms",
+        "vector-arithmetic",
+        "math"
+      ],
+      "reviewed_cases": [
+        "transform-native-constructors-cover-all-primitive-types",
+        "transform-property-parsing-snapshots-and-defaults"
+      ],
+      "observed_pass_lines": [
+        "transform-native-constructors-cover-all-primitive-types",
+        "transform-list-mutation-is-native-owned-and-atomic",
+        "transform-property-parsing-snapshots-and-defaults",
+        "transform-attribute-and-event-round-trips",
+        "transform-accessors-propagate-errors-and-check-receiver-lifetime",
+        "transform-independent-values-survive-shutdown-and-gc",
+        "transform-worker-values-do-not-access-the-main-runtime"
+      ],
+      "contract": "Native primitive lists, checked angular/relative values and independent decomposed matrix vector snapshots.",
+      "evidence": "numeric-template-package-3.log"
+    },
+    {
+      "test": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+      "native_source": "packages/sfml.js-rmlui/native/rmlui-geometry.cc",
+      "facade": "packages/sfml.js-rmlui/src/geometry.ts",
+      "related_native_groups": [
+        "vector-arithmetic",
+        "colour-byte"
+      ],
+      "reviewed_cases": [
+        "typed-vertex-shared-fields-and-resize-lifetime",
+        "rendered-mesh-pixels-and-submission-snapshot"
+      ],
+      "observed_pass_lines": [
+        "vertex-and-sprite-snapshots-survive-owner-gc",
+        "spritesheet-list-overwrite-merge-and-snapshot",
+        "spritesheet-validation-and-accessor-reentry",
+        "typed-vertex-shared-fields-and-resize-lifetime",
+        "texture-source-cache-manager-removal-and-aggregate",
+        "native-mesh-views-and-snapshot-transfer",
+        "rendered-mesh-pixels-and-submission-snapshot",
+        "textured-and-shaded-geometry-pixels",
+        "native-texture-views-sources-and-lazy-loading",
+        "geometry-rendering-and-resource-affinity",
+        "invalid-mesh-and-getter-reentry",
+        "views-manager-gc-and-shutdown"
+      ],
+      "contract": "Native geometry owns packed position/colour storage; uploads, translations, resource lifetime and rendered pixels are checked.",
+      "evidence": "numeric-template-package-3.log"
+    },
+    {
+      "test": "packages/sfml.js-rmlui/test/decoration-values.test.cjs",
+      "native_source": "packages/sfml.js-rmlui/native/rmlui-decoration-values.cc",
+      "facade": "packages/sfml.js-rmlui/src/decoration-values.ts",
+      "related_native_groups": [
+        "colour-byte",
+        "math"
+      ],
+      "reviewed_cases": [
+        "parsed-shadows-preserve-premultiplication-units-and-order",
+        "color-stop-parser-preserves-omitted-and-double-positions"
+      ],
+      "observed_pass_lines": [
+        "decoration-lists-own-copies-and-preserve-native-equality",
+        "parsed-shadows-preserve-premultiplication-units-and-order",
+        "color-stop-parser-preserves-omitted-and-double-positions",
+        "decoration-attributes-and-event-defaults-use-native-lists",
+        "decoration-input-validation-and-nested-errors",
+        "decoration-nested-getter-cannot-revive-destroyed-receiver",
+        "decoration-snapshots-survive-gc-close-and-shutdown"
+      ],
+      "contract": "Byte premultiplied colours, independent lists, native parsing and checked channel/unit values.",
+      "evidence": "numeric-template-package-3.log"
+    },
+    {
+      "test": "packages/sfml.js-rmlui/test/variant-template-destinations.test.cjs",
+      "native_source": "packages/sfml.js-rmlui/native/rmlui-variant-conversion.cc",
+      "facade": "packages/sfml.js-rmlui/src/variant.ts",
+      "related_native_groups": [
+        "vector-arithmetic",
+        "vector-specials",
+        "colour-byte",
+        "colour-float"
+      ],
+      "reviewed_cases": [
+        "integer-vectors-use-actual-native-string-converters",
+        "partial-failure-preserves-the-native-converted-prefix",
+        "selectors-do-not-invent-native-integer-vector-storage"
+      ],
+      "observed_pass_lines": [
+        "string-bool-and-float-conversions-retain-native-parse-rules",
+        "colour-string-failures-preserve-the-actual-native-destination",
+        "complex-string-destinations-preserve-append-and-replacement",
+        "integer-vectors-use-actual-native-string-converters",
+        "partial-failure-preserves-the-native-converted-prefix",
+        "character-uses-the-native-enum-int64-template",
+        "event-template-defaults-preserve-prefix-and-enum-results",
+        "selectors-do-not-invent-native-integer-vector-storage",
+        "template-accessors-cannot-use-expired-receivers"
+      ],
+      "contract": "Native float vector/colour storage, checked integer vector conversion destinations and exact snapshot/default semantics.",
+      "evidence": "numeric-template-package-3.log"
+    }
+  ],
+  "source_only_review": [
+    {
+      "source": "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Matrix4.h",
+      "finding": "The private generic MatrixMultiplier vector Multiply declaration has no definition or public route. Actual public vector multiplication instantiates VectorMultiplier for both storages; matrix multiplication instantiates three MatrixMultiplier specializations for four storage pairs.",
+      "inventory_record_added": false
+    },
+    {
+      "finding": "Packed/strided conversion operators and dimensional/pointer vector conversions omitted by the original parser execute in the probes. They do not create original inventory rows.",
+      "inventory_record_added": false
+    }
+  ]
+}

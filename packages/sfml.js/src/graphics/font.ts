@@ -63,8 +63,6 @@ export const fontRevision: unique symbol = Symbol('Font.revision');
 export type ReadonlyFont = Readonly<
 Pick<
 Font,
-| typeof graphicsNative
-| typeof fontRevision
 | 'getInfo'
 | 'getGlyph'
 | 'getGlyphById'
@@ -78,7 +76,10 @@ Font,
 | 'getTexture'
 | 'isSmooth'
 >
->;
+> & FontIdentity;
+
+/** Native identity retained by const font references. @inline */
+type FontIdentity = Pick<Font, typeof graphicsNative | typeof fontRevision>;
 
 export function fontUnsigned(value: number, maximum = 0xffffffff): number {
   if (!Number.isInteger(value) || value < 0 || value > maximum) {
@@ -125,7 +126,9 @@ function fontViews(mapping: NativeFontMapping) {
  * @ko 네이티브가 소유하는 글꼴 페이스와 입력 저장 공간 및 유지되는 글리프 아틀라스입니다.
  */
 export class Font {
+  /** Native resource identity. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'font'>;
+  /** Invalidates cached glyph geometry after font replacement. @internal */
   [fontRevision] = 0;
   private state: ReturnType<typeof fontViews>;
   private readonly textures = new Map<number, ReadonlyTexture>();

@@ -24,13 +24,16 @@ import {
 
 export type { ScalarType } from '../internal/scalar';
 
+/** Two-dimensional numeric or boolean source for conversion. @inline */
 type Vector2Source =
   | ReadonlyValue<Vector2<ScalarType>>
   | ReadonlyValue<Bvec2>;
+/** Default, component and copy construction arguments. @inline */
 type Vector2Arguments<T extends ScalarType = NumberScalar> =
   | []
   | [x: Scalar<T>, y: Scalar<T>]
   | [source: Vector2Source];
+/** Radius and direction for floating-point polar construction. @inline */
 type PolarArguments = [r: number, phi: ReadonlyValue<Angle>];
 
 type Vector2State = LazyValue<'vector2', ScalarArray>;
@@ -71,7 +74,9 @@ export class Vector2<T extends ScalarType> {
   constructor(
     scalarType: T,
     ...args:
-    | Vector2Arguments<T>
+    | []
+    | [x: Scalar<T>, y: Scalar<T>]
+    | [source: Vector2Source]
     | (T extends FloatScalar ? PolarArguments : never)
   );
   /**
@@ -132,10 +137,12 @@ export class Vector2<T extends ScalarType> {
     return this.type;
   }
 
+  /** Shared component storage for native operations. @internal */
   get [vector2Storage](): ScalarArray<T> {
     return this.state.values as ScalarArray<T>;
   }
 
+  /** Native view bound to the shared component storage. @internal */
   get [vector2Native](): NativeValueHandle<'vector2'> {
     return nativeValue(this, vector2Native, this.state);
   }

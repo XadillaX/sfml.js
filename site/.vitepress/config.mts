@@ -20,6 +20,7 @@ const ui = {
     guide: 'Guide',
     modules: 'Modules',
     examples: 'Examples',
+    extensions: 'Extensions',
     reference: 'API reference',
     learn: 'Learn',
     resources: 'Resources',
@@ -46,6 +47,7 @@ const ui = {
     guide: '指南',
     modules: '模块',
     examples: '示例',
+    extensions: '扩展',
     reference: 'API 参考',
     learn: '开始使用',
     resources: '资源',
@@ -72,6 +74,7 @@ const ui = {
     guide: 'ガイド',
     modules: 'モジュール',
     examples: 'サンプル',
+    extensions: '拡張',
     reference: 'API リファレンス',
     learn: 'はじめに',
     resources: 'リソース',
@@ -98,6 +101,7 @@ const ui = {
     guide: '가이드',
     modules: '모듈',
     examples: '예제',
+    extensions: '확장',
     reference: 'API 레퍼런스',
     learn: '시작하기',
     resources: '리소스',
@@ -176,6 +180,7 @@ function localizedTheme(
         '/examples/features',
         '/examples/official',
         '/examples/imgui',
+        '/examples/rmlui',
         '/examples/projects',
       ]),
     },
@@ -195,6 +200,47 @@ function localizedTheme(
         {
           text: text.reference,
           link: `${locale.prefix}/reference/imgui/`,
+          target: '_self',
+        },
+      ],
+    },
+    {
+      text: 'RmlUi',
+      items: [
+        ...sectionItems([
+          '/rmlui/',
+          '/rmlui/getting-started',
+          '/rmlui/rml-rcss',
+          '/rmlui/documents',
+          '/rmlui/streams',
+          '/rmlui/strings',
+          '/rmlui/element-state',
+          '/rmlui/element-utilities',
+          '/rmlui/layout',
+          '/rmlui/boxes',
+          '/rmlui/controls',
+          '/rmlui/text-panels',
+          '/rmlui/vector-elements',
+          '/rmlui/rtti-default-actions',
+          '/rmlui/numeric-values',
+          '/rmlui/properties',
+          '/rmlui/animation',
+          '/rmlui/geometry-utilities',
+          '/rmlui/plugins',
+          '/rmlui/scripts',
+          '/rmlui/data-models',
+          '/rmlui/fonts',
+          '/rmlui/resources',
+          '/rmlui/render-state',
+          '/rmlui/rendering',
+          '/rmlui/debugger',
+          '/rmlui/performance',
+          '/rmlui/source-layout',
+          '/rmlui/api',
+        ]),
+        {
+          text: text.reference,
+          link: `${locale.prefix}/reference/rmlui/`,
           target: '_self',
         },
       ],
@@ -224,9 +270,20 @@ function localizedTheme(
         activeMatch: '/examples',
       },
       {
-        text: 'ImGui',
-        link: `${locale.prefix}/imgui/`,
-        activeMatch: '/imgui/',
+        text: text.extensions,
+        activeMatch: '/(?:imgui|rmlui)/',
+        items: [
+          {
+            text: 'ImGui',
+            link: `${locale.prefix}/imgui/`,
+            activeMatch: '/imgui/',
+          },
+          {
+            text: 'RmlUi',
+            link: `${locale.prefix}/rmlui/`,
+            activeMatch: '/rmlui/',
+          },
+        ],
       },
       {
         text: text.reference,
@@ -235,8 +292,9 @@ function localizedTheme(
       },
     ],
     sidebar: {
-      [`${locale.prefix}/imgui/`]: [ groups[3], groups[4] ],
-      [`${locale.prefix}/interop/`]: [ groups[4] ],
+      [`${locale.prefix}/imgui/`]: [ groups[3], groups[5] ],
+      [`${locale.prefix}/rmlui/`]: [ groups[4], groups[5] ],
+      [`${locale.prefix}/interop/`]: [ groups[5] ],
       [`${locale.prefix}/`]: groups,
     },
     outline: { label: text.onPage, level: [ 2, 3 ] },
@@ -292,6 +350,9 @@ export default defineConfig({
   },
   markdown: {
     config(md) {
+      // RmlUi data expressions in code are documentation, not Vue templates.
+      md.renderer.rules.code_inline = (tokens, index) =>
+        `<code v-pre>${md.utils.escapeHtml(tokens[index].content)}</code>`;
       const renderLink =
         md.renderer.rules.link_open ||
         ((tokens, index, options, _env, self) =>

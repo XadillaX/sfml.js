@@ -1,0 +1,37 @@
+{
+  "scope": "public type references and existing consumer contracts",
+  "scope_complete": false,
+  "unresolved_public_type_warnings": 0,
+  "localized_type_tests": 4,
+  "site_tests": 81,
+  "localized_pages": 152,
+  "api_pages_per_language": 1595,
+  "redirects": 303,
+  "computed_getters": 98,
+  "computed_setters": 83,
+  "computed_runtime_scenarios": 12,
+  "transform_runtime_scenarios": 7,
+  "unchanged_generated_files": 15,
+  "type_status_promotions": [],
+  "report": "docs/rmlui/audit/6.3/public-type-source-acceptance.md",
+  "focused_evidence": {
+    "computed": "/tmp/rmlui-63-completion/public-types-computed-runtime.log",
+    "transform": "/tmp/rmlui-63-completion/public-types-transform-runtime.log"
+  },
+  "source_sha256": {
+    "packages/sfml.js-rmlui/tools/generate-computed-values.cjs": "acf7c440ea7da41026e8b9bdb7eb8a8e8f56abaeb2b9add1e75433fb2af1a647",
+    "packages/sfml.js-rmlui/src/computed-values.ts": "18057332da46520e5003ca3e37853cf501ad7b129c52e965ef7512677bc1f810",
+    "packages/sfml.js-rmlui/src/types.ts": "d3329447d636dbfdb302373f38ac952f7e4849beea1a4006a94f81f6a91f719a",
+    "packages/sfml.js-rmlui/src/core.ts": "36b49f9ccae19a39d78e0584722aa93efed7508d246e3badfd29d01e12b2fd25",
+    "packages/sfml.js-rmlui/src/transform.ts": "fc79db54ef82a221562a6b9319a9906dfb675f904d92c2a60b88aa67378e7669",
+    "packages/sfml.js-rmlui/src/gen/computed-fields.ts": "03f95d3e3fbdff52237f3a932486817162137a5cf464df2d5f655b2761c8ee2b",
+    "packages/sfml.js-rmlui/src/gen/computed-binding.ts": "ecd682984ffd7b8b398f357208444775cc5b90a9e76a90de6552f45883e840cc",
+    "packages/sfml.js-rmlui/src/gen/computed-values-view.ts": "635ec299a135de265ddebc3edef3f976d4c845c1f1704f26878bc568c3eb31b9",
+    "packages/sfml.js-rmlui/src/gen/style-structs.ts": "c24fe117c180e611a0e00e4a5022c0a40bfffd92fb1d343ca73466bac3d8c0dc",
+    "packages/sfml.js-rmlui/test/computed-values.ts": "ca0f1e4dcdcfe3f2ac6a62dce9f4c9cc87612783292456a837176dbbcd130bff",
+    "packages/sfml.js-rmlui/test/transform.ts": "3b394876d79dc3201fc645b99de959694ed046d0a6a27832f562505d1b9490e0",
+    "packages/sfml.js-rmlui/test/computed-values.test.cjs": "52f69a0ee260a2eb36ea454df2ee3e8d73690aea1935bb02ef481128f404aaa4",
+    "packages/sfml.js-rmlui/test/transform.test.cjs": "17ecb71d1979985a8319c26c7a6c53f8e79a0514d906fae4430b9f95b768ec23",
+    "site/scripts/rmlui-comments.test.mjs": "337f46beb56ba239660f87cc1762cacb6b0fb57eb1b626e2e78faa9402b7c55d"
+  }
+}

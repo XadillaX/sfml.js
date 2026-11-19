@@ -1,0 +1,62 @@
+{
+  "scope": "Original Invaders and Lua Invaders local acceptance",
+  "platform": "macOS arm64",
+  "full_task_9_acceptance": false,
+  "whole_scope_acceptance": false,
+  "counts": {
+    "native_source_scenarios": 10,
+    "integrated_application_scenarios": 2,
+    "lua_script_scenarios": 29,
+    "site_tests": 30,
+    "gallery_entries_per_locale": 29
+  },
+  "reference": {
+    "driver": "packages/sfml.js-rmlui/test/native/examples/shell/original-game.cc",
+    "builder": "packages/sfml.js-rmlui/test/native/examples/shell/build-original-game.py",
+    "runtime": "Standalone original C++ game with existing vendor objects; no Node or sfml.js runtime",
+    "comparison": "Initial integrated HUD equals independently generated native reference",
+    "next_wave_limit": "Public native collision API; no full-wave keyboard play-through"
+  },
+  "logs": {
+    "applications_and_reference": "/tmp/rmlui-63-completion/invaders-lifecycle-reference-final.log",
+    "lua": "/tmp/rmlui-63-completion/invaders-lua-lifecycle-regression.log",
+    "site": "/tmp/rmlui-63-completion/invaders-four-locale-site.log",
+    "package_lint": "/tmp/rmlui-63-completion/invaders-lifecycle-lint.log",
+    "site_lint": "/tmp/rmlui-63-completion/invaders-site-lint.log",
+    "format": "/tmp/rmlui-63-completion/invaders-lifecycle-format.log",
+    "cpplint": "/tmp/rmlui-63-completion/invaders-lifecycle-cpplint.log",
+    "naming": "/tmp/rmlui-63-completion/invaders-lifecycle-naming-final.log",
+    "restart_crash_before_fix": "/tmp/rmlui-63-completion/invaders-lifecycle-stack.log"
+  },
+  "platforms": {
+    "macOS-arm64": "local-passed",
+    "Linux": "unverified",
+    "Windows": "unsupported-application-loader"
+  },
+  "screenshots": {
+    "width": 2048,
+    "height": 1536,
+    "source": "Actual SFML render windows",
+    "independent_pixel_comparison": false
+  },
+  "upstream_tree_hash": {
+    "algorithm": "SHA-256 over sorted relative UTF-8 paths, NUL, file bytes, NUL; entire application tree",
+    "invaders": "87f6bcb94f4770485c7ff9f72f22d3053c4107ab27427e56d74feef09b6147a3",
+    "lua_invaders": "8e0d93355fc864e7a447023b135f69e5aecc836b90632d7aba56cc98ca96507c"
+  },
+  "sha256": {
+    "packages/sfml.js-rmlui/examples/official/invaders/main.cjs": "2ee868fcb1edaa9b27160365641169473381827f8ed593ae54e733b514020d3b",
+    "packages/sfml.js-rmlui/examples/official/lua_invaders/main.cjs": "85cac83a2c9e2e6ecccdd593c9f0ec95e3dbd5d083545b1bdc0212ca44113a61",
+    "packages/sfml.js-rmlui/examples/official/invaders/native/application.cc": "bea3741182596cc73db7dd32b49aab27f8f55a61a2843f6c70a8d90b05736ad4",
+    "packages/sfml.js-rmlui/examples/official/lua_invaders/native/application.cc": "a17e5706b8e499350e048cd46037870d7be86a8726ffb89b07ed952c5aab79d6",
+    "packages/sfml.js-rmlui/examples/official/shell/native-application.cjs": "684095d2c2f3fd9381622e2da435dd9c339c031359ecf23bd49ee8463d08d7d1",
+    "packages/sfml.js-rmlui/examples/official/shell/native-application.h": "820511f14639183460e9c28c814dc77345762e3d9f4aca64e24476146b010308",
+    "packages/sfml.js-rmlui/examples/official/shell/build-native-application.py": "f9c70044958fc740e9ce1ca336ab9b6547692e48629f951e6eb2c9e328344bfe",
+    "packages/sfml.js-rmlui/examples/official/shell/native-application.cc": "12b962da227cfa1da56373f1736035912a8ee835c439a0ac561f2cf9dff58ba9",
+    "packages/sfml.js-rmlui/test/examples/invaders-application.cjs": "82d5fdf55b549b8cc8db1eb2f6b8af291cac957ccc31df75e003b59c45810b17",
+    "packages/sfml.js-rmlui/test/native/examples/shell/original-game.cc": "03758c443360ead5e2e62395efa61f5926b0d9357c6f3b4af2449ef41ea5f0bf",
+    "packages/sfml.js-rmlui/test/native/examples/shell/build-original-game.py": "a94f26975c6373160f6253eef5cdbcf84724e803f03117c49544ab173f81f533",
+    "packages/sfml.js-rmlui/examples/screenshots/invaders.png": "b40fe8a339a2e09bd37c0e9458ec1bdc95b12ffd3cb211d9b437aededc05e8b4",
+    "packages/sfml.js-rmlui/examples/screenshots/lua-invaders.png": "cac49ea8848e559892f17b359a3f5c225d2a57e42b01e417d3cfcea7432aca17"
+  }
+}

@@ -21,9 +21,11 @@ import {
   type FloatScalar,
 } from '../internal/scalar';
 
+/** Three-dimensional numeric or boolean source for conversion. @inline */
 type Vector3Source =
   | ReadonlyValue<Vector3<ScalarType>>
   | ReadonlyValue<Bvec3>;
+/** Default, component and copy construction arguments. @inline */
 type Vector3Arguments<T extends ScalarType = NumberScalar> =
   | []
   | [x: Scalar<T>, y: Scalar<T>, z: Scalar<T>]
@@ -58,7 +60,11 @@ export class Vector3<T extends ScalarType> {
    * @ko args - x, y, z 성분 또는 변환하여 복사할 원본 벡터.
    * 생략하면 영벡터를 생성한다.
    */
-  constructor(scalarType: T, ...args: Vector3Arguments<T>);
+  constructor(
+    scalarType: T,
+    ...args: [] | [x: Scalar<T>, y: Scalar<T>, z: Scalar<T>]
+    | [source: Vector3Source]
+  );
   /**
    * Copy the vector and its scalar type with independent storage.
    * @zh 复制向量及其标量类型，副本拥有独立存储。
@@ -109,10 +115,12 @@ export class Vector3<T extends ScalarType> {
     return this.type;
   }
 
+  /** Shared component storage for native operations. @internal */
   get [vector3Storage](): ScalarArray<T> {
     return this.state.values as ScalarArray<T>;
   }
 
+  /** Native view bound to the shared component storage. @internal */
   get [vector3Native](): NativeValueHandle<'vector3'> {
     return nativeValue(this, vector3Native, this.state);
   }

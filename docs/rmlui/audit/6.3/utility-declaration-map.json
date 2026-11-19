@@ -1,0 +1,328 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "utility_original_records": 17,
+  "whole_scope_complete": false,
+  "notice": "Exact utility declarations include enum/type/lifecycle support, not seventeen runtime scenarios. Native owns kernels, byte buffers and generated meshes. The optional shared command adapter submits an entire selected batch in one native entry.",
+  "native_groups": {
+    "sum-alpha": {
+      "source": "packages/sfml.js-rmlui/test/native/utility-contracts.cc",
+      "function": "CheckConvolution",
+      "literal_pass_line": "native-utility-convolution-stride-alpha"
+    },
+    "dilation-alpha": {
+      "source": "packages/sfml.js-rmlui/test/native/utility-contracts.cc",
+      "function": "CheckConvolution",
+      "literal_pass_line": "native-utility-dilation-source-offset"
+    },
+    "quad-line": {
+      "source": "packages/sfml.js-rmlui/test/native/utility-contracts.cc",
+      "function": "CheckMeshes",
+      "literal_pass_line": "native-utility-quad-line-layout"
+    },
+    "background-border": {
+      "source": "packages/sfml.js-rmlui/test/native/utility-contracts.cc",
+      "function": "CheckMeshes",
+      "literal_pass_line": "native-utility-rounded-background-border"
+    }
+  },
+  "consumer_suites": {
+    "convolution-filter.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "sha256": "9ef96d0366c3564e7f6e7a548ca64ed2ccc1c7705fab8fc0db759c313b527662",
+      "scenarios": [
+        "sum-writes-alpha-and-retains-rgb-stride-and-subarray",
+        "dilation-uses-rgba-alpha-and-source-offset",
+        "reinitialisation-keeps-exported-rows-independent",
+        "invalid-buffers-and-kernels-do-not-partially-write",
+        "negative-sum-weights-are-safe-when-output-stays-nonnegative",
+        "empty-regions-and-detached-or-shared-buffers",
+        "native-kernel-and-byte-views-survive-wrapper-collection"
+      ],
+      "pass_count": 7
+    },
+    "mesh-utilities.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "sha256": "7529a6099563b7b6506b79a82d037af9a3b60987b1bd5c99e751dbc1951026d4",
+      "scenarios": [
+        "quad-overloads-append-and-preserve-exported-storage",
+        "line-snaps-both-edges-to-the-pixel-grid",
+        "background-and-border-use-box-offsets-and-native-triangles",
+        "bulk-shared-commands-preserve-order-and-reuse-input",
+        "invalid-batch-does-not-append-a-valid-prefix",
+        "convenience-arguments-do-not-silently-coerce-or-round-colours",
+        "shared-command-and-geometry-views-survive-owner-collection"
+      ],
+      "pass_count": 7
+    },
+    "utility-performance.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/utility-performance.test.cjs",
+      "sha256": "28e361496c4b95ba59d1dcaed51e41cd28520c7dbb9669d05c153624eea3aacc",
+      "scenarios": [
+        "utility-batch-fixed-entry-and-no-input-allocation",
+        "utility-retained-view-one-prefix-copy",
+        "utility-growth-bounded-without-exported-views",
+        "utility-convolution-allocation-free-steady-state"
+      ],
+      "pass_count": 4
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 545,
+      "exact_key": "Core/ConvolutionFilter.h|8|EnumDecl|Rml::FilterOperation|FilterOperation|Rml::FilterOperation",
+      "native_symbol": "Rml::FilterOperation",
+      "surface": "FilterOperation",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 546,
+      "exact_key": "Core/ConvolutionFilter.h|10|EnumConstantDecl|Rml::FilterOperation::Sum|Sum|Rml::FilterOperation",
+      "native_symbol": "Rml::FilterOperation::Sum",
+      "surface": "FilterOperation.Sum",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 547,
+      "exact_key": "Core/ConvolutionFilter.h|12|EnumConstantDecl|Rml::FilterOperation::Dilation|Dilation|Rml::FilterOperation",
+      "native_symbol": "Rml::FilterOperation::Dilation",
+      "surface": "FilterOperation.Dilation",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 548,
+      "exact_key": "Core/ConvolutionFilter.h|20|ClassDecl|Rml::ConvolutionFilter|ConvolutionFilter|Rml::ConvolutionFilter",
+      "native_symbol": "Rml::ConvolutionFilter",
+      "surface": "ConvolutionFilter",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 549,
+      "exact_key": "Core/ConvolutionFilter.h|22|CXXConstructor|Rml::ConvolutionFilter::ConvolutionFilter|ConvolutionFilter()|void ()",
+      "native_symbol": "Rml::ConvolutionFilter::ConvolutionFilter",
+      "surface": "new ConvolutionFilter()",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 550,
+      "exact_key": "Core/ConvolutionFilter.h|23|CXXDestructor|Rml::ConvolutionFilter::~ConvolutionFilter|~ConvolutionFilter()|void ()",
+      "native_symbol": "Rml::ConvolutionFilter::~ConvolutionFilter",
+      "surface": "Native GC/shared-view ownership; no manual destructor",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 551,
+      "exact_key": "Core/ConvolutionFilter.h|26|CXXMethod|Rml::ConvolutionFilter::Initialise|Initialise(int, FilterOperation)|bool (int, FilterOperation)",
+      "native_symbol": "Rml::ConvolutionFilter::Initialise",
+      "surface": "ConvolutionFilter.initialise(integer radius, operation)",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 552,
+      "exact_key": "Core/ConvolutionFilter.h|32|CXXMethod|Rml::ConvolutionFilter::Initialise|Initialise(Vector2i, FilterOperation)|bool (Vector2i, FilterOperation)",
+      "native_symbol": "Rml::ConvolutionFilter::Initialise",
+      "surface": "ConvolutionFilter.initialise({x,y} radii, operation)",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 553,
+      "exact_key": "Core/ConvolutionFilter.h|37|CXXMethod|Rml::ConvolutionFilter::operator[]|operator[](int)|float *(int)",
+      "native_symbol": "Rml::ConvolutionFilter::operator[]",
+      "surface": "ConvolutionFilter.getRow(index) / shared kernel",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 554,
+      "exact_key": "Core/ConvolutionFilter.h|51|CXXMethod|Rml::ConvolutionFilter::Run|Run(byte *, Vector2i, int, ColorFormat, const byte *, Vector2i, Vector2i, ColorFormat)|void (byte *, Vector2i, int, ColorFormat, const byte *, Vector2i, Vector2i, ColorFormat) const",
+      "native_symbol": "Rml::ConvolutionFilter::Run",
+      "surface": "ConvolutionFilter.run / Native-owned byte views",
+      "source": "packages/sfml.js-rmlui/native/rmlui-convolution.cc",
+      "consumer": "packages/sfml.js-rmlui/src/convolution-filter.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/convolution-filter.test.cjs",
+      "native_groups": [
+        "sum-alpha",
+        "dilation-alpha"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2013,
+      "exact_key": "Core/MeshUtilities.h|9|StructDecl|Rml::Mesh|Mesh|Rml::Mesh",
+      "native_symbol": "Rml::Mesh",
+      "surface": "Mesh / retained native vertices and indices",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2014,
+      "exact_key": "Core/MeshUtilities.h|15|ClassDecl|Rml::MeshUtilities|MeshUtilities|Rml::MeshUtilities",
+      "native_symbol": "Rml::MeshUtilities",
+      "surface": "MeshUtilities / static native generation",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-type-and-lifecycle-support",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2015,
+      "exact_key": "Core/MeshUtilities.h|22|CXXMethod|Rml::MeshUtilities::GenerateQuad|GenerateQuad(Mesh &, Vector2f, Vector2f, ColourbPremultiplied)|void (Mesh &, Vector2f, Vector2f, ColourbPremultiplied)",
+      "native_symbol": "Rml::MeshUtilities::GenerateQuad",
+      "surface": "MeshUtilities.generateQuad / default UV corners",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2016,
+      "exact_key": "Core/MeshUtilities.h|30|CXXMethod|Rml::MeshUtilities::GenerateQuad|GenerateQuad(Mesh &, Vector2f, Vector2f, ColourbPremultiplied, Vector2f, Vector2f)|void (Mesh &, Vector2f, Vector2f, ColourbPremultiplied, Vector2f, Vector2f)",
+      "native_symbol": "Rml::MeshUtilities::GenerateQuad",
+      "surface": "MeshUtilities.generateQuad / explicit UV corners",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2017,
+      "exact_key": "Core/MeshUtilities.h|38|CXXMethod|Rml::MeshUtilities::GenerateLine|GenerateLine(Mesh &, Vector2f, Vector2f, ColourbPremultiplied)|void (Mesh &, Vector2f, Vector2f, ColourbPremultiplied)",
+      "native_symbol": "Rml::MeshUtilities::GenerateLine",
+      "surface": "MeshUtilities.generateLine",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2018,
+      "exact_key": "Core/MeshUtilities.h|46|CXXMethod|Rml::MeshUtilities::GenerateBackgroundBorder|GenerateBackgroundBorder(Mesh &, const RenderBox &, ColourbPremultiplied, const ColourbPremultiplied *)|void (Mesh &, const RenderBox &, ColourbPremultiplied, const ColourbPremultiplied *)",
+      "native_symbol": "Rml::MeshUtilities::GenerateBackgroundBorder",
+      "surface": "MeshUtilities.generateBackgroundBorder",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    },
+    {
+      "inventory_index": 2019,
+      "exact_key": "Core/MeshUtilities.h|54|CXXMethod|Rml::MeshUtilities::GenerateBackground|GenerateBackground(Mesh &, const RenderBox &, ColourbPremultiplied)|void (Mesh &, const RenderBox &, ColourbPremultiplied)",
+      "native_symbol": "Rml::MeshUtilities::GenerateBackground",
+      "surface": "MeshUtilities.generateBackground",
+      "source": "packages/sfml.js-rmlui/native/rmlui-mesh-utilities.cc",
+      "consumer": "packages/sfml.js-rmlui/src/mesh-utilities.ts",
+      "runtime_suite": "packages/sfml.js-rmlui/test/mesh-utilities.test.cjs",
+      "native_groups": [
+        "quad-line",
+        "background-border"
+      ],
+      "domain": "native-utility-and-shared-managed-adapter",
+      "status": "locally-verified-native-utility-macos-arm64"
+    }
+  ]
+}

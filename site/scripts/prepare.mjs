@@ -58,6 +58,13 @@ await cp(resolve(sfmlDir, 'assets'), resolve(sourceDir, 'public/media'), {
   filter: source => source !== resolve(sfmlDir, 'assets/branding'),
 });
 await copyBranding(resolve(sourceDir, 'public/media'));
+for (const library of [ 'imgui', 'rmlui' ]) {
+  await cp(
+    resolve(rootDir, `docs/${library}/assets`),
+    resolve(sourceDir, `public/media/${library}/assets`),
+    { recursive: true }
+  );
+}
 await cp(
   resolve(sfmlDir, 'examples/official/screenshots'),
   resolve(sourceDir, 'public/media/examples/official/screenshots'),
@@ -66,6 +73,11 @@ await cp(
 await cp(
   resolve(rootDir, 'packages/sfml.js-imgui/examples/screenshots'),
   resolve(sourceDir, 'public/media/imgui/examples/screenshots'),
+  { recursive: true }
+);
+await cp(
+  resolve(rootDir, 'packages/sfml.js-rmlui/examples/screenshots'),
+  resolve(sourceDir, 'public/media/rmlui/examples/screenshots'),
   { recursive: true }
 );
 await writeFile(resolve(sourceDir, 'public/.nojekyll'), '');

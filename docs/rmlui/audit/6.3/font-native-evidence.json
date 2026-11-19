@@ -1,0 +1,245 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "mapping_sha256": "d80cd51a11f524c5d1abe67f22585564ed797514ce456e19d98a79558b5f7b44",
+  "scope_complete": false,
+  "complete_package_verification": {
+    "path": "/tmp/rmlui-63-completion/font-fields-package-1.log",
+    "sha256": "d73dfabb386d4649815be17790cdea892597b61cadaa850c353990edd33bb5a1",
+    "exit_code": 0,
+    "literal_pass_lines": 1173,
+    "runtime_files": 118,
+    "failures": 0,
+    "native_compiler_warnings": 0,
+    "native_compiler_errors": 0
+  },
+  "checks": {
+    "native_probe": {
+      "path": "/tmp/rmlui-63-completion/font-fields-native-3.log",
+      "sha256": "106db6f389c49e55b2532383f094500dc85dcd3b8d126190742fbc813baf51ae",
+      "exit_code": 0,
+      "literal_pass_lines": 3
+    },
+    "native_managed_comparison": {
+      "path": "/tmp/rmlui-63-completion/font-fields-native-comparison-1.log",
+      "sha256": "fc769d54a82f1c96cf68a8f15b78931f2339ec5c40911e59a0b7ff1a94bfb21f",
+      "exit_code": 0,
+      "literal_pass_lines": 4
+    },
+    "native_naming": {
+      "path": "/tmp/rmlui-63-completion/font-fields-naming-1.log",
+      "sha256": "6754232c17259ea6d29c5a546d0b728dbd665e599247e0401c0922ca5add48ac",
+      "exit_code": 0,
+      "literal_pass_lines": 2
+    },
+    "native_format": {
+      "path": "/tmp/rmlui-63-completion/font-fields-format-2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "native_fixture_style": {
+      "path": "/tmp/rmlui-63-completion/font-fields-fixture-style-1.log",
+      "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "four_language_and_routes": {
+      "path": "/tmp/rmlui-63-completion/font-fields-four-language-1.log",
+      "sha256": "00f079915da0c7ee1cc72e24d5270512ddd90c052a307a015d07cd1cfd6b98d3",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    },
+    "whitespace": {
+      "path": "/tmp/rmlui-63-completion/font-fields-whitespace-1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "literal_pass_lines": 0
+    }
+  },
+  "consumer_suites": {
+    "font-engine.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-engine.test.cjs",
+      "sha256": "65e597416b30682c59a2be3b102d4e2f7a39c95ad13890c57f1ca14f5fccb4e4",
+      "scenarios": [
+        "selection-and-single-provider-lifetime",
+        "reset-to-automatic-default",
+        "all-three-load-overloads",
+        "shared-metrics-and-shaping-storage",
+        "bulk-widths-and-shared-output",
+        "bulk-widths-have-one-entry-and-zero-host-callbacks",
+        "bulk-input-accessors-cannot-use-invalidated-face",
+        "computed-face-tokens-and-static-native-font-rendering",
+        "font-effects-meshes-and-resource-generations"
+      ],
+      "pass_count": 9
+    },
+    "font-engine-custom.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs",
+      "sha256": "f9efdf90899d852089402b74b4ce57cba9ca963261ca2d23611123b843ff3c3f",
+      "scenarios": [
+        "custom-metrics-version-release-and-foreign-face-contracts",
+        "custom-packed-font-renders-context-and-reuses-static-geometry",
+        "custom-packed-measurement-reuses-native-workspace-with-one-callback",
+        "custom-packed-callback-has-independent-input-and-atomic-errors",
+        "custom-packed-growth-and-detachment-preserve-old-native-storage",
+        "custom-native-table-overflow-keeps-entire-output-unchanged",
+        "custom-provider-initializes-once-and-invalidates-owned-faces",
+        "custom-native-advance-table-has-no-per-string-callback",
+        "custom-bulk-callback-snapshots-input-and-commits-once",
+        "custom-callback-exceptions-promises-and-reentry",
+        "custom-initialize-failure-releases-core-and-first-error",
+        "custom-bulk-failure-and-detachment-leave-output-unchanged",
+        "custom-all-load-overloads-preserve-arguments-and-memory-snapshot",
+        "custom-compatibility-widths-snapshot-all-rows-before-first-callback",
+        "custom-effects-and-generated-mesh-snapshots",
+        "custom-face-descriptor-accessors-cannot-destroy-provider",
+        "custom-cross-realm-promises-are-rejected-synchronously",
+        "custom-callback-cycles-collect-and-selected-roots-release"
+      ],
+      "pass_count": 18
+    },
+    "font-measure-buffer.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-measure-buffer.test.cjs",
+      "sha256": "abb2c77c28ec480b766b43a76595259705452f2ef064f1aa940abcb5766e3911",
+      "scenarios": [
+        "packed-utf8-parity-and-reused-output",
+        "direct-shared-input-and-partial-count",
+        "bounds-and-utf8-fail-before-output",
+        "append-capacity-and-zero-capacity",
+        "warm-one-entry-without-buffer-allocations-or-copies",
+        "shared-buffers-cannot-transfer-native-memory",
+        "direct-transfers-invalidate-measurement-without-losing-storage",
+        "count-accessors-cannot-use-invalidated-face",
+        "escaped-views-survive-gc-and-shutdown"
+      ],
+      "pass_count": 9
+    },
+    "font-fields.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+      "sha256": "b00d07b7a6e46729ad7fea76beb3b2f649ab7d8b8eb38c14cf93e2d347d2e415",
+      "scenarios": [
+        "all-metric-fields-use-independent-native-snapshots",
+        "shaping-defaults-enums-and-language-survive-runtime-restart",
+        "shaping-mutations-in-callback-do-not-change-active-batch",
+        "packed-measure-and-generation-use-frozen-shaping-snapshots",
+        "invalid-shared-shaping-fields-reject-before-host-callback",
+        "numeric-field-access-has-zero-native-entries",
+        "retained-font-views-survive-wrapper-gc-and-engine-shutdown"
+      ],
+      "pass_count": 7
+    }
+  },
+  "native_oracle": {
+    "reference_path": "/tmp/rmlui-63-completion/font-fields-native-reference.json",
+    "reference_sha256": "29c5a1c8fdb0900f618ae28c453060d54f0814a686aef7f8aed12629d1ff6fc9",
+    "font_sizes": [
+      20,
+      31
+    ],
+    "combinations_per_size": 27,
+    "managed_measurement_paths_per_combination": 3,
+    "vendor_object_selection": "active build/rmlui.target.mk link list"
+  },
+  "numeric_access_contract": {
+    "iterations": 100000,
+    "native_entries": 0,
+    "native_callbacks": 0,
+    "runtime_suite": "packages/sfml.js-rmlui/test/font-fields.test.cjs",
+    "scenario": "numeric-field-access-has-zero-native-entries",
+    "complete_frame_or_gpu_timing": false
+  },
+  "source_review": {
+    "path": "/tmp/rmlui-63-completion/font-fields-source-review.md",
+    "sha256": "04ef57599b481291acb1da98b818104609b7554393198da28217918d9ec602ae",
+    "independent": false
+  },
+  "archive": {
+    "path": "/tmp/rmlui-63-completion/font-fields-package/sfml.js-rmlui-1.2.1.tgz",
+    "sha256": "e0ffd85d7e179c359f05059668647687f0d1bf1dce2be5e6e1eb89083d4eb707",
+    "bytes": 1568685,
+    "entries": 612,
+    "matched_current_paths": [
+      "native/rmlui-font-engine.cc",
+      "native/rmlui-font-custom.cc",
+      "native/rmlui-font-measure.cc",
+      "native/rmlui-font-measure.h",
+      "src/font-engine.ts",
+      "src/font-metrics.ts",
+      "src/text-shaping-context.ts",
+      "src/font-engine-custom.ts",
+      "src/font-engine-callbacks.ts",
+      "src/font-measure-buffer.ts",
+      "src/internal/native.ts",
+      "src/core.ts",
+      "dist/font-engine.js",
+      "dist/font-engine.d.ts",
+      "dist/font-metrics.js",
+      "dist/font-metrics.d.ts",
+      "dist/text-shaping-context.js",
+      "dist/text-shaping-context.d.ts",
+      "dist/font-engine-custom.js",
+      "dist/font-engine-custom.d.ts",
+      "dist/font-engine-callbacks.js",
+      "dist/font-engine-callbacks.d.ts",
+      "dist/font-measure-buffer.js",
+      "dist/font-measure-buffer.d.ts"
+    ],
+    "runtime_executed_from_archive": false,
+    "isolated_install_created": false
+  },
+  "representation": {
+    "maps": 15,
+    "represented": 3658,
+    "unrepresented": 268,
+    "is_pass_count": false
+  },
+  "source_fingerprints": {
+    "packages/sfml.js-rmlui/native/rmlui-font-engine.cc": "2ee141f1c00f836cda393996b485b0eb213fbd7225dcc75b74064e5c3cbba9e8",
+    "packages/sfml.js-rmlui/native/rmlui-font-custom.cc": "33b572d060e76fcce2be497bc51724b7d9a2a8256c6c9a7d6382192ae38e689d",
+    "packages/sfml.js-rmlui/native/rmlui-font-measure.cc": "9c054e9884d5c74a2a79de928278be8fcc1869e793d34f7f1844f3bc5b9eec57",
+    "packages/sfml.js-rmlui/native/rmlui-font-measure.h": "6fbfccf08fb1ea2322e72894c563085c0a24a18477d9ecfd6a383d9282e04801",
+    "packages/sfml.js-rmlui/src/font-engine.ts": "4917bccc6460e290d419adcec3a1524107a1d9d6a99411c375695b5ac79dda9f",
+    "packages/sfml.js-rmlui/src/font-metrics.ts": "c60b49527b90fe2a58a40c8e1d66773b13b8e70cb052c446d7aab463c74407ad",
+    "packages/sfml.js-rmlui/src/text-shaping-context.ts": "d1beea9e931642be874b1f3605343c650413b963b7a2c7650b13d64dfbf0d117",
+    "packages/sfml.js-rmlui/src/font-engine-custom.ts": "76535f6fef39f6eec77a0eb3126aa6bd66f13442a99d7759729456f632aad470",
+    "packages/sfml.js-rmlui/src/font-engine-callbacks.ts": "26272a2e1e204262abe59bd28284d3e0478968cd970689554a00946c1fed8b38",
+    "packages/sfml.js-rmlui/src/font-measure-buffer.ts": "b87df6aaf7a2af2a48344c0d59d1d41da7029ec4b6119081aa4dc91c605cc319",
+    "packages/sfml.js-rmlui/src/internal/native.ts": "a4174debeda7dd3ead6ae5c00c032c70c6c94ad74d4e0030e282ce6b15ff0be1",
+    "packages/sfml.js-rmlui/src/core.ts": "65ad7022ec101ad0d8480f4646b91503c3856896fb771c29779155799e2a5715",
+    "packages/sfml.js-rmlui/dist/font-engine.js": "b4ee4a8086206726487bca0a62b63e306b24806c1c34ebc76a45d775e7314fb2",
+    "packages/sfml.js-rmlui/dist/font-engine.d.ts": "4ecef1bf53a217e266bb8416a23c2cb0b33ab9bdfc8ae573558a3120834ee32a",
+    "packages/sfml.js-rmlui/dist/font-metrics.js": "e87b33eff00c6d0c310b2d3d8eafdf7eadd1bd5e67f62ed1fc3727cbee3c67ac",
+    "packages/sfml.js-rmlui/dist/font-metrics.d.ts": "c74d1af14271ad54ba55bd5a79b9bf265e65b5e0cf2874b8ced60143ce338738",
+    "packages/sfml.js-rmlui/dist/text-shaping-context.js": "8a715d82b386182f0b7b2b1ef74c2ccbc80d5c32875d3c04cb56b2e856c257eb",
+    "packages/sfml.js-rmlui/dist/text-shaping-context.d.ts": "9476b64a83526e146e6c6e58bdc2de643da64f57d0f2685a33da7753adb3bf5b",
+    "packages/sfml.js-rmlui/dist/font-engine-custom.js": "9e209b4110abd1ba00ead12c87a4d7a99d210ac4bcde58bcbfb09ffb266602d0",
+    "packages/sfml.js-rmlui/dist/font-engine-custom.d.ts": "2e356d1e460e275e54357e0ba0eabef9ac1ec9060e73f9b7e5a9e65212dba115",
+    "packages/sfml.js-rmlui/dist/font-engine-callbacks.js": "d43aa81f5bc89faa359e0f97c814ba25155591ff078fbb9bfd40f8c7c9683230",
+    "packages/sfml.js-rmlui/dist/font-engine-callbacks.d.ts": "7141faf52c4f08e004f5adf7e8b8f5245b692671c098ab2e38e66df48039b4c7",
+    "packages/sfml.js-rmlui/dist/font-measure-buffer.js": "fbb29f0a35bca2144228c5d19a931c7e100f7b1203fb6404726345eb8bcfdb55",
+    "packages/sfml.js-rmlui/dist/font-measure-buffer.d.ts": "ee3ce7ad93de8b58f7859bf5491efc862d162736dbf1df94899a8bdbee673fbd",
+    "packages/sfml.js-rmlui/test/font-engine.test.cjs": "65e597416b30682c59a2be3b102d4e2f7a39c95ad13890c57f1ca14f5fccb4e4",
+    "packages/sfml.js-rmlui/test/font-engine-custom.test.cjs": "f9efdf90899d852089402b74b4ce57cba9ca963261ca2d23611123b843ff3c3f",
+    "packages/sfml.js-rmlui/test/font-measure-buffer.test.cjs": "abb2c77c28ec480b766b43a76595259705452f2ef064f1aa940abcb5766e3911",
+    "packages/sfml.js-rmlui/test/font-fields.test.cjs": "b00d07b7a6e46729ad7fea76beb3b2f649ab7d8b8eb38c14cf93e2d347d2e415",
+    "packages/sfml.js-rmlui/test/font-engine-consumer.ts": "6203722a2dcd1f00db1d19371ddcc00221c5e224660273639106ff358e26b692",
+    "packages/sfml.js-rmlui/test/lifetime.test.cjs": "70bf7aea417578b647de4b29cec4ea0b90b8fbc94637ca3ac76df576c1f39dd8",
+    "packages/sfml.js-rmlui/test/native/font-fields-contracts.cc": "ad105f08b2ed62dc6fa032d2832ea8e6763bbce2ef3b11b81d9145a636ff5465",
+    "packages/sfml.js-rmlui/test/native/build-font-fields-contracts.py": "65d96aeeed2735856e08aa4db79f1f2fbb84c0c0cafcebd3ad0f97041c373455",
+    "packages/sfml.js-rmlui/test/native/compare-font-fields-contracts.cjs": "f2888cffff49fece9945f4261b4967f7018d51ffab4e9f691aaf73cfff9033e6",
+    "packages/sfml.js-rmlui/native/rmlui-state.h": "af3bedde2831cca1f394aa9f80aeb3ca01c5961da3215de7aaf4b0643c5c8f50",
+    "packages/sfml.js-rmlui/native/rmlui-state.cc": "4426cb2a2b271f30eff2414552be676ff317558de07bebcd64c7b54bbaceea1d",
+    "packages/sfml.js-rmlui/native/rmlui-core.cc": "717e1aba3d2a460969009dfa2e8f5b172179a358b727b9bd8ffbc42ce28159ce",
+    "docs/rmlui/fonts.md": "ed275dca111bfb6f5abea7102d69c5ca99b79b2e8c45ad669b6fcea59e6b9ebf",
+    "docs/rmlui/fonts.zh-CN.md": "25a9285e9e3fc2df04074eaede5a282972e142c3ef81798789316bf54b6eaedb",
+    "docs/rmlui/fonts.ja.md": "ec5e61bc1acd2551342e1c427d36d397259df6fc60d7cb9f67b1ccb474a0ee75",
+    "docs/rmlui/fonts.ko.md": "4eb2854c2982569a48803c2de096586957f3c1a677c3f0953710a980ffe2655e",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/FontEngineInterface.h": "076d7067ed4de7e4d73a1aaddcd1206a59a08cedc75bdfd9a3c4a17f7eb90c48",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/FontMetrics.h": "cf9285a0656b1bfc4eee87d73077c787544d87c60a86c4235874514c9f0d1106",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/TextShapingContext.h": "3fa63dd0e62dd672adc5d8756adf61d9c00d24d46c95b3fa68414252cea11ff1",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/FontEngineDefault/FontEngineInterfaceDefault.cpp": "5129d8b8bf508a5fa36d06e326da7b83b03a42f7942052238ebb4671d308a505",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/FontEngineDefault/FontFaceHandleDefault.cpp": "ba935cc21d8484d7c2a67057bdef89e13562b970b639fedf995d6cde7b55c332"
+  },
+  "notice": "Local font contract checks only. No initialization-cost, complete CPU-frame, GPU, optional HarfBuzz/bitmap or other platform acceptance follows from these Native field and bridge checks."
+}

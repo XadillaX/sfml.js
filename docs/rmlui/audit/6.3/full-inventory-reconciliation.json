@@ -1,0 +1,40 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "inventory_declarations": 3926,
+  "key_fields": [
+    "header",
+    "kind",
+    "name",
+    "signature",
+    "type"
+  ],
+  "source_record_counts": {
+    "recovered_core": 549,
+    "recovered_supplemental": 1547,
+    "data_operation_ledger": 131,
+    "lua_declaration_map": 55,
+    "core_type_declaration_map": 67,
+    "core_scroll_iterator_declaration_map": 28,
+    "core_input_event_declaration_map": 225,
+    "supplemental_type_declaration_map": 7,
+    "numeric_declaration_map": 459,
+    "string_url_declaration_map": 88,
+    "support_declaration_map": 157,
+    "type_converter_declaration_map": 343,
+    "xml_declaration_map": 49,
+    "utility_declaration_map": 17,
+    "font_declaration_map": 29,
+    "id_scroll_declaration_map": 45,
+    "renderer_declaration_map": 58,
+    "stylesheet_types_declaration_map": 135,
+    "debugger_declaration_map": 6,
+    "vector_declaration_map": 24
+  },
+  "represented_inventory_declarations": 3926,
+  "unrepresented_inventory_declarations": 0,
+  "scope_complete": false,
+  "notice": "All original declarations have exact routes in twenty maps, including partial, reviewed and pending statuses. Representation is not a pass count. Alternate fonts, Core acceptance, renderer/platform/performance and application/package gates remain unfinished.",
+  "unrepresented_header_counts": {},
+  "unrepresented_inventory_indices": []
+}

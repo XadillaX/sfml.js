@@ -13,7 +13,9 @@ sfml.js-interop は共有ネイティブヘッダーと SFML SDK のパスを両
 }
 ```
 
-`sfml-js-interop.h` は `SFMLJS_INTEROP_VERSION`（現在は 1）と `shared-handle.h`、`exception-boundary.h`、`numeric-fields.h` を公開します。ホストと契約・SFML のバージョンを合わせます。`RenderWindowFrom` が受け取るのはバインディング内部のネイティブハンドルで、公開 JavaScript RenderWindow オブジェクトではありません。
+`sfml-js-interop.h` は `SFMLJS_INTEROP_VERSION`（現在は 2）と `shared-handle.h`、`exception-boundary.h`、`numeric-fields.h`、`window-event-source.h` を公開します。ホストと契約・SFML のバージョンを合わせます。`RenderWindowFrom` が受け取るのはバインディング内部のネイティブハンドルで、公開 JavaScript RenderWindow オブジェクトではありません。
+
+macOS のイベント発生元拡張は、不透明な発生元を実際の SFML キュー項目とポーリングした JavaScript スナップショットに保持します。ネイティブアドオンはホストのイベント列を変更せずに、プラットフォームのキーとテキストの重複配信を識別できます。公開 `Event` コンストラクターはイベントデータだけをコピーし、独立したイベントを作成します。
 
 寿命はネイティブ所有者が管理します。ビューや借用ポインターは所有者、コンテキスト、ウィンドウより長く保持できません。記録済み描画ではリソースを保持し、呼び出し時のスナップショットを守ります。V8 に C++ コールバックを公開する際は共有例外境界を使用します。バージョンマクロの一致だけでは異なるビルド設定のバイナリー間の ABI 互換性を保証しません。
 

@@ -1,0 +1,3917 @@
+{
+  "scope": "25 unchanged original pages; deterministic native mouse/key/scroll/layout inputs",
+  "platform": "macOS arm64; physical IME and Linux/Windows remain unverified",
+  "actionsSHA256": "81727a18b1947fc66ed6389b6b92d92c00dbca39cd47edad185529952b5da92a",
+  "pixelPolicy": "all RGB channels within one byte at the same pixel; no exclusions",
+  "acceptancePolicy": "pinned-upstream-parity-v1",
+  "pages": [
+    {
+      "name": "color_interpolation",
+      "sourceSHA256": "8b0e9a85ae5aa40e49608dcf7081a15dd1d6cfa60288108833a31bfaeed1bae7",
+      "frames": [
+        {
+          "name": "color_interpolation",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "fdd887005f81825074628dd58baa118a62f29dd2182d67fd06eaeca820e96a8a",
+          "actualSHA256": "fdd887005f81825074628dd58baa118a62f29dd2182d67fd06eaeca820e96a8a"
+        },
+        {
+          "name": "color_interpolation--green",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            242,
+            78
+          ],
+          "time": 1.6,
+          "referenceSHA256": "1107ef4f272b4ab72ec207e4f154515ce5e5f3595fbb2b28e6c0b4aa8309721c",
+          "actualSHA256": "1107ef4f272b4ab72ec207e4f154515ce5e5f3595fbb2b28e6c0b4aa8309721c"
+        },
+        {
+          "name": "color_interpolation--half",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            242,
+            78
+          ],
+          "time": 1.3,
+          "referenceSHA256": "0e01061b6d07b2865ab3969535a27c74864e0ad3fbbf450aaee822b99b2af79d",
+          "actualSHA256": "0e01061b6d07b2865ab3969535a27c74864e0ad3fbbf450aaee822b99b2af79d"
+        },
+        {
+          "name": "color_interpolation--hover-start",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            242,
+            78
+          ],
+          "time": 1,
+          "referenceSHA256": "fdd887005f81825074628dd58baa118a62f29dd2182d67fd06eaeca820e96a8a",
+          "actualSHA256": "fdd887005f81825074628dd58baa118a62f29dd2182d67fd06eaeca820e96a8a"
+        },
+        {
+          "name": "color_interpolation--red-again",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            900,
+            700
+          ],
+          "time": 2.2,
+          "referenceSHA256": "fdd887005f81825074628dd58baa118a62f29dd2182d67fd06eaeca820e96a8a",
+          "actualSHA256": "fdd887005f81825074628dd58baa118a62f29dd2182d67fd06eaeca820e96a8a"
+        }
+      ],
+      "sfmlAssertions": [
+        "0.6s transition has correct red start, gamma-2 midpoint, green endpoint and red reversal"
+      ],
+      "gl3Assertions": [
+        "0.6s transition has correct red start, gamma-2 midpoint, green endpoint and red reversal"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "0.6s transition has correct red start, gamma-2 midpoint, green endpoint and red reversal"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "0.6s transition has correct red start, gamma-2 midpoint, green endpoint and red reversal"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "0.6s transition has correct red start, gamma-2 midpoint, green endpoint and red reversal"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "document_position",
+      "sourceSHA256": "ed2992fb4a11b6719bf1286923c1265d8be36fe43b26ff57cc6ed90c0683dc14",
+      "frames": [
+        {
+          "name": "document_position",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031261368684e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "48213c2aa72776cab6073d9d639d11ee3e2b7b03f8f0221f092f9674404c5bdd",
+          "actualSHA256": "48213c2aa72776cab6073d9d639d11ee3e2b7b03f8f0221f092f9674404c5bdd"
+        },
+        {
+          "name": "document_position--block-moving",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031261368684e-05,
+          "pointer": [
+            479,
+            359
+          ],
+          "time": 1,
+          "referenceSHA256": "4e0ec392a80d9d3ba707552e10a333f85ddc14fe7458e34c61b0571a4fdfecb1",
+          "actualSHA256": "4e0ec392a80d9d3ba707552e10a333f85ddc14fe7458e34c61b0571a4fdfecb1"
+        },
+        {
+          "name": "document_position--block-resizing",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031261368684e-05,
+          "pointer": [
+            572,
+            531
+          ],
+          "time": 1,
+          "referenceSHA256": "fe1508bd9454c1b725ff59e1cfe0dee0b6a2ac2ae28d6b69711da31fecdd7c28",
+          "actualSHA256": "fe1508bd9454c1b725ff59e1cfe0dee0b6a2ac2ae28d6b69711da31fecdd7c28"
+        },
+        {
+          "name": "document_position--document-moving",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031261368684e-05,
+          "pointer": [
+            322,
+            219
+          ],
+          "time": 1,
+          "referenceSHA256": "784f34e7e88877d13259dca0e40cd3db873c0005952b8c727ac1aac41ae284c6",
+          "actualSHA256": "784f34e7e88877d13259dca0e40cd3db873c0005952b8c727ac1aac41ae284c6"
+        },
+        {
+          "name": "document_position--document-resizing",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031261368684e-05,
+          "pointer": [
+            649,
+            621
+          ],
+          "time": 1,
+          "referenceSHA256": "a41d3d0a9a95ac6cb242172fbce1aa14bea23575ba7b38d237e7b1cbb074bff0",
+          "actualSHA256": "a41d3d0a9a95ac6cb242172fbce1aa14bea23575ba7b38d237e7b1cbb074bff0"
+        }
+      ],
+      "sfmlAssertions": [
+        "document handle moves 30/20px and grows 40/30px",
+        "block handle retains anchors, moves with fractional rounding and grows 25/20px"
+      ],
+      "gl3Assertions": [
+        "document handle moves 30/20px and grows 40/30px",
+        "block handle retains anchors, moves with fractional rounding and grows 25/20px"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "document handle moves 30/20px and grows 40/30px",
+            "block handle retains anchors, moves with fractional rounding and grows 25/20px"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "document handle moves 30/20px and grows 40/30px",
+            "block handle retains anchors, moves with fractional rounding and grows 25/20px"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "document handle moves 30/20px and grows 40/30px",
+        "block handle retains anchors, moves with fractional rounding and grows 25/20px"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "drag",
+      "sourceSHA256": "4c2c6cf140d06d5d52978e09f4692c31b71822ca2cdb57fb4ed690c561100514",
+      "frames": [
+        {
+          "name": "drag",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "4972b362e2c92197273438b93dd28fd4602867bdc77716d995ca5b89ecdfb5e9",
+          "actualSHA256": "4972b362e2c92197273438b93dd28fd4602867bdc77716d995ca5b89ecdfb5e9"
+        },
+        {
+          "name": "drag--lower-clone",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            448,
+            595
+          ],
+          "time": 1,
+          "referenceSHA256": "b53787f96e45946d8eab71103e49d762acdb72434028097f3a8ba97ec9bc8b19",
+          "actualSHA256": "b53787f96e45946d8eab71103e49d762acdb72434028097f3a8ba97ec9bc8b19"
+        },
+        {
+          "name": "drag--lower-moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            468,
+            605
+          ],
+          "time": 1,
+          "referenceSHA256": "6a1de1279b3efb6d4e7d47e088a9f69e1d3592d813b192e5b0fafe046778a703",
+          "actualSHA256": "6a1de1279b3efb6d4e7d47e088a9f69e1d3592d813b192e5b0fafe046778a703"
+        },
+        {
+          "name": "drag--lower-released",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            468,
+            605
+          ],
+          "time": 1,
+          "referenceSHA256": "3fe61db7356f3f07c2383cced430377ea77135701c058a7cc9a9702864273ded",
+          "actualSHA256": "3fe61db7356f3f07c2383cced430377ea77135701c058a7cc9a9702864273ded"
+        },
+        {
+          "name": "drag--upper-clone",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            548,
+            223
+          ],
+          "time": 1,
+          "referenceSHA256": "366bed70eaf59328cc8a02f0302f92694eb0ca1b9089ed44aaadf4f4e66c88bb",
+          "actualSHA256": "366bed70eaf59328cc8a02f0302f92694eb0ca1b9089ed44aaadf4f4e66c88bb"
+        },
+        {
+          "name": "drag--upper-moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            568,
+            233
+          ],
+          "time": 1,
+          "referenceSHA256": "e234017f3676596b205bbba7d1697e2c5fa796100eaada9f21b5ac97dbd6bd48",
+          "actualSHA256": "e234017f3676596b205bbba7d1697e2c5fa796100eaada9f21b5ac97dbd6bd48"
+        },
+        {
+          "name": "drag--upper-released",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.000498046875009095,
+          "pointer": [
+            568,
+            233
+          ],
+          "time": 1,
+          "referenceSHA256": "4972b362e2c92197273438b93dd28fd4602867bdc77716d995ca5b89ecdfb5e9",
+          "actualSHA256": "4972b362e2c92197273438b93dd28fd4602867bdc77716d995ca5b89ecdfb5e9"
+        }
+      ],
+      "sfmlAssertions": [
+        "both transformed originals remain in place; red clones move exactly 20/10px",
+        "both pointer releases remove all clone pixels"
+      ],
+      "gl3Assertions": [
+        "both transformed originals remain in place; red clones move exactly 20/10px",
+        "both pointer releases remove all clone pixels"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "both transformed originals remain in place; red clones move exactly 20/10px",
+            "both pointer releases remove all clone pixels"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "both transformed originals remain in place; red clones move exactly 20/10px",
+            "both pointer releases remove all clone pixels"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "both transformed originals remain in place; red clones move exactly 20/10px",
+        "both pointer releases remove all clone pixels"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "element_label",
+      "sourceSHA256": "1924546b133c1c6e0ce75eb61880d3e4a1f3ea05682da0b2a9488a93440ec4d5",
+      "frames": [
+        {
+          "name": "element_label",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "9b59ace47fd582c6d56b92e259a09aae5ccdd2d424a1703f67f3a073798d820f",
+          "actualSHA256": "9b59ace47fd582c6d56b92e259a09aae5ccdd2d424a1703f67f3a073798d820f"
+        },
+        {
+          "name": "element_label--label-active",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            82,
+            65
+          ],
+          "time": 1,
+          "referenceSHA256": "82dea87e8aa8e3e7ab4a63ff35bde9aa52378a4249220632e42f6d63460eaf7d",
+          "actualSHA256": "82dea87e8aa8e3e7ab4a63ff35bde9aa52378a4249220632e42f6d63460eaf7d"
+        },
+        {
+          "name": "element_label--label-hover",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            82,
+            65
+          ],
+          "time": 1,
+          "referenceSHA256": "f2a92176543d642d8269eba73bb53a37629d2836a1763626ecf25cbb27e48f51",
+          "actualSHA256": "f2a92176543d642d8269eba73bb53a37629d2836a1763626ecf25cbb27e48f51"
+        },
+        {
+          "name": "element_label--name-focused",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            28,
+            200
+          ],
+          "time": 1,
+          "referenceSHA256": "c1ea580f70b9b7538d2036c132b83bfea0e00650de88513800d98812ecdb3b52",
+          "actualSHA256": "c1ea580f70b9b7538d2036c132b83bfea0e00650de88513800d98812ecdb3b52"
+        },
+        {
+          "name": "element_label--pasta-checked",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            82,
+            65
+          ],
+          "time": 1,
+          "referenceSHA256": "7df45fc6c3456dd4db5b4408b4859d7ccde8996725039c783b14d7c3d6e3935a",
+          "actualSHA256": "7df45fc6c3456dd4db5b4408b4859d7ccde8996725039c783b14d7c3d6e3935a"
+        },
+        {
+          "name": "element_label--pasta-unchecked",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            82,
+            65
+          ],
+          "time": 1,
+          "referenceSHA256": "0940adbd6070b1c0bc6ed356e49c2dbbcec839546359b3a702f66bd613424b40",
+          "actualSHA256": "0940adbd6070b1c0bc6ed356e49c2dbbcec839546359b3a702f66bd613424b40"
+        },
+        {
+          "name": "element_label--submit-active",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            449,
+            291
+          ],
+          "time": 1,
+          "referenceSHA256": "541a82073aef5babb68aa4b371f783d439a437d3d2d72e83f1f416c532f31a2e",
+          "actualSHA256": "541a82073aef5babb68aa4b371f783d439a437d3d2d72e83f1f416c532f31a2e"
+        },
+        {
+          "name": "element_label--submit-focused",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            449,
+            291
+          ],
+          "time": 1,
+          "referenceSHA256": "f0de85bfd83bcaada078050f9d31ab917132dd11af2fda758bda7b525a5087c3",
+          "actualSHA256": "f0de85bfd83bcaada078050f9d31ab917132dd11af2fda758bda7b525a5087c3"
+        }
+      ],
+      "sfmlAssertions": [
+        "external label forwards hover/active and toggles checkbox twice",
+        "text label focuses input; distant button label forwards active and click focus"
+      ],
+      "gl3Assertions": [
+        "external label forwards hover/active and toggles checkbox twice",
+        "text label focuses input; distant button label forwards active and click focus"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "external label forwards hover/active and toggles checkbox twice",
+            "text label focuses input; distant button label forwards active and click focus"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "external label forwards hover/active and toggles checkbox twice",
+            "text label focuses input; distant button label forwards active and click focus"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "external label forwards hover/active and toggles checkbox twice",
+        "text label focuses input; distant button label forwards active and click focus"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "flex_01",
+      "sourceSHA256": "91534fd4e9a15900fadf960a9ca97adca4fce870dd1a35ea317d46627df9df7b",
+      "frames": [
+        {
+          "name": "flex_01",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00025390625000909495,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "ca977f69982d407113f2800d8d187eb2a6e4af729a5db03c0de175105a3fe56d",
+          "actualSHA256": "ca977f69982d407113f2800d8d187eb2a6e4af729a5db03c0de175105a3fe56d"
+        },
+        {
+          "name": "flex_01--equal-again",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00025390625000909495,
+          "pointer": [
+            900,
+            700
+          ],
+          "time": 1.6,
+          "referenceSHA256": "ca977f69982d407113f2800d8d187eb2a6e4af729a5db03c0de175105a3fe56d",
+          "actualSHA256": "ca977f69982d407113f2800d8d187eb2a6e4af729a5db03c0de175105a3fe56d"
+        },
+        {
+          "name": "flex_01--first-grown",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0002661132812136202,
+          "pointer": [
+            92,
+            417
+          ],
+          "time": 1.3,
+          "referenceSHA256": "b570ceff6d0f19070dd27d3343c1e84f36e14f3a61f9b8825c0372ceda16328d",
+          "actualSHA256": "b570ceff6d0f19070dd27d3343c1e84f36e14f3a61f9b8825c0372ceda16328d"
+        }
+      ],
+      "sfmlAssertions": [
+        "0.3s hover reaches 1.2:1:1 flex-grow; mouse exit restores all three rectangles"
+      ],
+      "gl3Assertions": [
+        "0.3s hover reaches 1.2:1:1 flex-grow; mouse exit restores all three rectangles"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "0.3s hover reaches 1.2:1:1 flex-grow; mouse exit restores all three rectangles"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "0.3s hover reaches 1.2:1:1 flex-grow; mouse exit restores all three rectangles"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "0.3s hover reaches 1.2:1:1 flex-grow; mouse exit restores all three rectangles"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "flex_03_scroll",
+      "sourceSHA256": "a60ce2a9dc06726c1ee4a1f1d4c15849144dbf7f1d2af4b2a8b396de35a7cf11",
+      "frames": [
+        {
+          "name": "flex_03_scroll",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515625e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "ffb8aa8220aa0315a360956515fb5fd7a4ff09ac20c07096227c820d035fa0b8",
+          "actualSHA256": "ffb8aa8220aa0315a360956515fb5fd7a4ff09ac20c07096227c820d035fa0b8"
+        },
+        {
+          "name": "flex_03_scroll--end",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515625e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "62c951cf77dea5bb4041e53ea46995ec8c82e8f1ccfdfc65d497d1945343cd30",
+          "actualSHA256": "62c951cf77dea5bb4041e53ea46995ec8c82e8f1ccfdfc65d497d1945343cd30"
+        },
+        {
+          "name": "flex_03_scroll--start",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515625e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "ffb8aa8220aa0315a360956515fb5fd7a4ff09ac20c07096227c820d035fa0b8",
+          "actualSHA256": "ffb8aa8220aa0315a360956515fb5fd7a4ff09ac20c07096227c820d035fa0b8"
+        }
+      ],
+      "sfmlAssertions": [
+        "scroll/auto flexboxes clamp both axes; vertical/horizontal cases clamp only their scroll axis",
+        "native setters also clamp visible overflow; origin restores all glyphs and tall descendants"
+      ],
+      "gl3Assertions": [
+        "scroll/auto flexboxes clamp both axes; vertical/horizontal cases clamp only their scroll axis",
+        "native setters also clamp visible overflow; origin restores all glyphs and tall descendants"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "scroll/auto flexboxes clamp both axes; vertical/horizontal cases clamp only their scroll axis",
+            "native setters also clamp visible overflow; origin restores all glyphs and tall descendants"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "scroll/auto flexboxes clamp both axes; vertical/horizontal cases clamp only their scroll axis",
+            "native setters also clamp visible overflow; origin restores all glyphs and tall descendants"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "scroll/auto flexboxes clamp both axes; vertical/horizontal cases clamp only their scroll axis",
+        "native setters also clamp visible overflow; origin restores all glyphs and tall descendants"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "flex_04",
+      "sourceSHA256": "028fe407f82c77d71f1a24f7a29c70b22c02f2f099fcd2532ef7696e04f669d1",
+      "frames": [
+        {
+          "name": "flex_04",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0003740234375300133,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6",
+          "actualSHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6"
+        },
+        {
+          "name": "flex_04--narrow",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00048010253905772515,
+          "pointer": [
+            192,
+            760
+          ],
+          "time": 1,
+          "referenceSHA256": "134ae8898a1597b0c62c696e7b43162efae98f97dc17bb8736ddaeec261b1c13",
+          "actualSHA256": "134ae8898a1597b0c62c696e7b43162efae98f97dc17bb8736ddaeec261b1c13"
+        },
+        {
+          "name": "flex_04--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0003740234375300133,
+          "pointer": [
+            492,
+            760
+          ],
+          "time": 1,
+          "referenceSHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6",
+          "actualSHA256": "a3379960fe93f9d0ca7455a37b4d754a40ca74658dfbe4204617ab60700a18c6"
+        },
+        {
+          "name": "flex_04--wide",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0003435058593765916,
+          "pointer": [
+            692,
+            760
+          ],
+          "time": 1,
+          "referenceSHA256": "c93bee29986802457f5c5c4769a52839d37d20db954fff66f5723dbafd7db655",
+          "actualSHA256": "c93bee29986802457f5c5c4769a52839d37d20db954fff66f5723dbafd7db655"
+        }
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "(263, 164, 0.01)",
+            "stack": [
+              {
+                "source": "interactions/validators/layout/resizing.py",
+                "line": 64,
+                "expression": "close(element(frames[\"base\"], fixed)[\"rect\"][2],"
+              },
+              {
+                "source": "assertions/common.py",
+                "line": 7,
+                "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+              }
+            ]
+          }
+        },
+        "gl3": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "(263, 164, 0.01)",
+            "stack": [
+              {
+                "source": "interactions/validators/layout/resizing.py",
+                "line": 64,
+                "expression": "close(element(frames[\"base\"], fixed)[\"rect\"][2],"
+              },
+              {
+                "source": "assertions/common.py",
+                "line": 7,
+                "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+              }
+            ]
+          }
+        }
+      },
+      "assertionFailures": {
+        "sfml": {
+          "message": "(263, 164, 0.01)",
+          "validator": "assertions/common.py",
+          "line": 7
+        },
+        "gl3": {
+          "message": "(263, 164, 0.01)",
+          "validator": "assertions/common.py",
+          "line": 7
+        }
+      },
+      "status": "fail",
+      "error": "{\"sfml\": {\"message\": \"(263, 164, 0.01)\", \"validator\": \"assertions/common.py\", \"line\": 7}, \"gl3\": {\"message\": \"(263, 164, 0.01)\", \"validator\": \"assertions/common.py\", \"line\": 7}}",
+      "bindingStatus": "upstream-failure-deferred",
+      "bindingAccepted": true
+    },
+    {
+      "name": "handle_target_anchor",
+      "sourceSHA256": "35685d6c72bc849cb1d85cafde5dbac243a568de27368dd888a8956289e1d232",
+      "frames": [
+        {
+          "name": "handle_target_anchor",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "99e7cb750f8a5a5b705fdbc70cace1b578d2aee7d08f0eaeaa664f611a2d17c0",
+          "actualSHA256": "99e7cb750f8a5a5b705fdbc70cace1b578d2aee7d08f0eaeaa664f611a2d17c0"
+        },
+        {
+          "name": "handle_target_anchor--parent-smaller",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            781,
+            615
+          ],
+          "time": 1,
+          "referenceSHA256": "d49d614e17f48fa6b3f3016fb91cf861a2f1fd5f9a3f7c6662bf09a22269cbaa",
+          "actualSHA256": "d49d614e17f48fa6b3f3016fb91cf861a2f1fd5f9a3f7c6662bf09a22269cbaa"
+        },
+        {
+          "name": "handle_target_anchor--parent-wide",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            831,
+            655
+          ],
+          "time": 1,
+          "referenceSHA256": "6e60bef9d0b35f0c1b54d32f897d77f486aa0a2b08f619f39acfc31916cda080",
+          "actualSHA256": "6e60bef9d0b35f0c1b54d32f897d77f486aa0a2b08f619f39acfc31916cda080"
+        },
+        {
+          "name": "handle_target_anchor--target-1-edge-max",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            2272,
+            2185
+          ],
+          "time": 1,
+          "referenceSHA256": "f66db7d20a3728ca131d7f45ad0cec8c9b1f4f4b9f605cb39793ce525ccd9710",
+          "actualSHA256": "f66db7d20a3728ca131d7f45ad0cec8c9b1f4f4b9f605cb39793ce525ccd9710"
+        },
+        {
+          "name": "handle_target_anchor--target-1-edge-min",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            -1728,
+            -1815
+          ],
+          "time": 1,
+          "referenceSHA256": "f86ca8e8758460e5fcd80881c16e53ca0e63d02f09e6d0c06c2a5a9887862346",
+          "actualSHA256": "f86ca8e8758460e5fcd80881c16e53ca0e63d02f09e6d0c06c2a5a9887862346"
+        },
+        {
+          "name": "handle_target_anchor--target-1-moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            260,
+            185
+          ],
+          "time": 1,
+          "referenceSHA256": "28b3912ff967e2951cf93f9cb9c86006f03c4447948f0ce158280086f7a42800",
+          "actualSHA256": "28b3912ff967e2951cf93f9cb9c86006f03c4447948f0ce158280086f7a42800"
+        },
+        {
+          "name": "handle_target_anchor--target-1-resized",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            367,
+            315
+          ],
+          "time": 1,
+          "referenceSHA256": "a79821b0cb4350a6ef154fd5f6f9c7fdc88bcad59ad91c1e53ff0dd96a5efbb4",
+          "actualSHA256": "a79821b0cb4350a6ef154fd5f6f9c7fdc88bcad59ad91c1e53ff0dd96a5efbb4"
+        },
+        {
+          "name": "handle_target_anchor--target-2-edge-max",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            2479,
+            2360
+          ],
+          "time": 1,
+          "referenceSHA256": "93808b7cd4bd3080a895d8fb087ce5316aac2119857f0df40b6039161b2f69a7",
+          "actualSHA256": "93808b7cd4bd3080a895d8fb087ce5316aac2119857f0df40b6039161b2f69a7"
+        },
+        {
+          "name": "handle_target_anchor--target-2-edge-min",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            -1521,
+            -1640
+          ],
+          "time": 1,
+          "referenceSHA256": "c6734dbebdf9ff9dc9dbab3febb4f5206ed3f8c6651025e616bc393acbc96bd0",
+          "actualSHA256": "c6734dbebdf9ff9dc9dbab3febb4f5206ed3f8c6651025e616bc393acbc96bd0"
+        },
+        {
+          "name": "handle_target_anchor--target-2-moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            492,
+            360
+          ],
+          "time": 1,
+          "referenceSHA256": "45e59afac9f5af2e78b8ed6b9e7bcc9c4e38442c9ddbaa255a48d55fe6a69b3c",
+          "actualSHA256": "45e59afac9f5af2e78b8ed6b9e7bcc9c4e38442c9ddbaa255a48d55fe6a69b3c"
+        },
+        {
+          "name": "handle_target_anchor--target-2-resized",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            606,
+            460
+          ],
+          "time": 1,
+          "referenceSHA256": "14305b6a69dff6f495efd200a1d176c8dbad8507852c22a80a351d94b27d2c36",
+          "actualSHA256": "14305b6a69dff6f495efd200a1d176c8dbad8507852c22a80a351d94b27d2c36"
+        },
+        {
+          "name": "handle_target_anchor--target-3-edge-max",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            2686,
+            2465
+          ],
+          "time": 1,
+          "referenceSHA256": "8b4c286cee5c6ecd84a6585b636cfad7290d65f88fc80f12aa19868305326a8c",
+          "actualSHA256": "8b4c286cee5c6ecd84a6585b636cfad7290d65f88fc80f12aa19868305326a8c"
+        },
+        {
+          "name": "handle_target_anchor--target-3-edge-min",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 9.155273431815658e-06,
+          "pointer": [
+            -1314,
+            -1535
+          ],
+          "time": 1,
+          "referenceSHA256": "f5a05f19a8f5bb237e29b60ff955fe41604a79d185906b4ea60bf4fceaa7d315",
+          "actualSHA256": "f5a05f19a8f5bb237e29b60ff955fe41604a79d185906b4ea60bf4fceaa7d315"
+        },
+        {
+          "name": "handle_target_anchor--target-3-moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            724,
+            505
+          ],
+          "time": 1,
+          "referenceSHA256": "3e8b4542dfe121b32ff09f3584b8c0987a271ad18ac54692368b048cefd61e43",
+          "actualSHA256": "3e8b4542dfe121b32ff09f3584b8c0987a271ad18ac54692368b048cefd61e43"
+        },
+        {
+          "name": "handle_target_anchor--target-3-resized",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.662109372726263e-05,
+          "pointer": [
+            831,
+            635
+          ],
+          "time": 1,
+          "referenceSHA256": "c19329baa27a4438e9ebf086c3e15b7225bcd743e6ff03626e471ec9bf62183b",
+          "actualSHA256": "c19329baa27a4438e9ebf086c3e15b7225bcd743e6ff03626e471ec9bf62183b"
+        }
+      ],
+      "sfmlAssertions": [
+        "move/resize preserve top-left, all-sides and bottom-right anchoring through parent resize",
+        "extreme drags stop at literal -50%, 50dp and zero edge margins"
+      ],
+      "gl3Assertions": [
+        "move/resize preserve top-left, all-sides and bottom-right anchoring through parent resize",
+        "extreme drags stop at literal -50%, 50dp and zero edge margins"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "move/resize preserve top-left, all-sides and bottom-right anchoring through parent resize",
+            "extreme drags stop at literal -50%, 50dp and zero edge margins"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "move/resize preserve top-left, all-sides and bottom-right anchoring through parent resize",
+            "extreme drags stop at literal -50%, 50dp and zero edge margins"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "move/resize preserve top-left, all-sides and bottom-right anchoring through parent resize",
+        "extreme drags stop at literal -50%, 50dp and zero edge margins"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "inline_formatting_03",
+      "sourceSHA256": "69144a040eff9ea4fd97d527d5852f2fc1dae728f6aaf5c39094532e3ff0ee82",
+      "frames": [
+        {
+          "name": "inline_formatting_03",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031247157829e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "3cf8bbfbc6e7efdd88d6e7cb73d119bcab67967ab98d9a72626b51772c038e98",
+          "actualSHA256": "3cf8bbfbc6e7efdd88d6e7cb73d119bcab67967ab98d9a72626b51772c038e98"
+        },
+        {
+          "name": "inline_formatting_03--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031247157829e-05,
+          "pointer": [
+            292,
+            740
+          ],
+          "time": 1,
+          "referenceSHA256": "3cf8bbfbc6e7efdd88d6e7cb73d119bcab67967ab98d9a72626b51772c038e98",
+          "actualSHA256": "3cf8bbfbc6e7efdd88d6e7cb73d119bcab67967ab98d9a72626b51772c038e98"
+        },
+        {
+          "name": "inline_formatting_03--split",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.7465820323868684e-05,
+          "pointer": [
+            152,
+            740
+          ],
+          "time": 1,
+          "referenceSHA256": "1f164030a3e197d1a1a3937b64789bbb08d5b14ff26401064072cd2972437974",
+          "actualSHA256": "1f164030a3e197d1a1a3937b64789bbb08d5b14ff26401064072cd2972437974"
+        },
+        {
+          "name": "inline_formatting_03--wide",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 9.155273438921085e-06,
+          "pointer": [
+            352,
+            740
+          ],
+          "time": 1,
+          "referenceSHA256": "5209cffd2174fb7561bd825b1003c23adeb09e57de5262b3156d428263e1b701",
+          "actualSHA256": "5209cffd2174fb7561bd825b1003c23adeb09e57de5262b3156d428263e1b701"
+        }
+      ],
+      "sfmlAssertions": [
+        "handle narrowing splits the decorated inline span into two positioned boxes",
+        "widening joins the span; original size restores exact boxes and retains red glyphs/yellow borders"
+      ],
+      "gl3Assertions": [
+        "handle narrowing splits the decorated inline span into two positioned boxes",
+        "widening joins the span; original size restores exact boxes and retains red glyphs/yellow borders"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "handle narrowing splits the decorated inline span into two positioned boxes",
+            "widening joins the span; original size restores exact boxes and retains red glyphs/yellow borders"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "handle narrowing splits the decorated inline span into two positioned boxes",
+            "widening joins the span; original size restores exact boxes and retains red glyphs/yellow borders"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "handle narrowing splits the decorated inline span into two positioned boxes",
+        "widening joins the span; original size restores exact boxes and retains red glyphs/yellow borders"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "issue_143_overflow_in_absolutely_positioned_input",
+      "sourceSHA256": "d428d3c202041e82f0a26ff9f5e6d5c33831eccabe31bd2b9610121ea5ea532c",
+      "frames": [
+        {
+          "name": "issue_143_overflow_in_absolutely_positioned_input",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.814697265625e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "a7982974e0378aa543df1fa2bfc68f393cd80d3f42394432868b3c1130365c03",
+          "actualSHA256": "a7982974e0378aa543df1fa2bfc68f393cd80d3f42394432868b3c1130365c03"
+        },
+        {
+          "name": "issue_143_overflow_in_absolutely_positioned_input--hover-clipped",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.577636715907829e-06,
+          "pointer": [
+            33,
+            58
+          ],
+          "time": 1,
+          "referenceSHA256": "a7982974e0378aa543df1fa2bfc68f393cd80d3f42394432868b3c1130365c03",
+          "actualSHA256": "a7982974e0378aa543df1fa2bfc68f393cd80d3f42394432868b3c1130365c03"
+        },
+        {
+          "name": "issue_143_overflow_in_absolutely_positioned_input--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.814697265625e-06,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "a7982974e0378aa543df1fa2bfc68f393cd80d3f42394432868b3c1130365c03",
+          "actualSHA256": "a7982974e0378aa543df1fa2bfc68f393cd80d3f42394432868b3c1130365c03"
+        }
+      ],
+      "sfmlAssertions": [
+        "hover enables ancestor overflow clipping while the absolute input retains every required glyph",
+        "all three states keep text within 240\u00d717dp content and leave the right exterior blank"
+      ],
+      "gl3Assertions": [
+        "hover enables ancestor overflow clipping while the absolute input retains every required glyph",
+        "all three states keep text within 240\u00d717dp content and leave the right exterior blank"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "hover enables ancestor overflow clipping while the absolute input retains every required glyph",
+            "all three states keep text within 240\u00d717dp content and leave the right exterior blank"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "hover enables ancestor overflow clipping while the absolute input retains every required glyph",
+            "all three states keep text within 240\u00d717dp content and leave the right exterior blank"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "hover enables ancestor overflow clipping while the absolute input retains every required glyph",
+        "all three states keep text within 240\u00d717dp content and leave the right exterior blank"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "issue_452_scrollbar_resets",
+      "sourceSHA256": "217d1ab4c88d8a351ba8f872e17892041293a60d2f5a05d0e1a681b56d22bb24",
+      "frames": [
+        {
+          "name": "issue_452_scrollbar_resets",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.0517578125e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "427afea063c0e6c37b20f4ec6eac3a5572404c9e396ec13fcf9de30eee22468d",
+          "actualSHA256": "427afea063c0e6c37b20f4ec6eac3a5572404c9e396ec13fcf9de30eee22468d"
+        },
+        {
+          "name": "issue_452_scrollbar_resets--bottom",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "c0841fe1a754f2b67a80e6c1b631ededd4e0bc27cc773ee593f86eeae47d243c",
+          "actualSHA256": "c0841fe1a754f2b67a80e6c1b631ededd4e0bc27cc773ee593f86eeae47d243c"
+        },
+        {
+          "name": "issue_452_scrollbar_resets--button-hover",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            250,
+            226
+          ],
+          "time": 1,
+          "referenceSHA256": "117e66e78975e05f290507473a9b9d16b4a83f9d4a1b5b9dc8bbf5f46616b1f2",
+          "actualSHA256": "117e66e78975e05f290507473a9b9d16b4a83f9d4a1b5b9dc8bbf5f46616b1f2"
+        },
+        {
+          "name": "issue_452_scrollbar_resets--button-out",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            900,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "c0841fe1a754f2b67a80e6c1b631ededd4e0bc27cc773ee593f86eeae47d243c",
+          "actualSHA256": "c0841fe1a754f2b67a80e6c1b631ededd4e0bc27cc773ee593f86eeae47d243c"
+        }
+      ],
+      "sfmlAssertions": [
+        "both tabset/flex lists reach bottom; hover changes button padding without resetting either offset"
+      ],
+      "gl3Assertions": [
+        "both tabset/flex lists reach bottom; hover changes button padding without resetting either offset"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "both tabset/flex lists reach bottom; hover changes button padding without resetting either offset"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "both tabset/flex lists reach bottom; hover changes button padding without resetting either offset"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "both tabset/flex lists reach bottom; hover changes button padding without resetting either offset"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "media_query_01",
+      "sourceSHA256": "377be2c2dcc49c9318aaa0ce787bf792c6d30c1ca0a6fcf67d9f647abbeee52a",
+      "frames": [
+        {
+          "name": "media_query_01",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515630684342e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "b7a07b938435f601e6da0d57ac6466d3e8bdc73f5917dd40fa066c57057e7960",
+          "actualSHA256": "b7a07b938435f601e6da0d57ac6466d3e8bdc73f5917dd40fa066c57057e7960"
+        },
+        {
+          "name": "media_query_01--collapsed",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515630684342e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "9e7a8deb174df0adfa40ecc7c1dc9bf666b181aef7eeaa92e666ab03f71a54d5",
+          "actualSHA256": "9e7a8deb174df0adfa40ecc7c1dc9bf666b181aef7eeaa92e666ab03f71a54d5"
+        },
+        {
+          "name": "media_query_01--expanded",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 8.54492185453637e-06,
+          "pointer": [
+            279,
+            26
+          ],
+          "time": 1,
+          "referenceSHA256": "922b444c0ea4b5a6e460f85f0dd157611561148cb70e4ec493de39caffa646d3",
+          "actualSHA256": "922b444c0ea4b5a6e460f85f0dd157611561148cb70e4ec493de39caffa646d3"
+        },
+        {
+          "name": "media_query_01--menu-open",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.464843751364242e-05,
+          "pointer": [
+            279,
+            26
+          ],
+          "time": 1,
+          "referenceSHA256": "1dbaa5266fe05b70d9ef27c117db2c54e44adce061de33b122448ef7d890c64b",
+          "actualSHA256": "1dbaa5266fe05b70d9ef27c117db2c54e44adce061de33b122448ef7d890c64b"
+        }
+      ],
+      "sfmlAssertions": [
+        "999dp collapses menu; click reveals four stacked items; 1000dp restores horizontal row"
+      ],
+      "gl3Assertions": [
+        "999dp collapses menu; click reveals four stacked items; 1000dp restores horizontal row"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "999dp collapses menu; click reveals four stacked items; 1000dp restores horizontal row"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "999dp collapses menu; click reveals four stacked items; 1000dp restores horizontal row"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "999dp collapses menu; click reveals four stacked items; 1000dp restores horizontal row"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "media_query_02",
+      "sourceSHA256": "fdcb3c3cdfb08bb8204702df650dc4635be11f5a026ed609c5bf4ca5fd2a99ea",
+      "frames": [
+        {
+          "name": "media_query_02",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "1a7c1045b5f8167fbe0d1639a4246a7e656fa3e5032fadac05701d697d6e3878",
+          "actualSHA256": "1a7c1045b5f8167fbe0d1639a4246a7e656fa3e5032fadac05701d697d6e3878"
+        },
+        {
+          "name": "media_query_02--game",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "4ac50c230b182eb6482e6d34825815f1b29aa5a3684fd3717eb2a1792ae8a461",
+          "actualSHA256": "4ac50c230b182eb6482e6d34825815f1b29aa5a3684fd3717eb2a1792ae8a461"
+        },
+        {
+          "name": "media_query_02--high-density",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "de17f5604da52f7485771933dfc2e5d09f798bc24130a2dbf586ec9f0cb963f2",
+          "actualSHA256": "de17f5604da52f7485771933dfc2e5d09f798bc24130a2dbf586ec9f0cb963f2"
+        },
+        {
+          "name": "media_query_02--waves",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "da2e2773d46e8923c7185abeabca3aaa2a369ee309b4f0e14a410c0b86d8667f",
+          "actualSHA256": "da2e2773d46e8923c7185abeabca3aaa2a369ee309b4f0e14a410c0b86d8667f"
+        }
+      ],
+      "sfmlAssertions": [
+        "999px/1024px/1300px select three distinct sprites; 2x resolution selects high-density asset"
+      ],
+      "gl3Assertions": [
+        "999px/1024px/1300px select three distinct sprites; 2x resolution selects high-density asset"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "999px/1024px/1300px select three distinct sprites; 2x resolution selects high-density asset"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "999px/1024px/1300px select three distinct sprites; 2x resolution selects high-density asset"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "999px/1024px/1300px select three distinct sprites; 2x resolution selects high-density asset"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "navigation_01",
+      "sourceSHA256": "dfbe52c29c0ef88a2c700f52fcedad938efa71079d9004df8c5aa0855d54314b",
+      "frames": [
+        {
+          "name": "navigation_01",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "848db5e7c728ee5280132aba3900b164f33cde9d52feda335296f8f99bf93f62",
+          "actualSHA256": "848db5e7c728ee5280132aba3900b164f33cde9d52feda335296f8f99bf93f62"
+        },
+        {
+          "name": "navigation_01--above",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "7469f9e58eb6e63943bdec2bd6998450413833077cf98d7ad9bdc53e549e9792",
+          "actualSHA256": "7469f9e58eb6e63943bdec2bd6998450413833077cf98d7ad9bdc53e549e9792"
+        },
+        {
+          "name": "navigation_01--below",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "441984eb267302325c6d454f8403539925e0d855bf12677aeafc05f8a093d5c3",
+          "actualSHA256": "441984eb267302325c6d454f8403539925e0d855bf12677aeafc05f8a093d5c3"
+        },
+        {
+          "name": "navigation_01--enabled",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "c3d6a0b87b835aac1ae1e04f563bcdbfab97370e87ab15bbb4902e93d819523f",
+          "actualSHA256": "c3d6a0b87b835aac1ae1e04f563bcdbfab97370e87ab15bbb4902e93d819523f"
+        },
+        {
+          "name": "navigation_01--first",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "7469f9e58eb6e63943bdec2bd6998450413833077cf98d7ad9bdc53e549e9792",
+          "actualSHA256": "7469f9e58eb6e63943bdec2bd6998450413833077cf98d7ad9bdc53e549e9792"
+        },
+        {
+          "name": "navigation_01--left",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "fc188e7a7fb0c03c323e96cd19ac6dd9408a08af6dc8768773fc21bec19e9546",
+          "actualSHA256": "fc188e7a7fb0c03c323e96cd19ac6dd9408a08af6dc8768773fc21bec19e9546"
+        },
+        {
+          "name": "navigation_01--offscreen-below",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "0681639dbb714b2f3b7861701c162f331d91fc7eeb778ce26e103846d7141876",
+          "actualSHA256": "0681639dbb714b2f3b7861701c162f331d91fc7eeb778ce26e103846d7141876"
+        },
+        {
+          "name": "navigation_01--offscreen-focused",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "c3d6a0b87b835aac1ae1e04f563bcdbfab97370e87ab15bbb4902e93d819523f",
+          "actualSHA256": "c3d6a0b87b835aac1ae1e04f563bcdbfab97370e87ab15bbb4902e93d819523f"
+        },
+        {
+          "name": "navigation_01--right",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "de44a41aa08f636fecbf2d32f9693299b7fde7d0cb303bf92610a29dbca73fd1",
+          "actualSHA256": "de44a41aa08f636fecbf2d32f9693299b7fde7d0cb303bf92610a29dbca73fd1"
+        },
+        {
+          "name": "navigation_01--tab-next",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            242,
+            32
+          ],
+          "time": 1,
+          "referenceSHA256": "de44a41aa08f636fecbf2d32f9693299b7fde7d0cb303bf92610a29dbca73fd1",
+          "actualSHA256": "de44a41aa08f636fecbf2d32f9693299b7fde7d0cb303bf92610a29dbca73fd1"
+        }
+      ],
+      "sfmlAssertions": [
+        "click enables navigation; four arrows and Tab select exact grid targets",
+        "down from an offscreen wide target selects the next column box and scrolls it into view"
+      ],
+      "gl3Assertions": [
+        "click enables navigation; four arrows and Tab select exact grid targets",
+        "down from an offscreen wide target selects the next column box and scrolls it into view"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "click enables navigation; four arrows and Tab select exact grid targets",
+            "down from an offscreen wide target selects the next column box and scrolls it into view"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "click enables navigation; four arrows and Tab select exact grid targets",
+            "down from an offscreen wide target selects the next column box and scrolls it into view"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "click enables navigation; four arrows and Tab select exact grid targets",
+        "down from an offscreen wide target selects the next column box and scrolls it into view"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "navigation_02",
+      "sourceSHA256": "bffcdf9ef82965824456c81091f95eefc1a087a9f519864b0ef50d21ff538587",
+      "frames": [
+        {
+          "name": "navigation_02",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "e214a7315677573add9402339e98b5fe76197204736fe9bf8b334d7c5ba40276",
+          "actualSHA256": "e214a7315677573add9402339e98b5fe76197204736fe9bf8b334d7c5ba40276"
+        },
+        {
+          "name": "navigation_02--left-bottom-entered",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "27d352c62a31724fd8943ffd00ae20848c1e73dbe8d49979c9eb40436e470bf8",
+          "actualSHA256": "27d352c62a31724fd8943ffd00ae20848c1e73dbe8d49979c9eb40436e470bf8"
+        },
+        {
+          "name": "navigation_02--left-entered",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "aba04a85d03dec16cba7b5209654955fe8ef42a55c3258d3bce41eed55c0491f",
+          "actualSHA256": "aba04a85d03dec16cba7b5209654955fe8ef42a55c3258d3bce41eed55c0491f"
+        },
+        {
+          "name": "navigation_02--left-exited",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "47d2940702f1d7feda822fe71db644246fe09d0c040f54408b22411f84d33930",
+          "actualSHA256": "47d2940702f1d7feda822fe71db644246fe09d0c040f54408b22411f84d33930"
+        },
+        {
+          "name": "navigation_02--right-skipped",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "fae7ef2d1530c3d56befe6f9c452189919c20c014b3e442830ca3a444f7a3b82",
+          "actualSHA256": "fae7ef2d1530c3d56befe6f9c452189919c20c014b3e442830ca3a444f7a3b82"
+        }
+      ],
+      "sfmlAssertions": [
+        "manual down/up enters/exits left scroller, automatic up skips right scroller",
+        "bottom override enters offscreen left item and scrolls it into view"
+      ],
+      "gl3Assertions": [
+        "manual down/up enters/exits left scroller, automatic up skips right scroller",
+        "bottom override enters offscreen left item and scrolls it into view"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "manual down/up enters/exits left scroller, automatic up skips right scroller",
+            "bottom override enters offscreen left item and scrolls it into view"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "manual down/up enters/exits left scroller, automatic up skips right scroller",
+            "bottom override enters offscreen left item and scrolls it into view"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "manual down/up enters/exits left scroller, automatic up skips right scroller",
+        "bottom override enters offscreen left item and scrolls it into view"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "position_absolute_static_position",
+      "sourceSHA256": "e6afdf4e79d6053c86466234ee95cad93737f9f303cf5ae055b7b3ae1eb8918b",
+      "frames": [
+        {
+          "name": "position_absolute_static_position",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00018310546875,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "a0b34ca6dfc54dc2a07b22e4f4351eb33189bd2a6619e0f97fd0ca0707168140",
+          "actualSHA256": "a0b34ca6dfc54dc2a07b22e4f4351eb33189bd2a6619e0f97fd0ca0707168140"
+        },
+        {
+          "name": "position_absolute_static_position--article-bottom",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00018310546875,
+          "pointer": [
+            285,
+            262
+          ],
+          "time": 1.5,
+          "referenceSHA256": "240ed465ba66598827797e73f727f5156dd7c286160bb374a10ac3f41eda50b2",
+          "actualSHA256": "240ed465ba66598827797e73f727f5156dd7c286160bb374a10ac3f41eda50b2"
+        },
+        {
+          "name": "position_absolute_static_position--wheel-scrolled",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00018310546875,
+          "pointer": [
+            285,
+            262
+          ],
+          "time": 1.5,
+          "referenceSHA256": "240ed465ba66598827797e73f727f5156dd7c286160bb374a10ac3f41eda50b2",
+          "actualSHA256": "240ed465ba66598827797e73f727f5156dd7c286160bb374a10ac3f41eda50b2"
+        }
+      ],
+      "sfmlAssertions": [
+        "wheel and direct scroll move article; absolute box remains fixed to wrapper"
+      ],
+      "gl3Assertions": [
+        "wheel and direct scroll move article; absolute box remains fixed to wrapper"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "wheel and direct scroll move article; absolute box remains fixed to wrapper"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "wheel and direct scroll move article; absolute box remains fixed to wrapper"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "wheel and direct scroll move article; absolute box remains fixed to wrapper"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "position_absolute_transform",
+      "sourceSHA256": "48c2cfb902cbd729bb85bcfa6dd0512385edf421816cd8d8993b7f2ca91d1333",
+      "frames": [
+        {
+          "name": "position_absolute_transform",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.004648437500009095,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "bcdc44dc2731358a921a302431a94f6e90d56c6e1bafd0aa973544774aea306b",
+          "actualSHA256": "bcdc44dc2731358a921a302431a94f6e90d56c6e1bafd0aa973544774aea306b"
+        },
+        {
+          "name": "position_absolute_transform--bottom",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004897460937627329,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "f3e04429d3709ecbdc4d735a87a0219c94308cf8473bf8b5e71e77580d6861eb",
+          "actualSHA256": "f3e04429d3709ecbdc4d735a87a0219c94308cf8473bf8b5e71e77580d6861eb"
+        },
+        {
+          "name": "position_absolute_transform--inside",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.004648437500009095,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "e3213bd4c9bc79f26fa0dadee2cc8ed3ead8adfed534f57e474d076afc19f7c1",
+          "actualSHA256": "e3213bd4c9bc79f26fa0dadee2cc8ed3ead8adfed534f57e474d076afc19f7c1"
+        },
+        {
+          "name": "position_absolute_transform--partial",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.004587402343759095,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "a44d5a3a5a19465bf3d1d73435a8c489ab528681084f77a99f1bfec27065d51f",
+          "actualSHA256": "a44d5a3a5a19465bf3d1d73435a8c489ab528681084f77a99f1bfec27065d51f"
+        },
+        {
+          "name": "position_absolute_transform--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.004648437500009095,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "bcdc44dc2731358a921a302431a94f6e90d56c6e1bafd0aa973544774aea306b",
+          "actualSHA256": "bcdc44dc2731358a921a302431a94f6e90d56c6e1bafd0aa973544774aea306b"
+        }
+      ],
+      "sfmlAssertions": [
+        "160dp scroll clips both transformed absolute/fixed children at container padding",
+        "1000dp bottom scroll removes every child pixel; zero offsets restore exact paint"
+      ],
+      "gl3Assertions": [
+        "160dp scroll clips both transformed absolute/fixed children at container padding",
+        "1000dp bottom scroll removes every child pixel; zero offsets restore exact paint"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "160dp scroll clips both transformed absolute/fixed children at container padding",
+            "1000dp bottom scroll removes every child pixel; zero offsets restore exact paint"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "160dp scroll clips both transformed absolute/fixed children at container padding",
+            "1000dp bottom scroll removes every child pixel; zero offsets restore exact paint"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "160dp scroll clips both transformed absolute/fixed children at container padding",
+        "1000dp bottom scroll removes every child pixel; zero offsets restore exact paint"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "scrollable_overflow",
+      "sourceSHA256": "53c41ac0d3d7696c490177608d0a0ede0bfa21df23cd519b8f7fa6a5a4272a03",
+      "frames": [
+        {
+          "name": "scrollable_overflow",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "d7cf3e4b0c76fbc9132ec1455a7567ace4e44525002c4e3198b2314ff4104259",
+          "actualSHA256": "d7cf3e4b0c76fbc9132ec1455a7567ace4e44525002c4e3198b2314ff4104259"
+        },
+        {
+          "name": "scrollable_overflow--end",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "d0f43d3f7a1cfbf65103fdd7404299a8fb2bb77418d9312c026d3fcfbf513f3e",
+          "actualSHA256": "d0f43d3f7a1cfbf65103fdd7404299a8fb2bb77418d9312c026d3fcfbf513f3e"
+        },
+        {
+          "name": "scrollable_overflow--start",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "d7cf3e4b0c76fbc9132ec1455a7567ace4e44525002c4e3198b2314ff4104259",
+          "actualSHA256": "d7cf3e4b0c76fbc9132ec1455a7567ace4e44525002c4e3198b2314ff4104259"
+        }
+      ],
+      "sfmlAssertions": [
+        "oversized direct children include trailing margins/padding; nested border excludes margin",
+        "both horizontal limits and margin-only vertical limit clamp, move children and restore exact paint"
+      ],
+      "gl3Assertions": [
+        "oversized direct children include trailing margins/padding; nested border excludes margin",
+        "both horizontal limits and margin-only vertical limit clamp, move children and restore exact paint"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "oversized direct children include trailing margins/padding; nested border excludes margin",
+            "both horizontal limits and margin-only vertical limit clamp, move children and restore exact paint"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "oversized direct children include trailing margins/padding; nested border excludes margin",
+            "both horizontal limits and margin-only vertical limit clamp, move children and restore exact paint"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "oversized direct children include trailing margins/padding; nested border excludes margin",
+        "both horizontal limits and margin-only vertical limit clamp, move children and restore exact paint"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "scrollable_overflow_height",
+      "sourceSHA256": "a8b87716c010617caf1aa9ec1d061e2232c044fd4b38f279c42cfac0161e044d",
+      "frames": [
+        {
+          "name": "scrollable_overflow_height",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.394531254092726e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "62e2b0a1d4b542573cbafafe3bf98a9ed58b422a06ec7cde0dad97aed5b3d696",
+          "actualSHA256": "62e2b0a1d4b542573cbafafe3bf98a9ed58b422a06ec7cde0dad97aed5b3d696"
+        },
+        {
+          "name": "scrollable_overflow_height--end",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.394531254092726e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "0f48ad1c6ce6a908cb599792df0f414099524f777f13e1a77b8ffd55708b691d",
+          "actualSHA256": "0f48ad1c6ce6a908cb599792df0f414099524f777f13e1a77b8ffd55708b691d"
+        },
+        {
+          "name": "scrollable_overflow_height--start",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.394531254092726e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "62e2b0a1d4b542573cbafafe3bf98a9ed58b422a06ec7cde0dad97aed5b3d696",
+          "actualSHA256": "62e2b0a1d4b542573cbafafe3bf98a9ed58b422a06ec7cde0dad97aed5b3d696"
+        }
+      ],
+      "sfmlAssertions": [
+        "all twelve block/flex height modes clamp to the declared scroll limits",
+        "padded maximum-height adds trailing margin/padding; auto horizontal case retains scrollbar height"
+      ],
+      "gl3Assertions": [
+        "all twelve block/flex height modes clamp to the declared scroll limits",
+        "padded maximum-height adds trailing margin/padding; auto horizontal case retains scrollbar height"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "all twelve block/flex height modes clamp to the declared scroll limits",
+            "padded maximum-height adds trailing margin/padding; auto horizontal case retains scrollbar height"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "all twelve block/flex height modes clamp to the declared scroll limits",
+            "padded maximum-height adds trailing margin/padding; auto horizontal case retains scrollbar height"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "all twelve block/flex height modes clamp to the declared scroll limits",
+        "padded maximum-height adds trailing margin/padding; auto horizontal case retains scrollbar height"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "scrollable_overflow_margin_padding",
+      "sourceSHA256": "6107e7d07ca073331dfe1bdc29ef78f8189a85bd2053c2312fedc4401e9eaeaf",
+      "frames": [
+        {
+          "name": "scrollable_overflow_margin_padding",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.591796875454747e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "f203260e7f113aa33fb606e7638a056f68df99626bc7212e5da47c9045105ad2",
+          "actualSHA256": "f203260e7f113aa33fb606e7638a056f68df99626bc7212e5da47c9045105ad2"
+        },
+        {
+          "name": "scrollable_overflow_margin_padding--base-bottom",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.591796875454747e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "94ba1763e88492972ab476a73b972abb68e73e7ec1e32963c4be824044745303",
+          "actualSHA256": "94ba1763e88492972ab476a73b972abb68e73e7ec1e32963c4be824044745303"
+        },
+        {
+          "name": "scrollable_overflow_margin_padding--end",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.591796875454747e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "19174b95a15230fa6b9bc02f17dface4bbd8a7ef1fc0104e649bef4070773ee3",
+          "actualSHA256": "19174b95a15230fa6b9bc02f17dface4bbd8a7ef1fc0104e649bef4070773ee3"
+        },
+        {
+          "name": "scrollable_overflow_margin_padding--start",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.591796875454747e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "94ba1763e88492972ab476a73b972abb68e73e7ec1e32963c4be824044745303",
+          "actualSHA256": "94ba1763e88492972ab476a73b972abb68e73e7ec1e32963c4be824044745303"
+        }
+      ],
+      "sfmlAssertions": [
+        "all eighteen flex-column/flex-row/block margin/padding permutations reach exact end limits",
+        "direct-child margins and end padding extend limits; nested descendants contribute border only"
+      ],
+      "gl3Assertions": [
+        "all eighteen flex-column/flex-row/block margin/padding permutations reach exact end limits",
+        "direct-child margins and end padding extend limits; nested descendants contribute border only"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "all eighteen flex-column/flex-row/block margin/padding permutations reach exact end limits",
+            "direct-child margins and end padding extend limits; nested descendants contribute border only"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "all eighteen flex-column/flex-row/block margin/padding permutations reach exact end limits",
+            "direct-child margins and end padding extend limits; nested descendants contribute border only"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "all eighteen flex-column/flex-row/block margin/padding permutations reach exact end limits",
+        "direct-child margins and end padding extend limits; nested descendants contribute border only"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "scrollable_overflow_values",
+      "sourceSHA256": "8ea6f73b27806bd35865ed70f380eb6f6967f89ded626f61393fba0a6c228a36",
+      "frames": [
+        {
+          "name": "scrollable_overflow_values",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00012695312500454747,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "2bbce0405fedd6953624710b1bc2b484bda71cadb5bbd0f10e28dee3de18b7d8",
+          "actualSHA256": "2bbce0405fedd6953624710b1bc2b484bda71cadb5bbd0f10e28dee3de18b7d8"
+        },
+        {
+          "name": "scrollable_overflow_values--scrollbar-axes",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00012695312500454747,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "2bbce0405fedd6953624710b1bc2b484bda71cadb5bbd0f10e28dee3de18b7d8",
+          "actualSHA256": "2bbce0405fedd6953624710b1bc2b484bda71cadb5bbd0f10e28dee3de18b7d8"
+        }
+      ],
+      "sfmlAssertions": [
+        "all 14 block/flex overflow declarations expose precisely the specified scrollbar axes"
+      ],
+      "gl3Assertions": [
+        "all 14 block/flex overflow declarations expose precisely the specified scrollbar axes"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "all 14 block/flex overflow declarations expose precisely the specified scrollbar axes"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "all 14 block/flex overflow declarations expose precisely the specified scrollbar axes"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "all 14 block/flex overflow declarations expose precisely the specified scrollbar axes"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "table_04",
+      "sourceSHA256": "b4220559bdfd9edb5a54e35df35833b84935f3b58f8fb24e307de077c26efe65",
+      "frames": [
+        {
+          "name": "table_04",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.2207031261368684e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "2e1597b1e64c2acf9f057b7da2a0fcaf59a933ab419aa36786fb403f28d347a8",
+          "actualSHA256": "2e1597b1e64c2acf9f057b7da2a0fcaf59a933ab419aa36786fb403f28d347a8"
+        },
+        {
+          "name": "table_04--large",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.1035156235789145e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "986b2f0791a8dc447bad3181b943c3821cd463c08170617e2a2ff798f23fccf2",
+          "actualSHA256": "986b2f0791a8dc447bad3181b943c3821cd463c08170617e2a2ff798f23fccf2"
+        },
+        {
+          "name": "table_04--larger",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.1035156235789145e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "0ad96962c5f0520d18d18c38da50e5f73ff11cd11b1fa911cc6185a9e3103e63",
+          "actualSHA256": "0ad96962c5f0520d18d18c38da50e5f73ff11cd11b1fa911cc6185a9e3103e63"
+        },
+        {
+          "name": "table_04--small",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515630684342e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "7d898915b7721fe12b3ea38d2a02495ca9f9133594036edf476bf0253448f5cc",
+          "actualSHA256": "7d898915b7721fe12b3ea38d2a02495ca9f9133594036edf476bf0253448f5cc"
+        },
+        {
+          "name": "table_04--smaller",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515630684342e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "61e6a4ee79aea12a7d833ff322c2e7d8ef131cb3ca8133961c8bb503f24f7b9b",
+          "actualSHA256": "61e6a4ee79aea12a7d833ff322c2e7d8ef131cb3ca8133961c8bb503f24f7b9b"
+        }
+      ],
+      "sfmlAssertions": [
+        "downsizing reaches 60dp minima without reducing table height",
+        "upsizing reaches 120/240/120dp maxima and leaves 100dp extra empty space"
+      ],
+      "gl3Assertions": [
+        "downsizing reaches 60dp minima without reducing table height",
+        "upsizing reaches 120/240/120dp maxima and leaves 100dp extra empty space"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "downsizing reaches 60dp minima without reducing table height",
+            "upsizing reaches 120/240/120dp maxima and leaves 100dp extra empty space"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "downsizing reaches 60dp minima without reducing table height",
+            "upsizing reaches 120/240/120dp maxima and leaves 100dp extra empty space"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "downsizing reaches 60dp minima without reducing table height",
+        "upsizing reaches 120/240/120dp maxima and leaves 100dp extra empty space"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "text_decorator",
+      "sourceSHA256": "8cc36576a35ee1274c876a6771d1af2f986296f1ea91a1ab5dee967cdd8a13bb",
+      "frames": [
+        {
+          "name": "text_decorator",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--bold-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--bold",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            617,
+            463
+          ],
+          "time": 1,
+          "referenceSHA256": "fdb6d5f79992ef8d17b3cc7a7cc7d95dce492ef3ecccf5e58b1033ed4c9814e7",
+          "actualSHA256": "fdb6d5f79992ef8d17b3cc7a7cc7d95dce492ef3ecccf5e58b1033ed4c9814e7"
+        },
+        {
+          "name": "text_decorator--color-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--color",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            107,
+            463
+          ],
+          "time": 1,
+          "referenceSHA256": "cffadd9df9134bc5865aacf4d66867403804153a20fcd7164a4cbfc6b7b78cdd",
+          "actualSHA256": "cffadd9df9134bc5865aacf4d66867403804153a20fcd7164a4cbfc6b7b78cdd"
+        },
+        {
+          "name": "text_decorator--earth-again",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--font-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--font",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            107,
+            533
+          ],
+          "time": 1,
+          "referenceSHA256": "2d21563417d1d6c1735b19135977b959e57886dcca00541ec74f22c4aa28b174",
+          "actualSHA256": "2d21563417d1d6c1735b19135977b959e57886dcca00541ec74f22c4aa28b174"
+        },
+        {
+          "name": "text_decorator--italic-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--italic",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            447,
+            463
+          ],
+          "time": 1,
+          "referenceSHA256": "93ca3b4da579a6cfb5653d6c409cd7df68087e1907c7b8d71b15f5f966d904e9",
+          "actualSHA256": "93ca3b4da579a6cfb5653d6c409cd7df68087e1907c7b8d71b15f5f966d904e9"
+        },
+        {
+          "name": "text_decorator--opacity-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--opacity",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            277,
+            463
+          ],
+          "time": 1,
+          "referenceSHA256": "40cb5c809fe658e4e8910d639c90c3f9568989a001b7e1149ec54811a253c8f2",
+          "actualSHA256": "40cb5c809fe658e4e8910d639c90c3f9568989a001b7e1149ec54811a253c8f2"
+        },
+        {
+          "name": "text_decorator--red-heart",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            107,
+            59
+          ],
+          "time": 1,
+          "referenceSHA256": "690a9174a92ecb649c66b1b30a5a37ece709c03aafe279244ba8d377863a2016",
+          "actualSHA256": "690a9174a92ecb649c66b1b30a5a37ece709c03aafe279244ba8d377863a2016"
+        },
+        {
+          "name": "text_decorator--size-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--size",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            277,
+            533
+          ],
+          "time": 1,
+          "referenceSHA256": "266a6bec266241a088f631d13c7b4d98c64663a18e9baf79ed86680550c8f6b9",
+          "actualSHA256": "266a6bec266241a088f631d13c7b4d98c64663a18e9baf79ed86680550c8f6b9"
+        },
+        {
+          "name": "text_decorator--spacing-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8",
+          "actualSHA256": "494a24d06012dbe83c803a2215946203f0acae3b42abcfd87ef9bca0ff6355f8"
+        },
+        {
+          "name": "text_decorator--spacing",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 2.4414062522737368e-05,
+          "pointer": [
+            787,
+            463
+          ],
+          "time": 1,
+          "referenceSHA256": "4ab5fa9de85044fe364724edb0baa590d728a93b28cb51a08dbef3501551a717",
+          "actualSHA256": "4ab5fa9de85044fe364724edb0baa590d728a93b28cb51a08dbef3501551a717"
+        }
+      ],
+      "sfmlAssertions": [
+        "hover substitutes red heart text; exit restores exact earth text pixels without moving box",
+        "all seven inherited color/opacity/italic/bold/spacing/debugger-font/size hover variants paint real glyphs",
+        "every exit restores exact original pixels and every hover preserves all layout boxes"
+      ],
+      "gl3Assertions": [
+        "hover substitutes red heart text; exit restores exact earth text pixels without moving box",
+        "all seven inherited color/opacity/italic/bold/spacing/debugger-font/size hover variants paint real glyphs",
+        "every exit restores exact original pixels and every hover preserves all layout boxes"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "hover substitutes red heart text; exit restores exact earth text pixels without moving box",
+            "all seven inherited color/opacity/italic/bold/spacing/debugger-font/size hover variants paint real glyphs",
+            "every exit restores exact original pixels and every hover preserves all layout boxes"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "hover substitutes red heart text; exit restores exact earth text pixels without moving box",
+            "all seven inherited color/opacity/italic/bold/spacing/debugger-font/size hover variants paint real glyphs",
+            "every exit restores exact original pixels and every hover preserves all layout boxes"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "hover substitutes red heart text; exit restores exact earth text pixels without moving box",
+        "all seven inherited color/opacity/italic/bold/spacing/debugger-font/size hover variants paint real glyphs",
+        "every exit restores exact original pixels and every hover preserves all layout boxes"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    },
+    {
+      "name": "text_overflow_01",
+      "sourceSHA256": "62e4b7732ee27dda81feb93f707a2e97512163a572922ebf026e08878a2b1f3b",
+      "frames": [
+        {
+          "name": "text_overflow_01",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "299a224a167992065a4b0571fe4b83570315c1b1c4f3505b43b9104f5ababb4e",
+          "actualSHA256": "299a224a167992065a4b0571fe4b83570315c1b1c4f3505b43b9104f5ababb4e"
+        },
+        {
+          "name": "text_overflow_01--break-base",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            161,
+            729
+          ],
+          "time": 1,
+          "referenceSHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8",
+          "actualSHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8"
+        },
+        {
+          "name": "text_overflow_01--break-hover",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            33,
+            551
+          ],
+          "time": 1,
+          "referenceSHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8",
+          "actualSHA256": "a91e951fd85c84a9c3afb804f6a893a61e850cfc798194b726248e667838b9f8"
+        },
+        {
+          "name": "text_overflow_01--initial-repeat",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-0-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-0",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            33,
+            102
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-1-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-1",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            33,
+            224
+          ],
+          "time": 1,
+          "referenceSHA256": "9337cdb41afc4129afa9387cba0b2c33cf38ac0abc8e6bad6aa237082a05cbfb",
+          "actualSHA256": "9337cdb41afc4129afa9387cba0b2c33cf38ac0abc8e6bad6aa237082a05cbfb"
+        },
+        {
+          "name": "text_overflow_01--line-2-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--line-2",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            33,
+            299
+          ],
+          "time": 1,
+          "referenceSHA256": "bab291e055a67236739e573401be716395c9390ba0cf10fe7763212842b5dfea",
+          "actualSHA256": "bab291e055a67236739e573401be716395c9390ba0cf10fe7763212842b5dfea"
+        },
+        {
+          "name": "text_overflow_01--narrow-0",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            26,
+            395
+          ],
+          "time": 1,
+          "referenceSHA256": "00daf5a8318bc6bff28141e66b32b615c663e6e8e5c9f21d3a1951c26a41574d",
+          "actualSHA256": "00daf5a8318bc6bff28141e66b32b615c663e6e8e5c9f21d3a1951c26a41574d"
+        },
+        {
+          "name": "text_overflow_01--narrow-1",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            21,
+            425
+          ],
+          "time": 1,
+          "referenceSHA256": "6fed674d88726f7375eb78a389677441d8aaa4dc8f594b6e15fc0b689c72f76e",
+          "actualSHA256": "6fed674d88726f7375eb78a389677441d8aaa4dc8f594b6e15fc0b689c72f76e"
+        },
+        {
+          "name": "text_overflow_01--narrow-2",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            19,
+            455
+          ],
+          "time": 1,
+          "referenceSHA256": "6d1c58ef91a88be97fa26ac97bdc9a6917b4bca462f6b4c47cd662b0d05fd688",
+          "actualSHA256": "6d1c58ef91a88be97fa26ac97bdc9a6917b4bca462f6b4c47cd662b0d05fd688"
+        },
+        {
+          "name": "text_overflow_01--narrow-3",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            16,
+            485
+          ],
+          "time": 1,
+          "referenceSHA256": "b8bd024cef0a91229496ee678bc5663f98eca912f7a604f2cd8545d6d2ac5185",
+          "actualSHA256": "b8bd024cef0a91229496ee678bc5663f98eca912f7a604f2cd8545d6d2ac5185"
+        },
+        {
+          "name": "text_overflow_01--narrow-4",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            13,
+            515
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-5",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            12,
+            545
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-6",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            11,
+            575
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-7",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            11,
+            598
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-8",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            11,
+            620
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--narrow-9",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            11,
+            650
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        },
+        {
+          "name": "text_overflow_01--scroller-end",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            161,
+            729
+          ],
+          "time": 1,
+          "referenceSHA256": "3e540d51725d55e68b86147900ee7087e853f884512e82162e17608c1efbdbca",
+          "actualSHA256": "3e540d51725d55e68b86147900ee7087e853f884512e82162e17608c1efbdbca"
+        },
+        {
+          "name": "text_overflow_01--scroller-hover",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.00017089843754547474,
+          "pointer": [
+            161,
+            729
+          ],
+          "time": 1,
+          "referenceSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98",
+          "actualSHA256": "44c3f06275b93ee01abe556073f79997e64e2c6e3684de1574ca596e7ddc8b98"
+        }
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels",
+            "stack": [
+              {
+                "source": "interactions/validators/rendering/text.py",
+                "line": 102,
+                "expression": "assert not failures, \"; \".join(failures)"
+              }
+            ]
+          }
+        },
+        "gl3": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels",
+            "stack": [
+              {
+                "source": "interactions/validators/rendering/text.py",
+                "line": 102,
+                "expression": "assert not failures, \"; \".join(failures)"
+              }
+            ]
+          }
+        }
+      },
+      "assertionFailures": {
+        "sfml": {
+          "message": "second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels",
+          "validator": "interactions/validators/rendering/text.py",
+          "line": 102
+        },
+        "gl3": {
+          "message": "second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels",
+          "validator": "interactions/validators/rendering/text.py",
+          "line": 102
+        }
+      },
+      "status": "fail",
+      "error": "{\"sfml\": {\"message\": \"second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels\", \"validator\": \"interactions/validators/rendering/text.py\", \"line\": 102}, \"gl3\": {\"message\": \"second render changes initial text without any input or elapsed time; line-1: hover exit did not restore text pixels\", \"validator\": \"interactions/validators/rendering/text.py\", \"line\": 102}}",
+      "bindingStatus": "upstream-failure-deferred",
+      "bindingAccepted": true
+    },
+    {
+      "name": "text_overflow_02",
+      "sourceSHA256": "92bcd7d8e03544f950c09d6d83233a0c63602de8fe9aac08c0d75cc7000dec93",
+      "frames": [
+        {
+          "name": "text_overflow_02",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-1-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-1",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            73
+          ],
+          "time": 1,
+          "referenceSHA256": "759247faefae2cb8a0b8b8ab618cfe86d7e410a01fa1aa2b3788d08750296437",
+          "actualSHA256": "759247faefae2cb8a0b8b8ab618cfe86d7e410a01fa1aa2b3788d08750296437"
+        },
+        {
+          "name": "text_overflow_02--custom-2-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-2",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            103
+          ],
+          "time": 1,
+          "referenceSHA256": "cd15b5d8b147e4469f275c4296884bab60fbb8a304ec8108de13fa697964dd05",
+          "actualSHA256": "cd15b5d8b147e4469f275c4296884bab60fbb8a304ec8108de13fa697964dd05"
+        },
+        {
+          "name": "text_overflow_02--custom-3-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-3",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            133
+          ],
+          "time": 1,
+          "referenceSHA256": "beb0a3386804892602647d9251267aefd07bc505dd72949e1535757f531f7b86",
+          "actualSHA256": "beb0a3386804892602647d9251267aefd07bc505dd72949e1535757f531f7b86"
+        },
+        {
+          "name": "text_overflow_02--custom-4-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-4",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            163
+          ],
+          "time": 1,
+          "referenceSHA256": "1b77e570f05c8a9b06f64651807eebafe736eb1d554c5496da84f55ed4907a9f",
+          "actualSHA256": "1b77e570f05c8a9b06f64651807eebafe736eb1d554c5496da84f55ed4907a9f"
+        },
+        {
+          "name": "text_overflow_02--custom-5-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-5",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            193
+          ],
+          "time": 1,
+          "referenceSHA256": "f35fff75b5f929b944180baa67c0267af9b856685b11573437d016257f0cc278",
+          "actualSHA256": "f35fff75b5f929b944180baa67c0267af9b856685b11573437d016257f0cc278"
+        },
+        {
+          "name": "text_overflow_02--custom-6-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-6",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            223
+          ],
+          "time": 1,
+          "referenceSHA256": "c29c785e045584edb861196e3cbaeddea04682890f65a2875d0ebb2d34cf32f5",
+          "actualSHA256": "c29c785e045584edb861196e3cbaeddea04682890f65a2875d0ebb2d34cf32f5"
+        },
+        {
+          "name": "text_overflow_02--custom-7-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-7",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            33,
+            253
+          ],
+          "time": 1,
+          "referenceSHA256": "406605816baa8d398c147282f43e8994333f960c93ff73b733c9881a628ea6cd",
+          "actualSHA256": "406605816baa8d398c147282f43e8994333f960c93ff73b733c9881a628ea6cd"
+        },
+        {
+          "name": "text_overflow_02--custom-8-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            1000,
+            700
+          ],
+          "time": 1,
+          "referenceSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e",
+          "actualSHA256": "37b64fae6d345bfc8147fc6e35568e24ca6057a42e9fd5ed5ab8c82ff5e37a6e"
+        },
+        {
+          "name": "text_overflow_02--custom-8",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 4.8828125045474735e-05,
+          "pointer": [
+            61,
+            283
+          ],
+          "time": 1,
+          "referenceSHA256": "64ff4131ea2eee59bc988d6d1df5c514ca3a2dafaf021ed3065a510088ca12ac",
+          "actualSHA256": "64ff4131ea2eee59bc988d6d1df5c514ca3a2dafaf021ed3065a510088ca12ac"
+        }
+      ],
+      "sfmlAssertions": [
+        "all eight empty/dot/bullet/emoji/custom-string markers change real text paint on hover",
+        "every box and inline layout stays fixed; every exit restores exact original marker glyphs"
+      ],
+      "gl3Assertions": [
+        "all eight empty/dot/bullet/emoji/custom-string markers change real text paint on hover",
+        "every box and inline layout stays fixed; every exit restores exact original marker glyphs"
+      ],
+      "interactionResults": {
+        "sfml": {
+          "status": "pass",
+          "assertions": [
+            "all eight empty/dot/bullet/emoji/custom-string markers change real text paint on hover",
+            "every box and inline layout stays fixed; every exit restores exact original marker glyphs"
+          ]
+        },
+        "gl3": {
+          "status": "pass",
+          "assertions": [
+            "all eight empty/dot/bullet/emoji/custom-string markers change real text paint on hover",
+            "every box and inline layout stays fixed; every exit restores exact original marker glyphs"
+          ]
+        }
+      },
+      "assertionFailures": {},
+      "assertions": [
+        "all eight empty/dot/bullet/emoji/custom-string markers change real text paint on hover",
+        "every box and inline layout stays fixed; every exit restores exact original marker glyphs"
+      ],
+      "status": "pass",
+      "bindingStatus": "pass",
+      "bindingAccepted": true
+    }
+  ],
+  "summary": {
+    "pages": 25,
+    "frames": 165,
+    "byteExactFrames": 165,
+    "pass": 23,
+    "fail": 2,
+    "deferredUpstreamFailures": 2,
+    "bindingRegressions": 0,
+    "bindingAccepted": true,
+    "wholeCorpusAccepted": false
+  },
+  "mutationChecks": {
+    "rejected": 16,
+    "checks": [
+      {
+        "driver": "sfml",
+        "page": "navigation_01",
+        "operation": "focus",
+        "state": "right",
+        "path": "0/2/1",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "handle_target_anchor",
+        "operation": "edge",
+        "state": "target-2-edge-max",
+        "path": "0/2",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "inline_formatting_03",
+        "operation": "split",
+        "state": "split",
+        "path": "0/0/1",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "text_decorator",
+        "operation": "missing-glyphs",
+        "state": "font",
+        "path": "0/9/5",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "text_overflow_02",
+        "operation": "missing-glyphs",
+        "state": "custom-3",
+        "path": "0/1/3",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "issue_143_overflow_in_absolutely_positioned_input",
+        "operation": "input-ink",
+        "state": "hover-clipped",
+        "path": "0/0",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "position_absolute_transform",
+        "operation": "escaped-child",
+        "state": "bottom",
+        "path": "0/0/0/2",
+        "rejected": true
+      },
+      {
+        "driver": "sfml",
+        "page": "scrollable_overflow_margin_padding",
+        "operation": "offset",
+        "state": "end",
+        "path": "0/1/0/1",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "navigation_01",
+        "operation": "focus",
+        "state": "right",
+        "path": "0/2/1",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "handle_target_anchor",
+        "operation": "edge",
+        "state": "target-2-edge-max",
+        "path": "0/2",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "inline_formatting_03",
+        "operation": "split",
+        "state": "split",
+        "path": "0/0/1",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "text_decorator",
+        "operation": "missing-glyphs",
+        "state": "font",
+        "path": "0/9/5",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "text_overflow_02",
+        "operation": "missing-glyphs",
+        "state": "custom-3",
+        "path": "0/1/3",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "issue_143_overflow_in_absolutely_positioned_input",
+        "operation": "input-ink",
+        "state": "hover-clipped",
+        "path": "0/0",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "position_absolute_transform",
+        "operation": "escaped-child",
+        "state": "bottom",
+        "path": "0/0/0/2",
+        "rejected": true
+      },
+      {
+        "driver": "gl3",
+        "page": "scrollable_overflow_margin_padding",
+        "operation": "offset",
+        "state": "end",
+        "path": "0/1/0/1",
+        "rejected": true
+      }
+    ],
+    "actionsSHA256": "81727a18b1947fc66ed6389b6b92d92c00dbca39cd47edad185529952b5da92a"
+  }
+}

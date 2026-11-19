@@ -1,0 +1,12 @@
+.eslintrc.cjs
+.gitignore
+.vscodeignore
+tsconfig.json
+src/**
+tools/**
+test/**
+rush-logs/**
+.rush/**
+node_modules/**
+**/*.map
+*.vsix

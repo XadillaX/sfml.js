@@ -1,0 +1,108 @@
+{
+  "status": "locally-verified-converter-templates-macos-arm64",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "converter_mapping": "docs/rmlui/audit/6.3/type-converter-declaration-map.json",
+  "converter_mapping_sha256": "858539258e4bb0468f0a92e874957becd3a3213b3f2821af90ba2c5eeb36113f",
+  "converter_original_records": 317,
+  "concrete_native_specializations": 152,
+  "consumer_original_records": 26,
+  "original_ledger_status_promotions": 17,
+  "core_promotions": 8,
+  "supplemental_promotions": 9,
+  "native_runtime_groups": 22,
+  "compile_control_cases": 1,
+  "compile_rejection_cases": 2,
+  "compile_rejections_are_runtime_passes": false,
+  "whole_scope_complete": false,
+  "full_core_19_accepted": false,
+  "pointer_addresses_exposed_to_js": false,
+  "native_build_environment_isolated": false,
+  "native_probes_in_ordinary_package_pass_count": false,
+  "native": [
+    {
+      "path": "/tmp/rmlui-63-completion/type-converter-permanent-runner-1.log",
+      "sha256": "99db8b3cf96d369f154ab9b4c83ad66a97f566cf4bc24f244a0507e22b5e98d1",
+      "literal_pass_lines": 25
+    }
+  ],
+  "focused_js": {
+    "path": "/tmp/rmlui-63-completion/variant-template-destinations-focused-2.log",
+    "sha256": "04ac1f4129f2dc5158dffa5af40c9b141e276c4fcb0b15acb682095a6bc973e6",
+    "literal_pass_lines": 9
+  },
+  "native_style": {
+    "path": "/tmp/rmlui-63-completion/type-converter-contracts-style-2.log",
+    "sha256": "9802e781fc8fccd73934e40a84b9a091607d84f443dd1cabf9932ecb6799b924",
+    "literal_pass_lines": 0
+  },
+  "native_naming": [
+    {
+      "path": "/tmp/rmlui-63-completion/type-converter-scalars-naming-2.log",
+      "sha256": "02cfd251b5b0f915452780d058cc0af3aac4611c5411ca6464f292f2f8b46e12",
+      "literal_pass_lines": 1
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/type-converter-contracts-naming-2.log",
+      "sha256": "c625aa38a758535ca6e00ea75825cfbd14d65703fd32f6db4a8973f3dab66dc3",
+      "literal_pass_lines": 3
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/type-converter-contracts-naming-3.log",
+      "sha256": "cf5f932ee54a20610f6a782e2712442d12651920f154d4561114373f0dc31586",
+      "literal_pass_lines": 3
+    },
+    {
+      "path": "/tmp/rmlui-63-completion/variant-template-consumers-naming-3.log",
+      "sha256": "aadaec9deb0521108d6874c48fb1cebada4e0f215ca99b0c82e5c4da6e8f5518",
+      "literal_pass_lines": 1
+    }
+  ],
+  "package": {
+    "path": "/tmp/rmlui-63-completion/type-converter-template-package-1.log",
+    "sha256": "345fc9ef55111abc9909301368d8f1bf6bf768d1a84e496dd1e956d67bec1b0c",
+    "literal_pass_lines": 1099,
+    "runtime_files": 109,
+    "failures": 0,
+    "native_compiler_errors": 0,
+    "native_compiler_warnings": 0
+  },
+  "site": {
+    "test": {
+      "path": "/tmp/rmlui-63-completion/type-converter-template-site-test-1.log",
+      "sha256": "630e0f5dda38bbdb15ad0fe2879e89352472b48fd110b16a595bd66dcc7c1885",
+      "literal_pass_lines": 0
+    },
+    "build": {
+      "path": "/tmp/rmlui-63-completion/type-converter-template-site-build-1.log",
+      "sha256": "41298c2e00e7dbf63b0062c69f950d69efd368fc03accaec2006e586adf0696c",
+      "literal_pass_lines": 0
+    },
+    "tests": 81,
+    "failures": 0,
+    "skipped": 0
+  },
+  "fixture_setup_failures_not_product_regressions": [
+    "type-converter-contracts-native-3.log: fixture used an invalid EventId enumerator",
+    "type-converter-contracts-native-4.log: standalone executable lacked the product Lua lifecycle symbols; final fixture loads the real addon"
+  ],
+  "source_sha256": {
+    "packages/sfml.js-rmlui/test/native/type-converter-scalars.cc": "4cba5f6c9b19bee8eae977cc7e181dbb59133c363999139a003e8d49f5dc7690",
+    "packages/sfml.js-rmlui/test/native/type-converter-strings.cc": "e2d46ba1e2c1b8ded59d55cf729832722455768ee83bdeb87530b2bab8bbf5e9",
+    "packages/sfml.js-rmlui/test/native/type-converter-complex.cc": "4b438a23a286b77d16108c2329714c8d70c3af09eee7e82e01630ff712394ed6",
+    "packages/sfml.js-rmlui/test/native/type-converter-unsupported.cc": "fc4effe6788504465b4bc046b84acd538e069bd0664ce706feb567a15735bae3",
+    "packages/sfml.js-rmlui/test/native/variant-template-consumers.cc": "6b87a7c4cd181814e14aac3668c52587deb1e699ecc87fe9a6508b5d75c4990c",
+    "packages/sfml.js-rmlui/test/native/variant-template-consumers.cjs": "4f7f48da2d9c72a2a3fa5162447f176f706d0730c472c71b53a96b162494e098",
+    "packages/sfml.js-rmlui/test/native/build-type-converter-contracts.py": "0beec311b96c4a266b81d392ed330980c27a3149097a41fb6934e45433ea0d8f",
+    "packages/sfml.js-rmlui/test/variant-template-destinations.test.cjs": "47817a1a3c9ea0e6c56970ba0f3beb35dc9dab393f427d9a857b1ffea4d54a20",
+    "packages/sfml.js-rmlui/src/variant.ts": "4c102fcbf62c6ebd7d0b579c1a0e649019f3597830602fa026d1c819961d15d3",
+    "packages/sfml.js-rmlui/native/rmlui-variant-conversion.cc": "ef676d89e941565f47ea07496aff4c8191c50182114ef43d4802167ca531bd56",
+    "packages/sfml.js-rmlui/native/rmlui-owned-variant.cc": "9ff2faa1e0c63883f1a9cbac6cd6b9abe380683787ebe22658cbaa4420e16873",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/TypeConverter.h": "9b0046878f3e201db001f5ecc13661de9c838ef3cd5e943e8e458e66712cf4c8",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/TypeConverter.inl": "f7f1047095dd2a5688f0f286a6d281ea6bbc4e22fa8253304a3c7dd94250a131",
+    "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/TypeConverter.cpp": "aeda0a910c787a9925d30bec9a36027c05c0a63e4206dd2d716f15a903f4f1b6",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Variant.h": "bf197bc7c296a9ee26309a0fac73eda0e4e4bda85a8791040dd8dfeec6620efd",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Variant.inl": "b78000ef7d3b6d6872b8890d9603da10dc93ef5a0e0b5aecb5d42af61c0a901b",
+    "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.inl": "5c16e5a7da1916865ced6fc2bce42097a99f9d47b73efd3d4484f67ed1505a00"
+  }
+}

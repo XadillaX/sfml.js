@@ -25,6 +25,22 @@
       "shouldPublish": true
     },
     {
+      "packageName": "sfml.js-rmlui",
+      "projectFolder": "packages/sfml.js-rmlui",
+      "versionPolicyName": "sfml-js",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "sfmljs-rmlui-language-server",
+      "projectFolder": "packages/sfmljs-rmlui-language-server",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "sfmljs-rmlui-vscode",
+      "projectFolder": "packages/sfmljs-rmlui-vscode",
+      "shouldPublish": false
+    },
+    {
       "packageName": "sfml-js-site",
       "projectFolder": "site",
       "shouldPublish": false

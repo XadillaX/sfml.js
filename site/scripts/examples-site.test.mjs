@@ -25,13 +25,14 @@ const exampleRoutes = [
   '/examples/features',
   '/examples/official',
   '/examples/imgui',
+  '/examples/rmlui',
   '/examples/projects',
 ];
 const groupLabels = {
-  root: [ 'Learn', 'Modules', 'Examples', 'ImGui', 'Resources' ],
-  zh: [ '开始使用', '模块', '示例', 'ImGui', '资源' ],
-  ja: [ 'はじめに', 'モジュール', 'サンプル', 'ImGui', 'リソース' ],
-  ko: [ '시작하기', '모듈', '예제', 'ImGui', '리소스' ],
+  root: [ 'Learn', 'Modules', 'Examples', 'ImGui', 'RmlUi', 'Resources' ],
+  zh: [ '开始使用', '模块', '示例', 'ImGui', 'RmlUi', '资源' ],
+  ja: [ 'はじめに', 'モジュール', 'サンプル', 'ImGui', 'RmlUi', 'リソース' ],
+  ko: [ '시작하기', '모듈', '예제', 'ImGui', 'RmlUi', '리소스' ],
 };
 const attr = (node, name) =>
   node.attrs?.find(item => item.name === name)?.value;
@@ -49,6 +50,8 @@ let config;
 let Home;
 let theme;
 let pages;
+const markdownTemplates = new Map();
+let renderer;
 
 function createSlotApp() {
   // Render our slot content, leaving the upstream layout to VitePress.
@@ -76,6 +79,18 @@ before(async () => {
     optimizeDeps: { noDiscovery: true, include: [] },
     plugins: [
       vue(),
+      {
+        name: 'markdown-ssr-test-pages',
+        resolveId(id) {
+          if (id.startsWith('virtual:markdown-page:')) {
+            const name = id.slice('virtual:markdown-page:'.length);
+            return resolve(siteDir, `__markdown-ssr-${name}.vue`);
+          }
+        },
+        load(id) {
+          return markdownTemplates.get(id);
+        },
+      },
       {
         name: 'homepage-test-context',
         enforce: 'pre',
@@ -108,7 +123,7 @@ before(async () => {
   config = (await server.ssrLoadModule('/.vitepress/config.mts')).default;
   Home = (await server.ssrLoadModule('/.vitepress/theme/Home.vue')).default;
   theme = (await server.ssrLoadModule('/.vitepress/theme/index.ts')).default;
-  const renderer = await createMarkdownRenderer(rootDir);
+  renderer = await createMarkdownRenderer(rootDir, config.markdown);
   pages = new Map();
   for (const page of manifest.filter(page => !page.home)) {
     const source = await readFile(resolve(rootDir, page.source), 'utf8');
@@ -124,7 +139,29 @@ after(async () => {
 });
 
 locales.forEach(locale => {
-  test(`publishes the five example sections: ${locale.lang}`, () => {
+  test(`data model inline expressions survive Vue SSR: ${locale.lang}`,
+    async () => {
+      const route = `${locale.prefix}/rmlui/data-models`;
+      const source = manifest.find(page => page.route === route);
+      const markdown = await transformMarkdown(
+        await readFile(resolve(rootDir, source.source), 'utf8'),
+        source.source,
+        map
+      );
+      const id = `virtual:markdown-page:${locale.id}`;
+      markdownTemplates.set(resolve(siteDir,
+        `__markdown-ssr-${locale.id}.vue`),
+      `<template><article>${renderer.render(markdown)}</article></template>`);
+      const component = (await server.ssrLoadModule(id)).default;
+      const rendered = parse(await renderToString(createSSRApp(component)));
+      assert.equal(elements(rendered, node => node.tagName === 'h1').length, 1);
+      const inlineCode = elements(rendered, node => node.tagName === 'code' &&
+        node.parentNode.tagName !== 'pre').map(textContent);
+      assert.ok(inlineCode.includes("{{name | decorate('!')}}"));
+      assert.ok(textContent(rendered).length > 1000);
+    });
+
+  test(`publishes the six example sections: ${locale.lang}`, () => {
     const routes = manifest.filter(page =>
       page.locale.id === locale.id &&
       page.route.startsWith(`${locale.prefix}/examples`)
@@ -145,9 +182,12 @@ locales.forEach(locale => {
     }
     const topics = elements(overview, node =>
       hasClass(node, 'example-topics'))[0];
-    assert.equal(elements(topics, node => node.tagName === 'dt').length, 4);
+    assert.equal(elements(topics, node => node.tagName === 'dt').length, 5);
     assert.ok(elements(topics, node =>
       attr(node, 'href') === `${locale.prefix}/examples/imgui`
+    ).length);
+    assert.ok(elements(topics, node =>
+      attr(node, 'href') === `${locale.prefix}/examples/rmlui`
     ).length);
   });
 
@@ -191,17 +231,36 @@ locales.forEach(locale => {
         '/imgui/layout', '/imgui/callbacks', '/imgui/fonts',
         '/imgui/rendering', '/imgui/api',
         '/reference/imgui/' ],
+      [ '/rmlui/', '/rmlui/getting-started', '/rmlui/rml-rcss',
+        '/rmlui/documents', '/rmlui/streams', '/rmlui/strings',
+        '/rmlui/element-state', '/rmlui/element-utilities',
+        '/rmlui/layout', '/rmlui/boxes', '/rmlui/controls',
+        '/rmlui/text-panels', '/rmlui/vector-elements',
+        '/rmlui/rtti-default-actions', '/rmlui/numeric-values',
+        '/rmlui/properties', '/rmlui/animation', '/rmlui/geometry-utilities',
+        '/rmlui/plugins', '/rmlui/scripts',
+        '/rmlui/data-models', '/rmlui/fonts', '/rmlui/resources',
+        '/rmlui/render-state', '/rmlui/rendering',
+        '/rmlui/debugger', '/rmlui/performance', '/rmlui/source-layout',
+        '/rmlui/api',
+        '/reference/rmlui/' ],
       [ '/guide/development', '/interop/', '/reference/' ],
     ];
+
     for (const [ index, routes ] of expectedGroups.entries()) {
       assert.deepEqual(sidebar[index].items.map(item => item.link),
         routes.map(route => locale.prefix + route));
     }
+
     assert.equal(theme.nav[1].link, `${locale.prefix}/examples`);
     const imguiSidebar = theme.sidebar[`${locale.prefix}/imgui/`];
     assert.equal(imguiSidebar[0].text, 'ImGui');
     assert.equal(imguiSidebar[0].items[1].link,
       `${locale.prefix}/imgui/getting-started`);
+    const rmluiSidebar = theme.sidebar[`${locale.prefix}/rmlui/`];
+    assert.equal(rmluiSidebar[0].text, 'RmlUi');
+    assert.equal(rmluiSidebar[0].items[1].link,
+      `${locale.prefix}/rmlui/getting-started`);
   });
 
   test(`project guides retain readable instructions: ${locale.lang}`, () => {
@@ -321,6 +380,19 @@ locales.forEach(locale => {
     });
 });
 
+test('inline code remains escaped literal text during Vue SSR', async () => {
+  const literal = '{{throwIfCalled()}} <script> & "quoted"';
+  const id = 'virtual:markdown-page:escaping';
+  markdownTemplates.set(resolve(siteDir, '__markdown-ssr-escaping.vue'),
+    `<template>${renderer.render(`\`${literal}\``)}</template>`);
+  const component = (await server.ssrLoadModule(id)).default;
+  const rendered = parse(await renderToString(createSSRApp(component)));
+  const code = elements(rendered, node => node.tagName === 'code');
+  assert.equal(code.length, 1);
+  assert.equal(textContent(code[0]), literal);
+  assert.equal(elements(rendered, node => node.tagName === 'script').length, 0);
+});
+
 test('generated documentation links resolve without legacy site routes',
   () => {
     for (const [ route, page ] of pages) {
@@ -338,9 +410,19 @@ test('generated documentation links resolve without legacy site routes',
           /^\/(?:(?:zh|ja|ko)\/)?examples\/ported(?:\/|$)/);
         if (url.pathname.startsWith('/media/')) {
           const path = url.pathname.slice('/media/'.length);
-          if (path.startsWith('imgui/examples/screenshots/')) {
+          const guideAsset = path.match(/^(imgui|rmlui)\/(assets\/.*)$/);
+          if (guideAsset) {
             assert.ok(existsSync(resolve(
-              rootDir, 'packages/sfml.js-imgui', path.slice('imgui/'.length)
+              rootDir, 'docs', guideAsset[1], guideAsset[2]
+            )), `${route}: missing guide asset ${link}`);
+            continue;
+          }
+          const packageMedia = path.match(
+            /^(imgui|rmlui)\/(examples\/screenshots\/.*)$/
+          );
+          if (packageMedia) {
+            assert.ok(existsSync(resolve(
+              rootDir, `packages/sfml.js-${packageMedia[1]}`, packageMedia[2]
             )), `${route}: missing screenshot ${link}`);
             continue;
           }
@@ -370,6 +452,7 @@ test('rendered galleries preserve entries and preview links', () => {
   for (const locale of locales) {
     for (const [ section, count ] of [
       [ 'features', 15 ], [ 'official', 24 ], [ 'projects', 24 ],
+      [ 'imgui', 3 ], [ 'rmlui', 29 ],
     ]) {
       const page = pages.get(`${locale.prefix}/examples/${section}`);
       assert.ok(page, `missing ${section} gallery in ${locale.lang}`);
@@ -378,6 +461,56 @@ test('rendered galleries preserve entries and preview links', () => {
       if (section === 'projects') {
         assert.deepEqual(entries.slice(0, 3).map(node => attr(node, 'id')),
           [ 'super-mario-kart-game', 'play-nes-player', 'breakout-game' ]);
+      }
+      if (section === 'rmlui') {
+        const ids = entries.map(node => attr(node, 'id'));
+        assert.ok(ids.includes('data-binding'));
+        assert.ok(ids.includes('tree-view'));
+        for (const name of [
+          'animation', 'benchmark', 'basic-drag', 'effects', 'transform',
+          'svg', 'lottie', 'bitmap-font', 'harfbuzz', 'custom-log', 'ime',
+          'basic-demo',
+        ]) {
+          const directory = name === 'basic-drag' ? 'drag'
+            : name === 'basic-demo' ? 'demo' : name.replaceAll('-', '_');
+          const entry = entries.find(node => attr(node, 'id') === name);
+          assert.ok(entry, `${locale.lang}: missing ${name} application`);
+          assert.ok(elements(entry, node => node.tagName === 'a').some(node =>
+            attr(node, 'href')?.endsWith(
+              `/examples/official/basic/${directory}/main.cjs`
+            )
+          ), `${locale.lang}: missing ${name} application source`);
+          if (name === 'basic-demo') {
+            for (const file of [ 'DemoWindow.cjs', 'DemoEventListener.cjs' ]) {
+              assert.ok(elements(entry, node => node.tagName === 'a')
+                .some(node => attr(node, 'href')?.endsWith(
+                  `/examples/official/basic/demo/${file}`)),
+              `${locale.lang}: missing original demo module ${file}`);
+            }
+          }
+        }
+        for (const name of [ 'invaders', 'lua-invaders' ]) {
+          const entry = entries.find(node => attr(node, 'id') === name);
+          assert.ok(entry, `${locale.lang}: missing ${name} application`);
+          const directory = name.replaceAll('-', '_');
+          const links = elements(entry, node => node.tagName === 'a')
+            .map(node => attr(node, 'href'));
+          for (const file of [ 'main.cjs', 'native/application.cc' ]) {
+            assert.ok(links.some(link => link?.endsWith(
+              `/examples/official/${directory}/${file}`)),
+            `${locale.lang}: missing ${name} source ${file}`);
+          }
+          assert.ok(elements(entry, node => node.tagName === 'img').some(
+            node => attr(node, 'src')?.endsWith(`/${name}.png`)
+          ), `${locale.lang}: missing ${name} native screenshot`);
+          assert.ok(textContent(entry).includes(
+            `node packages/sfml.js-rmlui/examples/official.cjs ${name}`));
+          for (const option of [ 'F8', '--scores-file', '--frames 8 --exercise',
+            'macOS', 'Linux', 'Windows' ]) {
+            assert.ok(textContent(entry).includes(option),
+              `${locale.lang}: missing ${name} control or limit ${option}`);
+          }
+        }
       }
       for (const entry of entries) {
         assert.ok(attr(entry, 'id'));

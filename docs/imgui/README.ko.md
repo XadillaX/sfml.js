@@ -1,8 +1,18 @@
 # ImGui 가이드
 
+<p><a class="library-brand" href="https://www.dearimgui.com/"><img src="assets/dear-imgui.jpg" width="240" height="84" alt="Dear ImGui — 로고 제작: Albane Kim"></a></p>
+
 sfml.js-imgui로 SFML 창에 디버그 패널, 장면 검사기, 네이티브 편집 도구를 만듭니다. 첫 프레임 루프에서 시작해 상태 편집, 테이블, 텍스트 입력, 폰트, 사용자 지정 렌더링을 추가합니다.
 
 현재 소스는 Dear ImGui 1.91.9b와 imgui-sfml 3.0을 대상으로 하며 예제는 JavaScript와 SFML 3.1 API를 사용합니다. JavaScript와 [SFML 창](../sfml/window.ko.md)의 기초가 필요하고 C++ 지식은 필요하지 않습니다.
+
+## Dear ImGui란
+
+[Dear ImGui](https://www.dearimgui.com/)는 대화형 도구를 위한 C++ GUI 라이브러리입니다. 즉시 모드(Immediate Mode) API에서는 매 프레임 함수 호출로 표시할 위젯을 정의합니다. 버튼 함수의 반환값으로 클릭을 확인하고 애플리케이션 상태를 갱신합니다. ImGui는 내부 상호작용 상태를 유지하고 그리기 명령을 생성하며 SFML 통합 계층이 이를 창에 표시합니다.
+
+디버그 패널, 프로파일러, 레벨 편집기, 실시간 데이터 검사기에 적합합니다. 이 바인딩에서는 JavaScript로 위젯을 조합합니다. 지속적인 요소 트리를 스타일시트로 꾸미는 UI가 필요하면 [RmlUi 가이드](../rmlui/README.ko.md)를 참고하세요.
+
+[공식 저장소](https://github.com/ocornut/imgui) · [공식 Wiki](https://github.com/ocornut/imgui/wiki) · [FAQ](https://www.dearimgui.com/faq/)
 
 ## 학습 순서
 

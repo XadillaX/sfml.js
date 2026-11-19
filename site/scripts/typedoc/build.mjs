@@ -17,6 +17,7 @@ const languages = [
     menu: 'Menu',
     language: 'Change language',
     examples: 'Examples',
+    extensions: 'Extensions',
     reference: 'API reference',
     search: 'Search',
     searchPlaceholder: 'Search the API',
@@ -28,7 +29,7 @@ const languages = [
   },
   {
     id: 'zh', label: '简体中文', guide: '指南', menu: '菜单', language: '切换语言',
-    examples: '示例', reference: 'API 参考', search: '搜索',
+    examples: '示例', extensions: '扩展', reference: 'API 参考', search: '搜索',
     searchPlaceholder: '搜索 API', preparingSearch: '正在准备搜索索引…',
     light: '切换到浅色模式', dark: '切换到深色模式', contents: '目录', appearance: '外观',
   },
@@ -39,6 +40,7 @@ const languages = [
     menu: 'メニュー',
     language: '言語を変更',
     examples: 'サンプル',
+    extensions: '拡張',
     reference: 'API リファレンス',
     search: '検索',
     searchPlaceholder: 'API を検索',
@@ -50,7 +52,7 @@ const languages = [
   },
   {
     id: 'ko', label: '한국어', guide: '가이드', menu: '메뉴', language: '언어 변경',
-    examples: '예제', reference: 'API 레퍼런스', search: '검색',
+    examples: '예제', extensions: '확장', reference: 'API 레퍼런스', search: '검색',
     searchPlaceholder: 'API 검색', preparingSearch: '검색 색인 준비 중…',
     light: '밝은 테마로 전환', dark: '어두운 테마로 전환', contents: '목차', appearance: '테마',
   },
@@ -65,14 +67,16 @@ const languages = [
 export async function buildReferences(out, { site = false } = {}) {
   await buildPackageReferences(out, { site, packageName: 'sfml.js' });
   await buildPackageReferences(out, { site, packageName: 'sfml.js-imgui' });
+  await buildPackageReferences(out, { site, packageName: 'sfml.js-rmlui' });
 }
 
 async function buildPackageReferences(out, { site, packageName }) {
   const packageRoot = resolve(root, 'packages', packageName);
-  const isImGui = packageName === 'sfml.js-imgui';
+  const packagePath = packageName === 'sfml.js'
+    ? '' : packageName.slice('sfml.js-'.length);
   const destination = locale => resolve(out,
     locale.id === 'en' ? '' : locale.id, site ? 'reference' : '',
-    isImGui ? 'imgui' : '');
+    packagePath);
   for (const locale of languages) {
     const prefix = locale.id === 'en' ? '' : `/${locale.id}`;
     const app = await Application.bootstrapWithPlugins({
@@ -134,8 +138,9 @@ async function buildPackageReferences(out, { site, packageName }) {
     }
     app.validate(project);
     await app.generateDocs(project, destination(locale));
-    if (app.logger.hasErrors()) {
-      throw new Error('TypeDoc reported errors');
+    if (app.logger.hasErrors() || app.logger.hasWarnings()) {
+      throw new Error('TypeDoc reported errors or warnings for ' +
+        `${packageName} (${locale.id})`);
     }
     const assets = resolve(destination(locale), 'assets');
     await cp(

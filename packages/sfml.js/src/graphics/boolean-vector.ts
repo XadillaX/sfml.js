@@ -14,6 +14,7 @@ import type { ScalarType } from '../internal/scalar';
 export abstract class BooleanVector<
   K extends 'vector2' | 'vector3',
 > extends BooleanComponents<K> {
+  /** Checks dimensions before native boolean arithmetic. @internal */
   protected checkPair(rhs: R<BooleanVector<K>>): void {
     if (
       !(rhs instanceof BooleanVector) ||
@@ -53,6 +54,7 @@ export abstract class BooleanVector<
     return this.dot(this);
   }
 
+  /** Rejects a zero component before division. @internal */
   protected checkDivisor(rhs: R<BooleanVector<K>>): void {
     this.checkPair(rhs);
     if (rhs[glslStorage].includes(0)) {
@@ -61,7 +63,9 @@ export abstract class BooleanVector<
   }
 }
 
+/** Two-dimensional source converted component by component. @inline */
 type Source2 = R<Bvec2> | R<Vector2<ScalarType>>;
+/** Default, component and copy construction. @inline */
 type Arguments2 = [] | [x: boolean, y: boolean] | [source: Source2];
 
 /**
@@ -150,7 +154,9 @@ export class Bvec2 extends BooleanVector<'vector2'> {
   }
 }
 
+/** Three-dimensional source converted component by component. @inline */
 type Source3 = R<Bvec3> | R<Vector3<ScalarType>>;
+/** Default, component and copy construction. @inline */
 type Arguments3 =
   | []
   | [x: boolean, y: boolean, z: boolean]

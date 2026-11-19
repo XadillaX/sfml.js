@@ -3,13 +3,14 @@
 // Public native surface for downstream addons. Bump SFMLJS_INTEROP_VERSION
 // when a public symbol or the SharedHandle layout changes.
 
-#define SFMLJS_INTEROP_VERSION 1
+#define SFMLJS_INTEROP_VERSION 2
 
 #include <nan.h>
 
 #include "exception-boundary.h"
 #include "numeric-fields.h"
 #include "shared-handle.h"
+#include "window-event-source.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Window.hpp>
 

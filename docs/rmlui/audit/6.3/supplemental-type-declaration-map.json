@@ -1,0 +1,535 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "records": [
+    {
+      "inventory_index": 743,
+      "header": "Core/Decorator.h",
+      "line": 16,
+      "kind": "ClassDecl",
+      "name": "Rml::StyleSheet",
+      "signature": "StyleSheet",
+      "type": "Rml::StyleSheet",
+      "original_status": "partial-follow-up-required",
+      "status": "locally-verified-managed-type-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Decorator.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/StyleSheet.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Decorator.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-decorator.cc",
+        "packages/sfml.js-rmlui/native/rmlui-style-sheet.cc",
+        "packages/sfml.js-rmlui/src/decorator-instancer-interface.ts",
+        "packages/sfml.js-rmlui/src/style-sheet.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/decorator.test.cjs",
+        "packages/sfml.js-rmlui/test/decorator-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/style-sheet.test.cjs"
+      ],
+      "representation": "StyleSheet.h defines the forward type. DecoratorInstancerInterface stores a const native StyleSheet reference and GetSprite consumes it. Owned JS interfaces retain the actual sheet and its V8-visible callback cache; callback-borrowed interfaces expire on scope exit. Sprite metadata is copied before native insertion can invalidate it.",
+      "type_site_acceptance_only": true,
+      "full_core_19_accepted": false
+    },
+    {
+      "inventory_index": 1217,
+      "header": "Core/EventInstancer.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::Event",
+      "signature": "Event",
+      "type": "Rml::Event",
+      "original_status": "partial-event-templates-and-script-interface",
+      "status": "locally-verified-managed-type-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventInstancer.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventListener.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Event.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-events.cc",
+        "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+        "packages/sfml.js-rmlui/src/event-instancer.ts",
+        "packages/sfml.js-rmlui/src/event-listener.ts",
+        "packages/sfml.js-rmlui/src/event.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/event-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/default-events.test.cjs",
+        "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+        "packages/sfml.js-rmlui/test/script-interface.test.cjs",
+        "packages/sfml.js-rmlui/test/variant-template-destinations.test.cjs"
+      ],
+      "representation": "Event.h defines the Event returned as EventPtr and released as Event*. Factory assigns the actual allocation instancer. Native allocation transfer and release callbacks preserve owner identity; active dispatch leases block release, recursive use and duplicate transfer. Typed templates and ScriptInterface identity have separate exact acceptance evidence.",
+      "type_site_acceptance_only": true,
+      "full_core_19_accepted": false
+    },
+    {
+      "inventory_index": 1222,
+      "header": "Core/EventListener.h",
+      "line": 9,
+      "kind": "ClassDecl",
+      "name": "Rml::Event",
+      "signature": "Event",
+      "type": "Rml::Event",
+      "original_status": "partial-event-templates-and-script-interface",
+      "status": "locally-verified-managed-type-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventInstancer.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventListener.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Event.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-events.cc",
+        "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+        "packages/sfml.js-rmlui/src/event-instancer.ts",
+        "packages/sfml.js-rmlui/src/event-listener.ts",
+        "packages/sfml.js-rmlui/src/event.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/event-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/default-events.test.cjs",
+        "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs",
+        "packages/sfml.js-rmlui/test/script-interface.test.cjs",
+        "packages/sfml.js-rmlui/test/variant-template-destinations.test.cjs"
+      ],
+      "representation": "EventListener::ProcessEvent consumes the actual Event reference. The JS facade holds a checked callback lease and copied metadata. Canonical target/current Element identity is preserved during the callback, while escaped live operations reject after lease expiry.",
+      "type_site_acceptance_only": true,
+      "full_core_19_accepted": false
+    },
+    {
+      "inventory_index": 1223,
+      "header": "Core/EventListener.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::Element",
+      "signature": "Element",
+      "type": "Rml::Element",
+      "original_status": "partial-core-forward-declaration",
+      "status": "locally-verified-managed-type-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventInstancer.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/EventListener.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Event.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Element.h",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-events.cc",
+        "packages/sfml.js-rmlui/native/rmlui-rtti.cc",
+        "packages/sfml.js-rmlui/src/event-instancer.ts",
+        "packages/sfml.js-rmlui/src/event-listener.ts",
+        "packages/sfml.js-rmlui/src/event.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/event-dispatcher.test.cjs"
+      ],
+      "representation": "Element.h defines attachment targets and event targets. Native listeners keep observer references and incremental attachment records. JS OnAttach/OnDetach notifications expose copied id/tag metadata; ProcessEvent exposes canonical live target/current facades under a dispatch lease. This forward site does not add unrelated Element methods to listener acceptance.",
+      "type_site_acceptance_only": true,
+      "full_core_19_accepted": false
+    },
+    {
+      "inventory_index": 1257,
+      "header": "Core/Factory.h",
+      "line": 37,
+      "kind": "ClassDecl",
+      "name": "Rml::Factory",
+      "signature": "Factory",
+      "type": "Rml::Factory",
+      "original_status": "partial-factory-parsing-verified",
+      "status": "locally-verified-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Factory.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Factory.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-factory.cc",
+        "packages/sfml.js-rmlui/native/rmlui-context-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-element-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-data-factory.cc",
+        "packages/sfml.js-rmlui/native/rmlui-effect-instancers.cc",
+        "packages/sfml.js-rmlui/src/factory.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/factory.test.cjs",
+        "packages/sfml.js-rmlui/test/factory-documents.test.cjs",
+        "packages/sfml.js-rmlui/test/context-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/element-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/effect-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/filter-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/data-factory.test.cjs",
+        "packages/sfml.js-rmlui/test/event-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs"
+      ],
+      "representation": "The static Factory facade consumes all 31 original public operation records, each already locally verified. Registration covers context, element, decorator, filter, font effect, event, listener, data view and data controller instancers. Parsing, streams, native caches, structural names and lifecycle remain checked; JS does not expose the private native Factory constructor or destructor.",
+      "type_site_acceptance_only": false,
+      "full_core_19_accepted": false
+    },
+    {
+      "inventory_index": 1326,
+      "header": "Core/FontEffectInstancer.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::Factory",
+      "signature": "Factory",
+      "type": "Rml::Factory",
+      "original_status": "partial-follow-up-required",
+      "status": "locally-verified-managed-type-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/FontEffectInstancer.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/FontEffect.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertyParserFontEffect.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/FontEffectInstancer.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-effect-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-effect.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-effect-callbacks.cc",
+        "packages/sfml.js-rmlui/src/font-effect-instancer.ts",
+        "packages/sfml.js-rmlui/src/font-effect.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/Factory.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/Factory.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-factory.cc",
+        "packages/sfml.js-rmlui/native/rmlui-context-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-element-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-event-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-data-factory.cc",
+        "packages/sfml.js-rmlui/src/factory.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/effect-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-ownership.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-native-ownership.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-alpha.test.cjs"
+      ],
+      "representation": "The Factory forward enables the native friend declaration and names the same static registry facade defined by Factory.h. Runtime font-effect registration and PropertyParserFontEffect's factory lookup use that registry. The friend relationship adds no callable JS operation and does not expose private volatile_properties.",
+      "type_site_acceptance_only": true,
+      "full_core_19_accepted": false
+    },
+    {
+      "inventory_index": 1327,
+      "header": "Core/FontEffectInstancer.h",
+      "line": 11,
+      "kind": "ClassDecl",
+      "name": "Rml::FontEffect",
+      "signature": "FontEffect",
+      "type": "Rml::FontEffect",
+      "original_status": "partial-follow-up-required",
+      "status": "locally-verified-managed-type-macos-arm64",
+      "sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/FontEffectInstancer.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/FontEffect.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertyParserFontEffect.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/FontEffectInstancer.cpp",
+        "packages/sfml.js-rmlui/native/rmlui-effect-instancers.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-effect.cc",
+        "packages/sfml.js-rmlui/native/rmlui-font-effect-callbacks.cc",
+        "packages/sfml.js-rmlui/src/font-effect-instancer.ts",
+        "packages/sfml.js-rmlui/src/font-effect.ts"
+      ],
+      "runtime_files": [
+        "packages/sfml.js-rmlui/test/effect-instancers.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-callbacks.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-ownership.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-native-ownership.test.cjs",
+        "packages/sfml.js-rmlui/test/font-effect-alpha.test.cjs"
+      ],
+      "representation": "FontEffect.h defines the SharedPtr<FontEffect> return type. Native InstanceFontEffect executes callbacks and clones owned effect state before the parser writes its own fingerprint. Custom glyph virtuals, input/destination isolation, atlas execution and callback lifetime are verified through actual native font and property consumers.",
+      "type_site_acceptance_only": true,
+      "full_core_19_accepted": false
+    }
+  ],
+  "factory_existing_operation_records": [
+    {
+      "header": "Core/Factory.h",
+      "line": 40,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::Initialise",
+      "signature": "Initialise()",
+      "type": "void ()",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 42,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::Shutdown",
+      "signature": "Shutdown()",
+      "type": "void ()",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 47,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterContextInstancer",
+      "signature": "RegisterContextInstancer(ContextInstancer *)",
+      "type": "void (ContextInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 53,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceContext",
+      "signature": "InstanceContext(const String &, RenderManager *, TextInputHandler *)",
+      "type": "ContextPtr (const String &, RenderManager *, TextInputHandler *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 59,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterElementInstancer",
+      "signature": "RegisterElementInstancer(const String &, ElementInstancer *)",
+      "type": "void (const String &, ElementInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 63,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::GetElementInstancer",
+      "signature": "GetElementInstancer(const String &)",
+      "type": "ElementInstancer *(const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 70,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceElement",
+      "signature": "InstanceElement(Element *, const String &, const String &, const XMLAttributes &)",
+      "type": "ElementPtr (Element *, const String &, const String &, const XMLAttributes &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 77,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceElementText",
+      "signature": "InstanceElementText(Element *, const String &)",
+      "type": "bool (Element *, const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 82,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceElementStream",
+      "signature": "InstanceElementStream(Element *, Stream *)",
+      "type": "bool (Element *, Stream *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 88,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceDocumentStream",
+      "signature": "InstanceDocumentStream(Context *, Stream *, const String &)",
+      "type": "ElementPtr (Context *, Stream *, const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 94,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterDecoratorInstancer",
+      "signature": "RegisterDecoratorInstancer(const String &, DecoratorInstancer *)",
+      "type": "void (const String &, DecoratorInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 98,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::GetDecoratorInstancer",
+      "signature": "GetDecoratorInstancer(const String &)",
+      "type": "DecoratorInstancer *(const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 104,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterFilterInstancer",
+      "signature": "RegisterFilterInstancer(const String &, FilterInstancer *)",
+      "type": "void (const String &, FilterInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 108,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::GetFilterInstancer",
+      "signature": "GetFilterInstancer(const String &)",
+      "type": "FilterInstancer *(const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 114,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterFontEffectInstancer",
+      "signature": "RegisterFontEffectInstancer(const String &, FontEffectInstancer *)",
+      "type": "void (const String &, FontEffectInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 118,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::GetFontEffectInstancer",
+      "signature": "GetFontEffectInstancer(const String &)",
+      "type": "FontEffectInstancer *(const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 123,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceStyleSheetString",
+      "signature": "InstanceStyleSheetString(const String &)",
+      "type": "SharedPtr<StyleSheetContainer> (const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 127,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceStyleSheetFile",
+      "signature": "InstanceStyleSheetFile(const String &)",
+      "type": "SharedPtr<StyleSheetContainer> (const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 131,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceStyleSheetStream",
+      "signature": "InstanceStyleSheetStream(Stream *)",
+      "type": "SharedPtr<StyleSheetContainer> (Stream *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 133,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::ClearStyleSheetCache",
+      "signature": "ClearStyleSheetCache()",
+      "type": "void ()",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 135,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::ClearTemplateCache",
+      "signature": "ClearTemplateCache()",
+      "type": "void ()",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 140,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterEventInstancer",
+      "signature": "RegisterEventInstancer(EventInstancer *)",
+      "type": "void (EventInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 148,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceEvent",
+      "signature": "InstanceEvent(Element *, EventId, const String &, const Dictionary &, bool)",
+      "type": "EventPtr (Element *, EventId, const String &, const Dictionary &, bool)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 152,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterEventListenerInstancer",
+      "signature": "RegisterEventListenerInstancer(EventListenerInstancer *)",
+      "type": "void (EventListenerInstancer *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 157,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceEventListener",
+      "signature": "InstanceEventListener(const String &, Element *)",
+      "type": "EventListener *(const String &, Element *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 166,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterDataViewInstancer",
+      "signature": "RegisterDataViewInstancer(DataViewInstancer *, const String &, bool)",
+      "type": "void (DataViewInstancer *, const String &, bool)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 172,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::RegisterDataControllerInstancer",
+      "signature": "RegisterDataControllerInstancer(DataControllerInstancer *, const String &)",
+      "type": "void (DataControllerInstancer *, const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 175,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceDataView",
+      "signature": "InstanceDataView(const String &, Element *)",
+      "type": "DataViewPtr (const String &, Element *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 178,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::InstanceDataController",
+      "signature": "InstanceDataController(const String &, Element *)",
+      "type": "DataControllerPtr (const String &, Element *)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 181,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::IsStructuralDataView",
+      "signature": "IsStructuralDataView(const String &)",
+      "type": "bool (const String &)",
+      "status": "locally-verified-macos-arm64"
+    },
+    {
+      "header": "Core/Factory.h",
+      "line": 184,
+      "kind": "CXXMethod",
+      "name": "Rml::Factory::GetStructuralDataViewAttributeNames",
+      "signature": "GetStructuralDataViewAttributeNames()",
+      "type": "const SmallUnorderedSet<String> &()",
+      "status": "locally-verified-macos-arm64"
+    }
+  ],
+  "counts": {
+    "locally-verified-managed-type-macos-arm64": 6,
+    "locally-verified-macos-arm64": 1
+  },
+  "runtime_files": 20,
+  "runtime_passes": 198,
+  "scope_complete": false,
+  "full_core_19_accepted": false
+}

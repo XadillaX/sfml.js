@@ -28,17 +28,20 @@ function locateNodeModules(from) {
   let dir = from;
   while (dir !== path.dirname(dir)) {
     const candidate = path.join(dir, 'node_modules');
-    if (existsSync(candidate)) return candidate;
+    if (existsSync(candidate)) {
+      return candidate;
+    }
     dir = path.dirname(dir);
   }
   return path.join(from, 'node_modules');
 }
 
 /**
- * Run the real installer script against a local HTTP archive in an isolated
- * directory.
+ * Run the real SDK archive installation against a temporary local fixture.
+ * Native extension builds use the actual existing dependency tree separately.
  * @param {import('node:test').TestContext} t Test context used to register
  * temporary resource cleanup.
+ * @param {Function} [handler] Optional local archive response handler.
  */
 async function installer(t, handler) {
   const root = path.resolve(__dirname, '..');
@@ -61,15 +64,18 @@ async function installer(t, handler) {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(() => new Promise(resolve => server.close(resolve)));
   const script = path.join(tools, 'lib_downloader.cjs');
-  const run = () => promisify(execFile)(process.execPath, [ script ], {
-    cwd: temporary,
-    env: {
-      ...process.env,
-      NODE_PATH: locateNodeModules(root),
-      SFML_DOWNLOAD_MIRROR: `http://127.0.0.1:${server.address().port}`,
-    },
-    timeout: 15000,
-  });
+  const invoke = 'require(process.argv[1]).ensureSdk().catch(error => {' +
+    ' console.error(error); process.exitCode = 1; });';
+  const run = () => promisify(execFile)(process.execPath,
+    [ '-e', invoke, script ], {
+      cwd: temporary,
+      env: {
+        ...process.env,
+        NODE_PATH: locateNodeModules(root),
+        SFML_DOWNLOAD_MIRROR: `http://127.0.0.1:${server.address().port}`,
+      },
+      timeout: 15000,
+    });
   const installed = path.join(temporary, 'third_party/sfml');
   return { run, installed, requests: () => requests };
 }
@@ -100,14 +106,15 @@ test('SFML installer reuses a complete matching installation', async t => {
 });
 
 test('SFML installer retries transient gateway failures', async t => {
-  const fixture = await installer(t, (_request, response, requestCount, payload) => {
-    if (requestCount === 1) {
-      response.statusCode = 504;
-      response.end();
-      return;
-    }
-    response.end(payload);
-  });
+  const fixture = await installer(t,
+    (_request, response, requestCount, payload) => {
+      if (requestCount === 1) {
+        response.statusCode = 504;
+        response.end();
+        return;
+      }
+      response.end(payload);
+    });
   await fixture.run();
   assert.equal(fixture.requests(), 2);
   await fs.access(path.join(fixture.installed, 'include/SFML/Config.hpp'));

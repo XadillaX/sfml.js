@@ -31,6 +31,7 @@ export interface EffectProcessorOptions extends AudioWorkerOptions {
  * 언더플로 시 무음을 출력합니다.
  */
 export class EffectProcessor {
+  /** Native worker capability. @internal */
   readonly [audioHandle]: AudioHandle<'worker'>;
   /**
    * Initialization result of the Worker effect factory.

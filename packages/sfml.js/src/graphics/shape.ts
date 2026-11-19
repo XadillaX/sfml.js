@@ -71,9 +71,12 @@ export function shapeVector(value: R<Vector2f>): [number, number] {
 
 class ShapeResource extends Drawable {
   readonly [mutableValue] = true;
+  /** Native shape capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'shape'>;
+  /** Shared appearance and retained texture state. @internal */
   readonly [shapeState]: ShapeData;
   readonly [transformableState]: TransformableState;
+  /** Cached native geometry metadata. @internal */
   protected readonly shapeInfo: Readonly<NativeShapeInfo>;
   /**
    * Lazy IntRect view cache for textureRect.
@@ -114,7 +117,7 @@ class ShapeResource extends Drawable {
    * @ko 텍스처 참조를 설정하고 유지합니다. null은 텍스처를 비활성화하며 resetRect가 true이면 전체 텍스처를 사용합니다.
    */
   setTexture(
-    this: ShapeResource,
+    this: Shape,
     texture: ReadonlyTexture | null,
     resetRect = false,
   ): void {
@@ -160,7 +163,7 @@ class ShapeResource extends Drawable {
    * @ja 使用するテクスチャのピクセル領域をコピーします。負のサイズでテクスチャを反転できます。
    * @ko 사용할 텍스처 픽셀 영역을 복사합니다. 음수 크기로 텍스처를 반전할 수 있습니다.
    */
-  setTextureRect(this: ShapeResource, rectangle: R<IntRect>): void {
+  setTextureRect(this: Shape, rectangle: R<IntRect>): void {
     if (!(rectangle instanceof IntRect)) {
       throw new TypeError('Expected an IntRect');
     }
@@ -191,7 +194,7 @@ class ShapeResource extends Drawable {
    * @ja 塗りつぶし色を設定します。描画時にテクスチャ色と乗算されます。
    * @ko 채우기 색상을 설정합니다. 그릴 때 텍스처 색상과 곱해집니다.
    */
-  setFillColor(this: ShapeResource, color: R<Color>): void {
+  setFillColor(this: Shape, color: R<Color>): void {
     if (!(color instanceof Color)) {
       throw new TypeError('Expected a Color');
     }
@@ -214,7 +217,7 @@ class ShapeResource extends Drawable {
    * @ja 輪郭色をコピーします。
    * @ko 윤곽선 색상을 복사합니다.
    */
-  setOutlineColor(this: ShapeResource, color: R<Color>): void {
+  setOutlineColor(this: Shape, color: R<Color>): void {
     if (!(color instanceof Color)) {
       throw new TypeError('Expected a Color');
     }
@@ -238,7 +241,7 @@ class ShapeResource extends Drawable {
    * @ja ローカル座標で輪郭の太さを設定します。正の値は外側へ、負の値は内側へ広がります。
    * @ko 로컬 좌표계의 윤곽선 두께를 설정합니다. 양수는 바깥쪽으로, 음수는 안쪽으로 확장합니다.
    */
-  setOutlineThickness(this: ShapeResource, thickness: number): void {
+  setOutlineThickness(this: Shape, thickness: number): void {
     this.changeGeometry(0, shapeNumber(thickness));
   }
 
@@ -259,7 +262,7 @@ class ShapeResource extends Drawable {
    * @ja 輪郭のマイター延伸と太さの最大比率を設定します。1 以上である必要があります。
    * @ko 윤곽선 마이터 연장 길이와 두께의 최대 비율을 설정합니다. 1 이상이어야 합니다.
    */
-  setMiterLimit(this: ShapeResource, limit: number): void {
+  setMiterLimit(this: Shape, limit: number): void {
     limit = shapeNumber(limit);
     if (limit < 1) {
       throw new RangeError('Miter limit must be at least 1');
@@ -351,6 +354,10 @@ export abstract class Shape extends withTransformable(ShapeResource) {
    * @ja カスタム凸形状を作成します。サブクラスが頂点を提供し、update() を呼び出します。
    * @ko 사용자 정의 볼록 도형을 만듭니다. 하위 클래스가 꼭짓점을 제공하고 update()를 호출합니다.
    */
+  protected constructor();
+
+  /** Selects a native built-in shape representation. @internal */
+  protected constructor(init: ShapeInit);
   protected constructor(init: ShapeInit = { kind: 0 }) {
     super(init);
   }

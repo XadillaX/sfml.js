@@ -1,0 +1,1486 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "original_inventory_declarations": 3926,
+  "original_records": 58,
+  "whole_scope_complete": false,
+  "full_renderer_semantics_accepted": false,
+  "notice": "31 RenderInterface and 27 Compatibility records. The adapter has a duplicate forward/definition record in the original inventory. Every row is retained. Verified consumer paths do not close partial effects or add a JavaScript rendering subclass.",
+  "consumer_suites": {
+    "render-interface-startup.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+      "sha256": "bf26eda1c70d67d63fa9754f8ec34262266a1116bd7150b97503796c00a4563b",
+      "scenarios": [
+        "preinit-selection-survives-initialization",
+        "reset-and-unselected-generations",
+        "distinct-system-and-render-windows",
+        "shutdown-clears-setup-and-invalidates-retained-tokens",
+        "unused-renderer-releases-native-window",
+        "selected-native-window-and-manager-borrow-survive-gc",
+        "unselected-window-token-cycles-are-collectible",
+        "forged-values-and-callback-selection-reject",
+        "retained-shutdown-token-releases-window-edge",
+        "static-selected-renderer-does-not-add-host-callbacks",
+        "foreign-worker-cannot-read-or-change-setup"
+      ],
+      "pass_count": 11
+    },
+    "geometry.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+      "sha256": "5080846384f80f2c32a2d9280893fe7fdd06080217736ba1b370c07f2303d6c1",
+      "scenarios": [
+        "vertex-and-sprite-snapshots-survive-owner-gc",
+        "spritesheet-list-overwrite-merge-and-snapshot",
+        "spritesheet-validation-and-accessor-reentry",
+        "typed-vertex-shared-fields-and-resize-lifetime",
+        "texture-source-cache-manager-removal-and-aggregate",
+        "native-mesh-views-and-snapshot-transfer",
+        "rendered-mesh-pixels-and-submission-snapshot",
+        "textured-and-shaded-geometry-pixels",
+        "native-texture-views-sources-and-lazy-loading",
+        "geometry-rendering-and-resource-affinity",
+        "invalid-mesh-and-getter-reentry",
+        "views-manager-gc-and-shutdown"
+      ],
+      "pass_count": 12
+    },
+    "render-state.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+      "sha256": "8d2b33d9000aa92a2bd976aa2fdd31ae91d6d56f098c5c858585e7955df0d653",
+      "scenarios": [
+        "viewport-and-scissor-native-defaults",
+        "state-transform-copy-and-reset",
+        "clip-mask-list-owned-roundtrip",
+        "scissor-and-transform-pixels",
+        "single-mask-and-list-transform-pixels",
+        "inverse-and-intersect-mask-pixels-and-disable",
+        "mask-pointer-equality",
+        "invalid-input-transaction-and-manager-ownership",
+        "state-getter-restart-revalidates-manager",
+        "integer-coordinates-preserve-full-int32-precision",
+        "matrix-buffer-boundaries",
+        "event-callback-state-mutation-guard",
+        "active-borrowed-mask-survives-manager-wrapper-gc",
+        "decorator-render-state-scope",
+        "retained-state-after-source-document-close",
+        "state-gc-and-shutdown-release"
+      ],
+      "pass_count": 16
+    },
+    "render-layers.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+      "sha256": "f829c7baf8935f706f0eeeea0891b1ceeaea945eb8890766184394693629e834",
+      "scenarios": [
+        "balanced-stack-and-stale-pool-token",
+        "nested-blend-and-replace-pixels",
+        "filters-consumed-in-order-and-self-composite",
+        "invalid-resources-leave-layer-stack-unchanged",
+        "saved-mask-snapshot-affects-pixels",
+        "event-callback-cannot-mutate-layers",
+        "decorator-layer-scope-and-upstream-ownership",
+        "unbalanced-decorator-return-and-exception-restore-stack",
+        "shutdown-releases-unbalanced-owned-layers"
+      ],
+      "pass_count": 9
+    },
+    "render-batching.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/render-batching.test.cjs",
+      "sha256": "5ed90d51effe9f06ae70a91acd854ccb7d26951d2cb84072772aa1bdf40401ee",
+      "scenarios": [
+        "distinct-geometry-dirty-and-static-bounded-batches",
+        "ordered-alpha-scissor-transform-and-frame-end",
+        "callback-sees-submitted-pixels-and-exception-recovers",
+        "shared-texture-switch-and-released-source-snapshots",
+        "native-layer-filter-and-stencil-boundaries",
+        "cache-slot-overflow-streams-and-frame-trims-unused-buffers",
+        "partial-upload-offsets-and-shape-change-pixels"
+      ],
+      "pass_count": 7
+    },
+    "callback-textures.test.cjs": {
+      "source": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+      "sha256": "ef7977c4827e09f24525224c0d916b133815f5288209c1b03e663fb524513e05",
+      "scenarios": [
+        "lazy-generate-cache-scope-and-premultiplied-pixels",
+        "failed-and-throwing-callbacks-do-not-retry",
+        "resource-reentry-is-rejected-before-mutation",
+        "released-alias-never-revives-on-index-reuse",
+        "source-per-manager-cache-and-alias-owner-gc",
+        "callback-owner-gc-and-cycles",
+        "source-cache-survives-collected-temporary-views",
+        "instancing-can-create-and-load-callback-textures",
+        "source-evicts-only-retired-manager-cache",
+        "raw-handle-transfer-validates-owner-size-and-once",
+        "decorator-retains-callback-texture-view-and-gc-cycles",
+        "save-layer-snapshot-and-invalid-scissor",
+        "buffer-bounds-accessors-and-shutdown"
+      ],
+      "pass_count": 13
+    }
+  },
+  "records": [
+    {
+      "inventory_index": 2257,
+      "exact_key": "Core/RenderInterface.h|10|EnumDecl|Rml::ClipMaskOperation|ClipMaskOperation|Rml::ClipMaskOperation",
+      "native_symbol": "Rml::ClipMaskOperation",
+      "surface": "ClipMaskOperation",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "single-mask-and-list-transform-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "inverse-and-intersect-mask-pixels-and-disable"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2258,
+      "exact_key": "Core/RenderInterface.h|11|EnumConstantDecl|Rml::ClipMaskOperation::Set|Set|Rml::ClipMaskOperation",
+      "native_symbol": "Rml::ClipMaskOperation::Set",
+      "surface": "ClipMaskOperation.Set",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "single-mask-and-list-transform-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "inverse-and-intersect-mask-pixels-and-disable"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2259,
+      "exact_key": "Core/RenderInterface.h|12|EnumConstantDecl|Rml::ClipMaskOperation::SetInverse|SetInverse|Rml::ClipMaskOperation",
+      "native_symbol": "Rml::ClipMaskOperation::SetInverse",
+      "surface": "ClipMaskOperation.SetInverse",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "single-mask-and-list-transform-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "inverse-and-intersect-mask-pixels-and-disable"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2260,
+      "exact_key": "Core/RenderInterface.h|13|EnumConstantDecl|Rml::ClipMaskOperation::Intersect|Intersect|Rml::ClipMaskOperation",
+      "native_symbol": "Rml::ClipMaskOperation::Intersect",
+      "surface": "ClipMaskOperation.Intersect",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "single-mask-and-list-transform-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "inverse-and-intersect-mask-pixels-and-disable"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2261,
+      "exact_key": "Core/RenderInterface.h|15|EnumDecl|Rml::BlendMode|BlendMode|Rml::BlendMode",
+      "native_symbol": "Rml::BlendMode",
+      "surface": "BlendMode",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "balanced-stack-and-stale-pool-token"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "nested-blend-and-replace-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2262,
+      "exact_key": "Core/RenderInterface.h|16|EnumConstantDecl|Rml::BlendMode::Blend|Blend|Rml::BlendMode",
+      "native_symbol": "Rml::BlendMode::Blend",
+      "surface": "BlendMode.Blend",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "balanced-stack-and-stale-pool-token"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "nested-blend-and-replace-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2263,
+      "exact_key": "Core/RenderInterface.h|17|EnumConstantDecl|Rml::BlendMode::Replace|Replace|Rml::BlendMode",
+      "native_symbol": "Rml::BlendMode::Replace",
+      "surface": "BlendMode.Replace",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "balanced-stack-and-stale-pool-token"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "nested-blend-and-replace-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2264,
+      "exact_key": "Core/RenderInterface.h|25|ClassDecl|Rml::RenderInterface|RenderInterface|Rml::RenderInterface",
+      "native_symbol": "Rml::RenderInterface",
+      "surface": "Runtime-owned opaque RenderInterface token",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "preinit-selection-survives-initialization"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "selected-native-window-and-manager-borrow-survive-gc"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "shutdown-clears-setup-and-invalidates-retained-tokens"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2265,
+      "exact_key": "Core/RenderInterface.h|27|CXXConstructor|Rml::RenderInterface::RenderInterface|RenderInterface()|void ()",
+      "native_symbol": "Rml::RenderInterface::RenderInterface",
+      "surface": "Runtime-owned opaque RenderInterface token",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "preinit-selection-survives-initialization"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "selected-native-window-and-manager-borrow-survive-gc"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "shutdown-clears-setup-and-invalidates-retained-tokens"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2266,
+      "exact_key": "Core/RenderInterface.h|28|CXXDestructor|Rml::RenderInterface::~RenderInterface|~RenderInterface()|void () noexcept",
+      "native_symbol": "Rml::RenderInterface::~RenderInterface",
+      "surface": "Runtime-owned opaque RenderInterface token",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "preinit-selection-survives-initialization"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "selected-native-window-and-manager-borrow-survive-gc"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-interface-startup.test.cjs",
+          "scenario": "shutdown-clears-setup-and-invalidates-retained-tokens"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2267,
+      "exact_key": "Core/RenderInterface.h|40|CXXMethod|Rml::RenderInterface::CompileGeometry|CompileGeometry(Span<const Vertex>, Span<const int>)|CompiledGeometryHandle (Span<const Vertex>, Span<const int>)",
+      "native_symbol": "Rml::RenderInterface::CompileGeometry",
+      "surface": "RenderManager.makeGeometry(mesh)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "rendered-mesh-pixels-and-submission-snapshot"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2268,
+      "exact_key": "Core/RenderInterface.h|45|CXXMethod|Rml::RenderInterface::RenderGeometry|RenderGeometry(CompiledGeometryHandle, Vector2f, TextureHandle)|void (CompiledGeometryHandle, Vector2f, TextureHandle)",
+      "native_symbol": "Rml::RenderInterface::RenderGeometry",
+      "surface": "Geometry.render(translation, texture)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "rendered-mesh-pixels-and-submission-snapshot"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2269,
+      "exact_key": "Core/RenderInterface.h|48|CXXMethod|Rml::RenderInterface::ReleaseGeometry|ReleaseGeometry(CompiledGeometryHandle)|void (CompiledGeometryHandle)",
+      "native_symbol": "Rml::RenderInterface::ReleaseGeometry",
+      "surface": "Geometry.release()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "rendered-mesh-pixels-and-submission-snapshot"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2270,
+      "exact_key": "Core/RenderInterface.h|54|CXXMethod|Rml::RenderInterface::LoadTexture|LoadTexture(Vector2i &, const String &)|TextureHandle (Vector2i &, const String &)",
+      "native_symbol": "Rml::RenderInterface::LoadTexture",
+      "surface": "RenderManager.loadTexture(source)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "textured-and-shaded-geometry-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2271,
+      "exact_key": "Core/RenderInterface.h|59|CXXMethod|Rml::RenderInterface::GenerateTexture|GenerateTexture(Span<const byte>, Vector2i)|TextureHandle (Span<const byte>, Vector2i)",
+      "native_symbol": "Rml::RenderInterface::GenerateTexture",
+      "surface": "RenderManager.makeCallbackTexture(callback)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+          "scenario": "lazy-generate-cache-scope-and-premultiplied-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+          "scenario": "raw-handle-transfer-validates-owner-size-and-once"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2272,
+      "exact_key": "Core/RenderInterface.h|62|CXXMethod|Rml::RenderInterface::ReleaseTexture|ReleaseTexture(TextureHandle)|void (TextureHandle)",
+      "native_symbol": "Rml::RenderInterface::ReleaseTexture",
+      "surface": "Texture/callback texture Native resource release",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+          "scenario": "lazy-generate-cache-scope-and-premultiplied-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+          "scenario": "raw-handle-transfer-validates-owner-size-and-once"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2273,
+      "exact_key": "Core/RenderInterface.h|66|CXXMethod|Rml::RenderInterface::EnableScissorRegion|EnableScissorRegion(bool)|void (bool)",
+      "native_symbol": "Rml::RenderInterface::EnableScissorRegion",
+      "surface": "RenderManager.disableScissorRegion()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "scissor-and-transform-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2274,
+      "exact_key": "Core/RenderInterface.h|70|CXXMethod|Rml::RenderInterface::SetScissorRegion|SetScissorRegion(Rectanglei)|void (Rectanglei)",
+      "native_symbol": "Rml::RenderInterface::SetScissorRegion",
+      "surface": "RenderManager.setScissorRegion(region)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "scissor-and-transform-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2275,
+      "exact_key": "Core/RenderInterface.h|78|CXXMethod|Rml::RenderInterface::EnableClipMask|EnableClipMask(bool)|void (bool)",
+      "native_symbol": "Rml::RenderInterface::EnableClipMask",
+      "surface": "RenderManager.disableClipMask()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "single-mask-and-list-transform-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "inverse-and-intersect-mask-pixels-and-disable"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2276,
+      "exact_key": "Core/RenderInterface.h|86|CXXMethod|Rml::RenderInterface::RenderToClipMask|RenderToClipMask(ClipMaskOperation, CompiledGeometryHandle, Vector2f)|void (ClipMaskOperation, CompiledGeometryHandle, Vector2f)",
+      "native_symbol": "Rml::RenderInterface::RenderToClipMask",
+      "surface": "RenderManager.setClipMask(operation/list)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "single-mask-and-list-transform-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "inverse-and-intersect-mask-pixels-and-disable"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2277,
+      "exact_key": "Core/RenderInterface.h|93|CXXMethod|Rml::RenderInterface::SetTransform|SetTransform(const Matrix4f *)|void (const Matrix4f *)",
+      "native_symbol": "Rml::RenderInterface::SetTransform",
+      "surface": "RenderManager.setTransform(matrix)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-state.test.cjs",
+          "scenario": "scissor-and-transform-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "partial-sfml-affine-transform",
+      "limitations": [
+        "Native SFML transform drops perspective components."
+      ]
+    },
+    {
+      "inventory_index": 2278,
+      "exact_key": "Core/RenderInterface.h|98|CXXMethod|Rml::RenderInterface::PushLayer|PushLayer()|LayerHandle ()",
+      "native_symbol": "Rml::RenderInterface::PushLayer",
+      "surface": "RenderManager.pushLayer()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "balanced-stack-and-stale-pool-token"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "nested-blend-and-replace-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2279,
+      "exact_key": "Core/RenderInterface.h|105|CXXMethod|Rml::RenderInterface::CompositeLayers|CompositeLayers(LayerHandle, LayerHandle, BlendMode, Span<const CompiledFilterHandle>)|void (LayerHandle, LayerHandle, BlendMode, Span<const CompiledFilterHandle>)",
+      "native_symbol": "Rml::RenderInterface::CompositeLayers",
+      "surface": "RenderManager.compositeLayers(...)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "balanced-stack-and-stale-pool-token"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "nested-blend-and-replace-pixels"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "filters-consumed-in-order-and-self-composite"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "partial-sfml-filter-and-layer-path",
+      "limitations": [
+        "Eight built-in color filters and backdrop behavior remain open.",
+        "Readable base-layer and foreground/backdrop combinations remain open."
+      ]
+    },
+    {
+      "inventory_index": 2280,
+      "exact_key": "Core/RenderInterface.h|107|CXXMethod|Rml::RenderInterface::PopLayer|PopLayer()|void ()",
+      "native_symbol": "Rml::RenderInterface::PopLayer",
+      "surface": "RenderManager.popLayer()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "balanced-stack-and-stale-pool-token"
+        },
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "nested-blend-and-replace-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2281,
+      "exact_key": "Core/RenderInterface.h|112|CXXMethod|Rml::RenderInterface::SaveLayerAsTexture|SaveLayerAsTexture()|TextureHandle ()",
+      "native_symbol": "Rml::RenderInterface::SaveLayerAsTexture",
+      "surface": "CallbackTextureInterface.saveLayerAsTexture()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/callback-textures.test.cjs",
+          "scenario": "save-layer-snapshot-and-invalid-scissor"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2282,
+      "exact_key": "Core/RenderInterface.h|116|CXXMethod|Rml::RenderInterface::SaveLayerAsMaskImage|SaveLayerAsMaskImage()|CompiledFilterHandle ()",
+      "native_symbol": "Rml::RenderInterface::SaveLayerAsMaskImage",
+      "surface": "RenderManager.saveLayerAsMaskImage()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "saved-mask-snapshot-affects-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2283,
+      "exact_key": "Core/RenderInterface.h|122|CXXMethod|Rml::RenderInterface::CompileFilter|CompileFilter(const String &, const Dictionary &)|CompiledFilterHandle (const String &, const Dictionary &)",
+      "native_symbol": "Rml::RenderInterface::CompileFilter",
+      "surface": "RenderManager.compileFilter(name, parameters)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "filters-consumed-in-order-and-self-composite"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "partial-sfml-filter-and-layer-path",
+      "limitations": [
+        "Eight built-in color filters and backdrop behavior remain open.",
+        "Readable base-layer and foreground/backdrop combinations remain open."
+      ]
+    },
+    {
+      "inventory_index": 2284,
+      "exact_key": "Core/RenderInterface.h|125|CXXMethod|Rml::RenderInterface::ReleaseFilter|ReleaseFilter(CompiledFilterHandle)|void (CompiledFilterHandle)",
+      "native_symbol": "Rml::RenderInterface::ReleaseFilter",
+      "surface": "CompiledFilter.release()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/render-layers.test.cjs",
+          "scenario": "filters-consumed-in-order-and-self-composite"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2285,
+      "exact_key": "Core/RenderInterface.h|131|CXXMethod|Rml::RenderInterface::CompileShader|CompileShader(const String &, const Dictionary &)|CompiledShaderHandle (const String &, const Dictionary &)",
+      "native_symbol": "Rml::RenderInterface::CompileShader",
+      "surface": "RenderManager.compileShader(name, parameters)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "textured-and-shaded-geometry-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "partial-sfml-custom-glsl-shader-path",
+      "limitations": [
+        "Built-in gradient and shader(creation) protocols remain open.",
+        "Full perspective interpolation remains open."
+      ]
+    },
+    {
+      "inventory_index": 2286,
+      "exact_key": "Core/RenderInterface.h|137|CXXMethod|Rml::RenderInterface::RenderShader|RenderShader(CompiledShaderHandle, CompiledGeometryHandle, Vector2f, TextureHandle)|void (CompiledShaderHandle, CompiledGeometryHandle, Vector2f, TextureHandle)",
+      "native_symbol": "Rml::RenderInterface::RenderShader",
+      "surface": "Geometry.render(translation, texture, shader)",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "textured-and-shaded-geometry-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "partial-sfml-custom-glsl-shader-path",
+      "limitations": [
+        "Built-in gradient and shader(creation) protocols remain open.",
+        "Full perspective interpolation remains open."
+      ]
+    },
+    {
+      "inventory_index": 2287,
+      "exact_key": "Core/RenderInterface.h|140|CXXMethod|Rml::RenderInterface::ReleaseShader|ReleaseShader(CompiledShaderHandle)|void (CompiledShaderHandle)",
+      "native_symbol": "Rml::RenderInterface::ReleaseShader",
+      "surface": "CompiledShader.release()",
+      "native_sources": [
+        "packages/sfml.js-rmlui/native/render-interface-sfml.h",
+        "packages/sfml.js-rmlui/native/render-interface-sfml.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterface.cpp"
+      ],
+      "runtime_consumers": [
+        {
+          "suite": "packages/sfml.js-rmlui/test/geometry.test.cjs",
+          "scenario": "textured-and-shaded-geometry-pixels"
+        }
+      ],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-render-interface-enums-and-optional-defaults"
+      ],
+      "status": "sfml-native-supported-consumer-paths-locally-verified",
+      "limitations": []
+    },
+    {
+      "inventory_index": 2288,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|7|ClassDecl|Rml::RenderInterfaceAdapter|RenderInterfaceAdapter|Rml::RenderInterfaceAdapter",
+      "native_symbol": "Rml::RenderInterfaceAdapter",
+      "surface": "Native-only Rml::RenderInterfaceAdapter",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2289,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|26|ClassDecl|Rml::RenderInterfaceCompatibility|RenderInterfaceCompatibility|Rml::RenderInterfaceCompatibility",
+      "native_symbol": "Rml::RenderInterfaceCompatibility",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2290,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|28|CXXConstructor|Rml::RenderInterfaceCompatibility::RenderInterfaceCompatibility|RenderInterfaceCompatibility()|void ()",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::RenderInterfaceCompatibility",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::RenderInterfaceCompatibility",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2291,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|29|CXXDestructor|Rml::RenderInterfaceCompatibility::~RenderInterfaceCompatibility|~RenderInterfaceCompatibility()|void ()",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::~RenderInterfaceCompatibility",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::~RenderInterfaceCompatibility",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2292,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|31|CXXMethod|Rml::RenderInterfaceCompatibility::RenderGeometry|RenderGeometry(Vertex *, int, int *, int, TextureHandle, const Vector2f &)|void (Vertex *, int, int *, int, TextureHandle, const Vector2f &)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::RenderGeometry",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::RenderGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2293,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|34|CXXMethod|Rml::RenderInterfaceCompatibility::CompileGeometry|CompileGeometry(Vertex *, int, int *, int, TextureHandle)|CompiledGeometryHandle (Vertex *, int, int *, int, TextureHandle)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::CompileGeometry",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::CompileGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2294,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|35|CXXMethod|Rml::RenderInterfaceCompatibility::RenderCompiledGeometry|RenderCompiledGeometry(CompiledGeometryHandle, const Vector2f &)|void (CompiledGeometryHandle, const Vector2f &)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::RenderCompiledGeometry",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::RenderCompiledGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2295,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|36|CXXMethod|Rml::RenderInterfaceCompatibility::ReleaseCompiledGeometry|ReleaseCompiledGeometry(CompiledGeometryHandle)|void (CompiledGeometryHandle)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::ReleaseCompiledGeometry",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::ReleaseCompiledGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2296,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|38|CXXMethod|Rml::RenderInterfaceCompatibility::EnableScissorRegion|EnableScissorRegion(bool)|void (bool)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::EnableScissorRegion",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::EnableScissorRegion",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2297,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|39|CXXMethod|Rml::RenderInterfaceCompatibility::SetScissorRegion|SetScissorRegion(int, int, int, int)|void (int, int, int, int)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::SetScissorRegion",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::SetScissorRegion",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2298,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|41|CXXMethod|Rml::RenderInterfaceCompatibility::LoadTexture|LoadTexture(TextureHandle &, Vector2i &, const String &)|bool (TextureHandle &, Vector2i &, const String &)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::LoadTexture",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::LoadTexture",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-texture-conversion-failure-and-release"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2299,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|42|CXXMethod|Rml::RenderInterfaceCompatibility::GenerateTexture|GenerateTexture(TextureHandle &, const byte *, const Vector2i &)|bool (TextureHandle &, const byte *, const Vector2i &)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::GenerateTexture",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::GenerateTexture",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-texture-conversion-failure-and-release"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2300,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|43|CXXMethod|Rml::RenderInterfaceCompatibility::ReleaseTexture|ReleaseTexture(TextureHandle)|void (TextureHandle)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::ReleaseTexture",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::ReleaseTexture",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-texture-conversion-failure-and-release"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2301,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|45|CXXMethod|Rml::RenderInterfaceCompatibility::SetTransform|SetTransform(const Matrix4f *)|void (const Matrix4f *)",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::SetTransform",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::SetTransform",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2302,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|47|CXXMethod|Rml::RenderInterfaceCompatibility::GetAdaptedInterface|GetAdaptedInterface()|RenderInterface *()",
+      "native_symbol": "Rml::RenderInterfaceCompatibility::GetAdaptedInterface",
+      "surface": "Native-only Rml::RenderInterfaceCompatibility::GetAdaptedInterface",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2303,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|57|ClassDecl|Rml::RenderInterfaceAdapter|RenderInterfaceAdapter|Rml::RenderInterfaceAdapter",
+      "native_symbol": "Rml::RenderInterfaceAdapter",
+      "surface": "Native-only Rml::RenderInterfaceAdapter",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2304,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|59|CXXMethod|Rml::RenderInterfaceAdapter::CompileGeometry|CompileGeometry(Span<const Vertex>, Span<const int>)|CompiledGeometryHandle (Span<const Vertex>, Span<const int>)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::CompileGeometry",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::CompileGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2305,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|60|CXXMethod|Rml::RenderInterfaceAdapter::RenderGeometry|RenderGeometry(CompiledGeometryHandle, Vector2f, TextureHandle)|void (CompiledGeometryHandle, Vector2f, TextureHandle)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::RenderGeometry",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::RenderGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2306,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|61|CXXMethod|Rml::RenderInterfaceAdapter::ReleaseGeometry|ReleaseGeometry(CompiledGeometryHandle)|void (CompiledGeometryHandle)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::ReleaseGeometry",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::ReleaseGeometry",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-geometry-snapshot-and-per-texture-cache",
+        "native-legacy-immediate-fallback-and-compilation-retry"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2307,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|63|CXXMethod|Rml::RenderInterfaceAdapter::EnableScissorRegion|EnableScissorRegion(bool)|void (bool)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::EnableScissorRegion",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::EnableScissorRegion",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2308,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|64|CXXMethod|Rml::RenderInterfaceAdapter::SetScissorRegion|SetScissorRegion(Rectanglei)|void (Rectanglei)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::SetScissorRegion",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::SetScissorRegion",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2309,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|66|CXXMethod|Rml::RenderInterfaceAdapter::LoadTexture|LoadTexture(Vector2i &, const String &)|TextureHandle (Vector2i &, const String &)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::LoadTexture",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::LoadTexture",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-texture-conversion-failure-and-release"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2310,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|67|CXXMethod|Rml::RenderInterfaceAdapter::GenerateTexture|GenerateTexture(Span<const byte>, Vector2i)|TextureHandle (Span<const byte>, Vector2i)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::GenerateTexture",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::GenerateTexture",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-texture-conversion-failure-and-release"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2311,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|68|CXXMethod|Rml::RenderInterfaceAdapter::ReleaseTexture|ReleaseTexture(TextureHandle)|void (TextureHandle)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::ReleaseTexture",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::ReleaseTexture",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-texture-conversion-failure-and-release"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2312,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|70|CXXMethod|Rml::RenderInterfaceAdapter::EnableClipMask|EnableClipMask(bool)|void (bool)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::EnableClipMask",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::EnableClipMask",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2313,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|71|CXXMethod|Rml::RenderInterfaceAdapter::RenderToClipMask|RenderToClipMask(ClipMaskOperation, CompiledGeometryHandle, Vector2f)|void (ClipMaskOperation, CompiledGeometryHandle, Vector2f)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::RenderToClipMask",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::RenderToClipMask",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    },
+    {
+      "inventory_index": 2314,
+      "exact_key": "Core/RenderInterfaceCompatibility.h|73|CXXMethod|Rml::RenderInterfaceAdapter::SetTransform|SetTransform(const Matrix4f *)|void (const Matrix4f *)",
+      "native_symbol": "Rml::RenderInterfaceAdapter::SetTransform",
+      "surface": "Native-only Rml::RenderInterfaceAdapter::SetTransform",
+      "native_sources": [
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/RenderInterfaceCompatibility.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/RenderInterfaceCompatibility.cpp"
+      ],
+      "runtime_consumers": [],
+      "native_probe": "packages/sfml.js-rmlui/test/native/render-interface-contracts.cc",
+      "native_scenarios": [
+        "native-legacy-defaults-and-owned-canonical-adapter",
+        "native-legacy-scissor-clip-limits-and-transform-forwarding"
+      ],
+      "status": "native-only-legacy-contract-locally-verified",
+      "limitations": [
+        "No JavaScript compatibility subclass or adapter is exported.",
+        "Legacy <=5 behavior is not SFML advanced-renderer coverage."
+      ]
+    }
+  ]
+}

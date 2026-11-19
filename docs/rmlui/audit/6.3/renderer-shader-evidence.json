@@ -1,0 +1,345 @@
+{
+  "version": "6.3",
+  "platform": "macos-arm64",
+  "scope_complete": false,
+  "independent_review_completed": false,
+  "notice": "Bounded shader acceptance; complete renderer gates remain open.",
+  "focused_scenarios": {
+    "native-sfml-renderer.test.cjs": [
+      "native-mask-toggle-retains-released-definition",
+      "native-disabled-definition-frame-layer-pool-reuse",
+      "native-mask-write-scissor-transform-snapshots",
+      "native-geometry-invalid-index-transaction",
+      "native-deep-mask-two-pass-normalization",
+      "native-linear-gradient-pixels-snapshot",
+      "native-repeating-linear-gradient-pixels-snapshot",
+      "native-radial-gradient-pixels-snapshot",
+      "native-repeating-radial-gradient-pixels-snapshot",
+      "native-conic-gradient-pixels-snapshot",
+      "native-repeating-conic-gradient-pixels-snapshot",
+      "native-gradient-all-21-stops-premultiplied-perspective",
+      "native-gradient-hard-stop-zero-repeat-period",
+      "native-gradient-invalid-parameters-no-handle",
+      "native-creation-fixed-clock-dimensions-center-alpha"
+    ],
+    "compiled-resources.test.cjs": [
+      "builtin-shader-dictionaries-and-complete-stops",
+      "core-gradient-decorator-positive-pixels",
+      "native-compilation-and-unique-release",
+      "unused-manager-and-shared-context-lifetime",
+      "owned-manager-and-resource-gc",
+      "late-getters-stale-handles-and-invalid-input"
+    ]
+  },
+  "pixel_tolerance_8bit": 2,
+  "max_tested_stop_count": 21,
+  "stop_storage": "Complete immutable list specialized into fragment GLSL",
+  "equal_stops": "Right-continuous step to later color",
+  "zero_repeat_period": "Constant final stop color",
+  "creation_clock_seconds": [
+    0.25,
+    1.75
+  ],
+  "creation_singularity_lower_bound": 1e-06,
+  "reference": "Pinned GL3 equations with independent CPU pixel oracles",
+  "official_gl3_reference_captures": false,
+  "native_binary": {
+    "bytes": 13137976,
+    "sha256": "352554965a355b548ade40179c5ff65444b011cbb78365e64cde63f7e55aba28"
+  },
+  "files": {
+    "packages/sfml.js-rmlui/native/rendering/clipping/clip-masks.cc": {
+      "bytes": 5464,
+      "sha256": "84f9f255f9a3ce9392765197b1c884c32eb07978ef656a40acfb50755998a432"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/color-filter.cc": {
+      "bytes": 4837,
+      "sha256": "4b688d352e50e91ccf2bb60e6550f6474841c43d94fbccd6aac76fe17dc38e59"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/render-filters.cc": {
+      "bytes": 8592,
+      "sha256": "c1153d6e8513a6c1e7d8b02731d15c9e5712efcc11c991a6ea83153e2b7499f5"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/geometry-batching.cc": {
+      "bytes": 7264,
+      "sha256": "28951a1c95362dc4f0a181efd0a09b8db489a84bd02f6609a3bf864403831186"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/render-geometry.cc": {
+      "bytes": 5161,
+      "sha256": "db0e1db5ca0c2081702de00ebaf3058095e688739168955390e902f0f5e5013e"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-geometry.cc": {
+      "bytes": 9333,
+      "sha256": "405efe3bdfab1a56d79893ed14bdeeca20c2ac53f5ecef420176c6dfb6e674a2"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-mesh-utilities.cc": {
+      "bytes": 8513,
+      "sha256": "a2befe78883cf7573d4a88d3b313a23ff27b78a64b1712f2e89055e071ca1410"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-mesh.cc": {
+      "bytes": 7910,
+      "sha256": "251a2d5df36bdf688bcd639bebcd03539b4e9986bdcfcccbc0ac5d99353f0c0f"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/render-frame.cc": {
+      "bytes": 3685,
+      "sha256": "73a3ee8b615af331d3e9d4e1d825c2f6a4ae9f3c8fb3911686bd6649ebce9411"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/render-layers.cc": {
+      "bytes": 7628,
+      "sha256": "65dcfd53bb5408d5141a2b2b5b108a75ae6858d7b1ca53799398712f95de86fb"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/stencil-attachment.cc": {
+      "bytes": 1608,
+      "sha256": "eb8968ebc77bf90a43a76f787f1faff78f6e30c5b7f612f146f9ca0e8fdcc1d5"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-layers.cc": {
+      "bytes": 9642,
+      "sha256": "1576ab41f4dfd8a6ada87c5f1a147542ebeaedf54f60bc580098e579c1558c63"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-manager.cc": {
+      "bytes": 16005,
+      "sha256": "79cc320f042029aa37482e45a59e092502863e1f8d6086e48eac176bc29bbe9a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-state.cc": {
+      "bytes": 14506,
+      "sha256": "b1cc39e9259e917cdb66da527a44421b4bc80b5a7386ddc8097e2b5783a85ddf"
+    },
+    "packages/sfml.js-rmlui/native/rendering/render-interface-sfml.cc": {
+      "bytes": 3261,
+      "sha256": "f07b3f6b66deae9138b87c3483a9616ad000d11b557f316697e36cd7e77ed11c"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/compile-shaders.cc": {
+      "bytes": 3234,
+      "sha256": "d2acfd089007c6bb1d0b6660752f3634de251ea91e323c8f23d59b752876381c"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/gradient-program.cc": {
+      "bytes": 5911,
+      "sha256": "85b3a27c165bcd5208eeb6e5d3bf7a92437c18ee3bc1bd27c2d1036d9c1b290f"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/render-shaders.cc": {
+      "bytes": 3267,
+      "sha256": "73a075ad93a7a84f0c45f83dc2ef4a9ea9ce2f6e9fdf8aff6f4bb708738b1095"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/render-textures.cc": {
+      "bytes": 4592,
+      "sha256": "79609ddf38e21ccd68380ea8e35cb6c962eebd0a2794ff116beeff94188b8ae5"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-callback-texture.cc": {
+      "bytes": 17506,
+      "sha256": "e8c10c933ce95a1a36c3e9d8b0fb7a7f6044333a419b17916e91a088676c0b0a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resource-preload.cc": {
+      "bytes": 18453,
+      "sha256": "32351967f91c6c35ecd51bb218a739e1b4430cb69b26d4bc8d0076b6f631e3bf"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resources.cc": {
+      "bytes": 11792,
+      "sha256": "485b070466c9975c38008ff0be812cef7b618b5f7aab5f75348ea19d92e74bcc"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-spritesheet.cc": {
+      "bytes": 6888,
+      "sha256": "4b59c4022f7efde989af9a321ebd1ccdf42ea85cc0b3dcd0beec818c28434a92"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-texture-source.cc": {
+      "bytes": 4325,
+      "sha256": "3af56c288b56319334d5bf8bbde3f04990a162073ff63bd5c7a6925f1cebc426"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/color-filter.h": {
+      "bytes": 1375,
+      "sha256": "20a80f16a4707864e9fbc0d3b7ab99a58a7fa28a88555292dff8d3f83ee3e08c"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/filter-record.h": {
+      "bytes": 981,
+      "sha256": "c444091de324b60ee417b020f5d50a4054bbaefe3a9c90211de1148b11db0dbb"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/postprocess-shaders.h": {
+      "bytes": 3653,
+      "sha256": "086a28c4f684069d767e58f869a8622f4c949073547953d3ccc57044fe234962"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-geometry.h": {
+      "bytes": 1424,
+      "sha256": "92fc5d00d329a172dfb13cb1a5b911e9f0fa36e2e8adaf4f81825a3bf7147812"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-mesh.h": {
+      "bytes": 944,
+      "sha256": "7aa0ffd6b0915fb12487ea04e53ba66584f15853a5787bcf0d777e1005f1c027"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/render-session.h": {
+      "bytes": 922,
+      "sha256": "013256072a233e6e867bbc5c0b6abda40cb6efc1a2200f6fd50713759edeaf3f"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/stencil-attachment.h": {
+      "bytes": 600,
+      "sha256": "f7006960521b47143d2459da77c83d08547fbc0fedf117f16c30722b12404f13"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-layers.h": {
+      "bytes": 861,
+      "sha256": "c409616ac23addae2befde9cb6e31059568e4f871b8b37fd490fcd999715fee5"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-manager.h": {
+      "bytes": 2021,
+      "sha256": "3157a8f6b824651611f10b6ed53b28b1cce988c0ae35cd2c0c5ae0de09fe5142"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-state.h": {
+      "bytes": 1390,
+      "sha256": "417d938be2ebc3e9385892ab957be174a14579e70a5a65bb40a67669aa17da82"
+    },
+    "packages/sfml.js-rmlui/native/rendering/render-interface-sfml.h": {
+      "bytes": 10062,
+      "sha256": "5ec93847596a399024d4ff91648edb4c37116f235864d76ab872217d04fb2b23"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/creation-program.h": {
+      "bytes": 1194,
+      "sha256": "e2af1a912dc0663f06e869de689f980e956a9f5338875afb9263c116af6cbb10"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/geometry-program.h": {
+      "bytes": 2184,
+      "sha256": "967f0eb8975e296ef2303e3b3149ec0cecde6ebedb3ec609c9004e199287c472"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/gradient-program.h": {
+      "bytes": 972,
+      "sha256": "4df010f9a595c0fc15284ba9f8c8a6fa6e10423b345afb92c8ce3e50e96d8222"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/shader-record.h": {
+      "bytes": 1565,
+      "sha256": "2f6cb7b797d31e6e1dc7b3628cb885ec0a86a8939a1e746f7085b42762667fea"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-callback-texture.h": {
+      "bytes": 501,
+      "sha256": "db8b2fe458e14e039a147044f3b0346f13e6c08f53fca6a9917e676a2a872735"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resource-preload.h": {
+      "bytes": 837,
+      "sha256": "274b1d9d96f2b2bbeb739477ad347cdf65542416267d6ab5607a0ad604750064"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resources.h": {
+      "bytes": 1707,
+      "sha256": "9d403d7fa4d72596eb0757a5afea3a22d38512f4b59b8f8080980863b15c2aed"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-spritesheet.h": {
+      "bytes": 614,
+      "sha256": "a17c4b69a27af293772aa0fda7d0fdd13961ae03b284627bbfdfcf6e09a529eb"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-texture-source.h": {
+      "bytes": 620,
+      "sha256": "270de82b30eaae16dca1123de4faf886fade3cee3821cd1ae2c522eeede8a6af"
+    },
+    "packages/sfml.js-rmlui/binding.gyp": {
+      "bytes": 13475,
+      "sha256": "dafc7faa51ce5f36c8e15a8653d4c8cfb1087e8e22b64fe54acccf33b09564c9"
+    },
+    "packages/sfml.js-rmlui/src/rendering/render-manager.ts": {
+      "bytes": 31864,
+      "sha256": "45c0663fd3a45241f1348bf01284387d3effd132701da0e2e2e385564dbad291"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/shaders/shader-contracts.cc": {
+      "bytes": 12108,
+      "sha256": "0608c94f5f015253707292cba3aeef6e02a08f514858c1c41524ef0fa24e36f9"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/build-sfml-renderer-contracts.py": {
+      "bytes": 3460,
+      "sha256": "ceb7a2e05ea1c13c0579ac74037f3f4e57a2ca2d3bebc6730ab996000b9007f9"
+    },
+    "packages/sfml.js-rmlui/test/rendering/native-sfml-renderer.test.cjs": {
+      "bytes": 1135,
+      "sha256": "e3ff4b2a53bf6bd26b28c072a3f11ef2e0f6f9efd77fcf974110356f4782a7a3"
+    },
+    "packages/sfml.js-rmlui/test/rendering/compiled-resources.test.cjs": {
+      "bytes": 9896,
+      "sha256": "61f1a61ccbff4a2905fa6459d380213a060595a123cfe013076fe0db8fb76d6e"
+    },
+    "docs/rmlui/rendering.md": {
+      "bytes": 6782,
+      "sha256": "d17147925ddf26b49bb76667343c86e7aef19bf128620ad29b6253e1fdbe4116"
+    },
+    "docs/rmlui/rendering.zh-CN.md": {
+      "bytes": 6100,
+      "sha256": "7c68028c6d3beb4504c5eb6adfe1421b5645957e965ce04caa7030fee00db248"
+    },
+    "docs/rmlui/rendering.ja.md": {
+      "bytes": 7914,
+      "sha256": "00b71fd5a266d6f51e9c1d42435f978b6d3ae48530d2da69c39bfc2eecea8ac9"
+    },
+    "docs/rmlui/rendering.ko.md": {
+      "bytes": 7406,
+      "sha256": "234cf0ee975df235101c082e90d26cc85f03ac6214dd22b345bdaa0659da7832"
+    },
+    "docs/rmlui/audit/6.3/renderer-source-layout-map.json": {
+      "bytes": 3278,
+      "sha256": "f5bc91b9ae06cbdc0f76635276f0b2c55552436d86846c0a93b0ddced693f1f6"
+    },
+    "docs/rmlui/audit/6.3/renderer-shader-acceptance.md": {
+      "bytes": 4342,
+      "sha256": "389053e59d4ebbd6710c20f347acc70ce4dd870774f5db78a7f8f248ba9a6eb2"
+    }
+  },
+  "checks": {
+    "/tmp/rmlui-63-completion/renderer-shaders-red.log": {
+      "bytes": 160,
+      "sha256": "0696bbfe8dcd24f51792c4318f97efb33c2ee0fae9511abb91052201fe1a6b90"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-final-build.log": {
+      "bytes": 124,
+      "sha256": "92be2c44f8cb5e7e53d6ec5befe4fdd4971f65c1163acc6cd064ecb722aee6a6"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-native.log": {
+      "bytes": 1315,
+      "sha256": "66bbeebb766a3dcd08abf30757f900f3027b514247850f6e2794e75de334b5c6"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-managed.log": {
+      "bytes": 273,
+      "sha256": "89b99ca1e4f1a5232cd0e09a044245d9a0ba121c4f57455114dca905d043cf3b"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-lint.log": {
+      "bytes": 76,
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-cpplint.log": {
+      "bytes": 1129,
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-ts.log": {
+      "bytes": 56,
+      "sha256": "c169623dc897155cf8cfdfacaaba89e655527c27a9faa4565411cf6a852571ef"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-types.log": {
+      "bytes": 63,
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-comments.log": {
+      "bytes": 744,
+      "sha256": "0297bcca375c988f4544cea6fbef36aca6637fc7148405032bef870d76effe58"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-format.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/tmp/rmlui-63-completion/renderer-shaders-naming.log": {
+      "bytes": 1487,
+      "sha256": "77018d1198858c1cc8985d28e368cc6eb670e7bf5bb2514b27bf057eb9c65260"
+    }
+  },
+  "complete_runtime_run": {
+    "files": 135,
+    "literal_passes": 1335,
+    "failed_files": 0,
+    "logs": {
+      "/tmp/rmlui-63-completion/renderer-shaders-full-runtime.log": {
+        "bytes": 120306,
+        "sha256": "b555e8e4ab548b17c9a41cdd49084a45a1c05d2c4354c61d5552ce89a5764bb2"
+      }
+    }
+  },
+  "core_reconciliation": {
+    "bytes": 1970286,
+    "sha256": "09b84b74f3ac1d04c7a60e1253bdbfe43b775a7b337135c7a0f1b5ff6a518d0a"
+  },
+  "core_19_matrix": {
+    "bytes": 45970,
+    "sha256": "a7e7b854aead3f1a73bb19857f91ccd615c47bd45a3492e7f04dbca5fbc59090"
+  },
+  "remaining": [
+    "Scale-correct blur/shadow bounds and transparent sampling",
+    "GPU/platform/application and independent whole acceptance"
+  ]
+}

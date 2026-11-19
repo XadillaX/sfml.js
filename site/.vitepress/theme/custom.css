@@ -101,6 +101,17 @@
 .vp-doc th { font-weight: 650; background: var(--sf-bg-soft); }
 .vp-doc a { text-underline-offset: 3px; }
 
+.vp-doc .library-brand {
+  display: inline-block;
+  max-width: 100%;
+}
+.vp-doc .library-brand img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
 /* Each gallery row pairs its preview with instructions, not another card. */
 .vp-doc .example-gallery {
   container-type: inline-size;

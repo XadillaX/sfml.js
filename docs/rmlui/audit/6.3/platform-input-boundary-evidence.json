@@ -1,0 +1,66 @@
+{
+  "scope": "Native deferred input and per-window callback registry",
+  "whole_acceptance": false,
+  "platform": "darwin-arm64",
+  "implementation": {
+    "common_deferred_input": true,
+    "window_callback_registry": true,
+    "macos_subdirectory": "packages/sfml.js-rmlui/native/platform/ime/macos",
+    "windows_adapter": false,
+    "linux_adapter": false,
+    "sfml_native_callback_hooks": false,
+    "physical_candidate_observation": false
+  },
+  "verification": {
+    "native_build": {
+      "exit_code": 0,
+      "log": "/tmp/rmlui-63-completion/platform-deferred-native-build.log"
+    },
+    "runtime": {
+      "exit_code": 0,
+      "test_files": 150,
+      "literal_pass_markers": 1559,
+      "failed_files": 0,
+      "log": "/tmp/rmlui-63-completion/platform-deferred-runtime.log"
+    },
+    "real_widget_and_cocoa_fixture": {
+      "exit_code": 0,
+      "literal_pass_markers": 46,
+      "new_deferred_contracts": 5,
+      "log": "/tmp/rmlui-63-completion/platform-deferred-cocoa.log",
+      "failing_before_log": "/tmp/rmlui-63-completion/platform-deferred-red.log"
+    },
+    "native_registry": {
+      "exit_code": 0,
+      "contracts": 5,
+      "log": "/tmp/rmlui-63-completion/platform-registry-test.log",
+      "failing_before_logs": [
+        "/tmp/rmlui-63-completion/platform-registry-red.log",
+        "/tmp/rmlui-63-completion/platform-registry-close-red.log"
+      ]
+    },
+    "rmlui_lint": "/tmp/rmlui-63-completion/platform-deferred-lint.log",
+    "rmlui_cpplint": "/tmp/rmlui-63-completion/platform-deferred-cpplint.log",
+    "interop_cpplint": "/tmp/rmlui-63-completion/platform-registry-cpplint.log",
+    "registry_lint": "/tmp/rmlui-63-completion/platform-registry-lint.log",
+    "whole_native_format": "/tmp/rmlui-63-completion/platform-deferred-full-format.log",
+    "deferred_compiler_naming": "/tmp/rmlui-63-completion/platform-deferred-naming-focused.log",
+    "registry_compiler_naming": "/tmp/rmlui-63-completion/platform-registry-naming-focused.log"
+  },
+  "sha256": {
+    "packages/sfml.js-rmlui/native/platform/ime/deferred-text-input.h": "c1cd1fc87adaf30fa67fd511c49fc938c992427200ae24dbffd648f8e4e788c6",
+    "packages/sfml.js-rmlui/native/platform/ime/deferred-text-input.cc": "791403ac8907643d411d4e15274b86454cce585862e6ab771a905bacb0fa83e0",
+    "packages/sfml.js-interop/include/window-input-callbacks.h": "ff794d2ebf863db3abe40b51e54cb133f08d319dcfafead14d9a64fcc93a737b",
+    "packages/sfml.js-interop/include/window-input-registry.h": "bf599c839ebcbc3457f509f4c52961f4c8fd3aa255e67bcd8a616f4cccd58f8c",
+    "packages/sfml.js-rmlui/binding.gyp": "aecfc08c04a763ba43b58f02b0b22d158d6d4bf49cd91f231916620a5f27859e",
+    "packages/sfml.js-rmlui/build/Release/rmlui.node": "73264e6b2fdd55c9c9d1272d7539cc6ed7fdd0e77354343e7bd0c8505320ebd5",
+    "packages/sfml.js-interop/test/native/window-input-registry.cc": "49b6f09cb82de08e0feb41fba0fd215e32d71f8c94daa46a3522c2ed1cbb7e2e"
+  },
+  "limits": [
+    "The registry is not yet wired into the SFML native event pump.",
+    "The non-Apple NativeTextInput factory still returns no adapter.",
+    "Windows and Linux compilation, composition, candidate positioning and original application execution remain unobserved.",
+    "Earlier package/editor evidence snapshots predate the current Native rebuild and moved Cocoa paths; they are not promoted to current Native acceptance.",
+    "Six original visual contracts and independent whole-change acceptance remain open."
+  ]
+}

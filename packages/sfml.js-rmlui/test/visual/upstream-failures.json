@@ -1,0 +1,119 @@
+{
+  "version": "pinned-upstream-parity-v1",
+  "authorization": "如果是它自身问题，就先不用管了。它自己都有问题过不了，你还能怎么办？它能过的，你为什么过不了",
+  "diagnosis": "docs/rmlui/audit/6.3/visual-failure-diagnosis.json",
+  "failures": [
+    {
+      "name": "flex_04",
+      "sha256": "028fe407f82c77d71f1a24f7a29c70b22c02f2f099fcd2532ef7696e04f669d1",
+      "scope": "interaction",
+      "stack": [
+        {
+          "source": "interactions/validators/layout/resizing.py",
+          "line": 64,
+          "expression": "close(element(frames[\"base\"], fixed)[\"rect\"][2],"
+        },
+        {
+          "source": "assertions/common.py",
+          "line": 7,
+          "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+        }
+      ]
+    },
+    {
+      "name": "ink_overflow_bounding_box",
+      "sha256": "b11581867f4c402aa38e57cd0112750eb2af1ddc1917d0f268566e757bfee07a",
+      "scope": "content",
+      "stack": [
+        {
+          "source": "assertions/__init__.py",
+          "line": 28,
+          "expression": "results = module.run(name, snapshot, samples)"
+        },
+        {
+          "source": "assertions/rendering/ink_bounds.py",
+          "line": 29,
+          "expression": "assert bounds[3] >= y + height + 40, ("
+        }
+      ]
+    },
+    {
+      "name": "position_05_floating_a_box_clear",
+      "sha256": "222608cb0bfe7edffe8aefc1acc92f251e8c7d2d74cb202752de5b179e49671d",
+      "scope": "content",
+      "stack": [
+        {
+          "source": "assertions/__init__.py",
+          "line": 22,
+          "expression": "results = module.run(name, snapshot, image)"
+        },
+        {
+          "source": "assertions/layout/positioning.py",
+          "line": 101,
+          "expression": "return css_example(name, snapshot)"
+        },
+        {
+          "source": "assertions/layout/positioning.py",
+          "line": 35,
+          "expression": "assert sibling[\"rect\"][1] >= bottom(inner), ("
+        }
+      ]
+    },
+    {
+      "name": "position_07_absolute_positioning_relative",
+      "sha256": "d9658a0111baee42ebb5072b2d3ce4a5deb52fd6853ccea7421c4c194e4a3cba",
+      "scope": "content",
+      "stack": [
+        {
+          "source": "assertions/__init__.py",
+          "line": 22,
+          "expression": "results = module.run(name, snapshot, image)"
+        },
+        {
+          "source": "assertions/layout/positioning.py",
+          "line": 101,
+          "expression": "return css_example(name, snapshot)"
+        },
+        {
+          "source": "assertions/layout/positioning.py",
+          "line": 47,
+          "expression": "close(inner[\"rect\"][0], outer[\"rect\"][0] - 100)"
+        },
+        {
+          "source": "assertions/common.py",
+          "line": 7,
+          "expression": "assert abs(actual - expected) <= tolerance, (actual, expected, tolerance)"
+        }
+      ]
+    },
+    {
+      "name": "text_overflow_01",
+      "sha256": "62e4b7732ee27dda81feb93f707a2e97512163a572922ebf026e08878a2b1f3b",
+      "scope": "interaction",
+      "stack": [
+        {
+          "source": "interactions/validators/rendering/text.py",
+          "line": 102,
+          "expression": "assert not failures, \"; \".join(failures)"
+        }
+      ]
+    },
+    {
+      "name": "white_space",
+      "sha256": "750a8fff5247c2e0a09f1223aae95d7a8d0e9b119978b8e30e12b09446b04e26",
+      "scope": "content",
+      "stack": [
+        {
+          "source": "assertions/__init__.py",
+          "line": 28,
+          "expression": "results = module.run(name, snapshot, samples)"
+        },
+        {
+          "source": "assertions/layout/white_space.py",
+          "line": 80,
+          "expression": "assert not failures, \" | \".join(failures)"
+        }
+      ]
+    }
+  ]
+}

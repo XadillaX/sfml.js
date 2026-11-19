@@ -1,8 +1,18 @@
 # ImGui ガイド
 
+<p><a class="library-brand" href="https://www.dearimgui.com/"><img src="assets/dear-imgui.jpg" width="240" height="84" alt="Dear ImGui — ロゴ制作：Albane Kim"></a></p>
+
 sfml.js-imgui で SFML ウィンドウにデバッグパネル、シーンインスペクター、ネイティブ編集ツールを作ります。最初のフレームループから、状態編集、テーブル、テキスト入力、フォント、独自描画へ進みます。
 
 現在のソースは Dear ImGui 1.91.9b と imgui-sfml 3.0 を対象とし、サンプルは JavaScript と SFML 3.1 API を使います。JavaScript と [SFML ウィンドウ](../sfml/window.ja.md)の基礎が必要で、C++ は不要です。
+
+## Dear ImGui とは
+
+[Dear ImGui](https://www.dearimgui.com/) は、対話型ツール向けの C++ GUI ライブラリです。即時モード（Immediate Mode）の API では、表示するウィジェットを毎フレーム関数で記述します。ボタン関数の戻り値からクリックを判定し、アプリケーション状態を更新します。ImGui は内部の操作状態を保持して描画コマンドを生成し、SFML 連携層がウィンドウに描画します。
+
+デバッグパネル、プロファイラー、レベルエディター、ライブデータのインスペクターに適しています。本バインディングでは JavaScript でウィジェットを組み合わせます。永続的な要素ツリーをスタイルシートで装飾する UI には [RmlUi ガイド](../rmlui/README.ja.md)を参照してください。
+
+[公式リポジトリ](https://github.com/ocornut/imgui) · [公式 Wiki](https://github.com/ocornut/imgui/wiki) · [FAQ](https://www.dearimgui.com/faq/)
 
 ## 学習の順序
 

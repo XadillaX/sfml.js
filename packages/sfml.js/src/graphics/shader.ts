@@ -47,6 +47,7 @@ export enum ShaderType {
   Fragment,
 }
 
+/** Accepted scalar, vector, matrix and texture uniform values. @inline */
 type Uniform =
   | number
   | boolean
@@ -63,6 +64,7 @@ type Uniform =
   | R<Glsl.Mat4>
   | ReadonlyTexture
   | typeof Shader.CurrentTexture;
+/** Accepted element types for uniform arrays. @inline */
 type ArrayElement =
   | number
   | R<Glsl.Vec2>
@@ -81,11 +83,13 @@ type Sources<T> = [T, ShaderType] | [T, T] | [T, T, T];
 export type ReadonlyShader = Readonly<
 Pick<
 Shader,
-| typeof graphicsNative
-| typeof shaderId
-| typeof shaderTextures
 | 'getNativeHandle'
 >
+> & ShaderIdentity;
+
+/** Native identity and texture retention for const references. @inline */
+type ShaderIdentity = Pick<
+Shader, typeof graphicsNative | typeof shaderId | typeof shaderTextures
 >;
 
 function nameString(name: string): void {
@@ -164,7 +168,9 @@ export class Shader {
   static readonly CurrentTexture: unique symbol = Symbol(
     'Shader.CurrentTexture',
   );
+  /** Native program capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'shader'>;
+  /** Recorded shader identifier. @internal */
   readonly [shaderId]: number;
   /**
    * Read-only Uint32 wrapper for the OpenGL program identifier.
@@ -194,6 +200,7 @@ export class Shader {
     this.program = new Uint32Array(mapping.buffer);
   }
 
+  /** Texture references retained for recorded draws. @internal */
   get [shaderTextures](): ReadonlyMap<number, ReadonlyTexture> {
     return this.textures;
   }
@@ -205,7 +212,10 @@ export class Shader {
    * @ja ファイルを非同期にコンパイルします。引数はファイルとステージ、頂点/フラグメントファイル、または頂点/ジオメトリ/フラグメントファイルです。
    * @ko 파일을 비동기로 컴파일합니다. 인수는 파일과 단계, 꼭짓점/프래그먼트 파일 또는 꼭짓점/기하/프래그먼트 파일입니다.
    */
-  loadFromFile(...sources: Sources<string>): Promise<boolean> {
+  loadFromFile(
+    ...sources: [string, ShaderType] | [string, string]
+    | [string, string, string]
+  ): Promise<boolean> {
     return this.load(false, sources);
   }
 
@@ -216,7 +226,10 @@ export class Shader {
    * @ja GLSL ソースを非同期にコンパイルします。引数順は loadFromFile と同じです。コンパイルとリンクが成功したかを返します。
    * @ko GLSL 소스를 비동기로 컴파일합니다. 인수 순서는 loadFromFile과 같으며 컴파일 및 링크 성공 여부를 반환합니다.
    */
-  loadFromMemory(...sources: Sources<string>): Promise<boolean> {
+  loadFromMemory(
+    ...sources: [string, ShaderType] | [string, string]
+    | [string, string, string]
+  ): Promise<boolean> {
     return this.load(true, sources);
   }
 
@@ -227,7 +240,10 @@ export class Shader {
    * @ja 入力ストリームから UTF-8 GLSL を読み、非同期にコンパイルします。ステージ順は loadFromFile と同じです。
    * @ko 입력 스트림에서 UTF-8 GLSL을 읽고 비동기로 컴파일합니다. 단계 순서는 loadFromFile과 같습니다.
    */
-  async loadFromStream(...sources: Sources<InputStream>): Promise<boolean> {
+  async loadFromStream(
+    ...sources: [InputStream, ShaderType] | [InputStream, InputStream]
+    | [InputStream, InputStream, InputStream]
+  ): Promise<boolean> {
     const stages = this.stages(sources);
     const code: (string | null)[] = [ null, null, null ];
     for (let i = 0; i < 3; i++) {

@@ -4,7 +4,21 @@
   ],
   "readme": "none",
   "locales": {
+    "ja": {
+      "theme_hierarchy_summary": "継承関係の概要",
+      "theme_hierarchy_view_summary": "概要を見る",
+      "tag_default": "既定値",
+      "tag_defaultValue": "既定値",
+      "tag_remarks": "補足",
+      "tag_throws": "例外"
+    },
     "ko": {
+      "theme_hierarchy_summary": "상속 구조 요약",
+      "theme_hierarchy_view_summary": "요약 보기",
+      "tag_default": "기본값",
+      "tag_defaultValue": "기본값",
+      "tag_remarks": "참고",
+      "tag_throws": "예외",
       "flag_private": "비공개",
       "flag_protected": "보호됨",
       "flag_public": "공개",

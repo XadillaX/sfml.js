@@ -1,0 +1,212 @@
+{
+  "RML document skeleton": {
+    "prefix": "rml",
+    "scope": "rml",
+    "description": "Minimal RmlUi document with head and body",
+    "body": [
+      "<rml>",
+      "\t<head>",
+      "\t\t<title>${1:Document}</title>",
+      "\t\t<link type=\"text/rcss\" href=\"${2:style}.rcss\" />",
+      "\t</head>",
+      "\t<body>",
+      "\t\t$0",
+      "\t</body>",
+      "</rml>"
+    ]
+  },
+  "External RCSS link": {
+    "prefix": "link",
+    "scope": "rml",
+    "description": "Link an external RCSS stylesheet or RML template",
+    "body": [
+      "<link type=\"${1|text/rcss,text/template|}\" href=\"${2:resource}\" />"
+    ]
+  },
+  "Inline style block": {
+    "prefix": "style",
+    "scope": "rml",
+    "description": "Inline RCSS style block inside head",
+    "body": [
+      "<style>",
+      "\t${1:selector} {",
+      "\t\t$0",
+      "\t}",
+      "</style>"
+    ]
+  },
+  "Button": {
+    "prefix": "button",
+    "scope": "rml",
+    "description": "RmlUi button element",
+    "body": [
+      "<button id=\"${1:id}\">${2:Button}</button>"
+    ]
+  },
+  "Text input": {
+    "prefix": "input-text",
+    "scope": "rml",
+    "description": "Single-line text input",
+    "body": [
+      "<input type=\"text\" name=\"${1:name}\" value=\"${2:}\" placeholder=\"${3:placeholder}\" />"
+    ]
+  },
+  "Checkbox input": {
+    "prefix": "input-checkbox",
+    "scope": "rml",
+    "description": "Checkbox form control",
+    "body": [
+      "<input type=\"checkbox\" name=\"${1:name}\" value=\"${2:value}\" />"
+    ]
+  },
+  "Radio input": {
+    "prefix": "input-radio",
+    "scope": "rml",
+    "description": "Radio form control",
+    "body": [
+      "<input type=\"radio\" name=\"${1:group}\" value=\"${2:value}\" />"
+    ]
+  },
+  "Range input": {
+    "prefix": "input-range",
+    "scope": "rml",
+    "description": "Slider range form control",
+    "body": [
+      "<input type=\"range\" name=\"${1:name}\" min=\"${2:0}\" max=\"${3:100}\" value=\"${4:50}\" />"
+    ]
+  },
+  "Text area": {
+    "prefix": "textarea",
+    "scope": "rml",
+    "description": "Multi-line text input",
+    "body": [
+      "<textarea name=\"${1:name}\" rows=\"${2:4}\" cols=\"${3:20}\">${4}</textarea>"
+    ]
+  },
+  "Select with options": {
+    "prefix": "select",
+    "scope": "rml",
+    "description": "Drop-down select with options",
+    "body": [
+      "<select name=\"${1:name}\">",
+      "\t<option value=\"${2:value1}\">${3:Label 1}</option>",
+      "\t<option value=\"${4:value2}\">${5:Label 2}</option>",
+      "</select>"
+    ]
+  },
+  "Form": {
+    "prefix": "form",
+    "scope": "rml",
+    "description": "Form element wrapping controls",
+    "body": [
+      "<form>",
+      "\t$0",
+      "</form>"
+    ]
+  },
+  "Image": {
+    "prefix": "img",
+    "scope": "rml",
+    "description": "Image element sourced from a file or sprite",
+    "body": [
+      "<img ${1|src,sprite|}=\"${2:resource}\" />"
+    ]
+  },
+  "Drag handle": {
+    "prefix": "handle",
+    "scope": "rml",
+    "description": "Window drag handle region",
+    "body": [
+      "<handle id=\"${1:handle}\">${2:Drag}</handle>"
+    ]
+  },
+  "Tab set": {
+    "prefix": "tabset",
+    "scope": "rml",
+    "description": "Tab set with tabs and panels",
+    "body": [
+      "<tabset>",
+      "\t<tab title=\"${1:Tab 1}\">",
+      "\t\t<panel>",
+      "\t\t\t$0",
+      "\t\t</panel>",
+      "\t</tab>",
+      "\t<tab title=\"${2:Tab 2}\">",
+      "\t\t<panel></panel>",
+      "\t</tab>",
+      "</tabset>"
+    ]
+  },
+  "Progress bar": {
+    "prefix": "progress",
+    "scope": "rml",
+    "description": "Progress indicator",
+    "body": [
+      "<progress id=\"${1:progress}\" value=\"${2:0}\" max=\"${3:100}\"></progress>"
+    ]
+  },
+  "Data model scope": {
+    "prefix": "data-model",
+    "scope": "rml",
+    "description": "Attach a data model to an element subtree",
+    "body": [
+      "data-model=\"${1:model}\""
+    ]
+  },
+  "Data for loop": {
+    "prefix": "data-for",
+    "scope": "rml",
+    "description": "Repeat the element subtree for each data entry",
+    "body": [
+      "data-for=\"${1:it} : ${2:items}\""
+    ]
+  },
+  "Data if": {
+    "prefix": "data-if",
+    "scope": "rml",
+    "description": "Create the element only when the expression is true",
+    "body": [
+      "data-if=\"${1:expression}\""
+    ]
+  },
+  "Data visible": {
+    "prefix": "data-visible",
+    "scope": "rml",
+    "description": "Toggle element visibility from an expression",
+    "body": [
+      "data-visible=\"${1:expression}\""
+    ]
+  },
+  "Two-way value binding": {
+    "prefix": "data-value",
+    "scope": "rml",
+    "description": "Two-way bind a form control value",
+    "body": [
+      "data-value=\"${1:address}\""
+    ]
+  },
+  "Two-way checked binding": {
+    "prefix": "data-checked",
+    "scope": "rml",
+    "description": "Two-way bind a checkbox or radio state",
+    "body": [
+      "data-checked=\"${1:address}\""
+    ]
+  },
+  "Data event controller": {
+    "prefix": "data-event",
+    "scope": "rml",
+    "description": "Invoke a data model function on an event",
+    "body": [
+      "data-event-${1|click,change,submit,dblclick,mousedown,mouseup,mouseover,mouseout,keydown,keyup|}=\"${2:handler}()\""
+    ]
+  },
+  "Data text expression": {
+    "prefix": "data-text",
+    "scope": "rml",
+    "description": "Interpolate a data expression in element text",
+    "body": [
+      "{{ ${1:expression} }}"
+    ]
+  }
+}

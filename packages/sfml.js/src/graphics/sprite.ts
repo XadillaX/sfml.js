@@ -29,7 +29,9 @@ import { Texture, type ReadonlyTexture } from './texture';
 
 class SpriteResource extends Drawable {
   readonly [mutableValue] = true;
+  /** Native sprite capability. @internal */
   readonly [graphicsNative]: NativeGraphicsHandle<'sprite'>;
+  /** Shared appearance and retained texture state. @internal */
   readonly [spriteState]: SpriteData;
   readonly [transformableState]: TransformableState;
   private rectangleView?: R<IntRect>;
@@ -100,7 +102,7 @@ class SpriteResource extends Drawable {
    * @ko 텍스처 참조를 교체합니다. resetRect가 true이면 텍스처 영역을 전체 텍스처로 초기화합니다.
    */
   setTexture(
-    this: SpriteResource,
+    this: Sprite,
     texture: ReadonlyTexture,
     resetRect = false,
   ): void {
@@ -142,7 +144,7 @@ class SpriteResource extends Drawable {
    * @ja テクスチャのピクセル領域をコピーします。幅と高さはスプライトのローカルサイズを決め、負の値でテクスチャを反転できます。
    * @ko 텍스처 픽셀 영역을 복사합니다. 너비와 높이는 스프라이트 로컬 크기를 결정하며 음수 값으로 텍스처를 반전할 수 있습니다.
    */
-  setTextureRect(this: SpriteResource, rectangle: R<IntRect>): void {
+  setTextureRect(this: Sprite, rectangle: R<IntRect>): void {
     if (!(rectangle instanceof IntRect)) {
       throw new TypeError('Expected an IntRect');
     }
@@ -174,7 +176,7 @@ class SpriteResource extends Drawable {
    * @ja テクスチャとチャンネルごとに乗算する色を設定します。Alpha で全体の不透明度を制御できます。
    * @ko 텍스처와 채널별로 곱할 색상을 설정합니다. Alpha로 전체 불투명도를 제어할 수 있습니다.
    */
-  setColor(this: SpriteResource, color: R<Color>): void {
+  setColor(this: Sprite, color: R<Color>): void {
     if (!(color instanceof Color)) {
       throw new TypeError('Expected a Color');
     }

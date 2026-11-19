@@ -55,6 +55,7 @@ export interface SoundFileReaderInfoInput {
  * @ko 스칼라 필드가 직접 매핑된 sf::SoundFileReader::Info입니다.
  */
 export class SoundFileReaderInfo {
+  /** Native reader information capability. @internal */
   readonly [audioHandle]: AudioHandle<'readerInfo'>;
   private readonly count: BigUint64Array;
   private readonly channels: Uint32Array;
@@ -69,6 +70,13 @@ export class SoundFileReaderInfo {
    * @ko 빈 형식 정보를 생성하거나 value를 복사합니다.
    * mapping은 네이티브 디코더의 내부 매핑용입니다.
    */
+  constructor(value?: SoundFileReaderInfoInput);
+
+  /** Maps a native decoder result without copying its storage. @internal */
+  constructor(
+    value: SoundFileReaderInfoInput | undefined,
+    mapping: AudioReaderInfoMapping,
+  );
   constructor(
     value?: SoundFileReaderInfoInput,
     mapping: AudioReaderInfoMapping = audioNative.createAudioReaderInfo(),

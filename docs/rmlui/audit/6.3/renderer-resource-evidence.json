@@ -1,0 +1,633 @@
+{
+  "version": "6.3",
+  "platform": "macos-arm64",
+  "scope_complete": false,
+  "independent_review_completed": false,
+  "notice": "Resource/startup/VBO failure checks; whole scope remains open.",
+  "texture_native_groups": 10,
+  "startup_native_groups": 12,
+  "fault_injection": {
+    "method": "Executable symbols override SFML driver return values",
+    "success_path": "Forwards to installed SFML through RTLD_NEXT",
+    "no_production_hooks": true,
+    "shader_stages": 6,
+    "capability_unavailable": true,
+    "texture_resize_failure": true,
+    "vertex_and_clip_allocation_failure": true,
+    "merged_allocation_solo_fallback_pixels": true
+  },
+  "native_binary": {
+    "bytes": 13161896,
+    "sha256": "34e20a5e8187ea2a04067d27215cd68f24a1a1d54a2bd3bdb70803412ad35ed9"
+  },
+  "files": {
+    "packages/sfml.js-rmlui/native/rendering/clipping/clip-masks.cc": {
+      "bytes": 5529,
+      "sha256": "89ff2bfe03db4321550293d03e96f638b21f6b49611810dafbaf1a3a19eca96e"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/color-filter.cc": {
+      "bytes": 4837,
+      "sha256": "4b688d352e50e91ccf2bb60e6550f6474841c43d94fbccd6aac76fe17dc38e59"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/render-blur.cc": {
+      "bytes": 6818,
+      "sha256": "b85a9edf841ca094cce3e0841ba2e223f83e4e11a36575b065c435e1238646cf"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/render-filters.cc": {
+      "bytes": 8812,
+      "sha256": "4f822cb752db5af76e5c4b46f438c59b3f2a40174c5e91d371b5bc556d14ad9a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/geometry-batching.cc": {
+      "bytes": 7264,
+      "sha256": "28951a1c95362dc4f0a181efd0a09b8db489a84bd02f6609a3bf864403831186"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/render-geometry.cc": {
+      "bytes": 5266,
+      "sha256": "a7420d2ab4340b6c33df698d741de5dd66e2aa6b57c8f27802d02e2998a92895"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-geometry.cc": {
+      "bytes": 9333,
+      "sha256": "405efe3bdfab1a56d79893ed14bdeeca20c2ac53f5ecef420176c6dfb6e674a2"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-mesh-utilities.cc": {
+      "bytes": 8513,
+      "sha256": "a2befe78883cf7573d4a88d3b313a23ff27b78a64b1712f2e89055e071ca1410"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-mesh.cc": {
+      "bytes": 7910,
+      "sha256": "251a2d5df36bdf688bcd639bebcd03539b4e9986bdcfcccbc0ac5d99353f0c0f"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/render-frame.cc": {
+      "bytes": 3791,
+      "sha256": "826dea1faac530bb3b58a9030e0450fef143ea5f4e136ede7a3b9cf64c6e59f8"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/render-layers.cc": {
+      "bytes": 7647,
+      "sha256": "4d027ed1f0dc4b8ef0c6db6382d0c48ae1b0ddb4219d7dfc6685bd0b2e5a1121"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/stencil-attachment.cc": {
+      "bytes": 1608,
+      "sha256": "eb8968ebc77bf90a43a76f787f1faff78f6e30c5b7f612f146f9ca0e8fdcc1d5"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-layers.cc": {
+      "bytes": 9642,
+      "sha256": "1576ab41f4dfd8a6ada87c5f1a147542ebeaedf54f60bc580098e579c1558c63"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-manager.cc": {
+      "bytes": 16005,
+      "sha256": "79cc320f042029aa37482e45a59e092502863e1f8d6086e48eac176bc29bbe9a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-state.cc": {
+      "bytes": 14506,
+      "sha256": "b1cc39e9259e917cdb66da527a44421b4bc80b5a7386ddc8097e2b5783a85ddf"
+    },
+    "packages/sfml.js-rmlui/native/rendering/render-interface-sfml.cc": {
+      "bytes": 3749,
+      "sha256": "b5bd26c5b614e98874b95925b2aad2f039712ded03cb23db4e1da0fd6ff9481c"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/compile-shaders.cc": {
+      "bytes": 3277,
+      "sha256": "6b045a8acd908a6580b4e1f30ddb503b2122aaddcd5607f195a72fb6fe66edaa"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/gradient-program.cc": {
+      "bytes": 5911,
+      "sha256": "85b3a27c165bcd5208eeb6e5d3bf7a92437c18ee3bc1bd27c2d1036d9c1b290f"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/render-shaders.cc": {
+      "bytes": 3267,
+      "sha256": "73a075ad93a7a84f0c45f83dc2ef4a9ea9ce2f6e9fdf8aff6f4bb708738b1095"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/render-textures.cc": {
+      "bytes": 6153,
+      "sha256": "2cb586d4e6db6e1d926d11a91d234640bfe020029dc2cabc8a39bfbbbe2457a3"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-callback-texture.cc": {
+      "bytes": 17506,
+      "sha256": "e8c10c933ce95a1a36c3e9d8b0fb7a7f6044333a419b17916e91a088676c0b0a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resource-preload.cc": {
+      "bytes": 18453,
+      "sha256": "32351967f91c6c35ecd51bb218a739e1b4430cb69b26d4bc8d0076b6f631e3bf"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resources.cc": {
+      "bytes": 11792,
+      "sha256": "485b070466c9975c38008ff0be812cef7b618b5f7aab5f75348ea19d92e74bcc"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-spritesheet.cc": {
+      "bytes": 6888,
+      "sha256": "4b59c4022f7efde989af9a321ebd1ccdf42ea85cc0b3dcd0beec818c28434a92"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-texture-source.cc": {
+      "bytes": 4325,
+      "sha256": "3af56c288b56319334d5bf8bbde3f04990a162073ff63bd5c7a6925f1cebc426"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/blur-kernel.h": {
+      "bytes": 1236,
+      "sha256": "e35870b61c65b10d8c693fbb3b54daad91092d35948dd8258124f5a32b72f30b"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/color-filter.h": {
+      "bytes": 1375,
+      "sha256": "20a80f16a4707864e9fbc0d3b7ab99a58a7fa28a88555292dff8d3f83ee3e08c"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/filter-record.h": {
+      "bytes": 981,
+      "sha256": "c444091de324b60ee417b020f5d50a4054bbaefe3a9c90211de1148b11db0dbb"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/postprocess-bounds.h": {
+      "bytes": 1817,
+      "sha256": "1e38d3675543c8d6eb4e1f643240c4a698ccf5530420e15f035e96dc503034d6"
+    },
+    "packages/sfml.js-rmlui/native/rendering/effects/postprocess-shaders.h": {
+      "bytes": 3512,
+      "sha256": "c07ddbce0069b2bf6c396eecd1f82025b97f3eeeb9cf47b455f837143a8ad62a"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-geometry.h": {
+      "bytes": 1424,
+      "sha256": "92fc5d00d329a172dfb13cb1a5b911e9f0fa36e2e8adaf4f81825a3bf7147812"
+    },
+    "packages/sfml.js-rmlui/native/rendering/geometry/rmlui-mesh.h": {
+      "bytes": 944,
+      "sha256": "7aa0ffd6b0915fb12487ea04e53ba66584f15853a5787bcf0d777e1005f1c027"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/render-session.h": {
+      "bytes": 922,
+      "sha256": "013256072a233e6e867bbc5c0b6abda40cb6efc1a2200f6fd50713759edeaf3f"
+    },
+    "packages/sfml.js-rmlui/native/rendering/layers/stencil-attachment.h": {
+      "bytes": 600,
+      "sha256": "f7006960521b47143d2459da77c83d08547fbc0fedf117f16c30722b12404f13"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-layers.h": {
+      "bytes": 861,
+      "sha256": "c409616ac23addae2befde9cb6e31059568e4f871b8b37fd490fcd999715fee5"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-manager.h": {
+      "bytes": 2021,
+      "sha256": "3157a8f6b824651611f10b6ed53b28b1cce988c0ae35cd2c0c5ae0de09fe5142"
+    },
+    "packages/sfml.js-rmlui/native/rendering/manager/rmlui-render-state.h": {
+      "bytes": 1390,
+      "sha256": "417d938be2ebc3e9385892ab957be174a14579e70a5a65bb40a67669aa17da82"
+    },
+    "packages/sfml.js-rmlui/native/rendering/render-interface-sfml.h": {
+      "bytes": 10549,
+      "sha256": "004c6edc8e86807b3fa04cdef42ca46c87677d288bd1f0dde95653126aea3856"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/creation-program.h": {
+      "bytes": 1194,
+      "sha256": "e2af1a912dc0663f06e869de689f980e956a9f5338875afb9263c116af6cbb10"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/geometry-program.h": {
+      "bytes": 2184,
+      "sha256": "967f0eb8975e296ef2303e3b3149ec0cecde6ebedb3ec609c9004e199287c472"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/gradient-program.h": {
+      "bytes": 972,
+      "sha256": "4df010f9a595c0fc15284ba9f8c8a6fa6e10423b345afb92c8ce3e50e96d8222"
+    },
+    "packages/sfml.js-rmlui/native/rendering/shaders/shader-record.h": {
+      "bytes": 1565,
+      "sha256": "2f6cb7b797d31e6e1dc7b3628cb885ec0a86a8939a1e746f7085b42762667fea"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-callback-texture.h": {
+      "bytes": 501,
+      "sha256": "db8b2fe458e14e039a147044f3b0346f13e6c08f53fca6a9917e676a2a872735"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resource-preload.h": {
+      "bytes": 837,
+      "sha256": "274b1d9d96f2b2bbeb739477ad347cdf65542416267d6ab5607a0ad604750064"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-resources.h": {
+      "bytes": 1707,
+      "sha256": "9d403d7fa4d72596eb0757a5afea3a22d38512f4b59b8f8080980863b15c2aed"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-spritesheet.h": {
+      "bytes": 614,
+      "sha256": "a17c4b69a27af293772aa0fda7d0fdd13961ae03b284627bbfdfcf6e09a529eb"
+    },
+    "packages/sfml.js-rmlui/native/rendering/textures/rmlui-texture-source.h": {
+      "bytes": 620,
+      "sha256": "270de82b30eaae16dca1123de4faf886fade3cee3821cd1ae2c522eeede8a6af"
+    },
+    "packages/sfml.js-rmlui/binding.gyp": {
+      "bytes": 13524,
+      "sha256": "d8e45bc720c72ea701b334d9967027bbfcbeaf65120837ddd5717871a11d4620"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/effects/filter-contracts.cc": {
+      "bytes": 14468,
+      "sha256": "668c3b5c1223eee9b6df74b738b72a111d3a20f2ec6db98d3a61bb80f0c2e8bd"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/initialization/sfml-faults.cc": {
+      "bytes": 2381,
+      "sha256": "7dbdf32ec9ad90053796aaea9ffc92a663e4933fec907ad89949ea4d857f8434"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/initialization/startup-contracts.cc": {
+      "bytes": 9270,
+      "sha256": "560a7b6b9ee0f08cc5a5bb01e939ffd33932cf7bd710388bb4711f089fbe5e5f"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/reference/gl3-capture.cc": {
+      "bytes": 4727,
+      "sha256": "5aa2ae9eef9f08f85222fc019e583b29ee45895f94546f5d88145474f959a15f"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/render-interface-contracts.cc": {
+      "bytes": 13677,
+      "sha256": "d32a41ce53e1af38f3cc9f127bfc80a5b55339a8caecdbce8e60b1f3a4a43a18"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/sfml-renderer-contracts.cc": {
+      "bytes": 7219,
+      "sha256": "115d41f16ebc94aa2c5ce821a76f9019bd5925a93aa3a3e3089fa0a4ce61e009"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/shaders/shader-contracts.cc": {
+      "bytes": 12108,
+      "sha256": "0608c94f5f015253707292cba3aeef6e02a08f514858c1c41524ef0fa24e36f9"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/stylesheet-types-contracts.cc": {
+      "bytes": 15680,
+      "sha256": "f717d64921f26821433845356395a7960556e347e1e70d6b3f45281b3901cebf"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/textures/texture-contracts.cc": {
+      "bytes": 13444,
+      "sha256": "c48471c50667ea0d7f6ace2af2dde05fa467fe3f44a22c3a7cf303df5e6d6726"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/utility-contracts.cc": {
+      "bytes": 4936,
+      "sha256": "64160aebe2374b5d7130307568dedbad8610435340cdceb425ef2d5828fcf10b"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/initialization/sfml-faults.h": {
+      "bytes": 761,
+      "sha256": "9ee15328a9f71ea4d3068683cff9f7e47c271ca761810c91a916b886962133a4"
+    },
+    "packages/sfml.js-rmlui/test/native/rendering/build-sfml-renderer-contracts.py": {
+      "bytes": 4289,
+      "sha256": "5ac26a6bb5e0f4c44252f426fec8e9f49fdf0e303b8a9a643dfdcf57afe3da9e"
+    },
+    "packages/sfml.js-rmlui/test/rendering/native-sfml-renderer.test.cjs": {
+      "bytes": 2401,
+      "sha256": "9206813ab5ea0fc8f81b8298cfc66878b9930b27eff2e0a4c52f25a0c71a0afb"
+    },
+    "packages/sfml.js-rmlui/src/rendering/resources.ts": {
+      "bytes": 14973,
+      "sha256": "63b22c25dd269bc8799d777e7ca86cfc5e5c7973d89c53fd34f76108b2b10027"
+    },
+    "docs/rmlui/rendering.md": {
+      "bytes": 8145,
+      "sha256": "b9f71bbfd24032e4de43edb06631e9d925a1acf053a4e6342578383999007427"
+    },
+    "docs/rmlui/rendering.zh-CN.md": {
+      "bytes": 7349,
+      "sha256": "7105e2482ae7446613720dd3503bfe71a5f78063dbb35fb35bf238111eb56c75"
+    },
+    "docs/rmlui/rendering.ja.md": {
+      "bytes": 9525,
+      "sha256": "308ee52e19afad6a6d5fc0ffd5be2e836448a0ca7eaaa621c44e9cb9b6a561c1"
+    },
+    "docs/rmlui/rendering.ko.md": {
+      "bytes": 9031,
+      "sha256": "35ed2c3da73705082c48dcc609b54d5a1688e67b4b8337ca264c5b87b66ad7d5"
+    },
+    "docs/rmlui/resources.md": {
+      "bytes": 29754,
+      "sha256": "170ee32d7c4b9ef523a9c71ab5c214e05120cf91b64b4558ef1babccb728f989"
+    },
+    "docs/rmlui/resources.zh-CN.md": {
+      "bytes": 27295,
+      "sha256": "4a8704f55421ef72c75efe19afb2bda4a6fe8e3d5d42bdff6c9f1c1c6d5f0ebd"
+    },
+    "docs/rmlui/resources.ja.md": {
+      "bytes": 33976,
+      "sha256": "6bc211835ab38f89cf7dcc878e8c889a6a1d2528aa9f855bd707ba8df36293bd"
+    },
+    "docs/rmlui/resources.ko.md": {
+      "bytes": 32929,
+      "sha256": "d325a877d2c74b32eb6aeb1d500aa66627a16a4a2aa852565671db142e655fc7"
+    },
+    "docs/rmlui/audit/6.3/renderer-source-layout-map.json": {
+      "bytes": 3761,
+      "sha256": "b11829acf45162c46c54fcb917881b3a40cc7fdd79f4cef30eaa31723ca63ce1"
+    },
+    "docs/rmlui/audit/6.3/renderer-resource-acceptance.md": {
+      "bytes": 3529,
+      "sha256": "32673c76212d80761b13f8d19f85b5348c0c079c229cf702b7c2b128e8dd7abf"
+    }
+  },
+  "checks": {
+    "/tmp/rmlui-63-completion/renderer-textures-red.log": {
+      "bytes": 491,
+      "sha256": "e6e8ba7d60b10af1cb69660878a2fd54a18938571da79223f7d51fceaa028325"
+    },
+    "/tmp/rmlui-63-completion/renderer-textures-dimensions-red.log": {
+      "bytes": 633,
+      "sha256": "480fb6ff0e3ca0ae1ac6701ac451186a9ee7baf7a14f977571a43e1b5067750b"
+    },
+    "/tmp/rmlui-63-completion/renderer-textures-length-red.log": {
+      "bytes": 539,
+      "sha256": "d6e1b03576353f843ff4a5ddee8ce35bc1ff9b8c8b95b1c37503ce14c713842d"
+    },
+    "/tmp/rmlui-63-completion/renderer-startup-red.log": {
+      "bytes": 844,
+      "sha256": "5e015824be71da9b15362ddb64f90bd493651bda60e0e94668ede470aa04e742"
+    },
+    "/tmp/rmlui-63-completion/renderer-vertex-failures-red.log": {
+      "bytes": 1142,
+      "sha256": "5f9712355051bb816b674172402006f5a01cfeb67a26f7efe6f661dffbb954f9"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-build.log": {
+      "bytes": 126,
+      "sha256": "5354c174ef382997735070d3a1086c18fdd0aa5c95b373f0d4392ae99ab46d96"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-native-wrapper.log": {
+      "bytes": 4643,
+      "sha256": "cff9d174854d722538ef5985b7162f28f1279d859f013d0ca9c5eb5917e762d6"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-files.log": {
+      "bytes": 957,
+      "sha256": "93f28b75bb3e8d5f6dc543a2b37ea7de2c179f533a57500cb93559be69a39597"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-session.log": {
+      "bytes": 365,
+      "sha256": "d1f4d0293e5972f80036ce59c2b7646a16d598514a7fee83a5179d4825fe2b6d"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-lint.log": {
+      "bytes": 76,
+      "sha256": "4375e961c0dac9c7eec6e4a7c4108d90f7d52e7137c5d5c10b66bde71a2bb397"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-cpplint.log": {
+      "bytes": 1129,
+      "sha256": "ac6a627fcbdde01e210a590d16b916d226d8273c4cfa39eb8bc11595228b7e3c"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-fixture-cpplint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-final-cpplint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-format.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-naming.log": {
+      "bytes": 2979,
+      "sha256": "5d663242954b743eff739e519ed72ee98b55a546ad2b2e3b11c618eb4905d20a"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-ts.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-types.log": {
+      "bytes": 63,
+      "sha256": "a3d396bd1d9e2781eac72bc734f22368e2659ea70c40c39a8d23efd0252c01d4"
+    },
+    "/tmp/rmlui-63-completion/renderer-resources-comments.log": {
+      "bytes": 744,
+      "sha256": "3461784ccea2a4a9684d4c4765a99959c3994ea205edbe8aaf6362a98ac17b37"
+    }
+  },
+  "comparisons": {
+    "blur-0-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-0-full.png",
+        "bytes": 889,
+        "sha256": "d18949f4f7dc6dd436f3fea7bd73b0e5ae599ef6ebf79d07db3b97b88a332f1b"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-0-full.png",
+        "bytes": 889,
+        "sha256": "d18949f4f7dc6dd436f3fea7bd73b0e5ae599ef6ebf79d07db3b97b88a332f1b"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-0-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-0-bounded.png",
+        "bytes": 889,
+        "sha256": "d18949f4f7dc6dd436f3fea7bd73b0e5ae599ef6ebf79d07db3b97b88a332f1b"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-0-bounded.png",
+        "bytes": 889,
+        "sha256": "d18949f4f7dc6dd436f3fea7bd73b0e5ae599ef6ebf79d07db3b97b88a332f1b"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-3-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-3-full.png",
+        "bytes": 1709,
+        "sha256": "cb193403a203713893533968526bec785fd1603670f19dfa1f124ed5d589c440"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-3-full.png",
+        "bytes": 1709,
+        "sha256": "cb193403a203713893533968526bec785fd1603670f19dfa1f124ed5d589c440"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-3-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-3-bounded.png",
+        "bytes": 1584,
+        "sha256": "2f68cd9f46ffc37ba159d32d07eeaabc19cfbcd3b618c5a45b5ecae4ffc37ea0"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-3-bounded.png",
+        "bytes": 1584,
+        "sha256": "2f68cd9f46ffc37ba159d32d07eeaabc19cfbcd3b618c5a45b5ecae4ffc37ea0"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-8-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-8-full.png",
+        "bytes": 2941,
+        "sha256": "cb7120706cf209f68a08ab16480625ddc4cb4fe36b33ad21873a42116712a41c"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-8-full.png",
+        "bytes": 2941,
+        "sha256": "cb7120706cf209f68a08ab16480625ddc4cb4fe36b33ad21873a42116712a41c"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-8-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-8-bounded.png",
+        "bytes": 2455,
+        "sha256": "90f927b2f922f05673f7571c6fac03429c9a2f7b8d9eaee42c1f9a1776852727"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-8-bounded.png",
+        "bytes": 2455,
+        "sha256": "90f927b2f922f05673f7571c6fac03429c9a2f7b8d9eaee42c1f9a1776852727"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-24-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-24-full.png",
+        "bytes": 3437,
+        "sha256": "72a2c72ce79a34e17d46a458d22526037374c54ba97971cf7168647d50c6197c"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-24-full.png",
+        "bytes": 3437,
+        "sha256": "72a2c72ce79a34e17d46a458d22526037374c54ba97971cf7168647d50c6197c"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "blur-24-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/blur-24-bounded.png",
+        "bytes": 2450,
+        "sha256": "2eb0dd4a8919896f2f9a88268070b58ba62c9083752f851938c47f4d6052b0e3"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/blur-24-bounded.png",
+        "bytes": 2450,
+        "sha256": "2eb0dd4a8919896f2f9a88268070b58ba62c9083752f851938c47f4d6052b0e3"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-0-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-0-full.png",
+        "bytes": 911,
+        "sha256": "ba53f6189804b96e8caef160a03e9f8aa79195c5554a9c7fc1c37bd0261a00ae"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-0-full.png",
+        "bytes": 911,
+        "sha256": "ba53f6189804b96e8caef160a03e9f8aa79195c5554a9c7fc1c37bd0261a00ae"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-0-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-0-bounded.png",
+        "bytes": 911,
+        "sha256": "ba53f6189804b96e8caef160a03e9f8aa79195c5554a9c7fc1c37bd0261a00ae"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-0-bounded.png",
+        "bytes": 911,
+        "sha256": "ba53f6189804b96e8caef160a03e9f8aa79195c5554a9c7fc1c37bd0261a00ae"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-3-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-3-full.png",
+        "bytes": 2024,
+        "sha256": "67d285b563a57850d82aa8e2f986eee98bc291a7053842f6813db9415fe37769"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-3-full.png",
+        "bytes": 2024,
+        "sha256": "67d285b563a57850d82aa8e2f986eee98bc291a7053842f6813db9415fe37769"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-3-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-3-bounded.png",
+        "bytes": 2024,
+        "sha256": "67d285b563a57850d82aa8e2f986eee98bc291a7053842f6813db9415fe37769"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-3-bounded.png",
+        "bytes": 2024,
+        "sha256": "67d285b563a57850d82aa8e2f986eee98bc291a7053842f6813db9415fe37769"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-8-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-8-full.png",
+        "bytes": 3779,
+        "sha256": "a0659c9add9d4ff374efc8fef71faf240ef9a2b0808d6f6e7f33a250417ee9e8"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-8-full.png",
+        "bytes": 3779,
+        "sha256": "a0659c9add9d4ff374efc8fef71faf240ef9a2b0808d6f6e7f33a250417ee9e8"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-8-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-8-bounded.png",
+        "bytes": 3858,
+        "sha256": "4ed8798e09d76292a91ca610fa819af9ffed69e958dc86a7e776e15af91bc29b"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-8-bounded.png",
+        "bytes": 3858,
+        "sha256": "4ed8798e09d76292a91ca610fa819af9ffed69e958dc86a7e776e15af91bc29b"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-24-full.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-24-full.png",
+        "bytes": 3934,
+        "sha256": "b9825813343403ca35fb0a30035d25cfa5d4b3d91bb350be7edbe0ecfad9fa7f"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-24-full.png",
+        "bytes": 3934,
+        "sha256": "b9825813343403ca35fb0a30035d25cfa5d4b3d91bb350be7edbe0ecfad9fa7f"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    },
+    "drop-shadow-24-bounded.png": {
+      "reference": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/gl3-reference/drop-shadow-24-bounded.png",
+        "bytes": 3036,
+        "sha256": "97ee7482985adc5a1633ce124db0d7aeb3ea173311bc386f7b37a4df797d13c2"
+      },
+      "sfml": {
+        "path": "/var/folders/qy/1qxm445n1lv_4f6fg8xr684h0000gn/T/sfmljs-rmlui-renderer-contracts/drop-shadow-24-bounded.png",
+        "bytes": 3036,
+        "sha256": "97ee7482985adc5a1633ce124db0d7aeb3ea173311bc386f7b37a4df797d13c2"
+      },
+      "maximum_rgb_channel_error": 0,
+      "mean_rgb_channel_error": 0
+    }
+  },
+  "complete_runtime_run": {
+    "files": 135,
+    "literal_passes": 1393,
+    "failed_files": 0,
+    "logs": {
+      "/tmp/rmlui-63-completion/renderer-resources-runtime.log": {
+        "bytes": 123566,
+        "sha256": "aa833af6919edc06d5d0f38b293a01eac505639179483f5c9bd41fb11b394924"
+      }
+    }
+  },
+  "core_reconciliation": {
+    "bytes": 1973681,
+    "sha256": "8d761c374030b1c6b627d94f421ae2c9858f3842dc5230b66dec5755049951eb"
+  },
+  "remaining": [
+    "Render-target allocation failures and full CSS combinations",
+    "Platform IME/device and 20 applications/113 VisualTests",
+    "Site/editor/package CI and independent whole acceptance"
+  ]
+}

@@ -65,6 +65,16 @@
       </div>
     </dd>
   </div>
+  <div>
+    <dt><a href="../../sfml.js-rmlui/examples/README.zh-CN.md">RmlUi 示例</a></dt>
+    <dd>
+      <p>使用 RML/RCSS 构建界面，包含可交互计数器、主题和上游教程。</p>
+      <div class="example-topic-links">
+        <a href="../../sfml.js-rmlui/examples/README.zh-CN.md#demo">计数器</a>
+        <a href="../../sfml.js-rmlui/examples/README.zh-CN.md#variables">主题</a>
+      </div>
+    </dd>
+  </div>
   <div id="game-projects">
     <dt><a href="projects/README.zh-CN.md">游戏与应用</a></dt>
     <dd>

@@ -95,6 +95,7 @@ export class Glyph {
   get [glyphStorage](): Uint8Array {
     return this.state.values;
   }
+  /** Native view of the shared glyph metadata. @internal */
   get [glyphNative](): NativeValueHandle<'glyph'> {
     return nativeValue(this, glyphNative, this.state);
   }

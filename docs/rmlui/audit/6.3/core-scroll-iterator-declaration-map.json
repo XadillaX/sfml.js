@@ -1,0 +1,595 @@
+{
+  "version": "6.3",
+  "inventory_sha256": "2459e6eb1b8cf4d570d7915043862b3cb70162171da0a556f2b8df61df709f13",
+  "record_count": 28,
+  "mapping_complete": true,
+  "scope_complete": false,
+  "notice": "Exact dependent-header mapping, not whole Core acceptance.",
+  "counts": {
+    "locally-verified-managed-equivalent": 15,
+    "native-private-forward-source-reconciled": 2,
+    "locally-verified-batched-iterator-snapshot": 6,
+    "locally-verified-native-transfer-and-managed-snapshot": 3,
+    "locally-verified-native-deleted-copy": 2
+  },
+  "records": [
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 8,
+      "kind": "ClassDecl",
+      "name": "Rml::Element",
+      "signature": "Element",
+      "type": "Rml::Element",
+      "inventory_index": 1002,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "Forward to the actual checked Element type; this site adds no separate constructor or operation.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element.ts"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 9,
+      "kind": "ClassDecl",
+      "name": "Rml::WidgetScroll",
+      "signature": "WidgetScroll",
+      "type": "Rml::WidgetScroll",
+      "inventory_index": 1003,
+      "status": "native-private-forward-source-reconciled",
+      "representation": "Definition exists only in Source/Core/WidgetScroll.h. Native ElementScroll owns its widgets, timers and listeners; this forward site declares no separately callable public operation.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 15,
+      "kind": "ClassDecl",
+      "name": "Rml::ElementScroll",
+      "signature": "ElementScroll",
+      "type": "Rml::ElementScroll",
+      "inventory_index": 1004,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 17,
+      "kind": "EnumDecl",
+      "name": "Rml::ElementScroll::Orientation",
+      "signature": "Orientation",
+      "type": "Rml::ElementScroll::Orientation",
+      "inventory_index": 1005,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ScrollOrientation: VERTICAL=0 and HORIZONTAL=1. All native orientation calls check those exact integer values.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 17,
+      "kind": "EnumConstantDecl",
+      "name": "Rml::ElementScroll::Orientation::HORIZONTAL",
+      "signature": "HORIZONTAL",
+      "type": "Rml::ElementScroll::Orientation",
+      "inventory_index": 1006,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ScrollOrientation: VERTICAL=0 and HORIZONTAL=1. All native orientation calls check those exact integer values.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 17,
+      "kind": "EnumConstantDecl",
+      "name": "Rml::ElementScroll::Orientation::VERTICAL",
+      "signature": "VERTICAL",
+      "type": "Rml::ElementScroll::Orientation",
+      "inventory_index": 1007,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ScrollOrientation: VERTICAL=0 and HORIZONTAL=1. All native orientation calls check those exact integer values.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 19,
+      "kind": "CXXConstructor",
+      "name": "Rml::ElementScroll::ElementScroll",
+      "signature": "ElementScroll(Element *)",
+      "type": "void (Element *)",
+      "inventory_index": 1008,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 20,
+      "kind": "CXXDestructor",
+      "name": "Rml::ElementScroll::~ElementScroll",
+      "signature": "~ElementScroll()",
+      "type": "void ()",
+      "inventory_index": 1009,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 23,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::Update",
+      "signature": "Update()",
+      "type": "void ()",
+      "inventory_index": 1010,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 28,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::EnableScrollbar",
+      "signature": "EnableScrollbar(Orientation, float)",
+      "type": "void (Orientation, float)",
+      "inventory_index": 1011,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 31,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::DisableScrollbar",
+      "signature": "DisableScrollbar(Orientation)",
+      "type": "void (Orientation)",
+      "inventory_index": 1012,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 35,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::UpdateScrollbar",
+      "signature": "UpdateScrollbar(Orientation)",
+      "type": "void (Orientation)",
+      "inventory_index": 1013,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 40,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::GetScrollbar",
+      "signature": "GetScrollbar(Orientation)",
+      "type": "Element *(Orientation)",
+      "inventory_index": 1014,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 44,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::GetScrollbarSize",
+      "signature": "GetScrollbarSize(Orientation)",
+      "type": "float (Orientation)",
+      "inventory_index": 1015,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 47,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::FormatScrollbars",
+      "signature": "FormatScrollbars()",
+      "type": "void ()",
+      "inventory_index": 1016,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/ElementScroll.h",
+      "line": 50,
+      "kind": "CXXMethod",
+      "name": "Rml::ElementScroll::UpdateProperties",
+      "signature": "UpdateProperties()",
+      "type": "void ()",
+      "inventory_index": 1017,
+      "status": "locally-verified-managed-equivalent",
+      "representation": "ElementScroll(element) owns a distinct actual native component; Element.getElementScroll() is the canonical borrowed component. Operations use the original native algorithms. Owned release/GC teardown detaches widget listeners before native children die; host destruction and shutdown invalidate every facade and clear visible host roots. Non-DOM children remain host-owned. No raw element pointer is exported and unchanged queries scan no peers.",
+      "sources": [
+        "packages/sfml.js-rmlui/src/element-scroll.ts",
+        "packages/sfml.js-rmlui/native/rmlui-element-scroll.cc",
+        "packages/sfml.js-rmlui/native/rmlui-parent-observers.cc",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/ElementScroll.cpp",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/WidgetScroll.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/owned-scroll.test.cjs"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 8,
+      "kind": "ClassDecl",
+      "name": "Rml::AllPropertiesIterator",
+      "signature": "AllPropertiesIterator",
+      "type": "Rml::AllPropertiesIterator",
+      "inventory_index": 2073,
+      "status": "native-private-forward-source-reconciled",
+      "representation": "Definition exists only in Source/Core/PropertiesIterator.h; the public view hides this internal iterator. This forward declares no application callable.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "native-private-forward-source-reconciled",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 22,
+      "kind": "ClassDecl",
+      "name": "Rml::PropertiesIteratorView",
+      "signature": "PropertiesIteratorView",
+      "type": "Rml::PropertiesIteratorView",
+      "inventory_index": 2074,
+      "status": "locally-verified-batched-iterator-snapshot",
+      "representation": "Element.iterateLocalProperties(filter=null) consumes the actual native iterator in one entry and returns independent ordered [name, Property] snapshots. Native AtEnd, increment and dereference complete before V8 wrapping; later style changes cannot invalidate copied results. No borrowed iterator lvalue or property reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-batched-iterator-equivalent",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 24,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::PropertiesIteratorView::ValueType",
+      "signature": "ValueType",
+      "type": "Rml::PropertiesIteratorView::ValueType",
+      "inventory_index": 2075,
+      "status": "locally-verified-batched-iterator-snapshot",
+      "representation": "Element.iterateLocalProperties(filter=null) consumes the actual native iterator in one entry and returns independent ordered [name, Property] snapshots. Native AtEnd, increment and dereference complete before V8 wrapping; later style changes cannot invalidate copied results. No borrowed iterator lvalue or property reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-batched-iterator-equivalent",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 26,
+      "kind": "CXXConstructor",
+      "name": "Rml::PropertiesIteratorView::PropertiesIteratorView",
+      "signature": "PropertiesIteratorView(UniquePtr<AllPropertiesIterator>)",
+      "type": "void (UniquePtr<AllPropertiesIterator>)",
+      "inventory_index": 2076,
+      "status": "locally-verified-native-transfer-and-managed-snapshot",
+      "representation": "Actual native UniquePtr backend construction, move construction and move assignment execute in the native probe; position and property references transfer, replaced owners are deleted once, and moved-from destruction does not delete the transferred owner. The JS contract consumes the original iterator into independent ordered property snapshots in one native entry with zero callbacks. No invalidatable iterator or borrowed reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-iterator-lifetime-follow-up",
+      "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+      "native_probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 27,
+      "kind": "CXXConstructor",
+      "name": "Rml::PropertiesIteratorView::PropertiesIteratorView",
+      "signature": "PropertiesIteratorView(PropertiesIteratorView &&)",
+      "type": "void (PropertiesIteratorView &&) noexcept",
+      "inventory_index": 2077,
+      "status": "locally-verified-native-transfer-and-managed-snapshot",
+      "representation": "Actual native UniquePtr backend construction, move construction and move assignment execute in the native probe; position and property references transfer, replaced owners are deleted once, and moved-from destruction does not delete the transferred owner. The JS contract consumes the original iterator into independent ordered property snapshots in one native entry with zero callbacks. No invalidatable iterator or borrowed reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-iterator-lifetime-follow-up",
+      "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+      "native_probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 28,
+      "kind": "CXXMethod",
+      "name": "Rml::PropertiesIteratorView::operator=",
+      "signature": "operator=(PropertiesIteratorView &&)",
+      "type": "PropertiesIteratorView &(PropertiesIteratorView &&) noexcept",
+      "inventory_index": 2078,
+      "status": "locally-verified-native-transfer-and-managed-snapshot",
+      "representation": "Actual native UniquePtr backend construction, move construction and move assignment execute in the native probe; position and property references transfer, replaced owners are deleted once, and moved-from destruction does not delete the transferred owner. The JS contract consumes the original iterator into independent ordered property snapshots in one native entry with zero callbacks. No invalidatable iterator or borrowed reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-iterator-lifetime-follow-up",
+      "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+      "native_probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 29,
+      "kind": "CXXConstructor",
+      "name": "Rml::PropertiesIteratorView::PropertiesIteratorView",
+      "signature": "PropertiesIteratorView(const PropertiesIteratorView &)",
+      "type": "void (const PropertiesIteratorView &)",
+      "inventory_index": 2079,
+      "status": "locally-verified-native-deleted-copy",
+      "representation": "Exact public declaration is '= delete'; copying a native live view is not a supported operation. JS output is a copied value snapshot, separately from that native view.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "deleted_in_public_header": true,
+      "original_source_status": "native-deleted-copy-operation-source-reconciled",
+      "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+      "native_probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 30,
+      "kind": "CXXMethod",
+      "name": "Rml::PropertiesIteratorView::operator=",
+      "signature": "operator=(const PropertiesIteratorView &)",
+      "type": "PropertiesIteratorView &(const PropertiesIteratorView &)",
+      "inventory_index": 2080,
+      "status": "locally-verified-native-deleted-copy",
+      "representation": "Exact public declaration is '= delete'; copying a native live view is not a supported operation. JS output is a copied value snapshot, separately from that native view.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "deleted_in_public_header": true,
+      "original_source_status": "native-deleted-copy-operation-source-reconciled",
+      "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+      "native_probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 31,
+      "kind": "CXXDestructor",
+      "name": "Rml::PropertiesIteratorView::~PropertiesIteratorView",
+      "signature": "~PropertiesIteratorView()",
+      "type": "void ()",
+      "inventory_index": 2081,
+      "status": "locally-verified-batched-iterator-snapshot",
+      "representation": "Element.iterateLocalProperties(filter=null) consumes the actual native iterator in one entry and returns independent ordered [name, Property] snapshots. Native AtEnd, increment and dereference complete before V8 wrapping; later style changes cannot invalidate copied results. No borrowed iterator lvalue or property reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-batched-iterator-equivalent",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 33,
+      "kind": "CXXMethod",
+      "name": "Rml::PropertiesIteratorView::operator++",
+      "signature": "operator++()",
+      "type": "PropertiesIteratorView &()",
+      "inventory_index": 2082,
+      "status": "locally-verified-batched-iterator-snapshot",
+      "representation": "Element.iterateLocalProperties(filter=null) consumes the actual native iterator in one entry and returns independent ordered [name, Property] snapshots. Native AtEnd, increment and dereference complete before V8 wrapping; later style changes cannot invalidate copied results. No borrowed iterator lvalue or property reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-batched-iterator-equivalent",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 37,
+      "kind": "CXXMethod",
+      "name": "Rml::PropertiesIteratorView::AtEnd",
+      "signature": "AtEnd()",
+      "type": "bool () const",
+      "inventory_index": 2083,
+      "status": "locally-verified-batched-iterator-snapshot",
+      "representation": "Element.iterateLocalProperties(filter=null) consumes the actual native iterator in one entry and returns independent ordered [name, Property] snapshots. Native AtEnd, increment and dereference complete before V8 wrapping; later style changes cannot invalidate copied results. No borrowed iterator lvalue or property reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-batched-iterator-equivalent",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    },
+    {
+      "header": "Core/PropertiesIteratorView.h",
+      "line": 40,
+      "kind": "CXXMethod",
+      "name": "Rml::PropertiesIteratorView::operator*",
+      "signature": "operator*()",
+      "type": "Pair<String, const Property &> () const",
+      "inventory_index": 2084,
+      "status": "locally-verified-batched-iterator-snapshot",
+      "representation": "Element.iterateLocalProperties(filter=null) consumes the actual native iterator in one entry and returns independent ordered [name, Property] snapshots. Native AtEnd, increment and dereference complete before V8 wrapping; later style changes cannot invalidate copied results. No borrowed iterator lvalue or property reference escapes into JS.",
+      "sources": [
+        "packages/sfml.js-rmlui/native/rmlui-element-property.cc",
+        "packages/sfml.js-rmlui/src/element.ts",
+        "packages/sfml.js-rmlui/third_party/rmlui/Include/RmlUi/Core/PropertiesIteratorView.h",
+        "packages/sfml.js-rmlui/third_party/rmlui/Source/Core/PropertiesIteratorView.cpp"
+      ],
+      "runtime_file": "packages/sfml.js-rmlui/test/property.test.cjs",
+      "runtime_scenario": "native-local-iterator-class-inline-custom-and-inheritance-filter",
+      "original_source_status": "source-reconciled-batched-iterator-equivalent",
+      "runtime_evidence": "/tmp/rmlui-63-completion/type-forward-runtime.log"
+    }
+  ],
+  "native_transfer_acceptance": {
+    "inventory_indices": [
+      2076,
+      2077,
+      2078
+    ],
+    "runtime_scenarios": 3,
+    "native_evidence": "/tmp/rmlui-63-completion/property-iterator-transfer-native-final.log",
+    "probe": "packages/sfml.js-rmlui/test/native/property-iterator-transfer.cc",
+    "managed_consumer": "packages/sfml.js-rmlui/test/property.test.cjs",
+    "native_entries": 1,
+    "native_callbacks": 0,
+    "whole_scope_complete": false
+  }
+}

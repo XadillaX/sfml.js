@@ -56,6 +56,7 @@ export class Angle {
     return this.state.values;
   }
 
+  /** Lazily creates the native view of shared angle storage. @internal */
   get [angleNative](): NativeValueHandle<'angle'> {
     return nativeValue(this, angleNative, this.state);
   }

@@ -20,13 +20,23 @@ export const scalarArrays = {
  * @ko 벡터 스칼라 유형입니다. i/u는 부호 있는/없는 정수,
  * f는 부동 소수점을 나타내며 접미사는 비트 수입니다.
  */
-export type ScalarType = keyof typeof scalarArrays;
+export type ScalarType =
+  | 'i8' | 'u8' | 'i16' | 'u16' | 'i32' | 'u32'
+  | 'i64' | 'u64' | 'f32' | 'f64';
 export type BigIntScalar = 'i64' | 'u64';
 export type NumberScalar = Exclude<ScalarType, BigIntScalar>;
+/** Floating-point component storage types. @inline */
 export type FloatScalar = 'f32' | 'f64';
-type ScalarValues = { [T in NumberScalar]: number } &
-{ [T in BigIntScalar]: bigint };
-export type Scalar<T extends ScalarType> = ScalarValues[T];
+/**
+ * Component value for a storage type: i64/u64 use bigint, others use number.
+ * @zh 存储类型对应的分量值：i64/u64 使用 bigint，其余使用 number。
+ * @ja 格納型に対応する成分値。i64/u64 は bigint、それ以外は number。
+ * @ko 저장 타입에 해당하는 성분 값. i64/u64는 bigint, 나머지는 number입니다.
+ */
+export type Scalar<T extends ScalarType> = (
+  { [K in Exclude<ScalarType, 'i64' | 'u64'>]: number } &
+  { [K in 'i64' | 'u64']: bigint }
+)[T];
 // Explicit view types remain compatible with TS 5.0
 // and TS 5.9's generic buffers.
 interface ScalarViews {

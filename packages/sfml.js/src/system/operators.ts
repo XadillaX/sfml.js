@@ -99,6 +99,7 @@ type VectorEquality = Intersect<
 }[ScalarType]
 >;
 
+/** Same-type addition signatures, returning independent values. @inline */
 interface Addition extends VectorAddition {
   (left: R<Bvec2>, right: R<Bvec2>): Bvec2;
   (left: R<Bvec3>, right: R<Bvec3>): Bvec3;
@@ -107,6 +108,7 @@ interface Addition extends VectorAddition {
   (left: R<Angle>, right: R<Angle>): Angle;
 }
 
+/** Same-type addition signatures that mutate the left operand. @inline */
 interface AdditionAssign extends VectorAdditionAssign {
   (left: Bvec2, right: R<Bvec2>): Bvec2;
   (left: Bvec3, right: R<Bvec3>): Bvec3;
@@ -115,6 +117,7 @@ interface AdditionAssign extends VectorAdditionAssign {
   (left: Angle, right: R<Angle>): Angle;
 }
 
+/** Unary negation signatures, returning independent values. @inline */
 interface Negation extends VectorNegation {
   (value: R<Bvec2>): Bvec2;
   (value: R<Bvec3>): Bvec3;
@@ -122,6 +125,7 @@ interface Negation extends VectorNegation {
   (value: R<Angle>): Angle;
 }
 
+/** Right-scalar multiplication and division signatures. @inline */
 interface Scale extends VectorScale {
   (left: R<Bvec2>, right: boolean): Bvec2;
   (left: R<Bvec3>, right: boolean): Bvec3;
@@ -129,6 +133,7 @@ interface Scale extends VectorScale {
   (left: R<Angle>, right: number): Angle;
 }
 
+/** Right-scalar signatures that mutate the left operand. @inline */
 interface ScaleAssign extends VectorScaleAssign {
   (left: Bvec2, right: boolean): Bvec2;
   (left: Bvec3, right: boolean): Bvec3;
@@ -136,6 +141,7 @@ interface ScaleAssign extends VectorScaleAssign {
   (left: Angle, right: number): Angle;
 }
 
+/** Left-scalar multiplication signatures. @inline */
 interface LeftScale extends VectorLeftScale {
   (left: boolean, right: R<Bvec2>): Bvec2;
   (left: boolean, right: R<Bvec3>): Bvec3;
@@ -143,6 +149,7 @@ interface LeftScale extends VectorLeftScale {
   (left: number, right: R<Angle>): Angle;
 }
 
+/** Exact same-type equality and inequality signatures. @inline */
 interface Equality extends VectorEquality {
   (left: IpAddress, right: IpAddress): boolean;
   (left: Readonly<VideoMode>, right: Readonly<VideoMode>): boolean;
@@ -782,6 +789,7 @@ export const equal = equals as Equality;
  */
 export const notEqual = ((left: EqualityInput, right: EqualityInput) =>
   !equals(left, right)) as Equality;
+/** Ordering signatures for address, mode, duration and angle. @inline */
 interface Ordering {
   (left: IpAddress, right: IpAddress): boolean;
   (left: Readonly<VideoMode>, right: Readonly<VideoMode>): boolean;

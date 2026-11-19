@@ -1,0 +1,2370 @@
+{
+  "upstream_version": "6.3",
+  "source": "docs/rmlui/audit/6.3/upstream-api.json",
+  "stage": "native-js-data-template-local-acceptance",
+  "scope_complete": false,
+  "public_header_declarations": 131,
+  "header_counts": {
+    "Core/DataModelHandle.h": 28,
+    "Core/DataStructHandle.h": 5,
+    "Core/DataTypeRegister.h": 9,
+    "Core/DataTypes.h": 29,
+    "Core/DataVariable.h": 60
+  },
+  "status_counts": {
+    "pending": 0,
+    "locally-verified-macos-arm64": 131,
+    "partial": 0
+  },
+  "evidence_groups": {
+    "exact-native-data-templates": [
+      "packages/sfml.js-rmlui/test/native/data-templates.cc",
+      "packages/sfml.js-rmlui/test/data-definition.test.cjs",
+      "packages/sfml.js-rmlui/test/data-definition.types.ts",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "docs/rmlui/audit/6.3/data-template-acceptance.md",
+      "/tmp/rmlui-63-completion/data-templates-native.log",
+      "/tmp/rmlui-63-completion/data-struct-handle-red.log",
+      "/tmp/rmlui-63-completion/data-template-runtime.log",
+      "/tmp/rmlui-63-completion/data-template-package.log",
+      "/tmp/rmlui-63-completion/data-template-types.log",
+      "/tmp/rmlui-63-completion/data-template-site.log",
+      "/tmp/rmlui-63-completion/data-template-format.log",
+      "/tmp/rmlui-63-completion/data-template-naming.log",
+      "/tmp/rmlui-63-completion/data-template-probe-cpplint.log",
+      "/tmp/rmlui-63-completion/data-template-probe-naming.log",
+      "/tmp/rmlui-63-completion/data-template-review.md"
+    ],
+    "independently-owned-data-variables": [
+      "packages/sfml.js-rmlui/native/rmlui-data.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-schema.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-address.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-members.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/src/internal/native.ts",
+      "packages/sfml.js-rmlui/test/data-owned.test.cjs",
+      "packages/sfml.js-rmlui/test/data-owned.types.ts",
+      "packages/sfml.js-rmlui/test/native/data-templates.cc",
+      "docs/rmlui/audit/6.3/data-owned-acceptance.md",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-owned-red.log",
+      "/tmp/rmlui-63-completion/data-owned-package.log",
+      "/tmp/rmlui-63-completion/data-owned-declarations-lint.log",
+      "/tmp/rmlui-63-completion/data-owned-declarations-build.log",
+      "/tmp/rmlui-63-completion/data-owned-declarations-types.log",
+      "/tmp/rmlui-63-completion/data-owned-format.log",
+      "/tmp/rmlui-63-completion/data-owned-naming.log",
+      "/tmp/rmlui-63-completion/data-owned-naming-final.log",
+      "/tmp/rmlui-63-completion/data-owned-site.log",
+      "/tmp/rmlui-63-completion/data-templates-native.log",
+      "/tmp/rmlui-63-completion/data-templates-cpplint.log",
+      "/tmp/rmlui-63-completion/data-templates-format.log",
+      "/tmp/rmlui-63-completion/data-templates-naming.log",
+      "/tmp/rmlui-63-completion/data-owned-review.md"
+    ],
+    "checked-data-definition-traits-families": [
+      "packages/sfml.js-rmlui/native/rmlui-data-address.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/src/data-pointer-traits.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/src/internal/native.ts",
+      "packages/sfml.js-rmlui/test/data-definition.test.cjs",
+      "packages/sfml.js-rmlui/test/data-definition.types.ts",
+      "packages/sfml.js-rmlui/test/native/data-pointer-traits.cc",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-definition-red.log",
+      "/tmp/rmlui-63-completion/data-family-red.log",
+      "/tmp/rmlui-63-completion/data-family-package.log",
+      "/tmp/rmlui-63-completion/data-pointer-traits-native.log",
+      "/tmp/rmlui-63-completion/data-pointer-traits-cpplint.log",
+      "/tmp/rmlui-63-completion/data-definition-format.log",
+      "/tmp/rmlui-63-completion/data-definition-naming-clean-env.log",
+      "/tmp/rmlui-63-completion/data-definition-site-final.log",
+      "/tmp/rmlui-63-completion/data-definition-review.md"
+    ],
+    "native-data-addresses-literals-reflection": [
+      "packages/sfml.js-rmlui/native/rmlui-data-address.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-address.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-members.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/src/data-address.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/src/data-accessors.ts",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/test/data-addresses.test.cjs",
+      "packages/sfml.js-rmlui/test/data-addresses.types.ts",
+      "packages/sfml.js-rmlui/test/data-references.test.cjs",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-addresses-red.log",
+      "/tmp/rmlui-63-completion/data-addresses-native.log",
+      "/tmp/rmlui-63-completion/data-addresses-ts.log",
+      "/tmp/rmlui-63-completion/data-addresses-types.log",
+      "/tmp/rmlui-63-completion/data-addresses-focused.log",
+      "/tmp/rmlui-63-completion/data-addresses-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-addresses-lint.log",
+      "/tmp/rmlui-63-completion/data-addresses-cpplint.log",
+      "/tmp/rmlui-63-completion/data-addresses-naming.log",
+      "/tmp/rmlui-63-completion/data-addresses-format.log"
+    ],
+    "native-data-scale-and-callback-roots": [
+      "packages/sfml.js-rmlui/native/rmlui-data-diagnostics.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-diagnostics.cc",
+      "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "packages/sfml.js-rmlui/native/rmlui-state.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-factory.cc",
+      "packages/sfml.js-rmlui/native/rmlui-listener-instancers.cc",
+      "packages/sfml.js-rmlui/test/data-diagnostics.test.cjs",
+      "packages/sfml.js-rmlui/test/event-listener-instancers.test.cjs",
+      "packages/sfml.js-rmlui/tools/measure-data.cjs",
+      "docs/rmlui/audit/6.3/data-performance.md",
+      "docs/rmlui/audit/6.3/data-performance.csv",
+      "/tmp/rmlui-63-completion/data-diagnostics-red.log",
+      "/tmp/rmlui-63-completion/data-performance-large-stack.txt",
+      "/tmp/rmlui-63-completion/data-performance-results.json",
+      "/tmp/rmlui-63-completion/data-performance-runtime.log",
+      "/tmp/rmlui-63-completion/data-performance-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-performance-native-final.log",
+      "/tmp/rmlui-63-completion/data-performance-lint-final.log",
+      "/tmp/rmlui-63-completion/data-performance-cpplint-final.log",
+      "/tmp/rmlui-63-completion/data-performance-format.log",
+      "/tmp/rmlui-63-completion/data-performance-naming-final.log",
+      "/tmp/rmlui-63-completion/data-performance-site.log",
+      "/tmp/rmlui-63-completion/data-performance-site-content.log",
+      "/tmp/rmlui-63-completion/data-performance-review.md"
+    ],
+    "scalar-callback-foundation": [
+      "packages/sfml.js-rmlui/native/rmlui-data.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-state.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-callbacks.cc",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-model.test.cjs",
+      "packages/sfml.js-rmlui/test/data-model.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-model-focused.log",
+      "/tmp/rmlui-63-completion/data-model-site.log",
+      "/tmp/rmlui-63-completion/data-model-native-build.log",
+      "/tmp/rmlui-63-completion/data-model-consumer-types.log",
+      "/tmp/rmlui-63-completion/data-model-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-model-application.log",
+      "/tmp/rmlui-63-completion/data-model-naming.log",
+      "/tmp/rmlui-63-completion/data-foundation-review.md"
+    ],
+    "native-schema-storage": [
+      "packages/sfml.js-rmlui/native/rmlui-data-schema.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-state.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-schema.test.cjs",
+      "packages/sfml.js-rmlui/test/data-schema.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-models.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-schema-focused.log",
+      "/tmp/rmlui-63-completion/data-schema-site.log",
+      "/tmp/rmlui-63-completion/data-schema-native-build.log",
+      "/tmp/rmlui-63-completion/data-schema-ts-build.log",
+      "/tmp/rmlui-63-completion/data-schema-types.log",
+      "/tmp/rmlui-63-completion/data-schema-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-schema-application.log",
+      "/tmp/rmlui-63-completion/data-schema-naming.log",
+      "/tmp/rmlui-63-completion/data-schema-patch-naming.log",
+      "/tmp/rmlui-63-completion/data-schema-format.log",
+      "/tmp/rmlui-63-completion/data-schema-review.md"
+    ],
+    "owned-data-variants-and-transforms": [
+      "packages/sfml.js-rmlui/native/rmlui-data.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-callbacks.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/src/data-transforms.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/test/data-transforms.test.cjs",
+      "packages/sfml.js-rmlui/test/data-transforms.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-models.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-variants-red.log",
+      "/tmp/rmlui-63-completion/data-transforms-red.log",
+      "/tmp/rmlui-63-completion/data-transforms-focused.log",
+      "/tmp/rmlui-63-completion/data-transforms-build.log",
+      "/tmp/rmlui-63-completion/data-transforms-types.log",
+      "/tmp/rmlui-63-completion/data-transforms-lint.log",
+      "/tmp/rmlui-63-completion/data-transforms-site.log",
+      "/tmp/rmlui-63-completion/data-transforms-site-lint.log",
+      "/tmp/rmlui-63-completion/data-transforms-format.log",
+      "/tmp/rmlui-63-completion/data-transforms-cpplint.log",
+      "/tmp/rmlui-63-completion/data-transforms-naming.log",
+      "/tmp/rmlui-63-completion/data-transforms-application.log",
+      "/tmp/rmlui-63-completion/data-transforms-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-transforms-review.md"
+    ],
+    "managed-data-references": [
+      "packages/sfml.js-rmlui/native/rmlui-data-schema.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-references.test.cjs",
+      "packages/sfml.js-rmlui/test/data-references.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-models.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-references-focused.log",
+      "/tmp/rmlui-63-completion/data-references-native.log",
+      "/tmp/rmlui-63-completion/data-references-ts.log",
+      "/tmp/rmlui-63-completion/data-references-types.log",
+      "/tmp/rmlui-63-completion/data-references-lint.log",
+      "/tmp/rmlui-63-completion/data-references-cpplint.log",
+      "/tmp/rmlui-63-completion/data-references-naming.log",
+      "/tmp/rmlui-63-completion/data-references-format.log",
+      "/tmp/rmlui-63-completion/data-references-model-naming.log",
+      "/tmp/rmlui-63-completion/data-references-site.log",
+      "/tmp/rmlui-63-completion/data-references-site-lint.log",
+      "/tmp/rmlui-63-completion/data-references-application.log",
+      "/tmp/rmlui-63-completion/data-references-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-references-review.md"
+    ],
+    "enum-custom-data-definitions": [
+      "packages/sfml.js-rmlui/native/rmlui-data-schema.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-custom.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-callbacks.cc",
+      "packages/sfml.js-rmlui/native/rmlui-state.cc",
+      "packages/sfml.js-rmlui/src/data-custom.ts",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-custom.test.cjs",
+      "packages/sfml.js-rmlui/test/data-custom.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-models.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-custom-runtime.log",
+      "/tmp/rmlui-63-completion/data-custom-native-build.log",
+      "/tmp/rmlui-63-completion/data-custom-ts-final.log",
+      "/tmp/rmlui-63-completion/data-custom-types-final.log",
+      "/tmp/rmlui-63-completion/data-custom-lint-final.log",
+      "/tmp/rmlui-63-completion/data-custom-cpplint.log",
+      "/tmp/rmlui-63-completion/data-custom-naming.log",
+      "/tmp/rmlui-63-completion/data-custom-site-tests.log",
+      "/tmp/rmlui-63-completion/data-custom-site-lint.log",
+      "/tmp/rmlui-63-completion/data-custom-application.log",
+      "/tmp/rmlui-63-completion/data-custom-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-custom-review.md"
+    ],
+    "checked-data-members-scalars-aliases": [
+      "packages/sfml.js-rmlui/native/rmlui-data.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-schema.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-register.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-members.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-model.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-custom.cc",
+      "packages/sfml.js-rmlui/src/data-accessors.ts",
+      "packages/sfml.js-rmlui/src/data-schema.ts",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-members.test.cjs",
+      "packages/sfml.js-rmlui/test/data-members.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-models.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-members-runtime.log",
+      "/tmp/rmlui-63-completion/data-members-alias-red.log",
+      "/tmp/rmlui-63-completion/data-members-native-build.log",
+      "/tmp/rmlui-63-completion/data-members-ts-final.log",
+      "/tmp/rmlui-63-completion/data-members-types.log",
+      "/tmp/rmlui-63-completion/data-members-lint-final.log",
+      "/tmp/rmlui-63-completion/data-members-cpplint.log",
+      "/tmp/rmlui-63-completion/data-members-naming.log",
+      "/tmp/rmlui-63-completion/data-members-alias-naming.log",
+      "/tmp/rmlui-63-completion/data-members-site-tests.log",
+      "/tmp/rmlui-63-completion/data-members-site-lint.log",
+      "/tmp/rmlui-63-completion/data-members-application.log",
+      "/tmp/rmlui-63-completion/data-members-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-members-review.md"
+    ],
+    "native-data-factory": [
+      "packages/sfml.js-rmlui/native/rmlui-data-factory.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-factory.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data.h",
+      "packages/sfml.js-rmlui/native/rmlui-data-callbacks.cc",
+      "packages/sfml.js-rmlui/native/rmlui-state.cc",
+      "packages/sfml.js-rmlui/native/rmlui-element-state.cc",
+      "packages/sfml.js-rmlui/src/data-view.ts",
+      "packages/sfml.js-rmlui/src/data-controller.ts",
+      "packages/sfml.js-rmlui/src/data-instancers.ts",
+      "packages/sfml.js-rmlui/src/factory.ts",
+      "packages/sfml.js-rmlui/src/core.ts",
+      "packages/sfml.js-rmlui/src/internal/native.ts",
+      "packages/sfml.js-rmlui/tools/patch-rmlui.cjs",
+      "packages/sfml.js-rmlui/test/data-factory.test.cjs",
+      "packages/sfml.js-rmlui/test/data-factory.types.ts",
+      "packages/sfml.js-rmlui/examples/data-models.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-models.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "/tmp/rmlui-63-completion/data-factory-red.log",
+      "/tmp/rmlui-63-completion/data-factory-active-release-red.log",
+      "/tmp/rmlui-63-completion/data-factory-runtime-4.log",
+      "/tmp/rmlui-63-completion/data-factory-native-build-4.log",
+      "/tmp/rmlui-63-completion/data-factory-ts-final.log",
+      "/tmp/rmlui-63-completion/data-factory-types-final.log",
+      "/tmp/rmlui-63-completion/data-factory-lint-final.log",
+      "/tmp/rmlui-63-completion/data-factory-cpplint-2.log",
+      "/tmp/rmlui-63-completion/data-factory-format.log",
+      "/tmp/rmlui-63-completion/data-factory-naming-final.log",
+      "/tmp/rmlui-63-completion/data-factory-site-final.log",
+      "/tmp/rmlui-63-completion/data-factory-site-lint.log",
+      "/tmp/rmlui-63-completion/data-factory-application.log",
+      "/tmp/rmlui-63-completion/data-factory-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-factory-review.md"
+    ],
+    "default-bindings-official-applications": [
+      "packages/sfml.js-rmlui/native/rmlui-data-callbacks.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-defaults.test.cjs",
+      "packages/sfml.js-rmlui/test/official-data.test.cjs",
+      "packages/sfml.js-rmlui/examples/official.cjs",
+      "packages/sfml.js-rmlui/examples/official/data-storage.cjs",
+      "packages/sfml.js-rmlui/examples/official/data-binding.cjs",
+      "packages/sfml.js-rmlui/examples/official/tree-view.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-basics.png",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-events.png",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-invaders.png",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-forms.png",
+      "packages/sfml.js-rmlui/examples/screenshots/tree-view.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "packages/sfml.js-rmlui/examples/README.md",
+      "packages/sfml.js-rmlui/examples/README.zh-CN.md",
+      "packages/sfml.js-rmlui/examples/README.ja.md",
+      "packages/sfml.js-rmlui/examples/README.ko.md",
+      "site/scripts/examples-site.test.mjs",
+      "docs/rmlui/audit/6.3/modules-and-samples.md",
+      "/tmp/rmlui-63-completion/data-defaults-red.log",
+      "/tmp/rmlui-63-completion/official-data-red.log",
+      "/tmp/rmlui-63-completion/tree-sort-red-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-runtime-2.log",
+      "/tmp/rmlui-63-completion/official-data-runtime-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-native.log",
+      "/tmp/rmlui-63-completion/data-defaults-ts.log",
+      "/tmp/rmlui-63-completion/data-defaults-types.log",
+      "/tmp/rmlui-63-completion/data-defaults-lint-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-cpplint.log",
+      "/tmp/rmlui-63-completion/data-defaults-format.log",
+      "/tmp/rmlui-63-completion/data-defaults-naming.log",
+      "/tmp/rmlui-63-completion/data-defaults-site-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-binding-basics-application.log",
+      "/tmp/rmlui-63-completion/data-binding-events-application.log",
+      "/tmp/rmlui-63-completion/data-binding-invaders-application.log",
+      "/tmp/rmlui-63-completion/data-binding-forms-application.log",
+      "/tmp/rmlui-63-completion/tree-view-application.log",
+      "/tmp/rmlui-63-completion/data-defaults-review.md"
+    ]
+  },
+  "notes": [
+    "Exact data declaration acceptance: all 131 unique compiler keys have local macOS arm64 evidence. The 70 remaining rows have individual native/JS mappings in data-template-acceptance.md and the records. Full package: 78 runtime files/708 PASS/0 FAIL; focused definitions eight groups; native template probe three groups; site 81/81 pass with no skips. scope_complete stays false for the remaining full-plan/platform/package/performance gates.",
+    "2026-11-16 definition/traits/family acceptance: 131 unique declarations, 59 locally verified, 72 partial and zero pending. Seven focused data-definition groups, full package 77 suites/698 PASS/0 FAIL, 81 site tests and native value/raw/unique/shared pointer assertions pass. Native naming uses LLVM 18 headers with conflicting CPATH/CPLUS_INCLUDE_PATH removed for this command only. Exact remaining data constructor/template contracts, Core/19, optional modules, platform and whole-plan acceptance remain open.",
+    "All 131 compiler declaration tuples, aliases, overloads and repeated inline definitions are preserved.",
+    "Dynamic schemas use actual FamilyBase allocator identities and native RegisterDefinition, not casts from arbitrary host integers.",
+    "Core stores addresses in expressions/default views/controllers and re-resolves descendants each use; roots have stable native storage.",
+    "Native bool bytes are not exposed in numeric typed arrays; narrow integers promote to supported Variant arithmetic types on reads.",
+    "No full module, 1k/10k/100k performance, cross-platform or published package acceptance is inferred from these local tests.",
+    "Enums and genuine custom VariableDefinition callbacks/payloads have local acceptance; named-schema template/pointer representations remain partial. Member accessors, scalar callback and advanced alias overloads, actual views/controllers, all official applications and measured performance/platform/package acceptance remain open.",
+    "Member accessors, registered scalar callbacks and advanced checked aliases have local acceptance; named schema/template/pointer representations stay partial. Actual views/controllers, all official applications and measured performance/platform/package and whole-plan acceptance remain open.",
+    "Native DataView/DataController/Instancer and four Factory methods have local acceptance: 17 focused groups, full package 64 files/592 PASS/0 FAIL, 81 site/four-language tests and inspected real application. No data template/declaration count was promoted from these dependent adapters. All defaults/four official models/tree/performance/platform and Tasks5–10 acceptance remain open.",
+    "2026-11-16: all twelve default views/three controllers and the four official data models/tree application have local acceptance, including synchronous data-event resize and nested value-callback guards. Full package 66 files/602 PASS/0 FAIL plus final four source-order application groups and 81 site tests pass. Five actual screenshots are inspected. C++ declaration counts are unchanged; performance, platform, remaining Core and Tasks5–10 acceptance remain open.",
+    "2026-11-16 measured-scale stage: actual 1k/10k/100k bound rows and 100 native array roots pass no-dirty, 1%-dirty and all-dirty DOM/state checks. Scoped storage/backing/resize-copy/checked-scalar/runtime-entry counts and RSS/heap deltas are recorded in data-performance.md and CSV. Callback-edge roots and geometric element-cache sweeps remove repeated full-wrapper scans. Full runtime: 67 files/608 PASS/0 FAIL. Declaration counts are unchanged. Broader A08 p50/p95, native/JS compute, glyph/mesh/retention, engine-wide profiling, platform and whole-plan acceptance remain open.",
+    "2026-11-16 address stage: default invalid handles, explicit mutable name/index entries copied into checked native paths, static int32 literal creation/binding, native bound-root snapshots, registered definition reflection and host receiver callback types are implemented. Full runtime: 68 files/615 PASS/0 FAIL. All 131 IDs remain unique: 48 local, 79 partial, four pending. Old generic pending descriptions were reconciled; no template/pointer row was excluded or blanket-promoted. Pointer-to-pointer rejection matches the explicit static_assert in Core DataTypeRegister::GetDefinition<T>(). Remaining traits, caller-selected family IDs, unregistered definition reflection and exact native/JS template acceptance remain open."
+  ],
+  "records": [
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModel",
+      "signature": "DataModel",
+      "type": "Rml::DataModel",
+      "id": "Core/DataModelHandle.h:12:ClassDecl:Rml::DataModel:DataModel",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Opaque model is the actual Context-owned Rml::DataModel observed by DataModelState. CheckModelTemplates and checked constructor/root/lifetime tests verify its representation; template operations retain individual records.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 14,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModelHandle",
+      "signature": "DataModelHandle",
+      "type": "Rml::DataModelHandle",
+      "id": "Core/DataModelHandle.h:14:ClassDecl:Rml::DataModelHandle:DataModelHandle",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataModelHandle provides native dirty operations, default invalid handles, canonical wrapping and lifetime validity.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 16,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataModelHandle::DataModelHandle",
+      "signature": "DataModelHandle(DataModel *)",
+      "type": "void (DataModel *)",
+      "id": "Core/DataModelHandle.h:16:CXXConstructor:Rml::DataModelHandle::DataModelHandle:DataModelHandle(DataModel *)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Live facades wrap the checked native model lease; an omitted lease creates an invalid native-backed handle. Raw pointer ownership never transfers to JS.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 18,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelHandle::IsVariableDirty",
+      "signature": "IsVariableDirty(const String &)",
+      "type": "bool (const String &)",
+      "id": "Core/DataModelHandle.h:18:CXXMethod:Rml::DataModelHandle::IsVariableDirty:IsVariableDirty(const String &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataModelHandle.isVariableDirty; native root dirty state.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 19,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelHandle::DirtyVariable",
+      "signature": "DirtyVariable(const String &)",
+      "type": "void (const String &)",
+      "id": "Core/DataModelHandle.h:19:CXXMethod:Rml::DataModelHandle::DirtyVariable:DirtyVariable(const String &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataModelHandle.dirtyVariable; native view scheduling.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 20,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelHandle::DirtyAllVariables",
+      "signature": "DirtyAllVariables()",
+      "type": "void ()",
+      "id": "Core/DataModelHandle.h:20:CXXMethod:Rml::DataModelHandle::DirtyAllVariables:DirtyAllVariables()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataModelHandle.dirtyAllVariables; native root scheduling.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 28,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModelConstructor",
+      "signature": "DataModelConstructor",
+      "type": "Rml::DataModelConstructor",
+      "id": "Core/DataModelHandle.h:28:ClassDecl:Rml::DataModelConstructor:DataModelConstructor",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Facade wraps Context-created native constructors or a default invalid native token. Individual binding, registration and template contracts remain tracked separately.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 31,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::DataModelConstructor::DataEventMemberFunc",
+      "signature": "DataEventMemberFunc",
+      "type": "",
+      "id": "Core/DataModelHandle.h:31:TypeAliasTemplateDecl:Rml::DataModelConstructor::DataEventMemberFunc:DataEventMemberFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataEventMemberFunc<T> names the typed host receiver method. .bind(receiver) dispatches through the native event controller with checked model, live Event and owned arguments.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 33,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataModelConstructor::DataModelConstructor",
+      "signature": "DataModelConstructor()",
+      "type": "void ()",
+      "id": "Core/DataModelHandle.h:33:CXXConstructor:Rml::DataModelConstructor::DataModelConstructor:DataModelConstructor()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "new DataModelConstructor() creates an invalid native-backed token even without initialization. isValid is false and live-model operations throw.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 34,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataModelConstructor::DataModelConstructor",
+      "signature": "DataModelConstructor(DataModel *)",
+      "type": "void (DataModel *)",
+      "id": "Core/DataModelHandle.h:34:CXXConstructor:Rml::DataModelConstructor::DataModelConstructor:DataModelConstructor(DataModel *)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Context-created native constructor is wrapped with canonical identity, context/register ownership and generation validity.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 37,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelConstructor::GetModelHandle",
+      "signature": "GetModelHandle()",
+      "type": "DataModelHandle () const",
+      "id": "Core/DataModelHandle.h:37:CXXMethod:Rml::DataModelConstructor::GetModelHandle:GetModelHandle()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Canonical separate DataModelHandle facade over the checked model.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 42,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::Bind",
+      "signature": "Bind(const String &, T *)",
+      "type": "bool (const String &, T *)",
+      "id": "Core/DataModelHandle.h:42:FunctionTemplate:Rml::DataModelConstructor::Bind:Bind(const String &, T *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "bind allocates stable native root storage. CheckModelTemplates executes Bind<T> for scalar, vector/array/list and struct values; data-schema/data-owned verify current paths, resize, controllers and ownership. JS uses checked native leases instead of caller addresses.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 49,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelConstructor::BindFunc",
+      "signature": "BindFunc(const String &, DataGetFunc, DataSetFunc)",
+      "type": "bool (const String &, DataGetFunc, DataSetFunc)",
+      "id": "Core/DataModelHandle.h:49:CXXMethod:Rml::DataModelConstructor::BindFunc:BindFunc(const String &, DataGetFunc, DataSetFunc)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Actual native FuncDefinition getter/setter bindings accept all owned Variant categories including NONE, vectors, colours, decoration/transform/motion/effect values. Readonly, first-error, return-accessor recursion/removal checks and callback GC are tested.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 52,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelConstructor::BindEventCallback",
+      "signature": "BindEventCallback(const String &, DataEventFunc)",
+      "type": "bool (const String &, DataEventFunc)",
+      "id": "Core/DataModelHandle.h:52:CXXMethod:Rml::DataModelConstructor::BindEventCallback:BindEventCallback(const String &, DataEventFunc)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Native DataEventFunc executes checked model, live expiring Event and copied VariantList arguments. data-model model-events-and-expiring-leases verifies native RML dispatch, dirtying, stopPropagation and teardown rejection.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 56,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::BindEventCallback",
+      "signature": "BindEventCallback(const String &, DataEventMemberFunc<T>, T *)",
+      "type": "bool (const String &, DataEventMemberFunc<T>, T *)",
+      "id": "Core/DataModelHandle.h:56:FunctionTemplate:Rml::DataModelConstructor::BindEventCallback:BindEventCallback(const String &, DataEventMemberFunc<T>, T *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataEventMemberFunc<T> with .bind(receiver) retains the typed host method. CheckModelTemplates invokes the C++ member overload; data-addresses verifies receiver mutation and model/Event/argument semantics.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 65,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelConstructor::BindCustomDataVariable",
+      "signature": "BindCustomDataVariable(const String &, DataVariable)",
+      "type": "bool (const String &, DataVariable)",
+      "id": "Core/DataModelHandle.h:65:CXXMethod:Rml::DataModelConstructor::BindCustomDataVariable:BindCustomDataVariable(const String &, DataVariable)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "bindCustomDataVariable binds native custom payloads, immutable literals and checked model/independently-owned aliases. Path leases retain register and storage through visible GC edges; model removal releases aliases. The native probe executes the upstream DataVariable overload and the runtime suite verifies custom storage, mixed aliases, exceptions and target collection.",
+      "evidence": [
+        "native-schema-storage",
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases",
+        "independently-owned-data-variables"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 72,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterScalar",
+      "signature": "RegisterScalar(DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "type": "bool (DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "id": "Core/DataModelHandle.h:72:FunctionTemplate:Rml::DataModelConstructor::RegisterScalar:RegisterScalar(DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerScalar creates a register-owned native scalar adapter over retained payloads. CheckModelTemplates instantiates RegisterScalar<Payload>; data-members verifies native void setters, absent callbacks, conversion, errors and rejected callback collection.",
+      "evidence": [
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 78,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterStruct",
+      "signature": "RegisterStruct()",
+      "type": "StructHandle<T> ()",
+      "id": "Core/DataModelHandle.h:78:FunctionTemplate:Rml::DataModelConstructor::RegisterStruct:RegisterStruct()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerStruct creates DynamicDataStruct in the native register. CheckModelTemplates instantiates RegisterStruct<Record>; schema/member/owned tests verify stored and callback children, recursive definitions and checked reflection.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 82,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterCustomDataVariableDefinition",
+      "signature": "RegisterCustomDataVariableDefinition(UniquePtr<VariableDefinition>)",
+      "type": "bool (UniquePtr<VariableDefinition>)",
+      "id": "Core/DataModelHandle.h:82:FunctionTemplate:Rml::DataModelConstructor::RegisterCustomDataVariableDefinition:RegisterCustomDataVariableDefinition(UniquePtr<VariableDefinition>)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Custom registration transfers a genuine native adapter to DataTypeRegister. CheckModelTemplates verifies unique-definition insertion, rejected-definition destruction and register destruction; data-custom verifies virtual callbacks, retained payloads, errors and GC.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 91,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterArray",
+      "signature": "RegisterArray()",
+      "type": "bool ()",
+      "id": "Core/DataModelHandle.h:91:FunctionTemplate:Rml::DataModelConstructor::RegisterArray:RegisterArray()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerArray creates native indexed storage over a same-register definition. CheckModelTemplates executes vector, std::array and list size/index/write assertions; data-schema/references verify typed backings, defaults, growth, truncation and current paths.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 96,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelConstructor::RegisterTransformFunc",
+      "signature": "RegisterTransformFunc(const String &, DataTransformFunc)",
+      "type": "void (const String &, DataTransformFunc)",
+      "id": "Core/DataModelHandle.h:96:CXXMethod:Rml::DataModelConstructor::RegisterTransformFunc:RegisterTransformFunc(const String &, DataTransformFunc)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Shared native transform registration with all owned Variant returns, native RML vector/colour expressions, first registration preservation for duplicates/builtins, error identity and callback collection.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 103,
+      "kind": "CXXMethod",
+      "name": "Rml::DataModelConstructor::GetDataTypeRegister",
+      "signature": "GetDataTypeRegister()",
+      "type": "DataTypeRegister *() const",
+      "id": "Core/DataModelHandle.h:103:CXXMethod:Rml::DataModelConstructor::GetDataTypeRegister:GetDataTypeRegister()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "getDataTypeRegister returns the canonical lease of the actual model register. CheckModelTemplates verifies pointer identity; data-schema verifies default/shared register lifetime, family identity and provenance.",
+      "evidence": [
+        "owned-data-variants-and-transforms",
+        "managed-data-references",
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 116,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterScalar",
+      "signature": "RegisterScalar(DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "type": "bool (DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "id": "Core/DataModelHandle.h:116:FunctionTemplate:Rml::DataModelConstructor::RegisterScalar:RegisterScalar(DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Out-of-line RegisterScalar<Payload> executes in CheckModelTemplates. The JS adapter is verified by data-members scalar callback read/write/absent-function/lifetime groups; this definition retains a separate compiler key.",
+      "evidence": [
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 136,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterCustomDataVariableDefinition",
+      "signature": "RegisterCustomDataVariableDefinition(UniquePtr<VariableDefinition>)",
+      "type": "bool (UniquePtr<VariableDefinition>)",
+      "id": "Core/DataModelHandle.h:136:FunctionTemplate:Rml::DataModelConstructor::RegisterCustomDataVariableDefinition:RegisterCustomDataVariableDefinition(UniquePtr<VariableDefinition>)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Out-of-line custom registration executes in CheckModelTemplates including accepted/rejected destruction. data-custom verifies native adapter ownership and callback/payload collection; its compiler definition key is retained.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 151,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterStruct",
+      "signature": "RegisterStruct()",
+      "type": "StructHandle<T> ()",
+      "id": "Core/DataModelHandle.h:151:FunctionTemplate:Rml::DataModelConstructor::RegisterStruct:RegisterStruct()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Out-of-line RegisterStruct<Record> executes in CheckModelTemplates. DynamicDataStruct and DataStructHandle supply runtime schemas; stored/member/recursive reflection groups verify the JS contract.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 170,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataModelConstructor::RegisterArray",
+      "signature": "RegisterArray()",
+      "type": "bool ()",
+      "id": "Core/DataModelHandle.h:170:FunctionTemplate:Rml::DataModelConstructor::RegisterArray:RegisterArray()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Out-of-line RegisterArray<vector/array/list> executes in CheckModelTemplates. DynamicDataArray supplies native indexed storage; size/index/write/default/resize and reference elements have runtime assertions.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 192,
+      "kind": "ClassDecl",
+      "name": "Rml::Detail::DataModelConstructorAccessor",
+      "signature": "DataModelConstructorAccessor",
+      "type": "Rml::Detail::DataModelConstructorAccessor",
+      "id": "Core/DataModelHandle.h:192:ClassDecl:Rml::Detail::DataModelConstructorAccessor:DataModelConstructorAccessor",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Actual native accessor is called by getAllVariables; JS receives a root-name snapshot with checked path leases.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataModelHandle.h",
+      "line": 194,
+      "kind": "CXXMethod",
+      "name": "Rml::Detail::DataModelConstructorAccessor::GetAllVariables",
+      "signature": "GetAllVariables(const DataModelConstructor &)",
+      "type": "const UnorderedMap<String, DataVariable> &(const DataModelConstructor &)",
+      "id": "Core/DataModelHandle.h:194:CXXMethod:Rml::Detail::DataModelConstructorAccessor::GetAllVariables:GetAllVariables(const DataModelConstructor &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Actual GetAllVariables copies bound root names before V8 allocation. Variables resolve current storage; later roots do not enter old snapshots, and removal invalidates saved leases.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataStructHandle.h",
+      "line": 13,
+      "kind": "ClassTemplate",
+      "name": "Rml::StructHandle",
+      "signature": "StructHandle<Object>",
+      "type": "",
+      "id": "Core/DataStructHandle.h:13:ClassTemplate:Rml::StructHandle:StructHandle<Object>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataStructHandle shares a native registered struct definition. CheckMembersAndPointers executes StructHandle<Record>; JS construction and stored/value/reference/get-set member groups verify its checked representation.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataStructHandle.h",
+      "line": 15,
+      "kind": "CXXConstructor",
+      "name": "Rml::StructHandle::StructHandle<Object>",
+      "signature": "StructHandle<Object>(DataTypeRegister *, StructDefinition *)",
+      "type": "void (DataTypeRegister *, StructDefinition *)",
+      "id": "Core/DataStructHandle.h:15:CXXConstructor:Rml::StructHandle::StructHandle<Object>:StructHandle<Object>(DataTypeRegister *, StructDefinition *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "new DataStructHandle(register, definition) validates register identity, struct kind and generation, then shares the native lease. CheckMembersAndPointers executes direct C++ construction; data-definition checks storage and foreign/scalar/reference/custom/stale rejection.",
+      "evidence": ["native-schema-storage", "checked-data-members-scalars-aliases"]
+    },
+    {
+      "header": "Core/DataStructHandle.h",
+      "line": 29,
+      "kind": "FunctionTemplate",
+      "name": "Rml::StructHandle::RegisterMember",
+      "signature": "RegisterMember(const String &, MemberType Object::*)",
+      "type": "bool (const String &, MemberType Object::*)",
+      "id": "Core/DataStructHandle.h:29:FunctionTemplate:Rml::StructHandle::RegisterMember:RegisterMember(const String &, MemberType Object::*)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerMember(name, schema) declares native stored members. CheckMembersAndPointers instantiates &Record::raw; data-schema/members verify parent paths, recursive children, conversion, reflection, freeze and foreign-definition checks.",
+      "evidence": [
+        "native-schema-storage",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataStructHandle.h",
+      "line": 45,
+      "kind": "FunctionTemplate",
+      "name": "Rml::StructHandle::RegisterMember",
+      "signature": "RegisterMember(const String &, ReturnType (Object::*)())",
+      "type": "bool (const String &, ReturnType (Object::*)())",
+      "id": "Core/DataStructHandle.h:45:FunctionTemplate:Rml::StructHandle::RegisterMember:RegisterMember(const String &, ReturnType (Object::*)())",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Member getters return scalar values or same-register checked variables. CheckMembersAndPointers executes value/reference/raw-pointer getters; data-members verifies readonly values, retargeting, null, resize, suffix forwarding, recursion and errors.",
+      "evidence": [
+        "native-schema-storage",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataStructHandle.h",
+      "line": 61,
+      "kind": "FunctionTemplate",
+      "name": "Rml::StructHandle::RegisterMember",
+      "signature": "RegisterMember(const String &, ReturnType (Object::*)(), void (Object::*)(AssignType))",
+      "type": "bool (const String &, ReturnType (Object::*)(), void (Object::*)(AssignType))",
+      "id": "Core/DataStructHandle.h:61:FunctionTemplate:Rml::StructHandle::RegisterMember:RegisterMember(const String &, ReturnType (Object::*)(), void (Object::*)(AssignType))",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Member pairs convert through a native scalar definition before a void host setter. CheckMembersAndPointers executes the pair overload; data-members verifies checked widths/enums, real controllers, absent callbacks and reference-setter rejection.",
+      "evidence": [
+        "native-schema-storage",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 15,
+      "kind": "ClassDecl",
+      "name": "Rml::TransformFuncRegister",
+      "signature": "TransformFuncRegister",
+      "type": "Rml::TransformFuncRegister",
+      "id": "Core/DataTypeRegister.h:15:ClassDecl:Rml::TransformFuncRegister:TransformFuncRegister",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Canonical facade retains its native type-register owner; genuine native Register and Call used by shared models and builtins. Separate native success flag/owned output, expiry and collectable cycles.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 17,
+      "kind": "CXXMethod",
+      "name": "Rml::TransformFuncRegister::Register",
+      "signature": "Register(const String &, DataTransformFunc)",
+      "type": "void (const String &, DataTransformFunc)",
+      "id": "Core/DataTypeRegister.h:17:CXXMethod:Rml::TransformFuncRegister::Register:Register(const String &, DataTransformFunc)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Native registration supports owned Variant returns and ordered arguments. Duplicate and builtin names retain the first function and do not retain rejected callbacks.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 18,
+      "kind": "CXXMethod",
+      "name": "Rml::TransformFuncRegister::Call",
+      "signature": "Call(const String &, const VariantList &, Variant &)",
+      "type": "bool (const String &, const VariantList &, Variant &) const",
+      "id": "Core/DataTypeRegister.h:18:CXXMethod:Rml::TransformFuncRegister::Call:Call(const String &, const VariantList &, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Actual native Call with owned ordered VariantList arguments and separate boolean/output result. Argument conversion precedes live owner resolution. All owned categories, missing names, builtins, first errors, recursion and snapshot independence are tested.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 24,
+      "kind": "ClassDecl",
+      "name": "Rml::DataTypeRegister",
+      "signature": "DataTypeRegister",
+      "type": "Rml::DataTypeRegister",
+      "id": "Core/DataTypeRegister.h:24:ClassDecl:Rml::DataTypeRegister:DataTypeRegister",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataTypeRegister owns the actual native register independently or borrows it from Context. CheckModelTemplates exercises native families and unique definitions; data-schema/definition verify identity, sharing, callbacks, cross-register provenance and shutdown invalidation.",
+      "evidence": [
+        "owned-data-variants-and-transforms",
+        "managed-data-references",
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 26,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataTypeRegister::DataTypeRegister",
+      "signature": "DataTypeRegister()",
+      "type": "void ()",
+      "id": "Core/DataTypeRegister.h:26:CXXConstructor:Rml::DataTypeRegister::DataTypeRegister:DataTypeRegister()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Construct a real native DataTypeRegister with defaults and independent ownership; register is shared safely by multiple context models.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 27,
+      "kind": "CXXDestructor",
+      "name": "Rml::DataTypeRegister::~DataTypeRegister",
+      "signature": "~DataTypeRegister()",
+      "type": "void ()",
+      "id": "Core/DataTypeRegister.h:27:CXXDestructor:Rml::DataTypeRegister::~DataTypeRegister:~DataTypeRegister()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Native owner and visible callback edges collect with owned-context cycles; shutdown expires retained schemas and clears callbacks.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 29,
+      "kind": "CXXMethod",
+      "name": "Rml::DataTypeRegister::RegisterDefinition",
+      "signature": "RegisterDefinition(FamilyId, UniquePtr<VariableDefinition>)",
+      "type": "bool (FamilyId, UniquePtr<VariableDefinition>)",
+      "id": "Core/DataTypeRegister.h:29:CXXMethod:Rml::DataTypeRegister::RegisterDefinition:RegisterDefinition(FamilyId, UniquePtr<VariableDefinition>)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "createFamilyId allocates a real native identity; registerDefinition(id, name, callbacks) transfers a genuine adapter and returns the actual native insertion result. Duplicate ids/names do not retain rejected callbacks. Cross-register reuse, generation rejection and name/id lookup are tested.",
+      "evidence": [
+        "checked-data-definition-traits-families",
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 36,
+      "kind": "FunctionTemplate",
+      "name": "Rml::DataTypeRegister::GetDefinition",
+      "signature": "GetDefinition()",
+      "type": "VariableDefinition *()",
+      "id": "Core/DataTypeRegister.h:36:FunctionTemplate:Rml::DataTypeRegister::GetDefinition:GetDefinition()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "getDefinition(nameOrFamilyId) returns the canonical checked registered schema. CheckModelTemplates/CheckMembersAndPointers instantiate scalar/custom/raw/unique/shared pointer lookups; data-definition verifies family lookup, missing definitions and stale identities.",
+      "evidence": [
+        "native-schema-storage",
+        "managed-data-references",
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypeRegister.h",
+      "line": 109,
+      "kind": "CXXMethod",
+      "name": "Rml::DataTypeRegister::GetTransformFuncRegister",
+      "signature": "GetTransformFuncRegister()",
+      "type": "TransformFuncRegister *()",
+      "id": "Core/DataTypeRegister.h:109:CXXMethod:Rml::DataTypeRegister::GetTransformFuncRegister:GetTransformFuncRegister()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Stable facade identity with checked native owner lifetime, sharing the actual native register with constructor registrations and RML.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 9,
+      "kind": "ClassDecl",
+      "name": "Rml::VariableDefinition",
+      "signature": "VariableDefinition",
+      "type": "Rml::VariableDefinition",
+      "id": "Core/DataTypes.h:9:ClassDecl:Rml::VariableDefinition:VariableDefinition",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Forward declaration resolves to native VariableDefinition adapters represented by DataDefinition/DataSchema and DataCustomDefinition. Native default/custom inheritance and destruction execute; data-custom verifies every callback and payload/child lifetime without exposing void pointers.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 10,
+      "kind": "ClassDecl",
+      "name": "Rml::DataTypeRegister",
+      "signature": "DataTypeRegister",
+      "type": "Rml::DataTypeRegister",
+      "id": "Core/DataTypes.h:10:ClassDecl:Rml::DataTypeRegister:DataTypeRegister",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Forward declaration resolves to the actual independent/default/shared native register. Native template registration and JS register identity, ownership, provenance and generation tests verify this retained structural key.",
+      "evidence": [
+        "owned-data-variants-and-transforms",
+        "managed-data-references",
+        "enum-custom-data-definitions",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 11,
+      "kind": "ClassDecl",
+      "name": "Rml::TransformFuncRegister",
+      "signature": "TransformFuncRegister",
+      "type": "Rml::TransformFuncRegister",
+      "id": "Core/DataTypes.h:11:ClassDecl:Rml::TransformFuncRegister:TransformFuncRegister",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Canonical facade retains its native type-register owner; genuine native Register and Call used by shared models and builtins. Separate native success flag/owned output, expiry and collectable cycles.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 12,
+      "kind": "ClassDecl",
+      "name": "Rml::DataModelHandle",
+      "signature": "DataModelHandle",
+      "type": "Rml::DataModelHandle",
+      "id": "Core/DataTypes.h:12:ClassDecl:Rml::DataModelHandle:DataModelHandle",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Forward declaration resolves to DataModelHandle with live/default-invalid leases and native dirty scheduling.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 13,
+      "kind": "ClassDecl",
+      "name": "Rml::DataVariable",
+      "signature": "DataVariable",
+      "type": "Rml::DataVariable",
+      "id": "Core/DataTypes.h:13:ClassDecl:Rml::DataVariable:DataVariable",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Forward declaration resolves to DataVariable model paths, invalid tokens and Core static literals. Each callable/definition retains separate acceptance.",
+      "evidence": ["native-schema-storage", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 15,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DataGetFunc",
+      "signature": "DataGetFunc",
+      "type": "Rml::DataGetFunc",
+      "id": "Core/DataTypes.h:15:TypeAliasDecl:Rml::DataGetFunc:DataGetFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Synchronous owned Variant result representation of native void Variant-out callback, with complete owned conversions and protected return accessors, first-error identity and V8 collection.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 16,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DataSetFunc",
+      "signature": "DataSetFunc",
+      "type": "Rml::DataSetFunc",
+      "id": "Core/DataTypes.h:16:TypeAliasDecl:Rml::DataSetFunc:DataSetFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Synchronous native void setter receives all supported owned Variant categories, preserving readonly, exception and snapshot contracts.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 17,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DataTransformFunc",
+      "signature": "DataTransformFunc",
+      "type": "Rml::DataTransformFunc",
+      "id": "Core/DataTypes.h:17:TypeAliasDecl:Rml::DataTransformFunc:DataTransformFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Synchronous native VariantList-to-Variant function with owned input/output categories, genuine RML expressions and direct native calls, protected conversion, first-error identity and callback lifetime.",
+      "evidence": [
+        "owned-data-variants-and-transforms"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 18,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DataEventFunc",
+      "signature": "DataEventFunc",
+      "type": "Rml::DataEventFunc",
+      "id": "Core/DataTypes.h:18:TypeAliasDecl:Rml::DataEventFunc:DataEventFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Typed DataEventFunc uses live expiring Event, checked DataModelHandle and owned expression arguments. data-model model-events-and-expiring-leases verifies exact native controller dispatch, stopPropagation, mutation and callback boundary rejection.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 21,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::MemberGetFunc",
+      "signature": "MemberGetFunc",
+      "type": "",
+      "id": "Core/DataTypes.h:21:TypeAliasTemplateDecl:Rml::MemberGetFunc:MemberGetFunc",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "MemberGetFunc<T> represents the host Variant getter bound with .bind(receiver). CheckMembersAndPointers invokes the actual member alias; data-addresses verifies bound receiver read semantics through native function definitions.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 23,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::MemberSetFunc",
+      "signature": "MemberSetFunc",
+      "type": "",
+      "id": "Core/DataTypes.h:23:TypeAliasTemplateDecl:Rml::MemberSetFunc:MemberSetFunc",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "MemberSetFunc<T> represents the void host Variant setter bound with .bind(receiver). CheckMembersAndPointers invokes the member alias; data-addresses verifies receiver writes through native function definitions and data-model verifies two-way controls.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 26,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::DataTypeGetFunc",
+      "signature": "DataTypeGetFunc",
+      "type": "",
+      "id": "Core/DataTypes.h:26:TypeAliasTemplateDecl:Rml::DataTypeGetFunc:DataTypeGetFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Exported DataTypeGetFunc<T> maps native const-T/Variant-output callbacks to typed retained payloads and owned returns. Scalar callback dispatch and consumer typing are tested.",
+      "evidence": ["checked-data-members-scalars-aliases", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 28,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::DataTypeSetFunc",
+      "signature": "DataTypeSetFunc",
+      "type": "",
+      "id": "Core/DataTypes.h:28:TypeAliasTemplateDecl:Rml::DataTypeSetFunc:DataTypeSetFunc",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Exported DataTypeSetFunc<T> maps native T/Variant-input void setters to typed retained payloads and owned inputs. Setter-only, readonly, error and consumer typing contracts are tested.",
+      "evidence": ["checked-data-members-scalars-aliases", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 31,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::MemberGetterFunc",
+      "signature": "MemberGetterFunc",
+      "type": "",
+      "id": "Core/DataTypes.h:31:TypeAliasTemplateDecl:Rml::MemberGetterFunc:MemberGetterFunc",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "MemberGetterFunc<Object, ReturnType> represents scalar value or checked reference callbacks. Native alias/value/reference/pointer assertions execute in CheckMembersAndPointers; data-members verifies current-parent, reference and readonly behavior.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 33,
+      "kind": "TypeAliasTemplateDecl",
+      "name": "Rml::MemberSetterFunc",
+      "signature": "MemberSetterFunc",
+      "type": "",
+      "id": "Core/DataTypes.h:33:TypeAliasTemplateDecl:Rml::MemberSetterFunc:MemberSetterFunc",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "MemberSetterFunc<Object, AssignType> represents a void scalar member setter. CheckMembersAndPointers invokes the actual alias; data-members checks conversion-before-callback, enums, missing setters and native two-way controls.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 35,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DirtyVariables",
+      "signature": "DirtyVariables",
+      "type": "Rml::DirtyVariables",
+      "id": "Core/DataTypes.h:35:TypeAliasDecl:Rml::DirtyVariables:DirtyVariables",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DirtyVariables is a Set<string> value alias for unique root names. Core owns actual dirty state and scheduling remains on DataModelHandle.",
+      "evidence": ["scalar-callback-foundation", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 37,
+      "kind": "StructDecl",
+      "name": "Rml::DataAddressEntry",
+      "signature": "DataAddressEntry",
+      "type": "Rml::DataAddressEntry",
+      "id": "Core/DataTypes.h:37:StructDecl:Rml::DataAddressEntry:DataAddressEntry",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Mutable name/index fields are copied to native entries for explicit model addresses and child lookup. Host entry objects are never retained.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 38,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataAddressEntry::DataAddressEntry",
+      "signature": "DataAddressEntry(String)",
+      "type": "void (String)",
+      "id": "Core/DataTypes.h:38:CXXConstructor:Rml::DataAddressEntry::DataAddressEntry:DataAddressEntry(String)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "String construction copies the name and sets index=-1. Dots in explicit member names remain literal.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 39,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataAddressEntry::DataAddressEntry",
+      "signature": "DataAddressEntry(int)",
+      "type": "void (int)",
+      "id": "Core/DataTypes.h:39:CXXConstructor:Rml::DataAddressEntry::DataAddressEntry:DataAddressEntry(int)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Signed int32 construction copies the index and sets name empty. Fractional and out-of-int32 input is rejected.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 40,
+      "kind": "FieldDecl",
+      "name": "Rml::DataAddressEntry::name",
+      "signature": "name",
+      "type": "String",
+      "id": "Core/DataTypes.h:40:FieldDecl:Rml::DataAddressEntry::name:name",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Mutable string field is copied natively. Getter errors preserve identity; later edits cannot retarget saved variables.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 41,
+      "kind": "FieldDecl",
+      "name": "Rml::DataAddressEntry::index",
+      "signature": "index",
+      "type": "int",
+      "id": "Core/DataTypes.h:41:FieldDecl:Rml::DataAddressEntry::index:index",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Mutable signed int32 field is copied natively. Invalid fields throw before live owner lookup; paths survive address edits and check array truncation.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 43,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::DataAddress",
+      "signature": "DataAddress",
+      "type": "Rml::DataAddress",
+      "id": "Core/DataTypes.h:43:TypeAliasDecl:Rml::DataAddress:DataAddress",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Readonly ordered entries are copied to native DataAddress before live model lookup. Empty/missing paths return null; malformed entries and throwing/destructive host accessors are checked.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 46,
+      "kind": "ClassTemplate",
+      "name": "Rml::PointerTraits",
+      "signature": "PointerTraits<T>",
+      "type": "",
+      "id": "Core/DataTypes.h:46:ClassTemplate:Rml::PointerTraits:PointerTraits<T>",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataPointerTraits is the checked runtime equivalent for values and managed nullable references. A compiled upstream probe verifies value/raw/UniquePtr/SharedPtr classification, element types, identity, dereference and null behavior. Native owns storage; JS uses checked leases without addresses.",
+      "evidence": ["checked-data-definition-traits-families"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 47,
+      "kind": "VarDecl",
+      "name": "Rml::PointerTraits::is_pointer_v",
+      "signature": "is_pointer_v",
+      "type": "const bool",
+      "id": "Core/DataTypes.h:47:VarDecl:Rml::PointerTraits::is_pointer_v:is_pointer_v",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataPointerTraits.isPointer queries checked native classification: false for values, true for managed references. The upstream probe statically verifies value/raw/unique/shared classifications.",
+      "evidence": ["checked-data-definition-traits-families"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 48,
+      "kind": "TypeAliasDecl",
+      "name": "Rml::PointerTraits::element_type",
+      "signature": "element_type",
+      "type": "Rml::PointerTraits::element_type",
+      "id": "Core/DataTypes.h:48:TypeAliasDecl:Rml::PointerTraits::element_type:element_type",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataPointerTraits.elementType preserves value schema identity or returns the canonical reference target via DataSchema.underlying. Array underlying metadata and recursive struct references are tested; native value/raw/unique/shared element types have static assertions.",
+      "evidence": ["checked-data-definition-traits-families"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 49,
+      "kind": "CXXMethod",
+      "name": "Rml::PointerTraits::Dereference",
+      "signature": "Dereference(void *)",
+      "type": "void *(void *)",
+      "id": "Core/DataTypes.h:49:CXXMethod:Rml::PointerTraits::Dereference:Dereference(void *)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataPointerTraits.dereference preserves value wrapper identity and returns checked reference targets or null. Mismatched definitions and expired owners reject. Native value/raw/unique/shared addresses, values and null behavior are independently asserted.",
+      "evidence": ["checked-data-definition-traits-families"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 70,
+      "kind": "StructDecl",
+      "name": "Rml::VoidMemberFunc",
+      "signature": "VoidMemberFunc",
+      "type": "Rml::VoidMemberFunc",
+      "id": "Core/DataTypes.h:70:StructDecl:Rml::VoidMemberFunc:VoidMemberFunc",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "VoidMemberFunc is an omitted member callback in JS. Native readonly members and explicit MemberScalarGetSetFuncDefinition with VoidMemberFunc execute; data-members verifies getter-only/setter-only results and native void setter semantics.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 78,
+      "kind": "ClassDecl",
+      "name": "Rml::Detail::DataVariableAccessor",
+      "signature": "DataVariableAccessor",
+      "type": "Rml::Detail::DataVariableAccessor",
+      "id": "Core/DataTypes.h:78:ClassDecl:Rml::Detail::DataVariableAccessor:DataVariableAccessor",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataVariable.getDefinition calls the native accessor and returns canonical registered schemas or checked variable-bound DataDefinition leases for inferred/function/literal definitions. No raw definition pointer or fabricated family id crosses into JS.",
+      "evidence": ["checked-data-members-scalars-aliases", "native-data-addresses-literals-reflection", "checked-data-definition-traits-families"]
+    },
+    {
+      "header": "Core/DataTypes.h",
+      "line": 79,
+      "kind": "ClassDecl",
+      "name": "Rml::Detail::DataModelConstructorAccessor",
+      "signature": "DataModelConstructorAccessor",
+      "type": "Rml::Detail::DataModelConstructorAccessor",
+      "id": "Core/DataTypes.h:79:ClassDecl:Rml::Detail::DataModelConstructorAccessor:DataModelConstructorAccessor",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Forward declaration resolves to actual native GetAllVariables exposed as a checked root snapshot.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 12,
+      "kind": "EnumDecl",
+      "name": "Rml::DataVariableType",
+      "signature": "DataVariableType",
+      "type": "Rml::DataVariableType",
+      "id": "Core/DataVariable.h:12:EnumDecl:Rml::DataVariableType:DataVariableType",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Typed DataVariableType enum.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 12,
+      "kind": "EnumConstantDecl",
+      "name": "Rml::DataVariableType::Array",
+      "signature": "Array",
+      "type": "Rml::DataVariableType",
+      "id": "Core/DataVariable.h:12:EnumConstantDecl:Rml::DataVariableType::Array:Array",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataVariableType.Array.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 12,
+      "kind": "EnumConstantDecl",
+      "name": "Rml::DataVariableType::Scalar",
+      "signature": "Scalar",
+      "type": "Rml::DataVariableType",
+      "id": "Core/DataVariable.h:12:EnumConstantDecl:Rml::DataVariableType::Scalar:Scalar",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataVariableType.Scalar.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 12,
+      "kind": "EnumConstantDecl",
+      "name": "Rml::DataVariableType::Struct",
+      "signature": "Struct",
+      "type": "Rml::DataVariableType",
+      "id": "Core/DataVariable.h:12:EnumConstantDecl:Rml::DataVariableType::Struct:Struct",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataVariableType.Struct.",
+      "evidence": [
+        "scalar-callback-foundation"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 20,
+      "kind": "ClassDecl",
+      "name": "Rml::DataVariable",
+      "signature": "DataVariable",
+      "type": "Rml::DataVariable",
+      "id": "Core/DataVariable.h:20:ClassDecl:Rml::DataVariable:DataVariable",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Checked facade represents model paths, invalid defaults and immutable int32 literals. Individual methods retain separate exact-declaration acceptance.",
+      "evidence": ["native-schema-storage", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 22,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataVariable::DataVariable",
+      "signature": "DataVariable()",
+      "type": "void ()",
+      "id": "Core/DataVariable.h:22:CXXConstructor:Rml::DataVariable::DataVariable:DataVariable()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "new DataVariable() stores the native default invalid value. Validity is false even without initialization, and use throws rather than dereferencing its null definition.",
+      "evidence": ["native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 23,
+      "kind": "CXXConstructor",
+      "name": "Rml::DataVariable::DataVariable",
+      "signature": "DataVariable(VariableDefinition *, void *)",
+      "type": "void (VariableDefinition *, void *)",
+      "id": "Core/DataVariable.h:23:CXXConstructor:Rml::DataVariable::DataVariable:DataVariable(VariableDefinition *, void *)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "new DataVariable(schema, initialValue) pairs the registered native VariableDefinition with independently owned Native storage or retained custom payloads. Scalar/enum/array/recursive struct/reference/member/custom paths retain the register, re-resolve after resize and reject stale generations. V8-visible edges preserve GC collection without exporting raw pointers. The native probe executes direct definition/storage construction and runtime tests verify the checked equivalent.",
+      "evidence": ["native-schema-storage", "enum-custom-data-definitions", "native-data-addresses-literals-reflection", "independently-owned-data-variables"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 27,
+      "kind": "CXXMethod",
+      "name": "Rml::DataVariable::Get",
+      "signature": "Get(Variant &)",
+      "type": "bool (Variant &) const",
+      "id": "Core/DataVariable.h:27:CXXMethod:Rml::DataVariable::Get:Get(Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "get resolves the current native path and copies the result Variant. Native scalar/function/member/pointer/container reads execute; schema/custom/reference/member/owned tests cover corresponding JS reads, nulls, failures, expiry and real RML output.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 28,
+      "kind": "CXXMethod",
+      "name": "Rml::DataVariable::Set",
+      "signature": "Set(const Variant &)",
+      "type": "bool (const Variant &)",
+      "id": "Core/DataVariable.h:28:CXXMethod:Rml::DataVariable::Set:Set(const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "set forwards an owned Variant to the current native definition. Native scalar/function/member/pointer/container writes execute; JS tests verify checked integer conversion, readonly/literal rejection, retained setters and real two-way controllers without implicit dirtying.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 29,
+      "kind": "CXXMethod",
+      "name": "Rml::DataVariable::Size",
+      "signature": "Size()",
+      "type": "int () const",
+      "id": "Core/DataVariable.h:29:CXXMethod:Rml::DataVariable::Size:Size()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "size calls the actual definition on the resolved path. Native vector/array/list and forwarded-array counts execute; schema/custom/reference/owned tests verify growth, truncation, default/non-array zero and null references.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 30,
+      "kind": "CXXMethod",
+      "name": "Rml::DataVariable::Child",
+      "signature": "Child(const DataAddressEntry &)",
+      "type": "DataVariable (const DataAddressEntry &) const",
+      "id": "Core/DataVariable.h:30:CXXMethod:Rml::DataVariable::Child:Child(const DataAddressEntry &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "child copies the DataAddressEntry and retains a checked current path. Native named/indexed/member/pointer children execute; schema/custom/reference/address/owned tests verify explicit names, invalid indices, resize, recursion and expiry.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 31,
+      "kind": "CXXMethod",
+      "name": "Rml::DataVariable::Type",
+      "signature": "Type()",
+      "type": "DataVariableType () const",
+      "id": "Core/DataVariable.h:31:CXXMethod:Rml::DataVariable::Type:Type()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Genuine native scalar, array and struct categories through checked path leases.",
+      "evidence": [
+        "native-schema-storage"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 46,
+      "kind": "ClassDecl",
+      "name": "Rml::VariableDefinition",
+      "signature": "VariableDefinition",
+      "type": "Rml::VariableDefinition",
+      "id": "Core/DataVariable.h:46:ClassDecl:Rml::VariableDefinition:VariableDefinition",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "VariableDefinition is represented by native registered adapters and DataDefinition/DataCustomDefinition. CheckScalarAndFunctions/CheckModelTemplates execute inheritance/defaults/custom destruction; data-custom verifies all virtual callbacks and retained payloads/children.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 48,
+      "kind": "CXXDestructor",
+      "name": "Rml::VariableDefinition::~VariableDefinition",
+      "signature": "~VariableDefinition()",
+      "type": "void () noexcept",
+      "id": "Core/DataVariable.h:48:CXXDestructor:Rml::VariableDefinition::~VariableDefinition:~VariableDefinition()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native register owns and destroys unique definitions. CheckModelTemplates asserts rejected and accepted custom destructor counts; data-custom verifies rejected callback release, payload release, model removal and collectable owned cycles.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 49,
+      "kind": "CXXMethod",
+      "name": "Rml::VariableDefinition::Type",
+      "signature": "Type()",
+      "type": "DataVariableType () const",
+      "id": "Core/DataVariable.h:49:CXXMethod:Rml::VariableDefinition::Type:Type()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataDefinition.type reads native Scalar/Array/Struct category from a checked owner. Native scalar/custom Type assertions execute; data-definition/custom verify registered and inferred/literal/function categories and invalidation.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 51,
+      "kind": "CXXMethod",
+      "name": "Rml::VariableDefinition::Get",
+      "signature": "Get(void *, Variant &)",
+      "type": "bool (void *, Variant &)",
+      "id": "Core/DataVariable.h:51:CXXMethod:Rml::VariableDefinition::Get:Get(void *, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataCustomDefinition.get returns explicit success and an owned Variant over retained payloads. Native default false and custom Get execute; data-custom checks successful/failed results, conversion errors, recursive/destructive rejection and first-error identity.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 52,
+      "kind": "CXXMethod",
+      "name": "Rml::VariableDefinition::Set",
+      "signature": "Set(void *, const Variant &)",
+      "type": "bool (void *, const Variant &)",
+      "id": "Core/DataVariable.h:52:CXXMethod:Rml::VariableDefinition::Set:Set(void *, const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataCustomDefinition.set receives a converted owned Variant and returns explicit native success. Native default false and custom Set execute; data-custom checks payload mutation, invalid returns, recursion, exception identity and native controller writes.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 54,
+      "kind": "CXXMethod",
+      "name": "Rml::VariableDefinition::Size",
+      "signature": "Size(void *)",
+      "type": "int (void *)",
+      "id": "Core/DataVariable.h:54:CXXMethod:Rml::VariableDefinition::Size:Size(void *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataCustomDefinition.size reads retained payload count with native integer validation. CheckScalarAndFunctions verifies default zero; data-custom custom-array-struct-reflection-and-checked-paths verifies variable size, absent/default callbacks and invalid-result rejection.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 55,
+      "kind": "CXXMethod",
+      "name": "Rml::VariableDefinition::Child",
+      "signature": "Child(void *, const DataAddressEntry &)",
+      "type": "DataVariable (void *, const DataAddressEntry &)",
+      "id": "Core/DataVariable.h:55:CXXMethod:Rml::VariableDefinition::Child:Child(void *, const DataAddressEntry &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DataCustomDefinition.child returns a same-register checked variable or null for copied native address entries. Native default invalid child executes; data-custom verifies named/indexed paths, definition mismatch, lifetime through later callbacks and recursive/error rejection.",
+      "evidence": [
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 57,
+      "kind": "CXXMethod",
+      "name": "Rml::VariableDefinition::ReflectMemberNames",
+      "signature": "ReflectMemberNames()",
+      "type": "StringList ()",
+      "id": "Core/DataVariable.h:57:CXXMethod:Rml::VariableDefinition::ReflectMemberNames:ReflectMemberNames()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataDefinition.reflectMemberNames invokes registered or variable-bound native definitions with owner checks. Custom callbacks preserve first errors and reject destructive reentry. Expired borrowed scalar functions have empty reflection without dereferencing freed native definitions.",
+      "evidence": [
+        "checked-data-definition-traits-families",
+        "native-schema-storage",
+        "enum-custom-data-definitions"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 67,
+      "kind": "FunctionDecl",
+      "name": "Rml::MakeLiteralIntVariable",
+      "signature": "MakeLiteralIntVariable(int)",
+      "type": "DataVariable (int)",
+      "id": "Core/DataVariable.h:67:FunctionDecl:Rml::MakeLiteralIntVariable:MakeLiteralIntVariable(int)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "makeLiteralIntVariable calls actual Core static literal creation. Zero/negative/int32 edges, immutable Get/Set, Size/Child, binding/aliases, real RML, no storage and validity after removal/shutdown are tested.",
+      "evidence": [
+        "native-schema-storage",
+        "native-data-addresses-literals-reflection"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 70,
+      "kind": "ClassTemplate",
+      "name": "Rml::ScalarDefinition",
+      "signature": "ScalarDefinition<T>",
+      "type": "",
+      "id": "Core/DataVariable.h:70:ClassTemplate:Rml::ScalarDefinition:ScalarDefinition<T>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerScalar(name, kind) selects native scalar storage and a checked ScalarDefinition adapter. CheckScalarAndFunctions instantiates ScalarDefinition<int>; data-schema verifies every numeric width, bool/string arrays, shared backings and native controller conversion.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 72,
+      "kind": "CXXConstructor",
+      "name": "Rml::ScalarDefinition::ScalarDefinition<T>",
+      "signature": "ScalarDefinition<T>()",
+      "type": "void ()",
+      "id": "Core/DataVariable.h:72:CXXConstructor:Rml::ScalarDefinition::ScalarDefinition<T>:ScalarDefinition<T>()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native scalar registration constructs CheckedDataScalar with an actual ScalarDefinition<T>. CheckScalarAndFunctions executes direct int construction; data-schema and independently-owned variables verify registered type and default-value creation.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 74,
+      "kind": "CXXMethod",
+      "name": "Rml::ScalarDefinition::Get",
+      "signature": "Get(void *, Variant &)",
+      "type": "bool (void *, Variant &)",
+      "id": "Core/DataVariable.h:74:CXXMethod:Rml::ScalarDefinition::Get:Get(void *, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native scalar Get copies the actual storage into Variant; narrow JS storage promotes to supported Variant widths. CheckScalarAndFunctions asserts direct Get; data-schema/custom/owned verify typed numeric, enum, bool/string and BigInt reads.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 79,
+      "kind": "CXXMethod",
+      "name": "Rml::ScalarDefinition::Set",
+      "signature": "Set(void *, const Variant &)",
+      "type": "bool (void *, const Variant &)",
+      "id": "Core/DataVariable.h:79:CXXMethod:Rml::ScalarDefinition::Set:Set(void *, const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native scalar Set uses Variant conversion; JS additionally guards destination ranges before assignment. CheckScalarAndFunctions asserts string-to-int writes; data-schema/custom verify every width, rejected writes leaving storage unchanged and native two-way controllers.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 82,
+      "kind": "ClassDecl",
+      "name": "Rml::FuncDefinition",
+      "signature": "FuncDefinition",
+      "type": "Rml::FuncDefinition",
+      "id": "Core/DataVariable.h:82:ClassDecl:Rml::FuncDefinition:FuncDefinition",
+      "status": "locally-verified-macos-arm64",
+      "representation": "bindFunc creates the actual native FuncDefinition. Getter, setter, readonly, bound receiver, owned Variants and lifecycle behavior are exercised by native expressions and controllers.",
+      "evidence": ["owned-data-variants-and-transforms", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 84,
+      "kind": "CXXConstructor",
+      "name": "Rml::FuncDefinition::FuncDefinition",
+      "signature": "FuncDefinition(DataGetFunc, DataSetFunc)",
+      "type": "void (DataGetFunc, DataSetFunc)",
+      "id": "Core/DataVariable.h:84:CXXConstructor:Rml::FuncDefinition::FuncDefinition:FuncDefinition(DataGetFunc, DataSetFunc)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Native BindFunc constructs FuncDefinition from checked synchronous getter/setter adapters. Missing setters stay readonly; callback lifetime and retained bound receivers are verified.",
+      "evidence": ["owned-data-variants-and-transforms", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 86,
+      "kind": "CXXMethod",
+      "name": "Rml::FuncDefinition::Get",
+      "signature": "Get(void *, Variant &)",
+      "type": "bool (void *, Variant &)",
+      "id": "Core/DataVariable.h:86:CXXMethod:Rml::FuncDefinition::Get:Get(void *, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Actual FuncDefinition::Get invokes host getters and owned Variant conversion. Native expressions, receiver identity, recursion, return accessors and first-error behavior are tested.",
+      "evidence": ["owned-data-variants-and-transforms", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 87,
+      "kind": "CXXMethod",
+      "name": "Rml::FuncDefinition::Set",
+      "signature": "Set(void *, const Variant &)",
+      "type": "bool (void *, const Variant &)",
+      "id": "Core/DataVariable.h:87:CXXMethod:Rml::FuncDefinition::Set:Set(void *, const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Actual FuncDefinition::Set invokes host void setters with owned Variant input. Readonly rejection, bound receivers and real native two-way controllers are tested.",
+      "evidence": ["owned-data-variants-and-transforms", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 95,
+      "kind": "ClassTemplate",
+      "name": "Rml::ScalarFuncDefinition",
+      "signature": "ScalarFuncDefinition<T>",
+      "type": "",
+      "id": "Core/DataVariable.h:95:ClassTemplate:Rml::ScalarFuncDefinition:ScalarFuncDefinition<T>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerScalar(name, callbacks) creates a native scalar callback adapter over retained payloads. CheckScalarAndFunctions instantiates ScalarFuncDefinition<Payload>; data-members verifies reads/writes, omitted callbacks, native void setters and payload lifetime.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 97,
+      "kind": "CXXConstructor",
+      "name": "Rml::ScalarFuncDefinition::ScalarFuncDefinition<T>",
+      "signature": "ScalarFuncDefinition<T>(DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "type": "void (DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "id": "Core/DataVariable.h:97:CXXConstructor:Rml::ScalarFuncDefinition::ScalarFuncDefinition<T>:ScalarFuncDefinition<T>(DataTypeGetFunc<T>, DataTypeSetFunc<T>)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Scalar callback construction retains checked getter/setter functions in the register. CheckScalarAndFunctions constructs paired, readonly and writeonly definitions; data-members verifies the JS equivalents and rejected callback collection.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 99,
+      "kind": "CXXMethod",
+      "name": "Rml::ScalarFuncDefinition::Get",
+      "signature": "Get(void *, Variant &)",
+      "type": "bool (void *, Variant &)",
+      "id": "Core/DataVariable.h:99:CXXMethod:Rml::ScalarFuncDefinition::Get:Get(void *, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Registered scalar getter returns an owned Variant from retained payloads. CheckScalarAndFunctions checks success and absent-getter false; data-members checks custom scalar members, return conversion, recursion/errors and readonly behavior.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 106,
+      "kind": "CXXMethod",
+      "name": "Rml::ScalarFuncDefinition::Set",
+      "signature": "Set(void *, const Variant &)",
+      "type": "bool (void *, const Variant &)",
+      "id": "Core/DataVariable.h:106:CXXMethod:Rml::ScalarFuncDefinition::Set:Set(void *, const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Registered scalar setter receives the owned Variant and follows native void semantics. CheckScalarAndFunctions checks payload mutation and absent-setter false; data-members checks setter-only callbacks, exceptions and native controller assignments.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 119,
+      "kind": "ClassDecl",
+      "name": "Rml::StructDefinition",
+      "signature": "StructDefinition",
+      "type": "Rml::StructDefinition",
+      "id": "Core/DataVariable.h:119:ClassDecl:Rml::StructDefinition:StructDefinition",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DynamicDataStruct represents named native child definitions owned by the register. CheckMembersAndPointers constructs StructDefinition and its members; data-schema/member/definition verify recursive storage, callbacks, reflection and checked construction.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 121,
+      "kind": "CXXConstructor",
+      "name": "Rml::StructDefinition::StructDefinition",
+      "signature": "StructDefinition()",
+      "type": "void ()",
+      "id": "Core/DataVariable.h:121:CXXConstructor:Rml::StructDefinition::StructDefinition:StructDefinition()",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerStruct creates an empty register-owned native Struct definition. CheckMembersAndPointers directly constructs StructDefinition; data-schema verifies empty/recursive registration and data-definition verifies shared checked struct handles.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 123,
+      "kind": "CXXMethod",
+      "name": "Rml::StructDefinition::Child",
+      "signature": "Child(void *, const DataAddressEntry &)",
+      "type": "DataVariable (void *, const DataAddressEntry &)",
+      "id": "Core/DataVariable.h:123:CXXMethod:Rml::StructDefinition::Child:Child(void *, const DataAddressEntry &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Named struct Child selects stored/member definitions on the current native parent. CheckMembersAndPointers reads and writes all native member forms; data-schema/members/addresses verify recursive, explicit-name and resized parent paths.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 125,
+      "kind": "CXXMethod",
+      "name": "Rml::StructDefinition::ReflectMemberNames",
+      "signature": "ReflectMemberNames()",
+      "type": "StringList ()",
+      "id": "Core/DataVariable.h:125:CXXMethod:Rml::StructDefinition::ReflectMemberNames:ReflectMemberNames()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Registered struct DataSchema.reflectMemberNames returns native member insertion order, including recursive references. Reflected definitions retain canonical identity and reject invalid register generations.",
+      "evidence": [
+        "checked-data-definition-traits-families",
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 127,
+      "kind": "CXXMethod",
+      "name": "Rml::StructDefinition::AddMember",
+      "signature": "AddMember(const String &, UniquePtr<VariableDefinition>)",
+      "type": "void (const String &, UniquePtr<VariableDefinition>)",
+      "id": "Core/DataVariable.h:127:CXXMethod:Rml::StructDefinition::AddMember:AddMember(const String &, UniquePtr<VariableDefinition>)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerMember adds a native member definition with register ownership. CheckMembersAndPointers explicitly transfers a unique setter-only definition and uses all public member overloads; data-members verifies stored/callback declarations, duplicate/frozen/foreign checks and callback lifetime.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 134,
+      "kind": "ClassTemplate",
+      "name": "Rml::ArrayDefinition",
+      "signature": "ArrayDefinition<Container>",
+      "type": "",
+      "id": "Core/DataVariable.h:134:ClassTemplate:Rml::ArrayDefinition:ArrayDefinition<Container>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "DynamicDataArray represents native owned typed backings or child nodes. CheckModelTemplates executes vector/array/list definitions and direct vector ArrayDefinition; data-schema/references/owned verify size, index writes, literal size, defaults, resize and element leases.",
+      "evidence": ["native-schema-storage", "managed-data-references", "native-data-addresses-literals-reflection"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 136,
+      "kind": "CXXConstructor",
+      "name": "Rml::ArrayDefinition::ArrayDefinition<Container>",
+      "signature": "ArrayDefinition<Container>(VariableDefinition *)",
+      "type": "void (VariableDefinition *)",
+      "id": "Core/DataVariable.h:136:CXXConstructor:Rml::ArrayDefinition::ArrayDefinition<Container>:ArrayDefinition<Container>(VariableDefinition *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerArray selects a same-register element definition retained by native storage. CheckModelTemplates directly constructs ArrayDefinition<vector<int>> with the registered scalar definition; data-schema/references verify underlying identity and foreign-definition rejection.",
+      "evidence": ["native-schema-storage", "managed-data-references"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 140,
+      "kind": "CXXMethod",
+      "name": "Rml::ArrayDefinition::Size",
+      "signature": "Size(void *)",
+      "type": "int (void *)",
+      "id": "Core/DataVariable.h:140:CXXMethod:Rml::ArrayDefinition::Size:Size(void *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native array Size returns current storage count. CheckModelTemplates asserts vector/array/list counts and direct-vector growth from two to three; data-schema/references/owned verify resize/truncation and forwarded/custom array counts.",
+      "evidence": ["native-schema-storage", "managed-data-references"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 169,
+      "kind": "ClassDecl",
+      "name": "Rml::BasePointerDefinition",
+      "signature": "BasePointerDefinition",
+      "type": "Rml::BasePointerDefinition",
+      "id": "Core/DataVariable.h:169:ClassDecl:Rml::BasePointerDefinition:BasePointerDefinition",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "ManagedDataReference forwards to a checked native target. Native pointer scalar/struct/array and outer-address guard assertions execute; data-references verifies Get/Set/Size/Child/reflection, retargeting, target ownership and null-pointee protection beyond upstream guarantees.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 171,
+      "kind": "CXXConstructor",
+      "name": "Rml::BasePointerDefinition::BasePointerDefinition",
+      "signature": "BasePointerDefinition(VariableDefinition *)",
+      "type": "void (VariableDefinition *)",
+      "id": "Core/DataVariable.h:171:CXXConstructor:Rml::BasePointerDefinition::BasePointerDefinition:BasePointerDefinition(VariableDefinition *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "registerReference constructs a native forwarding definition with a same-register underlying schema. Native PointerDefinition construction executes BasePointerDefinition for scalar/struct/array; data-definition/references verify underlying identity, pointer-to-pointer rejection and generation checks.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 173,
+      "kind": "CXXMethod",
+      "name": "Rml::BasePointerDefinition::Get",
+      "signature": "Get(void *, Variant &)",
+      "type": "bool (void *, Variant &)",
+      "id": "Core/DataVariable.h:173:CXXMethod:Rml::BasePointerDefinition::Get:Get(void *, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native scalar/raw/unique/shared reads execute in CheckMembersAndPointers, including outer-null false. data-references verifies same-target reads, replacement, expiry and null-pointee null results; checked JS targets avoid upstream null-pointee dereference.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 174,
+      "kind": "CXXMethod",
+      "name": "Rml::BasePointerDefinition::Set",
+      "signature": "Set(void *, const Variant &)",
+      "type": "bool (void *, const Variant &)",
+      "id": "Core/DataVariable.h:174:CXXMethod:Rml::BasePointerDefinition::Set:Set(void *, const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native forwarded Set mutates underlying scalar/member storage and rejects outer-null addresses. data-references verifies checked target writes, null rejection, current-array paths, schema mismatch and target removal.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 175,
+      "kind": "CXXMethod",
+      "name": "Rml::BasePointerDefinition::Size",
+      "signature": "Size(void *)",
+      "type": "int (void *)",
+      "id": "Core/DataVariable.h:175:CXXMethod:Rml::BasePointerDefinition::Size:Size(void *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "CheckModelTemplates verifies forwarded vector Size; CheckMembersAndPointers verifies outer-null zero. data-references verifies current array counts after resize/reassignment and null reference zero without exposing pointee addresses.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 176,
+      "kind": "CXXMethod",
+      "name": "Rml::BasePointerDefinition::Child",
+      "signature": "Child(void *, const DataAddressEntry &)",
+      "type": "DataVariable (void *, const DataAddressEntry &)",
+      "id": "Core/DataVariable.h:176:CXXMethod:Rml::BasePointerDefinition::Child:Child(void *, const DataAddressEntry &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native pointer Child executes named struct and indexed/literal-size vector forwarding plus outer-null invalid child. data-references verifies current suffix paths, retargeting, invalid/null children, recursive references and array target expiry.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 178,
+      "kind": "CXXMethod",
+      "name": "Rml::BasePointerDefinition::ReflectMemberNames",
+      "signature": "ReflectMemberNames()",
+      "type": "StringList ()",
+      "id": "Core/DataVariable.h:178:CXXMethod:Rml::BasePointerDefinition::ReflectMemberNames:ReflectMemberNames()",
+      "status": "locally-verified-macos-arm64",
+      "representation": "Managed reference DataSchema.reflectMemberNames invokes its underlying native definition with checked register lifetime. Recursive targets retain member order; borrowed scalar function aliases and their underlying metadata remain safe after model removal.",
+      "evidence": [
+        "checked-data-definition-traits-families",
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 188,
+      "kind": "ClassTemplate",
+      "name": "Rml::PointerDefinition",
+      "signature": "PointerDefinition<T>",
+      "type": "",
+      "id": "Core/DataVariable.h:188:ClassTemplate:Rml::PointerDefinition:PointerDefinition<T>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Raw/unique/shared PointerDefinition forms execute in native probes; JS uses managed native reference leases and DataPointerTraits metadata. data-definition/references verifies dereferencing, element schema, lifetime and null handling without exporting addresses.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 190,
+      "kind": "CXXConstructor",
+      "name": "Rml::PointerDefinition::PointerDefinition<T>",
+      "signature": "PointerDefinition<T>(VariableDefinition *)",
+      "type": "void (VariableDefinition *)",
+      "id": "Core/DataVariable.h:190:CXXConstructor:Rml::PointerDefinition::PointerDefinition<T>:PointerDefinition<T>(VariableDefinition *)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native explicit scalar/struct/array PointerDefinition construction and automatic raw/unique/shared lookup execute. JS registerReference constructs a checked adapter over the registered underlying definition; data-references/definition verify provenance and pointer-to-pointer rejection.",
+      "evidence": [
+        "managed-data-references"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 197,
+      "kind": "ClassTemplate",
+      "name": "Rml::MemberObjectDefinition",
+      "signature": "MemberObjectDefinition<Object, MemberType>",
+      "type": "",
+      "id": "Core/DataVariable.h:197:ClassTemplate:Rml::MemberObjectDefinition:MemberObjectDefinition<Object, MemberType>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Stored registerMember declarations represent native MemberObjectDefinition. CheckMembersAndPointers instantiates &Record::raw and verifies reads/writes; data-schema/members verify current parent paths, recursive storage, reflected names and native width conversion.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 199,
+      "kind": "CXXConstructor",
+      "name": "Rml::MemberObjectDefinition::MemberObjectDefinition<Object, MemberType>",
+      "signature": "MemberObjectDefinition<Object, MemberType>(VariableDefinition *, MemberType Object::*)",
+      "type": "void (VariableDefinition *, MemberType Object::*)",
+      "id": "Core/DataVariable.h:199:CXXConstructor:Rml::MemberObjectDefinition::MemberObjectDefinition<Object, MemberType>:MemberObjectDefinition<Object, MemberType>(VariableDefinition *, MemberType Object::*)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native StructHandle::RegisterMember constructs MemberObjectDefinition with registered scalar definition and &Record::raw. JS stored member construction uses same-register native schema nodes; data-schema/members verify foreign rejection, freeze and storage defaults.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 211,
+      "kind": "ClassTemplate",
+      "name": "Rml::MemberGetFuncDefinition",
+      "signature": "MemberGetFuncDefinition<Object, MemberType, BasicReturnType>",
+      "type": "",
+      "id": "Core/DataVariable.h:211:ClassTemplate:Rml::MemberGetFuncDefinition:MemberGetFuncDefinition<Object, MemberType, BasicReturnType>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Reference-returning member getters use native checked-variable forwarding. CheckMembersAndPointers/CheckModelTemplates execute reference/raw-pointer/array-reference forms; data-members verifies same-definition results, suffix forwarding, retargeting, null and resize.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 213,
+      "kind": "CXXConstructor",
+      "name": "Rml::MemberGetFuncDefinition::MemberGetFuncDefinition<Object, MemberType, BasicReturnType>",
+      "signature": "MemberGetFuncDefinition<Object, MemberType, BasicReturnType>(VariableDefinition *, MemberType Object::*)",
+      "type": "void (VariableDefinition *, MemberType Object::*)",
+      "id": "Core/DataVariable.h:213:CXXConstructor:Rml::MemberGetFuncDefinition::MemberGetFuncDefinition<Object, MemberType, BasicReturnType>:MemberGetFuncDefinition<Object, MemberType, BasicReturnType>(VariableDefinition *, MemberType Object::*)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native member registration instantiates reference/pointer getter definitions over the registered underlying type. JS registerMember creates a checked native forwarding callback definition; data-members verifies result schema, retained parent, errors and late lifetime checks.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 231,
+      "kind": "ClassTemplate",
+      "name": "Rml::MemberScalarGetSetFuncDefinition",
+      "signature": "MemberScalarGetSetFuncDefinition<Object, MemberGetType, MemberSetType, UnderlyingType>",
+      "type": "",
+      "id": "Core/DataVariable.h:231:ClassTemplate:Rml::MemberScalarGetSetFuncDefinition:MemberScalarGetSetFuncDefinition<Object, MemberGetType, MemberSetType, UnderlyingType>",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Value getter/setter native member definitions map to checked scalar callbacks. CheckMembersAndPointers executes pair, readonly and explicit VoidMemberFunc setter-only forms; data-members verifies conversion-before-void-setter, enum/two-way controls and absent callback results.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 233,
+      "kind": "CXXConstructor",
+      "name": "Rml::MemberScalarGetSetFuncDefinition::MemberScalarGetSetFuncDefinition<Object, MemberGetType, MemberSetType, UnderlyingType>",
+      "signature": "MemberScalarGetSetFuncDefinition<Object, MemberGetType, MemberSetType, UnderlyingType>(VariableDefinition *, MemberGetType Object::*, MemberSetType Object::*)",
+      "type": "void (VariableDefinition *, MemberGetType Object::*, MemberSetType Object::*)",
+      "id": "Core/DataVariable.h:233:CXXConstructor:Rml::MemberScalarGetSetFuncDefinition::MemberScalarGetSetFuncDefinition<Object, MemberGetType, MemberSetType, UnderlyingType>:MemberScalarGetSetFuncDefinition<Object, MemberGetType, MemberSetType, UnderlyingType>(VariableDefinition *, MemberGetType Object::*, MemberSetType Object::*)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "CheckMembersAndPointers constructs paired and readonly definitions through StructHandle and an explicit VoidMemberFunc getter-absent definition. JS registerMember constructs retained scalar callbacks; data-members verifies absent functions and non-scalar setter rejection.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 239,
+      "kind": "CXXMethod",
+      "name": "Rml::MemberScalarGetSetFuncDefinition::Get",
+      "signature": "Get(void *, Variant &)",
+      "type": "bool (void *, Variant &)",
+      "id": "Core/DataVariable.h:239:CXXMethod:Rml::MemberScalarGetSetFuncDefinition::Get:Get(void *, Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native value-member Get converts the getter result through the underlying scalar definition; absent VoidMemberFunc getters return false. Native probe executes both outcomes; data-members verifies current-parent reads, enum values, return errors and recursion.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 254,
+      "kind": "CXXMethod",
+      "name": "Rml::MemberScalarGetSetFuncDefinition::Set",
+      "signature": "Set(void *, const Variant &)",
+      "type": "bool (void *, const Variant &)",
+      "id": "Core/DataVariable.h:254:CXXMethod:Rml::MemberScalarGetSetFuncDefinition::Set:Set(void *, const Variant &)",
+      "status": "locally-verified-macos-arm64",
+      "exact_native_evidence": "exact-native-data-templates",
+      "representation": "Native member Set converts before invoking the void setter; readonly VoidMemberFunc setters return false. Native pair/setter-only/readonly assertions execute; data-members verifies width failures leave payload unchanged and real native two-way controllers.",
+      "evidence": [
+        "checked-data-members-scalars-aliases"
+      ]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 281,
+      "kind": "ClassDecl",
+      "name": "Rml::Detail::DataVariableAccessor",
+      "signature": "DataVariableAccessor",
+      "type": "Rml::Detail::DataVariableAccessor",
+      "id": "Core/DataVariable.h:281:ClassDecl:Rml::Detail::DataVariableAccessor:DataVariableAccessor",
+      "status": "locally-verified-macos-arm64",
+      "representation": "The actual native accessor supplies canonical registered DataSchema or checked unregistered DataDefinition leases. Inferred/function definitions expire with model paths; standalone literals preserve static native lifetime after shutdown.",
+      "evidence": ["checked-data-members-scalars-aliases", "native-data-addresses-literals-reflection", "checked-data-definition-traits-families"]
+    },
+    {
+      "header": "Core/DataVariable.h",
+      "line": 283,
+      "kind": "CXXMethod",
+      "name": "Rml::Detail::DataVariableAccessor::GetDefinition",
+      "signature": "GetDefinition(const DataVariable &)",
+      "type": "VariableDefinition *(const DataVariable &)",
+      "id": "Core/DataVariable.h:283:CXXMethod:Rml::Detail::DataVariableAccessor::GetDefinition:GetDefinition(const DataVariable &)",
+      "status": "locally-verified-macos-arm64",
+      "representation": "DataVariable.getDefinition returns canonical registered schemas or a checked variable-bound DataDefinition. isValid/type/member reflection retain owner, generation and path guards, including literals, functions, inferred scalars, recursive references and private aliases.",
+      "evidence": ["checked-data-members-scalars-aliases", "native-data-addresses-literals-reflection", "checked-data-definition-traits-families"]
+    }
+  ],
+  "default_bindings_official_acceptance": {
+    "date": "2026-11-16",
+    "default_views": [
+      "attr",
+      "attrif",
+      "class",
+      "if",
+      "visible",
+      "rml",
+      "style",
+      "text",
+      "value",
+      "checked",
+      "alias",
+      "structural for"
+    ],
+    "default_controllers": [
+      "checked",
+      "event",
+      "value"
+    ],
+    "official_models": [
+      "basics",
+      "events",
+      "invaders",
+      "forms"
+    ],
+    "tree_application": "actual directory traversal and descendant toggling",
+    "array_mutation": "Registered array resize is synchronous at exact data-event callback depth; value/custom/member callbacks and intervening ordinary listeners cannot resize. Following native statements see new size.",
+    "upstream_submit": "Original onsubmit=submit_form has no upstream application handler; preserved unchanged. Native submit dispatch is separately tested.",
+    "source_preservation": "Original RML/RCSS/assets/templates; twelve invader slots, float32 mechanics, capped time delta, printf rounding, native field paths; directory-first recursion and POSIX C-default-locale ordering.",
+    "runtime_files": 66,
+    "pass_lines": 602,
+    "default_groups": 6,
+    "official_groups": 4,
+    "site_tests": 81,
+    "review": "/tmp/rmlui-63-completion/data-defaults-review.md",
+    "evidence": [
+      "packages/sfml.js-rmlui/native/rmlui-data-callbacks.cc",
+      "packages/sfml.js-rmlui/native/rmlui-data-storage.cc",
+      "packages/sfml.js-rmlui/native/rmlui-state.h",
+      "packages/sfml.js-rmlui/src/data-model.ts",
+      "packages/sfml.js-rmlui/test/data-defaults.test.cjs",
+      "packages/sfml.js-rmlui/test/official-data.test.cjs",
+      "packages/sfml.js-rmlui/examples/official.cjs",
+      "packages/sfml.js-rmlui/examples/official/data-storage.cjs",
+      "packages/sfml.js-rmlui/examples/official/data-binding.cjs",
+      "packages/sfml.js-rmlui/examples/official/tree-view.cjs",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-basics.png",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-events.png",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-invaders.png",
+      "packages/sfml.js-rmlui/examples/screenshots/data-binding-forms.png",
+      "packages/sfml.js-rmlui/examples/screenshots/tree-view.png",
+      "docs/rmlui/data-models.md",
+      "docs/rmlui/data-models.zh-CN.md",
+      "docs/rmlui/data-models.ja.md",
+      "docs/rmlui/data-models.ko.md",
+      "packages/sfml.js-rmlui/examples/README.md",
+      "packages/sfml.js-rmlui/examples/README.zh-CN.md",
+      "packages/sfml.js-rmlui/examples/README.ja.md",
+      "packages/sfml.js-rmlui/examples/README.ko.md",
+      "site/scripts/examples-site.test.mjs",
+      "docs/rmlui/audit/6.3/modules-and-samples.md",
+      "/tmp/rmlui-63-completion/data-defaults-red.log",
+      "/tmp/rmlui-63-completion/official-data-red.log",
+      "/tmp/rmlui-63-completion/tree-sort-red-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-runtime-2.log",
+      "/tmp/rmlui-63-completion/official-data-runtime-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-native.log",
+      "/tmp/rmlui-63-completion/data-defaults-ts.log",
+      "/tmp/rmlui-63-completion/data-defaults-types.log",
+      "/tmp/rmlui-63-completion/data-defaults-lint-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-cpplint.log",
+      "/tmp/rmlui-63-completion/data-defaults-format.log",
+      "/tmp/rmlui-63-completion/data-defaults-naming.log",
+      "/tmp/rmlui-63-completion/data-defaults-site-final.log",
+      "/tmp/rmlui-63-completion/data-defaults-package-runtime.log",
+      "/tmp/rmlui-63-completion/data-binding-basics-application.log",
+      "/tmp/rmlui-63-completion/data-binding-events-application.log",
+      "/tmp/rmlui-63-completion/data-binding-invaders-application.log",
+      "/tmp/rmlui-63-completion/data-binding-forms-application.log",
+      "/tmp/rmlui-63-completion/tree-view-application.log",
+      "/tmp/rmlui-63-completion/data-defaults-review.md"
+    ],
+    "scope_complete": false
+  }
+}

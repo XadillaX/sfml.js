@@ -9,6 +9,7 @@ import type {
   SensorType,
 } from './gen/constants';
 
+/** Key code, scan code and modifier snapshot for a keyboard event. @inline */
 interface KeyEvent {
   /**
    * A logical key code affected by the keyboard layout.
@@ -570,7 +571,9 @@ export type NativeWindowEvent = {
 }[EventKind];
 
 export function windowEvent(raw: NativeWindowEvent): Event {
-  const data = { ...raw } as unknown as EventData;
+  // Preserve the native snapshot's private provenance owner while replacing
+  // serialized vector fields. Public Event construction still copies data.
+  const data = raw as unknown as EventData;
   if (data.kind === 'Resized') {
     data.size = new Vector2u(
       ...(raw as NativeFields<EventData<'Resized'>>).size,

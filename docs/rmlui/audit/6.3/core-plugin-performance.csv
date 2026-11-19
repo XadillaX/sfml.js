@@ -1,0 +1,5 @@
+registered_plugins,event_mask,cpu_frame_p50_ms,cpu_frame_p95_ms,js_to_native,native_to_js,geometry_draws,geometry_uploads,element_ownership_visits,callback_snapshot_visits,malloc_min,malloc_max,malloc_requested_bytes_min,malloc_requested_bytes_max,pixel_sha256
+0,0,0.214000,0.338791,4,0,1,0,0,0,58,58,7380,7540,b60f44e4d77c0b83c8fc1125c4e8ae17ca60f5e6048965f467e0c1adf50bd9f8
+1,1,0.203708,0.248208,4,0,1,0,0,0,56,60,7300,7620,b60f44e4d77c0b83c8fc1125c4e8ae17ca60f5e6048965f467e0c1adf50bd9f8
+1,15,0.193958,0.237833,4,0,1,0,0,0,56,60,7300,7620,b60f44e4d77c0b83c8fc1125c4e8ae17ca60f5e6048965f467e0c1adf50bd9f8
+1000,15,0.202042,0.241417,4,0,1,0,0,0,58,58,7380,7540,b60f44e4d77c0b83c8fc1125c4e8ae17ca60f5e6048965f467e0c1adf50bd9f8

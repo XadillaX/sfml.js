@@ -1,8 +1,18 @@
 # ImGui guide
 
+<p><a class="library-brand" href="https://www.dearimgui.com/"><img src="assets/dear-imgui.jpg" width="240" height="84" alt="Dear ImGui — artwork by Albane Kim"></a></p>
+
 Use `sfml.js-imgui` to build debug panels, scene inspectors and native editor controls in an SFML window. The guides take you from the first frame loop to a tool with editable state, tables, text input, fonts and custom rendering.
 
 The current sources target Dear ImGui 1.91.9b and imgui-sfml 3.0. Examples use JavaScript and the SFML 3.1 API. Start with basic JavaScript and the [SFML window guide](../sfml/window.md); C++ knowledge is not required.
+
+## What is Dear ImGui?
+
+[Dear ImGui](https://www.dearimgui.com/) is a C++ GUI library designed for interactive tools. Its immediate-mode API lets you describe the visible controls every frame: call a button function, check its return value, then update application state. ImGui keeps the internal interaction state and produces draw commands; the SFML integration displays them in your window.
+
+This makes it useful for debug overlays, profilers, level editors and inspectors that closely follow live application data. You compose controls in JavaScript instead of authoring a separate markup document. For a styled document with a persistent element tree, see the [RmlUi guide](../rmlui/README.md).
+
+[Official repository](https://github.com/ocornut/imgui) · [Official wiki](https://github.com/ocornut/imgui/wiki) · [FAQ](https://www.dearimgui.com/faq/)
 
 ## Follow the learning path
 

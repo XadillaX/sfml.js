@@ -1,0 +1,336 @@
+{
+  "scopeName": "source.rcss",
+  "name": "RmlUi RCSS",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#at-rule"
+    },
+    {
+      "include": "#rule"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.rcss",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.rcss"
+            }
+          }
+        }
+      ]
+    },
+    "at-rule": {
+      "begin": "(?i)(@)(media|keyframes|font-face|spritesheet|decorator)\\b[^{]*\\{",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.at-rule.rcss"
+        },
+        "2": {
+          "name": "keyword.control.at-rule.$2.rcss"
+        }
+      },
+      "end": "\\}",
+      "contentName": "meta.at-rule.$2.rcss",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#media-query"
+        },
+        {
+          "include": "#rule"
+        },
+        {
+          "include": "#keyframe-block"
+        },
+        {
+          "include": "#declarations"
+        }
+      ]
+    },
+    "media-query": {
+      "match": "(?i)\\b(and|not|only|or)\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.operator.logical.rcss"
+        }
+      }
+    },
+    "keyframe-block": {
+      "begin": "(?i)\\b(from|to|[0-9]+(?:\\.[0-9]+)?%)\\s*(?=\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.other.keyframe-position.rcss"
+        }
+      },
+      "end": "\\}",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#declarations"
+        }
+      ]
+    },
+    "rule": {
+      "begin": "(?=\\S)",
+      "end": "\\}",
+      "contentName": "meta.rule.rcss",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#selectors"
+        },
+        {
+          "include": "#declarations"
+        }
+      ]
+    },
+    "selectors": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "name": "entity.other.attribute-name.rcss",
+          "match": "(?<![\\w-])([a-zA-Z_][\\w-]*)(?=\\s*(?:[#.:\\[]|$|[\\s,{>+~]))"
+        },
+        {
+          "name": "entity.other.attribute-name.id.rcss",
+          "match": "#[\\w-]+"
+        },
+        {
+          "name": "entity.other.attribute-name.class.rcss",
+          "match": "\\.[\\w-]+"
+        },
+        {
+          "name": "entity.other.pseudo-class.rcss",
+          "match": ":(:)?[a-zA-Z-]+(?:\\([^)]*\\))?"
+        },
+        {
+          "name": "meta.attribute-selector.rcss",
+          "match": "\\[[^\\]]+\\]"
+        },
+        {
+          "name": "punctuation.separator.comma.rcss",
+          "match": ","
+        },
+        {
+          "name": "keyword.operator.combinator.rcss",
+          "match": "[>+~]"
+        },
+        {
+          "name": "punctuation.section.block.begin.rcss",
+          "match": "\\{"
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#custom-property"
+        },
+        {
+          "include": "#property"
+        }
+      ]
+    },
+    "custom-property": {
+      "begin": "(--[\\w-]+)\\s*(:)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.type.custom-property.rcss"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.rcss"
+        }
+      },
+      "end": "(?=;|}|$)",
+      "patterns": [
+        {
+          "include": "#values"
+        }
+      ]
+    },
+    "property": {
+      "begin": "([a-zA-Z-][\\w-]*)\\s*(:)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.type.property-name.rcss"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.rcss"
+        }
+      },
+      "end": "(?=;|}|$)",
+      "patterns": [
+        {
+          "include": "#values"
+        }
+      ]
+    },
+    "values": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#color-hex"
+        },
+        {
+          "include": "#color-functions"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#named-color"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "name": "punctuation.terminator.rule.rcss",
+          "match": ";"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.rcss",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.rcss",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.rcss",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.rcss",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "color-hex": {
+      "name": "constant.other.color.hex.rcss",
+      "match": "#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\\b"
+    },
+    "color-functions": {
+      "begin": "(?i)\\b(rgba?|hsla?|lab|lch|oklab|oklch)\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.color.rcss"
+        },
+        "2": {
+          "name": "punctuation.section.function.begin.rcss"
+        }
+      },
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#numbers"
+        },
+        {
+          "name": "constant.other.color.keyword.rcss",
+          "match": "(?i)\\b(none|from)\\b"
+        },
+        {
+          "name": "punctuation.separator.comma.rcss",
+          "match": "[,/]"
+        }
+      ]
+    },
+    "functions": {
+      "begin": "(?i)\\b(var|matrix3d|matrix|translate3d|translatex|translatey|translatez|translate|scale3d|scalex|scaley|scalez|scale|rotate3d|rotatex|rotatey|rotatez|rotate|skewx|skewy|skew|perspective|blur|drop-shadow|hue-rotate|brightness|contrast|grayscale|invert|opacity|saturate|sepia|image|ninepatch|shader|tiled-box|tiled-horizontal|tiled-vertical|text|gradient|horizontal-gradient|vertical-gradient|linear-gradient|repeating-linear-gradient|radial-gradient|repeating-radial-gradient|conic-gradient|repeating-conic-gradient)\\s*(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.rcss"
+        },
+        "2": {
+          "name": "punctuation.section.function.begin.rcss"
+        }
+      },
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#values"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.length.rcss",
+          "match": "(?i)(?<![\\w-])([+-]?(?:\\d+\\.\\d+|\\.\\d+|\\d+))(px|dp|em|rem|ex|vw|vh|in|cm|mm|pt|pc)\\b"
+        },
+        {
+          "name": "constant.numeric.angle.rcss",
+          "match": "(?i)(?<![\\w-])([+-]?(?:\\d+\\.\\d+|\\.\\d+|\\d+))(deg|rad)\\b"
+        },
+        {
+          "name": "constant.numeric.resolution.rcss",
+          "match": "(?<![\\w-])([+-]?(?:\\d+\\.\\d+|\\.\\d+|\\d+))x\\b"
+        },
+        {
+          "name": "constant.numeric.percent.rcss",
+          "match": "(?<![\\w-])([+-]?(?:\\d+\\.\\d+|\\.\\d+|\\d+))%"
+        },
+        {
+          "name": "constant.numeric.value.rcss",
+          "match": "(?<![\\w-])[+-]?(?:\\d+\\.\\d+|\\.\\d+|\\d+)\\b"
+        }
+      ]
+    },
+    "named-color": {
+      "name": "constant.other.color.named.rcss",
+      "match": "(?i)\\b(aqua|black|blue|fuchsia|gray|grey|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|transparent|white|yellow)\\b"
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.important.rcss",
+          "match": "(?i)\\!important\\b"
+        },
+        {
+          "name": "keyword.other.unit.rcss",
+          "match": "(?i)\\b(none|auto|inherit|initial)\\b"
+        },
+        {
+          "name": "constant.language.rcss",
+          "match": "[a-zA-Z_][\\w-]*"
+        }
+      ]
+    }
+  }
+}

@@ -9,10 +9,13 @@ import { Color } from './color';
 
 export { Vector2f as Vec2, Vector2i as Ivec2 } from '../system/vector2';
 export { Vector3f as Vec3, Vector3i as Ivec3 } from '../system/vector3';
+export type { BooleanVector } from './boolean-vector';
 export { Bvec2, Bvec3 } from './boolean-vector';
 export { Mat3, Mat4 } from './glsl-matrix';
 
+/** Four-dimensional source for component conversion. @inline */
 type Source4 = R<Vec4> | R<Ivec4> | R<Bvec4>;
+/** Default, numeric component, color and vector construction. @inline */
 type NumericArguments =
   | []
   | [x: number, y: number, z: number, w: number]
@@ -194,6 +197,7 @@ export class Ivec4 extends Vector4<'i32'> {
   }
 }
 
+/** Default, boolean component and vector construction. @inline */
 type BooleanArguments =
   | []
   | [x: boolean, y: boolean, z: boolean, w: boolean]
