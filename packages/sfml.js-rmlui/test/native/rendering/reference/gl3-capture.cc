@@ -23,9 +23,9 @@ namespace {
 constexpr int kWidth = 161;
 constexpr int kHeight = 121;
 
-sf::Image ReadBackbuffer() {
+sf::Image ReadFramebuffer(GLenum buffer) {
   std::vector<unsigned char> pixels(kWidth * kHeight * 4);
-  glReadBuffer(GL_BACK);
+  glReadBuffer(buffer);
   glPixelStorei(GL_PACK_ALIGNMENT, 1);
   glReadPixels(0, 0, kWidth, kHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
   assert(glGetError() == GL_NO_ERROR);
@@ -76,8 +76,10 @@ void CaptureFilter(RenderInterface_GL3* renderer,
   renderer->PopLayer();
   renderer->ReleaseFilter(filter);
   renderer->ReleaseGeometry(geometry);
+  GLint layer_framebuffer = 0;
+  glGetIntegerv(GL_FRAMEBUFFER_BINDING, &layer_framebuffer);
   renderer->EndFrame();
-  const auto image = ReadBackbuffer();
+  const auto image = ReadFramebuffer(GL_BACK);
   bool positive = false;
   for (unsigned y = 0; y < kHeight; ++y) {
     for (unsigned x = 0; x < kWidth; ++x) {
@@ -85,6 +87,19 @@ void CaptureFilter(RenderInterface_GL3* renderer,
       const bool is_shadow = Rml::String(name) == "drop-shadow";
       positive |= is_shadow ? pixel.b > 0 : pixel.r > 0;
     }
+  }
+  if (!positive) {
+    glBindFramebuffer(GL_FRAMEBUFFER, layer_framebuffer);
+    const auto layer = ReadFramebuffer(GL_COLOR_ATTACHMENT0);
+    const auto pixel = layer.getPixel({40, 30});
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    assert(image.saveToFile(output));
+    std::cerr << "FAIL reference-" << output.filename().string()
+              << " renderer=" << glGetString(GL_RENDERER)
+              << " vendor=" << glGetString(GL_VENDOR)
+              << " layer-center=" << unsigned(pixel.r) << ","
+              << unsigned(pixel.g) << "," << unsigned(pixel.b) << ","
+              << unsigned(pixel.a) << "\n";
   }
   assert(positive);
   assert(image.saveToFile(output));

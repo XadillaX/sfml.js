@@ -375,6 +375,7 @@
         "defines": [
           "NDEBUG",
           "NOMINMAX",
+          "WIN32_LEAN_AND_MEAN",
           "_CRT_SECURE_NO_WARNINGS",
           "SFML_RMLUI_EXPORTS",
           "RMLUI_CORE_EXPORTS",
