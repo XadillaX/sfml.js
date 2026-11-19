@@ -266,8 +266,9 @@ std::shared_ptr<TextureState> MakeTexture(
   state->generation = State().generation;
   state->owns_callback = owns_callback;
   state->value = manager->value->MakeCallbackTexture(
-      [callback, manager](const Rml::CallbackTextureInterface& interface) {
-        return Invoke(callback, manager, interface);
+      [callback, manager](
+          const Rml::CallbackTextureInterface& texture_interface) {
+        return Invoke(callback, manager, texture_interface);
       });
   Register(state);
   return state;
@@ -370,11 +371,13 @@ NAN_METHOD(GenerateTexture) {
   if (!state || !CanSubmit(state)) {
     return;
   }
-  Rml::CallbackTextureInterface interface(*state->manager->value,
-                                          *state->manager->render_interface,
-                                          state->handle,
-                                          state->dimensions);
-  info.GetReturnValue().Set(interface.GenerateTexture(pixels, dimensions));
+  Rml::CallbackTextureInterface texture_interface(
+      *state->manager->value,
+      *state->manager->render_interface,
+      state->handle,
+      state->dimensions);
+  info.GetReturnValue().Set(
+      texture_interface.GenerateTexture(pixels, dimensions));
 }
 
 NAN_METHOD(SaveLayerAsTexture) {
@@ -386,11 +389,12 @@ NAN_METHOD(SaveLayerAsTexture) {
   if (!region.Valid() || region.Size().x <= 0 || region.Size().y <= 0) {
     return Nan::ThrowError("Save layer as texture requires a scissor region");
   }
-  Rml::CallbackTextureInterface interface(*state->manager->value,
-                                          *state->manager->render_interface,
-                                          state->handle,
-                                          state->dimensions);
-  interface.SaveLayerAsTexture();
+  Rml::CallbackTextureInterface texture_interface(
+      *state->manager->value,
+      *state->manager->render_interface,
+      state->handle,
+      state->dimensions);
+  texture_interface.SaveLayerAsTexture();
 }
 
 NAN_METHOD(GetRenderManager) {
@@ -455,11 +459,12 @@ NAN_METHOD(SetTextureHandle) {
   if (handle->dimensions != dimensions) {
     return Nan::ThrowRangeError("Texture handle dimensions do not match");
   }
-  Rml::CallbackTextureInterface interface(*state->manager->value,
-                                          *state->manager->render_interface,
-                                          state->handle,
-                                          state->dimensions);
-  interface.SetTextureHandle(handle->value, dimensions);
+  Rml::CallbackTextureInterface texture_interface(
+      *state->manager->value,
+      *state->manager->render_interface,
+      state->handle,
+      state->dimensions);
+  texture_interface.SetTextureHandle(handle->value, dimensions);
   handle->value = {};
 }
 

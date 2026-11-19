@@ -37,23 +37,23 @@ class HarfBuzzFontEngine final : public FontEngineInterfaceHarfBuzz {
                     Rml::Style::FontStyle style,
                     Rml::Style::FontWeight weight,
                     bool fallback) override {
-    auto* interface = Rml::GetFileInterface();
-    const auto handle = interface->Open(path);
+    auto* file_interface = Rml::GetFileInterface();
+    const auto handle = file_interface->Open(path);
     if (!handle) {
       return false;
     }
     struct FileLease {
-      Rml::FileInterface* interface;
+      Rml::FileInterface* file_interface;
       Rml::FileHandle handle;
-      ~FileLease() { interface->Close(handle); }
-    } lease{interface, handle};
+      ~FileLease() { file_interface->Close(handle); }
+    } lease{file_interface, handle};
 
-    const size_t length = interface->Length(handle);
+    const size_t length = file_interface->Length(handle);
     if (!length) {
       return false;
     }
     std::vector<Rml::byte> data(length);
-    if (interface->Read(data.data(), length, handle) != length) {
+    if (file_interface->Read(data.data(), length, handle) != length) {
       return false;
     }
     auto& stored = file_data_.emplace_back(std::move(data));

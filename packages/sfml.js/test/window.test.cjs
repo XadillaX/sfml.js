@@ -180,7 +180,7 @@ test('closed windows allow events and controls, and reject invalid arguments',
     assert.throws(() => window.createVulkanSurface(0n), RangeError);
   });
 
-test('real window resize, settings, wait timeout and recreation', () => {
+test('real window resize, settings, wait timeout and recreation', async () => {
   const window = new sf.Window(new sf.VideoMode(new V(160, 120)), '窗口🙂', {
     style: sf.Style.Titlebar,
     state: sf.State.Windowed,
@@ -201,11 +201,19 @@ test('real window resize, settings, wait timeout and recreation', () => {
     window.setMaximumSize(new V(size.x + 200, size.y + 200));
     window.setSize(new V(size.x + 20, size.y + 20));
     let resized;
-    window.handleEvents({
+    const resizeHandlers = {
       Resized: data => {
         resized = data;
       },
-    });
+    };
+    // X11 resize notifications arrive after the native request returns.
+    const resizeDeadline = performance.now() + 2000;
+    while (!resized && performance.now() < resizeDeadline) {
+      window.handleEvents(resizeHandlers);
+      if (!resized) {
+        await nextTurn();
+      }
+    }
     assert.ok(resized);
     assert.equal(sf.equal(resized.size, window.getSize()), true);
     assert.ok(window.getSize().x > size.x);
@@ -254,7 +262,7 @@ test('real window resize, settings, wait timeout and recreation', () => {
 });
 
 test('demo presents offscreen pixels without consuming the JS event queue',
-  () => {
+  async () => {
     const window = new sf.Window(new V(80, 60), 'Window presentation');
     try {
       const target = new sf.RenderTexture(new V(2, 2));
@@ -285,9 +293,18 @@ test('demo presents offscreen pixels without consuming the JS event queue',
           color.toInteger());
       }
       let resized = false;
-      window.handleEvents({ Resized: () => {
-        resized = true;
-      } });
+      const resizeHandlers = {
+        Resized() {
+          resized = true;
+        },
+      };
+      const deadline = performance.now() + 2000;
+      while (!resized && performance.now() < deadline) {
+        window.handleEvents(resizeHandlers);
+        if (!resized) {
+          await nextTurn();
+        }
+      }
       assert.equal(resized, true);
     } finally {
       window.close();
