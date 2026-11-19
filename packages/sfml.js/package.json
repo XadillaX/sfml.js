@@ -76,7 +76,7 @@
     "node": "^18.19.0 || >=20.5.0"
   },
   "dependencies": {
-    "basic-ftp": "6.2.1",
+    "basic-ftp": "6.2.4",
     "download": "8.0.0",
     "ipaddr.js": "2.5.0",
     "nan": "2.29.0",
