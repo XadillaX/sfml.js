@@ -208,6 +208,52 @@ void MergedAllocationFallback(sf::RenderWindow* window) {
   renderer.RollbackFrame();
 }
 
+void BlurAllocationRecovery(sf::RenderWindow* window) {
+  Renderer renderer;
+  renderer.SetWindow(window);
+  const auto view = window->getView();
+  const auto host = HostPixels(window);
+  const auto geometry = Triangle(&renderer);
+  Rml::Dictionary parameters;
+  parameters["sigma"] = 3.f;
+  const auto filter = renderer.CompileFilter("blur", parameters);
+  Require(filter != 0, "Cannot compile blur fixture");
+  const std::array<Rml::CompiledFilterHandle, 1> filters{filter};
+
+  for (const bool fail : {true, false}) {
+    renderer.BeginFrame();
+    const auto layer = renderer.PushLayer();
+    renderer.RenderGeometry(geometry, {}, 0);
+    renderer.FlushGeometry();
+    faults::vertex_failures = fail ? 1 : 0;
+    bool threw = false;
+    try {
+      renderer.CompositeLayers(
+          layer, 0, Rml::BlendMode::Replace, {filters.data(), filters.size()});
+    } catch (const std::runtime_error&) {
+      threw = true;
+    }
+    Require(threw == fail, "Blur geometry allocation did not recover");
+    if (!fail) {
+      renderer.PopLayer();
+      renderer.SetScissorRegion(
+          Rml::Rectanglei::FromPositionSize({0, 0}, {80, 60}));
+      const auto texture = renderer.SaveLayerAsTexture();
+      Require(texture != 0, "Cannot capture recovered blur");
+      const auto image =
+          reinterpret_cast<const sf::Texture*>(texture)->copyToImage();
+      renderer.ReleaseTexture(texture);
+      Require(image.getPixel({10, 10}).a > 0,
+              "Recovered blur discarded submitted pixels");
+    }
+    renderer.RollbackFrame();
+    ExpectView(window->getView(), view);
+    ExpectIdentical(HostPixels(window), host);
+  }
+  renderer.ReleaseFilter(filter);
+  renderer.ReleaseGeometry(geometry);
+}
+
 }  // namespace
 
 int main() {
@@ -248,5 +294,6 @@ int main() {
       [&] { VertexFailure(&window, true); });
   run("merged-allocation-solo-fallback",
       [&] { MergedAllocationFallback(&window); });
+  run("blur-allocation-recovery", [&] { BlurAllocationRecovery(&window); });
   return failures ? 1 : 0;
 }

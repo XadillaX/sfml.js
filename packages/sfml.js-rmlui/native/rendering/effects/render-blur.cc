@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <array>
+#include <stdexcept>
 
 #include "native/rendering/effects/blur-kernel.h"
 #include "native/rendering/effects/postprocess-bounds.h"
@@ -46,17 +47,23 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
   if (shader == &blur_shader_) {
     // Preserve the pinned fullscreen triangle diagonal and winding. Their
     // interpolation determines the exact half-texel boundary comparisons.
-    const std::array<sf::Vertex, 6> vertices{{
-        {{-1.f, -1.f}, sf::Color::White, {}},
-        {{-1.f, 1.f}, sf::Color::White, {}},
-        {{1.f, -1.f}, sf::Color::White, {}},
-        {{1.f, -1.f}, sf::Color::White, {}},
-        {{-1.f, 1.f}, sf::Color::White, {}},
-        {{1.f, 1.f}, sf::Color::White, {}},
-    }};
+    if (!blur_geometry_ready_) {
+      const std::array<sf::Vertex, 6> vertices{{
+          {{-1.f, -1.f}, sf::Color::White, {}},
+          {{-1.f, 1.f}, sf::Color::White, {}},
+          {{1.f, -1.f}, sf::Color::White, {}},
+          {{1.f, -1.f}, sf::Color::White, {}},
+          {{-1.f, 1.f}, sf::Color::White, {}},
+          {{1.f, 1.f}, sf::Color::White, {}},
+      }};
+      if (!blur_geometry_.create(vertices.size()) ||
+          !blur_geometry_.update(vertices.data())) {
+        throw std::runtime_error("Failed to upload RmlUi blur geometry");
+      }
+      blur_geometry_ready_ = true;
+    }
     states.texture = &source;
-    destination->draw(
-        vertices.data(), vertices.size(), sf::PrimitiveType::Triangles, states);
+    destination->draw(blur_geometry_, states);
   } else {
     destination->draw(sprite, states);
   }
