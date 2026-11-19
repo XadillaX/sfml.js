@@ -14,7 +14,8 @@ function compileCommand(source, output, architecture, platform) {
       args: [
         '/nologo', '/TP', '/EHsc', '/std:c++20', '/c',
         debug ? '/Od' : '/O2', '/D_CRT_SECURE_NO_WARNINGS',
-        debug ? '/MDd' : '/MD', '/DLUA_BUILD_AS_DLL',
+        // Match node-gyp's static CRT for Node's non-shared Windows build.
+        debug ? '/MTd' : '/MT', '/DLUA_BUILD_AS_DLL',
         source, `/Fo${output}`,
       ],
     };

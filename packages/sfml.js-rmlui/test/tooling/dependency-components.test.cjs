@@ -13,6 +13,9 @@ const {
 const {
   patchRmlUiLua,
 } = require('../../tools/dependencies/patches/patch-rmlui-lua.cjs');
+const {
+  patchRlottie,
+} = require('../../tools/dependencies/patches/patch-rlottie.cjs');
 
 async function verify(previous, damaged, expected) {
   const installed = [];
@@ -66,6 +69,10 @@ async function verify(previous, damaged, expected) {
     'x64', 'win32');
   assert.ok(windows.args.includes('/TP'));
   assert.ok(windows.args.includes('/EHsc'));
+  assert.ok(windows.args.includes('/MT'));
+  const windowsDebug = compileCommand('original.c',
+    path.join('Debug', 'object.obj'), 'x64', 'win32');
+  assert.ok(windowsDebug.args.includes('/MTd'));
   assert.throws(() => compileCommand('original.c', 'object.o',
     'unknown', 'darwin'), /Unsupported macOS architecture/);
   console.log('PASS original-lua-cpp-language-and-exception-selection');
@@ -113,6 +120,33 @@ async function verify(previous, damaged, expected) {
   assert.deepEqual(luaAfter, luaBefore);
   await assert.rejects(patchRmlUiLua(path.join(root, 'missing')), /ENOENT/);
   console.log('PASS lua-contract-patch-idempotence-and-missing-source');
+
+  const rlottieRoot = path.join(__dirname, '../../third_party/rlottie');
+  const rlottieFiles = [ 'inc/rlottie.h', 'inc/rlottiecommon.h' ];
+  const rlottieBefore = await Promise.all(rlottieFiles.map(file =>
+    fs.readFile(path.join(rlottieRoot, file), 'utf8')));
+  writes = 0;
+  fs.writeFile = async (...args) => {
+    ++writes;
+    return writeFile(...args);
+  };
+  try {
+    await patchRlottie(rlottieRoot);
+    await patchRlottie(rlottieRoot);
+  } finally {
+    fs.writeFile = writeFile;
+  }
+  assert.equal(writes, 0);
+  const rlottieAfter = await Promise.all(rlottieFiles.map(file =>
+    fs.readFile(path.join(rlottieRoot, file), 'utf8')));
+  assert.deepEqual(rlottieAfter, rlottieBefore);
+  for (const header of rlottieAfter) {
+    assert.ok(header.includes(
+      '#if defined RLOTTIE_STATIC\n  #define RLOTTIE_API\n'));
+  }
+  await assert.rejects(patchRlottie(path.join(rlottieRoot, 'missing')),
+    /ENOENT/);
+  console.log('PASS rlottie-static-headers-and-patch-idempotence');
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;

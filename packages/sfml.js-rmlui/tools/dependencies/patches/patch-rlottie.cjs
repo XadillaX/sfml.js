@@ -8,13 +8,13 @@ const path = require('node:path');
  * @param {string} root Extracted pinned rlottie tree.
  */
 async function patchRlottie(root) {
-  const edits = [
-    [ 'inc/rlottiecommon.h',
-      '#if defined _WIN32 || defined __CYGWIN__',
-      '#if defined RLOTTIE_STATIC\n' +
-      '  #define RLOTTIE_API\n' +
-      '#elif defined _WIN32 || defined __CYGWIN__' ],
-  ];
+  const edits = [ 'inc/rlottiecommon.h', 'inc/rlottie.h' ].map(file => [
+    file,
+    '#if defined _WIN32 || defined __CYGWIN__',
+    '#if defined RLOTTIE_STATIC\n' +
+    '  #define RLOTTIE_API\n' +
+    '#elif defined _WIN32 || defined __CYGWIN__',
+  ]);
 
   // This release's NEON implementation requires ARM32-only pixman assembly.
   // AArch64 uses its upstream portable renderer, including memfill32.
