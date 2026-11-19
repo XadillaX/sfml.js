@@ -2,6 +2,7 @@
 
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
+const { setImmediate: nextTurn } = require('node:timers/promises');
 
 function quad(rmlui, manager, colour, size = 40) {
   const mesh = new rmlui.Mesh(4, 6);
@@ -196,7 +197,7 @@ const cases = {
     invert.release();
   },
 
-  'resize-reallocates-base-and-clears-prior-frame': options => {
+  'resize-reallocates-base-and-clears-prior-frame': async options => {
     const { rmlui, manager, context, sfml, window } = options;
     const geometry = quad(rmlui, manager, [ 255, 0, 0, 255 ]);
     let draw = true;
@@ -208,6 +209,26 @@ const cases = {
     context.render();
     draw = false;
     window.setSize(new sfml.Vector2u(180, 140));
+    let resized = false;
+    const resizeHandlers = {
+      Resized({ size }) {
+        resized = size.x === 180 && size.y === 140;
+      },
+    };
+    // X11 delivers ConfigureNotify after the native resize request returns.
+    const deadline = performance.now() + 2000;
+    while (!resized && performance.now() < deadline) {
+      window.handleEvents(resizeHandlers);
+      if (!resized) {
+        await nextTurn();
+      }
+    }
+    assert.equal(resized, true);
+    assert.equal(
+      sfml.equal(window.getSize(), new sfml.Vector2u(180, 140)), true);
+    // GLX refreshes the resized drawable when its buffers are first swapped.
+    window.display();
+
     context.setDimensions(180, 140);
     window.clear(sfml.Color.Blue);
     window.flush();
