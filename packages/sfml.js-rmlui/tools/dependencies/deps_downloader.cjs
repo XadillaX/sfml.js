@@ -100,7 +100,10 @@ async function extractTarGz(url, target, digest, cachedArchive) {
       throw new Error(`Archive checksum mismatch: ${path.basename(target)}`);
     }
     await fs.writeFile(archive, buffer);
-    const extract = spawnSync('tar', [ '-xzf', archive, '-C', staging ], {
+    // GNU tar interprets a drive-letter archive path as a remote host.
+    // Resolve the local archive from its extraction directory on every host.
+    const extract = spawnSync('tar', [ '-xzf', path.basename(archive) ], {
+      cwd: staging,
       stdio: 'inherit',
     });
     if (extract.status !== 0) {
@@ -158,7 +161,7 @@ async function generateGypi() {
   }
   const freetypeSources = (baseSourcesMatch[1].match(/src\/[^\s]+\.c/g) ?? [])
     // bzip2 requires an external libbz2; the internal gzip module remains.
-    .filter(file => !file.includes(`${path.sep}bzip2${path.sep}`))
+    .filter(file => !file.includes('/bzip2/'))
     .map(file => path.join('third_party/freetype', file));
   freetypeSources.push(
     path.join('third_party/freetype/src/base/ftsystem.c'),

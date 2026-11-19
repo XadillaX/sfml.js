@@ -1,11 +1,16 @@
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import test from 'node:test';
 import ts from 'typescript';
 import { locales, rootDir } from './content.mjs';
 
 const packageDir = resolve(rootDir, 'packages/sfml.js-rmlui');
+
+function normalizePath(filename) {
+  return resolve(filename).replaceAll('\\', '/');
+}
+
 const entry = resolve(packageDir, 'src/index.ts');
 const configPath = resolve(packageDir, 'tsconfig.json');
 const config = ts.readConfigFile(configPath, ts.sys.readFile);
@@ -26,7 +31,7 @@ assert.deepEqual(
   'The package must type-check before validating its documentation'
 );
 sourceProgram.emit(undefined, (filename, text) => {
-  declarations.set(filename, text);
+  declarations.set(normalizePath(filename), text);
 });
 const checker = sourceProgram.getTypeChecker();
 const exported = new Set(checker.getExportsOfModule(
@@ -39,8 +44,10 @@ const exported = new Set(checker.getExportsOfModule(
   // eslint-disable-next-line no-bitwise
   return target.flags & ts.SymbolFlags.Value;
 }).map(symbol => symbol.name));
-const rmluiEntry = resolve(packageDir, 'dist/index');
-const sfmlEntry = resolve(rootDir, 'packages/sfml.js/dist/index');
+const rmluiEntry = normalizePath(resolve(packageDir, 'dist/index'));
+const sfmlEntry = normalizePath(
+  resolve(rootDir, 'packages/sfml.js/dist/index')
+);
 
 // Guides deliberately show fragments after successful setup. These ambient
 // values use real exported types; no arbitrary host member is typed as any.
@@ -158,18 +165,45 @@ function checkSnippets(snippets) {
     types: [ 'node' ],
   };
   const files = new Map(snippets.map((snippet, index) => [
-    resolve(packageDir, 'dist',
-      `__documentation-${index}.${snippet.javascript ? 'js' : 'ts'}`),
+    normalizePath(resolve(packageDir, 'dist',
+      `__documentation-${index}.${snippet.javascript ? 'js' : 'ts'}`)),
     snippet,
   ]));
+  const directories = new Set();
+  for (const filename of [ ...declarations.keys(), ...files.keys() ]) {
+    let directory = normalizePath(dirname(filename));
+    while (!directories.has(directory)) {
+      directories.add(directory);
+      const parent = normalizePath(dirname(directory));
+      if (parent === directory) {
+        break;
+      }
+      directory = parent;
+    }
+  }
   const host = ts.createCompilerHost(options);
   const read = host.readFile.bind(host);
   const exists = host.fileExists.bind(host);
-  host.readFile = filename =>
-    files.get(filename)?.content ?? declarations.get(filename) ??
-    read(filename);
-  host.fileExists = filename =>
-    files.has(filename) || declarations.has(filename) || exists(filename);
+  const directoryExists = host.directoryExists.bind(host);
+  const virtualRoot = normalizePath(resolve(packageDir, 'dist'));
+  const isVirtual = filename =>
+    filename === virtualRoot || filename.startsWith(virtualRoot + '/');
+  host.readFile = filename => {
+    const normalized = normalizePath(filename);
+    return files.get(normalized)?.content ?? declarations.get(normalized) ??
+      (isVirtual(normalized) ? undefined : read(filename));
+  };
+  host.fileExists = filename => {
+    const normalized = normalizePath(filename);
+    return files.has(normalized) || declarations.has(normalized) ||
+      (!isVirtual(normalized) && exists(filename));
+  };
+  // Treat RmlUi dist as absent on disk, including when a local build exists.
+  host.directoryExists = filename => {
+    const normalized = normalizePath(filename);
+    return directories.has(normalized) ||
+      (!isVirtual(normalized) && directoryExists(filename));
+  };
   host.getSourceFile = (filename, languageVersion) => {
     const content = host.readFile(filename);
     return content === undefined ? undefined
@@ -189,6 +223,14 @@ function checkSnippets(snippets) {
     };
   });
 }
+
+test('snippets resolve current declarations without on-disk RmlUi dist', () => {
+  const snippets = [
+    prepareSnippet('const tag: string = element.tagName;', false),
+    prepareSnippet('const tag = element.tagName;', true),
+  ];
+  assert.deepEqual(checkSnippets(snippets), []);
+});
 
 test('snippet checks reject invented APIs and wrong arguments', () => {
   const failures = checkSnippets([

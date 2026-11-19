@@ -6,14 +6,24 @@
   "source_package": {
     "install_lifecycle": "passed in the existing package and build tree",
     "bootstrap_order": "dependency preparation and native code generation precede GYP configure/build",
-    "shipped_files": 746,
+    "shipped_files": 747,
     "verified_install_build_application_entries": 58,
     "helper_contracts": 8,
     "installed_node_modules_layout": "verified in memory with the actual helper source; unrelated Rush metadata is not read",
     "isolated_consumer_install": "not performed; no copied package, checkout or separate build/test environment",
     "optional_repository_lsp": "Lua database correction always runs; repository merge runs only for the owning Rush project",
     "typescript_consumer_and_build": "passed",
-    "package_lint_and_native_style": "passed"
+    "package_lint_and_native_style": "passed",
+    "dependency_archive_extraction": "The actual downloader extracted a local tar archive and preserved its bytes; the smoke fixture was removed",
+    "freetype_source_inventory": "The actual generator excludes external bzip2 sources with both slash and backslash platform separators, and preserves gzip sources",
+    "node_20_buffer_compatibility": {
+      "headers": "20.20.2 from the existing node-gyp cache",
+      "native_units_checked": 6,
+      "compile_result": "passed",
+      "method": "Existing compiler commands with the Node 20 include paths and -fsyntax-only; no new build tree or test environment",
+      "storage_contract": "BackingStore rejects shared and resizable buffers; the Node 18 branch omits the unavailable resizable-store API",
+      "platform_runtime_result": "requires the pushed commit's CI results"
+    }
   },
   "runtime": {
     "test_files": 159,
@@ -45,8 +55,8 @@
     "api_pages_per_language": 1635,
     "languages": 4,
     "redirects": 306,
-    "site_regressions": 94,
-    "regression_scope_note": "All 94 site tests pass. Four core TypeDoc checks validate references and actual localization. Four RmlUi public reflection checks include constructor containers, every signature and parameter, and inline object fields. Only callable signatures may use their owning alias summary; fields cannot. Symbol-only summaries, missing translations, return contracts and unresolved references are rejected. Guide inventory checks require every top-level RmlUi Markdown file to have all four translations and a local route. Snippet checks emit declarations from the current package source in memory and verify actual member names, overloads and result shapes.",
+    "site_regressions": 95,
+    "regression_scope_note": "All 95 site tests pass. Four core TypeDoc checks validate references and actual localization. Four RmlUi public reflection checks include constructor containers, every signature and parameter, and inline object fields. Only callable signatures may use their owning alias summary; fields cannot. Symbol-only summaries, missing translations, return contracts and unresolved references are rejected. Guide inventory checks require every top-level RmlUi Markdown file to have all four translations and a local route. Snippet checks emit declarations from the current package source in memory and verify actual member names, overloads and result shapes. RmlUi dist files and directories are treated as absent on disk; emitted virtual directories resolve both JavaScript and TypeScript fragments.",
     "other_package_build_warnings": {
       "count": 0,
       "package": "sfml.js",

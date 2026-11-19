@@ -13,6 +13,8 @@
 #include <utility>
 #include <vector>
 
+#include "native/values/rmlui-buffer.h"
+
 namespace sfmlrmlui {
 
 bool ReadString(v8::Local<v8::Value> input, Rml::String* result) {
@@ -229,7 +231,7 @@ bool ReadOffsets(v8::Local<v8::Value> input, OffsetView* result) {
     return false;
   }
   result->storage = buffer->GetBackingStore();
-  if (result->storage->IsShared() || buffer->IsResizableByUserJavaScript()) {
+  if (!IsFixedUnsharedBuffer(result->storage)) {
     Nan::ThrowTypeError("Offset buffer must be fixed and unshared");
     return false;
   }
@@ -544,7 +546,7 @@ NAN_METHOD(EncodeCharacters) {
     return Nan::ThrowRangeError("Codepoint buffer is detached");
   }
   auto storage = buffer->GetBackingStore();
-  if (storage->IsShared() || buffer->IsResizableByUserJavaScript()) {
+  if (!IsFixedUnsharedBuffer(storage)) {
     return Nan::ThrowTypeError("Codepoint buffer must be fixed and unshared");
   }
   if (view->Length() > std::numeric_limits<int>::max()) {

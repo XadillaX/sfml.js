@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "native/runtime/rmlui-state.h"
+#include "native/values/rmlui-buffer.h"
 #include "third_party/rmlui/Source/Core/TransformState.h"
 
 namespace sfmlrmlui {
@@ -70,7 +71,7 @@ bool ReadMatrix(v8::Local<v8::Value> input, Rml::Matrix4f* result) {
     return false;
   }
   auto store = view->Buffer()->GetBackingStore();
-  if (store->IsShared() || view->Buffer()->IsResizableByUserJavaScript()) {
+  if (!IsFixedUnsharedBuffer(store)) {
     Nan::ThrowTypeError("Expected a fixed unshared matrix buffer");
     return false;
   }

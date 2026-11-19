@@ -23,7 +23,13 @@ using sfmljs::interop::WindowInputResult;
 
 // Only the unavailable X server is substituted. Collection and, once
 // connected, deferral execute the exact prepared SFML function bodies.
-enum { kKeyPress = 2, kKeyRelease = 3, kClientMessage = 33 };
+enum {
+  kKeyPress = 2,
+  kKeyRelease = 3,
+  kVisibilityNotify = 15,
+  kUnmapNotify = 18,
+  kClientMessage = 33,
+};
 using XPointer = char*;
 struct XKeyEvent {
   unsigned keycode;
@@ -94,6 +100,7 @@ class WindowImplX11 final : public WindowImpl {
   std::function<void()> interpreting;
   std::function<void()> destroyed;
   bool input_current{true};
+  bool visible{false};
   ~WindowImplX11() override {
     if (destroyed) {
       destroyed();
@@ -104,7 +111,11 @@ class WindowImplX11 final : public WindowImpl {
 #if defined(SFMLJS_DEFERRED_DELIVERY)
 #define windowEvent event
 #define m_window window_
+#define UnmapNotify kUnmapNotify
+#define VisibilityNotify kVisibilityNotify
 #include "x11-defer-body.inc"
+#undef VisibilityNotify
+#undef UnmapNotify
 #undef m_window
 #undef windowEvent
 #else
@@ -120,6 +131,10 @@ class WindowImplX11 final : public WindowImpl {
  private:
   bool processEvent(const XEvent& event, bool current = true) {
     input_current = current;
+    if (event.type == kVisibilityNotify || event.type == kUnmapNotify) {
+      visible = event.type == kVisibilityNotify;
+      return true;
+    }
     interpreted.push_back(event.type);
     if (interpreting) {
       interpreting();
@@ -180,6 +195,39 @@ void Collection() {
   host.PollAll();
   assert((host.interpreted == std::vector<int>{kClientMessage, kKeyPress}));
   std::cout << "PASS actual SFML collection defers ordered native delivery\n";
+}
+
+void Visibility() {
+  registry.Open(81);
+  const auto entries = std::make_shared<int>(0);
+  const auto& runtime_entries = *entries;
+  sfmljs::interop::WindowInputCallbacks client;
+  client.owner = entries;
+  client.event = [](const auto& owner, const sf::Event&) { return owner; };
+  client.interpret = [](const auto& owner,
+                        const std::function<void()>& action) {
+    ++*std::static_pointer_cast<int>(owner);
+    action();
+    return WindowInputResult::kComplete;
+  };
+  assert(registry.Attach(81, &client));
+
+  WindowImplX11 host;
+  server_events = {{kVisibilityNotify, {}}, {kKeyPress, {7, 10}}};
+  host.processEvents();
+  assert(host.visible &&
+         "setVisible cannot finish when visibility awaits public polling");
+  assert(!host.input_current && host.interpreted.empty());
+  assert(runtime_entries == 0);
+
+  server_events = {{kUnmapNotify, {}}};
+  host.processEvents();
+  assert(!host.visible && runtime_entries == 0);
+  host.PollAll();
+  assert(runtime_entries == 1);
+  assert((host.interpreted == std::vector<int>{kKeyPress}));
+  registry.Close(81);
+  std::cout << "PASS actual SFML visibility completes before input polling\n";
 }
 
 void Repeats() {
@@ -311,4 +359,5 @@ int main() {
   WaitCallbacks();
   WaitRetirement();
   GuardedWait<sfmljs::interop::WindowInputCallbacks>();
+  Visibility();
 }

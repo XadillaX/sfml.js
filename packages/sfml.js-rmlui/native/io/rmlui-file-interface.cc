@@ -19,6 +19,7 @@
 #include "native/io/file-interface-root.h"
 #include "native/io/rmlui-stream.h"
 #include "native/runtime/rmlui-state.h"
+#include "native/values/rmlui-buffer.h"
 
 namespace sfmlrmlui {
 namespace {
@@ -73,8 +74,8 @@ bool ReadBytes(v8::Local<v8::Value> value, std::vector<Rml::byte>* bytes) {
   }
   const auto view = value.As<v8::Uint8Array>();
   const auto buffer = view->Buffer();
-  if (buffer->WasDetached() || buffer->IsResizableByUserJavaScript() ||
-      buffer->GetBackingStore()->IsShared()) {
+  if (buffer->WasDetached() ||
+      !IsFixedUnsharedBuffer(buffer->GetBackingStore())) {
     Nan::ThrowTypeError(
         "File bytes must have a fixed attached unshared buffer");
     return false;
@@ -681,8 +682,8 @@ NAN_METHOD(Read) {
   }
   const auto view = info[1].As<v8::Uint8Array>();
   const auto buffer = view->Buffer();
-  if (buffer->WasDetached() || buffer->IsResizableByUserJavaScript() ||
-      buffer->GetBackingStore()->IsShared()) {
+  if (buffer->WasDetached() ||
+      !IsFixedUnsharedBuffer(buffer->GetBackingStore())) {
     return Nan::ThrowTypeError(
         "File output must be fixed attached and unshared");
   }

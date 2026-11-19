@@ -59,7 +59,7 @@ jobs:
       - name: Install workspace dependencies
         run: node common/scripts/install-run-rush.js install
       - name: Build workspace packages
-        run: node common/scripts/install-run-rush.js build
+        run: node common/scripts/install-run-rush.js build --verbose
       - name: Verify RmlUi declarations, styles and source package
         run: |
           npm --prefix packages/sfml.js-rmlui run lint

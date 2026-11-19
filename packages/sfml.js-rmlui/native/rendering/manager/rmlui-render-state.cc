@@ -18,6 +18,7 @@
 #include "native/rendering/manager/rmlui-render-layers.h"
 #include "native/runtime/rmlui-state.h"
 #include "native/style/effects/rmlui-filter.h"
+#include "native/values/rmlui-buffer.h"
 #include "native/values/rmlui-variant.h"
 
 namespace sfmlrmlui {
@@ -89,7 +90,7 @@ bool ReadMatrix(v8::Local<v8::Value> input, Rml::Matrix4f* result) {
     return false;
   }
   const auto store = view->Buffer()->GetBackingStore();
-  if (store->IsShared() || view->Buffer()->IsResizableByUserJavaScript()) {
+  if (!IsFixedUnsharedBuffer(store)) {
     Nan::ThrowTypeError("Expected a fixed unshared matrix buffer");
     return false;
   }

@@ -19,6 +19,7 @@
 #include "native/rendering/geometry/rmlui-mesh.h"
 #include "native/rendering/manager/rmlui-render-manager.h"
 #include "native/runtime/rmlui-state.h"
+#include "native/values/rmlui-buffer.h"
 
 namespace sfmlrmlui {
 namespace {
@@ -548,8 +549,8 @@ class HostFonts final : public CustomFontEngine {
         }
         auto output = value.As<v8::Int32Array>();
         auto storage = output->Buffer();
-        if (storage->WasDetached() || storage->IsResizableByUserJavaScript() ||
-            storage->GetBackingStore()->IsShared() ||
+        if (storage->WasDetached() ||
+            !IsFixedUnsharedBuffer(storage->GetBackingStore()) ||
             output->Length() != count) {
           Nan::ThrowTypeError("Bulk font widths require attached fixed storage "
                               "of exact length");
@@ -605,8 +606,8 @@ class HostFonts final : public CustomFontEngine {
       }
       const auto advances = info[2].As<v8::Int32Array>();
       const auto buffer = advances->Buffer();
-      if (buffer->WasDetached() || buffer->IsResizableByUserJavaScript() ||
-          buffer->GetBackingStore()->IsShared() ||
+      if (buffer->WasDetached() ||
+          !IsFixedUnsharedBuffer(buffer->GetBackingStore()) ||
           advances->Length() >
               0x110000 - Nan::To<uint32_t>(info[3]).FromJust()) {
         return Nan::ThrowTypeError(

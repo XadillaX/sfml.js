@@ -175,10 +175,18 @@
 +        if (isInterpretingEvents())
 +            return false;
          XIC replacement = nullptr;
-@@ -1843,8 +1843,27 @@
+@@ -1843,8 +1843,35 @@
 -bool WindowImplX11::processEvent(XEvent& windowEvent)
 +void WindowImplX11::deferEvent(XEvent windowEvent)
 +{
++    // setVisible waits for native visibility bookkeeping before public polling.
++    // These notifications do not deliver input or invoke the runtime client.
++    if (windowEvent.type == UnmapNotify || windowEvent.type == VisibilityNotify)
++    {
++        processEvent(windowEvent, false);
++        return;
++    }
++
 +    const auto delivery = sfmljs_backend::windowInputs().Delivery(m_window);
 +    WindowImpl::deferGuardedEvent([this, windowEvent, delivery]() mutable
 +    {

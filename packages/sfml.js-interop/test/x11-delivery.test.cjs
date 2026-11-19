@@ -115,6 +115,6 @@ test('actual X11 collection preserves deferred native order', async () => {
   });
   assert.equal(run.error, undefined);
   assert.equal(run.status, 0, run.stdout + run.stderr);
-  assert.equal(run.stdout.match(/^PASS /gm)?.length, 6);
+  assert.equal(run.stdout.match(/^PASS /gm)?.length, 7);
   process.stdout.write(run.stdout);
 });

@@ -14,6 +14,7 @@
 
 #include "native/io/rmlui-stream-callbacks.h"
 #include "native/runtime/rmlui-state.h"
+#include "native/values/rmlui-buffer.h"
 #include "third_party/rmlui/Source/Core/StreamFile.h"
 
 namespace sfmlrmlui {
@@ -83,7 +84,7 @@ bool ReadView(v8::Local<v8::Value> input, ByteView* result) {
     return false;
   }
   result->backing = buffer->GetBackingStore();
-  if (result->backing->IsShared() || buffer->IsResizableByUserJavaScript()) {
+  if (!IsFixedUnsharedBuffer(result->backing)) {
     Nan::ThrowTypeError("Stream buffer must be fixed and unshared");
     return false;
   }
