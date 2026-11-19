@@ -60,6 +60,8 @@ jobs:
         run: node common/scripts/install-run-rush.js install
       - name: Build workspace packages
         run: node common/scripts/install-run-rush.js build --verbose
+      - name: Prepare original IME sample fonts
+        run: npm --prefix packages/sfml.js-rmlui run download:ime-fonts
       - name: Verify RmlUi declarations, styles and source package
         run: |
           npm --prefix packages/sfml.js-rmlui run lint
