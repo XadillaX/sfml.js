@@ -99,7 +99,8 @@ async function verify(previous, damaged, expected) {
     /ENOENT/);
   console.log('PASS bitmap-font-patch-idempotence-and-missing-source');
 
-  const luaFiles = [ 'Source/Lua/Utilities.cpp',
+  const luaFiles = [ 'Include/RmlUi/Lua/Interpreter.h',
+    'Source/Lua/Utilities.cpp',
     'Include/RmlUi/Lua/LuaType.inl' ];
   const luaBefore = await Promise.all(luaFiles.map(file =>
     fs.readFile(path.join(root, file), 'utf8')));

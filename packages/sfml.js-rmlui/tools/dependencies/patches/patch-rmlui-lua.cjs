@@ -47,6 +47,13 @@ async function patchRmlUiLua(root) {
 
     sources.set(full, transform(source, file));
   };
+  await edit('Include/RmlUi/Lua/Interpreter.h', (source, file) =>
+    replaceExact(source, '#include <RmlUi/Core/Types.h>',
+      '#include <RmlUi/Core/Types.h>\n\n' +
+      '// Keep the Lua API name when windows.h defines LoadString.\n' +
+      '#ifdef LoadString\n' +
+      '\t#undef LoadString\n' +
+      '#endif', file));
   await edit('Source/Lua/LuaDataModel.cpp', (source, file) => {
     const replacement = [
       '#include "LuaDataModel.h"',
