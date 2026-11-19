@@ -19,7 +19,9 @@ function collectSamples() {
       for (const retained of [ false, true ]) {
         const mesh = new rmlui.Mesh(previousCount, previousCount * 3);
         const previous = retained ? mesh.vertices : null;
-        native.beginDataDiagnostics(true);
+        // Storage accounting is portable; process allocation tracking uses
+        // the macOS libmalloc hook and must remain disabled on other hosts.
+        native.beginDataDiagnostics(process.platform === 'darwin');
         let counts;
         try {
           mesh.resize(nextCount, nextCount * 3);
