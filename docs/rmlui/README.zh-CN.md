@@ -14,18 +14,54 @@
 
 [官方文档](https://mikke89.github.io/RmlUiDoc/) · [官方仓库](https://github.com/mikke89/RmlUi)
 
-## 学习路径
+## 文档目录
+
+### 入门与文档
 
 | 章节 | 内容 |
 | --- | --- |
 | [快速开始](getting-started.zh-CN.md) | 运行计数器，了解初始化、字体和帧顺序 |
 | [RML 与 RCSS 入门](rml-rcss.zh-CN.md) | 编写标签、选择器和布局，连接点击事件，查阅官方语法 |
 | [文档与事件](documents.zh-CN.md) | 加载 RML、修改元素、注册监听器与释放原生对象 |
-| [原生 Debugger](debugger.zh-CN.md) | 在独立宿主中检查元素、日志与数据模型反射 |
+| [字节流](streams.zh-CN.md) | 文件、内存与回调流的读取和生命周期 |
+| [字符串与资源 URL](strings.zh-CN.md) | 字符串处理、资源路径与 URL |
+
+### 元素、布局与控件
+
+| 章节 | 内容 |
+| --- | --- |
+| [元素类名、属性与焦点](element-state.zh-CN.md) | 修改元素状态，管理焦点与类名 |
+| [元素工具](element-utilities.zh-CN.md) | 定位、文本测量、投影边界与裁剪几何 |
+| [元素布局、滚动与投影](layout.zh-CN.md) | 布局尺寸、滚动位置与坐标投影 |
+| [盒值与渲染盒](boxes.zh-CN.md) | 盒模型数据和渲染盒 |
+| [表单控件](controls.zh-CN.md) | 输入框、选择控件与表单操作 |
+| [文本、进度条与标签页](text-panels.zh-CN.md) | 文本元素、进度显示与标签页 |
 | [SVG 与 Lottie](vector-elements.zh-CN.md) | 原生矢量元素、装饰器、动画帧和源文件 |
+| [原生类型与默认动作](rtti-default-actions.zh-CN.md) | 元素类型识别和默认事件动作 |
+
+### 样式、动画与渲染
+
+| 章节 | 内容 |
+| --- | --- |
+| [数值与单位](numeric-values.zh-CN.md) | 类型化数值、单位与转换 |
+| [类型化属性](properties.zh-CN.md) | 属性定义、解析与类型化值 |
+| [动画与缓动](animation.zh-CN.md) | 元素动画、关键帧与缓动 |
 | [原生几何与卷积](geometry-utilities.zh-CN.md) | 批量生成网格，在共享 alpha 缓冲区上运行滤镜 |
+| [渲染资源](resources.zh-CN.md) | 纹理、着色器、滤镜与工厂资源 |
+| [渲染状态](render-state.zh-CN.md) | 裁剪、图层、回调纹理与状态恢复 |
 | [渲染与 Retina](rendering.zh-CN.md) | 组合 SFML 与 RmlUi、适配高密度显示及了解效果支持 |
+
+### 运行时与扩展
+
+| 章节 | 内容 |
+| --- | --- |
+| [插件](plugins.zh-CN.md) | 插件注册和运行时回调 |
+| [文档脚本](scripts.zh-CN.md) | Node.js 与 Lua 文档脚本 |
+| [原生数据模型](data-models.zh-CN.md) | 绑定、表达式、共享数组与稀疏更新 |
+| [字体](fonts.zh-CN.md) | 字体引擎、整形与字形图集 |
+| [原生 Debugger](debugger.zh-CN.md) | 在独立宿主中检查元素、日志与数据模型反射 |
 | [共享存储与批处理](performance.zh-CN.md) | 提交数值命令、批量自定义计算及预加载资源 |
+| [源码目录](source-layout.zh-CN.md) | Native 绑定、TypeScript 接口与工具的归属 |
 | [API 指南](api.zh-CN.md) | 查找类型、默认值、返回值和生命周期契约 |
 
 指南和从源码生成的 API 参考均维护英文、简体中文、日文、韩文版本。

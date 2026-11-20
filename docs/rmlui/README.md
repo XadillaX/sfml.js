@@ -14,18 +14,54 @@ It suits game menus, HUDs, inventory windows and interfaces whose layout and vis
 
 [Official documentation](https://mikke89.github.io/RmlUiDoc/) · [Official repository](https://github.com/mikke89/RmlUi)
 
-## Learning path
+## Guide directory
+
+### Getting started and documents
 
 | Chapter | What it covers |
 | --- | --- |
 | [Quick start](getting-started.md) | Run the counter and understand initialization, fonts and frame order |
 | [RML and RCSS basics](rml-rcss.md) | Write markup, selectors and layout, connect clicks, and find official syntax references |
 | [Documents and events](documents.md) | Load RML, edit elements, register listeners and release native objects |
-| [Native Debugger](debugger.md) | Inspect elements, logs and reflected data models in a separate host |
+| [Byte streams](streams.md) | Read file, memory and callback streams and manage their lifetimes |
+| [Strings and resource URLs](strings.md) | Work with strings, resource paths and URLs |
+
+### Elements, layout and controls
+
+| Chapter | What it covers |
+| --- | --- |
+| [Element classes, attributes and focus](element-state.md) | Change element state, classes and focus |
+| [Element utilities](element-utilities.md) | Position elements, measure text, inspect projected bounds and clipping geometry |
+| [Layout, scrolling and projection](layout.md) | Inspect layout dimensions, scroll positions and coordinate projections |
+| [Boxes and render boxes](boxes.md) | Work with box-model data and render boxes |
+| [Form controls](controls.md) | Use inputs, selectors and form operations |
+| [Text, progress bars and tabs](text-panels.md) | Work with text elements, progress displays and tabs |
 | [SVG and Lottie](vector-elements.md) | Native vector elements, decorators, animation frames and sources |
+| [Native types and default actions](rtti-default-actions.md) | Identify element types and invoke default event actions |
+
+### Styles, animation and rendering
+
+| Chapter | What it covers |
+| --- | --- |
+| [Numeric values and units](numeric-values.md) | Work with typed numbers, units and conversions |
+| [Typed properties](properties.md) | Define and parse properties and typed values |
+| [Animation and easing](animation.md) | Animate elements with keyframes and easing |
 | [Native geometry and convolution](geometry-utilities.md) | Generate meshes in Native batches and filter shared alpha buffers |
+| [Rendering resources](resources.md) | Manage textures, shaders, filters and factory resources |
+| [Render state](render-state.md) | Manage clipping, layers, callback textures and state restoration |
 | [Rendering and Retina](rendering.md) | Compose SFML and RmlUi, size high-density interfaces and assess effects |
+
+### Runtime and extensions
+
+| Chapter | What it covers |
+| --- | --- |
+| [Plugins](plugins.md) | Register plugins and runtime callbacks |
+| [Document scripts](scripts.md) | Run Node.js and Lua document scripts |
+| [Native data models](data-models.md) | Use bindings, expressions, shared arrays and sparse updates |
+| [Fonts](fonts.md) | Choose font engines, shape text and manage glyph atlases |
+| [Native Debugger](debugger.md) | Inspect elements, logs and reflected data models in a separate host |
 | [Shared storage and batching](performance.md) | Submit numeric commands, batch custom calculations and preload resources |
+| [Source layout](source-layout.md) | Find Native bindings, TypeScript interfaces and tools |
 | [API guide](api.md) | Find types, defaults, return values and lifetime contracts |
 
 These guides and the source-generated API reference are maintained in English, Simplified Chinese, Japanese and Korean.
