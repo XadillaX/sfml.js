@@ -94,10 +94,30 @@ const cases = {
     assert.equal(rmlui.releaseTexture('?external-texture'), false);
   },
 
-  'scoped-release-and-source-snapshots': function({
+  'scoped-release-and-source-snapshots': async function({
     rmlui, sfml, window, context, file,
   }) {
-    window.setSize(new sfml.Vector2u(112, 72));
+    window.setSize(new sfml.Vector2u(180, 140));
+    let resized = false;
+    const resizeHandlers = {
+      Resized({ size }) {
+        resized = size.x === 180 && size.y === 140;
+      },
+    };
+    // X11 reports the native resize asynchronously through ConfigureNotify.
+    const deadline = performance.now() + 2000;
+    while (!resized && performance.now() < deadline) {
+      window.handleEvents(resizeHandlers);
+      if (!resized) {
+        await new Promise(resolve => setImmediate(resolve));
+      }
+    }
+    assert.equal(resized, true);
+    assert.equal(
+      sfml.equal(window.getSize(), new sfml.Vector2u(180, 140)), true);
+    // GLX refreshes the resized drawable on the first buffer swap.
+    window.display();
+
     const first = rmlui.getRenderInterface();
     assert.strictEqual(context.renderInterface, first);
     const second = rmlui.createRenderInterface(window);

@@ -48,12 +48,32 @@ const cases = {
       /valid/i);
   },
 
-  'distinct-system-and-render-windows': ({ rmlui, sfml, window }) => {
+  'distinct-system-and-render-windows': async ({ rmlui, sfml, window }) => {
     const target = new sfml.RenderWindow(
       new sfml.VideoMode(new sfml.Vector2u(80, 60)), 'Selected target');
     try {
       // Capture must use actual client dimensions, including host resizing.
-      target.setSize(new sfml.Vector2u(112, 72));
+      target.setSize(new sfml.Vector2u(180, 140));
+      let resized = false;
+      const resizeHandlers = {
+        Resized({ size }) {
+          resized = size.x === 180 && size.y === 140;
+        },
+      };
+      // X11 reports the native resize asynchronously through ConfigureNotify.
+      const deadline = performance.now() + 2000;
+      while (!resized && performance.now() < deadline) {
+        target.handleEvents(resizeHandlers);
+        if (!resized) {
+          await new Promise(resolve => setImmediate(resolve));
+        }
+      }
+      assert.equal(resized, true);
+      assert.equal(
+        sfml.equal(target.getSize(), new sfml.Vector2u(180, 140)), true);
+      // GLX refreshes the resized drawable on the first buffer swap.
+      target.display();
+
       const renderer = rmlui.createRenderInterface(target);
       rmlui.setRenderInterface(renderer);
       assert.ok(rmlui.initialise(window, { highDpi: false }));
