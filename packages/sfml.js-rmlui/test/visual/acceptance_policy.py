@@ -8,7 +8,7 @@ import traceback
 
 
 VISUAL = Path(__file__).resolve().parent
-POLICY = json.loads((VISUAL / "upstream-failures.json").read_text())
+POLICY = json.loads((VISUAL / "upstream-failures.json").read_text(encoding="utf-8"))
 
 
 def evaluate(callback, *arguments):

@@ -8,28 +8,34 @@ const path = require('node:path');
 
 const cases = {
   'nested-document-loads-from-original-menu-events': ({ rmlui, context }) => {
-    const file = '/tmp/rmlui-63-completion/lua-nested-document.rml';
-    fs.writeFileSync(file, '<rml><head><title>Nested</title></head>' +
-      '<body id="nested" onload="loads = (loads or 0) + 1"/></rml>');
-    const host = new rmlui.LuaScriptHost({ allowInline: true });
-    host.setGlobal('next_file', file);
-    context.setScriptHost(host);
-    const menu = context.loadDocumentFromMemory(
-      '<rml><head/><body id="menu" ' +
-      'onload="loaded = context:LoadDocument(next_file)">' +
-      '<button id="next" onclick="' +
-      'loaded = context:LoadDocument(next_file); loaded:Show(); ' +
-      'created = context:CreateDocument(); created.title = \'Created\'; ' +
-      'document:Close()"/></body></rml>');
-    assert.equal(host.getGlobal('loads'), 1n);
-    assert.equal(context.getNumDocuments(), 2);
-    menu.getElementById('next').click();
-    assert.equal(host.getGlobal('loads'), 2n);
-    context.update();
-    assert.equal(context.getNumDocuments(), 3);
-    host.execute('assert(loaded.title == "Nested"); ' +
-      'assert(created.title == "Created"); ' +
-      'assert(document == nil and event == nil)');
+    const directory = fs.mkdtempSync(
+      path.join(os.tmpdir(), 'rmlui-lua-nested-'));
+    try {
+      const file = path.join(directory, 'document.rml');
+      fs.writeFileSync(file, '<rml><head><title>Nested</title></head>' +
+        '<body id="nested" onload="loads = (loads or 0) + 1"/></rml>');
+      const host = new rmlui.LuaScriptHost({ allowInline: true });
+      host.setGlobal('next_file', file);
+      context.setScriptHost(host);
+      const menu = context.loadDocumentFromMemory(
+        '<rml><head/><body id="menu" ' +
+        'onload="loaded = context:LoadDocument(next_file)">' +
+        '<button id="next" onclick="' +
+        'loaded = context:LoadDocument(next_file); loaded:Show(); ' +
+        'created = context:CreateDocument(); created.title = \'Created\'; ' +
+        'document:Close()"/></body></rml>');
+      assert.equal(host.getGlobal('loads'), 1n);
+      assert.equal(context.getNumDocuments(), 2);
+      menu.getElementById('next').click();
+      assert.equal(host.getGlobal('loads'), 2n);
+      context.update();
+      assert.equal(context.getNumDocuments(), 3);
+      host.execute('assert(loaded.title == "Nested"); ' +
+        'assert(created.title == "Created"); ' +
+        'assert(document == nil and event == nil)');
+    } finally {
+      fs.rmSync(directory, { recursive: true, force: true });
+    }
   },
 
   'real-lua-state-and-typed-calls': ({ rmlui }) => {
