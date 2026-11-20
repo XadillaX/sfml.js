@@ -52,6 +52,8 @@ const cases = {
     const target = new sfml.RenderWindow(
       new sfml.VideoMode(new sfml.Vector2u(80, 60)), 'Selected target');
     try {
+      // Capture must use actual client dimensions, including host resizing.
+      target.setSize(new sfml.Vector2u(112, 72));
       const renderer = rmlui.createRenderInterface(target);
       rmlui.setRenderInterface(renderer);
       assert.ok(rmlui.initialise(window, { highDpi: false }));
@@ -67,7 +69,7 @@ const cases = {
       target.flush();
       context.render();
       const pixel = source => {
-        const texture = new sfml.Texture(new sfml.Vector2u(80, 60));
+        const texture = new sfml.Texture(source.getSize());
         texture.update(source);
         return texture.copyToImage().getPixel(new sfml.Vector2u(10, 10));
       };

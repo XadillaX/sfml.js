@@ -33,10 +33,12 @@ function capture(sfml, window, context) {
   window.clear(sfml.Color.Black);
   window.flush();
   context.render();
-  const texture = new sfml.Texture(new sfml.Vector2u(80, 60));
+  const size = window.getSize();
+  const texture = new sfml.Texture(size);
   texture.update(window);
   const pixels = texture.copyToImage().pixels;
-  return [ ...pixels.slice((10 * 80 + 10) * 4, (10 * 80 + 10) * 4 + 3) ];
+  const offset = (10 * size.x + 10) * 4;
+  return [ ...pixels.slice(offset, offset + 3) ];
 }
 
 const cases = {
@@ -95,6 +97,7 @@ const cases = {
   'scoped-release-and-source-snapshots': function({
     rmlui, sfml, window, context, file,
   }) {
+    window.setSize(new sfml.Vector2u(112, 72));
     const first = rmlui.getRenderInterface();
     assert.strictEqual(context.renderInterface, first);
     const second = rmlui.createRenderInterface(window);
