@@ -8,6 +8,8 @@
 #include <filesystem>
 #include <iostream>
 #include <map>
+#include <string>
+#include <utility>
 
 #include "native/rendering/render-interface-sfml.h"
 #include "test/native/rendering/css/effect-scenes.h"
@@ -29,6 +31,41 @@ bool Identical(const sf::Image& actual, const sf::Image& expected) {
   return std::equal(actual.getPixelsPtr(),
                     actual.getPixelsPtr() + size.x * size.y * 4,
                     expected.getPixelsPtr());
+}
+
+void ReportMismatch(const sf::Image& actual,
+                    const sf::Image& expected,
+                    const std::filesystem::path& output,
+                    const Rml::String& name) {
+  const auto size = actual.getSize();
+  unsigned changed = 0;
+  int maximum = 0;
+  for (unsigned y = 0; y < size.y; ++y) {
+    for (unsigned x = 0; x < size.x; ++x) {
+      const auto a = actual.getPixel({x, y});
+      const auto b = expected.getPixel({x, y});
+      if (a == b) {
+        continue;
+      }
+      if (changed++ == 0) {
+        std::cerr << "FAIL " << name << " first-pixel=" << x << "," << y
+                  << " actual=" << int(a.r) << "," << int(a.g) << ","
+                  << int(a.b) << "," << int(a.a) << " expected=" << int(b.r)
+                  << "," << int(b.g) << "," << int(b.b) << "," << int(b.a)
+                  << "\n";
+      }
+      for (const int difference : {std::abs(static_cast<int>(a.r) - b.r),
+                                   std::abs(static_cast<int>(a.g) - b.g),
+                                   std::abs(static_cast<int>(a.b) - b.b),
+                                   std::abs(static_cast<int>(a.a) - b.a)}) {
+        maximum = std::max(maximum, difference);
+      }
+    }
+  }
+  std::cerr << "FAIL " << name << " changed-pixels=" << changed
+            << " max=" << maximum << "\n";
+  assert(actual.saveToFile(output / (name + "-actual.png")));
+  assert(expected.saveToFile(output / (name + "-expected.png")));
 }
 
 bool Compare(const sf::Image& actual,
@@ -60,7 +97,8 @@ bool Compare(const sf::Image& actual,
 
 sf::Image Render(sf::RenderWindow* window,
                  sfmlrmlui::RenderInterfaceSFML* renderer,
-                 Rml::Context* context) {
+                 Rml::Context* context,
+                 sf::Image* ui_capture = nullptr) {
   window->clear(sf::Color::Black);
   auto& manager = context->GetRenderManager();
   const auto saved = manager.GetState();
@@ -75,6 +113,9 @@ sf::Image Render(sf::RenderWindow* window,
     assert(handle);
     const auto ui = reinterpret_cast<sf::Texture*>(handle)->copyToImage();
     renderer->ReleaseTexture(handle);
+    if (ui_capture) {
+      *ui_capture = ui;
+    }
     assert(ui.getPixel({0, 0}) == sf::Color::Transparent);
     assert(ui.getPixel({css_scenes::kWidth - 1, css_scenes::kHeight - 1}) ==
            sf::Color::Transparent);
@@ -119,12 +160,26 @@ int main(int argc, char** argv) {
   assert(context);
   int failures = 0;
   std::map<Rml::String, sf::Image> captures;
+  std::map<Rml::String, sf::Image> ui_captures;
   for (const auto& scene : css_scenes::kScenes) {
     auto* document = css_scenes::Load(context, scene);
     const auto post_draws = diagnostics.fullscreen_draws;
-    const auto image = Render(&window, &renderer, context);
+    sf::Image ui;
+    const auto image = Render(&window, &renderer, context, &ui);
     for (unsigned frame = 0; frame < 8; ++frame) {
-      assert(Identical(Render(&window, &renderer, context), image));
+      sf::Image repeated_ui;
+      const auto repeated = Render(&window, &renderer, context, &repeated_ui);
+      if (!Identical(repeated, image)) {
+        const auto name = Rml::String("css-") + scene.name + "-repeat-" +
+                          std::to_string(frame);
+        std::cerr << "FAIL " << name
+                  << " ui-identical=" << Identical(repeated_ui, ui) << "\n";
+        ReportMismatch(repeated, image, argv[2], name);
+        if (!Identical(repeated_ui, ui)) {
+          ReportMismatch(repeated_ui, ui, argv[2], name + "-ui");
+        }
+      }
+      assert(Identical(repeated, image));
     }
     assert(system.errors == 0);
     assert((!scene.foreground && !scene.backdrop && !scene.mask) ||
@@ -137,6 +192,7 @@ int main(int argc, char** argv) {
     }
     assert(image.saveToFile(std::filesystem::path(argv[2]) / name));
     captures.emplace(scene.name, image);
+    ui_captures.emplace(scene.name, std::move(ui));
     document->Close();
     assert(context->Update());
   }
@@ -159,8 +215,20 @@ int main(int argc, char** argv) {
   for (auto it = css_scenes::kScenes.rbegin(); it != css_scenes::kScenes.rend();
        ++it) {
     auto* document = css_scenes::Load(context, *it);
-    assert(
-        Identical(Render(&window, &renderer, context), captures.at(it->name)));
+    sf::Image ui;
+    const auto image = Render(&window, &renderer, context, &ui);
+    const auto& expected = captures.at(it->name);
+    if (!Identical(image, expected)) {
+      const auto name = Rml::String("css-") + it->name + "-reversed";
+      const auto& expected_ui = ui_captures.at(it->name);
+      std::cerr << "FAIL " << name
+                << " ui-identical=" << Identical(ui, expected_ui) << "\n";
+      ReportMismatch(image, expected, argv[2], name);
+      if (!Identical(ui, expected_ui)) {
+        ReportMismatch(ui, expected_ui, argv[2], name + "-ui");
+      }
+    }
+    assert(Identical(image, expected));
     document->Close();
     assert(context->Update());
   }

@@ -9,7 +9,8 @@ const path = require('node:path');
 if (process.platform !== 'darwin') {
   console.log('SKIP native SFML protocol probe: macOS object-link runner only');
 } else {
-  const output = path.join(os.tmpdir(), 'sfmljs-rmlui-renderer-contracts');
+  const output = path.join(process.env.RUNNER_TEMP ?? os.tmpdir(),
+    'sfmljs-rmlui-renderer-contracts');
   fs.mkdirSync(output, { recursive: true });
   const helper = path.resolve(__dirname,
     '../native/rendering/build-sfml-renderer-contracts.py');

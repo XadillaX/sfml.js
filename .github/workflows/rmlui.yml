@@ -77,6 +77,13 @@ jobs:
       - name: Run macOS and Windows RmlUi runtime suites
         if: runner.os != 'Linux'
         run: npm --prefix packages/sfml.js-rmlui run test:runtime
+      - name: Preserve failed native renderer captures
+        if: failure() && runner.os == 'macOS'
+        uses: actions/upload-artifact@v7
+        with:
+          name: rmlui-renderer-failure-${{ runner.os }}-${{ runner.arch }}
+          path: ${{ runner.temp }}/sfmljs-rmlui-renderer-contracts/**/*.png
+          if-no-files-found: ignore
       - name: Verify original macOS game references and lifecycles
         if: runner.os == 'macOS'
         run: npm --prefix packages/sfml.js-rmlui run test:official-native

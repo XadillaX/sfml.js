@@ -149,6 +149,10 @@ const cases = {
 
   'plugin-all-eleven-notifications-use-live-native-objects': ({ rmlui }) => {
     const calls = [];
+    const documentFile = path.join(__dirname,
+      '../../examples/streams/panel.rml');
+    // Rml::StreamFile replaces colons with pipes in its source URL.
+    const documentURL = documentFile.replace(/:/g, '|');
     let createdModel;
     let destroyedModel;
     let createdElement;
@@ -169,8 +173,7 @@ const cases = {
       },
       onDocumentOpen(context, documentPath) {
         assert.equal(context.name, 'all-notices');
-        assert.equal(documentPath,
-          path.join(__dirname, '../../examples/streams/panel.rml'));
+        assert.equal(documentPath, documentURL);
         calls.push('document-open');
       },
       onDocumentLoad(document) {
@@ -216,8 +219,7 @@ const cases = {
     assert.equal(context.removeDataModel('native-model'), true);
     assert.ok(destroyedModel);
     document.innerRML = '';
-    context.loadDocument(path.join(__dirname,
-      '../../examples/streams/panel.rml'));
+    context.loadDocument(documentFile);
     context.remove();
     assert.throws(() => destroyedContext.name, /valid/i);
     rmlui.unregisterPlugin(plugin);
