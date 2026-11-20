@@ -18,7 +18,11 @@ Native 绑定和 TypeScript 接口按职责组织；模块与工具归属见[源
 - 支持 macOS Retina 表面、物理像素输入和使用 `dp` 的密度无关布局。
 - API 文档提供英文、简体中文、日文和韩文。
 
-RmlUi 使用自己的标记和样式语言。本包提供[原生数据模型](../../docs/rmlui/data-models.zh-CN.md)、[Node／Lua 文档脚本](../../docs/rmlui/scripts.zh-CN.md)、原生 Debugger、[SVG／Lottie 元素](../../docs/rmlui/vector-elements.zh-CN.md)和原生 [FreeType、HarfBuzz、位图字体](../../docs/rmlui/fonts.zh-CN.md)；不提供浏览器 DOM API 或任意浏览器 CSS。渐变、图片遮罩、颜色／背景滤镜及 3D 变换已实现，并在 macOS 上与固定版本的 GL3 渲染器对照，详见[渲染器覆盖](../../docs/rmlui/rendering.zh-CN.md#renderer-coverage)。Linux／Windows 运行验证仍待完成。
+RmlUi 使用自己的标记和样式语言。本包提供[原生数据模型](../../docs/rmlui/data-models.zh-CN.md)、[Node／Lua 文档脚本](../../docs/rmlui/scripts.zh-CN.md)、原生 Debugger、[SVG／Lottie 元素](../../docs/rmlui/vector-elements.zh-CN.md)和原生 [FreeType、HarfBuzz、位图字体](../../docs/rmlui/fonts.zh-CN.md)；不提供浏览器 DOM API 或任意浏览器 CSS。渐变、图片遮罩、颜色／背景滤镜及 3D 变换已实现，详见[渲染器覆盖](../../docs/rmlui/rendering.zh-CN.md#renderer-coverage)。
+
+RmlUi 运行测试已在 macOS、Linux 和 Windows 通过。原生 SFML／GL3 像素对照
+套件在 macOS 执行；完整 VisualTests 和应用验收的覆盖范围另见
+[示例验证说明](examples/README.zh-CN.md#coverage-and-verification)。
 
 ## 构建与运行
 

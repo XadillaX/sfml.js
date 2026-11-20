@@ -381,7 +381,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>元の C++ ゲーム、メニュー、デコレーターとハイスコアモデルを実行します。</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs invaders</code></p>
       <p>左右キーで移動、Space で発射、Escape で一時停止メニュー、F8 で Debugger を切り替えます。元のメニューから再開や終了を選択します。</p>
-      <p>先にパッケージをビルドしてください。ゲームモジュールは同じビルドディレクトリで生成され、読み込み時にコンパイラーは不要です。macOS は検証済み、Linux と Windows の実行は未検証です。</p>
+      <p>先にパッケージをビルドしてください。ゲームモジュールは同じビルドディレクトリで生成され、コンパイラーなしの読み込みは macOS、Linux、Windows で検証済みです。元のネイティブゲームとの比較は macOS で実行し、Linux と Windows のゲーム比較は未検証です。</p>
       <p>スコアはアプリのデータ領域に保存します。<code>--scores-file /absolute/path/scores.txt</code> は既存の親ディレクトリーを指定します。<code>--frames 8 --exercise</code> でフレーム数を制限して開始します。</p>
       <p><a href="official/invaders/native/application.cc">ネイティブ登録</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/invaders">上流アプリ</a></p>
     </div>
@@ -396,7 +396,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>元の Lua 文書と Game テーブルで元のネイティブゲームを動かします。</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs lua-invaders</code></p>
       <p>左右キーで移動、Space で発射、Escape で一時停止メニュー、F8 で Debugger を切り替えます。設定はスコアファイルと同じ場所に保存します。</p>
-      <p>先にパッケージをビルドしてください。ゲームモジュールは同じビルドディレクトリで生成され、読み込み時にコンパイラーは不要です。macOS は検証済み、Linux と Windows の実行は未検証です。</p>
+      <p>先にパッケージをビルドしてください。ゲームモジュールは同じビルドディレクトリで生成され、コンパイラーなしの読み込みは macOS、Linux、Windows で検証済みです。元のネイティブゲームとの比較は macOS で実行し、Linux と Windows のゲーム比較は未検証です。</p>
       <p><code>--scores-file /absolute/path/scores.txt</code> は既存の親ディレクトリーを指定します。<code>--frames 8 --exercise</code> でフレーム数を制限して開始します。</p>
       <p><a href="official/lua_invaders/native/application.cc">ネイティブ登録</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/lua_invaders">上流アプリとスクリプト</a></p>
     </div>
@@ -424,6 +424,24 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
   </article>
 </div>
 
-113 ページの VisualTests アサーション、実際の IME 検証、ゲームの残りのプラットフォーム対応、プロジェクト全体の独立した受け入れ検証は未完了です。描画とモジュールの検証結果は各ガイドに記録されています。画像は実行中のネイティブアプリケーションです。
+## サンプルの範囲と検証 {#coverage-and-verification}
+
+全 20 個の公式アプリケーションとチュートリアル、8 個のバインディング例、
+上流 VisualTests 全 113 ページのブラウザーを掲載しています。各掲載項目には
+実行コマンド、ソースリンク、操作説明、ネイティブ実行画像があり、
+29 枚の画像をすべて提供しています。
+
+RmlUi の実行時テストは macOS、Linux、Windows で成功しています。ネイティブ
+SFML／GL3 の効果比較と元のゲームとの比較は macOS で実行します。VisualTests
+ランチャーはプレビューで、別の比較記録は静的 113 ページと対話的 25 ページを
+対象としています。内容チェック 4 件と操作チェック 2 件は固定版上流レンダラー
+でも失敗しています。記録上のバインディング回帰は 0 件ですが、VisualTests
+全体とプロジェクト全体の独立した受け入れ検証は未完了です。
+
+macOS システム IME の項目は既存の受け入れ判断により終了し、未確定文字列、
+確定、キャンセル、キャレット座標の観測結果を
+[デスクトップ記録](../../../docs/rmlui/audit/6.3/desktop-ime-acceptance.md)に保持しています。
+実機キーボード入力、新規プロセスでの安定した反復、候補ウィンドウの配置は
+未検証です。Linux と Windows のシステム IME も未検証です。
 
 [全サンプル](../../sfml.js/examples/README.ja.md) · [RmlUi クイックスタート](../../../docs/rmlui/getting-started.ja.md)

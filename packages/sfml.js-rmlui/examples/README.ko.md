@@ -381,7 +381,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>원본 C++ 게임, 메뉴, 데코레이터와 최고 점수 모델을 실행합니다.</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs invaders</code></p>
       <p>좌우 키로 이동, Space로 발사, Escape로 일시 정지 메뉴, F8로 Debugger를 전환합니다. 원본 메뉴에서 다시 시작하거나 종료합니다.</p>
-      <p>먼저 패키지를 빌드하세요. 게임 모듈은 같은 빌드 디렉터리에 생성되며 로드할 때 컴파일러가 필요하지 않습니다. macOS는 검증되었으며 Linux와 Windows의 실제 실행은 미검증입니다.</p>
+      <p>먼저 패키지를 빌드하세요. 게임 모듈은 같은 빌드 디렉터리에 생성되며 컴파일러 없는 로드는 macOS, Linux, Windows에서 검증되었습니다. 원본 네이티브 게임과의 비교는 macOS에서 실행하며 Linux와 Windows의 게임 비교는 미검증입니다.</p>
       <p>점수는 앱 데이터 폴더에 저장합니다. <code>--scores-file /absolute/path/scores.txt</code>는 기존 상위 폴더의 파일을 지정합니다. <code>--frames 8 --exercise</code>로 프레임 수를 제한하여 시작합니다.</p>
       <p><a href="official/invaders/native/application.cc">네이티브 등록</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/invaders">상위 프로젝트 앱</a></p>
     </div>
@@ -396,7 +396,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>원본 Lua 문서와 Game 테이블로 원본 네이티브 게임을 구동합니다.</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs lua-invaders</code></p>
       <p>좌우 키로 이동, Space로 발사, Escape로 일시 정지 메뉴, F8로 Debugger를 전환합니다. 설정은 점수 파일과 같은 폴더에 저장합니다.</p>
-      <p>먼저 패키지를 빌드하세요. 게임 모듈은 같은 빌드 디렉터리에 생성되며 로드할 때 컴파일러가 필요하지 않습니다. macOS는 검증되었으며 Linux와 Windows의 실제 실행은 미검증입니다.</p>
+      <p>먼저 패키지를 빌드하세요. 게임 모듈은 같은 빌드 디렉터리에 생성되며 컴파일러 없는 로드는 macOS, Linux, Windows에서 검증되었습니다. 원본 네이티브 게임과의 비교는 macOS에서 실행하며 Linux와 Windows의 게임 비교는 미검증입니다.</p>
       <p><code>--scores-file /absolute/path/scores.txt</code>는 기존 상위 폴더의 파일을 지정합니다. <code>--frames 8 --exercise</code>로 프레임 수를 제한하여 시작합니다.</p>
       <p><a href="official/lua_invaders/native/application.cc">네이티브 등록</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/lua_invaders">상위 프로젝트 앱 및 스크립트</a></p>
     </div>
@@ -424,6 +424,23 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
   </article>
 </div>
 
-VisualTests 113페이지 검증, 실제 IME 확인, 게임의 나머지 플랫폼 작업 및 전체 프로젝트 독립 검증은 아직 완료되지 않았습니다. 렌더러와 모듈 검증 근거는 각 가이드에 기록되어 있습니다. 스크린샷은 실행 중인 네이티브 애플리케이션입니다.
+## 예제 범위와 검증 {#coverage-and-verification}
+
+공식 앱과 튜토리얼 20개 전체, 바인딩 예제 8개, 상위 VisualTests 113페이지를
+탐색하는 브라우저를 제공합니다. 각 갤러리 항목에는 실행 명령, 소스 링크,
+조작 설명과 네이티브 실행 스크린샷이 있으며 스크린샷 29개가 모두 있습니다.
+
+RmlUi 런타임 테스트는 macOS, Linux, Windows에서 통과했습니다. 네이티브
+SFML／GL3 효과 비교와 원본 게임 비교는 macOS에서 실행합니다. VisualTests
+런처는 미리보기이며 별도 비교 기록은 정적 페이지 113개와 대화형 페이지
+25개를 대상으로 합니다. 내용 검사 4개와 상호작용 검사 2개는 고정 버전의
+상위 렌더러에서도 실패합니다. 기록상 바인딩 회귀는 0개지만 전체 VisualTests와
+프로젝트 전체의 독립 검증은 아직 완료되지 않았습니다.
+
+macOS 시스템 IME 항목은 기존 승인 결정에 따라 종료되었으며 조합 문자열,
+확정, 취소, 캐럿 좌표의 관찰 결과를
+[데스크톱 기록](../../../docs/rmlui/audit/6.3/desktop-ime-acceptance.md)에 보존했습니다.
+실물 키보드 입력, 새 프로세스의 안정적인 반복 및 후보 창 배치는 미검증입니다.
+Linux와 Windows 시스템 IME도 미검증입니다.
 
 [모든 예제](../../sfml.js/examples/README.ko.md) · [RmlUi 빠른 시작](../../../docs/rmlui/getting-started.ko.md)

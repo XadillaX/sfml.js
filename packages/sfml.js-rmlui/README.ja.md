@@ -19,7 +19,11 @@ Native バインディングと TypeScript インターフェイスは機能別�
 - macOS Retina サーフェス、物理ピクセル入力、`dp` による密度非依存レイアウト。
 - 英語、簡体字中国語、日本語、韓国語の API ドキュメント。
 
-RmlUi は独自のマークアップとスタイル言語を実装します。[ネイティブデータモデル](../../docs/rmlui/data-models.ja.md)、[Node／Lua 文書スクリプト](../../docs/rmlui/scripts.ja.md)、Debugger、[SVG／Lottie 要素](../../docs/rmlui/vector-elements.ja.md)、ネイティブ [FreeType／HarfBuzz／ビットマップフォント](../../docs/rmlui/fonts.ja.md)を提供します。ブラウザー DOM API や任意のブラウザー CSS は使えません。グラデーション、画像マスク、色／背景フィルター、3D 変換は実装済みで、macOS 上で固定版 GL3 レンダラーとの比較を行っています。[描画対応](../../docs/rmlui/rendering.ja.md#renderer-coverage)を参照してください。Linux／Windows の実行検証は未完了です。
+RmlUi は独自のマークアップとスタイル言語を実装します。[ネイティブデータモデル](../../docs/rmlui/data-models.ja.md)、[Node／Lua 文書スクリプト](../../docs/rmlui/scripts.ja.md)、Debugger、[SVG／Lottie 要素](../../docs/rmlui/vector-elements.ja.md)、ネイティブ [FreeType／HarfBuzz／ビットマップフォント](../../docs/rmlui/fonts.ja.md)を提供します。ブラウザー DOM API や任意のブラウザー CSS は使えません。グラデーション、画像マスク、色／背景フィルター、3D 変換は実装済みです。[描画対応](../../docs/rmlui/rendering.ja.md#renderer-coverage)を参照してください。
+
+RmlUi の実行時テストは macOS、Linux、Windows で成功しています。ネイティブ
+SFML／GL3 ピクセル比較テストは macOS で実行します。VisualTests 全体と
+アプリケーションの検証範囲は[サンプルの検証説明](examples/README.ja.md#coverage-and-verification)を参照してください。
 
 ## ビルドと実行
 

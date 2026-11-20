@@ -19,7 +19,11 @@ Native bindings and TypeScript interfaces are grouped by subsystem. See the
 - Use macOS Retina surfaces with physical-pixel input and density-independent `dp` layout.
 - Read API contracts in English, Simplified Chinese, Japanese and Korean.
 
-RmlUi implements its own markup and styling language. It provides [native data models](../../docs/rmlui/data-models.md), [Node/Lua document scripting](../../docs/rmlui/scripts.md), the native Debugger, [SVG/Lottie elements](../../docs/rmlui/vector-elements.md) and native [FreeType, HarfBuzz and bitmap fonts](../../docs/rmlui/fonts.md). Browser DOM APIs and arbitrary browser CSS are unavailable. Gradients, image masks, color/backdrop filters and 3D transforms are implemented and compared against the pinned GL3 renderer on macOS; see [renderer coverage](../../docs/rmlui/rendering.md#renderer-coverage). Linux/Windows runtime validation remains pending.
+RmlUi implements its own markup and styling language. It provides [native data models](../../docs/rmlui/data-models.md), [Node/Lua document scripting](../../docs/rmlui/scripts.md), the native Debugger, [SVG/Lottie elements](../../docs/rmlui/vector-elements.md) and native [FreeType, HarfBuzz and bitmap fonts](../../docs/rmlui/fonts.md). Browser DOM APIs and arbitrary browser CSS are unavailable. Gradients, image masks, color/backdrop filters and 3D transforms are implemented; see [renderer coverage](../../docs/rmlui/rendering.md#renderer-coverage).
+
+The RmlUi runtime suites pass on macOS, Linux and Windows. The native SFML/GL3
+pixel comparison suite runs on macOS; full VisualTests and application acceptance
+have separate coverage records in the [examples](examples/README.md#coverage-and-verification).
 
 ## Build and run
 

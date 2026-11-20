@@ -399,7 +399,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>Run the original C++ game, menus, decorators and high-score data model.</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs invaders</code></p>
       <p>Left/Right moves, Space fires, Escape opens the pause menu and F8 toggles Debugger. Use the original menus to restart or exit.</p>
-      <p>Build the package first; the game module is produced in the same build directory. Loading needs no compiler. macOS is verified; Linux and Windows execution remain unverified.</p>
+      <p>Build the package first; the game module is produced in the same build directory. Loading needs no compiler and is verified on macOS, Linux and Windows. Comparison with the original native game runs on macOS; Linux and Windows game comparisons remain unverified.</p>
       <p>Scores use application data storage. <code>--scores-file /absolute/path/scores.txt</code> selects an existing parent directory. <code>--frames 8 --exercise</code> starts a bounded game.</p>
       <p><a href="official/invaders/native/application.cc">Native registrations</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/invaders">Upstream application</a></p>
     </div>
@@ -414,7 +414,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>Run the original Lua documents and Game table with the original native game.</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs lua-invaders</code></p>
       <p>Left/Right moves, Space fires, Escape opens the pause menu and F8 toggles Debugger. Options persist beside the selected scores file.</p>
-      <p>Build the package first; the game module is produced in the same build directory. Loading needs no compiler. macOS is verified; Linux and Windows execution remain unverified.</p>
+      <p>Build the package first; the game module is produced in the same build directory. Loading needs no compiler and is verified on macOS, Linux and Windows. Comparison with the original native game runs on macOS; Linux and Windows game comparisons remain unverified.</p>
       <p><code>--scores-file /absolute/path/scores.txt</code> selects storage under an existing parent. <code>--frames 8 --exercise</code> starts a bounded game.</p>
       <p><a href="official/lua_invaders/native/application.cc">Native registrations</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/lua_invaders">Upstream application and scripts</a></p>
     </div>
@@ -445,6 +445,24 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
   </article>
 </div>
 
-The 113-page VisualTests assertions, physical IME checks, remaining game platform work and independent whole-project acceptance remain open. Renderer and module checks have separate evidence in their guides. Screenshots show the native applications running.
+## Coverage and verification {#coverage-and-verification}
+
+The gallery includes all 20 official applications and tutorials, eight binding
+examples and a browser for all 113 upstream VisualTests pages. Every gallery
+entry has a run command, source link, interaction notes and a native screenshot;
+all 29 screenshots are present.
+
+The RmlUi runtime suites pass on macOS, Linux and Windows. Native SFML/GL3 effect
+comparisons and original-game comparisons run on macOS. The VisualTests launcher
+is a preview; separate comparison records cover 113 pages and 25 interactive
+pages. Four content checks and two interaction checks also fail in the pinned
+upstream renderer. Those records report zero binding regressions, while full
+VisualTests and independent whole-project acceptance remain open.
+
+The macOS system IME item is closed under the existing acceptance decision, with
+observed preedit, commit, cancellation and caret coordinates retained in the
+[desktop record](../../../docs/rmlui/audit/6.3/desktop-ime-acceptance.md).
+Hardware keyboard input, reliable fresh-process repeats and candidate-panel
+placement were not verified. Linux and Windows system IME remain unverified.
 
 [All examples](../../sfml.js/examples/README.md) · [RmlUi quick start](../../../docs/rmlui/getting-started.md) · [Upstream samples](https://github.com/mikke89/RmlUi/tree/6.3/Samples)

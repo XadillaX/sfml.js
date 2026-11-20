@@ -399,7 +399,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>运行原始 C++ 游戏、菜单、装饰器和高分榜数据模型。</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs invaders</code></p>
       <p>左右键移动，空格开火，Escape 打开暂停菜单，F8 切换 Debugger。通过原始菜单重开或退出。</p>
-      <p>先构建包；游戏模块在同一个构建目录中生成，加载时无需编译器。macOS 已验证；Linux 和 Windows 实际执行仍待验证。</p>
+      <p>先构建包；游戏模块在同一个构建目录中生成，加载时无需编译器，已在 macOS、Linux 和 Windows 验证。原始原生游戏对照在 macOS 执行；Linux 和 Windows 的游戏对照仍未验证。</p>
       <p>高分保存到应用数据目录。<code>--scores-file /absolute/path/scores.txt</code> 指定已有父目录中的文件。<code>--frames 8 --exercise</code> 启动限帧游戏。</p>
       <p><a href="official/invaders/native/application.cc">原生注册</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/invaders">上游应用</a></p>
     </div>
@@ -414,7 +414,7 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
       <p>原始 Lua 文档和 Game 表驱动原始原生游戏。</p>
       <p><code>node packages/sfml.js-rmlui/examples/official.cjs lua-invaders</code></p>
       <p>左右键移动，空格开火，Escape 打开暂停菜单，F8 切换 Debugger。设置保存到所选高分文件的同目录。</p>
-      <p>先构建包；游戏模块在同一个构建目录中生成，加载时无需编译器。macOS 已验证；Linux 和 Windows 实际执行仍待验证。</p>
+      <p>先构建包；游戏模块在同一个构建目录中生成，加载时无需编译器，已在 macOS、Linux 和 Windows 验证。原始原生游戏对照在 macOS 执行；Linux 和 Windows 的游戏对照仍未验证。</p>
       <p><code>--scores-file /absolute/path/scores.txt</code> 指定已有父目录中的文件。<code>--frames 8 --exercise</code> 启动限帧游戏。</p>
       <p><a href="official/lua_invaders/native/application.cc">原生注册</a> · <a href="https://github.com/mikke89/RmlUi/tree/6.3/Samples/lua_invaders">上游应用和脚本</a></p>
     </div>
@@ -445,6 +445,21 @@ node packages/sfml.js-rmlui/examples/official.cjs --list
   </article>
 </div>
 
-113 页 VisualTests 断言、真实 IME 检查、游戏的剩余平台工作及全项目独立验收仍待完成。渲染器与模块检查分别保留在对应指南的证据中。截图均来自实际运行的原生应用。
+## 示例覆盖与验证 {#coverage-and-verification}
+
+上方列出全部 20 个官方应用与教程、8 个绑定功能示例，以及覆盖 113 页上游
+VisualTests 的浏览器。每个展示条目都有运行命令、源码链接、操作说明和原生
+运行截图；29 张截图均已提供。
+
+RmlUi 运行测试已在 macOS、Linux 和 Windows 通过。原生 SFML／GL3 效果对照
+和原始游戏对照在 macOS 执行。VisualTests 启动器提供预览，独立对照记录覆盖
+113 页静态场景和 25 页交互场景。其中 4 项内容检查和 2 项交互检查在固定版本
+上游渲染器中也失败；记录中的绑定回归为 0，完整 VisualTests 与全项目独立
+验收仍未完成。
+
+macOS 系统 IME 条目已按既有验收决定关闭，预编辑、提交、取消和光标坐标的实测
+保留在[桌面记录](../../../docs/rmlui/audit/6.3/desktop-ime-acceptance.md)中。
+实体键盘输入、可靠的新进程重复测试和候选窗位置未验证。Linux 和 Windows
+系统 IME 仍未验证。
 
 [全部示例](../../sfml.js/examples/README.zh-CN.md) · [RmlUi 快速开始](../../../docs/rmlui/getting-started.zh-CN.md) · [上游示例](https://github.com/mikke89/RmlUi/tree/6.3/Samples)

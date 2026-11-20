@@ -80,8 +80,9 @@ the pinned official GL3 backend and also checks transparency, source retention,
 fractional/negative offsets and scratch reuse.
 
 Ten real RML/CSS scenes cover foreground filters, backdrop filters, gradient
-masks, every combination and transformed rounded overflow. On macOS their
-GL3/SFML maximum RGB channel difference is 1; mean difference stays below 0.004.
+masks, every combination and transformed rounded overflow. The macOS GL3/SFML
+checks require a maximum RGB channel difference of at most 2 and a mean
+difference of at most 0.1.
 Repeated frames and reverse scene order preserve exact SFML pixels, including
 premultiplied alpha and transparent corners. Twelve native allocation groups
 cover base/layer/scratch/capture failures and retries. A failed mask-record

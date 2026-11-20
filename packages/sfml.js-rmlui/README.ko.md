@@ -19,7 +19,11 @@ Native 바인딩과 TypeScript 인터페이스는 기능별로 구성되어 있�
 - macOS Retina 표면, 물리 픽셀 입력, `dp` 기반 밀도 독립 레이아웃을 지원합니다.
 - 영어, 중국어 간체, 일본어, 한국어 API 문서를 제공합니다.
 
-RmlUi는 자체 마크업과 스타일 언어를 구현합니다. [네이티브 데이터 모델](../../docs/rmlui/data-models.ko.md), [Node／Lua 문서 스크립트](../../docs/rmlui/scripts.ko.md), Debugger, [SVG／Lottie 요소](../../docs/rmlui/vector-elements.ko.md)와 네이티브 [FreeType／HarfBuzz／비트맵 글꼴](../../docs/rmlui/fonts.ko.md)을 제공합니다. 브라우저 DOM API나 임의의 브라우저 CSS는 사용할 수 없습니다. 그라데이션, 이미지 마스크, 색상／배경 필터와 3D 변환은 구현되었고 macOS에서 고정 버전 GL3 렌더러와 비교했습니다. [렌더링 지원](../../docs/rmlui/rendering.ko.md#renderer-coverage)을 참고하세요. Linux／Windows 실행 검증은 아직 완료되지 않았습니다.
+RmlUi는 자체 마크업과 스타일 언어를 구현합니다. [네이티브 데이터 모델](../../docs/rmlui/data-models.ko.md), [Node／Lua 문서 스크립트](../../docs/rmlui/scripts.ko.md), Debugger, [SVG／Lottie 요소](../../docs/rmlui/vector-elements.ko.md)와 네이티브 [FreeType／HarfBuzz／비트맵 글꼴](../../docs/rmlui/fonts.ko.md)을 제공합니다. 브라우저 DOM API나 임의의 브라우저 CSS는 사용할 수 없습니다. 그라데이션, 이미지 마스크, 색상／배경 필터와 3D 변환은 구현되었습니다. [렌더링 지원](../../docs/rmlui/rendering.ko.md#renderer-coverage)을 참고하세요.
+
+RmlUi 런타임 테스트는 macOS, Linux, Windows에서 통과했습니다. 네이티브
+SFML／GL3 픽셀 비교 테스트는 macOS에서 실행합니다. 전체 VisualTests와 앱의
+검증 범위는 [예제 검증 설명](examples/README.ko.md#coverage-and-verification)을 참고하세요.
 
 ## 빌드와 실행
 
