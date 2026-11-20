@@ -26,13 +26,15 @@ const versions = {
 const urls = {
   rmlui: 'https://codeload.github.com/mikke89/RmlUi/zip/refs/tags/' +
     versions.rmlui,
-  freetype: 'https://download.savannah.gnu.org/releases/freetype/freetype-' +
-    `${versions.freetype}.tar.gz`,
+  freetype: 'https://download-mirror.savannah.gnu.org/releases/freetype/' +
+    `freetype-${versions.freetype}.tar.gz`,
   lua: `https://www.lua.org/ftp/lua-${versions.lua}.tar.gz`,
 };
 
 const luaArchiveDigest =
   '4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae';
+const freetypeArchiveDigest =
+  '5c3a8e78f7b24c20b25b54ee575d6daa40007a5f4eea2845861c3409b3021747';
 const identity = Object.values(versions).join('-');
 
 const packageRoot = path.join(__dirname, '../..');
@@ -343,7 +345,8 @@ async function main() {
       validate: () => fs.access(
         path.join(thirdParty, 'freetype/include/ft2build.h')),
       install: () => extractTarGz(
-        urls.freetype, path.join(thirdParty, 'freetype')),
+        urls.freetype, path.join(thirdParty, 'freetype'),
+        freetypeArchiveDigest),
     },
     lua: {
       validate: async () => {
