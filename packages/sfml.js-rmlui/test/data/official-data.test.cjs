@@ -156,8 +156,17 @@ const cases = {
         assert.equal(files.child(0).child('name').get(), 'parent');
         assert.equal(files.child(0).child('visible').get(), true);
         assert.equal(files.child(1).child('visible').get(), false);
-        assert.equal(files.child(4).child('name').get(), 'B-root.txt');
-        assert.equal(files.child(5).child('name').get(), 'a-root.txt');
+        // Upstream uses native enumeration on Windows and C-locale alphasort
+        // on POSIX. Verify the full order against that platform's contract.
+        const rootFiles = process.platform === 'win32'
+          ? fs.readdirSync(directory, { withFileTypes: true })
+            .filter(entry => entry.isFile())
+            .map(entry => entry.name)
+          : [ 'B-root.txt', 'a-root.txt' ];
+        assert.deepEqual([
+          files.child(4).child('name').get(),
+          files.child(5).child('name').get(),
+        ], rootFiles);
         context.update();
         let expanders = app.document.querySelectorAll('expand');
         expanders[0].click();
