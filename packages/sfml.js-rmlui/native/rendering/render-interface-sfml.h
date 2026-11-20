@@ -261,8 +261,7 @@ class RenderInterfaceSFML final : public Rml::RenderInterface {
   std::unique_ptr<sf::RenderTexture> post_targets_[3];
   int post_current_{0};
 
-  // Keep fullscreen vertices in GPU storage across blur passes. Apple's
-  // software renderer can lose draws backed by transient client arrays.
+  // Reuse the pinned fullscreen triangle endpoints across blur passes.
   sf::VertexBuffer blur_geometry_{sf::PrimitiveType::Triangles,
                                   sf::VertexBuffer::Usage::Static};
   bool blur_geometry_ready_{false};

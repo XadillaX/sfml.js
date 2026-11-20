@@ -29,7 +29,9 @@ sf::RenderTexture* RenderInterfaceSFML::PostTarget(int index) {
 void RenderInterfaceSFML::EnsurePostTargets(sf::Vector2u size) {
   for (auto& target : post_targets_) {
     if (!target || target->getSize() != size) {
-      target = std::make_unique<sf::RenderTexture>(size);
+      sf::ContextSettings settings;
+      settings.stencilBits = 8;
+      target = std::make_unique<sf::RenderTexture>(size, settings);
       target->setSmooth(true);
       Diagnostics().Record(&DataDiagnostics::post_target_allocations);
     }

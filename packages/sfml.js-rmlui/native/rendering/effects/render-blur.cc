@@ -29,12 +29,26 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
   const auto size = destination->getSize();
   sf::View view(sf::FloatRect(
       {}, {static_cast<float>(size.x), static_cast<float>(size.y)}));
+  const auto full_view = view;
+  const bool clipped = write_bounds != Rml::Rectanglei::FromPositionSize(
+      {}, {static_cast<int>(size.x), static_cast<int>(size.y)});
+  if (clipped) {
+    destination->setView(full_view);
+    destination->clearStencil(sf::StencilValue(0));
+  }
   view.setScissor(
       sf::FloatRect({static_cast<float>(write_bounds.p0.x) / size.x,
                      static_cast<float>(write_bounds.p0.y) / size.y},
                     {static_cast<float>(write_bounds.Size().x) / size.x,
                      static_cast<float>(write_bounds.Size().y) / size.y}));
   destination->setView(view);
+  if (clipped) {
+    // Apple's software polygon clipper can round an intersection beyond the
+    // scissor edge and then reject the entire triangle. Stencil clears retain
+    // the exact integer write window without clipping interpolated geometry.
+    destination->clearStencil(sf::StencilValue(1));
+    destination->setView(full_view);
+  }
   sf::Sprite sprite(source);
   sprite.setTextureRect(sf::IntRect({source_bounds.p0.x, source_bounds.p0.y},
                                     {dimensions.x, dimensions.y}));
@@ -44,6 +58,15 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
                    static_cast<float>(output_size.y) / dimensions.y});
   sf::RenderStates states(blend);
   states.shader = shader;
+  if (clipped) {
+    states.stencilMode = sf::StencilMode{
+        sf::StencilComparison::Equal,
+        sf::StencilUpdateOperation::Keep,
+        sf::StencilValue(1),
+        sf::StencilValue(255),
+        false,
+    };
+  }
   if (shader == &blur_shader_) {
     // Preserve the pinned fullscreen triangle diagonal and winding. Their
     // interpolation determines the exact half-texel boundary comparisons.

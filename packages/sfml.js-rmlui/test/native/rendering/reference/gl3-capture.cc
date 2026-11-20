@@ -12,7 +12,7 @@
 #include <iostream>
 #include <vector>
 
-#include "test/native/rendering/reference/software-geometry-completion.h"
+#include "test/native/rendering/reference/software-scissor-region.h"
 #include "third_party/rmlui/Backends/RmlUi_Include_GL3.h"
 #include "third_party/rmlui/Backends/RmlUi_Renderer_GL3.h"
 #include <SFML/Graphics/Image.hpp>
@@ -127,7 +127,7 @@ int main(int argc, char** argv) {
   assert(RmlGL3::Initialize(&message));
   std::cout << message << "\n";
   {
-    gl3_reference::SoftwareGeometryCompletion geometry_completion;
+    gl3_reference::SoftwareScissorRegion scissor_region;
     RenderInterface_GL3 renderer;
     assert(renderer);
     renderer.SetViewport(kWidth, kHeight);

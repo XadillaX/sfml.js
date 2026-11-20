@@ -13,7 +13,7 @@
 #include "test/native/visual/reference/actions.h"
 #include "test/native/visual/reference/environment.h"
 #include "test/native/visual/reference/metadata.h"
-#include "test/native/rendering/reference/software-geometry-completion.h"
+#include "test/native/rendering/reference/software-scissor-region.h"
 #include "third_party/rmlui/Backends/RmlUi_Include_GL3.h"
 #include "third_party/rmlui/Backends/RmlUi_Renderer_GL3.h"
 #include "third_party/rmlui/Tests/Source/VisualTests/XmlNodeHandlers.h"
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
   Rml::String message;
   assert(RmlGL3::Initialize(&message));
   {
-    gl3_reference::SoftwareGeometryCompletion geometry_completion;
+    gl3_reference::SoftwareScissorRegion scissor_region;
     RenderInterface_GL3 renderer;
     assert(renderer);
     renderer.SetViewport(kWidth, kHeight);

@@ -132,11 +132,11 @@ const cases = {
   'memory-and-file-streams-load-documents-and-styles': options => {
     const { rmlui, context } = options;
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'rmlui-streams-'));
+    const file = new rmlui.StreamFile();
     try {
       const source = path.join(root, 'panel.rml');
       fs.writeFileSync(source,
         '<rml><head><title>Stream</title></head><body id="loaded"/></rml>');
-      const file = new rmlui.StreamFile();
       assert.equal(file.open(source), true);
       assert.equal(file.open(source), true);
       assert.equal(file.getStreamMode(), rmlui.StreamMode.Read);
@@ -162,6 +162,7 @@ const cases = {
       doc.updateDocument();
       assert.equal(doc.getComputedValues().width.value, 73);
     } finally {
+      file.close();
       fs.rmSync(root, { recursive: true, force: true });
     }
   },
