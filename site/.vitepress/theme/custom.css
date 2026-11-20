@@ -57,7 +57,12 @@
 .VPNavBarTitle .logo { width: 40px; height: 40px; object-fit: contain; margin-right: 0; }
 .VPNavBarTitle .sf-wordmark { display: block; width: auto; height: 28px; object-fit: contain; }
 .VPNavBar .divider { display: none; }
-.VPNavBarMenuLink { font-size: 15px !important; font-weight: 650 !important; padding: 0 16px !important; }
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup > .button > .text {
+  font-size: .9375rem !important;
+  font-weight: 650 !important;
+}
+.VPNavBarMenuLink { padding: 0 16px !important; }
 .VPNavBarMenuLink:hover { color: var(--sf-lime); }
 .VPNavBarSearch { flex-grow: 0 !important; padding: 0 24px !important; }
 .VPNavBarSearch .DocSearch-Button {
