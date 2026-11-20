@@ -6,7 +6,9 @@ const {
 } = require('../../tools/testing/verify-publication.cjs');
 
 const actual = readEvidence();
-const actualFailures = publicationFailures(actual);
+const unapproved = structuredClone(actual);
+delete unapproved.releaseDecision;
+const actualFailures = publicationFailures(unapproved);
 for (const name of [
   'Core scope and independent review',
   'Physical and cross-platform IME',
@@ -20,9 +22,69 @@ for (const name of [
 ]) {
   assert.ok(!actualFailures.includes(name), name);
 }
-console.log('PASS publication-current-unaccepted-evidence-is-rejected');
+console.log('PASS publication-unapproved-incomplete-evidence-is-rejected');
 
-const accepted = structuredClone(actual);
+const candidate = { version: '1.3.0', sourceFingerprint: 'a'.repeat(64) };
+const approved = structuredClone(actual);
+approved.releaseDecision = {
+  accepted_by_user: true,
+  version: candidate.version,
+  source_fingerprint: candidate.sourceFingerprint,
+  deferred_gates: [
+    'Core scope and independent review',
+    'Physical and cross-platform IME',
+    'Whole delivery acceptance',
+  ],
+};
+assert.deepEqual(publicationFailures(approved, candidate), []);
+console.log('PASS publication-current-release-user-decision-is-honored');
+
+for (const mutate of [
+  evidence => {
+    delete evidence.releaseDecision;
+  },
+  evidence => {
+    evidence.releaseDecision.accepted_by_user = false;
+  },
+  evidence => {
+    evidence.releaseDecision.version = '1.4.0';
+  },
+  evidence => {
+    evidence.releaseDecision.source_fingerprint = 'b'.repeat(64);
+  },
+  evidence => {
+    evidence.releaseDecision.deferred_gates.pop();
+  },
+  evidence => {
+    evidence.desktop.accepted_by_user = false;
+  },
+  evidence => {
+    evidence.desktop.actual_engine_chinese_commit_observed = false;
+  },
+  evidence => {
+    evidence.core.criteria_reviewed = 0;
+  },
+  evidence => {
+    evidence.delivery.editor.host_contracts = 0;
+  },
+  evidence => {
+    evidence.delivery.documentation.rmlui_browser.passed = false;
+  },
+  evidence => {
+    evidence.visual.pages[0].referenceFrames[0]
+      .pixelComparison.maxChannelDifference = 2;
+  },
+  evidence => {
+    evidence.interactions.pages[0].frames[0].pixels.differentPixels = 1;
+  },
+]) {
+  const evidence = structuredClone(approved);
+  mutate(evidence);
+  assert.ok(publicationFailures(evidence, candidate).length > 0);
+}
+console.log('PASS publication-approval-keeps-release-and-measurement-gates');
+
+const accepted = structuredClone(unapproved);
 Object.assign(accepted.core, {
   scope_complete: true, independent_review_completed: true,
 });

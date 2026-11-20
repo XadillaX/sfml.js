@@ -2,8 +2,14 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { createHash } = require('node:crypto');
+const { execFileSync } = require('node:child_process');
 
 const audit = path.resolve(__dirname, '../../../../docs/rmlui/audit/6.3');
+const root = path.resolve(__dirname, '../../../..');
+const releaseChange = path.join(
+  root, 'common/changes/sfml.js-rmlui/release-1.3.0.json'
+);
 const parityPolicy = require('../../test/visual/upstream-failures.json');
 const { catalog } = require('../../test/visual/catalog.cjs');
 const { required } = require('../../test/visual/interactions/coverage.cjs');
@@ -148,26 +154,123 @@ function readEvidence() {
     interactions: 'visual-interaction-evidence.json',
     ime: 'native-ime-checkpoint.json',
     delivery: 'source-package-editor-evidence.json',
+    desktop: 'desktop-ime-attempt.json',
   };
-  return Object.fromEntries(Object.entries(files).map(([ name, filename ]) => [
-    name, JSON.parse(fs.readFileSync(path.join(audit, filename), 'utf8')),
+  const evidence = Object.fromEntries(
+    Object.entries(files).map(([ name, filename ]) => [
+      name, JSON.parse(fs.readFileSync(path.join(audit, filename), 'utf8')),
+    ])
+  );
+  const decision = path.join(audit, 'release-1.3.0-decision.json');
+  if (fs.existsSync(decision)) {
+    evidence.releaseDecision = JSON.parse(fs.readFileSync(decision, 'utf8'));
+  }
+  return evidence;
+}
+
+/**
+ * Identify tracked package sources, normalizing only lockstep version metadata.
+ * The gate and its tests do not change the code being approved for release.
+ * @return {string} SHA-256 of the four package source inventories.
+ */
+function sourceFingerprint() {
+  const names = [
+    'sfml.js', 'sfml.js-imgui', 'sfml.js-interop', 'sfml.js-rmlui',
+  ];
+  const directories = names.map(name => `packages/${name}`);
+  const metadata = new Set(directories.flatMap(directory => [
+    `${directory}/package.json`,
+    `${directory}/CHANGELOG.md`,
+    `${directory}/CHANGELOG.json`,
   ]));
+  metadata.add('packages/sfml.js-rmlui/tools/testing/verify-publication.cjs');
+  metadata.add('packages/sfml.js-rmlui/test/tooling/publication.test.cjs');
+  const inventory = execFileSync('git', [
+    'ls-tree', '-r', 'HEAD', '--', ...directories,
+  ], { cwd: root, encoding: 'utf8' });
+  const hash = createHash('sha256');
+  hash.update(inventory.split('\n').filter(row =>
+    row && !metadata.has(row.split('\t')[1])).join('\n'));
+  for (const directory of directories) {
+    const manifest = JSON.parse(execFileSync('git', [
+      'show', `HEAD:${directory}/package.json`,
+    ], { cwd: root, encoding: 'utf8' }));
+    delete manifest.version;
+    const fields = [ 'dependencies', 'devDependencies', 'peerDependencies' ];
+    for (const field of fields) {
+      for (const name of names) {
+        const range = manifest[field]?.[name];
+        if (range) {
+          manifest[field][name] = range.replace(
+            /^[~^]?\d+\.\d+\.\d+$/, '<lockstep>'
+          );
+        }
+      }
+    }
+    hash.update(`\n${directory}\n${JSON.stringify(manifest)}`);
+  }
+  return hash.digest('hex');
+}
+
+/**
+ * Resolve the pending minor release before Rush applies lockstep versions.
+ * @return {object} Candidate version and tracked source fingerprint.
+ */
+function readCandidate() {
+  let { version } = require('../../package.json');
+  if (version === '1.2.1' && fs.existsSync(releaseChange)) {
+    const { changes } = JSON.parse(fs.readFileSync(releaseChange, 'utf8'));
+    if (changes.some(change =>
+      change.packageName === 'sfml.js-rmlui' && change.type === 'minor')) {
+      version = '1.3.0';
+    }
+  }
+  return { version, sourceFingerprint: sourceFingerprint() };
+}
+
+/**
+ * Recognize release approval while retaining unfinished test records.
+ * @param {object} evidence Recorded measurements and release decision.
+ * @param {object} candidate Version and sources actually being published.
+ * @return {boolean} Whether this specific release has user approval.
+ */
+function releaseApproved(evidence, candidate) {
+  const decision = evidence.releaseDecision;
+  return decision?.accepted_by_user === true &&
+    decision.version === candidate.version &&
+    /^[a-f0-9]{64}$/.test(decision.source_fingerprint) &&
+    decision.source_fingerprint === candidate.sourceFingerprint &&
+    Array.isArray(decision.deferred_gates);
 }
 
 /**
  * Reject incomplete acceptance even when builds and runtime suites pass.
  * Positive counts prevent a manually changed pass flag accepting blank output.
  * @param {object} evidence Acceptance records for the candidate revision.
+ * @param {object} candidate Version and tracked sources for release approval.
  * @return {string[]} Required gates which have not passed.
  */
-function publicationFailures(evidence) {
-  const { core, visual, interactions, ime, delivery } = evidence;
+function publicationFailures(evidence, candidate = readCandidate()) {
+  const { core, visual, interactions, ime, delivery, desktop } = evidence;
   const browser = delivery.documentation.rmlui_browser;
+  const approved = releaseApproved(evidence, candidate);
+  const deferred = name =>
+    approved && evidence.releaseDecision.deferred_gates.includes(name);
+  const desktopAccepted = desktop?.accepted === true &&
+    desktop.accepted_by_user === true &&
+    desktop.actual_engine_preedit_observed === true &&
+    desktop.actual_engine_chinese_commit_observed === true &&
+    desktop.actual_engine_cancel_observed === true &&
+    desktop.actual_window_focus_rollback_observed === true &&
+    desktop.scrolled_caret_coordinates_observed === true &&
+    desktop.transformed_caret_coordinates_observed === true;
   const gates = [
     [
       'Core scope and independent review',
-      core.scope_complete === true && core.criteria_reviewed === 19 &&
-        core.independent_review_completed === true,
+      core.criteria_reviewed === 19 &&
+        ((core.scope_complete === true &&
+          core.independent_review_completed === true) ||
+          deferred('Core scope and independent review')),
     ],
     [
       '113 VisualTests positive content',
@@ -179,13 +282,15 @@ function publicationFailures(evidence) {
     ],
     [
       'Physical and cross-platform IME',
-      ime.full_acceptance === true && ime.independent_acceptance === true &&
+      (ime.full_acceptance === true && ime.independent_acceptance === true &&
         ime.physical_input_method_acceptance === true &&
-        ime.other_platform_native_ime_acceptance === true,
+        ime.other_platform_native_ime_acceptance === true) ||
+        (desktopAccepted && deferred('Physical and cross-platform IME')),
     ],
     [
       'Whole delivery acceptance',
-      delivery.whole_scope_acceptance === true &&
+      (delivery.whole_scope_acceptance === true ||
+        deferred('Whole delivery acceptance')) &&
         delivery.editor.host_contracts >= 5 && browser?.passed === true &&
         browser.page_count > 0 && browser.viewport_count >= 3,
     ],
@@ -201,8 +306,10 @@ if (require.main === module) {
   if (failures.length) {
     process.exitCode = 1;
   } else {
-    console.log('PASS complete RmlUi publication acceptance');
+    console.log('PASS RmlUi publication gates with recorded release decisions');
   }
 }
 
-module.exports = { readEvidence, publicationFailures };
+module.exports = {
+  readEvidence, readCandidate, sourceFingerprint, publicationFailures,
+};
