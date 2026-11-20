@@ -123,7 +123,9 @@ int main(int argc, char** argv) {
     auto* document = css_scenes::Load(context, scene);
     const auto post_draws = diagnostics.fullscreen_draws;
     const auto image = Render(&window, &renderer, context);
-    assert(Identical(Render(&window, &renderer, context), image));
+    for (unsigned frame = 0; frame < 8; ++frame) {
+      assert(Identical(Render(&window, &renderer, context), image));
+    }
     assert(system.errors == 0);
     assert((!scene.foreground && !scene.backdrop && !scene.mask) ||
            diagnostics.fullscreen_draws > post_draws);

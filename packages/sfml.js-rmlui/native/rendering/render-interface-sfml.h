@@ -272,6 +272,7 @@ class RenderInterfaceSFML final : public Rml::RenderInterface {
   sf::Shader drop_shadow_shader_;
   sf::Shader mask_shader_;
   sf::Shader color_filter_shader_;
+  sf::Shader post_copy_shader_;
   bool shaders_ready_{false};
 
   std::vector<std::unique_ptr<FilterRecord>> filters_;

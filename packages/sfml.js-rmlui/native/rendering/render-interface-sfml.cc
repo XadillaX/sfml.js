@@ -7,6 +7,7 @@
 
 #include <functional>
 #include <stdexcept>
+#include <string>
 
 #include "native/rendering/effects/postprocess-shaders.h"
 #include "native/rendering/shaders/geometry-program.h"
@@ -43,12 +44,16 @@ void RenderInterfaceSFML::SetWindow(sf::RenderWindow* window) {
       geometry_texture_shader_.loadFromMemory(kGeometryVertexShader,
                                               kGeometryTextureFragmentShader) &&
       blur_shader_.loadFromMemory(kBlurVertexShader, kBlurFragmentShader) &&
-      drop_shadow_shader_.loadFromMemory(kPostprocessVertexShader,
-                                         kDropShadowFragmentShader) &&
+      drop_shadow_shader_.loadFromMemory(
+          kPostprocessVertexShader,
+          std::string(kBilinearSampling) + kDropShadowFragmentShader) &&
       mask_shader_.loadFromMemory(kPostprocessVertexShader,
                                   kMaskFragmentShader) &&
       color_filter_shader_.loadFromMemory(kPostprocessVertexShader,
-                                          kColorFilterFragmentShader);
+                                          kColorFilterFragmentShader) &&
+      post_copy_shader_.loadFromMemory(
+          kPostprocessVertexShader,
+          std::string(kBilinearSampling) + kPostCopyFragmentShader);
   if (!shaders_ready_) {
     throw std::runtime_error("Failed to compile required RmlUi shaders");
   }

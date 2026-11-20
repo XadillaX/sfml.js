@@ -40,6 +40,58 @@ function capture(sfml, window, context) {
 }
 
 const cases = {
+  'backslash-release-invalidates-preloaded-textures': async function({
+    rmlui, sfml, window, context, file,
+  }) {
+    const renderer = rmlui.getRenderInterface();
+    await rmlui.preloadResources({ textures: [ 'texture.tga' ] });
+    scene(context);
+    assert.deepEqual(capture(sfml, window, context), [ 255, 0, 0 ]);
+
+    writeTexture(file, [ 0, 255, 0 ]);
+    assert.equal(rmlui.releaseTexture('assets\\..\\texture.tga', renderer),
+      true);
+    assert.deepEqual(capture(sfml, window, context), [ 0, 255, 0 ]);
+
+    await rmlui.preloadResources({ textures: [ 'texture.tga' ] });
+    writeTexture(file, [ 0, 0, 255 ]);
+    assert.equal(rmlui.releaseTexture('/texture.tga'), true);
+    assert.deepEqual(capture(sfml, window, context), [ 0, 0, 255 ]);
+  },
+
+  'release-preserves-custom-canonical-and-special-sources': function({
+    rmlui, sfml, window, file,
+  }) {
+    rmlui.shutdown();
+    const system = new rmlui.SystemInterface(window, {
+      joinPath(document, source) {
+        assert.ok(!source.startsWith('?'), 'special sources bypass JoinPath');
+        return `./${source}`;
+      },
+    });
+    rmlui.setSystemInterface(system);
+    assert.ok(rmlui.initialise(window, {
+      fileRoot: path.dirname(file), highDpi: false,
+    }));
+    const context = rmlui.createContext('custom-paths', 80, 60);
+    const document = context.loadDocumentFromMemory(
+      '<rml><body><img src="texture.tga" style="width:40px;height:40px"/>' +
+      '</body></rml>');
+    document.show();
+    context.update();
+    assert.deepEqual(capture(sfml, window, context), [ 255, 0, 0 ]);
+    assert.deepEqual(rmlui.getTextureSourceList(), [ './texture.tga' ]);
+
+    writeTexture(file, [ 0, 255, 0 ]);
+    assert.equal(rmlui.releaseTexture('./texture.tga'), true);
+    assert.deepEqual(capture(sfml, window, context), [ 0, 255, 0 ]);
+
+    writeTexture(file, [ 0, 0, 255 ]);
+    assert.equal(rmlui.releaseTexture('texture.tga'), true);
+    assert.deepEqual(capture(sfml, window, context), [ 0, 0, 255 ]);
+    assert.equal(rmlui.releaseTexture('?external-texture'), false);
+  },
+
   'scoped-release-and-source-snapshots': function({
     rmlui, sfml, window, context, file,
   }) {

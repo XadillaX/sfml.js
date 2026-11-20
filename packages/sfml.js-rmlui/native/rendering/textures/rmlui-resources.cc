@@ -177,10 +177,26 @@ NAN_METHOD(ReleaseTexture) {
   }
   Nan::Utf8String source(info[0]);
   const std::string path(*source, source.length());
+  Rml::String resolved = path;
+  const auto sources = Rml::GetTextureSourceList();
+  // Source-list entries already contain the host's canonical path. Do not
+  // join them twice, and preserve RenderManager's special '?' texture sources.
+  if (!path.empty() && path[0] != '?' &&
+      std::find(sources.begin(), sources.end(), path) == sources.end()) {
+    Rml::GetSystemInterface()->JoinPath(resolved, "", path);
+    if (!State().callback_exception.IsEmpty()) {
+      return;
+    }
+  }
   InvalidateResourcePreloads(
       static_cast<RenderInterfaceSFML*>(renderer), &path, false);
-  info.GetReturnValue().Set(
-      Rml::ReleaseTexture(Rml::String(*source, source.length()), renderer));
+  if (resolved != path) {
+    // Preparations retain the caller's source; loaded handles use JoinPath.
+    // Clear both keys so the next load cannot recover an invalidated preload.
+    InvalidateResourcePreloads(
+        static_cast<RenderInterfaceSFML*>(renderer), &resolved, false);
+  }
+  info.GetReturnValue().Set(Rml::ReleaseTexture(resolved, renderer));
 }
 
 NAN_METHOD(ReleaseCompiledGeometry) {

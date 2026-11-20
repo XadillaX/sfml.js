@@ -31,11 +31,14 @@ uniform mat4 colorMatrix;
 uniform float opacity;
 void main()
 {
-    vec4 sampled = texture2D(texture, gl_TexCoord[0].xy);
+    // Recover the stored bytes before arithmetic. Normalized software samples
+    // can differ by one ULP and otherwise move half-byte opacity across a tie.
+    vec4 sampled = floor(texture2D(texture, gl_TexCoord[0].xy) * 255.0 + 0.5);
     vec3 transformed = (colorMatrix * sampled).rgb;
     // Preserve GL3's matrix output. The RGBA8 attachment clamps channel range;
     // source alpha is not an additional upper bound on transformed RGB.
-    gl_FragColor = vec4(transformed, sampled.a) * opacity;
+    vec4 result = vec4(transformed, sampled.a) * opacity;
+    gl_FragColor = floor(result + 0.5) / 255.0;
 }
 )";
 

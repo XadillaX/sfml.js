@@ -32,7 +32,9 @@ void RenderInterfaceSFML::EnsurePostTargets(sf::Vector2u size) {
       sf::ContextSettings settings;
       settings.stencilBits = 8;
       target = std::make_unique<sf::RenderTexture>(size, settings);
-      target->setSmooth(true);
+      // Spatial copies interpolate stored bytes in GLSL. Only the pinned blur
+      // kernel temporarily enables linear sampling at its integer-pixel taps.
+      target->setSmooth(false);
       Diagnostics().Record(&DataDiagnostics::post_target_allocations);
     }
   }
@@ -120,6 +122,7 @@ void RenderInterfaceSFML::ApplyFilters(
         continue;
       }
       if (filter->kind == FilterRecord::Kind::kColor) {
+        // Color matrices read one stored texel per output pixel.
         color_filter_shader_.setUniform("texture", sf::Shader::CurrentTexture);
         color_filter_shader_.setUniform(
             "colorMatrix", sf::Glsl::Mat4(filter->color_filter.matrix.data()));

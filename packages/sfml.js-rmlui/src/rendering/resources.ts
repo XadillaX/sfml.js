@@ -168,10 +168,10 @@ export function releaseTextures(
  * @zh 使用 Rml::ReleaseTexture 释放指定源的纹理。
  * @ja Rml::ReleaseTexture で指定ソースのテクスチャを解放します。
  * @ko Rml::ReleaseTexture로 지정된 원본의 텍스처를 해제합니다.
- * @param source - Exact source URL from getTextureSourceList.
- * @zh source - getTextureSourceList 返回的精确源 URL。
- * @ja source - getTextureSourceList が返す正確なソース URL。
- * @ko source - getTextureSourceList가 반환하는 정확한 원본 URL입니다.
+ * @param source - Source-list URL or texture source without a document path.
+ * @zh source - 源列表中的 URL，或不依赖文档路径的纹理源。
+ * @ja source - ソース一覧の URL、または文書パスを必要としないテクスチャソース。
+ * @ko source - 소스 목록의 URL 또는 문서 경로가 필요 없는 텍스처 소스입니다.
  * @param renderInterface - Matching renderer; omitted/null means all.
  * @zh renderInterface - 匹配的渲染接口；省略或 null 表示全部。
  * @ja renderInterface - 対象の描画器。省略または null はすべて。
@@ -181,10 +181,15 @@ export function releaseTextures(
  * @ja 読み込み済みハンドルを解放した場合は true。存在しないか未読込なら false。
  * @ko 로드된 핸들을 해제하면 true이며 없거나 로드되지 않았으면 false입니다.
  * @remarks
- * Requires initialisation; calls during event callbacks are rejected.
- * @zh 需要先初始化，禁止在事件回调中调用。
- * @ja 初期化が必要で、イベントコールバック内は不可です。
- * @ko 초기화가 필요하며 이벤트 콜백 내 호출은 거부됩니다.
+ * Existing source-list URLs and special '?' sources are used verbatim.
+ * Other sources use the current SystemInterface.JoinPath with an empty
+ * document path. Requires initialisation; event callbacks are rejected.
+ * @zh 源列表中的 URL 和以 '?' 开头的特殊源保持原样。其他源通过当前
+ * SystemInterface.JoinPath 和空文档路径解析。需要先初始化，禁止在事件回调中调用。
+ * @ja ソース一覧の URL と '?' で始まる特殊ソースはそのまま使います。その他は現在の
+ * SystemInterface.JoinPath に空の文書パスを渡して解決します。初期化が必要で、イベント内は不可です。
+ * @ko 소스 목록의 URL과 '?'로 시작하는 특수 소스는 그대로 사용합니다. 나머지는 현재
+ * SystemInterface.JoinPath에 빈 문서 경로를 전달해 해석합니다. 초기화가 필요하며 이벤트 내 호출은 거부됩니다.
  */
 export function releaseTexture(
   source: string, renderInterface?: RenderInterface | null,

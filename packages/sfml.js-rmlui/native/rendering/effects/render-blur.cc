@@ -3,13 +3,14 @@
 
 #include <algorithm>
 #include <array>
+#include <optional>
 #include <stdexcept>
 
 #include "native/rendering/effects/blur-kernel.h"
 #include "native/rendering/effects/postprocess-bounds.h"
+#include "native/rendering/effects/texture-sampling.h"
 #include "native/rendering/render-interface-sfml.h"
 #include <SFML/Graphics/RenderStates.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 
 namespace sfmlrmlui {
 
@@ -27,6 +28,39 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
     return;
   }
   const auto size = destination->getSize();
+  std::optional<ScopedTextureSampling> sampling;
+  if (!shader) {
+    write_bounds = write_bounds.Intersect(destination_bounds);
+    const auto source_size = source.getSize();
+    post_copy_shader_.setUniform("texture", sf::Shader::CurrentTexture);
+    // Both render textures use bottom-left storage, while RmlUi rectangles
+    // use top-left coordinates. Keep the arithmetic order of the GL3 blit.
+    post_copy_shader_.setUniform(
+        "sourceOrigin",
+        sf::Vector2f{static_cast<float>(source_bounds.p0.x),
+                     static_cast<float>(source_size.y) - source_bounds.p1.y});
+    post_copy_shader_.setUniform(
+        "sourceSize",
+        sf::Vector2f{static_cast<float>(dimensions.x),
+                     static_cast<float>(dimensions.y)});
+    post_copy_shader_.setUniform(
+        "destinationOrigin",
+        sf::Vector2f{static_cast<float>(destination_bounds.p0.x),
+                     static_cast<float>(size.y) - destination_bounds.p1.y});
+    post_copy_shader_.setUniform(
+        "destinationSize",
+        sf::Vector2f{static_cast<float>(output_size.x),
+                     static_cast<float>(output_size.y)});
+    post_copy_shader_.setUniform("targetSize", sf::Vector2f(source_size));
+    shader = &post_copy_shader_;
+  } else if (shader == &blur_shader_) {
+    for (const auto& target : post_targets_) {
+      if (target && &target->getTexture() == &source) {
+        sampling.emplace(target.get(), true);
+        break;
+      }
+    }
+  }
   sf::View view(sf::FloatRect(
       {}, {static_cast<float>(size.x), static_cast<float>(size.y)}));
   const auto full_view = view;
@@ -49,13 +83,6 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
     destination->clearStencil(sf::StencilValue(1));
     destination->setView(full_view);
   }
-  sf::Sprite sprite(source);
-  sprite.setTextureRect(sf::IntRect({source_bounds.p0.x, source_bounds.p0.y},
-                                    {dimensions.x, dimensions.y}));
-  sprite.setPosition({static_cast<float>(destination_bounds.p0.x),
-                      static_cast<float>(destination_bounds.p0.y)});
-  sprite.setScale({static_cast<float>(output_size.x) / dimensions.x,
-                   static_cast<float>(output_size.y) / dimensions.y});
   sf::RenderStates states(blend);
   states.shader = shader;
   if (clipped) {
@@ -67,29 +94,25 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
         false,
     };
   }
-  if (shader == &blur_shader_) {
-    // Preserve the pinned fullscreen triangle diagonal and winding. Their
-    // interpolation determines the exact half-texel boundary comparisons.
-    if (!blur_geometry_ready_) {
-      const std::array<sf::Vertex, 6> vertices{{
-          {{-1.f, -1.f}, sf::Color::White, {}},
-          {{-1.f, 1.f}, sf::Color::White, {}},
-          {{1.f, -1.f}, sf::Color::White, {}},
-          {{1.f, -1.f}, sf::Color::White, {}},
-          {{-1.f, 1.f}, sf::Color::White, {}},
-          {{1.f, 1.f}, sf::Color::White, {}},
-      }};
-      if (!blur_geometry_.create(vertices.size()) ||
-          !blur_geometry_.update(vertices.data())) {
-        throw std::runtime_error("Failed to upload RmlUi blur geometry");
-      }
-      blur_geometry_ready_ = true;
+  // Preserve the pinned fullscreen triangle diagonal and winding. Exact
+  // endpoints also keep other postprocess programs inside the clip volume.
+  if (!blur_geometry_ready_) {
+    const std::array<sf::Vertex, 6> vertices{{
+        {{-1.f, -1.f}, sf::Color::White, {}},
+        {{-1.f, 1.f}, sf::Color::White, {}},
+        {{1.f, -1.f}, sf::Color::White, {}},
+        {{1.f, -1.f}, sf::Color::White, {}},
+        {{-1.f, 1.f}, sf::Color::White, {}},
+        {{1.f, 1.f}, sf::Color::White, {}},
+    }};
+    if (!blur_geometry_.create(vertices.size()) ||
+        !blur_geometry_.update(vertices.data())) {
+      throw std::runtime_error("Failed to upload RmlUi postprocess geometry");
     }
-    states.texture = &source;
-    destination->draw(blur_geometry_, states);
-  } else {
-    destination->draw(sprite, states);
+    blur_geometry_ready_ = true;
   }
+  states.texture = &source;
+  destination->draw(blur_geometry_, states);
   Diagnostics().Record(&DataDiagnostics::fullscreen_draws);
 }
 

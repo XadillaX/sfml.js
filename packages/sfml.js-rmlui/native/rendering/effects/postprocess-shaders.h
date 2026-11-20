@@ -9,13 +9,50 @@ namespace sfmlrmlui {
 // SFML 3 accepts legacy GLSL entry points and injects the compatibility
 // defines, so the postprocess shaders stay independent of the GL version.
 
-// Fullscreen vertex shader shared by every postprocess program.
+// Exact fullscreen endpoints avoid rounded pixel-to-view projections. These
+// texture coordinates address the bottom-left storage of a render texture.
 inline constexpr const char* kPostprocessVertexShader = R"(
 void main()
 {
-    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
-    gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
-    gl_FrontColor = gl_Color;
+    gl_Position = vec4(gl_Vertex.xy, 0.0, 1.0);
+    gl_TexCoord[0] = vec4((gl_Vertex.xy + vec2(1.0)) * 0.5, 0.0, 1.0);
+}
+)";
+
+// Read four stored texels and interpolate explicitly. The source uses nearest
+// sampling so software OpenGL cannot perturb its texel-center conversions.
+inline constexpr const char* kBilinearSampling = R"(
+vec4 sampleBilinearBytes(sampler2D source, vec2 position, vec2 size)
+{
+    vec2 origin = floor(position - 0.5);
+    vec2 part = position - origin - 0.5;
+    vec4 a = texture2D(source, (origin + vec2(0.5, 0.5)) / size);
+    vec4 b = texture2D(source, (origin + vec2(1.5, 0.5)) / size);
+    vec4 c = texture2D(source, (origin + vec2(0.5, 1.5)) / size);
+    vec4 d = texture2D(source, (origin + vec2(1.5, 1.5)) / size);
+    a = floor(a * 255.0 + 0.5);
+    b = floor(b * 255.0 + 0.5);
+    c = floor(c * 255.0 + 0.5);
+    d = floor(d * 255.0 + 0.5);
+    return mix(mix(a, b, part.x), mix(c, d, part.x), part.y);
+}
+)";
+
+// Exact clip-space endpoints avoid software polygon clipping after a rounded
+// pixel-to-view projection. The fragment shader maps the two pixel rectangles.
+inline constexpr const char* kPostCopyFragmentShader = R"(
+uniform sampler2D texture;
+uniform vec2 sourceOrigin;
+uniform vec2 sourceSize;
+uniform vec2 destinationOrigin;
+uniform vec2 destinationSize;
+uniform vec2 targetSize;
+void main()
+{
+    vec2 position = sourceOrigin +
+        (gl_FragCoord.xy - destinationOrigin) * sourceSize / destinationSize;
+    vec4 sampled = sampleBilinearBytes(texture, position, targetSize);
+    gl_FragColor = floor(sampled + 0.5) / 255.0;
 }
 )";
 
@@ -70,11 +107,11 @@ void main()
     vec2 position = gl_FragCoord.xy - vec2(offset.x, -offset.y);
     vec2 inside = step(sampleMin, position) *
                   step(position, sampleMax);
-    vec4 sampled = texture2D(texture, position / targetSize) *
+    vec4 sampled = sampleBilinearBytes(texture, position, targetSize) *
                    inside.x * inside.y;
     vec4 shadow = vec4(shadowColor.rgb * sampled.a, sampled.a) *
                   shadowColor.a;
-    gl_FragColor = shadow;
+    gl_FragColor = floor(shadow + 0.5) / 255.0;
 }
 )";
 

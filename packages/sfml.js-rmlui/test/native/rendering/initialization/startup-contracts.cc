@@ -18,6 +18,8 @@ namespace {
 
 using Renderer = sfmlrmlui::RenderInterfaceSFML;
 
+constexpr unsigned kRequiredPrograms = 7;
+
 void Require(bool condition, const char* message) {
   if (!condition) {
     throw std::runtime_error(message);
@@ -82,7 +84,8 @@ void StartupFailure(sf::RenderWindow* window, unsigned stage) {
   // program and produce a real usable frame without changing the host view.
   faults::Reset();
   renderer.SetWindow(window);
-  Require(faults::shader_calls == 6, "Retry omitted a required program");
+  Require(faults::shader_calls == kRequiredPrograms,
+          "Retry omitted a required program");
   renderer.BeginFrame();
   renderer.EndFrame();
   ExpectView(window->getView(), host_view);
@@ -284,7 +287,7 @@ int main() {
     faults::Reset();
   };
   run("uninitialized-shader", UninitializedShader);
-  for (unsigned stage = 0; stage <= 6; ++stage) {
+  for (unsigned stage = 0; stage <= kRequiredPrograms; ++stage) {
     run("required-program-" + std::to_string(stage),
         [&] { StartupFailure(&window, stage); });
   }

@@ -53,7 +53,7 @@ if (process.platform !== 'darwin') {
     [ 'shaders', 10 ],
     [ 'effects', 4 ],
     [ 'textures', 10 ],
-    [ 'startup', 13 ],
+    [ 'startup', 14 ],
     [ 'targets', 12 ],
     [ 'css', 2 ],
   ];
