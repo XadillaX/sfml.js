@@ -427,7 +427,13 @@ const cases = {
     try {
       const original = path.join(directory, 'original.png');
       const cwd = path.join(directory, 'cwd');
-      const shadow = path.join(cwd, original.replace(/^[/\\]+/, ''));
+      // Empty-root lookup removes leading separators, not a Windows drive.
+      // Both fixtures share a drive, so a root-relative path addresses the
+      // original file and can also have a valid relative shadow under cwd.
+      const source = process.platform === 'win32'
+        ? original.slice(path.parse(original).root.length - 1)
+        : original;
+      const shadow = path.join(cwd, source.replace(/^[/\\]+/, ''));
       const image = fs.readFileSync(path.resolve(__dirname,
         '../../third_party/rmlui/Samples/assets/hello_world.png'));
       fs.mkdirSync(path.dirname(shadow), { recursive: true });
@@ -438,7 +444,7 @@ const cases = {
         const assert = require('node:assert/strict');
         const rmlui = require(${JSON.stringify(distribution)});
         const sfml = require(${JSON.stringify(require.resolve('sfml.js'))});
-        const source = ${JSON.stringify(original)};
+        const source = ${JSON.stringify(source)};
         const renderWindow = new sfml.RenderWindow(
           new sfml.VideoMode(new sfml.Vector2u(160, 120)), 'Path policy');
         (async () => {
