@@ -12,7 +12,8 @@ from PIL import Image
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from interactions.validators import controls, layout, rendering
-from acceptance_policy import evaluate, interaction_status, POLICY
+from interactions.validators import additional
+from acceptance_policy import evaluate, interaction_status, required_interactions, POLICY
 
 
 def comparison_module():
@@ -30,6 +31,10 @@ def main():
     options = parser.parse_args()
     root = options.capture_directory.resolve()
     pages = json.loads((root / "catalog.json").read_text())
+    coverage = json.loads((root / "coverage.json").read_text())
+    assert coverage["covered"] == [page["name"] for page in pages]
+    assert coverage["required"] == required_interactions(pages)
+    assert set(coverage["required"]) <= set(coverage["covered"])
     comparison = comparison_module()
     validators = controls.FUNCTIONS | layout.FUNCTIONS | rendering.FUNCTIONS
     rows = []
@@ -58,7 +63,7 @@ def main():
                 for field in ("focus", "hover", "pointer", "dimensions", "density", "time"):
                     assert a[field] == b[field], (source.stem, field)
                 for first, second in zip(a["elements"], b["elements"]):
-                    for field in ("pseudo", "visible", "scrollbars"):
+                    for field in ("pseudo", "visible", "scrollbars", "value"):
                         assert first[field] == second[field]
                     for x, y in zip(first["scrollOffset"], second["scrollOffset"]):
                         assert abs(x - y) <= 0.005
@@ -80,7 +85,8 @@ def main():
             for driver, captured, painted in (
                     ("sfml", snapshots, images),
                     ("gl3", native_snapshots, native_images)):
-                results[driver] = evaluate(validators[name], captured, painted)
+                results[driver] = evaluate(
+                    validators.get(name, additional.run), captured, painted)
                 if results[driver]["status"] == "pass":
                     row[f"{driver}Assertions"] = results[driver]["assertions"]
                 elif results[driver]["status"] == "fail":
@@ -110,6 +116,7 @@ def main():
         "actionsSHA256": hashlib.sha256((root / "actions.tsv").read_bytes()).hexdigest(),
         "pixelPolicy": "all RGB channels within one byte at the same pixel; no exclusions",
         "acceptancePolicy": POLICY["version"],
+        "originalSourceCoverage": coverage,
         "pages": rows,
         "summary": {
             "pages": len(rows), "frames": sum(len(row["frames"]) for row in rows),
@@ -122,7 +129,8 @@ def main():
                 row["bindingStatus"] == "upstream-failure-deferred" for row in rows),
             "bindingRegressions": sum(row["bindingStatus"] == "fail" for row in rows),
             "bindingAccepted": bool(rows) and all(row["bindingAccepted"] for row in rows),
-            "wholeCorpusAccepted": False,
+            "requiredInteractivePages": len(coverage["required"]),
+            "wholeCorpusAccepted": bool(rows) and all(row["status"] == "pass" for row in rows),
         },
     }
     mutation_source = root / "mutations.json"

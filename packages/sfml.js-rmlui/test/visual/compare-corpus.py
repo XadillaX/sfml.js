@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image
 
 sys.dont_write_bytecode = True
-from acceptance_policy import classify, evaluate, interaction_status, POLICY
+from acceptance_policy import classify, evaluate, interaction_status, required_interactions, POLICY
 
 
 def load_assertions():
@@ -88,12 +88,16 @@ def main():
     assert len(pages) == 113
     assertions = load_assertions()
     interaction_rows = {}
+    required_pages = set(required_interactions(pages))
     if options.interaction_report:
         interaction_report = json.loads(options.interaction_report.read_text())
         assert interaction_report["acceptancePolicy"] == POLICY["version"]
         interaction_rows = {row["name"]: row for row in interaction_report["pages"]}
         assert len(interaction_rows) == len(interaction_report["pages"])
         assert set(interaction_rows) <= {page["name"] for page in pages}
+        coverage = interaction_report["originalSourceCoverage"]
+        assert set(coverage["required"]) == required_pages
+        assert coverage["covered"] == list(interaction_rows)
         for row in interaction_rows.values():
             row["bindingStatus"] = interaction_status(row)
             row["bindingAccepted"] = row["bindingStatus"] in (
@@ -111,7 +115,8 @@ def main():
             "upstreamMetadata": page["metadata"],
             "referenceFrames": [], "contentAssertions": [],
             "matchReferenceFrames": [],
-            "interactionAssertions": "pending",
+            "interactionAssertions": "pending" if name in required_pages
+                else "no live interaction declared in original source",
             "platform": "macOS arm64; Linux/Windows unverified",
         }
         for frame in frames:
@@ -227,9 +232,14 @@ def main():
             "bindingRegressions": sum(row["bindingStatus"] == "fail" for row in ledger),
             "bindingContentAccepted": all(row["bindingAccepted"] for row in ledger),
             "bindingAccepted": all(row["bindingAccepted"] for row in ledger)
-                and len(interaction_rows) >= 25
+                and required_pages <= set(interaction_rows)
                 and all(row["bindingAccepted"] for row in interaction_rows.values()),
-            "wholeCorpusAccepted": False,
+            "requiredInteractivePages": len(required_pages),
+            "coveredInteractivePages": len(required_pages & set(interaction_rows)),
+            "missingInteractivePages": sorted(required_pages - set(interaction_rows)),
+            "wholeCorpusAccepted": all(row["contentStatus"] == "pass" for row in ledger)
+                and required_pages <= set(interaction_rows)
+                and all(row["status"] == "pass" for row in interaction_rows.values()),
         },
     }
     (root / "comparison.json").write_text(json.dumps(report, indent=2) + "\n")

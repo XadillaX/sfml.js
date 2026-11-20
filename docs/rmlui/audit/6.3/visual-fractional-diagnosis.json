@@ -1,0 +1,404 @@
+{
+  "scope": "Two additional original fractional live contracts; unchanged Core, RML and assertions",
+  "platform": "macOS arm64",
+  "actionsSHA256": "678f7f0b54f78bfe5783eda7ba55f5159319af83f30ade907608ffe74dd0c5d6",
+  "nativeTraceSHA256": "bbf3c344b752e874188e849f29fc485e53c8a85e3efba81ce1d8328d65f65761",
+  "sources": {
+    "Source/Core/Element.cpp": "c004f713646e68e5fd089c48cfabc2b85a56d50bb8bb4f0807ce84ec5e377912",
+    "Source/Core/ElementBackgroundBorder.cpp": "9da8f58162e69255f048ce3a95cd38c198d7aec2e1f5c0bbb5eca3565a49089c",
+    "Source/Core/GeometryBackgroundBorder.cpp": "aa984f55603c900d98c37d8aba756ff9121e4bffd89dc1061fb95da84ef6453d",
+    "Source/Core/Layout/FloatedBoxSpace.cpp": "288b47467a39351abd1dfbe9a854b6547d24e2f5783a93d1a96e4520e4702953"
+  },
+  "pages": [
+    {
+      "name": "fractional-dimensions-01",
+      "sourceSHA256": "7b1523e51118e9a444ea81d9d03313ab198f8ff1a81e586a69242057b097dd03",
+      "originalMetadata": [
+        {
+          "name": "Description",
+          "content": "Layout of elements with fractional height. Try zooming in and out (Ctrl +/-). The inner heights are allowed to vary by one pixel to accommodate the accumulation of the fractional pixels."
+        }
+      ],
+      "state": "zoom-in",
+      "measurements": {
+        "sfml": {
+          "redPixels": 585,
+          "redBounds": [
+            10,
+            128,
+            594,
+            128
+          ],
+          "handle": [
+            10,
+            59,
+            585,
+            787.6666259765625
+          ]
+        },
+        "gl3": {
+          "redPixels": 585,
+          "redBounds": [
+            10,
+            128,
+            594,
+            128
+          ],
+          "handle": [
+            10,
+            59,
+            585,
+            787.667
+          ]
+        }
+      },
+      "interactionResults": {
+        "sfml": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "('zoom-in', 'fractional accumulation exposes red')",
+            "stack": [
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 203,
+                "expression": "result += fractional(frames, images)"
+              },
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 93,
+                "expression": "assert not np.any(np.all(region == (255, 0, 0), axis=2)), ("
+              }
+            ]
+          }
+        },
+        "gl3": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "('zoom-in', 'fractional accumulation exposes red')",
+            "stack": [
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 203,
+                "expression": "result += fractional(frames, images)"
+              },
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 93,
+                "expression": "assert not np.any(np.all(region == (255, 0, 0), axis=2)), ("
+              }
+            ]
+          }
+        }
+      },
+      "frames": [
+        {
+          "name": "fractional-dimensions-01",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004167480468595386,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "709577604aa96798e85b1f2b571d99aee8fc488efddc3fa078a9eb6f7a1bf6e4",
+          "actualSHA256": "709577604aa96798e85b1f2b571d99aee8fc488efddc3fa078a9eb6f7a1bf6e4"
+        },
+        {
+          "name": "fractional-dimensions-01--moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004167480468595386,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "5155fce62d1d052be93d68e42c0bb93b091e1aa7d2b09ae241f2e3f3edc43f13",
+          "actualSHA256": "5155fce62d1d052be93d68e42c0bb93b091e1aa7d2b09ae241f2e3f3edc43f13"
+        },
+        {
+          "name": "fractional-dimensions-01--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004167480468595386,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "709577604aa96798e85b1f2b571d99aee8fc488efddc3fa078a9eb6f7a1bf6e4",
+          "actualSHA256": "709577604aa96798e85b1f2b571d99aee8fc488efddc3fa078a9eb6f7a1bf6e4"
+        },
+        {
+          "name": "fractional-dimensions-01--zoom-in",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004960937500300133,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "081b480a5c78395f909900f81c106fa0e39574332a4b0c7c2e9d9b3f87eaa2a4",
+          "actualSHA256": "081b480a5c78395f909900f81c106fa0e39574332a4b0c7c2e9d9b3f87eaa2a4"
+        },
+        {
+          "name": "fractional-dimensions-01--zoom-out",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 6.103515630684342e-06,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "f86ac15d596c1c81f0a7f96aaf12e2f46e31b6bfa3dd392c7dd38c33deb5c57d",
+          "actualSHA256": "f86ac15d596c1c81f0a7f96aaf12e2f46e31b6bfa3dd392c7dd38c33deb5c57d"
+        },
+        {
+          "name": "fractional-dimensions-01--zoom-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0.0004167480468595386,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "709577604aa96798e85b1f2b571d99aee8fc488efddc3fa078a9eb6f7a1bf6e4",
+          "actualSHA256": "709577604aa96798e85b1f2b571d99aee8fc488efddc3fa078a9eb6f7a1bf6e4"
+        }
+      ],
+      "nativeRenderBoxTrace": [
+        "fractional-dimensions-01 child=2 relative=0,46.3333282471 absolute=10,105.333328247 borderSize=585,23.1666622162 roundedFill=581,19 edges=2,2,2,2 paintedTop=105 paintedBottom=128",
+        "fractional-dimensions-01 child=3 relative=0,69.5 absolute=10,128.5 borderSize=585,23.1666622162 roundedFill=581,19 edges=2,2,2,2 paintedTop=129 paintedBottom=152"
+      ]
+    },
+    {
+      "name": "fractional-dimensions-02",
+      "sourceSHA256": "e1fe443ec2a5eac0e72644e9c0732e929507690bfee72ddb2fa9004b8b7b1a20",
+      "originalMetadata": [
+        {
+          "name": "Description",
+          "content": "Layout with fractionally sized elements. Here, 100 fractionally sized span elements fill a single div element."
+        },
+        {
+          "name": "Instructions",
+          "content": "Try different font sizes, zooms, and resolutions, as well as slightly different sizes for the floats."
+        },
+        {
+          "name": "Assert",
+          "content": "It's hard to fill the box perfectly for all combinations of scaling and box dimensions. Even Firefox and Chromium struggles with this for some combinations. However, we should at least try to avoid gaps between the individual span elements."
+        }
+      ],
+      "state": "zoom-out",
+      "measurements": {
+        "sfml": {
+          "redPixels": 396,
+          "redBounds": [
+            67,
+            37,
+            72,
+            102
+          ],
+          "handle": [
+            6,
+            35.400001525878906,
+            69.25,
+            69.25
+          ]
+        },
+        "gl3": {
+          "redPixels": 396,
+          "redBounds": [
+            67,
+            37,
+            72,
+            102
+          ],
+          "handle": [
+            6,
+            35.4,
+            69.25,
+            69.25
+          ]
+        }
+      },
+      "interactionResults": {
+        "sfml": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "('zoom-out', 'fractional accumulation exposes red')",
+            "stack": [
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 203,
+                "expression": "result += fractional(frames, images)"
+              },
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 93,
+                "expression": "assert not np.any(np.all(region == (255, 0, 0), axis=2)), ("
+              }
+            ]
+          }
+        },
+        "gl3": {
+          "status": "fail",
+          "failure": {
+            "type": "AssertionError",
+            "message": "('zoom-out', 'fractional accumulation exposes red')",
+            "stack": [
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 203,
+                "expression": "result += fractional(frames, images)"
+              },
+              {
+                "source": "interactions/validators/additional.py",
+                "line": 93,
+                "expression": "assert not np.any(np.all(region == (255, 0, 0), axis=2)), ("
+              }
+            ]
+          }
+        }
+      },
+      "frames": [
+        {
+          "name": "fractional-dimensions-02",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.0517578125e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb",
+          "actualSHA256": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb"
+        },
+        {
+          "name": "fractional-dimensions-02--moved",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.0517578125e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "cf0f04ab10513d38d60de15dda11029719881d8d5978d2deacbfb60e52d46aff",
+          "actualSHA256": "cf0f04ab10513d38d60de15dda11029719881d8d5978d2deacbfb60e52d46aff"
+        },
+        {
+          "name": "fractional-dimensions-02--restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.0517578125e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb",
+          "actualSHA256": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb"
+        },
+        {
+          "name": "fractional-dimensions-02--zoom-in",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 0,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "918681b2d66205a30300465634eb5ef238a02f8d3dc617b49c5a6a7e045ac6a8",
+          "actualSHA256": "918681b2d66205a30300465634eb5ef238a02f8d3dc617b49c5a6a7e045ac6a8"
+        },
+        {
+          "name": "fractional-dimensions-02--zoom-out",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 1.983642577840783e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "3378a03bf4654744e6edb9fe89c38bf0c6a0abfff8c38604bf03ea57a9ba30a9",
+          "actualSHA256": "3378a03bf4654744e6edb9fe89c38bf0c6a0abfff8c38604bf03ea57a9ba30a9"
+        },
+        {
+          "name": "fractional-dimensions-02--zoom-restored",
+          "pixels": {
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
+            "pixelsBeyondOneByte": 0,
+            "pass": true
+          },
+          "layoutMaximum": 3.0517578125e-05,
+          "pointer": [
+            -1,
+            -1
+          ],
+          "time": 1,
+          "referenceSHA256": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb",
+          "actualSHA256": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb"
+        }
+      ],
+      "nativeRenderBoxTrace": [
+        "fractional-dimensions-02 child=8 relative=54.2000045776,2 absolute=60.2000045776,37.4000015259 borderSize=6.52499961853,6.52499961853 roundedFill=7,7 edges=0,0,0,0 paintedTop=37 paintedBottom=44",
+        "fractional-dimensions-02 child=9 relative=2,8.52500152588 absolute=8,43.9250030518 borderSize=6.52499961853,6.52499961853 roundedFill=7,6 edges=0,0,0,0 paintedTop=44 paintedBottom=50"
+      ]
+    }
+  ]
+}

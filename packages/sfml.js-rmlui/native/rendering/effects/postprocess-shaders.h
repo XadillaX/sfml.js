@@ -56,6 +56,24 @@ void main()
 }
 )";
 
+// Hardware filtering uses the same normalized interpolation as GL3 blits.
+// Keep a separate program so Apple's software compiler retains its proven
+// explicit-byte path without a runtime branch around texture reads.
+inline constexpr const char* kPostLinearCopyFragmentShader = R"(
+uniform sampler2D texture;
+uniform vec2 sourceOrigin;
+uniform vec2 sourceSize;
+uniform vec2 destinationOrigin;
+uniform vec2 destinationSize;
+uniform vec2 targetSize;
+void main()
+{
+    vec2 position = sourceOrigin +
+        (gl_FragCoord.xy - destinationOrigin) * sourceSize / destinationSize;
+    gl_FragColor = texture2D(texture, position / targetSize);
+}
+)";
+
 // Match GL3's exact fullscreen endpoints and per-vertex tap interpolation.
 // The native SFML draw supplies clip-space vertices for this program.
 inline constexpr const char* kBlurVertexShader = R"(

@@ -5,15 +5,40 @@
 
 #include <RmlUi/Core/Log.h>
 
+#include <cstring>
 #include <functional>
 #include <stdexcept>
 #include <string>
 
 #include "native/rendering/effects/postprocess-shaders.h"
 #include "native/rendering/shaders/geometry-program.h"
+#include <SFML/Window/Context.hpp>
 #include <SFML/Window/ContextSettings.hpp>
 
 namespace sfmlrmlui {
+
+namespace {
+
+bool NeedsManualPostSampling(sf::RenderWindow* window) {
+#if defined(__APPLE__)
+  if (!window->setActive(true)) {
+    throw std::runtime_error("Cannot activate the RmlUi host window");
+  }
+  using GetString = const unsigned char* (*)(unsigned int);
+  const auto get_string =
+      reinterpret_cast<GetString>(sf::Context::getFunction("glGetString"));
+  constexpr unsigned int kRenderer = 0x1F01;
+  const auto* renderer = get_string ? get_string(kRenderer) : nullptr;
+  return renderer &&
+         std::strcmp(reinterpret_cast<const char*>(renderer),
+                     "Apple Software Renderer") == 0;
+#else
+  static_cast<void>(window);
+  return false;
+#endif
+}
+
+}  // namespace
 
 void RenderInterfaceSFML::SetWindow(sf::RenderWindow* window) {
   if (HasActiveFrame() || !layer_stack_.empty()) {
@@ -28,7 +53,17 @@ void RenderInterfaceSFML::SetWindow(sf::RenderWindow* window) {
   if (!window->isOpen()) {
     throw std::runtime_error("RmlUi renderer requires an open host window");
   }
+  const bool manual_sampling = NeedsManualPostSampling(window);
+  const std::string post_copy_program =
+      manual_sampling ? std::string(kBilinearSampling) + kPostCopyFragmentShader
+                      : kPostLinearCopyFragmentShader;
   if (shaders_ready_) {
+    if (manual_sampling != manual_post_sampling_ &&
+        !post_copy_shader_.loadFromMemory(kPostprocessVertexShader,
+                                         post_copy_program)) {
+      throw std::runtime_error("Failed to compile RmlUi copy sampling program");
+    }
+    manual_post_sampling_ = manual_sampling;
     window_ = window;
     stencil_available_ = window->getSettings().stencilBits >= 8;
     return;
@@ -52,11 +87,11 @@ void RenderInterfaceSFML::SetWindow(sf::RenderWindow* window) {
       color_filter_shader_.loadFromMemory(kPostprocessVertexShader,
                                           kColorFilterFragmentShader) &&
       post_copy_shader_.loadFromMemory(
-          kPostprocessVertexShader,
-          std::string(kBilinearSampling) + kPostCopyFragmentShader);
+          kPostprocessVertexShader, post_copy_program);
   if (!shaders_ready_) {
     throw std::runtime_error("Failed to compile required RmlUi shaders");
   }
+  manual_post_sampling_ = manual_sampling;
   geometry_texture_shader_.setUniform("texture", sf::Shader::CurrentTexture);
   window_ = window;
   stencil_available_ = window->getSettings().stencilBits >= 8;

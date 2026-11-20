@@ -6,6 +6,7 @@
 
 #include <RmlUi/Core.h>
 #include <RmlUi/Core/ElementScroll.h>
+#include <RmlUi/Core/Elements/ElementFormControl.h>
 
 #include <iomanip>
 #include <ostream>
@@ -103,6 +104,13 @@ inline void Elements(std::ostream& out,
     out << "null";
   }
   if (detailed) {
+    const auto* control = rmlui_dynamic_cast<Rml::ElementFormControl*>(element);
+    out << ",\"value\":";
+    if (control) {
+      String(out, control->GetValue());
+    } else {
+      out << "null";
+    }
     out << ",\"scrollOffset\":[" << element->GetScrollLeft() << ','
         << element->GetScrollTop() << "],\"pseudo\":{";
     bool first_pseudo = true;

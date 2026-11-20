@@ -273,6 +273,8 @@ class RenderInterfaceSFML final : public Rml::RenderInterface {
   sf::Shader mask_shader_;
   sf::Shader color_filter_shader_;
   sf::Shader post_copy_shader_;
+  // Apple's software texture interpolation is unstable across reused targets.
+  bool manual_post_sampling_{false};
   bool shaders_ready_{false};
 
   std::vector<std::unique_ptr<FilterRecord>> filters_;

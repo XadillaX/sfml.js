@@ -10,6 +10,14 @@ import traceback
 VISUAL = Path(__file__).resolve().parent
 POLICY = json.loads((VISUAL / "upstream-failures.json").read_text(encoding="utf-8"))
 
+def required_interactions(pages):
+    """Find live source declarations independently of the selected action list."""
+    declaration = re.compile(
+        r"<(?:handle|input|textarea|select|button)\b"
+        r"|:(?:hover|active|focus)\b|@keyframes\b|animation\s*:", re.IGNORECASE)
+    return [page["name"] for page in pages
+            if declaration.search(Path(page["file"]).read_text(encoding="utf-8"))]
+
 
 def evaluate(callback, *arguments):
     """Run unchanged assertions and retain their original failure identity."""

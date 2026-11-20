@@ -32,8 +32,8 @@ void RenderInterfaceSFML::EnsurePostTargets(sf::Vector2u size) {
       sf::ContextSettings settings;
       settings.stencilBits = 8;
       target = std::make_unique<sf::RenderTexture>(size, settings);
-      // Spatial copies interpolate stored bytes in GLSL. Only the pinned blur
-      // kernel temporarily enables linear sampling at its integer-pixel taps.
+      // Restore nearest sampling between passes. Copies and the blur kernel
+      // temporarily select their required interpolation through a scoped guard.
       target->setSmooth(false);
       Diagnostics().Record(&DataDiagnostics::post_target_allocations);
     }

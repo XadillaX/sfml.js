@@ -215,4 +215,5 @@ const sequences = {
   ],
 };
 
-module.exports = { sequences };
+const additional = require('./additional-catalog.cjs');
+module.exports = { sequences: { ...sequences, ...additional.sequences } };

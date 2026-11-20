@@ -127,6 +127,8 @@ inline void RunActions(
       const auto key = static_cast<Rml::Input::KeyIdentifier>(integer(1));
       context->ProcessKeyDown(key, 0);
       context->ProcessKeyUp(key, 0);
+    } else if (verb == "text") {
+      context->ProcessTextInput(action.at(1));
     } else if (verb == "property") {
       assert(Target(document, action.at(1))
                  ->SetProperty(action.at(2), action.at(3)));

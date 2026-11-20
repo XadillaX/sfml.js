@@ -12,6 +12,7 @@ from PIL import Image
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from interactions.validators import controls, layout, rendering
+from interactions.validators import additional
 from interactions.validators.common import element
 
 
@@ -34,6 +35,20 @@ def change(frames, images, operation, state, path):
         x, y, width, height = element(frames[state], path)["rect"]
         images[state].paste((221, 221, 221, 255),
                             (int(x), int(y), int(x + width), int(y + height)))
+    elif operation == "value":
+        element(frames[state], path)["value"] = "lost native keyboard insertion"
+    elif operation == "width":
+        element(frames[state], path)["content"][0] += 10
+    elif operation == "active":
+        element(frames[state], path)["pseudo"]["active"] = False
+    elif operation == "frozen-animation":
+        images[state] = images["spinner-base"].copy()
+    elif operation == "unchanged-blur":
+        images[state] = images["base"].copy()
+    elif operation == "clip-leak":
+        x, y, _, height = element(frames[state], path)["rect"]
+        images[state].putpixel((int(x - 1), int(y + height / 2)),
+                               (255, 211, 79, 255))
     else:
         raise AssertionError(operation)
 
@@ -54,6 +69,13 @@ def main():
          "hover-clipped", "0/0"),
         ("position_absolute_transform", "escaped-child", "bottom", "0/0/0/2"),
         ("scrollable_overflow_margin_padding", "offset", "end", "0/1/0/1"),
+        ("text_alignment", "value", "input-0-typed", "0/0"),
+        ("filter_drop_shadow", "width", "resize-wide", "0"),
+        ("overflow_clip_transform", "edge", "window-0-moved", "0/0"),
+        ("shader_radial_gradient", "active", "button-active", "0/1/0"),
+        ("shader_conic_gradient", "frozen-animation", "spinner-advanced", "0"),
+        ("filter_blur_area", "unchanged-blur", "blur-small", "0/1"),
+        ("clip_mask", "clip-leak", "outer-moved", "0/0"),
     )
     results = []
     for driver in ("sfml", "gl3"):
@@ -65,13 +87,14 @@ def main():
                 key = "base" if source.stem == name else source.stem[len(name) + 2:]
                 snapshots[key] = json.loads(source.read_text())
                 images[key] = Image.open(source.with_suffix(".png")).convert("RGBA")
-            assert validators[name](snapshots, images), (driver, name, "baseline")
+            validator = validators.get(name, additional.run)
+            assert validator(snapshots, images), (driver, name, "baseline")
             snapshots = copy.deepcopy(snapshots)
             images = {key: image.copy() for key, image in images.items()}
             change(snapshots, images, operation, state, path)
             rejected = False
             try:
-                validators[name](snapshots, images)
+                validator(snapshots, images)
             except AssertionError:
                 rejected = True
             assert rejected, (driver, name, operation)

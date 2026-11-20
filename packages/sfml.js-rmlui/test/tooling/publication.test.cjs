@@ -36,7 +36,7 @@ accepted.delivery.documentation.rmlui_browser = {
   passed: true, page_count: 1920, viewport_count: 3,
 };
 assert.deepEqual(publicationFailures(accepted), []);
-console.log('PASS publication-measured-parity-retains-six-upstream-failures');
+console.log('PASS publication-measured-parity-retains-eight-upstream-failures');
 
 const mutations = [
   evidence => {
@@ -128,3 +128,20 @@ for (const mutate of mutations) {
   assert.ok(publicationFailures(evidence).length > 0);
 }
 console.log(`PASS publication-${mutations.length}-evidence-mutations-rejected`);
+
+const missingInput = structuredClone(accepted);
+const report = missingInput.interactions;
+const removed = report.pages.find(row => row.name === 'acid1');
+report.pages = report.pages.filter(row => row.name !== removed.name);
+report.originalSourceCoverage.covered =
+  report.originalSourceCoverage.covered.filter(name => name !== removed.name);
+report.originalSourceCoverage.required =
+  report.originalSourceCoverage.required.filter(name => name !== removed.name);
+report.summary.pages -= 1;
+report.summary.pass -= 1;
+report.summary.frames -= removed.frames.length;
+report.summary.byteExactFrames -= removed.frames.length;
+report.summary.requiredInteractivePages -= 1;
+assert.ok(publicationFailures(missingInput)
+  .includes('VisualTests live interactions'));
+console.log('PASS publication-forged-complete-input-coverage-is-rejected');

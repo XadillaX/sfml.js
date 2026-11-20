@@ -1,8 +1,43 @@
 {
-  "version": "pinned-upstream-parity-v1",
+  "version": "pinned-upstream-parity-v2",
   "authorization": "如果是它自身问题，就先不用管了。它自己都有问题过不了，你还能怎么办？它能过的，你为什么过不了",
   "diagnosis": "docs/rmlui/audit/6.3/visual-failure-diagnosis.json",
+  "additionalDiagnosis": "docs/rmlui/audit/6.3/visual-fractional-diagnosis.json",
   "failures": [
+    {
+      "name": "fractional-dimensions-01",
+      "sha256": "7b1523e51118e9a444ea81d9d03313ab198f8ff1a81e586a69242057b097dd03",
+      "scope": "interaction",
+      "stack": [
+        {
+          "source": "interactions/validators/additional.py",
+          "line": 203,
+          "expression": "result += fractional(frames, images)"
+        },
+        {
+          "source": "interactions/validators/additional.py",
+          "line": 93,
+          "expression": "assert not np.any(np.all(region == (255, 0, 0), axis=2)), ("
+        }
+      ]
+    },
+    {
+      "name": "fractional-dimensions-02",
+      "sha256": "e1fe443ec2a5eac0e72644e9c0732e929507690bfee72ddb2fa9004b8b7b1a20",
+      "scope": "interaction",
+      "stack": [
+        {
+          "source": "interactions/validators/additional.py",
+          "line": 203,
+          "expression": "result += fractional(frames, images)"
+        },
+        {
+          "source": "interactions/validators/additional.py",
+          "line": 93,
+          "expression": "assert not np.any(np.all(region == (255, 0, 0), axis=2)), ("
+        }
+      ]
+    },
     {
       "name": "flex_04",
       "sha256": "028fe407f82c77d71f1a24f7a29c70b22c02f2f099fcd2532ef7696e04f669d1",

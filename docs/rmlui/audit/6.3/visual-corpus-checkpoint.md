@@ -1,11 +1,11 @@
 # VisualTests content and interaction checkpoint
 
-The 113-page VisualTests corpus remains open. This checkpoint records actual
-renderer comparisons, 109 passing positive content assertion groups and 25
-live interaction sequences on macOS arm64. All 113 pages have content contracts;
-four static contracts and two live contracts fail in both renderers.
-It does not accept outstanding interactions,
-physical input or other platforms.
+Binding acceptance passes for all 113 original VisualTests pages on macOS
+arm64. The source inventory requires live inputs or animation on 81 pages;
+all are covered by 83 literal sequences and 527 captured checkpoints.
+All 113 pages have content contracts. Four static contracts and four live
+contracts still fail in both renderers and retain their failures under the
+user's diagnosed-upstream policy. No required interaction remains missing.
 
 The unchanged upstream documents and eighteen `rel="match"` documents render
 through two paths: the binding's SFML renderer, and the pinned GL3 renderer in
@@ -21,7 +21,7 @@ embedded font for the original font-family hover case.
 - 113 primary pages produce 144 top/scroll captures.
 - Eighteen match documents produce nineteen additional captures.
 - All 163 captures compare within one RGB byte at the same pixel;
-  159 are byte-identical. No spatial tolerance or page exclusions are used.
+  162 are byte-identical. No spatial tolerance or page exclusions are used.
 - Both paths report zero resource, parser and font warnings/errors.
 - Native element identity, every primary/auxiliary box, baseline, visibility,
   scrollbar size, debugger Auto ink bounds, content and scroll measurements agree within
@@ -38,16 +38,17 @@ embedded font for the original font-family hover case.
 - All 109 passing contracts are re-executed against the independent native
   snapshots and images. Forty-nine mutations verify that missing rendering
   or corrupted content widths are rejected.
-- Twenty-five live interaction sequences produce 165 additional captures. Every
+- Eighty-three live interaction sequences produce 527 captures. Every
   RGB byte is identical between the binding and independent GL3. Focus,
   pseudo-classes, scroll offsets, scrollbar sizes, clock, pointer and context
-  dimensions agree. Twenty-three sequences pass positive behavior assertions;
-  two fail in both drivers. Failing contracts are independently executed against
+  dimensions and form values agree. Seventy-nine sequences pass positive
+  behavior assertions; four fail in both drivers. Failing contracts are independently executed against
   both drivers and retain separate assertion locations and messages.
 - Linux and Windows execution and physical IME remain unverified.
 - The integrated runtime run passes all 149 test files and records 1,550
   literal PASS markers, with zero FAIL markers. These counts are runtime
-  evidence, not acceptance of the pending VisualTests assertions.
+  evidence from the earlier runtime run; they are not substituted for the
+  current VisualTests assertions.
 
 The [per-page evidence ledger](visual-corpus-evidence.json) retains each source
 hash, upstream metadata, measured frame positions, capture fingerprints,
@@ -111,11 +112,29 @@ decorator/custom-marker glyphs, input clipping, transformed clipping and
 scroll offsets. Loading or comparing a screenshot alone does not
 pass these behavior assertions.
 
+The source inventory independently scans unchanged declarations for handles,
+input controls, hover/active/focus rules and animations. The added sequences
+exercise every remaining declared handle, four transformed windows, original
+editable fields with Home/insertion/Backspace, the three fractional pages at
+0.75/1/1.25 density, independently movable blur surfaces, nested rounded clips,
+gradient buttons and the original conic spinner at successive clock values.
+Each validator checks real offsets, values, states or painted changes and
+reversible restoration. Thirty lost-behavior mutations are rejected across the
+two drivers. Aggregate gates independently recompute the required source list
+and reject missing inputs, forged coverage, duplicate rows and absent native
+outcomes even when an attached summary claims acceptance.
+The publication check uses the same independent source inventory and verifies
+each input page's actual source hash. Removing ACID1 and adjusting all report
+counts and coverage arrays was accepted by the old 25-page floor; the new
+regression rejects it without changing any rendering assertion.
+
 ## Original contract disagreements
 
-Four static contracts and two live contracts fail using the pinned Core and
+Four static contracts and four live contracts fail using the pinned Core and
 actual GL3, as well as the binding. They remain failures in the ledger and make the
-comparison command exit one.
+original whole-corpus status false. Binding acceptance passes under the eight
+reviewed page/source/assertion identities in
+[the diagnosis](visual-failure-diagnosis.md).
 
 - `position_05_floating_a_box_clear`: the fixture expects `clear:right` on an
   inline span to place it below the float. Its top is 72px while the float's
@@ -170,6 +189,15 @@ comparison command exit one.
   A diagnostic premeasurement of U+2026 changes the first version to one
   and removes both repeat and hover-restoration differences. This diagnostic
   does not alter the canonical capture or pass its failed assertion.
+- `fractional-dimensions-01`: density 1.25 exposes 585 red pixels on row 128.
+  Native render-box measurement shows row 2's painted bottom is 128 while row
+  3 begins at 129. Padding endpoint rounding excludes the two integer borders
+  and disagrees with the next layout offset at exactly 128.5.
+- `fractional-dimensions-02`: density 0.75 exposes 396 red pixels on the right
+  edge. Repeated float addition places the tenth span's candidate right edge
+  beyond the parent's boundary by 0.0000076294px, triggering an early wrap.
+  The [measured fractional report](visual-fractional-diagnosis.json) preserves
+  both drivers' original assertions and twelve byte-exact frame comparisons.
 
 The relevant pinned positioning implementations are
 `Source/Core/Layout/BlockFormattingContext.cpp`,
@@ -195,6 +223,21 @@ repeat addressing. A failing two-texel callback texture regression sampled blue
 at `u=1.25` before the correction and red afterward. This also resolves the
 transformed box-shadow reference difference. Saved alpha masks retain their
 separate bounded sampling behavior.
+
+Fractional postprocessing copies use hardware linear filtering to match GL3
+blits. Apple's software renderer retains explicit byte interpolation in a
+separately compiled program; a runtime branch around both sampling methods
+did not preserve repeat frames. Scoped sampling restores cached SFML texture
+state after each pass. Full hardware/software filter and CSS contracts pass,
+including repeated frames and reverse-order pooled masks, with their original
+thresholds.
+
+Gradient colors use GL3's float scale multiplication. Stop positions are
+uploaded once from the immutable compiled snapshot, so `smoothstep` retains
+runtime edge arithmetic instead of constant-folded arithmetic. The original
+radial page's 72 differing pixels and conic page's two differing pixels become
+byte-exact. All 21 stops, perspective, alpha, hard stops and zero repeat
+interval contracts remain passing.
 
 ## Match-document interpretation
 
@@ -247,9 +290,13 @@ python3 -B test/visual/interactions/compare.py \
   /tmp/rmlui-63-completion/visual-interactions
 python3 -B test/visual/interactions/reject-mutations.py \
   /tmp/rmlui-63-completion/visual-interactions
+python3 -B test/visual/interactions/reject-reports.py \
+  /tmp/rmlui-63-completion/visual-corpus \
+  /tmp/rmlui-63-completion/visual-interactions
 python3 -B test/visual/compare-corpus.py \
   /tmp/rmlui-63-completion/visual-corpus \
-  --interaction-report /tmp/rmlui-63-completion/visual-interactions/comparison.json
+  --interaction-report /tmp/rmlui-63-completion/visual-interactions/comparison.json \
+  --require-complete
 ```
 
 Assertions live in `test/visual/assertions/layout`,
@@ -276,5 +323,6 @@ line geometry and literal atomic clipping without treating that limitation
 as implemented atomic ellipsis support.
 
 The Python comparison uses the already installed Pillow and NumPy.
-`--require-complete` fails while whole-corpus acceptance remains incomplete.
+`--require-complete` fails while measured binding acceptance remains incomplete;
+original whole-corpus status remains false for the reviewed upstream failures.
 Captures, executables and logs remain in the task temporary directory.

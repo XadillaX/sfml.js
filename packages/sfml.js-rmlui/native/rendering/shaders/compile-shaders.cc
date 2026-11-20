@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <utility>
+#include <vector>
 
 #include "native/rendering/render-interface-sfml.h"
 #include "native/rendering/shaders/creation-program.h"
@@ -81,6 +82,23 @@ Rml::CompiledShaderHandle RenderInterfaceSFML::CompileShader(
                       "Failed to compile complete RmlUi shader '%s'.",
                       name.c_str());
     return 0;
+  }
+  if (const auto* gradient =
+          std::get_if<GradientParameters>(&record->parameters)) {
+    const bool constant =
+        gradient->stops.size() == 1 ||
+        (gradient->repeating &&
+         gradient->stops.front().position == gradient->stops.back().position);
+    if (!constant) {
+      std::vector<float> positions;
+      positions.reserve(gradient->stops.size());
+      for (const auto& stop : gradient->stops) {
+        positions.push_back(stop.position.number);
+      }
+      // The handle's immutable stop snapshot only needs one uniform upload.
+      record->shader.setUniformArray(
+          "stopPositions", positions.data(), positions.size());
+    }
   }
   shaders_.push_back(std::move(record));
   return reinterpret_cast<Rml::CompiledShaderHandle>(shaders_.back().get());

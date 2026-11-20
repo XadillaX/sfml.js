@@ -5,6 +5,8 @@ const path = require('node:path');
 
 const audit = path.resolve(__dirname, '../../../../docs/rmlui/audit/6.3');
 const parityPolicy = require('../../test/visual/upstream-failures.json');
+const { catalog } = require('../../test/visual/catalog.cjs');
+const { required } = require('../../test/visual/interactions/coverage.cjs');
 
 /**
  * Recheck driver outcomes and the exact reviewed assertion stack.
@@ -70,10 +72,28 @@ function visualAccepted(report, scope) {
   const { pages, summary } = report;
   if (!Array.isArray(pages) || !summary ||
       report.acceptancePolicy !== parityPolicy.version ||
-      (interaction ? pages.length < 25 : pages.length !== 113) ||
+      (!interaction && pages.length !== 113) ||
       summary.pages !== pages.length ||
       new Set(pages.map(row => row.name)).size !== pages.length) {
     return false;
+  }
+  if (interaction) {
+    const originals = catalog();
+    const originalHashes = new Map(originals.map(row => [
+      row.name, row.sha256,
+    ]));
+    const requiredPages = required(originals);
+    const coverage = report.originalSourceCoverage;
+    const covered = pages.map(row => row.name);
+    if (!coverage ||
+        JSON.stringify(coverage.required) !== JSON.stringify(requiredPages) ||
+        JSON.stringify(coverage.covered) !== JSON.stringify(covered) ||
+        !requiredPages.every(name => covered.includes(name)) ||
+        !pages.every(row =>
+          originalHashes.get(row.name) === row.sourceSHA256) ||
+        summary.requiredInteractivePages !== requiredPages.length) {
+      return false;
+    }
   }
   let passed = 0;
   let deferred = 0;

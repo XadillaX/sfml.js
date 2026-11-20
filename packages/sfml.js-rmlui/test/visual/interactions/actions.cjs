@@ -117,6 +117,9 @@ async function run({ context, document, system, actions, capture }) {
         context.processKeyDown(Number(target));
         context.processKeyUp(Number(target));
         break;
+      case 'text':
+        context.processTextInput(target);
+        break;
       case 'property':
         assert.ok(element(document, target).setProperty(first, second));
         break;

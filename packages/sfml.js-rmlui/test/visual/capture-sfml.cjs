@@ -48,6 +48,8 @@ function elements(element, nodePath = '0', result = [], detailed = false) {
       ? [ bounds.p0.x, bounds.p0.y, bounds.p1.x, bounds.p1.y ] : null,
   };
   if (detailed) {
+    snapshot.value = [ 'input', 'textarea', 'select' ].includes(element.tagName)
+      ? element.getValue() : null;
     snapshot.scrollOffset = [ element.scrollLeft, element.scrollTop ];
     snapshot.pseudo = Object.fromEntries(
       [ 'hover', 'active', 'checked', 'drag', 'focus', 'focus-visible' ]

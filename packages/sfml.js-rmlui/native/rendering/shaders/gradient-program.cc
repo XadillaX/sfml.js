@@ -43,7 +43,8 @@ std::string Color(const Rml::ColourbPremultiplied& color) {
     if (i != 0) {
       result += ",";
     }
-    result += Number(static_cast<float>(color[i]) / 255.f);
+    // Match GL3's ConvertToColorf, including the float rounding of its scale.
+    result += Number((1.f / 255.f) * static_cast<float>(color[i]));
   }
   return result + ")";
 }
@@ -154,6 +155,12 @@ void main()
     return program + "gl_FragColor = gl_Color * " + Color(stops.back().color) +
            ";\n}\n";
   }
+  if (stops.size() > 1) {
+    // Runtime edges preserve GL3 smoothstep arithmetic. Constant-folded edges
+    // can change final byte rounding even when their numeric values agree.
+    program.insert(0, "uniform float stopPositions[" +
+                          std::to_string(stops.size()) + "];\n");
+  }
   if (gradient.repeating) {
     program += "t = " + Number(first) + " + mod(t - " + Number(first) + ", " +
                Number(last - first) + ");\n";
@@ -162,9 +169,13 @@ void main()
   for (size_t i = 1; i < stops.size(); ++i) {
     const float begin = stops[i - 1].position.number;
     const float end = stops[i].position.number;
-    const std::string weight = begin == end ? "step(" + Number(end) + ", t)"
-                                            : "smoothstep(" + Number(begin) +
-                                                  ", " + Number(end) + ", t)";
+    const std::string previous =
+        "stopPositions[" + std::to_string(i - 1) + "]";
+    const std::string current = "stopPositions[" + std::to_string(i) + "]";
+    const std::string weight = begin == end
+                                   ? "step(" + current + ", t)"
+                                   : "smoothstep(" + previous + ", " + current +
+                                         ", t)";
     program +=
         "color = mix(color, " + Color(stops[i].color) + ", " + weight + ");\n";
   }

@@ -6,7 +6,7 @@
     768
   ],
   "pixelPolicy": "every RGB channel within one byte at the same pixel; no spatial tolerance",
-  "acceptancePolicy": "pinned-upstream-parity-v1",
+  "acceptancePolicy": "pinned-upstream-parity-v2",
   "pages": [
     {
       "name": "acid1",
@@ -40,7 +40,17 @@
         "the final paragraph clears both equal-height float columns"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original independently named ACID radio controls both receive mouse selection"
+        ],
+        "assertionFailures": {},
+        "frames": 3,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -95,7 +105,7 @@
         "asymmetric border widths and colors, rounded cutouts and two-line inline border"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -148,7 +158,7 @@
         "content versus border dimensions, 50%/23.3% adjacent floats and filled no-scrollbar box"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -201,7 +211,17 @@
         "curved parent cutouts, intact borders and nested B/C overflow removal"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "all three nested handles move and restore; rounded outer clips retain colored backgrounds"
+        ],
+        "assertionFailures": {},
+        "frames": 7,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -353,7 +373,7 @@
         "left/right/both clearance goes below all intended floats; none remains between both rectangles"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -406,7 +426,7 @@
         "both inline ancestors split around the full-width block; Z starts on the next line"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -692,7 +712,17 @@
         "250/50 yellow drop shadow is present for opaque captured backdrops"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -752,7 +782,17 @@
         "unfiltered outer atlas pixel is intact"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "effect and background handles move independently; reducing blur radius increases visible detail"
+        ],
+        "assertionFailures": {},
+        "frames": 7,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -808,7 +848,17 @@
         "yellow halo survives beyond the rounded backdrop boundary"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "effect and background handles move independently; reducing blur radius increases visible detail"
+        ],
+        "assertionFailures": {},
+        "frames": 7,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -863,7 +913,17 @@
         "white 200x70dp box and two yellow pixels at the declared 100px shadow offset"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -920,7 +980,17 @@
         "red box and blurred outside edge render; original declared missing blue overflow limitation remains"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1006,7 +1076,17 @@
         "sepia matrix applies to backdrop as well as foreground; all image masks fade corners"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1176,7 +1256,17 @@
         "50dp items, absolute right/bottom anchor, auto margins and reverse wrapping"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1450,7 +1540,17 @@
           "actualPNGHash": "9abdfd9f11b9112e96d389da80733c28dc6a934d0c53ef05d7e566814d25cc0e"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1531,7 +1631,18 @@
           "actualPNGHash": "be64be985b64577b327f5165168e748aaacc5fd8c03cd26a57ccd15c27c7fc5f"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels",
+          "1 original fields receive Home, text and four Backspaces with exact value/focus"
+        ],
+        "assertionFailures": {},
+        "frames": 7,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1595,7 +1706,17 @@
         "normal, absolute and floated flexboxes retain 40% width and 20/60/20 shares"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1697,7 +1818,17 @@
           "actualPNGHash": "53dbf9b727a01ace0bc33af76b47ce9d5d3ee29c396d5394102a4c739ff658d4"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1758,7 +1889,17 @@
         "170/115/70dp inline-flex widths, wrapped third item and three-item column"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1832,7 +1973,17 @@
           "actualPNGHash": "ec873ce175b7aa5fde44fc8ab486a3414f9950b8e35dd46e79b29102d49ba6dc"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1893,7 +2044,17 @@
         "nested flex widths fit content plus two 30px paddings and 1px borders"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -1946,7 +2107,17 @@
         "both 3x3 grids shrink to 210px with 50px cells and 10px margins"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2016,7 +2187,7 @@
           "actualPNGHash": "c4e873cd16a5bc970a79d9fda49b09175592bd6800d8b8ff20dcf2bf8984a611"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2080,7 +2251,7 @@
         "ordinary paragraph wraps beside float; clear and new BFC avoid preceding float"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2133,7 +2304,17 @@
         "normal BFC overlaps float extent; flow-root border box excludes external float"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2186,7 +2367,17 @@
         "ordinary box excludes float height; overflow:auto and flow-root contain it equally"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2255,7 +2446,17 @@
         "all five floats preserve 150x70px content and following word clears right margin"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2308,7 +2509,17 @@
         "380px float plus border/padding/margin forces narrow words onto following lines"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2361,7 +2572,26 @@
         "34 accumulated fractional boxes are adjacent and expose no red gaps"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "fail",
+        "assertions": [],
+        "assertionFailures": {
+          "sfml": {
+            "message": "('zoom-in', 'fractional accumulation exposes red')",
+            "validator": "interactions/validators/additional.py",
+            "line": 93
+          },
+          "gl3": {
+            "message": "('zoom-in', 'fractional accumulation exposes red')",
+            "validator": "interactions/validators/additional.py",
+            "line": 93
+          }
+        },
+        "frames": 6,
+        "evidence": "comparison.json",
+        "bindingStatus": "upstream-failure-deferred",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2439,7 +2669,26 @@
           "actualPNGHash": "350b19c4799540f9da7666ac0b8e7ce26db7394cfbc9f203c6ef75e9288d38eb"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "fail",
+        "assertions": [],
+        "assertionFailures": {
+          "sfml": {
+            "message": "('zoom-out', 'fractional accumulation exposes red')",
+            "validator": "interactions/validators/additional.py",
+            "line": 93
+          },
+          "gl3": {
+            "message": "('zoom-out', 'fractional accumulation exposes red')",
+            "validator": "interactions/validators/additional.py",
+            "line": 93
+          }
+        },
+        "frames": 6,
+        "evidence": "comparison.json",
+        "bindingStatus": "upstream-failure-deferred",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2500,7 +2749,17 @@
         "34 accumulated fractional boxes are adjacent and expose no red gaps"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "moving and 0.75/1/1.25 density preserve fractional accumulation without red gaps"
+        ],
+        "assertionFailures": {},
+        "frames": 6,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2570,7 +2829,7 @@
           "actualPNGHash": "d9b025e76538678a5681a9baa66e5931d9425e61d44119317794d49b876c692b"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2648,7 +2907,7 @@
           "actualPNGHash": "96f813028a6d289c3136ddc7c3d5c13c537c009af16ce99b0cbd75b303d9abdd"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2726,7 +2985,7 @@
           "actualPNGHash": "cd42f6282fdddd1e51e5a98438124cd95f4ce664263d4d672ecae2f082d8757b"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2804,7 +3063,7 @@
           "actualPNGHash": "14b70a18e1385bde546fa040b97763b8ed9e78a497be81d508b8235720b6aa0c"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2882,7 +3141,7 @@
           "actualPNGHash": "acd86497abf0f4c1e20666504be7d041aca1e0676b38342fe33298b12990da18"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -2960,7 +3219,7 @@
           "actualPNGHash": "522c4a5fea297dbda849c2ad70e3b8f1fb96278f6d0f72c7e41c70c46896aeab"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3038,7 +3297,7 @@
           "actualPNGHash": "77e798d9e175e19c495eef8fca683b4143d81242e3635c213b7c5a511a668538"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3116,7 +3375,7 @@
           "actualPNGHash": "9e65368b4534ed32e5590c0d1ddf54adef0d8aaa52dcdc0c024420f322431c82"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3197,7 +3456,7 @@
           "actualPNGHash": "b64bf13d8769194d447e3b2d4529ebe3d770a7129f0ee90256d68e3fa5b5f8a2"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3330,7 +3589,7 @@
         "all seven attribute/CSS image sizes, including rectangular overrides"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3385,7 +3644,17 @@
       ],
       "contentAssertions": [],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3465,7 +3734,7 @@
         "eleven shrink-to-fit nested inline blocks; last-line baselines align with both adjacent text nodes"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3518,7 +3787,17 @@
         "all nested spans retain their widths/edges; only inline-blocks add margin-box baseline spacing"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 5,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3571,7 +3850,17 @@
         "three wrapped line fragments retain only opening/closing horizontal border and padding"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3688,7 +3977,17 @@
         "nested inline borders split at block/break boundaries using exact 42/84px line offsets"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3741,7 +4040,17 @@
         "14/30/50px inline fonts retain baseline/middle/text-top offsets and 10px subscript shift"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3814,7 +4123,17 @@
         "three normal inline baselines; scrolling bottom-edge baseline and exact -12px/center correction"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3883,7 +4202,17 @@
         "three outer floats, eight inline floats, exact clear-left stacking and the final 100px atomic inline box"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -3936,7 +4265,17 @@
         "top/bottom/center subtrees align to their containing line root; explicit break produces two bordered fragments separated by 4em"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4129,7 +4468,17 @@
         "82px abc aligns left/center/right; nested bb independently uses 2em spacing"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4185,7 +4534,7 @@
         "horizontal alpha mask fades monotonically and composites at 50%"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4549,7 +4898,7 @@
         "opaque/25%/zero/byte-alpha/combined opacity on glyphs and red outline passes"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4602,7 +4951,17 @@
         "all four translated/untranslated windows have identical full pixels and nested extents"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "all four transformed windows obey zero edge margins, resize constraints and reversible nested scrolling"
+        ],
+        "assertionFailures": {},
+        "frames": 25,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4676,7 +5035,7 @@
           "actualPNGHash": "399df4e20659a4463a56b906fbd542a35afaa5375a81d3831a05f63999ea06b2"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4737,7 +5096,7 @@
         "deepest eligible container catches overflow and exactly three intended scrollbar tracks render"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4790,7 +5149,17 @@
         "inline 24dp boxes retain 40dp line layout and declared relative offsets"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4843,7 +5212,17 @@
         "inline 24dp boxes retain 40dp line layout and declared relative offsets"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4896,7 +5275,17 @@
         "130dp right float retains independent line layout and declared clearing"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -4949,7 +5338,17 @@
         "130dp right float retains independent line layout and declared clearing"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5000,7 +5399,17 @@
       ],
       "contentAssertions": [],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5090,7 +5499,17 @@
         "absolute 200dp top/left/width removes outer text from normal flow"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5141,7 +5560,17 @@
       ],
       "contentAssertions": [],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5241,7 +5670,17 @@
         "absolute child of static inline parent anchored to document"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5294,7 +5733,17 @@
         "20dp change bar offset remains anchored to its paragraph line"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5523,7 +5972,17 @@
         "purple/green centered pair and all eight color groups retain declared visual order"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5580,7 +6039,7 @@
         "all solid/alpha/sprite/filter/gradient cells preserve white, gray and black"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5642,7 +6101,7 @@
         "literal 60% disc compositing"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5687,8 +6146,8 @@
         {
           "name": "renderer_alpha_blending_03",
           "pixelComparison": {
-            "maxChannelDifference": 0,
-            "differentPixels": 0,
+            "maxChannelDifference": 1,
+            "differentPixels": 246,
             "pixelsBeyondOneByte": 0,
             "pass": true
           },
@@ -5698,7 +6157,7 @@
             0
           ],
           "referencePNGHash": "c927c66ed152de0a68a6b37da522a57cd8a9951f03fd0fd5c6cc05650055d8b2",
-          "actualPNGHash": "c927c66ed152de0a68a6b37da522a57cd8a9951f03fd0fd5c6cc05650055d8b2"
+          "actualPNGHash": "4d3277d581ea8c1e9b1281b327270bafa43c82891006091d625ae546b65b8331"
         }
       ],
       "contentAssertions": [
@@ -5706,7 +6165,7 @@
         "contrast/opacity order preserves the same colors and alpha"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5777,7 +6236,18 @@
         "float/block/flex/table/absolute progress and textarea retain six internal sizes and text overflow"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels",
+          "6 original fields receive Home, text and four Backspaces with exact value/focus"
+        ],
+        "assertionFailures": {},
+        "frames": 22,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -5846,7 +6316,17 @@
         "all 24 intrinsic/constrained image sizes and ratios, equal gaps, borders and 30/70 inputs"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "2 original fields receive Home, text and four Backspaces with exact value/focus"
+        ],
+        "assertionFailures": {},
+        "frames": 7,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6208,8 +6688,8 @@
         {
           "name": "shader_conic_gradient--scroll-0-1",
           "pixelComparison": {
-            "maxChannelDifference": 1,
-            "differentPixels": 2,
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
             "pixelsBeyondOneByte": 0,
             "pass": true
           },
@@ -6219,13 +6699,13 @@
             401
           ],
           "referencePNGHash": "c20e102950eee49f849c57cb25e2e32021e690f04caced9479966d856027bcf9",
-          "actualPNGHash": "c931c01628304728c410bc08672666a6d7eca2400b92597e1239510ed98dff39"
+          "actualPNGHash": "c20e102950eee49f849c57cb25e2e32021e690f04caced9479966d856027bcf9"
         },
         {
           "name": "shader_conic_gradient",
           "pixelComparison": {
-            "maxChannelDifference": 1,
-            "differentPixels": 2,
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
             "pixelsBeyondOneByte": 0,
             "pass": true
           },
@@ -6235,7 +6715,7 @@
             0
           ],
           "referencePNGHash": "22ac3dc1250ef2f71006579fb59e14c3786a902655798be08a78eef5f80ebc62",
-          "actualPNGHash": "b38cb4a8f663e871b21835715260390406474c59d8598b10709a909bef04d455"
+          "actualPNGHash": "22ac3dc1250ef2f71006579fb59e14c3786a902655798be08a78eef5f80ebc62"
         }
       ],
       "contentAssertions": [
@@ -6244,7 +6724,18 @@
         "repeating conic colors and translucent spinner sectors at the captured time"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original gradient button receives hover, press, release and exit without moving layout",
+          "conic spinner changes painted pixels at two later deterministic times"
+        ],
+        "assertionFailures": {},
+        "frames": 8,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6303,8 +6794,8 @@
         {
           "name": "shader_linear_gradient",
           "pixelComparison": {
-            "maxChannelDifference": 1,
-            "differentPixels": 2,
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
             "pixelsBeyondOneByte": 0,
             "pass": true
           },
@@ -6314,7 +6805,7 @@
             0
           ],
           "referencePNGHash": "f84fa85b1890da6e9ac6dc10985b9acedbb1ee449b4be24e8f566de4e4ff8198",
-          "actualPNGHash": "3682c6f74212b711f7591e56668cd1089dc4ff4fb619d60005bc5df270dbee13"
+          "actualPNGHash": "f84fa85b1890da6e9ac6dc10985b9acedbb1ee449b4be24e8f566de4e4ff8198"
         }
       ],
       "contentAssertions": [
@@ -6323,7 +6814,7 @@
         "premultiplied transparency equals white interpolation and overlapping alpha darkens"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6398,8 +6889,8 @@
         {
           "name": "shader_radial_gradient",
           "pixelComparison": {
-            "maxChannelDifference": 1,
-            "differentPixels": 2,
+            "maxChannelDifference": 0,
+            "differentPixels": 0,
             "pixelsBeyondOneByte": 0,
             "pass": true
           },
@@ -6409,7 +6900,7 @@
             0
           ],
           "referencePNGHash": "d3a1b4457164a71e83dc975cdcf256bd0ef2d73b50b2882615acfd88941b4b74",
-          "actualPNGHash": "95bb68626a33fa07fa718919b2504eab8ca07572a92c5ed019cbc446187da5b0"
+          "actualPNGHash": "d3a1b4457164a71e83dc975cdcf256bd0ef2d73b50b2882615acfd88941b4b74"
         }
       ],
       "contentAssertions": [
@@ -6417,7 +6908,17 @@
         "four sharp centers, eight repeating forms and six green degenerate-radius cases"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original gradient button receives hover, press, release and exit without moving layout"
+        ],
+        "assertionFailures": {},
+        "frames": 5,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6472,7 +6973,7 @@
         "all six inline/absolute/float/inline-block boxes fit the same A BOX text"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6525,7 +7026,7 @@
         "absolute child excluded from width; relative shift preserves width; left/right floats symmetric"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6578,7 +7079,17 @@
         "equal text groups have equal fitted sizes; asymmetric edges add 22px; long text fits available width"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6631,7 +7142,7 @@
         "five block/flex/table definite 100dp widths fit borders and expose no red"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6684,7 +7195,17 @@
         "AA paints above normal/negative-z boxes but below relative/zero-z/inline-block/flex B"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6741,7 +7262,17 @@
         "positioned pink box is hidden only by the second row's later filtered green box"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6811,7 +7342,18 @@
           "actualPNGHash": "e317be48ac8cc3fd748357f0fd43fb9521327787c4ad364b7fc383cc90c961dc"
         }
       ],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels",
+          "original table row hover changes pixels and exits its pseudo state"
+        ],
+        "assertionFailures": {},
+        "frames": 6,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6875,7 +7417,17 @@
         "four column declarations yield identical 50dp end columns and 5dp gaps; color table symmetric"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -6944,7 +7496,17 @@
         "two-row/two-column spans share correct edges; long unbroken cell produces horizontal overflow"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7073,7 +7635,17 @@
         "unparented cells form two implicit rows around explicit row with preserved spans"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7126,7 +7698,17 @@
         "inline tables share a first-row baseline, 40/25dp columns and 5dp column gaps"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "original document handle grows/shrinks width inside declared constraints and restores all boxes and pixels"
+        ],
+        "assertionFailures": {},
+        "frames": 4,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7179,7 +7761,17 @@
         "left/center/right input glyphs and wrapped line-break align to content; nowrap clips overflowing lines and single-row textarea reserves its vertical scrollbar"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "12 original fields receive Home, text and four Backspaces with exact value/focus"
+        ],
+        "assertionFailures": {},
+        "frames": 37,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7305,7 +7897,17 @@
         "short font shadows may escape; overflowing/rounded inputs clip to content while overflowing/rounded textareas clip to padding and expose required scrollbar axes"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": {
+        "status": "pass",
+        "assertions": [
+          "11 original fields receive Home, text and four Backspaces with exact value/focus"
+        ],
+        "assertionFailures": {},
+        "frames": 34,
+        "evidence": "comparison.json",
+        "bindingStatus": "pass",
+        "bindingAccepted": true
+      },
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7520,7 +8122,7 @@
       ],
       "contentAssertions": [],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7616,7 +8218,7 @@
         "six declared widths and literal line counts, long-word wrapping and single-glyph zero-width overflow"
       ],
       "matchReferenceFrames": [],
-      "interactionAssertions": "pending",
+      "interactionAssertions": "no live interaction declared in original source",
       "platform": "macOS arm64; Linux/Windows unverified",
       "contentResults": {
         "sfml": {
@@ -7653,12 +8255,15 @@
     "upstreamMatchFeaturePass": 18,
     "upstreamMatchFeatureFail": 0,
     "upstreamContentDisagreements": 4,
-    "interactionPass": 23,
-    "interactionFail": 2,
+    "interactionPass": 79,
+    "interactionFail": 4,
     "deferredUpstreamFailures": 4,
     "bindingRegressions": 0,
     "bindingContentAccepted": true,
     "bindingAccepted": true,
+    "requiredInteractivePages": 81,
+    "coveredInteractivePages": 81,
+    "missingInteractivePages": [],
     "wholeCorpusAccepted": false
   }
 }

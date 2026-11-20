@@ -53,10 +53,12 @@ void RenderInterfaceSFML::BlitPostRegion(const sf::Texture& source,
                      static_cast<float>(output_size.y)});
     post_copy_shader_.setUniform("targetSize", sf::Vector2f(source_size));
     shader = &post_copy_shader_;
-  } else if (shader == &blur_shader_) {
+  }
+  if (shader == &post_copy_shader_ || shader == &blur_shader_) {
     for (const auto& target : post_targets_) {
       if (target && &target->getTexture() == &source) {
-        sampling.emplace(target.get(), true);
+        sampling.emplace(target.get(),
+                         shader == &blur_shader_ || !manual_post_sampling_);
         break;
       }
     }
