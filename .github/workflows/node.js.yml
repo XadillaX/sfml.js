@@ -32,6 +32,7 @@ jobs:
         sudo apt-get install -y build-essential xvfb xauth libgl1-mesa-dev libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libfreetype-dev libflac-dev libvorbis-dev libopenal-dev libmbedtls-dev
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build --verbose
+    - run: node --test packages/sfml.js-interop/test/native-install.test.cjs
     - run: npm --prefix packages/sfml.js-interop run cpplint
     - run: npm --prefix packages/sfml.js run cpplint
     - run: npm --prefix packages/sfml.js run lint

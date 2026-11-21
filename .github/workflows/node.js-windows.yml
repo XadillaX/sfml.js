@@ -119,6 +119,7 @@ jobs:
         Set-Location $env:GITHUB_WORKSPACE
     - run: node common/scripts/install-run-rush.js install
     - run: node common/scripts/install-run-rush.js build --verbose
+    - run: node --test packages/sfml.js-interop/test/native-install.test.cjs
     - run: npm --prefix packages/sfml.js run lint
     - run: npm --prefix packages/sfml.js run test:types
     - run: npm --prefix packages/sfml.js run test:runtime

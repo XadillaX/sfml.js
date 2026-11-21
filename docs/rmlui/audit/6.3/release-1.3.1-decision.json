@@ -1,0 +1,23 @@
+{
+  "version": "1.3.1",
+  "accepted_by_user": true,
+  "acceptance_basis": "Continuation of the authorized npm publication after the user reported that the released Core package failed to install. This decision applies only to the native installation repair and retains the technical acceptance gaps recorded for 1.3.0.",
+  "source_baseline": "dbf38b07c",
+  "release_continuation": "Add Core and ImGui install lifecycles, ship their common builder through interop, prepare the SDK before ImGui dependency validation, and keep repository editor tooling optional for consumers.",
+  "source_fingerprint": "d8bff9b832734c0fe09b27ede92686c7254d8c550b8764a98b72898cb2160a92",
+  "source_scope": "Tracked sources of all four lockstep packages; only changelogs, lockstep version metadata, and the publication gate and its tests are normalized or excluded.",
+  "deferred_gates": [
+    "Core scope and independent review",
+    "Physical and cross-platform IME",
+    "Whole delivery acceptance"
+  ],
+  "desktop_acceptance_record": "desktop-ime-attempt.json",
+  "desktop_user_decision": "你就当它完成了吧",
+  "retained_requirements": [
+    "All original visual, input, pixel, layout and editor acceptance thresholds",
+    "Successful main-branch CI on Linux, macOS and Windows before publication",
+    "Actual Core and ImGui install lifecycle execution in the existing build directories",
+    "Packaged install helpers must resolve without repository tools",
+    "All four npm packages must publish matching 1.3.1 versions and dependencies"
+  ]
+}

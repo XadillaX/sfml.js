@@ -23,10 +23,11 @@
     }
   },
   "scripts": {
+    "install": "npm run build:native",
     "download:deps": "node tools/deps_downloader.cjs",
     "prebuild:native": "npm run download:deps",
-    "build:native": "node ../../tools/native-build.cjs",
-    "postbuild:native": "node ../../tools/configure-lsp.cjs",
+    "build:native": "node -e \"require('sfml.js-interop/native-build').build()\"",
+    "postbuild:native": "node -e \"require('sfml.js-interop/native-build').configureLsp()\"",
     "cpplint": "cpplint --quiet --recursive native",
     "prebuild:ts": "npm run download:deps",
     "build:ts": "tsc -p tsconfig.json",

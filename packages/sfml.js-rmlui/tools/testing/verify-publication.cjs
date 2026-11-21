@@ -7,9 +7,7 @@ const { execFileSync } = require('node:child_process');
 
 const audit = path.resolve(__dirname, '../../../../docs/rmlui/audit/6.3');
 const root = path.resolve(__dirname, '../../../..');
-const releaseChange = path.join(
-  root, 'common/changes/sfml.js-rmlui/release-1.3.0.json'
-);
+const releaseChanges = path.join(root, 'common/changes/sfml.js-rmlui');
 const parityPolicy = require('../../test/visual/upstream-failures.json');
 const { catalog } = require('../../test/visual/catalog.cjs');
 const { required } = require('../../test/visual/interactions/coverage.cjs');
@@ -161,7 +159,8 @@ function readEvidence() {
       name, JSON.parse(fs.readFileSync(path.join(audit, filename), 'utf8')),
     ])
   );
-  const decision = path.join(audit, 'release-1.3.0-decision.json');
+  const decision = path.join(audit,
+    `release-${readCandidate().version}-decision.json`);
   if (fs.existsSync(decision)) {
     evidence.releaseDecision = JSON.parse(fs.readFileSync(decision, 'utf8'));
   }
@@ -214,17 +213,33 @@ function sourceFingerprint(revision = 'HEAD') {
 }
 
 /**
- * Resolve the pending minor release before Rush applies lockstep versions.
+ * Resolve pending release changes before Rush applies lockstep versions.
  * @return {object} Candidate version and tracked source fingerprint.
  */
 function readCandidate() {
   let { version } = require('../../package.json');
-  if (version === '1.2.1' && fs.existsSync(releaseChange)) {
-    const { changes } = JSON.parse(fs.readFileSync(releaseChange, 'utf8'));
-    if (changes.some(change =>
-      change.packageName === 'sfml.js-rmlui' && change.type === 'minor')) {
-      version = '1.3.0';
+  const priorities = [ 'patch', 'minor', 'major' ];
+  let bump = -1;
+  if (fs.existsSync(releaseChanges)) {
+    for (const name of fs.readdirSync(releaseChanges)) {
+      if (!name.endsWith('.json')) {
+        continue;
+      }
+      const { changes } = JSON.parse(fs.readFileSync(
+        path.join(releaseChanges, name), 'utf8'));
+      for (const change of changes || []) {
+        if (change.packageName === 'sfml.js-rmlui') {
+          bump = Math.max(bump, priorities.indexOf(change.type));
+        }
+      }
     }
+  }
+  if (bump !== -1) {
+    const parts = version.split('.').map(Number);
+    const index = 2 - bump;
+    parts[index] += 1;
+    parts.fill(0, index + 1);
+    version = parts.join('.');
   }
   return { version, sourceFingerprint: sourceFingerprint() };
 }

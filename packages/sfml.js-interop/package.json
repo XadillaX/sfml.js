@@ -18,6 +18,7 @@
     "index.js",
     "paths.js",
     "tools/lib_downloader*.cjs",
+    "tools/native-build.cjs",
     "tools/sfml/*.cjs",
     "tools/patches/",
     "tools/verify.cjs",
@@ -39,6 +40,7 @@
   "main": "./index.js",
   "exports": {
     ".": "./index.js",
-    "./paths": "./paths.js"
+    "./paths": "./paths.js",
+    "./native-build": "./tools/native-build.cjs"
   }
 }

@@ -39,6 +39,11 @@ approved.releaseDecision = {
 assert.deepEqual(publicationFailures(approved, candidate), []);
 console.log('PASS publication-current-release-user-decision-is-honored');
 
+assert.ok(publicationFailures(approved, {
+  ...candidate, version: '1.3.1',
+}).length > 0);
+console.log('PASS publication-patch-release-requires-its-own-decision');
+
 for (const mutate of [
   evidence => {
     delete evidence.releaseDecision;

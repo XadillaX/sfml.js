@@ -23,12 +23,13 @@
     }
   },
   "scripts": {
+    "install": "npm run build:native",
     "download:sfml": "node tools/ensure-sfml.cjs",
     "generate:window": "node tools/generate-window-constants.cjs",
     "generate:network": "node tools/generate-network-constants.cjs",
     "prebuild:native": "npm run download:sfml",
-    "build:native": "npm run generate:window && node ../../tools/native-build.cjs",
-    "postbuild:native": "node ../../tools/configure-lsp.cjs",
+    "build:native": "npm run generate:window && node -e \"require('sfml.js-interop/native-build').build()\"",
+    "postbuild:native": "node -e \"require('sfml.js-interop/native-build').configureLsp()\"",
     "prebuild:ts": "npm run download:sfml",
     "build:ts": "npm run generate:window && npm run generate:network && tsc -p tsconfig.json",
     "build": "npm run build:native && npm run build:ts",

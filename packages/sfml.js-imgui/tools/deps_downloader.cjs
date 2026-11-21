@@ -4,6 +4,7 @@ const fs = require('node:fs/promises');
 const syncFs = require('node:fs');
 const path = require('node:path');
 const download = require('download');
+const { execFileSync } = require('node:child_process');
 
 const versions = {
   imgui: 'v1.91.9b',
@@ -179,6 +180,9 @@ function validateInterop() {
 }
 
 async function main() {
+  const { root } = require('sfml.js-interop/paths');
+  execFileSync(process.execPath,
+    [ path.join(root, 'tools/lib_downloader.cjs') ], { stdio: 'inherit' });
   validateInterop();
   await fs.mkdir(thirdParty, { recursive: true });
 
