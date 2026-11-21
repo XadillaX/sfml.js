@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_TEXTURE_RESOURCE_H_
+#define PACKAGES_SFML_JS_NATIVE_TEXTURE_RESOURCE_H_
 
 #include "numeric-fields.h"
 #include <SFML/Graphics/Texture.hpp>
@@ -58,3 +59,5 @@ inline v8::Local<v8::Object> DescribeTexture(const sf::Texture& texture) {
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_TEXTURE_RESOURCE_H_

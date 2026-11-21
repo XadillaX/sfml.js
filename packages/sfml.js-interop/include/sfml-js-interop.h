@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_INTEROP_INCLUDE_SFML_JS_INTEROP_H_
+#define PACKAGES_SFML_JS_INTEROP_INCLUDE_SFML_JS_INTEROP_H_
 
 // Public native surface for downstream addons. Bump SFMLJS_INTEROP_VERSION
 // when a public symbol or the SharedHandle layout changes.
@@ -47,3 +48,5 @@ inline sf::RenderWindow* RenderWindowFrom(v8::Local<v8::Value> value) {
 
 }  // namespace interop
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_INTEROP_INCLUDE_SFML_JS_INTEROP_H_

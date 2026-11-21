@@ -1,7 +1,8 @@
 // Copyright (c) 2026 XadillaX
 // SPDX-License-Identifier: MIT
 
-#pragma once
+#ifndef PACKAGES_SFML_JS_IMGUI_NATIVE_INTEROP_H_
+#define PACKAGES_SFML_JS_IMGUI_NATIVE_INTEROP_H_
 
 #include <nan.h>
 #include <sfml-js-interop.h>
@@ -17,3 +18,5 @@ inline sf::RenderWindow* GetRenderWindow(v8::Local<v8::Value> value) {
 }
 
 }  // namespace sfmlimgui
+
+#endif  // PACKAGES_SFML_JS_IMGUI_NATIVE_INTEROP_H_

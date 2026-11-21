@@ -152,11 +152,11 @@ void EvaluateVector(const CallbackInfo& info) {
     using T = decltype(V::x);
     constexpr bool is3d = requires { vector.z; };
     const auto& other = *rhs->owner();
-    bool canDivide = other.x != 0 && other.y != 0;
+    bool can_divide = other.x != 0 && other.y != 0;
     if constexpr (is3d) {
-      canDivide = canDivide && other.z != 0;
+      can_divide = can_divide && other.z != 0;
     }
-    if (!canDivide && !std::is_same_v<T, bool>) {
+    if (!can_divide && !std::is_same_v<T, bool>) {
       return Nan::ThrowRangeError("Vector divisor cannot be zero");
     }
     auto result = Nan::New<v8::Object>();
@@ -170,7 +170,7 @@ void EvaluateVector(const CallbackInfo& info) {
     }
     sfmljs::SetVector(
         result, "componentWiseMul", vector.componentWiseMul(other));
-    if (canDivide) {
+    if (can_divide) {
       sfmljs::SetVector(
           result, "componentWiseDiv", vector.componentWiseDiv(other));
     }
@@ -310,8 +310,8 @@ NAN_METHOD(EvaluateVertex) {
   if (!position) return;
   auto* color = ColorHandle::From(info[1]);
   if (!color) return;
-  auto* texCoords = sfmljs::SharedHandle<sf::Vector2f>::From(info[2]);
-  if (!texCoords) return;
+  auto* tex_coords = sfmljs::SharedHandle<sf::Vector2f>::From(info[2]);
+  if (!tex_coords) return;
   auto result = Nan::New<v8::Object>();
   const auto set = [&](const char* name, const sf::Vertex& vertex) {
     Nan::Set(result, Nan::New(name).ToLocalChecked(), VertexFields(vertex))
@@ -321,10 +321,10 @@ NAN_METHOD(EvaluateVertex) {
   set("position", sf::Vertex{*position->owner()});
   set("color", sf::Vertex{*position->owner(), *color->owner()});
   set("texCoords",
-      sf::Vertex{*position->owner(), *color->owner(), *texCoords->owner()});
+      sf::Vertex{*position->owner(), *color->owner(), *tex_coords->owner()});
   set("defaultColor",
       sf::Vertex{.position = *position->owner(),
-                 .texCoords = *texCoords->owner()});
+                 .texCoords = *tex_coords->owner()});
   info.GetReturnValue().Set(result);
 }
 

@@ -16,7 +16,7 @@ NAN_METHOD(PaintWindow) {
   auto* window = sfmljs::SharedHandle<sf::Window>::From(info[0]);
   if (!window) return;
   if (!window->owner()->setActive()) return Nan::ThrowError("Inactive window");
-  const auto clearColor = reinterpret_cast<decltype(&glClearColor)>(
+  const auto clear_color = reinterpret_cast<decltype(&glClearColor)>(
       sf::Context::getFunction("glClearColor"));
   const auto clear =
       reinterpret_cast<decltype(&glClear)>(sf::Context::getFunction("glClear"));
@@ -28,24 +28,24 @@ NAN_METHOD(PaintWindow) {
       sf::Context::getFunction("glScissor"));
   const auto size = window->owner()->getSize();
   disable(GL_SCISSOR_TEST);
-  clearColor(1, 0, 0, 1);
+  clear_color(1, 0, 0, 1);
   clear(GL_COLOR_BUFFER_BIT);
   enable(GL_SCISSOR_TEST);
   scissor(0, size.y / 2, size.x, size.y - size.y / 2);
-  clearColor(0, 0, 1, 1);
+  clear_color(0, 0, 1, 1);
   clear(GL_COLOR_BUFFER_BIT);
   disable(GL_SCISSOR_TEST);
 }
 
 NAN_METHOD(ReadTextureBinding) {
-  const auto getInteger = reinterpret_cast<decltype(&glGetIntegerv)>(
+  const auto get_integer = reinterpret_cast<decltype(&glGetIntegerv)>(
       sf::Context::getFunction("glGetIntegerv"));
-  const auto getFloat = reinterpret_cast<decltype(&glGetFloatv)>(
+  const auto get_float = reinterpret_cast<decltype(&glGetFloatv)>(
       sf::Context::getFunction("glGetFloatv"));
   GLint binding{};
   GLfloat matrix[16]{};
-  getInteger(GL_TEXTURE_BINDING_2D, &binding);
-  getFloat(GL_TEXTURE_MATRIX, matrix);
+  get_integer(GL_TEXTURE_BINDING_2D, &binding);
+  get_float(GL_TEXTURE_MATRIX, matrix);
   auto result = Nan::New<v8::Object>();
   auto values = Nan::New<v8::Array>(16);
   for (std::uint32_t i = 0; i < 16; ++i) {
@@ -135,10 +135,10 @@ NAN_METHOD(RenderTextureMipmapOracle) {
   if (!info[2]->IsUint32()) return Nan::ThrowTypeError("Expected update mode");
   const auto mode = Nan::To<std::uint32_t>(info[2]).FromJust();
   if (mode > 4) return Nan::ThrowRangeError("Invalid update mode");
-  const sf::Vector2u expectedSize{64, 64};
+  const sf::Vector2u expected_size{64, 64};
   const auto& image = *source->owner()->current;
   const auto& replacement = *patch->owner()->current;
-  if (image.getSize() != expectedSize ||
+  if (image.getSize() != expected_size ||
       replacement.getSize() != image.getSize()) {
     return Nan::ThrowRangeError("Expected 64 x 64 images");
   }

@@ -119,7 +119,7 @@ NAN_METHOD(PrepareText) {
     return sfmljs::ThrowError("Text requires a loaded Font");
   }
   // Retain the previous face until its shaper has been replaced.
-  const auto previousFont = state->font;
+  const auto previous_font = state->font;
   auto& text = state->text;
   text.setFont(source->font);
   state->font = std::move(source);

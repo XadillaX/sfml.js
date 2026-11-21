@@ -25,7 +25,7 @@ NAN_METHOD(CreateShader) {
   if (!context) return;
   try {
     auto owner = context->owner();
-    const auto id = owner->nextId++;
+    const auto id = owner->next_id++;
     auto state = sfmljs::MakeThreadOwned<State>(owner, id);
     owner->shaders.emplace(id, state);
     auto result = Nan::New<v8::Object>();
@@ -36,8 +36,8 @@ NAN_METHOD(CreateShader) {
              Nan::New("buffer").ToLocalChecked(),
              sfmljs::MapShared(info.GetIsolate(),
                                state,
-                               &state->programId,
-                               sizeof(state->programId)))
+                               &state->program_id,
+                               sizeof(state->program_id)))
         .FromJust();
     info.GetReturnValue().Set(result);
   } catch (const std::exception& error) {
@@ -144,23 +144,23 @@ NAN_METHOD(CommitShader) {
   auto* program = ProgramHandle::From(info[1]);
   if (!program) return;
   handle->owner()->current = program->owner();
-  handle->owner()->programId = program->owner()->getNativeHandle();
+  handle->owner()->program_id = program->owner()->getNativeHandle();
   handle->owner()->textures.clear();
 }
 
-template <typename T, std::size_t Size>
+template <typename T, std::size_t size>
 void SetArray(sf::Shader& shader,  // NOLINT(runtime/references)
               const std::string& name,
               const float* data,
               std::size_t count) {
   std::vector<T> values;
   values.reserve(count);
-  for (std::size_t i = 0; i < count; ++i, data += Size) {
-    if constexpr (Size == 2)
+  for (std::size_t i = 0; i < count; ++i, data += size) {
+    if constexpr (size == 2)
       values.emplace_back(data[0], data[1]);
-    else if constexpr (Size == 3)
+    else if constexpr (size == 3)
       values.emplace_back(data[0], data[1], data[2]);
-    else if constexpr (Size == 4)
+    else if constexpr (size == 4)
       values.emplace_back(data[0], data[1], data[2], data[3]);
     else
       values.emplace_back(data);
@@ -303,11 +303,11 @@ NAN_METHOD(SetShaderTexture) {
 #else
     using Location = int (*)(unsigned, const char*);
 #endif
-    const auto locationFunction = reinterpret_cast<Location>(
+    const auto location_function = reinterpret_cast<Location>(
         sf::Context::getFunction("glGetUniformLocation"));
     const auto program = state.current->getNativeHandle();
-    if (!program || !locationFunction) return;
-    const int location = locationFunction(program, name.c_str());
+    if (!program || !location_function) return;
+    const int location = location_function(program, name.c_str());
     GLint maximum{};
     glGetIntegerv(0x8B4D /* GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS */, &maximum);
     const bool accepted =

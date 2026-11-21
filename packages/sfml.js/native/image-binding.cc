@@ -119,7 +119,7 @@ NAN_METHOD(CopyImage) {
   }
 }
 
-enum class ImageJob { LoadFile, LoadMemory, SaveFile, SaveMemory };
+enum class ImageJob { kLoadFile, kLoadMemory, kSaveFile, kSaveMemory };
 
 class ImageWorker final : public sfmljs::AsyncWorker {
  public:
@@ -140,18 +140,18 @@ class ImageWorker final : public sfmljs::AsyncWorker {
     // No V8, NAN object creation, or access to state_->current on this thread.
     try {
       switch (job_) {
-        case ImageJob::LoadFile:
+        case ImageJob::kLoadFile:
           image_ = std::make_shared<sf::Image>();
           ok_ = image_->loadFromFile(Utf8Path(text_));
           break;
-        case ImageJob::LoadMemory:
+        case ImageJob::kLoadMemory:
           image_ = std::make_shared<sf::Image>();
           ok_ = image_->loadFromMemory(input_.data(), input_.size());
           break;
-        case ImageJob::SaveFile:
+        case ImageJob::kSaveFile:
           ok_ = image_->saveToFile(Utf8Path(text_));
           break;
-        case ImageJob::SaveMemory:
+        case ImageJob::kSaveMemory:
           encoded_ = image_->saveToMemory(text_);
           ok_ = encoded_.has_value();
           break;
@@ -167,7 +167,7 @@ class ImageWorker final : public sfmljs::AsyncWorker {
     Nan::HandleScope scope;
     v8::Local<v8::Value> result = Nan::Undefined();
     try {
-      if (job_ == ImageJob::LoadFile || job_ == ImageJob::LoadMemory) {
+      if (job_ == ImageJob::kLoadFile || job_ == ImageJob::kLoadMemory) {
         if (ok_) {
           if (sfmljs::ImageBytes(*image_) > node::Buffer::kMaxLength) {
             SetErrorMessage("Decoded image exceeds the pixel buffer limit");
@@ -176,7 +176,7 @@ class ImageWorker final : public sfmljs::AsyncWorker {
           result = sfmljs::MapImage(v8::Isolate::GetCurrent(), image_);
           state_->current = image_;
         }
-      } else if (job_ == ImageJob::SaveFile) {
+      } else if (job_ == ImageJob::kSaveFile) {
         result = Nan::New(ok_);
       } else if (ok_) {
         auto bytes =
@@ -207,7 +207,7 @@ class ImageWorker final : public sfmljs::AsyncWorker {
   bool ok_{false};
 };
 
-template <ImageJob Job>
+template <ImageJob job>
 NAN_METHOD(QueueImageJob) {
   auto* handle = ImageHandle::From(info[0]);
   if (!handle) return;
@@ -215,7 +215,7 @@ NAN_METHOD(QueueImageJob) {
   try {
     std::string text;
     std::vector<std::uint8_t> input;
-    if constexpr (Job == ImageJob::LoadMemory) {
+    if constexpr (job == ImageJob::kLoadMemory) {
       std::span<const std::uint8_t> bytes;
       if (!sfmljs::ReadImageBytes(info[1], bytes)) return;
       // Snapshot now: caller may mutate, detach, or release input after return.
@@ -227,7 +227,7 @@ NAN_METHOD(QueueImageJob) {
       if (text.find('\0') != std::string::npos) {
         return Nan::ThrowTypeError("Image path or format contains a null byte");
       }
-      if constexpr (Job == ImageJob::LoadFile || Job == ImageJob::SaveFile) {
+      if constexpr (job == ImageJob::kLoadFile || job == ImageJob::kSaveFile) {
         // Capture relative paths at invocation, before process.chdir can occur.
         if (!text.empty()) {
           const auto path =
@@ -237,13 +237,13 @@ NAN_METHOD(QueueImageJob) {
       }
     }
     std::shared_ptr<sf::Image> snapshot;
-    if constexpr (Job == ImageJob::SaveFile || Job == ImageJob::SaveMemory) {
+    if constexpr (job == ImageJob::kSaveFile || job == ImageJob::kSaveMemory) {
       // A shared writable view makes background reads of current a data race.
       snapshot = std::make_shared<sf::Image>(*handle->owner()->current);
     }
     auto callback = std::make_unique<Nan::Callback>(info[2].As<v8::Function>());
     auto worker = std::make_unique<ImageWorker>(callback.get(),
-                                                Job,
+                                                job,
                                                 handle->owner(),
                                                 std::move(snapshot),
                                                 std::move(text),
@@ -263,10 +263,12 @@ NAN_MODULE_INIT(InitializeImage) {
   sfmljs::SetMethod<MaskImage>(target, "maskImage");
   sfmljs::SetMethod<FlipImage>(target, "flipImage");
   sfmljs::SetMethod<CopyImage>(target, "copyImage");
-  sfmljs::SetMethod<QueueImageJob<ImageJob::LoadFile>>(target, "loadImageFile");
-  sfmljs::SetMethod<QueueImageJob<ImageJob::LoadMemory>>(target,
-                                                         "loadImageMemory");
-  sfmljs::SetMethod<QueueImageJob<ImageJob::SaveFile>>(target, "saveImageFile");
-  sfmljs::SetMethod<QueueImageJob<ImageJob::SaveMemory>>(target,
-                                                         "saveImageMemory");
+  sfmljs::SetMethod<QueueImageJob<ImageJob::kLoadFile>>(target,
+                                                        "loadImageFile");
+  sfmljs::SetMethod<QueueImageJob<ImageJob::kLoadMemory>>(target,
+                                                          "loadImageMemory");
+  sfmljs::SetMethod<QueueImageJob<ImageJob::kSaveFile>>(target,
+                                                        "saveImageFile");
+  sfmljs::SetMethod<QueueImageJob<ImageJob::kSaveMemory>>(target,
+                                                          "saveImageMemory");
 }

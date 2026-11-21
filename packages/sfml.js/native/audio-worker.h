@@ -1,7 +1,13 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_AUDIO_WORKER_H_
+#define PACKAGES_SFML_JS_NATIVE_AUDIO_WORKER_H_
 
+#include <array>
 #include <atomic>
+#include <cstdint>
 #include <cstring>
+#include <memory>
+#include <utility>
+#include <vector>
 
 #include "audio-state.h"
 
@@ -65,62 +71,62 @@ struct AudioWorkerState {
   std::atomic<bool> closed{false};
   std::atomic<bool> running{false};
   std::atomic<bool> finish{false};
-  std::atomic<bool> tailDone{false};
+  std::atomic<bool> tail_done{false};
   std::atomic<unsigned> pending{};
   std::atomic<Source*> attached{};
   bool music{};
-  std::uint64_t sampleCount{};
-  std::atomic<std::uint64_t> loopOffset{};
-  std::atomic<std::uint64_t> loopLength{};
+  std::uint64_t sample_count{};
+  std::atomic<std::uint64_t> loop_offset{};
+  std::atomic<std::uint64_t> loop_length{};
   std::atomic<bool> looping{};
   std::atomic<std::uint64_t> generation{1};
   // Stream-only publication sequence: odd while the two seek units are updated.
-  std::atomic<std::uint64_t> seekSequence{};
+  std::atomic<std::uint64_t> seek_sequence{};
   std::atomic<std::int64_t> seek{};
   // Exact interleaved sample position for loop seeks; -1 for explicit times.
-  std::atomic<std::int64_t> seekSample{-1};
+  std::atomic<std::int64_t> seek_sample{-1};
   std::atomic<std::uint64_t> underruns{};
   std::atomic<std::uint64_t> overruns{};
   std::atomic<std::uint64_t> processed{};
   // Used only on the attached Worker thread.
-  std::uint64_t workerGeneration{};
-  bool workerEof{};
+  std::uint64_t worker_generation{};
+  bool worker_eof{};
   bool leased{};
-  unsigned workerOffset{};
+  unsigned worker_offset{};
   std::array<std::int32_t, 8> fields{};
   std::array<std::int64_t, 6> time{};
   // Used only on the SFML consumer thread.
-  bool streamLease{};
-  unsigned outputOffset{};
+  bool stream_lease{};
+  unsigned output_offset{};
   std::int64_t loop{};
 
   AudioWorkerState(unsigned mode,
-                   unsigned blockFrames,
-                   unsigned channelCount,
-                   unsigned sampleRate,
+                   unsigned block_frames,
+                   unsigned channel_count,
+                   unsigned sample_rate,
                    unsigned slots)
       : kind(mode),
-        frames(blockFrames),
-        channels(channelCount),
-        rate(sampleRate),
-        input(slots, blockFrames * channelCount, mode == 2),
-        output(slots, blockFrames * channelCount, mode == 2),
-        silence(mode == 0 ? blockFrames * channelCount : 0) {}
+        frames(block_frames),
+        channels(channel_count),
+        rate(sample_rate),
+        input(slots, block_frames * channel_count, mode == 2),
+        output(slots, block_frames * channel_count, mode == 2),
+        silence(mode == 0 ? block_frames * channel_count : 0) {}
   void Seek(std::int64_t offset, std::int64_t sample = -1) {
     // SFML serializes a stream's seek callbacks. Publish both units together.
-    if (kind == 0) seekSequence.fetch_add(1, std::memory_order_acq_rel);
+    if (kind == 0) seek_sequence.fetch_add(1, std::memory_order_acq_rel);
     seek.store(offset, std::memory_order_relaxed);
-    if (kind == 0) seekSample.store(sample, std::memory_order_relaxed);
+    if (kind == 0) seek_sample.store(sample, std::memory_order_relaxed);
     generation.fetch_add(1, std::memory_order_release);
-    if (kind == 0) seekSequence.fetch_add(1, std::memory_order_release);
+    if (kind == 0) seek_sequence.fetch_add(1, std::memory_order_release);
   }
   bool Stream(sf::SoundStream::Chunk& chunk);  // NOLINT(runtime/references)
   void Capture(const std::int16_t* samples, std::size_t count);
   void Effect(const float* in,
-              unsigned& inFrames,  // NOLINT(runtime/references)
+              unsigned& in_frames,  // NOLINT(runtime/references)
               float* out,
-              unsigned& outFrames,  // NOLINT(runtime/references)
-              unsigned channelCount);
+              unsigned& out_frames,  // NOLINT(runtime/references)
+              unsigned channel_count);
 };
 
 using AudioWorkerHandle = SharedHandle<AudioWorkerState>;
@@ -135,3 +141,5 @@ v8::Local<v8::Value> RegisterWorker(
     const std::shared_ptr<AudioWorkerState>& state);
 
 }  // namespace sfmljs::audio
+
+#endif  // PACKAGES_SFML_JS_NATIVE_AUDIO_WORKER_H_

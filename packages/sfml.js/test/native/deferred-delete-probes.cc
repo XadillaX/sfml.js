@@ -7,7 +7,7 @@
 namespace {
 struct Observation {
   std::atomic<unsigned> destroyed{};
-  std::atomic<unsigned> wrongThread{};
+  std::atomic<unsigned> wrong_thread{};
 };
 using ObservationHandle = sfmljs::SharedHandle<Observation>;
 
@@ -15,7 +15,7 @@ struct Resource {
   explicit Resource(std::shared_ptr<Observation> observation)
       : observation(std::move(observation)) {}
   ~Resource() {
-    if (std::this_thread::get_id() != thread) ++observation->wrongThread;
+    if (std::this_thread::get_id() != thread) ++observation->wrong_thread;
     ++observation->destroyed;
   }
   std::shared_ptr<Observation> observation;
@@ -55,7 +55,7 @@ NAN_METHOD(ReadDeletionProbe) {
   auto result = Nan::New<v8::Array>(2);
   Nan::Set(result, 0, Nan::New(observation->owner()->destroyed.load()))
       .FromJust();
-  Nan::Set(result, 1, Nan::New(observation->owner()->wrongThread.load()))
+  Nan::Set(result, 1, Nan::New(observation->owner()->wrong_thread.load()))
       .FromJust();
   info.GetReturnValue().Set(result);
 }

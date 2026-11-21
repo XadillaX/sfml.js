@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_AUDIO_STREAM_H_
+#define PACKAGES_SFML_JS_NATIVE_AUDIO_STREAM_H_
 
 #include "audio-state.h"
 #include <SFML/System/InputStream.hpp>
@@ -27,3 +28,5 @@ void QueueThread(v8::Local<v8::Value> callback,
                  Job::Action cancel = {});
 
 }  // namespace sfmljs::audio
+
+#endif  // PACKAGES_SFML_JS_NATIVE_AUDIO_STREAM_H_

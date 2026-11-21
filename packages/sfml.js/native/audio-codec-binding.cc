@@ -206,17 +206,17 @@ struct FileMetadata {
   Metadata value;
   std::vector<sf::SoundChannel> channels;
   void UpdateTime() {
-    value.timeOffset = sf::seconds(static_cast<float>(value.offset) /
-                                   static_cast<float>(value.channels) /
-                                   static_cast<float>(value.rate))
-                           .asMicroseconds();
+    value.time_offset = sf::seconds(static_cast<float>(value.offset) /
+                                    static_cast<float>(value.channels) /
+                                    static_cast<float>(value.rate))
+                            .asMicroseconds();
   }
 };
 using FileMetadataHandle = SharedHandle<FileMetadata>;
 NAN_METHOD(CreateAudioFileMetadata) {
-  auto* infoHandle = ReaderInfoHandle::From(info[0]);
-  if (!infoHandle) return;
-  const auto& metadata = infoHandle->owner()->info;
+  auto* info_handle = ReaderInfoHandle::From(info[0]);
+  if (!info_handle) return;
+  const auto& metadata = info_handle->owner()->info;
   if (!metadata.sampleRate || !metadata.channelCount ||
       metadata.channelCount != metadata.channelMap.size()) {
     return Nan::ThrowRangeError("Invalid codec audio format");

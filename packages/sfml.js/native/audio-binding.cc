@@ -46,11 +46,11 @@ void InstallSourceEffect(const std::shared_ptr<Source>& source) {
   auto state = source->effect;
   state->Seek(0);
   source->sound->setEffectProcessor([state](const float* in,
-                                            unsigned& inFrames,
+                                            unsigned& in_frames,
                                             float* out,
-                                            unsigned& outFrames,
+                                            unsigned& out_frames,
                                             unsigned channels) {
-    state->Effect(in, inFrames, out, outFrames, channels);
+    state->Effect(in, in_frames, out, out_frames, channels);
   });
 }
 
@@ -242,19 +242,19 @@ NAN_METHOD(SetAudioBuffer) {
 
 // Scalar/vector/cone payloads use the same memory in both languages.
 NAN_METHOD(AssignAudioSource) {
-  auto* targetHandle = SourceHandle::From(info[0]);
-  auto* sourceHandle = SourceHandle::From(info[1]);
-  if (!targetHandle || !sourceHandle) return;
+  auto* target_handle = SourceHandle::From(info[0]);
+  auto* source_handle = SourceHandle::From(info[1]);
+  if (!target_handle || !source_handle) return;
   if (!info[2]->IsBoolean())
     return Nan::ThrowTypeError("Expected a Sound assignment flag");
-  auto target = targetHandle->owner();
-  auto source = sourceHandle->owner();
-  const bool fullSound = info[2]->IsTrue();
-  if (fullSound && (!target->AsSound() || !source->AsSound())) {
+  auto target = target_handle->owner();
+  auto source = source_handle->owner();
+  const bool full_sound = info[2]->IsTrue();
+  if (full_sound && (!target->AsSound() || !source->AsSound())) {
     return Nan::ThrowTypeError("Expected two Sounds");
   }
   if (target == source) return;
-  if (!fullSound) {
+  if (!full_sound) {
     CopySourceSettings(*target->sound, *source->sound);
     return;
   }
@@ -429,46 +429,46 @@ NAN_METHOD(AudioSourceCommand) {
       if (source.kind == 3) {
         auto& state = *source.stream;
         auto* stream = source.AsStream();
-        auto toSamples = [&](std::int64_t time) {
+        auto to_samples = [&](std::int64_t time) {
           return (static_cast<std::uint64_t>(time) * state.rate *
                       state.channels +
                   500000) /
                  1000000;
         };
-        auto toTime = [&](std::uint64_t samples) {
+        auto to_time = [&](std::uint64_t samples) {
           return static_cast<std::int64_t>(samples * 1000000 /
                                            (state.channels * state.rate));
         };
         if (command == 5) {
-          auto offset = toSamples(source.times[2]);
-          auto length = toSamples(source.times[3]);
+          auto offset = to_samples(source.times[2]);
+          auto length = to_samples(source.times[3]);
           offset += state.channels - 1;
           offset -= offset % state.channels;
           length += state.channels - 1;
           length -= length % state.channels;
-          if (!state.sampleCount || offset >= state.sampleCount || !length) {
+          if (!state.sample_count || offset >= state.sample_count || !length) {
             sf::err()
                 << "Music loop points are outside the valid sample range.\n";
           } else {
-            length = std::min(length, state.sampleCount - offset);
-            if (offset != state.loopOffset || length != state.loopLength) {
+            length = std::min(length, state.sample_count - offset);
+            if (offset != state.loop_offset || length != state.loop_length) {
               const auto status = stream->getStatus();
               const auto position = stream->getPlayingOffset();
               stream->stop();
-              state.loopOffset = offset;
-              state.loopLength = length;
+              state.loop_offset = offset;
+              state.loop_length = length;
               if (position != sf::Time::Zero)
                 stream->setPlayingOffset(position);
               if (status == sf::SoundSource::Status::Playing) stream->play();
             }
           }
         }
-        source.times[1] = sf::seconds(static_cast<float>(state.sampleCount) /
+        source.times[1] = sf::seconds(static_cast<float>(state.sample_count) /
                                       static_cast<float>(state.channels) /
                                       static_cast<float>(state.rate))
                               .asMicroseconds();
-        source.times[2] = toTime(state.loopOffset);
-        source.times[3] = toTime(state.loopLength);
+        source.times[2] = to_time(state.loop_offset);
+        source.times[3] = to_time(state.loop_length);
         break;
       }
       auto* music = source.AsMusic();

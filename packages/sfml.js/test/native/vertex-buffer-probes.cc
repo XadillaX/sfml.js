@@ -80,7 +80,7 @@ NAN_METHOD(VertexBufferRegistrySize) {
   auto* context = sfmljs::SharedHandle<sfmljs::GraphicsContext>::From(info[0]);
   if (!context) return;
   info.GetReturnValue().Set(
-      Nan::New(static_cast<unsigned>(context->owner()->vertexBuffers.size())));
+      Nan::New(static_cast<unsigned>(context->owner()->vertex_buffers.size())));
 }
 
 NAN_METHOD(BoundVertexBuffer) {

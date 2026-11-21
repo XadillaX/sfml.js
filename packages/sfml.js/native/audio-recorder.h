@@ -1,12 +1,19 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_AUDIO_RECORDER_H_
+#define PACKAGES_SFML_JS_NATIVE_AUDIO_RECORDER_H_
+
+#include <array>
+#include <initializer_list>
+#include <memory>
+#include <string>
+#include <vector>
 
 #include "audio-worker.h"
 
 namespace sfmljs::audio {
 
 struct Recorder {
-  bool bufferRecorder{};
-  bool callbackRecorder{};
+  bool buffer_recorder{};
+  bool callback_recorder{};
   bool active{};
   std::shared_ptr<sf::SoundRecorder> current;
   std::shared_ptr<AudioWorkerState> worker;
@@ -31,9 +38,11 @@ struct RecorderBuffer {
   std::vector<std::int16_t> pcm;
   std::shared_ptr<BufferData> result = MakeThreadOwned<BufferData>();
   bool finalized{};
-  RecorderBuffer(unsigned sampleRate, std::vector<sf::SoundChannel> map)
-      : rate(sampleRate), channels(std::move(map)) {}
+  RecorderBuffer(unsigned sample_rate, std::vector<sf::SoundChannel> map)
+      : rate(sample_rate), channels(std::move(map)) {}
 };
 using RecorderBufferHandle = SharedHandle<RecorderBuffer>;
 
 }  // namespace sfmljs::audio
+
+#endif  // PACKAGES_SFML_JS_NATIVE_AUDIO_RECORDER_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_INTEROP_INCLUDE_SHARED_HANDLE_H_
+#define PACKAGES_SFML_JS_INTEROP_INCLUDE_SHARED_HANDLE_H_
 
 #include <nan.h>
 
@@ -101,15 +102,17 @@ v8::Local<v8::ArrayBuffer> MapShared(v8::Isolate* isolate,
                                      const std::shared_ptr<T>& owner,
                                      void* data,
                                      std::size_t size) {
-  auto* viewOwner = new std::shared_ptr<T>(owner);
+  auto* view_owner = new std::shared_ptr<T>(owner);
   auto backing = v8::ArrayBuffer::NewBackingStore(
       data,
       size,
       [](void*, size_t, void* retained) {
         delete static_cast<std::shared_ptr<T>*>(retained);
       },
-      viewOwner);
+      view_owner);
   return v8::ArrayBuffer::New(isolate, std::move(backing));
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_INTEROP_INCLUDE_SHARED_HANDLE_H_

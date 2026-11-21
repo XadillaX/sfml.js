@@ -71,8 +71,8 @@ bool BatchDrawable::Submit(sf::RenderTarget& target,
       continue;
     }
     if (!command.states.Valid()) return false;
-    if (command.shaderId) {
-      const auto found = context_->shaders.find(command.shaderId);
+    if (command.shader_id) {
+      const auto found = context_->shaders.find(command.shader_id);
       if (found == context_->shaders.end()) return false;
       shaders_[index] = found->second.lock();
       if (!shaders_[index]) return false;
@@ -96,7 +96,7 @@ bool BatchDrawable::Submit(sf::RenderTarget& target,
       if (found == context_->sprites.end()) return false;
       retained_[index] = found->second.lock();
       if (!retained_[index]) return false;
-      const auto texture = context_->textures.find(command.sprite.textureId);
+      const auto texture = context_->textures.find(command.sprite.texture_id);
       if (texture == context_->textures.end()) return false;
       textures_[index] = texture->second.lock();
       if (!textures_[index]) return false;
@@ -107,8 +107,8 @@ bool BatchDrawable::Submit(sf::RenderTarget& target,
         if (!vertices_) return false;
         size = vertices_->size();
       } else {
-        const auto found = context_->vertexBuffers.find(command.payload[4]);
-        if (found == context_->vertexBuffers.end()) return false;
+        const auto found = context_->vertex_buffers.find(command.payload[4]);
+        if (found == context_->vertex_buffers.end()) return false;
         buffers_[index] = found->second.lock();
         if (!buffers_[index]) return false;
         size = buffers_[index]->getVertexCount();

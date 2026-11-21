@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_TRANSFORMABLE_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_TRANSFORMABLE_STATE_H_
 
 #include <array>
 #include <cstddef>
@@ -42,3 +43,5 @@ inline v8::Local<v8::Object> TransformableHandle(
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_TRANSFORMABLE_STATE_H_

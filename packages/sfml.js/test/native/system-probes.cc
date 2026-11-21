@@ -70,27 +70,27 @@ NAN_METHOD(InspectTimeoutWithPredicate) {
   }();
   const sf::TimeoutWithPredicate copy(source);
   const auto& timeout = Nan::To<bool>(info[2]).FromMaybe(false) ? copy : source;
-  const auto& storedPredicate = timeout.getPredicate();
-  const auto& storedPeriod = timeout.getPeriod();
+  const auto& stored_predicate = timeout.getPredicate();
+  const auto& stored_period = timeout.getPeriod();
   auto result = Nan::New<v8::Object>();
   Nan::Set(result,
            Nan::New("period").ToLocalChecked(),
-           sfmljs::WriteTime(info.GetIsolate(), storedPeriod))
+           sfmljs::WriteTime(info.GetIsolate(), stored_period))
       .FromJust();
   Nan::Set(result,
            Nan::New("hasPredicate").ToLocalChecked(),
-           Nan::New(static_cast<bool>(storedPredicate)))
+           Nan::New(static_cast<bool>(stored_predicate)))
       .FromJust();
   Nan::Set(result,
            Nan::New("stableGetters").ToLocalChecked(),
-           Nan::New(&storedPredicate == &timeout.getPredicate() &&
-                    &storedPeriod == &timeout.getPeriod()))
+           Nan::New(&stored_predicate == &timeout.getPredicate() &&
+                    &stored_period == &timeout.getPeriod()))
       .FromJust();
   Nan::Set(result, Nan::New("callsBefore").ToLocalChecked(), Nan::New(calls))
       .FromJust();
   auto evaluations = Nan::New<v8::Array>(3);
   for (std::uint32_t i = 0; i < 3; ++i) {
-    const bool value = storedPredicate();
+    const bool value = stored_predicate();
     if (failed) return;  // Preserve the original pending JS exception.
     Nan::Set(evaluations, i, Nan::New(value)).FromJust();
   }

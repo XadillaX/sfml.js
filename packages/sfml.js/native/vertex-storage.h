@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_VERTEX_STORAGE_H_
+#define PACKAGES_SFML_JS_NATIVE_VERTEX_STORAGE_H_
 
 #include <cstddef>
 #include <memory>
@@ -18,3 +19,5 @@ static_assert(offsetof(sf::Vertex, color) == 8);
 static_assert(offsetof(sf::Vertex, texCoords) == 12);
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_VERTEX_STORAGE_H_

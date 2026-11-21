@@ -83,8 +83,8 @@ class ThreadJob {
         v8::Isolate::GetCurrent(),
         [](void* pointer, void (*done)(void*), void* argument) {
           auto* job = static_cast<ThreadJob*>(pointer);
-          job->cleanupDone_ = done;
-          job->cleanupArgument_ = argument;
+          job->cleanup_done_ = done;
+          job->cleanup_argument_ = argument;
           if (job->cancel_) job->cancel_();
         },
         this);
@@ -105,7 +105,7 @@ class ThreadJob {
  private:
   void Finish() {
     if (thread_.joinable()) thread_.join();
-    if (!cleanupDone_) {
+    if (!cleanup_done_) {
       node::RemoveEnvironmentCleanupHook(std::move(cleanup_));
       Nan::HandleScope scope;
       v8::Local<v8::Value> value = Nan::Undefined();
@@ -121,8 +121,8 @@ class ThreadJob {
     }
     uv_close(reinterpret_cast<uv_handle_t*>(&async_), [](uv_handle_t* handle) {
       auto* job = static_cast<ThreadJob*>(handle->data);
-      const auto done = job->cleanupDone_;
-      const auto argument = job->cleanupArgument_;
+      const auto done = job->cleanup_done_;
+      const auto argument = job->cleanup_argument_;
       delete job;
       if (done) done(argument);
     });
@@ -136,8 +136,8 @@ class ThreadJob {
   Job::Action cancel_;
   std::string error_;
   node::AsyncCleanupHookHandle cleanup_;
-  void (*cleanupDone_)(void*) = nullptr;
-  void* cleanupArgument_{};
+  void (*cleanup_done_)(void*) = nullptr;
+  void* cleanup_argument_{};
 };
 }  // namespace
 
@@ -190,7 +190,7 @@ struct StreamClient::Bridge : std::enable_shared_from_this<Bridge> {
     std::lock_guard lock(mutex);
     cancelled = true;
     if (request) {
-      std::lock_guard requestLock(request->mutex);
+      std::lock_guard request_lock(request->mutex);
       request->complete = true;
       request->error = "Audio InputStream closed";
       request->ready.notify_one();

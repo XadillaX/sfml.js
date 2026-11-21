@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_VIEW_DATA_H_
+#define PACKAGES_SFML_JS_NATIVE_VIEW_DATA_H_
 
 #include <span>
 
@@ -23,3 +24,5 @@ inline sf::View MakeView(std::span<const float, 13> values) {
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_VIEW_DATA_H_

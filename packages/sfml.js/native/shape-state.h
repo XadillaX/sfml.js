@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_SHAPE_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_SHAPE_STATE_H_
 
 #include "graphics-state.h"
 #include <SFML/Graphics/CircleShape.hpp>
@@ -29,7 +30,7 @@ struct PointShape : sf::Shape {
 
 // This layout also occupies DrawCommand::payload for shape commands.
 struct ShapeAppearance {
-  std::uint32_t textureId{};
+  std::uint32_t texture_id{};
   std::uint32_t fill{0xffffffff};
   std::uint32_t outline{0xffffffff};
   sf::IntRect rectangle;
@@ -71,7 +72,9 @@ struct ShapeState : TransformableState {
   std::shared_ptr<const sf::Texture> texture;
   ShapeAppearance appearance;
   // Vector-backed custom/convex shapes have no standalone SFML count field.
-  std::uint32_t pointCount{};
+  std::uint32_t point_count{};
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_SHAPE_STATE_H_

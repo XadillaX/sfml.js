@@ -99,7 +99,7 @@ void ReturnTexture(const CallbackInfo& info,
                    unsigned char* pixels,
                    int width,
                    int height,
-                   int bytesPerPixel) {
+                   int bytes_per_pixel) {
   auto* handle = sfmljs::SharedHandle<cimgui::ImFontAtlas>::TryFrom(info[0]);
   if (!handle || !pixels) {
     info.GetReturnValue().Set(Nan::Null());
@@ -107,7 +107,7 @@ void ReturnTexture(const CallbackInfo& info,
   }
   const std::size_t length = static_cast<std::size_t>(width) *
                              static_cast<std::size_t>(height) *
-                             static_cast<std::size_t>(bytesPerPixel);
+                             static_cast<std::size_t>(bytes_per_pixel);
   auto buffer =
       sfmljs::MapShared(info.GetIsolate(), handle->owner(), pixels, length);
   auto result = Nan::New<v8::Object>();
@@ -121,7 +121,7 @@ void ReturnTexture(const CallbackInfo& info,
       .FromJust();
   Nan::Set(result,
            Nan::New("bytesPerPixel").ToLocalChecked(),
-           Nan::New(bytesPerPixel))
+           Nan::New(bytes_per_pixel))
       .FromJust();
   info.GetReturnValue().Set(result);
 }
@@ -132,10 +132,10 @@ NAN_METHOD(FontAtlasGetTexDataAsAlpha8) {
   unsigned char* pixels = nullptr;
   int width = 0;
   int height = 0;
-  int bytesPerPixel = 1;
+  int bytes_per_pixel = 1;
   ::cimgui::ImFontAtlas_GetTexDataAsAlpha8(
-      atlas, &pixels, &width, &height, &bytesPerPixel);
-  ReturnTexture(info, pixels, width, height, bytesPerPixel);
+      atlas, &pixels, &width, &height, &bytes_per_pixel);
+  ReturnTexture(info, pixels, width, height, bytes_per_pixel);
 }
 
 NAN_METHOD(FontAtlasGetTexDataAsRGBA32) {
@@ -144,10 +144,10 @@ NAN_METHOD(FontAtlasGetTexDataAsRGBA32) {
   unsigned char* pixels = nullptr;
   int width = 0;
   int height = 0;
-  int bytesPerPixel = 4;
+  int bytes_per_pixel = 4;
   ::cimgui::ImFontAtlas_GetTexDataAsRGBA32(
-      atlas, &pixels, &width, &height, &bytesPerPixel);
-  ReturnTexture(info, pixels, width, height, bytesPerPixel);
+      atlas, &pixels, &width, &height, &bytes_per_pixel);
+  ReturnTexture(info, pixels, width, height, bytes_per_pixel);
 }
 
 NAN_METHOD(FontGlyphRangesBuilderBuildRanges) {

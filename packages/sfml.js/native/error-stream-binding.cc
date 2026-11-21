@@ -26,14 +26,14 @@ class Router final : public std::streambuf {
     return router;
   }
   ~Router() override {
-    sf::err().rdbuf(original);
-    original->pubsync();
+    sf::err().rdbuf(original_);
+    original_->pubsync();
   }
 
-  std::mutex mutex;
-  std::streambuf* original;
-  Environment* owner{};
-  Sink* destination{};  // owner + nullptr means muted
+  std::mutex& mutex() { return mutex_; }
+  std::streambuf* original() { return original_; }
+  Environment*& owner() { return owner_; }
+  Sink*& destination() { return destination_; }
 
  protected:
   std::streamsize xsputn(const char* data, std::streamsize size) override;
@@ -45,21 +45,26 @@ class Router final : public std::streambuf {
     return xsputn(&byte, 1) == 1 ? value : traits_type::eof();
   }
   int sync() override {
-    std::lock_guard lock(mutex);
-    return owner ? 0 : original->pubsync();
+    std::lock_guard lock(mutex_);
+    return owner_ ? 0 : original_->pubsync();
   }
 
  private:
-  Router() : original(sf::err().rdbuf(this)) {}
+  Router() : original_(sf::err().rdbuf(this)) {}
+
+  std::mutex mutex_;
+  std::streambuf* original_;
+  Environment* owner_{};
+  Sink* destination_{};  // owner_ + nullptr means muted
 };
 
 struct Sink {
   uv_async_t async{};
   std::unique_ptr<Nan::Callback> callback;
   std::unique_ptr<Nan::AsyncResource> resource;
-  std::deque<std::string> chunks;  // protected by Router::mutex
+  std::deque<std::string> chunks;  // protected by Router::mutex()
   std::weak_ptr<Environment> environment;
-  bool active{true};   // protected by Router::mutex
+  bool active{true};   // protected by Router::mutex()
   bool closing{};      // JS thread only
   bool dispatching{};  // JS thread only
 
@@ -81,11 +86,11 @@ struct Environment {
 
 std::streamsize Router::xsputn(const char* data, std::streamsize size) {
   if (size <= 0) return 0;
-  std::lock_guard lock(mutex);
-  if (!owner) return original->sputn(data, size);
-  if (!destination) return size;
+  std::lock_guard lock(mutex_);
+  if (!owner_) return original_->sputn(data, size);
+  if (!destination_) return size;
   constexpr std::size_t capacity = 64 * 1024;
-  auto& queue = destination->chunks;
+  auto& queue = destination_->chunks;
   auto remaining = static_cast<std::size_t>(size);
   while (remaining) {
     if (queue.empty() || queue.back().size() == capacity) queue.emplace_back();
@@ -94,7 +99,7 @@ std::streamsize Router::xsputn(const char* data, std::streamsize size) {
     data += count;
     remaining -= count;
   }
-  uv_async_send(&destination->async);
+  uv_async_send(&destination_->async);
   return size;
 }
 
@@ -124,7 +129,7 @@ bool Sink::Dispatch() {
   bool complete = true;
   std::deque<std::string> pending;
   {
-    std::lock_guard lock(Router::Get().mutex);
+    std::lock_guard lock(Router::Get().mutex());
     pending.swap(chunks);
   }
   Nan::HandleScope scope;
@@ -152,7 +157,7 @@ bool Sink::Dispatch() {
   dispatching = false;
   bool finished;
   {
-    std::lock_guard lock(Router::Get().mutex);
+    std::lock_guard lock(Router::Get().mutex());
     finished = !active && chunks.empty();
   }
   if (finished) Close();
@@ -211,14 +216,14 @@ NAN_METHOD(SetErrorOutput) {
   }
   auto& router = Router::Get();
   {
-    std::lock_guard lock(router.mutex);
-    router.original->pubsync();
-    if (router.destination) {
-      router.destination->active = false;
-      uv_async_send(&router.destination->async);
+    std::lock_guard lock(router.mutex());
+    router.original()->pubsync();
+    if (router.destination()) {
+      router.destination()->active = false;
+      uv_async_send(&router.destination()->async);
     }
-    router.owner = info[0]->IsUndefined() ? nullptr : env.get();
-    router.destination = next.get();
+    router.owner() = info[0]->IsUndefined() ? nullptr : env.get();
+    router.destination() = next.get();
   }
   // Hand this environment's captured bytes to their original destinations
   // before the caller closes an old Writable after changing the route.
@@ -246,21 +251,21 @@ void Cleanup(void* data) {
   const auto& env = *retained;
   auto& router = Router::Get();
   {
-    std::lock_guard lock(router.mutex);
-    if (router.owner == env.get()) {
-      router.owner = nullptr;
-      router.destination = nullptr;
+    std::lock_guard lock(router.mutex());
+    if (router.owner() == env.get()) {
+      router.owner() = nullptr;
+      router.destination() = nullptr;
     }
     for (const auto& sink : env->sinks) {
       sink->active = false;
       // No V8 calls during teardown. Normal exit drains in beforeExit; Worker
       // termination sends remaining native bytes to the original sink.
       for (const auto& chunk : sink->chunks) {
-        router.original->sputn(chunk.data(), chunk.size());
+        router.original()->sputn(chunk.data(), chunk.size());
       }
       sink->chunks.clear();
     }
-    router.original->pubsync();
+    router.original()->pubsync();
   }
   for (const auto& sink : env->sinks) sink->Close();
   delete retained;

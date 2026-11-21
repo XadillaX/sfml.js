@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_RENDER_WINDOW_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_RENDER_WINDOW_STATE_H_
 
 #include "graphics-state.h"
 #include "window-owner.h"
@@ -20,3 +21,5 @@ struct RenderWindowState : OwnedWindow<sf::RenderWindow> {
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_RENDER_WINDOW_STATE_H_

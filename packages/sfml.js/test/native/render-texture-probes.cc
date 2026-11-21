@@ -27,14 +27,14 @@ NAN_METHOD(InspectActiveFramebuffer) {
 }
 
 NAN_METHOD(ClearActiveFramebuffer) {
-  const auto clearColor = reinterpret_cast<decltype(&glClearColor)>(
+  const auto clear_color = reinterpret_cast<decltype(&glClearColor)>(
       sf::Context::getFunction("glClearColor"));
   const auto clear =
       reinterpret_cast<decltype(&glClear)>(sf::Context::getFunction("glClear"));
   const auto disable = reinterpret_cast<decltype(&glDisable)>(
       sf::Context::getFunction("glDisable"));
   disable(GL_SCISSOR_TEST);
-  clearColor(0, 0, 1, 1);
+  clear_color(0, 0, 1, 1);
   clear(GL_COLOR_BUFFER_BIT);
 }
 

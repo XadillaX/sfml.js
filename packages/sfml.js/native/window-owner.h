@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_WINDOW_OWNER_H_
+#define PACKAGES_SFML_JS_NATIVE_WINDOW_OWNER_H_
 
 #include <deque>
 #include <memory>
@@ -9,33 +10,37 @@
 
 namespace sfmljs {
 
-enum class WindowNotification { Create, Resize };
+enum class WindowNotification { kCreate, kResize };
 using WindowNotifications = std::deque<WindowNotification>;
 
 // Both kinds of window borrow their cursor until the OS window is closed.
 template <typename Base>
 class OwnedWindow : public Base {
  public:
-  std::shared_ptr<sf::Cursor> cursor;
-  WindowNotifications notifications;
+  std::shared_ptr<sf::Cursor>& cursor() { return cursor_; }
+  WindowNotifications& notifications() { return notifications_; }
   ~OwnedWindow() override { close(); }
   void close() override {
     // No notification from the closed generation can reach a later JS call.
-    notifications.clear();
+    notifications_.clear();
     Base::close();
-    cursor.reset();
+    cursor_.reset();
   }
   void CloseBeforeThreadExit() { close(); }
 
  protected:
   void onCreate() override {
     Base::onCreate();
-    notifications.push_back(WindowNotification::Create);
+    notifications_.push_back(WindowNotification::kCreate);
   }
   void onResize() override {
     Base::onResize();
-    notifications.push_back(WindowNotification::Resize);
+    notifications_.push_back(WindowNotification::kResize);
   }
+
+ private:
+  std::shared_ptr<sf::Cursor> cursor_;
+  WindowNotifications notifications_;
 };
 
 inline v8::Local<v8::String> WindowCursorKey() {
@@ -51,11 +56,11 @@ v8::Local<v8::Object> MakeWindowHandle(const std::shared_ptr<T>& owner) {
   auto handle = SharedHandle<sf::Window>::Create(owner);
   // This member pointer stays valid for as long as the owning handle exists.
   Nan::SetPrivate(
-      handle, WindowCursorKey(), Nan::New<v8::External>(&owner->cursor))
+      handle, WindowCursorKey(), Nan::New<v8::External>(&owner->cursor()))
       .FromJust();
   Nan::SetPrivate(handle,
                   WindowNotificationsKey(),
-                  Nan::New<v8::External>(&owner->notifications))
+                  Nan::New<v8::External>(&owner->notifications()))
       .FromJust();
   return handle;
 }
@@ -82,3 +87,5 @@ inline void RetainWindowCursor(v8::Local<v8::Object> handle,
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_WINDOW_OWNER_H_

@@ -1,7 +1,8 @@
 // Copyright (c) 2026 XadillaX
 // SPDX-License-Identifier: MIT
 
-#pragma once
+#ifndef PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_DRAW_CALLBACKS_H_
+#define PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_DRAW_CALLBACKS_H_
 
 #include <nan.h>
 
@@ -23,3 +24,5 @@ void ThrowPendingImGuiDrawCallbackException(
     const Nan::FunctionCallbackInfo<v8::Value>& info);
 
 }  // namespace sfmlimgui
+
+#endif  // PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_DRAW_CALLBACKS_H_

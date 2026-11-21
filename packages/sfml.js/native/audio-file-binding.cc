@@ -8,12 +8,12 @@ struct InputFile {
   sf::InputSoundFile file;
   bool open{};
   Metadata metadata;
-  std::vector<sf::SoundChannel> channelMap;
+  std::vector<sf::SoundChannel> channel_map;
   void Update() {
     metadata.count = file.getSampleCount();
     metadata.offset = file.getSampleOffset();
     metadata.duration = file.getDuration().asMicroseconds();
-    metadata.timeOffset = file.getTimeOffset().asMicroseconds();
+    metadata.time_offset = file.getTimeOffset().asMicroseconds();
     metadata.rate = file.getSampleRate();
     metadata.channels = file.getChannelCount();
   }
@@ -46,7 +46,7 @@ v8::Local<v8::Object> MapInput(const std::shared_ptr<InputFile>& file) {
                 file,
                 &file->metadata,
                 sizeof(file->metadata)));
-  Set(result, "channelMap", MapChannels(file, file->channelMap));
+  Set(result, "channelMap", MapChannels(file, file->channel_map));
   return result;
 }
 
@@ -84,7 +84,7 @@ NAN_METHOD(OpenAudioInput) {
         if (!*ok) return Nan::Undefined();
         next->open = true;
         next->Update();
-        next->channelMap = next->file.getChannelMap();
+        next->channel_map = next->file.getChannelMap();
         input->current = next;
         return MapInput(next);
       });
@@ -120,7 +120,7 @@ NAN_METHOD(SeekAudioInput) {
   }
   const bool time = info[2]->IsTrue();
   bool lossless{};
-  const auto signedOffset = info[1].As<v8::BigInt>()->Int64Value();
+  const auto signed_offset = info[1].As<v8::BigInt>()->Int64Value();
   const auto offset = time
                           ? static_cast<std::uint64_t>(
                                 info[1].As<v8::BigInt>()->Int64Value(&lossless))
@@ -131,10 +131,10 @@ NAN_METHOD(SeekAudioInput) {
   QueueInput(
       info[3],
       file,
-      [file, time, offset, signedOffset] {
+      [file, time, offset, signed_offset] {
         if (!file->open) return;
         if (time)
-          file->file.seek(sf::microseconds(signedOffset));
+          file->file.seek(sf::microseconds(signed_offset));
         else
           file->file.seek(offset);
       },

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_TEXT_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_TEXT_STATE_H_
 
 #include <array>
 #include <memory>
@@ -15,9 +16,9 @@ namespace text_members {
 // Explicit instantiation may name private members (C++ [temp.explicit]).
 // Member pointers follow the installed SFML headers; no object-layout replica
 // or hard-coded offset into the polymorphic sf::Text object is used.
-template <typename Tag, typename Tag::Type Pointer>
+template <typename Tag, typename Tag::Type pointer>
 struct Access {
-  friend typename Tag::Type Member(Tag) { return Pointer; }
+  friend typename Tag::Type Member(Tag) { return pointer; }
 };
 
 #define SFMLJS_TEXT_MEMBER(Tag, Value, Name)                                   \
@@ -106,3 +107,5 @@ struct TextState : TransformableState {
 using TextHandle = SharedHandle<TextState>;
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_TEXT_STATE_H_

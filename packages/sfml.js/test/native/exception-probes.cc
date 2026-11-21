@@ -8,11 +8,11 @@
 
 namespace {
 
-std::atomic<unsigned> activeScopes{};
+std::atomic<unsigned> active_scopes{};
 
 struct Scope {
-  Scope() { ++activeScopes; }
-  ~Scope() { --activeScopes; }
+  Scope() { ++active_scopes; }
+  ~Scope() { --active_scopes; }
 };
 
 void Fail(unsigned kind) {
@@ -32,7 +32,7 @@ NAN_METHOD(ThrowNativeException) {
 }
 
 NAN_METHOD(ReadExceptionScopes) {
-  info.GetReturnValue().Set(Nan::New(activeScopes.load()));
+  info.GetReturnValue().Set(Nan::New(active_scopes.load()));
 }
 
 NAN_METHOD(PassJsException) {

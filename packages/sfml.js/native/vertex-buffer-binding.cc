@@ -55,7 +55,7 @@ NAN_METHOD(CreateVertexBuffer) {
   }
   try {
     auto owner = context->owner();
-    const auto id = owner->nextId++;
+    const auto id = owner->next_id++;
     auto buffer = sfmljs::MakeThreadOwned<State>(
         owner,
         id,
@@ -68,7 +68,7 @@ NAN_METHOD(CreateVertexBuffer) {
          !buffer->update(*source->owner()))) {
       return sfmljs::ThrowError("Could not copy vertex buffer");
     }
-    owner->vertexBuffers.emplace(id, buffer);
+    owner->vertex_buffers.emplace(id, buffer);
     auto result = Nan::New<v8::Object>();
     Nan::Set(
         result,

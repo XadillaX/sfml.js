@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_CONTEXT_SETTINGS_H_
+#define PACKAGES_SFML_JS_NATIVE_CONTEXT_SETTINGS_H_
 
 #include <nan.h>
 
@@ -79,3 +80,5 @@ inline bool ReadContextSettings(v8::Local<v8::Value> value,
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_CONTEXT_SETTINGS_H_

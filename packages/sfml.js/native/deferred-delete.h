@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_DEFERRED_DELETE_H_
+#define PACKAGES_SFML_JS_NATIVE_DEFERRED_DELETE_H_
 
 #include <nan.h>
 #include <uv.h>
@@ -31,13 +32,13 @@ class DeferredDelete {
       uv_async_send(&async_);
       return;
     }
-    beforeExit_.erase(entry.pointer);
+    before_exit_.erase(entry.pointer);
     entry.destroy(entry.pointer);
   }
 
   void BeforeExit(void* pointer, void (*close)(void*)) {
     std::lock_guard lock(mutex_);
-    beforeExit_.emplace(pointer, close);
+    before_exit_.emplace(pointer, close);
   }
 
  private:
@@ -46,7 +47,7 @@ class DeferredDelete {
     auto pending = std::move(pending_);
     pending_.clear();
     for (const auto entry : pending) {
-      beforeExit_.erase(entry.pointer);
+      before_exit_.erase(entry.pointer);
       entry.destroy(entry.pointer);
     }
   }
@@ -58,7 +59,7 @@ class DeferredDelete {
   // JS loop; serialize their final destruction with all other resource drops.
   std::recursive_mutex mutex_;
   std::vector<Entry> pending_;
-  std::unordered_map<void*, void (*)(void*)> beforeExit_;
+  std::unordered_map<void*, void (*)(void*)> before_exit_;
   const std::thread::id thread_ = std::this_thread::get_id();
   bool closed_{};
   uv_async_t async_{};
@@ -81,3 +82,5 @@ std::shared_ptr<T> MakeThreadOwned(Args&&... args) {
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_DEFERRED_DELETE_H_

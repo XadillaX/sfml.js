@@ -1,7 +1,8 @@
 // Copyright (c) 2026 XadillaX
 // SPDX-License-Identifier: MIT
 
-#pragma once
+#ifndef PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_ARGS_H_
+#define PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_ARGS_H_
 
 #include <nan.h>
 #include <sfml-js-interop.h>
@@ -490,3 +491,5 @@ void ReturnStruct(const CallbackInfo& info, const T* pointer) {
 }
 
 }  // namespace sfmlimgui
+
+#endif  // PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_ARGS_H_

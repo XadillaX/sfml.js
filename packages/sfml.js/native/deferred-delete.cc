@@ -39,8 +39,8 @@ void DeferredDelete::Cleanup(void* data) {
     // Pending releases and native windows finish before this thread exits.
     queue->closed_ = true;
     queue->Drain();
-    for (const auto& [pointer, close] : queue->beforeExit_) close(pointer);
-    queue->beforeExit_.clear();
+    for (const auto& [pointer, close] : queue->before_exit_) close(pointer);
+    queue->before_exit_.clear();
   }
   current.reset();
   uv_close(reinterpret_cast<uv_handle_t*>(&queue->async_),

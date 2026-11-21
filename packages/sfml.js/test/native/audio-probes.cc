@@ -114,11 +114,11 @@ NAN_METHOD(PrepareAudioRecorderProbe) {
   auto recorder = handle->owner();
   if (recorder->active) return Nan::ThrowError("Recorder is already running");
   if (!rate) return Nan::ThrowRangeError("Sample rate must be positive");
-  recorder->callbackRecorder = recorder->bufferRecorder && info[4]->IsTrue();
+  recorder->callback_recorder = recorder->buffer_recorder && info[4]->IsTrue();
   recorder->values[0] = rate;
   recorder->current.reset();
   recorder->worker =
-      recorder->bufferRecorder && !recorder->callbackRecorder
+      recorder->buffer_recorder && !recorder->callback_recorder
           ? nullptr
           : CreateWorkerState(1, frames, recorder->values[1], rate, slots);
   auto result = Nan::New<v8::Object>();
@@ -165,13 +165,13 @@ NAN_METHOD(AudioQueueProbe) {
     if (!ReadBytes(info[2], samples, true)) return;
     state->Capture(static_cast<std::int16_t*>(samples.data), samples.size / 2);
   } else if (command == 2) {
-    unsigned outFrames, channels;
-    if (!Unsigned(info[3], outFrames) || !Unsigned(info[4], channels)) return;
-    if (outFrames > 65536 || !channels || channels > 32) {
+    unsigned out_frames, channels;
+    if (!Unsigned(info[3], out_frames) || !Unsigned(info[4], channels)) return;
+    if (out_frames > 65536 || !channels || channels > 32) {
       return Nan::ThrowRangeError("Invalid probe dimensions");
     }
     float* input = nullptr;
-    unsigned inFrames{};
+    unsigned in_frames{};
     if (!info[2]->IsNull()) {
       if (!info[2]->IsFloat32Array())
         return Nan::ThrowTypeError("Expected float samples");
@@ -181,13 +181,13 @@ NAN_METHOD(AudioQueueProbe) {
       input = reinterpret_cast<float*>(
           static_cast<std::byte*>(view->Buffer()->GetBackingStore()->Data()) +
           view->ByteOffset());
-      inFrames = static_cast<unsigned>(view->Length() / channels);
+      in_frames = static_cast<unsigned>(view->Length() / channels);
     }
-    auto output = std::make_shared<std::vector<float>>(outFrames * channels);
-    state->Effect(input, inFrames, output->data(), outFrames, channels);
+    auto output = std::make_shared<std::vector<float>>(out_frames * channels);
+    state->Effect(input, in_frames, output->data(), out_frames, channels);
     auto result = Nan::New<v8::Object>();
-    Set(result, "inputFrames", Nan::New(inFrames));
-    Set(result, "outputFrames", Nan::New(outFrames));
+    Set(result, "inputFrames", Nan::New(in_frames));
+    Set(result, "outputFrames", Nan::New(out_frames));
     Set(result,
         "samples",
         MapShared(

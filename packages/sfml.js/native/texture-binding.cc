@@ -92,11 +92,11 @@ NAN_METHOD(CreateTexture) {
     }
     if (!info[3]->IsBoolean()) return Nan::ThrowTypeError("Expected sRGB flag");
   }
-  if (context->owner()->nextId == std::numeric_limits<std::uint32_t>::max()) {
+  if (context->owner()->next_id == std::numeric_limits<std::uint32_t>::max()) {
     return Nan::ThrowRangeError("Graphics ID space exhausted");
   }
   try {
-    const auto id = context->owner()->nextId++;
+    const auto id = context->owner()->next_id++;
     auto texture = source ? sfmljs::MakeThreadOwned<sfmljs::TextureState>(
                                 context->owner(), id, *source)
                           : sfmljs::MakeThreadOwned<sfmljs::TextureState>(
@@ -306,12 +306,12 @@ NAN_METHOD(UpdateTextureWindow) {
   texture->owner()->update(*window->owner(), dest);
 }
 
-template <bool Smooth>
+template <bool smooth>
 NAN_METHOD(SetSampling) {
   auto* texture = TextureHandle::From(info[0]);
   if (!texture) return;
   if (!info[1]->IsBoolean()) return Nan::ThrowTypeError("Expected a boolean");
-  if constexpr (Smooth)
+  if constexpr (smooth)
     texture->owner()->setSmooth(info[1]->IsTrue());
   else
     texture->owner()->setRepeated(info[1]->IsTrue());

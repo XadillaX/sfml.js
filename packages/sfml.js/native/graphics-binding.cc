@@ -59,13 +59,13 @@ NAN_METHOD(CreateSprite) {
   if (!context) return;
   const auto texture = sfmljs::ReadTexture(info[1]);
   if (!texture) return;
-  std::uint32_t textureId;
-  if (!ReadTextureId(*context->owner(), texture, info[2], textureId)) return;
-  if (context->owner()->nextId == std::numeric_limits<std::uint32_t>::max()) {
+  std::uint32_t texture_id;
+  if (!ReadTextureId(*context->owner(), texture, info[2], texture_id)) return;
+  if (context->owner()->next_id == std::numeric_limits<std::uint32_t>::max()) {
     return Nan::ThrowRangeError("Sprite ID space exhausted");
   }
   auto object = sfmljs::MakeThreadOwned<Sprite>(
-      context->owner(), texture, context->owner()->nextId++, textureId);
+      context->owner(), texture, context->owner()->next_id++, texture_id);
   context->owner()->sprites.emplace(object->id, object);
   auto result = Nan::New<v8::Object>();
   Nan::Set(result,
@@ -107,7 +107,7 @@ NAN_METHOD(SetSpriteTexture) {
   auto& object = *sprite->owner();
   if (!ReadTextureId(*object.context, texture, info[2], id)) return;
   object.texture = texture;
-  object.appearance.textureId = id;
+  object.appearance.texture_id = id;
   object.setTexture(*object.texture);
 }
 
@@ -164,7 +164,7 @@ NAN_METHOD(CreateRenderTexture) {
     Nan::Set(
         result,
         Nan::New("targetInfo").ToLocalChecked(),
-        sfmljs::NumericFields().Add("sRgb", target->targetSrgb).Map(target))
+        sfmljs::NumericFields().Add("sRgb", target->target_srgb).Map(target))
         .FromJust();
     info.GetReturnValue().Set(result);
   } catch (const std::exception& error) {
@@ -196,12 +196,12 @@ NAN_METHOD(GetMaximumRenderTextureAntiAliasingLevel) {
       Nan::New(sf::RenderTexture::getMaximumAntiAliasingLevel()));
 }
 
-template <bool Smooth>
+template <bool smooth>
 NAN_METHOD(SetRenderTextureSampling) {
   auto* handle = SharedHandle<Target>::From(info[0]);
   if (!handle) return;
   if (!info[1]->IsBoolean()) return Nan::ThrowTypeError("Expected a boolean");
-  if constexpr (Smooth)
+  if constexpr (smooth)
     handle->owner()->target.setSmooth(info[1]->IsTrue());
   else
     handle->owner()->target.setRepeated(info[1]->IsTrue());
@@ -268,20 +268,20 @@ NAN_METHOD(GetRenderTextureTexture) {
   auto* handle = SharedHandle<Target>::From(info[0]);
   if (!handle) return;
   const auto& owner = handle->owner();
-  if (!owner->textureId) {
-    if (owner->context->nextId == std::numeric_limits<std::uint32_t>::max()) {
+  if (!owner->texture_id) {
+    if (owner->context->next_id == std::numeric_limits<std::uint32_t>::max()) {
       return Nan::ThrowRangeError("Graphics ID space exhausted");
     }
-    owner->textureId = owner->context->nextId++;
+    owner->texture_id = owner->context->next_id++;
   }
   const auto texture =
       std::shared_ptr<const sf::Texture>(owner, &owner->target.getTexture());
-  owner->context->textures.insert_or_assign(owner->textureId, texture);
+  owner->context->textures.insert_or_assign(owner->texture_id, texture);
   auto result = Nan::New<v8::Object>();
   Nan::Set(
       result, Nan::New("info").ToLocalChecked(), sfmljs::MapTexture(texture))
       .FromJust();
-  Nan::Set(result, Nan::New("id").ToLocalChecked(), Nan::New(owner->textureId))
+  Nan::Set(result, Nan::New("id").ToLocalChecked(), Nan::New(owner->texture_id))
       .FromJust();
   Nan::Set(result,
            Nan::New("handle").ToLocalChecked(),

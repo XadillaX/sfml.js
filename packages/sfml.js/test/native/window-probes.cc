@@ -13,7 +13,7 @@
 
 namespace {
 
-std::weak_ptr<sf::Cursor> watchedCursor;
+std::weak_ptr<sf::Cursor> watched_cursor;
 
 #ifdef _WIN32
 // Use a genuine external control: wrapping an SFML HWND twice recursively
@@ -64,11 +64,11 @@ NAN_METHOD(CloseWindowHost) {
 
 NAN_METHOD(WatchCursor) {
   auto* cursor = sfmljs::SharedHandle<sf::Cursor>::From(info[0]);
-  if (cursor) watchedCursor = cursor->owner();
+  if (cursor) watched_cursor = cursor->owner();
 }
 
 NAN_METHOD(IsWatchedCursorAlive) {
-  info.GetReturnValue().Set(!watchedCursor.expired());
+  info.GetReturnValue().Set(!watched_cursor.expired());
 }
 
 NAN_METHOD(WindowEventFixtures) {
@@ -157,13 +157,13 @@ NAN_METHOD(DrawWindowTexture) {
   GL_FUNCTION(glEnd)
 #undef GL_FUNCTION
   using BindFramebuffer = void (*)(GLenum, GLuint);
-  auto bindFramebuffer = reinterpret_cast<BindFramebuffer>(
+  auto bind_framebuffer = reinterpret_cast<BindFramebuffer>(
       sf::Context::getFunction("glBindFramebuffer"));
-  if (!bindFramebuffer)
-    bindFramebuffer = reinterpret_cast<BindFramebuffer>(
+  if (!bind_framebuffer)
+    bind_framebuffer = reinterpret_cast<BindFramebuffer>(
         sf::Context::getFunction("glBindFramebufferEXT"));
   // RenderTexture can reuse the window context and leave its FBO bound.
-  if (bindFramebuffer) bindFramebuffer(0x8D40 /* GL_FRAMEBUFFER */, 0);
+  if (bind_framebuffer) bind_framebuffer(0x8D40 /* GL_FRAMEBUFFER */, 0);
   const auto size = window->owner()->getSize();
   glViewport(0, 0, size.x, size.y);
   glDisable(GL_DEPTH_TEST);

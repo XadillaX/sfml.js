@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_INTEROP_INCLUDE_EXCEPTION_BOUNDARY_H_
+#define PACKAGES_SFML_JS_INTEROP_INCLUDE_EXCEPTION_BOUNDARY_H_
 
 #include <nan.h>
 
@@ -60,16 +61,16 @@ void GuardExceptions(Action&& action, Failure&& failure) {
   }
 }
 
-template <Nan::FunctionCallback Callback>
+template <Nan::FunctionCallback callback>
 void ExceptionBoundary(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-  GuardExceptions([&] { Callback(info); },
+  GuardExceptions([&] { callback(info); },
                   [](const char* message) { ThrowError(message); });
 }
 
 // The callback is a compile-time parameter: no per-call dispatch allocation.
-template <Nan::FunctionCallback Callback>
+template <Nan::FunctionCallback callback>
 void SetMethod(v8::Local<v8::Object> target, const char* name) {
-  Nan::SetMethod(target, name, ExceptionBoundary<Callback>);
+  Nan::SetMethod(target, name, ExceptionBoundary<callback>);
 }
 
 // libuv executes these callbacks outside the synchronous NAN call stack.
@@ -102,3 +103,5 @@ class AsyncWorker : public Nan::AsyncWorker {
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_INTEROP_INCLUDE_EXCEPTION_BOUNDARY_H_

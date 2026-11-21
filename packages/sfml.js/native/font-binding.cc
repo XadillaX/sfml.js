@@ -210,7 +210,7 @@ NAN_METHOD(GetFontTexture) {
     auto font = state->owner()->current;
     const auto& texture =
         font->font.getTexture(Nan::To<unsigned>(info[1]).FromJust());
-    const auto id = context->nextId++;
+    const auto id = context->next_id++;
     auto atlas = sfmljs::MakeThreadOwned<sfmljs::FontAtlas>(context, font, id);
     auto alias = std::shared_ptr<const sf::Texture>(atlas, &texture);
     context->textures.emplace(id, alias);

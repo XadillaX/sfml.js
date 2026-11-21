@@ -16,7 +16,7 @@ struct Polygon : sf::Shape {
   sf::Vector2f getPoint(std::size_t index) const override {
     return points[index];
   }
-  void refresh() { update(); }
+  void Refresh() { update(); }
 };
 
 template <class T>
@@ -82,12 +82,12 @@ std::unique_ptr<sf::Shape> Configure(v8::Local<v8::Object> input,
     for (unsigned i = 0; i < points.length() / 2; ++i) {
       polygon->points.push_back({(*points)[i * 2], (*points)[i * 2 + 1]});
     }
-    polygon->refresh();
+    polygon->Refresh();
     shape = std::move(polygon);
   }
-  const auto textureValue = Get(input, "texture");
-  if (!textureValue->IsNull()) {
-    const auto texture = sfmljs::ReadTexture(textureValue);
+  const auto texture_value = Get(input, "texture");
+  if (!texture_value->IsNull()) {
+    const auto texture = sfmljs::ReadTexture(texture_value);
     if (!texture) return {};
     shape->setTexture(texture.get());
   }

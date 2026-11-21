@@ -10,10 +10,10 @@
 
 namespace {
 
-template <std::size_t N>
+template <std::size_t n>
 bool ReadMode(
     v8::Local<v8::Value> input,
-    std::array<std::uint32_t, N>& values) {  // NOLINT(runtime/references)
+    std::array<std::uint32_t, n>& values) {  // NOLINT(runtime/references)
   if (!input->IsUint32Array() ||
       input.As<v8::Uint32Array>()->ByteLength() != sizeof(values)) {
     Nan::ThrowTypeError("Expected a mode field array");
@@ -63,13 +63,15 @@ NAN_METHOD(CompareStencilModes) {
 // Ordinary SFML composition, independent of the binding's command layout.
 class Group : public sf::Drawable, public sf::Transformable {
  public:
-  std::vector<const sf::Drawable*> children;
+  void AddChild(const sf::Drawable& child) { children_.push_back(&child); }
 
  private:
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
     states.transform *= getTransform();
-    for (const auto* child : children) target.draw(*child, states);
+    for (const auto* child : children_) target.draw(*child, states);
   }
+
+  std::vector<const sf::Drawable*> children_;
 };
 
 void Nested(sf::RenderTarget& target,  // NOLINT(runtime/references)
@@ -83,11 +85,12 @@ void Nested(sf::RenderTarget& target,  // NOLINT(runtime/references)
   inner.setPosition({10.f, 12.f});
   inner.setRotation(sf::degrees(23.f));
   inner.setScale({0.9f, 1.25f});
-  inner.children = {&sprite};
+  inner.AddChild(sprite);
   Group outer;
   outer.setPosition({6.f, 5.f});
   outer.setScale({1.7f, 0.8f});
-  outer.children = {&inner, &sprite};
+  outer.AddChild(inner);
+  outer.AddChild(sprite);
   sf::RenderStates states(sf::Transform().translate({2.f, 3.f}));
   target.draw(outer, states);
   outer.move({21.f, 8.f});

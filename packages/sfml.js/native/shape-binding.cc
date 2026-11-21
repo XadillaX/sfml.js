@@ -9,7 +9,7 @@
 namespace {
 using State = sfmljs::ShapeState;
 using Handle = sfmljs::SharedHandle<State>;
-constexpr std::uint32_t maxPoints = 0x7fffffff / (6 * sizeof(sf::Vertex)) - 2;
+constexpr std::uint32_t kMaxPoints = 0x7fffffff / (6 * sizeof(sf::Vertex)) - 2;
 
 bool Number(v8::Local<v8::Value> input,
             float& value) {  // NOLINT(runtime/references)
@@ -28,7 +28,7 @@ bool Number(v8::Local<v8::Value> input,
 bool Count(v8::Local<v8::Value> input,
            std::uint32_t& count) {  // NOLINT(runtime/references)
   if (!input->IsUint32() ||
-      (count = Nan::To<std::uint32_t>(input).FromJust()) > maxPoints) {
+      (count = Nan::To<std::uint32_t>(input).FromJust()) > kMaxPoints) {
     Nan::ThrowRangeError("Shape point count exceeds the buffer limit");
     return false;
   }
@@ -52,8 +52,8 @@ v8::Local<v8::Object> MapShape(const std::shared_ptr<State>& state) {
              sfmljs::Field<sfmljs::CircleCount>(circle),
              sizeof(std::size_t) == 8 ? "size64" : "u32");
   } else {
-    state->pointCount = static_cast<std::uint32_t>(shape.getPointCount());
-    fields.Add("count", state->pointCount);
+    state->point_count = static_cast<std::uint32_t>(shape.getPointCount());
+    fields.Add("count", state->point_count);
   }
   if (state->kind == 2) {
     const auto& size = sfmljs::Field<sfmljs::RectangleSize>(
@@ -86,7 +86,7 @@ NAN_METHOD(CreateShape) {
     if (kind == 1 && !Count(info[3], count)) return;
     if (kind == 3 && !Count(info[2], count)) return;
   }
-  if (context->owner()->nextId == std::numeric_limits<std::uint32_t>::max()) {
+  if (context->owner()->next_id == std::numeric_limits<std::uint32_t>::max()) {
     return Nan::ThrowRangeError("Shape ID space exhausted");
   }
   try {
@@ -128,7 +128,7 @@ NAN_METHOD(CreateShape) {
       }
     }
     auto state = sfmljs::MakeThreadOwned<State>(
-        context->owner(), context->owner()->nextId++, kind, std::move(shape));
+        context->owner(), context->owner()->next_id++, kind, std::move(shape));
     if (source) {
       state->values = source->owner()->values;
       state->appearance = source->owner()->appearance;
@@ -222,7 +222,7 @@ NAN_METHOD(ChangeShapeGeometry) {
       default:
         return Nan::ThrowRangeError("Unknown shape operation");
     }
-    state.pointCount = static_cast<std::uint32_t>(shape.getPointCount());
+    state.point_count = static_cast<std::uint32_t>(shape.getPointCount());
   } catch (const std::exception& error) {
     sfmljs::ThrowError(error.what());
   }
@@ -237,7 +237,7 @@ NAN_METHOD(UpdateShapePoints) {
   auto view = info[1].As<v8::Float32Array>();
   const auto backing = view->Buffer()->GetBackingStore();
   if (view->Buffer()->WasDetached() || backing->IsShared() ||
-      view->Length() % 2 != 0 || view->Length() / 2 > maxPoints) {
+      view->Length() % 2 != 0 || view->Length() / 2 > kMaxPoints) {
     return Nan::ThrowRangeError("Invalid shape points buffer");
   }
 #if V8_MAJOR_VERSION >= 11
@@ -258,7 +258,8 @@ NAN_METHOD(UpdateShapePoints) {
     auto& state = *handle->owner();
     state.SyncShape();
     static_cast<sfmljs::PointShape&>(*state.shape).Replace(std::move(points));
-    state.pointCount = static_cast<std::uint32_t>(state.shape->getPointCount());
+    state.point_count =
+        static_cast<std::uint32_t>(state.shape->getPointCount());
   } catch (const std::exception& error) {
     sfmljs::ThrowError(error.what());
   }
@@ -303,7 +304,7 @@ NAN_METHOD(SetShapeTexture) {
     return Nan::ThrowTypeError("Expected zero texture ID");
   }
   handle->owner()->texture = std::move(texture);
-  handle->owner()->appearance.textureId = id;
+  handle->owner()->appearance.texture_id = id;
 }
 
 NAN_METHOD(ShapeTextureRect) {

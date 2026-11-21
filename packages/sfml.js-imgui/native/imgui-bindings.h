@@ -1,7 +1,8 @@
 // Copyright (c) 2026 XadillaX
 // SPDX-License-Identifier: MIT
 
-#pragma once
+#ifndef PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_BINDINGS_H_
+#define PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_BINDINGS_H_
 
 #include <nan.h>
 
@@ -33,3 +34,5 @@ NAN_MODULE_INIT(InitializeImGuiFont);
 NAN_MODULE_INIT(InitializeImGuiStructViews);
 
 }  // namespace sfmlimgui
+
+#endif  // PACKAGES_SFML_JS_IMGUI_NATIVE_IMGUI_BINDINGS_H_

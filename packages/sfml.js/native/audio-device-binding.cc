@@ -77,17 +77,17 @@ struct NotificationSink {
   std::deque<unsigned> pending;
   bool closing{};
 };
-std::mutex notificationMutex;
-std::weak_ptr<NotificationSink> notificationTarget;
-std::once_flag notificationInstalled;
+std::mutex notification_mutex;
+std::weak_ptr<NotificationSink> notification_target;
+std::once_flag notification_installed;
 
 void NotificationCleanup(void* pointer) {
   auto* retained = static_cast<std::shared_ptr<NotificationSink>*>(pointer);
   const auto sink = *retained;
   {
-    std::lock_guard lock(notificationMutex);
+    std::lock_guard lock(notification_mutex);
     sink->closing = true;
-    if (notificationTarget.lock() == sink) notificationTarget.reset();
+    if (notification_target.lock() == sink) notification_target.reset();
   }
   sink->callback.Reset();
   sink->resource.reset();
@@ -102,9 +102,9 @@ NAN_METHOD(AudioDeviceNotifications) {
     return Nan::ThrowTypeError("Expected a notification callback or null");
   }
   if (info[0]->IsNullOrUndefined()) {
-    std::lock_guard lock(notificationMutex);
-    if (auto sink = notificationTarget.lock()) sink->pending.clear();
-    notificationTarget.reset();
+    std::lock_guard lock(notification_mutex);
+    if (auto sink = notification_target.lock()) sink->pending.clear();
+    notification_target.reset();
     return;
   }
   const auto key = Nan::New("sfml.audio.notifications").ToLocalChecked();
@@ -124,8 +124,8 @@ NAN_METHOD(AudioDeviceNotifications) {
               *static_cast<std::shared_ptr<NotificationSink>*>(async->data);
           std::deque<unsigned> events;
           {
-            std::lock_guard lock(notificationMutex);
-            if (sink->closing || notificationTarget.lock() != sink) {
+            std::lock_guard lock(notification_mutex);
+            if (sink->closing || notification_target.lock() != sink) {
               sink->pending.clear();
               return;
             }
@@ -134,8 +134,8 @@ NAN_METHOD(AudioDeviceNotifications) {
           Nan::HandleScope scope;
           for (const auto event : events) {
             {
-              std::lock_guard lock(notificationMutex);
-              if (notificationTarget.lock() != sink) break;
+              std::lock_guard lock(notification_mutex);
+              if (notification_target.lock() != sink) break;
             }
             v8::Local<v8::Value> args[] = {Nan::New(event)};
             Nan::TryCatch caught;
@@ -159,15 +159,15 @@ NAN_METHOD(AudioDeviceNotifications) {
   }
   sink->callback.Reset(info[0].As<v8::Function>());
   {
-    std::lock_guard lock(notificationMutex);
+    std::lock_guard lock(notification_mutex);
     sink->pending.clear();
-    notificationTarget = sink;
+    notification_target = sink;
   }
-  std::call_once(notificationInstalled, [] {
+  std::call_once(notification_installed, [] {
     sf::PlaybackDevice::setNotificationCallback(
         [](sf::PlaybackDevice::Notification event) {
-          std::lock_guard lock(notificationMutex);
-          if (auto target = notificationTarget.lock();
+          std::lock_guard lock(notification_mutex);
+          if (auto target = notification_target.lock();
               target && !target->closing) {
             target->pending.push_back(static_cast<unsigned>(event));
             uv_async_send(&target->async);

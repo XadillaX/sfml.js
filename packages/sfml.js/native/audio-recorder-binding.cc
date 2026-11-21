@@ -24,7 +24,7 @@ NAN_METHOD(CreateAudioRecorder) {
   if (!info[0]->IsBoolean())
     return Nan::ThrowTypeError("Expected a recorder kind");
   auto recorder = MakeThreadOwned<Recorder>();
-  recorder->bufferRecorder = info[0]->IsTrue();
+  recorder->buffer_recorder = info[0]->IsTrue();
   recorder->device = sf::SoundRecorder::getDefaultDevice();
   auto result = Nan::New<v8::Object>();
   Set(result, "handle", RecorderHandle::Create(recorder));
@@ -49,8 +49,8 @@ NAN_METHOD(PrepareAudioRecorder) {
   auto recorder = handle->owner();
   if (recorder->active) return Nan::ThrowError("Recorder is already running");
   if (rate == 0) return Nan::ThrowRangeError("Sample rate must be positive");
-  const bool callbacks = recorder->bufferRecorder && info[5]->IsTrue();
-  const bool direct = recorder->bufferRecorder && !callbacks;
+  const bool callbacks = recorder->buffer_recorder && info[5]->IsTrue();
+  const bool direct = recorder->buffer_recorder && !callbacks;
   auto state =
       direct ? nullptr
              : CreateWorkerState(1, frames, recorder->values[1], rate, slots);
@@ -72,7 +72,7 @@ NAN_METHOD(PrepareAudioRecorder) {
       [recorder, state, next, rate, callbacks]() -> v8::Local<v8::Value> {
         recorder->current = std::move(*next);
         recorder->worker = state;
-        recorder->callbackRecorder = callbacks;
+        recorder->callback_recorder = callbacks;
         recorder->values[0] = rate;
         auto result = Nan::New<v8::Object>();
         if (state) {
@@ -109,14 +109,14 @@ NAN_METHOD(StopAudioRecorder) {
         if (recorder->current) recorder->current->stop();
       },
       [recorder]() -> v8::Local<v8::Value> {
-        const bool wasActive = recorder->active;
+        const bool was_active = recorder->active;
         recorder->active = false;
         recorder->values[2] = 0;
         if (recorder->worker) {
           recorder->worker->running.store(false, std::memory_order_release);
         }
-        if (!recorder->bufferRecorder || recorder->callbackRecorder ||
-            !wasActive || !recorder->current)
+        if (!recorder->buffer_recorder || recorder->callback_recorder ||
+            !was_active || !recorder->current)
           return Nan::Undefined();
         auto& buffer = static_cast<sf::SoundBufferRecorder&>(*recorder->current)
                            .getBuffer();

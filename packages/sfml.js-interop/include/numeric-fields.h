@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_INTEROP_INCLUDE_NUMERIC_FIELDS_H_
+#define PACKAGES_SFML_JS_INTEROP_INCLUDE_NUMERIC_FIELDS_H_
 
 #include <algorithm>
 #include <cstdint>
@@ -11,9 +12,9 @@ namespace sfmljs {
 
 // Explicit instantiation can name private members (C++ [temp.explicit]).
 // Use member pointers from the installed headers, never replica class layouts.
-template <typename Tag, typename Tag::Type Pointer>
+template <typename Tag, typename Tag::Type pointer>
 struct MemberAccess {
-  friend typename Tag::Type Member(Tag) { return Pointer; }
+  friend typename Tag::Type Member(Tag) { return pointer; }
 };
 
 #define SFMLJS_MEMBER(Tag, Class, Value, Name)                                 \
@@ -113,3 +114,5 @@ class NumericFields {
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_INTEROP_INCLUDE_NUMERIC_FIELDS_H_

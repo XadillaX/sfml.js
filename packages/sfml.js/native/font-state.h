@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_FONT_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_FONT_STATE_H_
 
 #include "graphics-state.h"
 #include <SFML/Graphics/Font.hpp>
@@ -25,3 +26,5 @@ struct FontAtlas {
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_FONT_STATE_H_

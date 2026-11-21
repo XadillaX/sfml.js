@@ -280,54 +280,54 @@ std::optional<sf::Event> BuildEvent(v8::Local<v8::Value> value) {
   }
 
   if (kind == "JoystickButtonPressed" || kind == "JoystickButtonReleased") {
-    unsigned joystickId{}, button{};
-    if (!ReadUnsigned(object, "joystickId", &joystickId) ||
+    unsigned joystick_id{}, button{};
+    if (!ReadUnsigned(object, "joystickId", &joystick_id) ||
         !ReadUnsigned(object, "button", &button)) {
       Nan::ThrowTypeError("Invalid joystick button event");
       return std::nullopt;
     }
     if (kind == "JoystickButtonPressed") {
       sf::Event::JoystickButtonPressed event;
-      event.joystickId = joystickId;
+      event.joystickId = joystick_id;
       event.button = button;
       return sf::Event(event);
     }
     sf::Event::JoystickButtonReleased event;
-    event.joystickId = joystickId;
+    event.joystickId = joystick_id;
     event.button = button;
     return sf::Event(event);
   }
 
   if (kind == "JoystickMoved") {
-    unsigned joystickId{};
+    unsigned joystick_id{};
     int axis{};
     double position{};
-    if (!ReadUnsigned(object, "joystickId", &joystickId) ||
+    if (!ReadUnsigned(object, "joystickId", &joystick_id) ||
         !ReadInt(object, "axis", &axis) ||
         !ReadNumber(object, "position", &position)) {
       Nan::ThrowTypeError("Invalid JoystickMoved event");
       return std::nullopt;
     }
     sf::Event::JoystickMoved event;
-    event.joystickId = joystickId;
+    event.joystickId = joystick_id;
     event.axis = static_cast<sf::Joystick::Axis>(axis);
     event.position = static_cast<float>(position);
     return sf::Event(event);
   }
 
   if (kind == "JoystickConnected" || kind == "JoystickDisconnected") {
-    unsigned joystickId{};
-    if (!ReadUnsigned(object, "joystickId", &joystickId)) {
+    unsigned joystick_id{};
+    if (!ReadUnsigned(object, "joystickId", &joystick_id)) {
       Nan::ThrowTypeError("Invalid joystick connection event");
       return std::nullopt;
     }
     if (kind == "JoystickConnected") {
       sf::Event::JoystickConnected event;
-      event.joystickId = joystickId;
+      event.joystickId = joystick_id;
       return sf::Event(event);
     }
     sf::Event::JoystickDisconnected event;
-    event.joystickId = joystickId;
+    event.joystickId = joystick_id;
     return sf::Event(event);
   }
 

@@ -13,16 +13,16 @@
 namespace sfmlimgui {
 namespace {
 
-enum class GlyphBitfield { Colored, Visible, Codepoint };
+enum class GlyphBitfield { kColored, kVisible, kCodepoint };
 
 template <GlyphBitfield field>
 NAN_METHOD(ReadGlyphBitfield) {
   auto* handle = sfmljs::SharedHandle<cimgui::ImFontGlyph>::From(info.Data());
   if (!handle) return;
   const auto& glyph = *handle->owner();
-  if constexpr (field == GlyphBitfield::Colored) {
+  if constexpr (field == GlyphBitfield::kColored) {
     info.GetReturnValue().Set(Nan::New(glyph.Colored));
-  } else if constexpr (field == GlyphBitfield::Visible) {
+  } else if constexpr (field == GlyphBitfield::kVisible) {
     info.GetReturnValue().Set(Nan::New(glyph.Visible));
   } else {
     info.GetReturnValue().Set(Nan::New(glyph.Codepoint));
@@ -39,20 +39,20 @@ NAN_METHOD(WriteGlyphBitfield) {
   }
   const double number = info[0].As<v8::Number>()->Value();
   constexpr unsigned int maximum =
-      field == GlyphBitfield::Codepoint ? 0x3fffffffU : 1U;
+      field == GlyphBitfield::kCodepoint ? 0x3fffffffU : 1U;
   if (!std::isfinite(number) || std::trunc(number) != number || number < 0 ||
       number > maximum) {
     Nan::ThrowRangeError(
-        field == GlyphBitfield::Codepoint
+        field == GlyphBitfield::kCodepoint
             ? "Codepoint must be an integer between 0 and 0x3fffffff"
             : "Colored and Visible must be 0 or 1");
     return;
   }
   auto& glyph = *handle->owner();
   const auto value = static_cast<unsigned int>(number);
-  if constexpr (field == GlyphBitfield::Colored) {
+  if constexpr (field == GlyphBitfield::kColored) {
     glyph.Colored = value;
-  } else if constexpr (field == GlyphBitfield::Visible) {
+  } else if constexpr (field == GlyphBitfield::kVisible) {
     glyph.Visible = value;
   } else {
     glyph.Codepoint = value;
@@ -78,9 +78,9 @@ void AddGlyphBitfield(v8::Local<v8::Object> result,
 
 v8::Local<v8::Object> FontGlyphBitfields(v8::Local<v8::Value> handle) {
   auto result = Nan::New<v8::Object>();
-  AddGlyphBitfield<GlyphBitfield::Colored>(result, "Colored", handle);
-  AddGlyphBitfield<GlyphBitfield::Visible>(result, "Visible", handle);
-  AddGlyphBitfield<GlyphBitfield::Codepoint>(result, "Codepoint", handle);
+  AddGlyphBitfield<GlyphBitfield::kColored>(result, "Colored", handle);
+  AddGlyphBitfield<GlyphBitfield::kVisible>(result, "Visible", handle);
+  AddGlyphBitfield<GlyphBitfield::kCodepoint>(result, "Codepoint", handle);
   return result;
 }
 

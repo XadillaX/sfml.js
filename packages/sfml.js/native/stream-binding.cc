@@ -11,7 +11,7 @@
 
 namespace {
 
-enum class Operation { Read, Seek, Tell, Size };
+enum class Operation { kRead, kSeek, kTell, kSize };
 
 struct Request {
   Operation operation;
@@ -48,13 +48,13 @@ NAN_METHOD(CompleteRequest) {
                   ? info[1].As<v8::BigInt>()->Uint64Value(&lossless)
                   : 0;
           if (!lossless || value > std::numeric_limits<std::size_t>::max() ||
-              (request->operation == Operation::Read &&
+              (request->operation == Operation::kRead &&
                value > request->bytes.size())) {
             request->error =
                 "Stream result must be a non-negative bigint within range";
           } else {
             request->result = static_cast<std::size_t>(value);
-            if (request->operation == Operation::Read) {
+            if (request->operation == Operation::kRead) {
               request->snapshot.assign(request->bytes.begin(),
                                        request->bytes.begin() + value);
             }
@@ -92,8 +92,8 @@ class StreamLoader final : public sf::InputStream {
               v8::Isolate::GetCurrent(),
               [](void* data, void (*done)(void*), void* argument) {
                 auto* self = static_cast<StreamLoader*>(data);
-                self->cleanupDone_ = done;
-                self->cleanupArgument_ = argument;
+                self->cleanup_done_ = done;
+                self->cleanup_argument_ = argument;
                 self->cancelled_ = true;
                 std::shared_ptr<Request> request;
                 {
@@ -131,20 +131,20 @@ class StreamLoader final : public sf::InputStream {
   }
 
   std::optional<std::size_t> read(void* data, std::size_t size) override {
-    auto request = Exchange(Operation::Read, size);
+    auto request = Exchange(Operation::kRead, size);
     if (request->result && *request->result) {
       std::memcpy(data, request->snapshot.data(), *request->result);
     }
     return request->result;
   }
   std::optional<std::size_t> seek(std::size_t position) override {
-    return Exchange(Operation::Seek, position)->result;
+    return Exchange(Operation::kSeek, position)->result;
   }
   std::optional<std::size_t> tell() override {
-    return Exchange(Operation::Tell)->result;
+    return Exchange(Operation::kTell)->result;
   }
   std::optional<std::size_t> getSize() override {
-    return Exchange(Operation::Size)->result;
+    return Exchange(Operation::kSize)->result;
   }
 
  private:
@@ -155,7 +155,7 @@ class StreamLoader final : public sf::InputStream {
     request->operation = operation;
     request->position = value;
     if (!error_.empty()) return request;
-    if (operation == Operation::Read) {
+    if (operation == Operation::kRead) {
       if (value > node::Buffer::kMaxLength) {
         throw std::length_error("Stream read exceeds the byte buffer limit");
       }
@@ -185,7 +185,7 @@ class StreamLoader final : public sf::InputStream {
     }
     if (finished) {
       if (self->thread_.joinable()) self->thread_.join();
-      if (!self->cleanupDone_) {
+      if (!self->cleanup_done_) {
         if (self->cleanup_) {
           node::RemoveEnvironmentCleanupHook(std::move(self->cleanup_));
         }
@@ -194,8 +194,8 @@ class StreamLoader final : public sf::InputStream {
       }
       uv_close(reinterpret_cast<uv_handle_t*>(async), [](uv_handle_t* handle) {
         auto* loader = static_cast<StreamLoader*>(handle->data);
-        const auto done = loader->cleanupDone_;
-        const auto argument = loader->cleanupArgument_;
+        const auto done = loader->cleanup_done_;
+        const auto argument = loader->cleanup_argument_;
         delete loader;
         if (done) done(argument);
       });
@@ -211,7 +211,7 @@ class StreamLoader final : public sf::InputStream {
                                                RequestHandle::Create(request)))
                               .ToLocalChecked();
           v8::Local<v8::Value> data = Nan::Undefined();
-          if (request->operation == Operation::Read) {
+          if (request->operation == Operation::kRead) {
             auto buffer =
                 request->bytes.empty()
                     ? v8::ArrayBuffer::New(v8::Isolate::GetCurrent(), 0)
@@ -277,8 +277,8 @@ class StreamLoader final : public sf::InputStream {
   bool finished_{};
   std::atomic<bool> cancelled_{false};
   node::AsyncCleanupHookHandle cleanup_;
-  void (*cleanupDone_)(void*) = nullptr;
-  void* cleanupArgument_{};
+  void (*cleanup_done_)(void*) = nullptr;
+  void* cleanup_argument_{};
   std::shared_ptr<sfmljs::ImageState> state_;
   std::shared_ptr<sf::Image> image_;
   Nan::Callback dispatch_;

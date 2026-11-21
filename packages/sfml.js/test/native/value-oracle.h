@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_TEST_NATIVE_VALUE_ORACLE_H_
+#define PACKAGES_SFML_JS_TEST_NATIVE_VALUE_ORACLE_H_
 
 #include <nan.h>
 
@@ -91,3 +92,5 @@ void EvaluateFloating(v8::Local<v8::Object> result, const V& lhs) {
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_TEST_NATIVE_VALUE_ORACLE_H_

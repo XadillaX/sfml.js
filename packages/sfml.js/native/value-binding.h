@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_VALUE_BINDING_H_
+#define PACKAGES_SFML_JS_NATIVE_VALUE_BINDING_H_
 
 #include <array>
 #include <bit>  // NOLINT(build/include_order): cpplint lacks C++20 headers
@@ -7,6 +8,7 @@
 #include <memory>
 #include <new>
 #include <string_view>
+#include <tuple>
 #include <type_traits>
 
 #include "shared-handle.h"
@@ -22,7 +24,7 @@ void ReturnMapped(const CallbackInfo& info,
                   std::shared_ptr<v8::BackingStore> backing = {}) {
   static_assert(std::is_standard_layout_v<T>);
   static_assert(std::is_trivially_copyable_v<T>);
-  static_assert(sizeof(T) == Layout<T>::bytes);
+  static_assert(sizeof(T) == Layout<T>::kBytes);
   auto result = Nan::New<v8::Object>();
   Nan::Set(result,
            Nan::New("handle").ToLocalChecked(),
@@ -199,7 +201,7 @@ void Member(const CallbackInfo& info) {
   Values::Visit(info[0], [&](auto* handle) {
     const auto& owner = handle->owner();
     using T = std::decay_t<decltype(*owner)>;
-    constexpr auto members = Layout<T>::members;
+    constexpr auto members = Layout<T>::kMembers;
     if (index >= std::tuple_size_v<decltype(members)>) {
       return Nan::ThrowTypeError("Expected a valid value member index");
     }
@@ -216,3 +218,5 @@ void Member(const CallbackInfo& info) {
 }
 
 }  // namespace sfmljs::values
+
+#endif  // PACKAGES_SFML_JS_NATIVE_VALUE_BINDING_H_

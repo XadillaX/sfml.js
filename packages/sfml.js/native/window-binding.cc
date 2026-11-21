@@ -155,8 +155,8 @@ NAN_METHOD(TakeWindowNotification) {
   // Consume before calling any JS hook, including one which throws or reenters.
   notifications->pop_front();
   info.GetReturnValue().Set(
-      Nan::New(notification == sfmljs::WindowNotification::Create ? "create"
-                                                                  : "resize")
+      Nan::New(notification == sfmljs::WindowNotification::kCreate ? "create"
+                                                                   : "resize")
           .ToLocalChecked());
 }
 

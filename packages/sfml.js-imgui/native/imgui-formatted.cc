@@ -180,19 +180,19 @@ bool AppendValue(std::string* out,
 // resolved without consuming arguments out of order.
 
 bool FormatArguments(const CallbackInfo& info,
-                     unsigned formatIndex,
-                     unsigned argsIndex,
+                     unsigned format_index,
+                     unsigned args_index,
                      std::string* out) {
-  std::string formatStorage;
+  std::string format_storage;
   const char* format = nullptr;
-  if (!ReadUtf8(info, formatIndex, &formatStorage, &format, false)) {
+  if (!ReadUtf8(info, format_index, &format_storage, &format, false)) {
     return false;
   }
-  if (!info[argsIndex]->IsArray()) {
+  if (!info[args_index]->IsArray()) {
     Nan::ThrowTypeError("Expected an argument array");
     return false;
   }
-  auto args = info[argsIndex].As<v8::Array>();
+  auto args = info[args_index].As<v8::Array>();
   std::uint32_t argument = 0;
   const char* cursor = format;
 
@@ -221,7 +221,7 @@ bool FormatArguments(const CallbackInfo& info,
       ++cursor;
       while (*cursor >= '0' && *cursor <= '9') ++cursor;
     }
-    const char* prefixEnd = cursor;
+    const char* prefix_end = cursor;
     while (*cursor == 'h' || *cursor == 'l' || *cursor == 'j' ||
            *cursor == 'z' || *cursor == 't' || *cursor == 'L') {
       ++cursor;
@@ -237,7 +237,7 @@ bool FormatArguments(const CallbackInfo& info,
       return false;
     }
     auto value = Nan::Get(args, argument++).ToLocalChecked();
-    if (!AppendValue(out, std::string(start, prefixEnd), specifier, value)) {
+    if (!AppendValue(out, std::string(start, prefix_end), specifier, value)) {
       return false;
     }
   }
@@ -245,10 +245,10 @@ bool FormatArguments(const CallbackInfo& info,
 }
 
 bool Format(const CallbackInfo& info,
-            unsigned formatIndex,
-            unsigned argsIndex,
+            unsigned format_index,
+            unsigned args_index,
             std::string* out) {
-  return FormatArguments(info, formatIndex, argsIndex, out);
+  return FormatArguments(info, format_index, args_index, out);
 }
 
 NAN_METHOD(Text) {
@@ -278,9 +278,9 @@ NAN_METHOD(TextWrapped) {
 }
 
 NAN_METHOD(LabelText) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
   std::string message;
   if (!Format(info, 1, 2, &message)) return;
   ::cimgui::ImGui_LabelText(label, "%s", message.c_str());
@@ -293,9 +293,9 @@ NAN_METHOD(BulletText) {
 }
 
 NAN_METHOD(TreeNodeStr) {
-  std::string idStorage;
+  std::string id_storage;
   const char* id = nullptr;
-  if (!ReadUtf8(info, 0, &idStorage, &id, false)) return;
+  if (!ReadUtf8(info, 0, &id_storage, &id, false)) return;
   std::string message;
   if (!Format(info, 1, 2, &message)) return;
   info.GetReturnValue().Set(
@@ -312,9 +312,9 @@ NAN_METHOD(TreeNodePtr) {
 }
 
 NAN_METHOD(TreeNodeExStr) {
-  std::string idStorage;
+  std::string id_storage;
   const char* id = nullptr;
-  if (!ReadUtf8(info, 0, &idStorage, &id, false)) return;
+  if (!ReadUtf8(info, 0, &id_storage, &id, false)) return;
   int flags = 0;
   if (!ReadScalar(info, 1, &flags)) return;
   std::string message;

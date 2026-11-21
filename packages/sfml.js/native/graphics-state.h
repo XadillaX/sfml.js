@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_GRAPHICS_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_GRAPHICS_STATE_H_
 
 #include <array>
 #include <cstddef>
@@ -35,11 +36,11 @@ struct ShapeState;
 
 // One context per JS module instance, retained by its native resources.
 struct GraphicsContext {
-  std::uint32_t nextId{1};
+  std::uint32_t next_id{1};
   std::unordered_map<std::uint32_t, std::weak_ptr<SpriteState>> sprites;
   std::unordered_map<std::uint32_t, std::weak_ptr<const sf::Texture>> textures;
   std::unordered_map<std::uint32_t, std::weak_ptr<VertexBufferState>>
-      vertexBuffers;
+      vertex_buffers;
   std::unordered_map<std::uint32_t, std::weak_ptr<ShaderState>> shaders;
   std::unordered_map<std::uint32_t, std::weak_ptr<ShapeState>> shapes;
 };
@@ -52,7 +53,7 @@ struct ShaderState : sf::GlResource {
   std::shared_ptr<GraphicsContext> context;
   std::uint32_t id;
   std::shared_ptr<sf::Shader> current = std::make_shared<sf::Shader>();
-  std::uint32_t programId{};
+  std::uint32_t program_id{};
   std::unordered_map<int, std::shared_ptr<const sf::Texture>> textures;
 };
 
@@ -62,7 +63,7 @@ struct VertexBufferState : sf::VertexBuffer {
                     sf::PrimitiveType type,
                     Usage usage)
       : sf::VertexBuffer(type, usage), context(std::move(context)), id(id) {}
-  ~VertexBufferState() { context->vertexBuffers.erase(id); }
+  ~VertexBufferState() { context->vertex_buffers.erase(id); }
   std::shared_ptr<GraphicsContext> context;
   std::uint32_t id;
 };
@@ -80,7 +81,7 @@ struct TextureState : sf::Texture {
 };
 
 struct SpriteAppearance {
-  std::uint32_t textureId{};
+  std::uint32_t texture_id{};
   sf::IntRect rectangle;
   std::uint32_t color{0xffffffff};
 };
@@ -100,13 +101,13 @@ struct SpriteState : sf::Sprite, TransformableState {
   SpriteState(std::shared_ptr<GraphicsContext> context,
               std::shared_ptr<const sf::Texture> texture,
               std::uint32_t id,
-              std::uint32_t textureId)
+              std::uint32_t texture_id)
       : sf::Sprite(*texture),
         TransformableState(static_cast<sf::Transformable*>(this)),
         context(std::move(context)),
         texture(std::move(texture)),
         id(id),
-        appearance{textureId, getTextureRect(), 0xffffffff} {}
+        appearance{texture_id, getTextureRect(), 0xffffffff} {}
 
   ~SpriteState() { context->sprites.erase(id); }
 
@@ -174,14 +175,14 @@ struct DrawCommand {
   std::array<std::uint32_t, 7> payload{};
   DrawStates states{};
   SpriteAppearance sprite{};
-  std::uint32_t shaderId{};
+  std::uint32_t shader_id{};
 };
 static_assert(sizeof(DrawCommand) == 172);
 static_assert(offsetof(DrawCommand, argument) == 4);
 static_assert(offsetof(DrawCommand, payload) == 8);
 static_assert(offsetof(DrawCommand, states) == 36);
 static_assert(offsetof(DrawCommand, sprite) == 144);
-static_assert(offsetof(DrawCommand, shaderId) == 168);
+static_assert(offsetof(DrawCommand, shader_id) == 168);
 static_assert(offsetof(DrawStates, blend) == 64);
 static_assert(offsetof(DrawStates, stencil) == 88);
 
@@ -191,14 +192,14 @@ struct PreviewWindow {
   sf::Clock clock;
   std::uint32_t open{};
   std::uint32_t frames{};
-  std::uint32_t intervalFrames{};
+  std::uint32_t interval_frames{};
 
   void CloseBeforeThreadExit() {
     window.close();
     open = 0;
   }
 
-  void Present(const sf::Texture& texture, std::size_t commandCount) {
+  void Present(const sf::Texture& texture, std::size_t command_count) {
     while (const auto event = window.pollEvent()) {
       const auto* key = event->getIf<sf::Event::KeyPressed>();
       if (event->is<sf::Event::Closed>() ||
@@ -212,14 +213,14 @@ struct PreviewWindow {
     window.draw(sf::Sprite(texture));
     window.display();
     ++frames;
-    ++intervalFrames;
+    ++interval_frames;
     const auto elapsed = clock.getElapsedTime().asSeconds();
     if (elapsed >= 1.f) {
-      const auto fps = static_cast<unsigned>(intervalFrames / elapsed + 0.5f);
-      window.setTitle("sfml.js | " + std::to_string(commandCount) +
+      const auto fps = static_cast<unsigned>(interval_frames / elapsed + 0.5f);
+      window.setTitle("sfml.js | " + std::to_string(command_count) +
                       " commands | " + std::to_string(fps) +
                       " FPS | 1 native submit/frame | Esc closes");
-      intervalFrames = 0;
+      interval_frames = 0;
       clock.restart();
     }
   }
@@ -231,7 +232,7 @@ struct RenderTextureState {
       : context(std::move(context)), batch(this->context, capacity) {}
 
   ~RenderTextureState() {
-    if (textureId) context->textures.erase(textureId);
+    if (texture_id) context->textures.erase(texture_id);
   }
 
   bool Resize(sf::Vector2u size, const sf::ContextSettings& settings) {
@@ -242,7 +243,7 @@ struct RenderTextureState {
     if (!replacement.resize(size, settings)) return false;
     target = std::move(replacement);
     initialized = true;
-    targetSrgb = target.isSrgb();
+    target_srgb = target.isSrgb();
     return true;
   }
 
@@ -256,12 +257,14 @@ struct RenderTextureState {
   }
 
   std::shared_ptr<GraphicsContext> context;
-  std::uint32_t textureId{};
+  std::uint32_t texture_id{};
   bool initialized{};
-  bool targetSrgb{};
+  bool target_srgb{};
   sf::RenderTexture target;
   BatchDrawable batch;
   std::shared_ptr<PreviewWindow> preview;
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_GRAPHICS_STATE_H_

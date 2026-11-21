@@ -5,9 +5,9 @@
 
 namespace sfmljs::audio {
 namespace {
-std::mutex registryMutex;
+std::mutex registry_mutex;
 std::unordered_map<std::uint64_t, std::weak_ptr<AudioWorkerState>> registry;
-std::uint64_t nextToken{};
+std::uint64_t next_token{};
 }  // namespace
 
 std::shared_ptr<AudioWorkerState> CreateWorkerState(unsigned kind,
@@ -25,10 +25,10 @@ std::shared_ptr<AudioWorkerState> CreateWorkerState(unsigned kind,
 
 v8::Local<v8::Value> RegisterWorker(
     const std::shared_ptr<AudioWorkerState>& state) {
-  std::lock_guard lock(registryMutex);
+  std::lock_guard lock(registry_mutex);
   std::erase_if(registry,
                 [](const auto& item) { return item.second.expired(); });
-  const auto token = ++nextToken;
+  const auto token = ++next_token;
   registry.emplace(token, state);
   return v8::BigInt::NewFromUnsigned(v8::Isolate::GetCurrent(), token);
 }
@@ -49,7 +49,7 @@ v8::Local<v8::Object> MapWorker(
                 state,
                 state->time.data(),
                 sizeof(state->time)));
-  auto mapPipe = [&](AudioPipe& pipe) {
+  auto map_pipe = [&](AudioPipe& pipe) {
     auto array = Nan::New<v8::Array>(static_cast<int>(pipe.blocks.size()));
     for (unsigned i = 0; i < pipe.blocks.size(); ++i) {
       auto& block = *pipe.blocks[i];
@@ -66,15 +66,15 @@ v8::Local<v8::Object> MapWorker(
     }
     return array;
   };
-  Set(result, "input", mapPipe(state->input));
-  Set(result, "output", mapPipe(state->output));
+  Set(result, "input", map_pipe(state->input));
+  Set(result, "output", map_pipe(state->output));
   return result;
 }
 
 bool AudioWorkerState::Stream(sf::SoundStream::Chunk& chunk) {
-  if (streamLease) {
+  if (stream_lease) {
     input.Release();
-    streamLease = false;
+    stream_lease = false;
   }
   if (closed.load(std::memory_order_acquire)) return false;
   const auto current = generation.load(std::memory_order_acquire);
@@ -87,7 +87,7 @@ bool AudioWorkerState::Stream(sf::SoundStream::Chunk& chunk) {
     }
     chunk = {block->pcm.data(), block->count};
     loop = block->loop;
-    streamLease = true;
+    stream_lease = true;
     processed.fetch_add(block->count, std::memory_order_relaxed);
     return block->more;
   }
@@ -119,23 +119,23 @@ void AudioWorkerState::Capture(const std::int16_t* samples, std::size_t count) {
 }
 
 void AudioWorkerState::Effect(const float* in,
-                              unsigned& inFrames,
+                              unsigned& in_frames,
                               float* out,
-                              unsigned& outFrames,
-                              unsigned channelCount) {
-  if (closed.load(std::memory_order_acquire) || channelCount > channels ||
-      channelCount == 0) {
-    std::fill_n(out, outFrames * channelCount, 0.f);
-    if (!in) outFrames = 0;
+                              unsigned& out_frames,
+                              unsigned channel_count) {
+  if (closed.load(std::memory_order_acquire) || channel_count > channels ||
+      channel_count == 0) {
+    std::fill_n(out, out_frames * channel_count, 0.f);
+    if (!in) out_frames = 0;
     return;
   }
-  const unsigned accepted = in ? std::min(inFrames, frames) : 0;
+  const unsigned accepted = in ? std::min(in_frames, frames) : 0;
   const auto current = generation.load(std::memory_order_acquire);
-  if (in) tailDone.store(false, std::memory_order_release);
-  if (in || !tailDone.load(std::memory_order_acquire)) {
+  if (in) tail_done.store(false, std::memory_order_release);
+  if (in || !tail_done.load(std::memory_order_acquire)) {
     if (auto* block = input.Write()) {
-      block->count = accepted * channelCount;
-      block->channels = channelCount;
+      block->count = accepted * channel_count;
+      block->channels = channel_count;
       block->tail = !in;
       block->generation = current;
       if (accepted)
@@ -146,38 +146,38 @@ void AudioWorkerState::Effect(const float* in,
       overruns.fetch_add(accepted, std::memory_order_relaxed);
     }
   }
-  inFrames = accepted;
-  const unsigned requested = outFrames;
+  in_frames = accepted;
+  const unsigned requested = out_frames;
   unsigned written{};
   while (written < requested) {
     auto* block = output.Read();
     if (!block) break;
-    if (block->channels != channelCount || block->generation != current) {
+    if (block->channels != channel_count || block->generation != current) {
       output.Release();
-      outputOffset = 0;
+      output_offset = 0;
       continue;
     }
     const auto count = std::min(requested - written,
-                                (block->count - outputOffset) / channelCount);
-    std::memcpy(out + written * channelCount,
-                block->floats.data() + outputOffset,
-                count * channelCount * sizeof(float));
+                                (block->count - output_offset) / channel_count);
+    std::memcpy(out + written * channel_count,
+                block->floats.data() + output_offset,
+                count * channel_count * sizeof(float));
     written += count;
-    outputOffset += count * channelCount;
-    if (outputOffset == block->count) {
+    output_offset += count * channel_count;
+    if (output_offset == block->count) {
       output.Release();
-      outputOffset = 0;
+      output_offset = 0;
     }
   }
-  if (!in && tailDone.load(std::memory_order_acquire) &&
+  if (!in && tail_done.load(std::memory_order_acquire) &&
       pending.load(std::memory_order_acquire) == 0) {
-    outFrames = written;
+    out_frames = written;
     return;
   }
   if (written < requested) {
     underruns.fetch_add(requested - written, std::memory_order_relaxed);
     std::fill(
-        out + written * channelCount, out + requested * channelCount, 0.f);
+        out + written * channel_count, out + requested * channel_count, 0.f);
   }
 }
 
@@ -246,8 +246,8 @@ NAN_METHOD(OpenAudioMusicStream) {
     return Nan::ThrowTypeError("Expected Music");
   auto state = CreateWorkerState(0, frames, channels, rate, slots);
   state->music = true;
-  state->sampleCount = count;
-  state->loopLength = count;
+  state->sample_count = count;
+  state->loop_length = count;
   const bool looping = source->AsStream()->isLooping();
   auto sound = std::make_unique<WorkerStream>(state, map);
   CopySourceSettings(*sound, *source->sound);
@@ -271,7 +271,7 @@ NAN_METHOD(AttachAudioWorker) {
   const auto token = info[0].As<v8::BigInt>()->Uint64Value();
   std::shared_ptr<AudioWorkerState> state;
   {
-    std::lock_guard lock(registryMutex);
+    std::lock_guard lock(registry_mutex);
     const auto found = registry.find(token);
     if (found != registry.end()) {
       state = found->second.lock();
@@ -301,27 +301,27 @@ NAN_METHOD(PollAudioWorker) {
     return Nan::ThrowError("Previous audio block is still leased");
   auto& f = state.fields;
   if (state.kind == 0) {
-    const auto sequence = state.seekSequence.load(std::memory_order_acquire);
+    const auto sequence = state.seek_sequence.load(std::memory_order_acquire);
     const auto generation = state.generation.load(std::memory_order_acquire);
     if (sequence & 1) {
       info.GetReturnValue().Set(-1);
       return;
     }
-    if (state.workerGeneration != generation) {
+    if (state.worker_generation != generation) {
       const auto offset = state.seek.load(std::memory_order_relaxed);
-      const auto sample = state.seekSample.load(std::memory_order_relaxed);
-      if (state.seekSequence.load(std::memory_order_acquire) != sequence) {
+      const auto sample = state.seek_sample.load(std::memory_order_relaxed);
+      if (state.seek_sequence.load(std::memory_order_acquire) != sequence) {
         info.GetReturnValue().Set(-1);
         return;
       }
-      state.workerGeneration = generation;
-      state.workerEof = false;
+      state.worker_generation = generation;
+      state.worker_eof = false;
       state.time[0] = offset;
       state.time[5] = sample;
       info.GetReturnValue().Set(-2);
       return;
     }
-    if (state.workerEof || !state.input.Write()) {
+    if (state.worker_eof || !state.input.Write()) {
       info.GetReturnValue().Set(-1);
       return;
     }
@@ -330,11 +330,11 @@ NAN_METHOD(PollAudioWorker) {
     f[3] = 1;
     f[4] = state.looping.load(std::memory_order_acquire);
     state.time[1] = 0;
-    state.time[2] = static_cast<std::int64_t>(state.sampleCount);
+    state.time[2] = static_cast<std::int64_t>(state.sample_count);
     state.time[3] = static_cast<std::int64_t>(
-        state.loopOffset.load(std::memory_order_acquire));
+        state.loop_offset.load(std::memory_order_acquire));
     state.time[4] = static_cast<std::int64_t>(
-        state.loopLength.load(std::memory_order_acquire));
+        state.loop_length.load(std::memory_order_acquire));
   } else {
     auto* input = state.input.Read();
     while (input && state.kind == 2 &&
@@ -342,7 +342,7 @@ NAN_METHOD(PollAudioWorker) {
                state.generation.load(std::memory_order_acquire)) {
       state.input.Release();
       state.pending.fetch_sub(1, std::memory_order_release);
-      state.workerOffset = 0;
+      state.worker_offset = 0;
       input = state.input.Read();
     }
     if (!input && state.kind == 1 &&
@@ -356,9 +356,9 @@ NAN_METHOD(PollAudioWorker) {
     }
     f[0] = static_cast<int>(state.input.head % state.input.blocks.size());
     f[1] = static_cast<int>(state.output.tail % state.output.blocks.size());
-    f[2] = input->count - state.workerOffset;
+    f[2] = input->count - state.worker_offset;
     f[3] = input->channels;
-    f[4] = state.workerOffset;
+    f[4] = state.worker_offset;
     f[5] = input->tail;
     f[6] = state.frames;
     f[7] = state.kind == 2 ? f[2] / f[3] : f[2];
@@ -382,9 +382,9 @@ NAN_METHOD(CommitAudioWorker) {
     auto* block = state.input.Write();
     block->count = f[2];
     block->more = f[3] != 0;
-    block->generation = state.workerGeneration;
+    block->generation = state.worker_generation;
     block->loop = state.time[1];
-    state.workerEof = !block->more;
+    state.worker_eof = !block->more;
     state.input.Publish();
   } else if (state.kind == 1) {
     state.processed.fetch_add(state.input.Read()->count,
@@ -395,7 +395,7 @@ NAN_METHOD(CommitAudioWorker) {
     auto* input = state.input.Read();
     if (f[6] < 0 || static_cast<unsigned>(f[6]) > state.frames || f[7] < 0 ||
         static_cast<unsigned>(f[7]) >
-            (input->count - state.workerOffset) / input->channels ||
+            (input->count - state.worker_offset) / input->channels ||
         (f[6] == 0 && f[7] == 0 && !input->tail)) {
       return Nan::ThrowRangeError("Invalid effect frame counts or no progress");
     }
@@ -406,16 +406,16 @@ NAN_METHOD(CommitAudioWorker) {
       output->generation = input->generation;
       state.output.Publish();
     }
-    state.workerOffset += f[7] * input->channels;
+    state.worker_offset += f[7] * input->channels;
     state.processed.fetch_add(f[7], std::memory_order_relaxed);
-    if (input->tail || state.workerOffset == input->count) {
+    if (input->tail || state.worker_offset == input->count) {
       if (input->tail && input->generation ==
                              state.generation.load(std::memory_order_acquire)) {
-        state.tailDone.store(f[6] == 0, std::memory_order_release);
+        state.tail_done.store(f[6] == 0, std::memory_order_release);
       }
       state.input.Release();
       state.pending.fetch_sub(1, std::memory_order_release);
-      state.workerOffset = 0;
+      state.worker_offset = 0;
     }
   }
   state.leased = false;
@@ -498,11 +498,11 @@ NAN_METHOD(SetAudioEffect) {
     source->owner()->effect = state;
     state->Seek(0);
     source->owner()->sound->setEffectProcessor([state](const float* in,
-                                                       unsigned& inFrames,
+                                                       unsigned& in_frames,
                                                        float* out,
-                                                       unsigned& outFrames,
+                                                       unsigned& out_frames,
                                                        unsigned channels) {
-      state->Effect(in, inFrames, out, outFrames, channels);
+      state->Effect(in, in_frames, out, out_frames, channels);
     });
   });
 }

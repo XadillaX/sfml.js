@@ -1,6 +1,8 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_AUDIO_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_AUDIO_STATE_H_
 
 #include <array>
+#include <filesystem>
 #include <functional>
 #include <span>  // NOLINT(build/include_order): cpplint lacks C++20 headers
 #include <string>
@@ -124,7 +126,7 @@ struct Metadata {
   std::uint64_t count{};
   std::uint64_t offset{};
   std::int64_t duration{};
-  std::int64_t timeOffset{};
+  std::int64_t time_offset{};
   std::uint64_t transferred{};
   std::uint32_t rate{};
   std::uint32_t channels{};
@@ -241,3 +243,5 @@ void CopySourceSettings(sf::SoundSource& to,  // NOLINT(runtime/references)
 void InstallSourceEffect(const std::shared_ptr<Source>& source);
 
 }  // namespace sfmljs::audio
+
+#endif  // PACKAGES_SFML_JS_NATIVE_AUDIO_STATE_H_

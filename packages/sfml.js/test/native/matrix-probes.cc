@@ -41,7 +41,7 @@ void MatrixFromTransform(const CallbackInfo& info) {
 
 template <typename T>
 void MatrixFromArray(const CallbackInfo& info) {
-  constexpr auto count = Layout<T>::bytes / sizeof(float);
+  constexpr auto count = Layout<T>::kBytes / sizeof(float);
   if (!info[0]->IsFloat32Array()) {
     return Nan::ThrowTypeError("Expected a Float32Array");
   }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_IMAGE_STATE_H_
+#define PACKAGES_SFML_JS_NATIVE_IMAGE_STATE_H_
 
 #include <cstdint>
 #include <limits>
@@ -99,3 +100,5 @@ inline v8::Local<v8::Object> MapImageResource(
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_IMAGE_STATE_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_WINDOW_EVENT_H_
+#define PACKAGES_SFML_JS_NATIVE_WINDOW_EVENT_H_
 
 #include <nan.h>
 
@@ -99,3 +100,5 @@ inline v8::Local<v8::Object> WindowEvent(const sf::Event& event) {
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_WINDOW_EVENT_H_

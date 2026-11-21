@@ -29,10 +29,10 @@ struct InputTextContext {
   Nan::Persistent<v8::Value> exception;
 };
 
-InputTextContext* currentInputText = nullptr;
+InputTextContext* current_input_text = nullptr;
 
 int InputTextCallback(cimgui::ImGuiInputTextCallbackData* data) {
-  auto* context = currentInputText;
+  auto* context = current_input_text;
   if (!context || context->failed) return 0;
 
   Nan::HandleScope scope;
@@ -45,12 +45,12 @@ int InputTextCallback(cimgui::ImGuiInputTextCallbackData* data) {
       handle,
       UserDataValue(data->UserData),
   };
-  Nan::TryCatch tryCatch;
+  Nan::TryCatch try_catch;
   auto result =
       Nan::Call(callback, Nan::GetCurrentContext()->Global(), 2, argv);
-  if (tryCatch.HasCaught()) {
+  if (try_catch.HasCaught()) {
     context->failed = true;
-    context->exception.Reset(tryCatch.Exception());
+    context->exception.Reset(try_catch.Exception());
     return 0;
   }
   if (result.IsEmpty()) return 0;
@@ -62,7 +62,7 @@ int InputTextCallback(cimgui::ImGuiInputTextCallbackData* data) {
 struct ItemsContext {
   Nan::Persistent<v8::Function> callback;
   std::deque<std::string> strings;
-  void* userData = nullptr;
+  void* user_data = nullptr;
   bool failed = false;
   Nan::Persistent<v8::Value> exception;
 };
@@ -75,14 +75,14 @@ const char* ItemsGetter(void* data, int index) {
   auto callback = Nan::New(context->callback);
   v8::Local<v8::Value> argv[] = {
       Nan::New(index),
-      UserDataValue(context->userData),
+      UserDataValue(context->user_data),
   };
-  Nan::TryCatch tryCatch;
+  Nan::TryCatch try_catch;
   auto result =
       Nan::Call(callback, Nan::GetCurrentContext()->Global(), 2, argv);
-  if (tryCatch.HasCaught()) {
+  if (try_catch.HasCaught()) {
     context->failed = true;
-    context->exception.Reset(tryCatch.Exception());
+    context->exception.Reset(try_catch.Exception());
     return "";
   }
   if (result.IsEmpty() || !result.ToLocalChecked()->IsString()) return "";
@@ -95,7 +95,7 @@ const char* ItemsGetter(void* data, int index) {
 // fetched on demand instead of precomputing an array.
 struct PlotContext {
   Nan::Persistent<v8::Function> callback;
-  void* userData = nullptr;
+  void* user_data = nullptr;
   bool failed = false;
   Nan::Persistent<v8::Value> exception;
 };
@@ -108,14 +108,14 @@ float PlotGetter(void* data, int index) {
   auto callback = Nan::New(context->callback);
   v8::Local<v8::Value> argv[] = {
       Nan::New(index),
-      UserDataValue(context->userData),
+      UserDataValue(context->user_data),
   };
-  Nan::TryCatch tryCatch;
+  Nan::TryCatch try_catch;
   auto result =
       Nan::Call(callback, Nan::GetCurrentContext()->Global(), 2, argv);
-  if (tryCatch.HasCaught()) {
+  if (try_catch.HasCaught()) {
     context->failed = true;
-    context->exception.Reset(tryCatch.Exception());
+    context->exception.Reset(try_catch.Exception());
     return 0.0f;
   }
   if (result.IsEmpty() || !result.ToLocalChecked()->IsNumber()) return 0.0f;
@@ -136,18 +136,18 @@ bool ThrowIfFailed(const CallbackInfo& info,
 }
 
 NAN_METHOD(InputTextEx) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
 
   if (!info[1]->IsUint8Array()) {
     Nan::ThrowTypeError("Expected a Uint8Array buffer");
     return;
   }
   auto bytes = info[1].As<v8::Uint8Array>();
-  std::size_t bufferSize = 0;
-  if (!ReadSize(info, 2, &bufferSize)) return;
-  if (bytes->Length() < bufferSize) {
+  std::size_t buffer_size = 0;
+  if (!ReadSize(info, 2, &buffer_size)) return;
+  if (bytes->Length() < buffer_size) {
     Nan::ThrowRangeError("InputText buffer is smaller than buf_size");
     return;
   }
@@ -158,43 +158,43 @@ NAN_METHOD(InputTextEx) {
   int flags = 0;
   if (!ReadScalar(info, 3, &flags)) return;
 
-  void* userData = nullptr;
-  if (!ReadPointer(info, 5, &userData)) return;
+  void* user_data = nullptr;
+  if (!ReadPointer(info, 5, &user_data)) return;
 
   InputTextContext context;
-  InputTextContext* previous = currentInputText;
-  bool hasCallback = info[4]->IsFunction();
-  if (hasCallback) {
+  InputTextContext* previous = current_input_text;
+  bool has_callback = info[4]->IsFunction();
+  if (has_callback) {
     context.callback.Reset(info[4].As<v8::Function>());
-    currentInputText = &context;
+    current_input_text = &context;
   }
 
   const bool result =
       ::cimgui::ImGui_InputTextEx(label,
                                   buffer,
-                                  bufferSize,
+                                  buffer_size,
                                   flags,
-                                  hasCallback ? InputTextCallback : nullptr,
-                                  userData);
+                                  has_callback ? InputTextCallback : nullptr,
+                                  user_data);
 
-  currentInputText = previous;
+  current_input_text = previous;
   if (ThrowIfFailed(info, context.failed, &context.exception)) return;
   info.GetReturnValue().Set(result);
 }
 
 NAN_METHOD(InputTextMultilineEx) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
 
   if (!info[1]->IsUint8Array()) {
     Nan::ThrowTypeError("Expected a Uint8Array buffer");
     return;
   }
   auto bytes = info[1].As<v8::Uint8Array>();
-  std::size_t bufferSize = 0;
-  if (!ReadSize(info, 2, &bufferSize)) return;
-  if (bytes->Length() < bufferSize) {
+  std::size_t buffer_size = 0;
+  if (!ReadSize(info, 2, &buffer_size)) return;
+  if (bytes->Length() < buffer_size) {
     Nan::ThrowRangeError("InputText buffer is smaller than buf_size");
     return;
   }
@@ -206,160 +206,160 @@ NAN_METHOD(InputTextMultilineEx) {
   if (!ReadImVec2(info, 3, &size)) return;
   int flags = 0;
   if (!ReadScalar(info, 4, &flags)) return;
-  void* userData = nullptr;
-  if (!ReadPointer(info, 6, &userData)) return;
+  void* user_data = nullptr;
+  if (!ReadPointer(info, 6, &user_data)) return;
 
   InputTextContext context;
-  InputTextContext* previous = currentInputText;
-  bool hasCallback = info[5]->IsFunction();
-  if (hasCallback) {
+  InputTextContext* previous = current_input_text;
+  bool has_callback = info[5]->IsFunction();
+  if (has_callback) {
     context.callback.Reset(info[5].As<v8::Function>());
-    currentInputText = &context;
+    current_input_text = &context;
   }
 
   const bool result = ::cimgui::ImGui_InputTextMultilineEx(
       label,
       buffer,
-      bufferSize,
+      buffer_size,
       size,
       flags,
-      hasCallback ? InputTextCallback : nullptr,
-      userData);
+      has_callback ? InputTextCallback : nullptr,
+      user_data);
 
-  currentInputText = previous;
+  current_input_text = previous;
   if (ThrowIfFailed(info, context.failed, &context.exception)) return;
   info.GetReturnValue().Set(result);
 }
 
 NAN_METHOD(ComboCallbackEx) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
-  int* currentItem = ReadInt32Array(info, 1, 1);
-  if (!currentItem) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
+  int* current_item = ReadInt32Array(info, 1, 1);
+  if (!current_item) return;
   if (!info[2]->IsFunction()) {
     Nan::ThrowTypeError("Expected a getter function");
     return;
   }
-  void* userData = nullptr;
-  if (!ReadPointer(info, 3, &userData)) return;
-  int itemsCount = 0;
-  if (!ReadScalar(info, 4, &itemsCount)) return;
-  int popupHeight = -1;
-  if (!ReadScalar(info, 5, &popupHeight)) return;
+  void* user_data = nullptr;
+  if (!ReadPointer(info, 3, &user_data)) return;
+  int items_count = 0;
+  if (!ReadScalar(info, 4, &items_count)) return;
+  int popup_height = -1;
+  if (!ReadScalar(info, 5, &popup_height)) return;
 
   ItemsContext context;
   context.callback.Reset(info[2].As<v8::Function>());
-  context.userData = userData;
+  context.user_data = user_data;
   const bool result = ::cimgui::ImGui_ComboCallbackEx(
-      label, currentItem, ItemsGetter, &context, itemsCount, popupHeight);
+      label, current_item, ItemsGetter, &context, items_count, popup_height);
   if (ThrowIfFailed(info, context.failed, &context.exception)) return;
   info.GetReturnValue().Set(result);
 }
 
 NAN_METHOD(ListBoxCallbackEx) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
-  int* currentItem = ReadInt32Array(info, 1, 1);
-  if (!currentItem) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
+  int* current_item = ReadInt32Array(info, 1, 1);
+  if (!current_item) return;
   if (!info[2]->IsFunction()) {
     Nan::ThrowTypeError("Expected a getter function");
     return;
   }
-  void* userData = nullptr;
-  if (!ReadPointer(info, 3, &userData)) return;
-  int itemsCount = 0;
-  if (!ReadScalar(info, 4, &itemsCount)) return;
+  void* user_data = nullptr;
+  if (!ReadPointer(info, 3, &user_data)) return;
+  int items_count = 0;
+  if (!ReadScalar(info, 4, &items_count)) return;
   int height = -1;
   if (!ReadScalar(info, 5, &height)) return;
 
   ItemsContext context;
   context.callback.Reset(info[2].As<v8::Function>());
-  context.userData = userData;
+  context.user_data = user_data;
   const bool result = ::cimgui::ImGui_ListBoxCallbackEx(
-      label, currentItem, ItemsGetter, &context, itemsCount, height);
+      label, current_item, ItemsGetter, &context, items_count, height);
   if (ThrowIfFailed(info, context.failed, &context.exception)) return;
   info.GetReturnValue().Set(result);
 }
 
 NAN_METHOD(PlotLinesCallbackEx) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
   if (!info[1]->IsFunction()) {
     Nan::ThrowTypeError("Expected a value getter");
     return;
   }
-  void* userData = nullptr;
-  if (!ReadPointer(info, 2, &userData)) return;
-  int valuesCount = 0;
-  if (!ReadScalar(info, 3, &valuesCount)) return;
-  int valuesOffset = 0;
-  if (!ReadScalar(info, 4, &valuesOffset)) return;
-  std::string overlayStorage;
+  void* user_data = nullptr;
+  if (!ReadPointer(info, 2, &user_data)) return;
+  int values_count = 0;
+  if (!ReadScalar(info, 3, &values_count)) return;
+  int values_offset = 0;
+  if (!ReadScalar(info, 4, &values_offset)) return;
+  std::string overlay_storage;
   const char* overlay = nullptr;
-  if (!ReadUtf8(info, 5, &overlayStorage, &overlay, true)) return;
-  float scaleMin = 0;
-  float scaleMax = 0;
-  if (!ReadScalar(info, 6, &scaleMin) || !ReadScalar(info, 7, &scaleMax)) {
+  if (!ReadUtf8(info, 5, &overlay_storage, &overlay, true)) return;
+  float scale_min = 0;
+  float scale_max = 0;
+  if (!ReadScalar(info, 6, &scale_min) || !ReadScalar(info, 7, &scale_max)) {
     return;
   }
-  cimgui::ImVec2 graphSize;
-  if (!ReadImVec2(info, 8, &graphSize)) return;
+  cimgui::ImVec2 graph_size;
+  if (!ReadImVec2(info, 8, &graph_size)) return;
 
   PlotContext context;
   context.callback.Reset(info[1].As<v8::Function>());
-  context.userData = userData;
+  context.user_data = user_data;
   ::cimgui::ImGui_PlotLinesCallbackEx(label,
                                       PlotGetter,
                                       &context,
-                                      valuesCount,
-                                      valuesOffset,
+                                      values_count,
+                                      values_offset,
                                       overlay,
-                                      scaleMin,
-                                      scaleMax,
-                                      graphSize);
+                                      scale_min,
+                                      scale_max,
+                                      graph_size);
   if (ThrowIfFailed(info, context.failed, &context.exception)) return;
 }
 
 NAN_METHOD(PlotHistogramCallbackEx) {
-  std::string labelStorage;
+  std::string label_storage;
   const char* label = nullptr;
-  if (!ReadUtf8(info, 0, &labelStorage, &label, false)) return;
+  if (!ReadUtf8(info, 0, &label_storage, &label, false)) return;
   if (!info[1]->IsFunction()) {
     Nan::ThrowTypeError("Expected a value getter");
     return;
   }
-  void* userData = nullptr;
-  if (!ReadPointer(info, 2, &userData)) return;
-  int valuesCount = 0;
-  if (!ReadScalar(info, 3, &valuesCount)) return;
-  int valuesOffset = 0;
-  if (!ReadScalar(info, 4, &valuesOffset)) return;
-  std::string overlayStorage;
+  void* user_data = nullptr;
+  if (!ReadPointer(info, 2, &user_data)) return;
+  int values_count = 0;
+  if (!ReadScalar(info, 3, &values_count)) return;
+  int values_offset = 0;
+  if (!ReadScalar(info, 4, &values_offset)) return;
+  std::string overlay_storage;
   const char* overlay = nullptr;
-  if (!ReadUtf8(info, 5, &overlayStorage, &overlay, true)) return;
-  float scaleMin = 0;
-  float scaleMax = 0;
-  if (!ReadScalar(info, 6, &scaleMin) || !ReadScalar(info, 7, &scaleMax)) {
+  if (!ReadUtf8(info, 5, &overlay_storage, &overlay, true)) return;
+  float scale_min = 0;
+  float scale_max = 0;
+  if (!ReadScalar(info, 6, &scale_min) || !ReadScalar(info, 7, &scale_max)) {
     return;
   }
-  cimgui::ImVec2 graphSize;
-  if (!ReadImVec2(info, 8, &graphSize)) return;
+  cimgui::ImVec2 graph_size;
+  if (!ReadImVec2(info, 8, &graph_size)) return;
 
   PlotContext context;
   context.callback.Reset(info[1].As<v8::Function>());
-  context.userData = userData;
+  context.user_data = user_data;
   ::cimgui::ImGui_PlotHistogramCallbackEx(label,
                                           PlotGetter,
                                           &context,
-                                          valuesCount,
-                                          valuesOffset,
+                                          values_count,
+                                          values_offset,
                                           overlay,
-                                          scaleMin,
-                                          scaleMax,
-                                          graphSize);
+                                          scale_min,
+                                          scale_max,
+                                          graph_size);
   if (ThrowIfFailed(info, context.failed, &context.exception)) return;
 }
 

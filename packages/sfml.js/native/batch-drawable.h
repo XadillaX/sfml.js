@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_BATCH_DRAWABLE_H_
+#define PACKAGES_SFML_JS_NATIVE_BATCH_DRAWABLE_H_
 
 #include <cstddef>
 #include <memory>
@@ -58,3 +59,5 @@ class BatchDrawable final : public sf::Drawable {
 };
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_BATCH_DRAWABLE_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PACKAGES_SFML_JS_NATIVE_TIME_VALUE_H_
+#define PACKAGES_SFML_JS_NATIVE_TIME_VALUE_H_
 
 #include <nan.h>
 
@@ -28,3 +29,5 @@ inline v8::Local<v8::BigInt> WriteTime(v8::Isolate* isolate, sf::Time value) {
 }
 
 }  // namespace sfmljs
+
+#endif  // PACKAGES_SFML_JS_NATIVE_TIME_VALUE_H_
