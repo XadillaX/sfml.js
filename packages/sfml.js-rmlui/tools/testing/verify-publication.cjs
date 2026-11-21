@@ -171,9 +171,10 @@ function readEvidence() {
 /**
  * Identify tracked package sources, normalizing only lockstep version metadata.
  * The gate and its tests do not change the code being approved for release.
+ * @param {string} revision Commit or staged tree being reviewed.
  * @return {string} SHA-256 of the four package source inventories.
  */
-function sourceFingerprint() {
+function sourceFingerprint(revision = 'HEAD') {
   const names = [
     'sfml.js', 'sfml.js-imgui', 'sfml.js-interop', 'sfml.js-rmlui',
   ];
@@ -186,14 +187,14 @@ function sourceFingerprint() {
   metadata.add('packages/sfml.js-rmlui/tools/testing/verify-publication.cjs');
   metadata.add('packages/sfml.js-rmlui/test/tooling/publication.test.cjs');
   const inventory = execFileSync('git', [
-    'ls-tree', '-r', 'HEAD', '--', ...directories,
+    'ls-tree', '-r', revision, '--', ...directories,
   ], { cwd: root, encoding: 'utf8' });
   const hash = createHash('sha256');
   hash.update(inventory.split('\n').filter(row =>
     row && !metadata.has(row.split('\t')[1])).join('\n'));
   for (const directory of directories) {
     const manifest = JSON.parse(execFileSync('git', [
-      'show', `HEAD:${directory}/package.json`,
+      'show', `${revision}:${directory}/package.json`,
     ], { cwd: root, encoding: 'utf8' }));
     delete manifest.version;
     const fields = [ 'dependencies', 'devDependencies', 'peerDependencies' ];

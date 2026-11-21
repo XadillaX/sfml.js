@@ -3,8 +3,9 @@
   "accepted_by_user": true,
   "user_decision": "发吧",
   "acceptance_basis": "Release authorization after review of the three incomplete publication gates. This decision does not assert that unfinished technical checks passed.",
-  "source_baseline": "bfa0e78897a6f0a04e760d3f393d7acfaf6da20c",
-  "source_fingerprint": "514d0a28938a3f4a069410d36f8385cc337d48d34b983dfaab1c2f8e3e5791e4",
+  "source_baseline": "2acc0ac51c9ecbc4ff267562e18cbbe45c931d7e",
+  "release_continuation": "Fix explicit-context vertex upload submission and retain exact pixel comparisons after the macOS CI failure reported by the user.",
+  "source_fingerprint": "6bd78353d64fe092d8b648ef6f0d4b4f9f9dcef82e541830526510557f1c2fe0",
   "source_scope": "Tracked sources of all four lockstep packages; only changelogs, lockstep version metadata, and the publication gate and its tests are normalized or excluded.",
   "deferred_gates": [
     "Core scope and independent review",

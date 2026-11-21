@@ -160,6 +160,39 @@ test('GPU copies resize safely, preserve modes and own their data', () => {
   assert.equal(copy.getVertexCount(), 0);
 });
 
+test('explicit-context uploads remain visible after switching', () => {
+  const producer = new sf.Context();
+  const consumer = new sf.Context();
+  const output = target();
+  const source = new sf.VertexBuffer(P.Points, U.Static);
+  const assigned = new sf.VertexBuffer();
+  const updated = new sf.VertexBuffer();
+
+  for (let frame = 0; frame < 32; frame++) {
+    assert.equal(producer.setActive(true), true);
+    const column = frame % 4;
+    const color = frame % 2 ? sf.Color.Green : sf.Color.Red;
+    assert.equal(source.create(1), true);
+    assert.equal(source.update([ vertex(column, color) ]), true);
+    const copied = new sf.VertexBuffer(source);
+    assigned.assign(source);
+    assert.equal(updated.create(1), true);
+    assert.equal(updated.update(source), true);
+
+    assert.equal(consumer.setActive(true), true);
+    assert.equal(consumer.setActive(false), true);
+    global.gc();
+    const expected = Array(4).fill(sf.Color.Black.toInteger());
+    expected[column] = color.toInteger();
+    for (const value of [ source, copied, assigned, updated ]) {
+      output.clear();
+      output.draw(value);
+      output.display();
+      assert.deepEqual(colors(output), expected);
+    }
+  }
+});
+
 test('updates, reallocation and swap preserve cross-target snapshots', () => {
   const a = target();
   const b = target();

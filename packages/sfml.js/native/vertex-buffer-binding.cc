@@ -22,17 +22,17 @@ using State = sfmljs::VertexBufferState;
 using Handle = sfmljs::SharedHandle<State>;
 using ContextHandle = sfmljs::SharedHandle<sfmljs::GraphicsContext>;
 
-// Work performed in SFML's transient context must be submitted before that
-// context is released, so a subsequently activated render target sees uploads.
+// Uploads must be submitted even in an explicit context: the next recorded
+// draw may activate another shared context. Match SFML texture uploads without
+// waiting for GPU completion.
 struct GlAccess : sf::GlResource {
   using Lock = TransientContextLock;
 };
 
 struct UploadContext {
-  const bool transient = sf::Context::getActiveContextId() == 0;
   const GlAccess::Lock lock;
   ~UploadContext() {
-    if (transient) glFlush();
+    glFlush();
   }
 };
 
