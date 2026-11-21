@@ -15,7 +15,7 @@
 #include "native/style/properties/rmlui-property-specification.h"
 #include "native/style/properties/rmlui-property.h"
 #include "native/values/rmlui-owned-variant.h"
-#include "third_party/rmlui/Source/Core/ElementStyle.h"
+#include "vendor/rmlui/Source/Core/ElementStyle.h"
 
 namespace sfmlrmlui {
 

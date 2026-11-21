@@ -17,7 +17,7 @@
 #include <vector>
 
 #include "native/runtime/rmlui-state.h"
-#include "third_party/rmlui/Source/Core/ElementStyle.h"
+#include "vendor/rmlui/Source/Core/ElementStyle.h"
 
 namespace sfmlrmlui {
 namespace {

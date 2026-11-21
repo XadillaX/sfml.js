@@ -13,7 +13,7 @@
 #include "native/style/properties/rmlui-property-dictionary.h"
 #include "native/style/properties/rmlui-property.h"
 #include "native/values/rmlui-variant.h"
-#include "third_party/rmlui/Source/Core/PropertyShorthandDefinition.h"
+#include "vendor/rmlui/Source/Core/PropertyShorthandDefinition.h"
 
 namespace sfmlrmlui {
 namespace {

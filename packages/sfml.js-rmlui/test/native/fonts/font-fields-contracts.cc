@@ -15,7 +15,7 @@
 #include <string_view>
 #include <type_traits>
 
-#include "third_party/rmlui/Source/Core/FontEngineDefault/FontEngineInterfaceDefault.h"
+#include "vendor/rmlui/Source/Core/FontEngineDefault/FontEngineInterfaceDefault.h"
 
 namespace {
 

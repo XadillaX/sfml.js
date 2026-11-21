@@ -42,7 +42,7 @@ def main():
         package / "test/native/scripting/lua-contract-types.cc",
     ]
     if options.compile_utilities:
-        sources.append(package / "third_party/rmlui/Source/Lua/Utilities.cpp")
+        sources.append(package / "vendor/rmlui/Source/Lua/Utilities.cpp")
 
     subprocess.run([
         *flags, "-DNODE_GYP_MODULE_NAME=lua_contracts",

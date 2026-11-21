@@ -6,7 +6,7 @@
 #include "native/rendering/geometry/rmlui-geometry.h"
 #include "native/rendering/manager/rmlui-render-layers.h"
 #include "native/runtime/rmlui-state.h"
-#include "third_party/rmlui/Source/Core/ElementBackgroundBorder.h"
+#include "vendor/rmlui/Source/Core/ElementBackgroundBorder.h"
 
 namespace sfmlrmlui {
 namespace {

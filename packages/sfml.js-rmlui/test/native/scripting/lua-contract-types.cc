@@ -9,7 +9,7 @@
 #include <cstdio>
 #include <cstring>
 
-#include "third_party/rmlui/Source/Lua/Element.h"
+#include "vendor/rmlui/Source/Lua/Element.h"
 
 namespace lua_contracts {
 namespace {

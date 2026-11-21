@@ -14,9 +14,9 @@
 #include "test/native/visual/reference/environment.h"
 #include "test/native/visual/reference/metadata.h"
 #include "test/native/rendering/reference/software-scissor-region.h"
-#include "third_party/rmlui/Backends/RmlUi_Include_GL3.h"
-#include "third_party/rmlui/Backends/RmlUi_Renderer_GL3.h"
-#include "third_party/rmlui/Tests/Source/VisualTests/XmlNodeHandlers.h"
+#include "vendor/rmlui/Backends/RmlUi_Include_GL3.h"
+#include "vendor/rmlui/Backends/RmlUi_Renderer_GL3.h"
+#include "vendor/rmlui/Tests/Source/VisualTests/XmlNodeHandlers.h"
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/Window.hpp>

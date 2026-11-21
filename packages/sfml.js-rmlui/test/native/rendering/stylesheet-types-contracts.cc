@@ -20,10 +20,10 @@
 #include <type_traits>
 #include <utility>
 
-#include "third_party/rmlui/Source/Core/ElementAnimation.h"
-#include "third_party/rmlui/Source/Core/ElementDefinition.h"
-#include "third_party/rmlui/Source/Core/StyleSheetNode.h"
-#include "third_party/rmlui/Source/Core/StyleSheetParser.h"
+#include "vendor/rmlui/Source/Core/ElementAnimation.h"
+#include "vendor/rmlui/Source/Core/ElementDefinition.h"
+#include "vendor/rmlui/Source/Core/StyleSheetNode.h"
+#include "vendor/rmlui/Source/Core/StyleSheetParser.h"
 
 namespace sfmlrmlui {
 

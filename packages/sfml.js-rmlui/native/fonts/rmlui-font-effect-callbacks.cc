@@ -18,7 +18,7 @@
 #include "native/rendering/manager/rmlui-render-layers.h"
 #include "native/runtime/rmlui-callback-owners.h"
 #include "native/runtime/rmlui-state.h"
-#include "third_party/rmlui/Source/Core/FontEngineDefault/FontFaceLayer.h"
+#include "vendor/rmlui/Source/Core/FontEngineDefault/FontFaceLayer.h"
 
 namespace sfmlrmlui {
 namespace {

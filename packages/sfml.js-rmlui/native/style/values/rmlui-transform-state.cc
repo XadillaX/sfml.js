@@ -15,7 +15,7 @@
 
 #include "native/runtime/rmlui-state.h"
 #include "native/values/rmlui-buffer.h"
-#include "third_party/rmlui/Source/Core/TransformState.h"
+#include "vendor/rmlui/Source/Core/TransformState.h"
 
 namespace sfmlrmlui {
 namespace {

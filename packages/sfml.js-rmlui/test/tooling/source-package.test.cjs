@@ -24,6 +24,22 @@ for (const name of [
 }
 console.log('PASS source-package-bootstrap-before-native-configure');
 
+assert.equal(manifest.scripts['update:harfbuzz'],
+  'node tools/dependencies/update-harfbuzz.cjs');
+assert.ok(manifest.files.includes('vendor/harfbuzz/'));
+const gyp = fs.readFileSync(path.join(packageRoot, 'binding.gyp'), 'utf8');
+assert.ok(gyp.includes('"vendor/harfbuzz/src/harfbuzz.cc"'));
+assert.ok(!gyp.includes('third_party/harfbuzz'));
+console.log('PASS source-package-uses-vendored-harfbuzz');
+for (const name of [ 'freetype', 'rlottie', 'rmlui' ]) {
+  assert.ok(manifest.files.includes(`vendor/${name}/`));
+  assert.ok(gyp.includes(`vendor/${name}/`));
+  assert.ok(!gyp.includes(`third_party/${name}/`));
+  assert.equal(manifest.scripts[`update:${name}`],
+    `node tools/dependencies/update-vendored.cjs ${name}`);
+}
+console.log('PASS source-package-uses-vendored-runtime-dependencies');
+
 /**
  * Execute the real helper with process/file boundaries replaced in memory.
  * No package copy, installation or separate build directory is created.

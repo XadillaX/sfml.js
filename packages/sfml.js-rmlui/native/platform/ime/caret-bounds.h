@@ -12,7 +12,7 @@
 #include <array>
 #include <cmath>
 
-#include "third_party/rmlui/Source/Core/TransformState.h"
+#include "vendor/rmlui/Source/Core/TransformState.h"
 
 namespace sfmlrmlui::ime {
 

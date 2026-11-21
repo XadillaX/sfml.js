@@ -9,5 +9,5 @@ extern "C" FILE* OfficialOpenScoresFile(const char* file, const char* mode);
 // score storage. Include stdio first so the Windows CRT's dllimport
 // declaration of fopen is not redirected to the application-owned function.
 #define fopen OfficialOpenScoresFile
-#include "third_party/rmlui/Samples/invaders/src/HighScores.cpp"  // NOLINT(build/include)
+#include "vendor/rmlui/Samples/invaders/src/HighScores.cpp"  // NOLINT(build/include)
 #undef fopen

@@ -8,10 +8,10 @@ const {
 
 const root = path.join(__dirname, '../..');
 const header = fs.readFileSync(path.join(root,
-  'third_party/rmlui/Include/RmlUi/Core/ID.h'), 'utf8')
+  'vendor/rmlui/Include/RmlUi/Core/ID.h'), 'utf8')
   .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
 const source = fs.readFileSync(path.join(root,
-  'third_party/rmlui/Source/Core/StyleSheetSpecification.cpp'), 'utf8');
+  'vendor/rmlui/Source/Core/StyleSheetSpecification.cpp'), 'utf8');
 const properties = new Map([ ...source.matchAll(
   new RegExp('RegisterProperty\\(PropertyId::(\\w+), "([^"]+)", ' +
     '"([^"]*)", (true|false), (true|false)\\)', 'g')

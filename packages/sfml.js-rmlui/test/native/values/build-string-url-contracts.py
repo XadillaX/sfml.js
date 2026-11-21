@@ -39,12 +39,12 @@ def main():
     flags = [flag for flag in flags
              if flag != "-DNDEBUG" and not flag.startswith("-g")]
 
-    vendor = package / "build/Release/obj.target/rmlui/third_party"
+    vendor = package / "build/Release/obj.target/rmlui/vendor"
     objects = sorted(vendor.rglob("*.o"))
     if not objects:
         parser.error("Build the existing package before running this probe")
 
-    source = package / "third_party/rmlui/Source/Core/StringUtilities.cpp"
+    source = package / "vendor/rmlui/Source/Core/StringUtilities.cpp"
     hardened = output / "string-utilities-hardened.o"
     run([
         *flags,

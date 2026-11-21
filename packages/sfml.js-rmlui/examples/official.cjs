@@ -2,12 +2,14 @@
 
 // Run the RML/RCSS and assets bundled with upstream RmlUi, without copying or
 // rewriting them. Only the sample application setup is translated to JS.
-const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const { parseArgs } = require('node:util');
 const { samples } = require('./official/manifest.cjs');
 const { processKeyDownShortcuts } = require('./official/shell/shortcuts.cjs');
+const { prepareRmlUiResources } =
+  require('../tools/dependencies/prepare-rmlui-resources.cjs');
+const resources = require('../vendor/rmlui/resources.json');
 
 const upstream = path.resolve(__dirname, '../third_party/rmlui');
 const samplesRoot = path.join(upstream, 'Samples');
@@ -18,10 +20,10 @@ const limitations = [
 ];
 
 function visualNames() {
-  return fs.readdirSync(visualRoot)
-    .filter(file => file.endsWith('.rml'))
+  return Object.keys(resources.files)
+    .filter(file => /^Tests\/Data\/VisualTests\/[^/]+\.rml$/.test(file))
     .sort()
-    .map(file => file.slice(0, -4));
+    .map(file => path.posix.basename(file, '.rml'));
 }
 
 function listSamples() {
@@ -40,6 +42,7 @@ function listSamples() {
 }
 
 async function run(name, frameLimit, options = {}) {
+  await prepareRmlUiResources();
   const { screenshot, exercise, panel, 'log-file': logFile } = options;
   const visual = name.startsWith('visual/');
   const names = visual ? visualNames() : [];
@@ -379,9 +382,6 @@ async function main() {
       'scores-file': { type: 'string' },
     },
   });
-  if (!fs.existsSync(visualRoot)) {
-    throw new Error('Missing assets. Run npm run download:deps first.');
-  }
   if (values.list || values.help) {
     listSamples();
   } else {

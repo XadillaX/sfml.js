@@ -6,35 +6,27 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const download = require('download');
-const { patchRmlUi } = require('./patches/patch-rmlui.cjs');
-const { patchRmlUiLua } = require('./patches/patch-rmlui-lua.cjs');
-const { patchRmlUiDebugger } = require('./patches/patch-rmlui-debugger.cjs');
-const { patchRmlUiFonts } = require('./patches/patch-rmlui-fonts.cjs');
 const optionalDependencies = require('./optional-dependencies.json');
-const { patchRlottie } = require('./patches/patch-rlottie.cjs');
+const sourceDependencies = require('./source-dependencies.json');
+const { validateVendoredSource } = require('./vendored-source.cjs');
+const { validateHarfBuzzSource } = require('./harfbuzz-source.cjs');
 
 // RmlUi 6.3 keeps the compiled-geometry RenderInterface and the 20-byte
 // Rml::Vertex layout, identical to sf::Vertex in SFML 3.1.
 const versions = {
-  rmlui: '6.3',
-  freetype: '2.13.3',
+  rmlui: sourceDependencies.rmlui.version,
+  freetype: sourceDependencies.freetype.version,
   lua: '5.4.8',
   ...Object.fromEntries(Object.entries(optionalDependencies)
     .map(([ name, dependency ]) => [ name, dependency.version ])),
 };
 
 const urls = {
-  rmlui: 'https://codeload.github.com/mikke89/RmlUi/zip/refs/tags/' +
-    versions.rmlui,
-  freetype: 'https://download-mirror.savannah.gnu.org/releases/freetype/' +
-    `freetype-${versions.freetype}.tar.gz`,
   lua: `https://www.lua.org/ftp/lua-${versions.lua}.tar.gz`,
 };
 
 const luaArchiveDigest =
   '4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae';
-const freetypeArchiveDigest =
-  '5c3a8e78f7b24c20b25b54ee575d6daa40007a5f4eea2845861c3409b3021747';
 const identity = Object.values(versions).join('-');
 
 const packageRoot = path.join(__dirname, '../..');
@@ -66,22 +58,6 @@ async function downloadWithRetry(...args) {
     }
   }
   throw lastError;
-}
-
-/**
- * Extract a GitHub zip into target, keeping only the first-level subdirectory.
- * @param {string} url Download URL.
- * @param {string} target Target directory.
- */
-async function extractZip(url, target) {
-  const staging = await fs.mkdtemp(path.join(thirdParty, '.deps-'));
-  try {
-    await downloadWithRetry(url, staging, { extract: true, strip: 1 });
-    await fs.rm(target, { recursive: true, force: true });
-    await fs.rename(staging, target);
-  } finally {
-    await fs.rm(staging, { recursive: true, force: true });
-  }
 }
 
 /**
@@ -144,7 +120,7 @@ async function walk(directory, predicate) {
  * from the upstream file layout. Paths stay relative to the package root.
  */
 async function generateGypi() {
-  const rmlRoot = path.join(thirdParty, 'rmlui');
+  const rmlRoot = path.join(packageRoot, sourceDependencies.rmlui.source);
   const rmlSources = (await walk(
     path.join(rmlRoot, 'Source/Core'),
     file => file.endsWith('.cpp')
@@ -154,7 +130,8 @@ async function generateGypi() {
   // zlib sources, ftbase.c the base module, and so on. Parse the upstream
   // BASE_SRCS list instead of walking src/, which would double-compile the
   // included translation units and miss internal header ordering.
-  const freetypeRoot = path.join(thirdParty, 'freetype');
+  const freetypeRoot = path.join(packageRoot,
+    sourceDependencies.freetype.source);
   const freetypeCmake = await fs.readFile(
     path.join(freetypeRoot, 'CMakeLists.txt'), 'utf8');
   const baseSourcesMatch = freetypeCmake.match(/set\(BASE_SRCS([\s\S]*?)\)/);
@@ -164,10 +141,10 @@ async function generateGypi() {
   const freetypeSources = (baseSourcesMatch[1].match(/src\/[^\s]+\.c/g) ?? [])
     // bzip2 requires an external libbz2; the internal gzip module remains.
     .filter(file => !file.includes('/bzip2/'))
-    .map(file => path.join('third_party/freetype', file));
+    .map(file => path.join(sourceDependencies.freetype.source, file));
   freetypeSources.push(
-    path.join('third_party/freetype/src/base/ftsystem.c'),
-    path.join('third_party/freetype/src/base/ftdebug.c')
+    path.join(sourceDependencies.freetype.source, 'src/base/ftsystem.c'),
+    path.join(sourceDependencies.freetype.source, 'src/base/ftdebug.c')
   );
 
   const generated = {
@@ -211,7 +188,7 @@ async function generateGypi() {
         file => file.endsWith('.c')
       )).map(file => path.relative(packageRoot, file)),
       rlottie_sources: (await walk(
-        path.join(thirdParty, 'rlottie/src'),
+        path.join(packageRoot, optionalDependencies.rlottie.source, 'src'),
         file => file.endsWith('.cpp') &&
           !file.includes(`${path.sep}wasm${path.sep}`)
       )).map(file => path.relative(packageRoot, file)),
@@ -226,22 +203,18 @@ async function generateGypi() {
 }
 
 async function validate() {
-  const cmake = await fs.readFile(
-    path.join(thirdParty, 'rmlui/CMakeLists.txt'), 'utf8');
-  if (!cmake.includes('VERSION "6.3"')) {
-    throw new Error('Unexpected RmlUi version');
-  }
+  const rmlRoot = path.join(packageRoot, sourceDependencies.rmlui.source);
   const coreHeader = await fs.readFile(
-    path.join(thirdParty, 'rmlui/Include/RmlUi/Core.h'), 'utf8');
+    path.join(rmlRoot, 'Include/RmlUi/Core.h'), 'utf8');
   if (!coreHeader.includes('Core/Context.h')) {
     throw new Error('Unexpected RmlUi headers');
   }
   await Promise.all([
-    fs.access(path.join(thirdParty,
-      'rmlui/Include/RmlUi/Core/RenderInterface.h')),
-    fs.access(path.join(thirdParty,
-      'rmlui/Source/Core/FontEngineDefault/FreeTypeInterface.cpp')),
-    fs.access(path.join(thirdParty, 'freetype/include/ft2build.h')),
+    fs.access(path.join(rmlRoot, 'Include/RmlUi/Core/RenderInterface.h')),
+    fs.access(path.join(rmlRoot,
+      'Source/Core/FontEngineDefault/FreeTypeInterface.cpp')),
+    fs.access(path.join(packageRoot, sourceDependencies.freetype.source,
+      'include/ft2build.h')),
   ]);
   const luaHeader = await fs.readFile(
     path.join(thirdParty, 'lua/src/lua.h'), 'utf8');
@@ -284,6 +257,14 @@ async function validateOptionalDependency(name, target) {
   if (!dependency) {
     throw new Error(`Unknown optional dependency: ${name}`);
   }
+  if (name === 'harfbuzz') {
+    await validateHarfBuzzSource(target, dependency);
+    return;
+  }
+  if (dependency.source) {
+    await validateVendoredSource(target, name, dependency);
+    return;
+  }
   await fs.access(path.join(target, dependency.header));
   const recorded = await fs.readFile(
     path.join(target, '.archive-sha256'), 'utf8');
@@ -293,6 +274,44 @@ async function validateOptionalDependency(name, target) {
   if (name === 'lunasvg') {
     await fs.access(path.join(target, 'plutovg/source/plutovg-canvas.c'));
   }
+}
+
+/**
+ * Prepare an optional component, using offline validation for vendored sources.
+ * @param {string} name Manifest dependency name.
+ * @param {string} target Dependency source directory.
+ * @return {object} Component validation and installation operations.
+ */
+function optionalComponentOperations(name, target) {
+  const dependency = optionalDependencies[name];
+  const validate = () => validateOptionalDependency(name, target);
+  if (dependency.source) {
+    return { validate, install: validate };
+  }
+  return {
+    validate,
+    install: () => extractTarGz(
+      `https://codeload.github.com/${dependency.repository}/` +
+        `legacy.tar.gz/${dependency.commit}`, target, dependency.sha256,
+      process.env.RMLUI_DEPS_ARCHIVE_DIR
+        ? path.join(process.env.RMLUI_DEPS_ARCHIVE_DIR,
+          `${name}-${dependency.version}.tar.gz`) : undefined),
+  };
+}
+
+/**
+ * Require built-in sources without downloading or patching during install.
+ * @param {string} name Source dependency name.
+ * @param {string} target Vendored source directory.
+ * @return {object} Offline component operations.
+ */
+function sourceComponentOperations(name, target) {
+  const dependency = sourceDependencies[name];
+  if (!dependency) {
+    throw new Error(`Unknown source dependency: ${name}`);
+  }
+  const validate = () => validateVendoredSource(target, name, dependency);
+  return { validate, install: validate };
 }
 
 /**
@@ -329,25 +348,9 @@ async function main() {
   }
 
   await ensureComponents(previous, {
-    rmlui: {
-      validate: async () => {
-        const cmake = await fs.readFile(
-          path.join(thirdParty, 'rmlui/CMakeLists.txt'), 'utf8');
-        if (!cmake.includes(`VERSION "${versions.rmlui}"`)) {
-          throw new Error('Unexpected RmlUi version');
-        }
-        await fs.access(path.join(thirdParty,
-          'rmlui/Source/Core/FontEngineDefault/FreeTypeInterface.cpp'));
-      },
-      install: () => extractZip(urls.rmlui, path.join(thirdParty, 'rmlui')),
-    },
-    freetype: {
-      validate: () => fs.access(
-        path.join(thirdParty, 'freetype/include/ft2build.h')),
-      install: () => extractTarGz(
-        urls.freetype, path.join(thirdParty, 'freetype'),
-        freetypeArchiveDigest),
-    },
+    ...Object.fromEntries(Object.entries(sourceDependencies)
+      .map(([ name, dependency ]) => [ name, sourceComponentOperations(
+        name, path.join(packageRoot, dependency.source)) ])),
     lua: {
       validate: async () => {
         const header = await fs.readFile(
@@ -362,27 +365,13 @@ async function main() {
     },
     ...Object.fromEntries(Object.entries(optionalDependencies)
       .map(([ name, dependency ]) => {
-        const target = path.join(thirdParty, name);
-        return [ name, {
-          validate: () => validateOptionalDependency(name, target),
-          install: () => extractTarGz(
-            `https://codeload.github.com/${dependency.repository}/` +
-              `legacy.tar.gz/${dependency.commit}`, target, dependency.sha256,
-            process.env.RMLUI_DEPS_ARCHIVE_DIR
-              ? path.join(process.env.RMLUI_DEPS_ARCHIVE_DIR,
-                `${name}-${dependency.version}.tar.gz`) : undefined),
-        }];
+        const target = dependency.source
+          ? path.join(packageRoot, dependency.source)
+          : path.join(thirdParty, name);
+        return [ name, optionalComponentOperations(name, target) ];
       })),
   });
   await validate();
-  await patchRmlUi(path.join(thirdParty, 'rmlui'));
-  await patchRmlUiLua(path.join(thirdParty, 'rmlui'));
-  await patchRmlUiDebugger(path.join(thirdParty, 'rmlui'));
-  await patchRmlUiFonts(path.join(thirdParty, 'rmlui'));
-  await patchRlottie(path.join(thirdParty, 'rlottie'));
-  await fs.writeFile(path.join(thirdParty, 'rlottie/config.h'),
-    '// Generated: static image decoder, synchronous rasterization.\n' +
-    '#define LOTTIE_CACHE_SUPPORT\n');
   await generateGypi();
   await fs.writeFile(marker, identity);
   console.log(`[sfml.js-rmlui] Installed ${identity}`);
@@ -395,4 +384,7 @@ if (require.main === module) {
   });
 }
 
-module.exports = { ensureComponents, validateOptionalDependency, versions };
+module.exports = {
+  ensureComponents, validateOptionalDependency,
+  optionalComponentOperations, sourceComponentOperations, versions,
+};

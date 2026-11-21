@@ -17,6 +17,11 @@ coverage/
 .cache/
 /scratch/
 core
+# RmlUi's Core directories are runtime sources, including on case-insensitive Git.
+!packages/sfml.js-rmlui/vendor/rmlui/Include/RmlUi/Core/
+!packages/sfml.js-rmlui/vendor/rmlui/Include/RmlUi/Core/**
+!packages/sfml.js-rmlui/vendor/rmlui/Source/Core/
+!packages/sfml.js-rmlui/vendor/rmlui/Source/Core/**
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Local configuration

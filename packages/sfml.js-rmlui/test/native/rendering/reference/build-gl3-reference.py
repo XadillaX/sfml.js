@@ -36,7 +36,7 @@ def main():
              if flag != "-DNDEBUG" and not flag.startswith("-g")]
     makefile = (package / "build/rmlui.target.mk").read_text()
     upstream = re.findall(
-        r"\$\(obj\)\.target/\$\(TARGET\)/(third_party/[^\s\\]+\.o)",
+        r"\$\(obj\)\.target/\$\(TARGET\)/((?:vendor|third_party)/[^\s\\]+\.o)",
         makefile)
     objects = [
         package / "build/Release/obj.target/rmlui" / name
@@ -56,7 +56,7 @@ def main():
     if options.visual:
         fixture_sources = [
             str(package / "test/native/visual/reference/gl3-capture.cc"),
-            str(package / "third_party/rmlui/Tests/Source/VisualTests/XmlNodeHandlers.cpp"),
+            str(package / "vendor/rmlui/Tests/Source/VisualTests/XmlNodeHandlers.cpp"),
         ]
     if options.css or options.visual:
         fixture_sources.append(str(
@@ -64,7 +64,7 @@ def main():
     subprocess.run([
         *flags, "-DRMLUI_NUM_MSAA_SAMPLES=0",
         *fixture_sources,
-        str(package / "third_party/rmlui/Backends/RmlUi_Renderer_GL3.cpp"),
+        str(package / "vendor/rmlui/Backends/RmlUi_Renderer_GL3.cpp"),
         *(str(path) for path in objects),
         *(str(package / "build/Release" / name)
           for name in ("lunasvg.a", "rlottie.a", "lua.a")),

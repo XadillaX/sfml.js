@@ -1,0 +1,17 @@
+{
+  "rmlui": {
+    "version": "6.3",
+    "repository": "mikke89/RmlUi",
+    "commit": "ba95ffe8bfb6370efb2cdcca927eaad4710c5413",
+    "sha256": "e649cab0f049293d081cc6ca11900f6fde8b0beda6599bbe3e6db61f4dd0aaf9",
+    "header": "Include/RmlUi/Core.h",
+    "source": "vendor/rmlui"
+  },
+  "freetype": {
+    "version": "2.13.3",
+    "url": "https://download-mirror.savannah.gnu.org/releases/freetype/freetype-2.13.3.tar.gz",
+    "sha256": "5c3a8e78f7b24c20b25b54ee575d6daa40007a5f4eea2845861c3409b3021747",
+    "header": "include/ft2build.h",
+    "source": "vendor/freetype"
+  }
+}

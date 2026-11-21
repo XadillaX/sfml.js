@@ -15,7 +15,7 @@
 #include <memory>
 #include <type_traits>
 
-#include "third_party/rmlui/Source/Core/PropertyParserColour.h"
+#include "vendor/rmlui/Source/Core/PropertyParserColour.h"
 
 namespace {
 

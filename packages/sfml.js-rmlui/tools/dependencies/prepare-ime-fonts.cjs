@@ -117,4 +117,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { parseFontDownloads, prepareImeFonts };
+module.exports = { parseFontDownloads, prepareImeFonts, cachedDigest };

@@ -8,7 +8,7 @@ const {
 } = require('./documentation.cjs');
 
 const root = path.join(__dirname, '../..');
-const headerRoot = path.join(root, 'third_party/rmlui/Include/RmlUi/Core');
+const headerRoot = path.join(root, 'vendor/rmlui/Include/RmlUi/Core');
 const clean = name => fs.readFileSync(path.join(headerRoot, name), 'utf8')
   .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
 const camel = name => name.replace(/_([a-z])/g, (_, c) => c.toUpperCase())

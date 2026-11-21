@@ -1,0 +1,9 @@
+{
+  "version": "2.13.3",
+  "url": "https://download-mirror.savannah.gnu.org/releases/freetype/freetype-2.13.3.tar.gz",
+  "sha256": "5c3a8e78f7b24c20b25b54ee575d6daa40007a5f4eea2845861c3409b3021747",
+  "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sourceSha256": "c5cb9ae69382b44d1383ad824d1ce5e3c2baa883c917c7fe537eebd56695cf8a",
+  "fileCount": 483,
+  "sourceBytes": 7486870
+}

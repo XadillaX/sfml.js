@@ -15,7 +15,7 @@
 #include <type_traits>
 #include <vector>
 
-#include "third_party/rmlui/Source/Core/DataModel.h"
+#include "vendor/rmlui/Source/Core/DataModel.h"
 
 namespace {
 

@@ -4,6 +4,15 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const {
+  validateHarfBuzzSource,
+} = require('../dependencies/harfbuzz-source.cjs');
+const {
+  validateVendoredSource,
+} = require('../dependencies/vendored-source.cjs');
+const optionalDependencies =
+  require('../dependencies/optional-dependencies.json');
+const sourceDependencies = require('../dependencies/source-dependencies.json');
 
 const packageRoot = path.resolve(__dirname, '../..');
 const manifest = require('../../package.json');
@@ -24,10 +33,13 @@ const required = [
   'examples/official/shell/native-application.cjs',
   'examples/official/invaders/native/high-scores.cc',
   'examples/official/lua_invaders/native/high-scores.cc',
+  'vendor/harfbuzz/upstream.json',
 ];
 for (const script of [
   'download:deps', 'prebuild:native', 'build:native', 'postbuild:native',
   'prebuild:ts',
+  'update:harfbuzz', 'update:rmlui', 'update:freetype', 'update:rlottie',
+  'download:examples', 'download:ime-fonts',
 ]) {
   for (const match of manifest.scripts[script]
     .matchAll(/\bnode ([\w./-]+\.cjs)\b/g)) {
@@ -58,5 +70,37 @@ while (required.length > 0) {
 }
 assert.ok(![ ...files ].some(file =>
   file.startsWith('build/') || file.startsWith('third_party/')));
-console.log(`PASS source package ${packed.name}@${packed.version}: ` +
-  `${files.size} files, ${visited.size} install/build/application entries`);
+/**
+ * Verify every retained source ships and no unvalidated vendor payload ships.
+ */
+async function validateSourceInventory() {
+  const dependencies = {
+    ...sourceDependencies,
+    rlottie: optionalDependencies.rlottie,
+    harfbuzz: optionalDependencies.harfbuzz,
+  };
+  let count = 0;
+  for (const [ name, dependency ] of Object.entries(dependencies)) {
+    const root = path.join(packageRoot, dependency.source);
+    const snapshot = name === 'harfbuzz'
+      ? await validateHarfBuzzSource(root, dependency)
+      : await validateVendoredSource(root, name, dependency);
+    assert.ok(files.has(`${dependency.source}/upstream.json`));
+    for (const filename of snapshot.files) {
+      assert.ok(files.has(`${dependency.source}/${filename}`),
+        `Missing packaged ${name} source: ${filename}`);
+    }
+    assert.equal([ ...files ].filter(file =>
+      file.startsWith(`${dependency.source}/`)).length,
+    snapshot.files.length + 1);
+    count += snapshot.files.length;
+  }
+  console.log(`PASS source package ${packed.name}@${packed.version}: ` +
+    `${files.size} files, ${visited.size} install/build/application ` +
+    `entries, ${count} vendored source files`);
+}
+
+validateSourceInventory().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

@@ -88,12 +88,12 @@
     "type": "static_library",
     "sources": ["<@(rlottie_sources)"],
     "include_dirs": [
-      "third_party/rlottie",
-      "third_party/rlottie/inc",
-      "third_party/rlottie/src/lottie",
-      "third_party/rlottie/src/vector",
-      "third_party/rlottie/src/vector/freetype",
-      "third_party/rlottie/src/vector/pixman"
+      "vendor/rlottie",
+      "vendor/rlottie/inc",
+      "vendor/rlottie/src/lottie",
+      "vendor/rlottie/src/vector",
+      "vendor/rlottie/src/vector/freetype",
+      "vendor/rlottie/src/vector/pixman"
     ],
     "defines": ["RLOTTIE_BUILD", "RLOTTIE_STATIC"],
     "cflags_cc": ["-std=c++20"],
@@ -281,11 +281,11 @@
       "<(sfml_include)",
       "<(interop_include)",
       "native",
-      "third_party/rmlui/Include",
-      "third_party/freetype/include",
+      "vendor/rmlui/Include",
+      "vendor/freetype/include",
       "third_party/lua/src",
       "third_party/lunasvg/include",
-      "third_party/rlottie/inc"
+      "vendor/rlottie/inc"
     ],
     "defines": [
       "NDEBUG",
@@ -304,12 +304,12 @@
     "conditions": [
       ["rmlui_harfbuzz==1", {
         "sources": [
-          "third_party/harfbuzz/src/harfbuzz.cc",
+          "vendor/harfbuzz/src/harfbuzz.cc",
           "<@(rmlui_harfbuzz_sources)"
         ],
         "include_dirs": [
-          "third_party/harfbuzz/src",
-          "third_party/rmlui/Source/Core"
+          "vendor/harfbuzz/src",
+          "vendor/rmlui/Source/Core"
         ],
         "defines": ["HAVE_FREETYPE"]
       }],

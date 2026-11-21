@@ -39,6 +39,14 @@ npm run examples -- --list
 
 工作区已准备好时，先构建 `sfml.js-interop` 和 `sfml.js`，再在本包执行 `npm run build`。macOS 需要 Xcode Command Line Tools 和 CMake。依赖步骤复用 `sfml.js-interop/third_party` 下的 SFML 源码、构建目录及版本匹配的带补丁 Window 库。
 
+RmlUi 6.3、FreeType 2.13.3、rlottie 0.2 和 HarfBuzz 15.1.0 的编译源码随包放在 `vendor/`，安装时在本地校验固定版本、源码摘要和适用补丁。Lua 和 LunaSVG 保留下载步骤。内置源码保留字体后端、Debugger、Lua、SVG、Lottie、官方应用及 GL3 对照源码。
+
+在本包执行 `npm run update:rmlui`、`npm run update:freetype`、`npm run update:rlottie` 或 `npm run update:harfbuzz` 可刷新对应源码；附加 `-- --version X.Y.Z` 可指定上游版本，解析 GitHub 版本需要 `gh`；附加 `-- --archive /path/to/upstream.tar.gz` 可复用本地归档。更新脚本校验归档，筛选编译所需文件、应用兼容补丁，并同步更新源码与依赖清单。
+
+切换 RmlUi、FreeType 或 rlottie 的版本或提交时，更新器从官方归档获取摘要，并据此校验提供的本地归档。刷新现有固定版本时，`--archive` 无需下载。
+
+示例字体、贴图、RML／RCSS、Lua 脚本和视觉测试数据通过 `npm run download:examples` 单独准备。启动示例或运行时测试会自动准备资源；`npm run examples -- --list` 无需下载素材。资源保存在 `third_party/rmlui`，复用已有缓存，保留额外 IME 字体和用户修改。`npm run download:ime-fonts` 准备原始 IME 示例的可选字体。
+
 ## 帧生命周期
 
 | 阶段 | 调用 | 契约 |

@@ -6,7 +6,7 @@
 
 #include <nan.h>
 
-#include "third_party/rmlui/Source/Core/DocumentHeader.h"
+#include "vendor/rmlui/Source/Core/DocumentHeader.h"
 
 namespace sfmlrmlui {
 

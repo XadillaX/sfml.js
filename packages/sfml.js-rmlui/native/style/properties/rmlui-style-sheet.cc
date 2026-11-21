@@ -22,8 +22,8 @@
 #include "native/style/effects/rmlui-effect-values.h"
 #include "native/style/properties/rmlui-property-dictionary.h"
 #include "native/style/properties/rmlui-property.h"
-#include "third_party/rmlui/Source/Core/ElementDefinition.h"
-#include "third_party/rmlui/Source/Core/StyleSheetFactory.h"
+#include "vendor/rmlui/Source/Core/ElementDefinition.h"
+#include "vendor/rmlui/Source/Core/StyleSheetFactory.h"
 
 namespace sfmlrmlui {
 

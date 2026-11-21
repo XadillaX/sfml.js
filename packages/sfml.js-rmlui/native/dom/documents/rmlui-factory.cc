@@ -12,7 +12,7 @@
 #include "native/runtime/rmlui-state.h"
 #include "native/style/properties/rmlui-style-sheet.h"
 #include "native/values/rmlui-variant.h"
-#include "third_party/rmlui/Source/Core/StreamFile.h"
+#include "vendor/rmlui/Source/Core/StreamFile.h"
 
 namespace sfmlrmlui {
 namespace {

@@ -16,9 +16,9 @@
 #include "native/data/rmlui-data.h"
 #include "native/dom/elements/rmlui-element-commands.h"
 #include "native/runtime/rmlui-state.h"
-#include "third_party/rmlui/Source/Core/DataExpression.h"
-#include "third_party/rmlui/Source/Core/DataModel.h"
-#include "third_party/rmlui/Source/Core/DataView.h"
+#include "vendor/rmlui/Source/Core/DataExpression.h"
+#include "vendor/rmlui/Source/Core/DataModel.h"
+#include "vendor/rmlui/Source/Core/DataView.h"
 
 namespace sfmlrmlui {
 namespace {

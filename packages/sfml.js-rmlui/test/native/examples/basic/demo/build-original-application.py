@@ -31,7 +31,7 @@ def main():
              if flag != "-DNDEBUG" and not flag.startswith("-g")]
     makefile = (package / "build/rmlui.target.mk").read_text()
     names = re.findall(
-        r"\$\(obj\)\.target/\$\(TARGET\)/(third_party/[^\s\\]+\.o)",
+        r"\$\(obj\)\.target/\$\(TARGET\)/((?:vendor|third_party)/[^\s\\]+\.o)",
         makefile)
     objects = [package / "build/Release/obj.target/rmlui" / name
                for name in names]
@@ -39,7 +39,7 @@ def main():
         parser.error("Build the existing package before running this reference")
     assert len(set(objects)) == len(objects)
 
-    vendor = package / "third_party/rmlui"
+    vendor = package / "vendor/rmlui"
     original = vendor / "Samples/basic/demo/src"
     executable = output / "original-demo"
     subprocess.run([
@@ -53,7 +53,7 @@ def main():
     ], cwd=package, timeout=60, check=True)
     subprocess.run(
         [str(executable), str(output / "original-demo-reference.json")],
-        cwd=vendor / "Samples", timeout=20, check=True)
+        cwd=package / "third_party/rmlui/Samples", timeout=20, check=True)
     references = json.loads((output / "original-demo-reference.json").read_text())
     assert len(references["frames"]) == 10
     assert all(len(row) == 6 for row in references["frames"])

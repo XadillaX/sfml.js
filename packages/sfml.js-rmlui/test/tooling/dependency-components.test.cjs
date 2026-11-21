@@ -4,7 +4,9 @@ const assert = require('node:assert/strict');
 const path = require('node:path');
 const fs = require('node:fs/promises');
 const {
-  ensureComponents, validateOptionalDependency, versions,
+  ensureComponents, validateOptionalDependency,
+  optionalComponentOperations, versions,
+  sourceComponentOperations,
 } = require('../../tools/dependencies/deps_downloader.cjs');
 const { compileCommand } = require('../../tools/build/compile-lua-cxx.cjs');
 const {
@@ -49,7 +51,8 @@ async function verify(previous, damaged, expected) {
   console.log('PASS component-upgrades-preserve-existing-dependencies');
   for (const name of optional) {
     await validateOptionalDependency(name,
-      path.join(__dirname, '../../third_party', name));
+      path.join(__dirname, name !== 'lunasvg'
+        ? '../../vendor' : '../../third_party', name));
     await assert.rejects(validateOptionalDependency(name,
       path.join(__dirname, '../../third_party', 'missing-dependency')),
     /ENOENT/);
@@ -57,6 +60,28 @@ async function verify(previous, damaged, expected) {
   await assert.rejects(validateOptionalDependency('unknown', ''),
     /Unknown optional dependency/);
   console.log('PASS optional-dependencies-reject-missing-source-and-identity');
+  const vendored = optionalComponentOperations('harfbuzz',
+    path.join(__dirname, '../../vendor/harfbuzz'));
+  assert.equal(vendored.install, vendored.validate);
+  await vendored.install();
+  const missing = optionalComponentOperations('harfbuzz',
+    path.join(__dirname, '../../vendor/missing-dependency'));
+  await assert.rejects(missing.install(), /ENOENT/);
+  console.log('PASS vendored-harfbuzz-install-validates-without-downloading');
+  for (const name of [ 'rmlui', 'freetype', 'rlottie' ]) {
+    const source = path.join(__dirname, '../../vendor', name);
+    const operations = name === 'rlottie'
+      ? optionalComponentOperations(name, source)
+      : sourceComponentOperations(name, source);
+    assert.equal(operations.install, operations.validate);
+    await operations.install();
+    const missingSource = path.join(__dirname, '../../vendor/missing');
+    const missingOperations = name === 'rlottie'
+      ? optionalComponentOperations(name, missingSource)
+      : sourceComponentOperations(name, missingSource);
+    await assert.rejects(missingOperations.install(), /ENOENT/);
+  }
+  console.log('PASS vendored-dependencies-install-offline-or-fail');
   for (const platform of [ 'darwin', 'linux' ]) {
     const command = compileCommand('original.c', 'Release/object.o',
       'arm64', platform);
@@ -77,7 +102,7 @@ async function verify(previous, damaged, expected) {
     'unknown', 'darwin'), /Unsupported macOS architecture/);
   console.log('PASS original-lua-cpp-language-and-exception-selection');
 
-  const root = path.join(__dirname, '../../third_party/rmlui');
+  const root = path.join(__dirname, '../../vendor/rmlui');
   const bitmapFile = path.join(root,
     'Samples/basic/bitmap_font/src/FontEngineBitmap.cpp');
   const before = await fs.readFile(bitmapFile, 'utf8');
@@ -122,7 +147,7 @@ async function verify(previous, damaged, expected) {
   await assert.rejects(patchRmlUiLua(path.join(root, 'missing')), /ENOENT/);
   console.log('PASS lua-contract-patch-idempotence-and-missing-source');
 
-  const rlottieRoot = path.join(__dirname, '../../third_party/rlottie');
+  const rlottieRoot = path.join(__dirname, '../../vendor/rlottie');
   const rlottieFiles = [ 'inc/rlottie.h', 'inc/rlottiecommon.h' ];
   const rlottieBefore = await Promise.all(rlottieFiles.map(file =>
     fs.readFile(path.join(rlottieRoot, file), 'utf8')));

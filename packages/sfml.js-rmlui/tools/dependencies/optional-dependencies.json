@@ -18,6 +18,7 @@
     "commit": "bf3d272df3916a0c34575ac8286cb0fe672fd0d4",
     "sha256": "ffa001d34758b394a8ea1c85bad9d974f9a58808f028287bea6abb0165251cc6",
     "header": "inc/rlottie.h",
+    "source": "vendor/rlottie",
     "options": {
       "static": true,
       "imageModule": false,
@@ -33,6 +34,7 @@
     "commit": "3df40d9b98d6b32f0e4288d4ecfbb158ddb3a372",
     "sha256": "2fa9f8dae5e2d432d09ba06e915b33ee1ffe7bb38fed878257978c1d55df2d30",
     "header": "src/hb.h",
+    "source": "vendor/harfbuzz",
     "options": {
       "static": true,
       "freetype": "shared-package-build",

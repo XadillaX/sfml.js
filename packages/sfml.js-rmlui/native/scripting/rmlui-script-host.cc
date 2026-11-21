@@ -23,8 +23,8 @@
 #include "native/runtime/rmlui-state.h"
 #include "native/scripting/lua/rmlui-lua-host.h"
 #include "native/scripting/lua/rmlui-lua-variant.h"
-#include "third_party/rmlui/Source/Core/PluginRegistry.h"
-#include "third_party/rmlui/Source/Core/StreamFile.h"
+#include "vendor/rmlui/Source/Core/PluginRegistry.h"
+#include "vendor/rmlui/Source/Core/StreamFile.h"
 
 namespace sfmlrmlui {
 namespace {

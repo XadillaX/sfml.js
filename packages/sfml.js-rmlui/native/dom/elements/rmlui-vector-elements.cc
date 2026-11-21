@@ -7,8 +7,8 @@
 
 #include "native/dom/elements/rmlui-element-access.h"
 #include "native/runtime/rmlui-state.h"
-#include "third_party/rmlui/Source/Lottie/LottiePlugin.h"
-#include "third_party/rmlui/Source/SVG/SVGPlugin.h"
+#include "vendor/rmlui/Source/Lottie/LottiePlugin.h"
+#include "vendor/rmlui/Source/SVG/SVGPlugin.h"
 
 namespace sfmlrmlui {
 namespace {

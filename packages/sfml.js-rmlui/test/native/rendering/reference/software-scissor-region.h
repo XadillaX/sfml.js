@@ -8,7 +8,7 @@
 #include <cassert>
 #include <cstring>
 
-#include "third_party/rmlui/Backends/RmlUi_Include_GL3.h"
+#include "vendor/rmlui/Backends/RmlUi_Include_GL3.h"
 
 namespace gl3_reference {
 

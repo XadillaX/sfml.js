@@ -167,7 +167,7 @@ const keyDescription = member => {
 
 const root = path.join(__dirname, '../..');
 const header = fs.readFileSync(path.join(root,
-  'third_party/rmlui/Include/RmlUi/Core/Input.h'), 'utf8')
+  'vendor/rmlui/Include/RmlUi/Core/Input.h'), 'utf8')
   .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
 const output = [
   '// Generated from RmlUi 6.3 Core/Input.h.',

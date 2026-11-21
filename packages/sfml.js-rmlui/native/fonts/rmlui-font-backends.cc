@@ -10,14 +10,14 @@
 #include <utility>
 #include <vector>
 
-#include "third_party/rmlui/Source/Core/FontEngineDefault/FontEngineInterfaceDefault.h"
+#include "vendor/rmlui/Source/Core/FontEngineDefault/FontEngineInterfaceDefault.h"
 
 #if SFML_RMLUI_HARFBUZZ
-#include "third_party/rmlui/Samples/basic/harfbuzz/src/FontEngineInterfaceHarfBuzz.h"
+#include "vendor/rmlui/Samples/basic/harfbuzz/src/FontEngineInterfaceHarfBuzz.h"
 #endif
 
 #if SFML_RMLUI_BITMAP_FONT
-#include "third_party/rmlui/Samples/basic/bitmap_font/src/FontEngineInterfaceBitmap.h"
+#include "vendor/rmlui/Samples/basic/bitmap_font/src/FontEngineInterfaceBitmap.h"
 #endif
 
 namespace sfmlrmlui {

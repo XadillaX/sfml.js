@@ -23,8 +23,8 @@
 #include "native/style/properties/rmlui-property.h"
 #include "native/style/values/rmlui-computed-values.h"
 #include "native/values/rmlui-numeric-value.h"
-#include "third_party/rmlui/Source/Core/ElementStyle.h"
-#include "third_party/rmlui/Source/Core/PropertiesIterator.h"
+#include "vendor/rmlui/Source/Core/ElementStyle.h"
+#include "vendor/rmlui/Source/Core/PropertiesIterator.h"
 
 namespace sfmlrmlui {
 namespace {

@@ -9,8 +9,8 @@
 
 #include "test/native/rendering/css/effect-scenes.h"
 #include "test/native/rendering/reference/software-scissor-region.h"
-#include "third_party/rmlui/Backends/RmlUi_Include_GL3.h"
-#include "third_party/rmlui/Backends/RmlUi_Renderer_GL3.h"
+#include "vendor/rmlui/Backends/RmlUi_Include_GL3.h"
+#include "vendor/rmlui/Backends/RmlUi_Renderer_GL3.h"
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/Window.hpp>

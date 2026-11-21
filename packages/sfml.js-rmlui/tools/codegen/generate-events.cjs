@@ -74,7 +74,7 @@ const descriptions = Object.fromEntries(Object.entries({
 
 const root = path.join(__dirname, '../..');
 const header = fs.readFileSync(path.join(root,
-  'third_party/rmlui/Include/RmlUi/Core/ID.h'), 'utf8')
+  'vendor/rmlui/Include/RmlUi/Core/ID.h'), 'utf8')
   .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
 const body = header.match(/enum class EventId[^{}]+\{([^}]+)\}/)?.[1];
 if (!body) {

@@ -14,7 +14,7 @@
 #include "native/dom/documents/rmlui-document-header.h"
 #include "native/io/rmlui-stream.h"
 #include "native/values/rmlui-variant.h"
-#include "third_party/rmlui/Source/Core/XMLNodeHandlerDefault.h"
+#include "vendor/rmlui/Source/Core/XMLNodeHandlerDefault.h"
 
 namespace sfmlrmlui {
 namespace {

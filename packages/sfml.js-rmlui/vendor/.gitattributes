@@ -1,0 +1,5 @@
+# Preserve pinned upstream archive bytes, including on Windows checkouts.
+harfbuzz/** -text linguist-vendored
+rmlui/** -text linguist-vendored
+freetype/** -text linguist-vendored
+rlottie/** -text linguist-vendored

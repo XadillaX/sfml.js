@@ -1,0 +1,9 @@
+{
+  "version": "15.1.0",
+  "repository": "harfbuzz/harfbuzz",
+  "commit": "3df40d9b98d6b32f0e4288d4ecfbb158ddb3a372",
+  "sha256": "2fa9f8dae5e2d432d09ba06e915b33ee1ffe7bb38fed878257978c1d55df2d30",
+  "sourceSha256": "0331a754a6a371379f8f9a3687e4fe5ae1953afddd17f06ba310ac7b4c7f1c79",
+  "fileCount": 453,
+  "sourceBytes": 6752558
+}

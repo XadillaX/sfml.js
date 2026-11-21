@@ -28,7 +28,7 @@ def main():
     flags.remove(entry["file"])
     flags = [flag for flag in flags
              if flag != "-DNDEBUG" and not flag.startswith("-g")]
-    vendor = package / "build/Release/obj.target/rmlui/third_party"
+    vendor = package / "build/Release/obj.target/rmlui/vendor"
     objects = sorted(vendor.rglob("*.o"))
     if not objects:
         parser.error("Build the existing package before running this probe")

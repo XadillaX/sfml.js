@@ -34,7 +34,7 @@ def main():
 
     makefile = (package / "build/rmlui.target.mk").read_text()
     names = re.findall(
-        r"\$\(obj\)\.target/\$\(TARGET\)/(third_party/[^\s\\]+\.o)",
+        r"\$\(obj\)\.target/\$\(TARGET\)/((?:vendor|third_party)/[^\s\\]+\.o)",
         makefile)
     objects = [package / "build/Release/obj.target/rmlui" / name
                for name in names]

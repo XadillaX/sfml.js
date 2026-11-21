@@ -22,7 +22,7 @@ def main():
         parser.error("Build the existing package before running this oracle")
     subprocess.run([
         "c++", "-std=c++20", "-O2", "-DRLOTTIE_STATIC",
-        "-I" + str(package / "third_party/rlottie/inc"),
+        "-I" + str(package / "vendor/rlottie/inc"),
         str(Path(__file__).with_name("lottie-capture.cc")),
         str(archive), "-lz", "-o", str(output / "lottie-reference"),
     ], cwd=package, timeout=60, check=True)

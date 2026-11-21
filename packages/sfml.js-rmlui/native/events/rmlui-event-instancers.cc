@@ -19,7 +19,7 @@
 #include "native/scripting/rmlui-script-object.h"
 #include "native/values/rmlui-variant-pointers.h"
 #include "native/values/rmlui-variant.h"
-#include "third_party/rmlui/Source/Core/EventSpecification.h"
+#include "vendor/rmlui/Source/Core/EventSpecification.h"
 
 namespace sfmlrmlui {
 namespace {

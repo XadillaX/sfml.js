@@ -40,6 +40,14 @@ npm run examples -- --list
 
 준비된 작업 공간에서는 `sfml.js-interop`과 `sfml.js`를 먼저 빌드한 뒤 이 패키지에서 `npm run build`를 실행합니다. macOS는 Xcode Command Line Tools와 CMake가 필요합니다. 의존성 단계는 `sfml.js-interop/third_party`의 SFML 소스／빌드 디렉터리와 버전이 일치하는 패치된 Window 라이브러리를 재사용합니다.
 
+RmlUi 6.3, FreeType 2.13.3, rlottie 0.2, HarfBuzz 15.1.0 빌드 소스는 `vendor/`에 포함되며, 설치 시 고정 버전, 소스 체크섬과 적용 패치를 로컬에서 검증합니다. Lua와 LunaSVG는 다운로드 절차를 사용합니다. 글꼴 백엔드, Debugger, Lua, SVG, Lottie, 공식 애플리케이션과 GL3 비교 소스를 유지합니다.
+
+해당 소스를 갱신하려면 `npm run update:rmlui`, `npm run update:freetype`, `npm run update:rlottie`, `npm run update:harfbuzz`를 실행합니다. 릴리스 지정에는 `-- --version X.Y.Z`, 로컬 아카이브 재사용에는 `-- --archive /path/to/upstream.tar.gz`를 추가합니다. GitHub 버전 확인에는 `gh`가 필요합니다. 갱신 도구는 아카이브 검증, 빌드 파일 선택과 호환 패치 적용 후 소스와 매니페스트를 함께 갱신합니다.
+
+RmlUi, FreeType, rlottie의 버전이나 커밋 변경 시 공식 아카이브 체크섬을 받아 지정한 로컬 아카이브와 비교합니다. 기존 고정 버전은 `--archive`로 다운로드 없이 갱신할 수 있습니다.
+
+샘플 글꼴, 이미지, RML／RCSS, Lua 스크립트와 시각 테스트 데이터는 `npm run download:examples`로 별도 준비합니다. 예제와 런타임 테스트는 리소스를 자동으로 준비하며, `npm run examples -- --list`는 다운로드 없이 동작합니다. 리소스는 `third_party/rmlui`에 저장하고 기존 캐시, 추가 IME 글꼴과 로컬 수정을 유지합니다. `npm run download:ime-fonts`는 원본 IME 샘플의 선택 글꼴을 준비합니다.
+
 ## 프레임 수명 주기
 
 | 단계 | 호출 | 계약 |

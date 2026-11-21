@@ -18,7 +18,7 @@
 #include "native/runtime/rmlui-state.h"
 #include "native/scripting/lua/rmlui-lua-object.h"
 #include "native/scripting/lua/rmlui-lua-variant.h"
-#include "third_party/rmlui/Source/Lua/LuaPlugin.h"
+#include "vendor/rmlui/Source/Lua/LuaPlugin.h"
 
 namespace sfmlrmlui {
 namespace {

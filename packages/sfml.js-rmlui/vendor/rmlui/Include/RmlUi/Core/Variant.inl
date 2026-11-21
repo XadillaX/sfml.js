@@ -1,0 +1,115 @@
+namespace Rml {
+
+inline Variant::Type Variant::GetType() const
+{
+	return type;
+}
+
+template <typename T, typename>
+Variant::Variant(T&& t)
+{
+	Set(std::forward<T>(t));
+}
+
+template <typename T, typename>
+Variant& Variant::operator=(T&& t)
+{
+	Clear();
+	Set(std::forward<T>(t));
+	return *this;
+}
+
+template <typename T>
+bool Variant::GetInto(T& value) const
+{
+	if constexpr (std::is_enum_v<T>)
+	{
+		static_assert(sizeof(T) <= sizeof(int64_t), "Enum underlying type exceeds maximum supported integer type size");
+		int64_t stored_value = 0;
+		if (GetInto(stored_value))
+		{
+			value = static_cast<T>(stored_value);
+			return true;
+		}
+	}
+	else
+	{
+		switch (type)
+		{
+		case BOOL: return TypeConverter<bool, T>::Convert(*reinterpret_cast<const bool*>(data), value);
+		case BYTE: return TypeConverter<byte, T>::Convert(*reinterpret_cast<const byte*>(data), value);
+		case CHAR: return TypeConverter<char, T>::Convert(*reinterpret_cast<const char*>(data), value);
+		case FLOAT: return TypeConverter<float, T>::Convert(*reinterpret_cast<const float*>(data), value);
+		case DOUBLE: return TypeConverter<double, T>::Convert(*reinterpret_cast<const double*>(data), value);
+		case INT: return TypeConverter<int, T>::Convert(*reinterpret_cast<const int*>(data), value);
+		case INT64: return TypeConverter<int64_t, T>::Convert(*reinterpret_cast<const int64_t*>(data), value);
+		case UINT: return TypeConverter<unsigned int, T>::Convert(*reinterpret_cast<const unsigned int*>(data), value);
+		case UINT64: return TypeConverter<uint64_t, T>::Convert(*reinterpret_cast<const uint64_t*>(data), value);
+		case STRING: return TypeConverter<String, T>::Convert(*reinterpret_cast<const String*>(data), value);
+		case VECTOR2: return TypeConverter<Vector2f, T>::Convert(*reinterpret_cast<const Vector2f*>(data), value);
+		case VECTOR3: return TypeConverter<Vector3f, T>::Convert(*reinterpret_cast<const Vector3f*>(data), value);
+		case VECTOR4: return TypeConverter<Vector4f, T>::Convert(*reinterpret_cast<const Vector4f*>(data), value);
+		case COLOURF: return TypeConverter<Colourf, T>::Convert(*reinterpret_cast<const Colourf*>(data), value);
+		case COLOURB: return TypeConverter<Colourb, T>::Convert(*reinterpret_cast<const Colourb*>(data), value);
+		case SCRIPTINTERFACE:
+		{
+			// Native pointer formatting must never expose a guarded address.
+			if constexpr (std::is_same_v<T, String>)
+				if (HasGuardedScriptInterfaceForBinding()) return false;
+			return TypeConverter<ScriptInterface*, T>::Convert(
+				GetReference<ScriptInterface*>(), value);
+		}
+		case VOIDPTR:
+		{
+			if constexpr (std::is_same_v<T, String>)
+				if (HasGuardedOpaquePointerForBinding()) return false;
+			return TypeConverter<void*, T>::Convert(
+				GetReference<void*>(), value);
+		}
+		case TRANSFORMPTR: return TypeConverter<TransformPtr, T>::Convert(*reinterpret_cast<const TransformPtr*>(data), value);
+		case TRANSITIONLIST: return TypeConverter<TransitionList, T>::Convert(*reinterpret_cast<const TransitionList*>(data), value);
+		case ANIMATIONLIST: return TypeConverter<AnimationList, T>::Convert(*reinterpret_cast<const AnimationList*>(data), value);
+		case DECORATORSPTR: return TypeConverter<DecoratorsPtr, T>::Convert(*reinterpret_cast<const DecoratorsPtr*>(data), value);
+		case FILTERSPTR: return TypeConverter<FiltersPtr, T>::Convert(*reinterpret_cast<const FiltersPtr*>(data), value);
+		case FONTEFFECTSPTR: return TypeConverter<FontEffectsPtr, T>::Convert(*reinterpret_cast<const FontEffectsPtr*>(data), value);
+		case COLORSTOPLIST: return TypeConverter<ColorStopList, T>::Convert(*(ColorStopList*)data, value); break;
+		case BOXSHADOWLIST: return TypeConverter<BoxShadowList, T>::Convert(*reinterpret_cast<const BoxShadowList*>(data), value);
+		case NONE: break;
+		}
+	}
+
+	return false;
+}
+
+template <typename T>
+T Variant::Get(T default_value) const
+{
+	GetInto(default_value);
+	return default_value;
+}
+
+template <typename T>
+const T& Variant::GetReference() const
+{
+	if constexpr (std::is_same_v<T, ScriptInterface*>)
+	{
+		const auto& storage = *reinterpret_cast<const ScriptValueForBinding*>(data);
+		return storage.guard ? *storage.guard : storage.pointer;
+	}
+	if constexpr (std::is_same_v<T, void*>)
+	{
+		const auto& storage = *reinterpret_cast<const OpaqueValueForBinding*>(data);
+		return storage.guard ? *storage.guard : storage.pointer;
+	}
+	return *reinterpret_cast<const T*>(&data);
+}
+
+template <typename T, typename>
+void Variant::Set(const T value)
+{
+	static_assert(sizeof(T) <= sizeof(int64_t), "Enum underlying type exceeds maximum supported integer type size");
+	type = INT64;
+	*(reinterpret_cast<int64_t*>(data)) = static_cast<int64_t>(value);
+}
+
+} // namespace Rml

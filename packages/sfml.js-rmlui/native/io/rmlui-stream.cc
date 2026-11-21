@@ -15,7 +15,7 @@
 #include "native/io/rmlui-stream-callbacks.h"
 #include "native/runtime/rmlui-state.h"
 #include "native/values/rmlui-buffer.h"
-#include "third_party/rmlui/Source/Core/StreamFile.h"
+#include "vendor/rmlui/Source/Core/StreamFile.h"
 
 namespace sfmlrmlui {
 namespace {

@@ -30,7 +30,7 @@ def main():
     flags.remove(entry["file"])
     flags = [flag for flag in flags
              if flag != "-DNDEBUG" and not flag.startswith("-g")]
-    vendor = package / "third_party/rmlui"
+    vendor = package / "vendor/rmlui"
     upstream = vendor / "Samples" / options.application / "src"
     flags += [
         "-I" + str(upstream),
@@ -42,7 +42,7 @@ def main():
         flags += ["-DREFERENCE_LUA_INVADERS"]
     makefile = (package / "build/rmlui.target.mk").read_text()
     names = re.findall(
-        r"\$\(obj\)\.target/\$\(TARGET\)/(third_party/[^\s\\]+\.o)", makefile)
+        r"\$\(obj\)\.target/\$\(TARGET\)/((?:vendor|third_party)/[^\s\\]+\.o)", makefile)
     objects = [package / "build/Release/obj.target/rmlui" / name
                for name in names]
     if not objects or not all(file.is_file() for file in objects):
@@ -78,7 +78,7 @@ def main():
     subprocess.run([
         str(executable), options.application, str(reference),
         str(output / f"original-{options.application}-scores.txt"),
-    ], cwd=vendor / "Samples", check=True, timeout=20)
+    ], cwd=package / "third_party/rmlui/Samples", check=True, timeout=20)
     assert json.loads(reference.read_text())["formationScore"] == 1100
 
 

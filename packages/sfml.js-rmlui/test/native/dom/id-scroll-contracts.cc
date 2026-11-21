@@ -20,7 +20,7 @@
 #include <string_view>
 #include <type_traits>
 
-#include "third_party/rmlui/Source/Core/StyleSheetParser.h"
+#include "vendor/rmlui/Source/Core/StyleSheetParser.h"
 
 namespace sfmlrmlui {
 

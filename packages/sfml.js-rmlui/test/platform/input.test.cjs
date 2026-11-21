@@ -8,7 +8,7 @@ const { spawnSync } = require('node:child_process');
 const cases = {
   constants({ rmlui }) {
     const header = fs.readFileSync(path.join(__dirname,
-      '../../third_party/rmlui/Include/RmlUi/Core/Input.h'), 'utf8');
+      '../../vendor/rmlui/Include/RmlUi/Core/Input.h'), 'utf8');
     let previous = -1;
     for (const [ , name, expression ] of header.matchAll(
       /\b(K[IM]_[A-Z0-9_]+)\s*(?:=\s*(\d+(?:\s*<<\s*\d+)?))?\s*[,/]/g

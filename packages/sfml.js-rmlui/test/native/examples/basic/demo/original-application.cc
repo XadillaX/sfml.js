@@ -18,8 +18,8 @@
 #include <iostream>
 #include <limits>
 
-#include "third_party/rmlui/Samples/basic/demo/src/DemoEventListener.h"
-#include "third_party/rmlui/Samples/basic/demo/src/DemoWindow.h"
+#include "vendor/rmlui/Samples/basic/demo/src/DemoEventListener.h"
+#include "vendor/rmlui/Samples/basic/demo/src/DemoWindow.h"
 
 namespace Backend {
 

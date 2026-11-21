@@ -37,7 +37,7 @@ def main():
 
     makefile = (package / "build/rmlui.target.mk").read_text()
     upstream = re.findall(
-        r"\$\(obj\)\.target/\$\(TARGET\)/(third_party/[^\s\\]+\.o)",
+        r"\$\(obj\)\.target/\$\(TARGET\)/((?:vendor|third_party)/[^\s\\]+\.o)",
         makefile)
     owned = [
         "render-interface-sfml.cc",

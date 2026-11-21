@@ -40,6 +40,14 @@ npm run examples -- --list
 
 準備済みの環境では `sfml.js-interop` と `sfml.js` を先にビルドし、本パッケージで `npm run build` を実行します。macOS では Xcode Command Line Tools と CMake が必要です。依存関係の準備には `sfml.js-interop/third_party` の SFML ソース／ビルドディレクトリと、バージョンが一致するパッチ済み Window ライブラリを再利用します。
 
+RmlUi 6.3、FreeType 2.13.3、rlottie 0.2、HarfBuzz 15.1.0 のビルド用ソースは `vendor/` に同梱され、インストール時に固定バージョン、ソースのチェックサムと適用パッチをローカルで検証します。Lua と LunaSVG はダウンロード手順を使用します。フォントバックエンド、Debugger、Lua、SVG、Lottie、公式アプリケーションと GL3 比較用ソースを保持します。
+
+対応するソースの更新には `npm run update:rmlui`、`npm run update:freetype`、`npm run update:rlottie`、`npm run update:harfbuzz` を実行します。別のリリースには `-- --version X.Y.Z`、ローカルアーカイブには `-- --archive /path/to/upstream.tar.gz` を追加します。GitHub のバージョン解決には `gh` が必要です。更新ツールはアーカイブを検証し、ビルド用ファイルの選択と互換パッチの適用を行い、ソースとマニフェストを同時に更新します。
+
+RmlUi、FreeType、rlottie のバージョンやコミットを変更する際は、公式アーカイブのチェックサムを取得し、指定されたローカルアーカイブも照合します。固定済みバージョンの更新では `--archive` によりダウンロードを省略できます。
+
+サンプルのフォント、画像、RML／RCSS、Lua スクリプト、視覚テストデータは `npm run download:examples` で別途準備します。サンプルと実行時テストは自動準備し、`npm run examples -- --list` は素材をダウンロードせずに動作します。リソースは `third_party/rmlui` に保存され、既存キャッシュを再利用し、追加の IME フォントやローカル編集を保持します。`npm run download:ime-fonts` は元の IME サンプルの任意フォントを準備します。
+
 ## フレームのライフサイクル
 
 | 段階 | 呼び出し | 契約 |
