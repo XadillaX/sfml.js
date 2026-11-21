@@ -2,6 +2,20 @@
   "name": "sfml.js-interop",
   "entries": [
     {
+      "version": "1.3.0",
+      "tag": "sfml.js-interop_v1.3.0",
+      "date": "Sat, 21 Nov 2026 05:47:36 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Release the shared native interop layer on the 1.3 lockstep line for the RmlUi integration.",
+            "author": "XadillaX <i@2333.moe>",
+            "commit": "2acc0ac51c9ecbc4ff267562e18cbbe45c931d7e"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.2.1",
       "tag": "sfml.js-interop_v1.2.1",
       "date": "Thu, 12 Nov 2026 10:00:47 GMT",

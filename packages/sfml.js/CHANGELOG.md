@@ -1,6 +1,13 @@
 # Change Log - sfml.js
 
-This log was last generated on Thu, 12 Nov 2026 10:00:47 GMT and should not be manually modified.
+This log was last generated on Sat, 21 Nov 2026 05:47:36 GMT and should not be manually modified.
+
+## 1.3.0
+Sat, 21 Nov 2026 05:47:36 GMT
+
+### Minor changes
+
+- Release SFML 3.1 bindings with the shared native contracts required by the RmlUi integration on the 1.3 lockstep line.
 
 ## 1.2.1
 Thu, 12 Nov 2026 10:00:47 GMT
