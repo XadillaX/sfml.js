@@ -11,34 +11,49 @@ Native windows, 2D graphics, audio, Dear ImGui and RmlUi for Node.js, built on <
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.org/package/sfml.js">
-  <img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-imgui">
-  <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-rmlui">
-  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
-</a>
+<a href="https://www.npmjs.org/package/sfml.js"><img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-imgui"><img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui"><img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
-**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+<p align="center">
+<strong>English</strong> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a>
+</p>
 
-[Website](https://sfml.js.org/) · [Core guides](docs/sfml/README.md) · [ImGui guide](docs/imgui/README.md) · [RmlUi guide](docs/rmlui/README.md) · [Native extensions](docs/interop/README.md) · [API reference](https://sfml.js.org/reference/)
+<p align="center">
+<a href="https://sfml.js.org/">Website</a> · <a href="docs/sfml/README.md">Core guides</a> · <a href="docs/imgui/README.md">ImGui guide</a> · <a href="docs/rmlui/README.md">RmlUi guide</a> · <a href="docs/interop/README.md">Native extensions</a> · <a href="https://sfml.js.org/reference/">API reference</a>
+</p>
 
 ## Packages
 
 This repository is a Rush monorepo for the published bindings and their shared native layer:
 
-| Package | Purpose |
-| --- | --- |
-| [`sfml.js`](packages/sfml.js) | Native windows, typed events, 2D graphics, audio and SFML-style networking for Node.js. |
-| [`sfml.js-imgui`](packages/sfml.js-imgui) | [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b integration for sfml.js, following [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0: debug panels, scene inspectors and editor controls in a native window. |
-| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | [RmlUi](https://github.com/mikke89/RmlUi) 6.3 document UI in native windows: RML/RCSS, data binding, Node/Lua scripting, fonts, SVG/Lottie and the Debugger. |
-| [`sfml.js-interop`](packages/sfml.js-interop) | Shared native headers and SFML SDK paths, consumed by the bindings and by third-party native extensions. Applications do not need it directly. |
+<table>
+  <thead>
+    <tr><th width="200">Package</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td nowrap><a href="packages/sfml.js"><code>sfml.js</code></a></td>
+      <td>Native windows, typed events, 2D graphics, audio and SFML-style networking for Node.js.</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-imgui"><code>sfml.js-imgui</code></a></td>
+      <td><a href="https://github.com/ocornut/imgui">Dear ImGui</a> 1.91.9b integration for sfml.js, following <a href="https://github.com/SFML/imgui-sfml">imgui-sfml</a> 3.0: debug panels, scene inspectors and editor controls in a native window.</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-rmlui"><code>sfml.js-rmlui</code></a></td>
+      <td><a href="https://github.com/mikke89/RmlUi">RmlUi</a> 6.3 document UI in native windows: RML/RCSS, data binding, Node/Lua scripting, fonts, SVG/Lottie and the Debugger.</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-interop"><code>sfml.js-interop</code></a></td>
+      <td>Shared native headers and SFML SDK paths, consumed by the bindings and by third-party native extensions. Applications do not need it directly.</td>
+    </tr>
+  </tbody>
+</table>
 
 The core modules cover System, Window, Graphics, Audio and Network; TypeScript declarations are included. Numeric values and resource views use typed arrays, and rendering records state snapshots and submits commands in batches. See [core concepts](docs/sfml/concepts.md) for ownership, asynchronous loading and rendering behavior.
 

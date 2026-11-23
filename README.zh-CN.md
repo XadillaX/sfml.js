@@ -11,34 +11,49 @@
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.org/package/sfml.js">
-  <img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-imgui">
-  <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-rmlui">
-  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
-</a>
+<a href="https://www.npmjs.org/package/sfml.js"><img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-imgui"><img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui"><img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
-[English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
+<p align="center">
+<a href="README.md">English</a> · <strong>简体中文</strong> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a>
+</p>
 
-[官网](https://sfml.js.org/zh/) · [核心指南](docs/sfml/README.zh-CN.md) · [ImGui 指南](docs/imgui/README.zh-CN.md) · [RmlUi 指南](docs/rmlui/README.zh-CN.md) · [原生扩展](docs/interop/README.zh-CN.md) · [API 参考](https://sfml.js.org/zh/reference/)
+<p align="center">
+<a href="https://sfml.js.org/zh/">官网</a> · <a href="docs/sfml/README.zh-CN.md">核心指南</a> · <a href="docs/imgui/README.zh-CN.md">ImGui 指南</a> · <a href="docs/rmlui/README.zh-CN.md">RmlUi 指南</a> · <a href="docs/interop/README.zh-CN.md">原生扩展</a> · <a href="https://sfml.js.org/zh/reference/">API 参考</a>
+</p>
 
 ## 软件包
 
 本仓库是一个 Rush monorepo，包含已发布的绑定包及其共享原生层：
 
-| 软件包 | 用途 |
-| --- | --- |
-| [`sfml.js`](packages/sfml.js) | 为 Node.js 提供原生窗口、类型化事件、二维图形、音频和 SFML 风格的网络能力。 |
-| [`sfml.js-imgui`](packages/sfml.js-imgui) | 面向 sfml.js 的 [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b 集成，遵循 [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0：在原生窗口中构建调试面板、场景检查器和编辑器控件。 |
-| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | 原生窗口中的 [RmlUi](https://github.com/mikke89/RmlUi) 6.3 文档界面：RML／RCSS、数据绑定、Node／Lua 脚本、字体、SVG／Lottie 和 Debugger。 |
-| [`sfml.js-interop`](packages/sfml.js-interop) | 共享原生头文件和 SFML SDK 路径，供绑定包和第三方原生扩展使用。应用无需直接依赖。 |
+<table>
+  <thead>
+    <tr><th width="200">软件包</th><th>用途</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td nowrap><a href="packages/sfml.js"><code>sfml.js</code></a></td>
+      <td>为 Node.js 提供原生窗口、类型化事件、二维图形、音频和 SFML 风格的网络能力。</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-imgui"><code>sfml.js-imgui</code></a></td>
+      <td>面向 sfml.js 的 <a href="https://github.com/ocornut/imgui">Dear ImGui</a> 1.91.9b 集成，遵循 <a href="https://github.com/SFML/imgui-sfml">imgui-sfml</a> 3.0：在原生窗口中构建调试面板、场景检查器和编辑器控件。</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-rmlui"><code>sfml.js-rmlui</code></a></td>
+      <td>原生窗口中的 <a href="https://github.com/mikke89/RmlUi">RmlUi</a> 6.3 文档界面：RML／RCSS、数据绑定、Node／Lua 脚本、字体、SVG／Lottie 和 Debugger。</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-interop"><code>sfml.js-interop</code></a></td>
+      <td>共享原生头文件和 SFML SDK 路径，供绑定包和第三方原生扩展使用。应用无需直接依赖。</td>
+    </tr>
+  </tbody>
+</table>
 
 核心模块覆盖 System、Window、Graphics、Audio 和 Network，并包含 TypeScript 类型声明。数值和资源视图使用类型化数组；绘制记录状态快照并批量提交命令。所有权、异步加载与绘制行为见 [核心概念](docs/sfml/concepts.zh-CN.md)。
 

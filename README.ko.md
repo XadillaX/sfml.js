@@ -11,34 +11,49 @@
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.org/package/sfml.js">
-  <img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-imgui">
-  <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-rmlui">
-  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
-</a>
+<a href="https://www.npmjs.org/package/sfml.js"><img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-imgui"><img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui"><img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
-[English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
+<p align="center">
+<a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a> · <strong>한국어</strong>
+</p>
 
-[웹사이트](https://sfml.js.org/ko/) · [핵심 가이드](docs/sfml/README.ko.md) · [ImGui 가이드](docs/imgui/README.ko.md) · [RmlUi 가이드](docs/rmlui/README.ko.md) · [네이티브 확장](docs/interop/README.ko.md) · [API 레퍼런스](https://sfml.js.org/ko/reference/)
+<p align="center">
+<a href="https://sfml.js.org/ko/">웹사이트</a> · <a href="docs/sfml/README.ko.md">핵심 가이드</a> · <a href="docs/imgui/README.ko.md">ImGui 가이드</a> · <a href="docs/rmlui/README.ko.md">RmlUi 가이드</a> · <a href="docs/interop/README.ko.md">네이티브 확장</a> · <a href="https://sfml.js.org/ko/reference/">API 레퍼런스</a>
+</p>
 
 ## 패키지
 
 이 저장소는 공개 바인딩과 공유 네이티브 계층을 위한 Rush 모노레포입니다.
 
-| 패키지 | 용도 |
-| --- | --- |
-| [`sfml.js`](packages/sfml.js) | Node.js용 네이티브 창, 타입화된 이벤트, 2D 그래픽, 오디오, SFML 스타일 네트워킹. |
-| [`sfml.js-imgui`](packages/sfml.js-imgui) | [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0을 따르는 sfml.js용 [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b 연동. 네이티브 창에 디버그 패널, 장면 검사기, 에디터 컨트롤을 만듭니다. |
-| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | 네이티브 창의 [RmlUi](https://github.com/mikke89/RmlUi) 6.3 문서 UI. RML／RCSS, 데이터 바인딩, Node／Lua 스크립트, 글꼴, SVG／Lottie, Debugger를 제공합니다. |
-| [`sfml.js-interop`](packages/sfml.js-interop) | 바인딩과 서드파티 네이티브 확장이 사용하는 공유 헤더와 SFML SDK 경로. 앱은 직접 의존할 필요가 없습니다. |
+<table>
+  <thead>
+    <tr><th width="200">패키지</th><th>용도</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td nowrap><a href="packages/sfml.js"><code>sfml.js</code></a></td>
+      <td>Node.js용 네이티브 창, 타입화된 이벤트, 2D 그래픽, 오디오, SFML 스타일 네트워킹.</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-imgui"><code>sfml.js-imgui</code></a></td>
+      <td><a href="https://github.com/SFML/imgui-sfml">imgui-sfml</a> 3.0을 따르는 sfml.js용 <a href="https://github.com/ocornut/imgui">Dear ImGui</a> 1.91.9b 연동. 네이티브 창에 디버그 패널, 장면 검사기, 에디터 컨트롤을 만듭니다.</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-rmlui"><code>sfml.js-rmlui</code></a></td>
+      <td>네이티브 창의 <a href="https://github.com/mikke89/RmlUi">RmlUi</a> 6.3 문서 UI. RML／RCSS, 데이터 바인딩, Node／Lua 스크립트, 글꼴, SVG／Lottie, Debugger를 제공합니다.</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-interop"><code>sfml.js-interop</code></a></td>
+      <td>바인딩과 서드파티 네이티브 확장이 사용하는 공유 헤더와 SFML SDK 경로. 앱은 직접 의존할 필요가 없습니다.</td>
+    </tr>
+  </tbody>
+</table>
 
 핵심 모듈은 System, Window, Graphics, Audio, Network를 다루며 TypeScript 타입 선언이 포함됩니다. 숫자와 리소스 뷰는 타입 배열을 사용하고, 렌더링은 상태 스냅샷을 기록해 명령을 일괄 제출합니다. 소유권, 비동기 로드, 렌더링 동작은 [핵심 개념](docs/sfml/concepts.ko.md)을 참고하세요.
 

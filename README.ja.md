@@ -11,34 +11,49 @@
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.org/package/sfml.js">
-  <img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-imgui">
-  <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
-</a>
-<a href="https://www.npmjs.org/package/sfml.js-rmlui">
-  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
-</a>
+<a href="https://www.npmjs.org/package/sfml.js"><img src="https://img.shields.io/npm/v/sfml.js.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=sfml.js" alt="sfml.js on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-imgui"><img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" /></a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui"><img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
-[English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
+<p align="center">
+<a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <strong>日本語</strong> · <a href="README.ko.md">한국어</a>
+</p>
 
-[Web サイト](https://sfml.js.org/ja/) · [コアガイド](docs/sfml/README.ja.md) · [ImGui ガイド](docs/imgui/README.ja.md) · [RmlUi ガイド](docs/rmlui/README.ja.md) · [ネイティブ拡張](docs/interop/README.ja.md) · [API リファレンス](https://sfml.js.org/ja/reference/)
+<p align="center">
+<a href="https://sfml.js.org/ja/">Web サイト</a> · <a href="docs/sfml/README.ja.md">コアガイド</a> · <a href="docs/imgui/README.ja.md">ImGui ガイド</a> · <a href="docs/rmlui/README.ja.md">RmlUi ガイド</a> · <a href="docs/interop/README.ja.md">ネイティブ拡張</a> · <a href="https://sfml.js.org/ja/reference/">API リファレンス</a>
+</p>
 
 ## パッケージ
 
 このリポジトリは、公開パッケージとその共有ネイティブレイヤーのための Rush モノレポです。
 
-| パッケージ | 役割 |
-| --- | --- |
-| [`sfml.js`](packages/sfml.js) | Node.js にネイティブウィンドウ、型付きイベント、2D グラフィックス、オーディオ、SFML 流のネットワーク機能を提供します。 |
-| [`sfml.js-imgui`](packages/sfml.js-imgui) | [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0 に沿った、sfml.js のための [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b 連携。ネイティブウィンドウにデバッグパネル、シーンインスペクター、エディターコントロールを構築できます。 |
-| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | ネイティブウィンドウの [RmlUi](https://github.com/mikke89/RmlUi) 6.3 文書 UI。RML／RCSS、データバインディング、Node／Lua スクリプト、フォント、SVG／Lottie、Debugger を提供します。 |
-| [`sfml.js-interop`](packages/sfml.js-interop) | バインディングとサードパーティのネイティブ拡張が使う共有ヘッダーと SFML SDK パス。アプリが直接依存する必要はありません。 |
+<table>
+  <thead>
+    <tr><th width="200">パッケージ</th><th>役割</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td nowrap><a href="packages/sfml.js"><code>sfml.js</code></a></td>
+      <td>Node.js にネイティブウィンドウ、型付きイベント、2D グラフィックス、オーディオ、SFML 流のネットワーク機能を提供します。</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-imgui"><code>sfml.js-imgui</code></a></td>
+      <td><a href="https://github.com/SFML/imgui-sfml">imgui-sfml</a> 3.0 に沿った、sfml.js のための <a href="https://github.com/ocornut/imgui">Dear ImGui</a> 1.91.9b 連携。ネイティブウィンドウにデバッグパネル、シーンインスペクター、エディターコントロールを構築できます。</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-rmlui"><code>sfml.js-rmlui</code></a></td>
+      <td>ネイティブウィンドウの <a href="https://github.com/mikke89/RmlUi">RmlUi</a> 6.3 文書 UI。RML／RCSS、データバインディング、Node／Lua スクリプト、フォント、SVG／Lottie、Debugger を提供します。</td>
+    </tr>
+    <tr>
+      <td nowrap><a href="packages/sfml.js-interop"><code>sfml.js-interop</code></a></td>
+      <td>バインディングとサードパーティのネイティブ拡張が使う共有ヘッダーと SFML SDK パス。アプリが直接依存する必要はありません。</td>
+    </tr>
+  </tbody>
+</table>
 
 コアモジュールは System、Window、Graphics、Audio、Network をカバーし、TypeScript 型宣言を同梱します。数値とリソースビューには型付き配列を使い、描画は状態のスナップショットを記録してコマンドをまとめて送信します。所有権、非同期ロード、描画の振る舞いは[コアコンセプト](docs/sfml/concepts.ja.md)を参照してください。
 
