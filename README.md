@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-Native windows, 2D graphics, audio and Dear ImGui for Node.js, built on <a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a>.
+Native windows, 2D graphics, audio, Dear ImGui and RmlUi for Node.js, built on <a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a>.
 </p>
 
 <p align="center">
@@ -17,6 +17,9 @@ Native windows, 2D graphics, audio and Dear ImGui for Node.js, built on <a href=
 <a href="https://www.npmjs.org/package/sfml.js-imgui">
   <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
 </a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui">
+  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
+</a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -24,7 +27,7 @@ Native windows, 2D graphics, audio and Dear ImGui for Node.js, built on <a href=
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-[Website](https://sfml.js.org/) · [Core guides](docs/sfml/README.md) · [ImGui guide](docs/imgui/README.md) · [Native extensions](docs/interop/README.md) · [API reference](https://sfml.js.org/reference/)
+[Website](https://sfml.js.org/) · [Core guides](docs/sfml/README.md) · [ImGui guide](docs/imgui/README.md) · [RmlUi guide](docs/rmlui/README.md) · [Native extensions](docs/interop/README.md) · [API reference](https://sfml.js.org/reference/)
 
 ## Packages
 
@@ -34,6 +37,7 @@ This repository is a Rush monorepo for the published bindings and their shared n
 | --- | --- |
 | [`sfml.js`](packages/sfml.js) | Native windows, typed events, 2D graphics, audio and SFML-style networking for Node.js. |
 | [`sfml.js-imgui`](packages/sfml.js-imgui) | [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b integration for sfml.js, following [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0: debug panels, scene inspectors and editor controls in a native window. |
+| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | [RmlUi](https://github.com/mikke89/RmlUi) 6.3 document UI in native windows: RML/RCSS, data binding, Node/Lua scripting, fonts, SVG/Lottie and the Debugger. |
 | [`sfml.js-interop`](packages/sfml.js-interop) | Shared native headers and SFML SDK paths, consumed by the bindings and by third-party native extensions. Applications do not need it directly. |
 
 The core modules cover System, Window, Graphics, Audio and Network; TypeScript declarations are included. Numeric values and resource views use typed arrays, and rendering records state snapshots and submits commands in batches. See [core concepts](docs/sfml/concepts.md) for ownership, asynchronous loading and rendering behavior.
@@ -44,7 +48,13 @@ The core modules cover System, Window, Graphics, Audio and Network; TypeScript d
 npm install sfml.js sfml.js-imgui
 ```
 
-Install only `sfml.js` if you do not need ImGui. Installation compiles native addons and downloads the matching SFML libraries, so prepare **Python and a C++20 toolchain** first:
+Install only `sfml.js` for the core binding, or add `sfml.js-rmlui` for document UI:
+
+```sh
+npm install sfml.js sfml.js-rmlui
+```
+
+Installation compiles native addons and downloads the matching SFML libraries, so prepare **Python and a C++20 toolchain** first:
 
 | Platform | Targets | Build tools |
 | --- | --- | --- |
@@ -134,6 +144,12 @@ try {
 
 Use `SFML.GetIO().wantCaptureMouse` and `wantCaptureKeyboard` to gate scene input. The full frame loop, input routing and shutdown rules are explained in the [ImGui quick start](docs/imgui/getting-started.md).
 
+## Add RmlUi document UI
+
+`sfml.js-rmlui` renders RML/RCSS documents in an SFML window. It supports native data models, Node/Lua document scripts, FreeType/HarfBuzz/bitmap fonts, SVG/Lottie elements and the Debugger. RML and RCSS are RmlUi's own languages; browser DOM APIs and arbitrary browser CSS are unavailable. Follow the [RmlUi quick start](docs/rmlui/getting-started.md) for the frame loop, input and resource ownership.
+
+RmlUi, FreeType, rlottie and HarfBuzz build sources ship trimmed and pinned in `packages/sfml.js-rmlui/vendor`. Installation validates them locally; Lua and LunaSVG retain their download steps. Original sample fonts, textures, documents and visual test data are prepared separately when examples or runtime tests start, with extra IME fonts remaining optional.
+
 ## Examples
 
 ![Breakout running in a native sfml.js window](packages/sfml.js/assets/breakout.png)
@@ -146,10 +162,12 @@ cd sfml.js
 node tools/bootstrap.cjs
 node packages/sfml.js/examples/breakout.cjs
 node packages/sfml.js-imgui/examples/demo.cjs
+npm --prefix packages/sfml.js-rmlui run examples -- variables
 ```
 
 - Core: [feature examples](packages/sfml.js/examples/features/README.md), [official examples](packages/sfml.js/examples/official/README.md), [games and applications](packages/sfml.js/examples/projects/README.md)
 - ImGui: [widget demo, scene inspector and workbench](packages/sfml.js-imgui/examples/README.md)
+- RmlUi: [original samples, native games and VisualTests](packages/sfml.js-rmlui/examples/README.md)
 
 External projects: [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos) (Bomberman, Breakout, Tetris and more), [16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported) and [play-nes](https://github.com/XadillaX/play-nes), a desktop NES emulator built with sfml.js.
 
@@ -161,9 +179,10 @@ Guides ship in the repository in English, Simplified Chinese, Japanese and Korea
 | --- | --- |
 | Core binding | [Quick start](docs/sfml/getting-started.md) · [Core concepts](docs/sfml/concepts.md) · [API guide](docs/sfml/api.md) · [Development](docs/sfml/development.md) |
 | ImGui | [Quick start](docs/imgui/getting-started.md) · [Widgets](docs/imgui/widgets.md) · [Layout](docs/imgui/layout.md) · [Tables, menus and modals](docs/imgui/README.md) |
+| RmlUi | [Quick start](docs/rmlui/getting-started.md) · [Data models](docs/rmlui/data-models.md) · [Scripts](docs/rmlui/scripts.md) · [Fonts](docs/rmlui/fonts.md) · [Rendering](docs/rmlui/rendering.md) |
 | Native extensions | [Interop contract](docs/interop/README.md) |
 
-The [website](https://sfml.js.org/) publishes these guides plus TypeDoc signatures for [sfml.js](https://sfml.js.org/reference/) and [sfml.js-imgui](https://sfml.js.org/reference/imgui/) in all four languages. Package READMEs: [sfml.js](packages/sfml.js/README.md) ([简体中文](packages/sfml.js/README.zh-CN.md) · [日本語](packages/sfml.js/README.ja.md) · [한국어](packages/sfml.js/README.ko.md)).
+The [website](https://sfml.js.org/) publishes these guides plus TypeDoc signatures for [sfml.js](https://sfml.js.org/reference/), [sfml.js-imgui](https://sfml.js.org/reference/imgui/) and [sfml.js-rmlui](https://sfml.js.org/reference/rmlui/) in all four languages. Package READMEs: [sfml.js](packages/sfml.js/README.md), [sfml.js-imgui](packages/sfml.js-imgui/README.md), [sfml.js-rmlui](packages/sfml.js-rmlui/README.md), [sfml.js-interop](packages/sfml.js-interop/README.md).
 
 ## Develop
 
@@ -182,6 +201,19 @@ npm --prefix site test
 ```
 
 The production website is generated in `site/build/site`. API comments and runnable examples stay in their owning packages.
+
+Refresh the pinned RmlUi build sources or prepare its resources explicitly:
+
+```sh
+npm --prefix packages/sfml.js-rmlui run update:rmlui
+npm --prefix packages/sfml.js-rmlui run update:freetype
+npm --prefix packages/sfml.js-rmlui run update:rlottie
+npm --prefix packages/sfml.js-rmlui run update:harfbuzz
+npm --prefix packages/sfml.js-rmlui run download:examples
+npm --prefix packages/sfml.js-rmlui run download:ime-fonts
+```
+
+Append `-- --version X.Y.Z` to select an upstream release; GitHub release resolution requires `gh`. Local archives, checksums and resource caching are described in the [RmlUi package README](packages/sfml.js-rmlui/README.md). `npm --prefix packages/sfml.js-rmlui run examples -- --list` lists samples without downloading their assets.
 
 ## Contributing
 

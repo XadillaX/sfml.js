@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-<a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a> 기반의 Node.js 네이티브 창, 2D 그래픽, 오디오, Dear ImGui.
+<a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a> 기반의 Node.js 네이티브 창, 2D 그래픽, 오디오, Dear ImGui, RmlUi.
 </p>
 
 <p align="center">
@@ -17,6 +17,9 @@
 <a href="https://www.npmjs.org/package/sfml.js-imgui">
   <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
 </a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui">
+  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
+</a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -24,7 +27,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
-[웹사이트](https://sfml.js.org/ko/) · [핵심 가이드](docs/sfml/README.ko.md) · [ImGui 가이드](docs/imgui/README.ko.md) · [네이티브 확장](docs/interop/README.ko.md) · [API 레퍼런스](https://sfml.js.org/ko/reference/)
+[웹사이트](https://sfml.js.org/ko/) · [핵심 가이드](docs/sfml/README.ko.md) · [ImGui 가이드](docs/imgui/README.ko.md) · [RmlUi 가이드](docs/rmlui/README.ko.md) · [네이티브 확장](docs/interop/README.ko.md) · [API 레퍼런스](https://sfml.js.org/ko/reference/)
 
 ## 패키지
 
@@ -34,6 +37,7 @@
 | --- | --- |
 | [`sfml.js`](packages/sfml.js) | Node.js용 네이티브 창, 타입화된 이벤트, 2D 그래픽, 오디오, SFML 스타일 네트워킹. |
 | [`sfml.js-imgui`](packages/sfml.js-imgui) | [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0을 따르는 sfml.js용 [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b 연동. 네이티브 창에 디버그 패널, 장면 검사기, 에디터 컨트롤을 만듭니다. |
+| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | 네이티브 창의 [RmlUi](https://github.com/mikke89/RmlUi) 6.3 문서 UI. RML／RCSS, 데이터 바인딩, Node／Lua 스크립트, 글꼴, SVG／Lottie, Debugger를 제공합니다. |
 | [`sfml.js-interop`](packages/sfml.js-interop) | 바인딩과 서드파티 네이티브 확장이 사용하는 공유 헤더와 SFML SDK 경로. 앱은 직접 의존할 필요가 없습니다. |
 
 핵심 모듈은 System, Window, Graphics, Audio, Network를 다루며 TypeScript 타입 선언이 포함됩니다. 숫자와 리소스 뷰는 타입 배열을 사용하고, 렌더링은 상태 스냅샷을 기록해 명령을 일괄 제출합니다. 소유권, 비동기 로드, 렌더링 동작은 [핵심 개념](docs/sfml/concepts.ko.md)을 참고하세요.
@@ -44,7 +48,13 @@
 npm install sfml.js sfml.js-imgui
 ```
 
-ImGui가 필요 없으면 `sfml.js`만 설치하세요. 설치 과정에서 네이티브 애드온을 컴파일하고 맞는 SFML 라이브러리를 다운로드하므로 먼저 **Python과 C++20 도구 모음**을 준비하세요.
+핵심 바인딩만 사용하려면 `sfml.js`를 설치합니다. 문서 UI가 필요하면 `sfml.js-rmlui`를 추가하세요.
+
+```sh
+npm install sfml.js sfml.js-rmlui
+```
+
+설치 과정에서 네이티브 애드온을 컴파일하고 맞는 SFML 라이브러리를 다운로드하므로 먼저 **Python과 C++20 도구 모음**을 준비하세요.
 
 | 플랫폼 | 대상 아키텍처 | 빌드 도구 |
 | --- | --- | --- |
@@ -134,6 +144,12 @@ try {
 
 장면 입력을 제한하려면 `SFML.GetIO().wantCaptureMouse`와 `wantCaptureKeyboard`를 사용하세요. 전체 프레임 루프, 입력 전달, 안전한 종료 규칙은 [ImGui 빠른 시작](docs/imgui/getting-started.ko.md)에서 설명합니다.
 
+## RmlUi 문서 UI 추가
+
+`sfml.js-rmlui`는 SFML 창에서 RML／RCSS 문서를 렌더링합니다. 네이티브 데이터 모델, Node／Lua 문서 스크립트, FreeType／HarfBuzz／비트맵 글꼴, SVG／Lottie 요소와 Debugger를 지원합니다. RML과 RCSS는 RmlUi의 언어이며 브라우저 DOM API나 임의의 브라우저 CSS는 사용할 수 없습니다. 프레임 루프, 입력과 리소스 소유권은 [RmlUi 빠른 시작](docs/rmlui/getting-started.ko.md)을 참고하세요.
+
+RmlUi, FreeType, rlottie, HarfBuzz의 고정 빌드 소스는 필요한 파일만 `packages/sfml.js-rmlui/vendor`에 포함하고 설치 시 로컬에서 검증합니다. Lua와 LunaSVG는 다운로드 절차를 사용합니다. 원본 샘플의 글꼴, 이미지, 문서와 시각 테스트 데이터는 예제나 런타임 테스트 시작 시 별도 준비합니다. 추가 IME 글꼴은 선택 사항입니다.
+
 ## 예제
 
 ![sfml.js 네이티브 창에서 실행 중인 벽돌깨기](packages/sfml.js/assets/breakout.png)
@@ -146,10 +162,12 @@ cd sfml.js
 node tools/bootstrap.cjs
 node packages/sfml.js/examples/breakout.cjs
 node packages/sfml.js-imgui/examples/demo.cjs
+npm --prefix packages/sfml.js-rmlui run examples -- variables
 ```
 
 - 핵심: [기능 예제](packages/sfml.js/examples/features/README.ko.md), [공식 예제](packages/sfml.js/examples/official/README.ko.md), [게임과 애플리케이션](packages/sfml.js/examples/projects/README.ko.md)
 - ImGui: [위젯 데모, 장면 검사기, 워크벤치](packages/sfml.js-imgui/examples/README.ko.md)
+- RmlUi: [원본 샘플, 네이티브 게임, VisualTests](packages/sfml.js-rmlui/examples/README.ko.md)
 
 외부 프로젝트: [node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)(Bomberman, Breakout, Tetris 등), [16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported), sfml.js로 만든 데스크톱 NES 에뮬레이터 [play-nes](https://github.com/XadillaX/play-nes).
 
@@ -161,9 +179,10 @@ node packages/sfml.js-imgui/examples/demo.cjs
 | --- | --- |
 | 핵심 바인딩 | [빠른 시작](docs/sfml/getting-started.ko.md) · [핵심 개념](docs/sfml/concepts.ko.md) · [API 가이드](docs/sfml/api.ko.md) · [개발 안내](docs/sfml/development.ko.md) |
 | ImGui | [빠른 시작](docs/imgui/getting-started.ko.md) · [위젯과 상태](docs/imgui/widgets.ko.md) · [레이아웃](docs/imgui/layout.ko.md) · [테이블, 메뉴, 모달](docs/imgui/README.ko.md) |
+| RmlUi | [빠른 시작](docs/rmlui/getting-started.ko.md) · [데이터 모델](docs/rmlui/data-models.ko.md) · [스크립트](docs/rmlui/scripts.ko.md) · [글꼴](docs/rmlui/fonts.ko.md) · [렌더링](docs/rmlui/rendering.ko.md) |
 | 네이티브 확장 | [상호 운용 계약](docs/interop/README.ko.md) |
 
-[웹사이트](https://sfml.js.org/ko/)는 이 가이드와 함께 [sfml.js](https://sfml.js.org/ko/reference/), [sfml.js-imgui](https://sfml.js.org/ko/reference/imgui/)의 TypeDoc 시그니처를 4개 언어로 제공합니다. 패키지 README: [sfml.js](packages/sfml.js/README.ko.md)([English](packages/sfml.js/README.md) · [简体中文](packages/sfml.js/README.zh-CN.md) · [日本語](packages/sfml.js/README.ja.md)).
+[웹사이트](https://sfml.js.org/ko/)는 이 가이드와 함께 [sfml.js](https://sfml.js.org/ko/reference/), [sfml.js-imgui](https://sfml.js.org/ko/reference/imgui/), [sfml.js-rmlui](https://sfml.js.org/ko/reference/rmlui/)의 TypeDoc 시그니처를 4개 언어로 제공합니다. 패키지 README: [sfml.js](packages/sfml.js/README.ko.md), [sfml.js-imgui](packages/sfml.js-imgui/README.ko.md), [sfml.js-rmlui](packages/sfml.js-rmlui/README.ko.md), [sfml.js-interop](packages/sfml.js-interop/README.ko.md).
 
 ## 개발
 
@@ -182,6 +201,19 @@ npm --prefix site test
 ```
 
 프로덕션 웹사이트는 `site/build/site`에 생성됩니다. API 주석과 실행 예제는 해당 패키지가 소유합니다.
+
+RmlUi의 고정 소스를 갱신하거나 리소스를 직접 준비하려면 다음을 실행합니다.
+
+```sh
+npm --prefix packages/sfml.js-rmlui run update:rmlui
+npm --prefix packages/sfml.js-rmlui run update:freetype
+npm --prefix packages/sfml.js-rmlui run update:rlottie
+npm --prefix packages/sfml.js-rmlui run update:harfbuzz
+npm --prefix packages/sfml.js-rmlui run download:examples
+npm --prefix packages/sfml.js-rmlui run download:ime-fonts
+```
+
+릴리스 지정에는 `-- --version X.Y.Z`를 추가하며 GitHub 버전 확인에는 `gh`가 필요합니다. 로컬 아카이브, 체크섬과 캐시 규칙은 [RmlUi 패키지 README](packages/sfml.js-rmlui/README.ko.md)를 참고하세요. `npm --prefix packages/sfml.js-rmlui run examples -- --list`는 다운로드 없이 샘플 목록을 표시합니다.
 
 ## 기여
 

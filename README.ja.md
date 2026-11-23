@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-<a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a> 上に構築された、Node.js のネイティブウィンドウ・2D グラフィックス・オーディオ・Dear ImGui。
+<a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a> 上に構築された、Node.js のネイティブウィンドウ・2D グラフィックス・オーディオ・Dear ImGui・RmlUi。
 </p>
 
 <p align="center">
@@ -17,6 +17,9 @@
 <a href="https://www.npmjs.org/package/sfml.js-imgui">
   <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
 </a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui">
+  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
+</a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -24,7 +27,7 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · **日本語** · [한국어](README.ko.md)
 
-[Web サイト](https://sfml.js.org/ja/) · [コアガイド](docs/sfml/README.ja.md) · [ImGui ガイド](docs/imgui/README.ja.md) · [ネイティブ拡張](docs/interop/README.ja.md) · [API リファレンス](https://sfml.js.org/ja/reference/)
+[Web サイト](https://sfml.js.org/ja/) · [コアガイド](docs/sfml/README.ja.md) · [ImGui ガイド](docs/imgui/README.ja.md) · [RmlUi ガイド](docs/rmlui/README.ja.md) · [ネイティブ拡張](docs/interop/README.ja.md) · [API リファレンス](https://sfml.js.org/ja/reference/)
 
 ## パッケージ
 
@@ -34,6 +37,7 @@
 | --- | --- |
 | [`sfml.js`](packages/sfml.js) | Node.js にネイティブウィンドウ、型付きイベント、2D グラフィックス、オーディオ、SFML 流のネットワーク機能を提供します。 |
 | [`sfml.js-imgui`](packages/sfml.js-imgui) | [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0 に沿った、sfml.js のための [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b 連携。ネイティブウィンドウにデバッグパネル、シーンインスペクター、エディターコントロールを構築できます。 |
+| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | ネイティブウィンドウの [RmlUi](https://github.com/mikke89/RmlUi) 6.3 文書 UI。RML／RCSS、データバインディング、Node／Lua スクリプト、フォント、SVG／Lottie、Debugger を提供します。 |
 | [`sfml.js-interop`](packages/sfml.js-interop) | バインディングとサードパーティのネイティブ拡張が使う共有ヘッダーと SFML SDK パス。アプリが直接依存する必要はありません。 |
 
 コアモジュールは System、Window、Graphics、Audio、Network をカバーし、TypeScript 型宣言を同梱します。数値とリソースビューには型付き配列を使い、描画は状態のスナップショットを記録してコマンドをまとめて送信します。所有権、非同期ロード、描画の振る舞いは[コアコンセプト](docs/sfml/concepts.ja.md)を参照してください。
@@ -44,7 +48,13 @@
 npm install sfml.js sfml.js-imgui
 ```
 
-ImGui が不要なら `sfml.js` だけをインストールしてください。インストール時にネイティブアドオンのコンパイルと対応する SFML ライブラリのダウンロードが行われるため、事前に **Python と C++20 ツールチェーン**を用意してください。
+コアバインディングだけを使う場合は `sfml.js` をインストールします。文書 UI には `sfml.js-rmlui` を追加します。
+
+```sh
+npm install sfml.js sfml.js-rmlui
+```
+
+インストール時にネイティブアドオンのコンパイルと対応する SFML ライブラリのダウンロードが行われるため、事前に **Python と C++20 ツールチェーン**を用意してください。
 
 | プラットフォーム | ターゲット | ビルドツール |
 | --- | --- | --- |
@@ -134,6 +144,12 @@ try {
 
 シーンへの入力を制御するには `SFML.GetIO().wantCaptureMouse` と `wantCaptureKeyboard` を使います。フレームループ全体、入力の振り分け、安全な終了については [ImGui クイックスタート](docs/imgui/getting-started.ja.md)で説明しています。
 
+## RmlUi 文書 UI を追加する
+
+`sfml.js-rmlui` は SFML ウィンドウに RML／RCSS 文書を描画します。ネイティブデータモデル、Node／Lua 文書スクリプト、FreeType／HarfBuzz／ビットマップフォント、SVG／Lottie 要素、Debugger に対応します。RML と RCSS は RmlUi 独自の言語で、ブラウザー DOM API や任意のブラウザー CSS は使えません。フレームループ、入力、リソース所有権は [RmlUi クイックスタート](docs/rmlui/getting-started.ja.md)を参照してください。
+
+RmlUi、FreeType、rlottie、HarfBuzz のビルド用ソースは `packages/sfml.js-rmlui/vendor` に必要なファイルだけを固定して同梱し、インストール時にローカルで検証します。Lua と LunaSVG はダウンロード手順を使用します。元のサンプルのフォント、画像、文書、視覚テストデータはサンプルや実行時テストの起動時に別途準備します。追加の IME フォントは任意です。
+
 ## サンプル
 
 ![sfml.js のネイティブウィンドウで動くブロック崩し](packages/sfml.js/assets/breakout.png)
@@ -146,10 +162,12 @@ cd sfml.js
 node tools/bootstrap.cjs
 node packages/sfml.js/examples/breakout.cjs
 node packages/sfml.js-imgui/examples/demo.cjs
+npm --prefix packages/sfml.js-rmlui run examples -- variables
 ```
 
 - コア：[機能サンプル](packages/sfml.js/examples/features/README.ja.md)、[公式サンプル](packages/sfml.js/examples/official/README.ja.md)、[ゲームとアプリケーション](packages/sfml.js/examples/projects/README.ja.md)
 - ImGui：[ウィジェットデモ、シーンインスペクター、workbench](packages/sfml.js-imgui/examples/README.ja.md)
+- RmlUi：[元のサンプル、ネイティブゲーム、VisualTests](packages/sfml.js-rmlui/examples/README.ja.md)
 
 外部プロジェクト：[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)（Bomberman、Breakout、Tetris など）、[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported)、sfml.js で作られたデスクトップ NES エミュレーター [play-nes](https://github.com/XadillaX/play-nes)。
 
@@ -161,9 +179,10 @@ node packages/sfml.js-imgui/examples/demo.cjs
 | --- | --- |
 | コアバインディング | [クイックスタート](docs/sfml/getting-started.ja.md) · [コアコンセプト](docs/sfml/concepts.ja.md) · [API ガイド](docs/sfml/api.ja.md) · [開発ガイド](docs/sfml/development.ja.md) |
 | ImGui | [クイックスタート](docs/imgui/getting-started.ja.md) · [ウィジェットと状態](docs/imgui/widgets.ja.md) · [レイアウト](docs/imgui/layout.ja.md) · [テーブル、メニュー、モーダル](docs/imgui/README.ja.md) |
+| RmlUi | [クイックスタート](docs/rmlui/getting-started.ja.md) · [データモデル](docs/rmlui/data-models.ja.md) · [スクリプト](docs/rmlui/scripts.ja.md) · [フォント](docs/rmlui/fonts.ja.md) · [描画](docs/rmlui/rendering.ja.md) |
 | ネイティブ拡張 | [相互運用契約](docs/interop/README.ja.md) |
 
-[Web サイト](https://sfml.js.org/ja/)では、これらのガイドに加えて [sfml.js](https://sfml.js.org/ja/reference/) と [sfml.js-imgui](https://sfml.js.org/ja/reference/imgui/) の TypeDoc シグネチャを 4 言語で公開しています。パッケージ README：[sfml.js](packages/sfml.js/README.ja.md)（[English](packages/sfml.js/README.md) · [简体中文](packages/sfml.js/README.zh-CN.md) · [한국어](packages/sfml.js/README.ko.md)）。
+[Web サイト](https://sfml.js.org/ja/)では、これらのガイドに加えて [sfml.js](https://sfml.js.org/ja/reference/)、[sfml.js-imgui](https://sfml.js.org/ja/reference/imgui/)、[sfml.js-rmlui](https://sfml.js.org/ja/reference/rmlui/) の TypeDoc シグネチャを 4 言語で公開しています。パッケージ README：[sfml.js](packages/sfml.js/README.ja.md)、[sfml.js-imgui](packages/sfml.js-imgui/README.ja.md)、[sfml.js-rmlui](packages/sfml.js-rmlui/README.ja.md)、[sfml.js-interop](packages/sfml.js-interop/README.ja.md)。
 
 ## 開発
 
@@ -182,6 +201,19 @@ npm --prefix site test
 ```
 
 本番サイトは `site/build/site` に生成されます。API コメントと実行可能サンプルは所有するパッケージが管理します。
+
+RmlUi の固定ソースの更新やリソースの明示的な準備には、次のコマンドを使います。
+
+```sh
+npm --prefix packages/sfml.js-rmlui run update:rmlui
+npm --prefix packages/sfml.js-rmlui run update:freetype
+npm --prefix packages/sfml.js-rmlui run update:rlottie
+npm --prefix packages/sfml.js-rmlui run update:harfbuzz
+npm --prefix packages/sfml.js-rmlui run download:examples
+npm --prefix packages/sfml.js-rmlui run download:ime-fonts
+```
+
+上流リリースの指定には `-- --version X.Y.Z` を追加します。GitHub のバージョン解決には `gh` が必要です。ローカルアーカイブ、チェックサム、キャッシュの詳細は [RmlUi パッケージ README](packages/sfml.js-rmlui/README.ja.md)を参照してください。`npm --prefix packages/sfml.js-rmlui run examples -- --list` は素材のダウンロードなしで一覧を表示します。
 
 ## コントリビューション
 

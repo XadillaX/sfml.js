@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-基于 <a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a>，为 Node.js 提供原生窗口、二维图形、音频与 Dear ImGui。
+基于 <a href="https://www.sfml-dev.org/documentation/3.1.0/">SFML 3.1.0</a>，为 Node.js 提供原生窗口、二维图形、音频、Dear ImGui 和 RmlUi。
 </p>
 
 <p align="center">
@@ -17,6 +17,9 @@
 <a href="https://www.npmjs.org/package/sfml.js-imgui">
   <img src="https://img.shields.io/npm/v/sfml.js-imgui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-imgui" alt="sfml.js-imgui on npm" />
 </a>
+<a href="https://www.npmjs.org/package/sfml.js-rmlui">
+  <img src="https://img.shields.io/npm/v/sfml.js-rmlui.svg?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=sfml.js-rmlui" alt="sfml.js-rmlui on npm" />
+</a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" alt="3 contributors" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -24,7 +27,7 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-[官网](https://sfml.js.org/zh/) · [核心指南](docs/sfml/README.zh-CN.md) · [ImGui 指南](docs/imgui/README.zh-CN.md) · [原生扩展](docs/interop/README.zh-CN.md) · [API 参考](https://sfml.js.org/zh/reference/)
+[官网](https://sfml.js.org/zh/) · [核心指南](docs/sfml/README.zh-CN.md) · [ImGui 指南](docs/imgui/README.zh-CN.md) · [RmlUi 指南](docs/rmlui/README.zh-CN.md) · [原生扩展](docs/interop/README.zh-CN.md) · [API 参考](https://sfml.js.org/zh/reference/)
 
 ## 软件包
 
@@ -34,6 +37,7 @@
 | --- | --- |
 | [`sfml.js`](packages/sfml.js) | 为 Node.js 提供原生窗口、类型化事件、二维图形、音频和 SFML 风格的网络能力。 |
 | [`sfml.js-imgui`](packages/sfml.js-imgui) | 面向 sfml.js 的 [Dear ImGui](https://github.com/ocornut/imgui) 1.91.9b 集成，遵循 [imgui-sfml](https://github.com/SFML/imgui-sfml) 3.0：在原生窗口中构建调试面板、场景检查器和编辑器控件。 |
+| [`sfml.js-rmlui`](packages/sfml.js-rmlui) | 原生窗口中的 [RmlUi](https://github.com/mikke89/RmlUi) 6.3 文档界面：RML／RCSS、数据绑定、Node／Lua 脚本、字体、SVG／Lottie 和 Debugger。 |
 | [`sfml.js-interop`](packages/sfml.js-interop) | 共享原生头文件和 SFML SDK 路径，供绑定包和第三方原生扩展使用。应用无需直接依赖。 |
 
 核心模块覆盖 System、Window、Graphics、Audio 和 Network，并包含 TypeScript 类型声明。数值和资源视图使用类型化数组；绘制记录状态快照并批量提交命令。所有权、异步加载与绘制行为见 [核心概念](docs/sfml/concepts.zh-CN.md)。
@@ -44,7 +48,13 @@
 npm install sfml.js sfml.js-imgui
 ```
 
-不需要 ImGui 时只安装 `sfml.js`。安装过程会编译原生扩展并下载匹配的 SFML 库，请先准备 **Python 和 C++20 工具链**：
+只使用核心绑定时安装 `sfml.js`；需要文档界面时添加 `sfml.js-rmlui`：
+
+```sh
+npm install sfml.js sfml.js-rmlui
+```
+
+安装过程会编译原生扩展并下载匹配的 SFML 库，请先准备 **Python 和 C++20 工具链**：
 
 | 平台 | 目标架构 | 构建工具 |
 | --- | --- | --- |
@@ -134,6 +144,12 @@ try {
 
 用 `SFML.GetIO().wantCaptureMouse` 和 `wantCaptureKeyboard` 控制场景输入是否响应。完整的帧循环、输入路由和退出规则见 [ImGui 快速开始](docs/imgui/getting-started.zh-CN.md)。
 
+## 添加 RmlUi 文档界面
+
+`sfml.js-rmlui` 在 SFML 窗口中渲染 RML／RCSS 文档，支持原生数据模型、Node／Lua 文档脚本、FreeType／HarfBuzz／位图字体、SVG／Lottie 元素和 Debugger。RML 和 RCSS 是 RmlUi 自己的语言，不提供浏览器 DOM API 或任意浏览器 CSS。帧循环、输入和资源所有权见 [RmlUi 快速开始](docs/rmlui/getting-started.zh-CN.md)。
+
+RmlUi、FreeType、rlottie 和 HarfBuzz 的精简编译源码内置于 `packages/sfml.js-rmlui/vendor`，安装时在本地校验固定版本和摘要；Lua 与 LunaSVG 保留下载步骤。原始示例字体、贴图、文档和视觉测试数据在启动示例或运行时测试时单独准备，额外 IME 字体按需下载。
+
 ## 示例
 
 ![在 sfml.js 原生窗口中运行的打砖块游戏](packages/sfml.js/assets/breakout.png)
@@ -146,10 +162,12 @@ cd sfml.js
 node tools/bootstrap.cjs
 node packages/sfml.js/examples/breakout.cjs
 node packages/sfml.js-imgui/examples/demo.cjs
+npm --prefix packages/sfml.js-rmlui run examples -- variables
 ```
 
 - 核心：[功能示例](packages/sfml.js/examples/features/README.zh-CN.md)、[官方示例](packages/sfml.js/examples/official/README.zh-CN.md)、[游戏与应用](packages/sfml.js/examples/projects/README.zh-CN.md)
 - ImGui：[控件演示、场景检查器和工作台](packages/sfml.js-imgui/examples/README.zh-CN.md)
+- RmlUi：[原始示例、原生游戏与 VisualTests](packages/sfml.js-rmlui/examples/README.zh-CN.md)
 
 外部项目：[node-sfml-demos](https://github.com/XadillaX/node-sfml-demos)（Bomberman、Breakout、Tetris 等）、[16-sfml.js-games-ported](https://github.com/XadillaX/16-sfml.js-games-ported)，以及基于 sfml.js 的桌面 NES 模拟器 [play-nes](https://github.com/XadillaX/play-nes)。
 
@@ -161,9 +179,10 @@ node packages/sfml.js-imgui/examples/demo.cjs
 | --- | --- |
 | 核心绑定 | [快速开始](docs/sfml/getting-started.zh-CN.md) · [核心概念](docs/sfml/concepts.zh-CN.md) · [API 指南](docs/sfml/api.zh-CN.md) · [开发指南](docs/sfml/development.zh-CN.md) |
 | ImGui | [快速开始](docs/imgui/getting-started.zh-CN.md) · [控件与状态](docs/imgui/widgets.zh-CN.md) · [布局](docs/imgui/layout.zh-CN.md) · [表格、菜单与弹窗](docs/imgui/README.zh-CN.md) |
+| RmlUi | [快速开始](docs/rmlui/getting-started.zh-CN.md) · [数据模型](docs/rmlui/data-models.zh-CN.md) · [脚本](docs/rmlui/scripts.zh-CN.md) · [字体](docs/rmlui/fonts.zh-CN.md) · [渲染](docs/rmlui/rendering.zh-CN.md) |
 | 原生扩展 | [互操作契约](docs/interop/README.zh-CN.md) |
 
-[官网](https://sfml.js.org/zh/) 发布上述指南，以及 [sfml.js](https://sfml.js.org/zh/reference/) 和 [sfml.js-imgui](https://sfml.js.org/zh/reference/imgui/) 的 TypeDoc 签名，四种语言齐全。包 README：[sfml.js](packages/sfml.js/README.zh-CN.md)（[English](packages/sfml.js/README.md) · [日本語](packages/sfml.js/README.ja.md) · [한국어](packages/sfml.js/README.ko.md)）。
+[官网](https://sfml.js.org/zh/) 发布上述指南，以及 [sfml.js](https://sfml.js.org/zh/reference/)、[sfml.js-imgui](https://sfml.js.org/zh/reference/imgui/) 和 [sfml.js-rmlui](https://sfml.js.org/zh/reference/rmlui/) 的 TypeDoc 签名，四种语言齐全。包 README：[sfml.js](packages/sfml.js/README.zh-CN.md)、[sfml.js-imgui](packages/sfml.js-imgui/README.zh-CN.md)、[sfml.js-rmlui](packages/sfml.js-rmlui/README.zh-CN.md)、[sfml.js-interop](packages/sfml.js-interop/README.zh-CN.md)。
 
 ## 开发
 
@@ -182,6 +201,19 @@ npm --prefix site test
 ```
 
 生产网站生成在 `site/build/site`。API 注释和可运行示例归各自的软件包所有。
+
+需要更新 RmlUi 的内置依赖源码或显式准备资源时执行：
+
+```sh
+npm --prefix packages/sfml.js-rmlui run update:rmlui
+npm --prefix packages/sfml.js-rmlui run update:freetype
+npm --prefix packages/sfml.js-rmlui run update:rlottie
+npm --prefix packages/sfml.js-rmlui run update:harfbuzz
+npm --prefix packages/sfml.js-rmlui run download:examples
+npm --prefix packages/sfml.js-rmlui run download:ime-fonts
+```
+
+附加 `-- --version X.Y.Z` 可指定上游版本；解析 GitHub 版本需要 `gh`。本地归档、摘要与资源缓存规则见 [RmlUi 包 README](packages/sfml.js-rmlui/README.zh-CN.md)。`npm --prefix packages/sfml.js-rmlui run examples -- --list` 无需下载素材即可列出示例。
 
 ## 参与贡献
 
