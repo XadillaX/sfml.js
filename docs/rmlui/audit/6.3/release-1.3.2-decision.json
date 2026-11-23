@@ -1,0 +1,24 @@
+{
+  "version": "1.3.2",
+  "accepted_by_user": true,
+  "acceptance_basis": "The user explicitly requested publication of a new version after reviewing and authorizing the vendored dependency and native style commits. Previously accepted technical acceptance gaps remain recorded and are not marked complete.",
+  "user_instruction": "发新版",
+  "source_baseline": "1a97abd1fe1e155a1ed8b59fb777530cf45d269b",
+  "release_continuation": "Publish the trimmed, pinned dependency sources and on-demand original resources from 7aa6015ff, together with the native implementation normalization from 1a97abd1f.",
+  "source_fingerprint": "3d1a6a7a0969217dfd2c3b25887a05458f69ab472ff5e15f478fd5b08bf910e5",
+  "source_scope": "Tracked sources of all four lockstep packages; only changelogs, lockstep version metadata, and the publication gate and its tests are normalized or excluded.",
+  "deferred_gates": [
+    "Core scope and independent review",
+    "Physical and cross-platform IME",
+    "Whole delivery acceptance"
+  ],
+  "desktop_acceptance_record": "desktop-ime-attempt.json",
+  "desktop_user_decision": "你就当它完成了吧",
+  "retained_requirements": [
+    "All original visual, input, pixel, layout and editor acceptance thresholds",
+    "Successful main-branch CI on Linux, macOS and Windows before publication",
+    "Complete verified source inventories for all four vendored dependencies",
+    "Original sample resources remain separate and preserve local user data",
+    "All four npm packages must publish matching 1.3.2 versions and dependencies"
+  ]
+}

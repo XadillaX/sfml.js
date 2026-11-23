@@ -1,0 +1,26 @@
+{
+  "changes": [
+    {
+      "packageName": "sfml.js-interop",
+      "comment": "Normalize native identifiers and header guards across shared binding contracts.",
+      "type": "patch"
+    },
+    {
+      "packageName": "sfml.js",
+      "comment": "Normalize native implementation naming, header guards and private state access without changing public APIs.",
+      "type": "patch"
+    },
+    {
+      "packageName": "sfml.js-imgui",
+      "comment": "Align native callback naming and header guards with the shared C++ style rules.",
+      "type": "patch"
+    },
+    {
+      "packageName": "sfml.js-rmlui",
+      "comment": "Ship trimmed, verified RmlUi, FreeType, rlottie and HarfBuzz sources; prepare original sample resources on demand and provide checked dependency update commands.",
+      "type": "patch"
+    }
+  ],
+  "packageName": "sfml.js-rmlui",
+  "email": "i@2333.moe"
+}
