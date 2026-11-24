@@ -1,11 +1,11 @@
 {
   "version": "1.3.2",
   "accepted_by_user": true,
-  "acceptance_basis": "The user explicitly requested publication of a new version after reviewing and authorizing the vendored dependency and native style commits. Previously accepted technical acceptance gaps remain recorded and are not marked complete.",
-  "user_instruction": "发新版",
-  "source_baseline": "1a97abd1fe1e155a1ed8b59fb777530cf45d269b",
-  "release_continuation": "Publish the trimmed, pinned dependency sources and on-demand original resources from 7aa6015ff, together with the native implementation normalization from 1a97abd1f.",
-  "source_fingerprint": "3d1a6a7a0969217dfd2c3b25887a05458f69ab472ff5e15f478fd5b08bf910e5",
+  "acceptance_basis": "The user previously requested publication of the 1.3.2 dependency and native style changes and explicitly confirmed continuing the same three deferrals for the repaired 1.3.2 candidate. The deferred acceptance work remains unfinished and is not recorded as passed.",
+  "user_instruction": "继续暂缓",
+  "source_baseline": "b3c4557e0ffdaa51bae71e56768639fa92714cdd",
+  "release_continuation": "Retain the trimmed, pinned dependency sources and on-demand original resources from 7aa6015ff and the native implementation normalization from 1a97abd1f. Include the scissored RmlUi layer composition repair and regression coverage from PR #29.",
+  "source_fingerprint": "c04e1eef6dd341c98de75f2fddf4139d841536c77a9ec4cc6c41de20a4607829",
   "source_scope": "Tracked sources of all four lockstep packages; only changelogs, lockstep version metadata, and the publication gate and its tests are normalized or excluded.",
   "deferred_gates": [
     "Core scope and independent review",

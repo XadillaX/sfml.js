@@ -18,7 +18,7 @@ namespace {
 
 using Renderer = sfmlrmlui::RenderInterfaceSFML;
 
-constexpr unsigned kRequiredPrograms = 7;
+constexpr unsigned kRequiredPrograms = 8;
 
 void Require(bool condition, const char* message) {
   if (!condition) {

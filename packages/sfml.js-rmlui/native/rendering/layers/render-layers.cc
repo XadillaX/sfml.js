@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include <algorithm>
+#include <array>
 #include <stdexcept>
 #include <utility>
 
@@ -160,8 +161,64 @@ void RenderInterfaceSFML::CompositeLayers(
                          ? sf::BlendNone
                          : kPremultipliedBlend;
   states.stencilMode = ApplyClipMask(target);
-  target->draw(sf::Sprite(*final_texture), states);
+  DrawLayerComposite(*final_texture, target, states);
   Diagnostics().Record(&DataDiagnostics::composite_draws);
+}
+
+void RenderInterfaceSFML::DrawLayerComposite(const sf::Texture& source,
+                                              sf::RenderTarget* target,
+                                              sf::RenderStates states) {
+  if (!scissor_enabled_) {
+    target->draw(sf::Sprite(source), states);
+    return;
+  }
+  const auto size = target->getSize();
+  const auto source_size = source.getSize();
+  const auto full = Rml::Rectanglei::FromPositionSize(
+      {}, {static_cast<int>(size.x), static_cast<int>(size.y)});
+  if (scissor_region_ == full) {
+    target->draw(sf::Sprite(source), states);
+    return;
+  }
+  const auto source_bounds = Rml::Rectanglei::FromPositionSize(
+      {}, {static_cast<int>(source_size.x), static_cast<int>(source_size.y)});
+  const auto bounds = full.Intersect(source_bounds).Intersect(scissor_region_);
+  if (!bounds.Valid() || bounds.Size().x <= 0 || bounds.Size().y <= 0) {
+    return;
+  }
+
+  // Apple's software renderer can drop a triangle when scissoring a
+  // fullscreen sprite. Bound the draw with the viewport instead: exact clip
+  // endpoints stay inside it, and texture coordinates still select the same
+  // source pixels. Keep the destination stencil test set by ApplyClipMask.
+  const auto previous = target->getView();
+  sf::View view = previous;
+  view.setScissor(sf::FloatRect({0.f, 0.f}, {1.f, 1.f}));
+  view.setViewport(sf::FloatRect(
+      {static_cast<float>(bounds.p0.x) / size.x,
+       static_cast<float>(bounds.p0.y) / size.y},
+      {static_cast<float>(bounds.Size().x) / size.x,
+       static_cast<float>(bounds.Size().y) / size.y}));
+  target->setView(view);
+
+  const float left = static_cast<float>(bounds.p0.x);
+  const float top = static_cast<float>(bounds.p0.y);
+  const float right = static_cast<float>(bounds.p1.x);
+  const float bottom = static_cast<float>(bounds.p1.y);
+  const std::array<sf::Vertex, 6> vertices{{
+      {{-1.f, -1.f}, sf::Color::White, {left, bottom}},
+      {{-1.f, 1.f}, sf::Color::White, {left, top}},
+      {{1.f, -1.f}, sf::Color::White, {right, bottom}},
+      {{1.f, -1.f}, sf::Color::White, {right, bottom}},
+      {{-1.f, 1.f}, sf::Color::White, {left, top}},
+      {{1.f, 1.f}, sf::Color::White, {right, top}},
+  }};
+  states.coordinateType = sf::CoordinateType::Pixels;
+  states.texture = &source;
+  states.shader = &layer_composite_shader_;
+  target->draw(
+      vertices.data(), vertices.size(), sf::PrimitiveType::Triangles, states);
+  target->setView(previous);
 }
 
 Rml::TextureHandle RenderInterfaceSFML::CaptureLayerRegion(
