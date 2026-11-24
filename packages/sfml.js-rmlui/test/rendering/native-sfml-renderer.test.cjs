@@ -50,7 +50,7 @@ if (process.platform !== 'darwin') {
     []).length, 10);
 
   const suites = [
-    [ 'renderer', 5 ],
+    [ 'renderer', 6 ],
     [ 'shaders', 10 ],
     [ 'effects', 4 ],
     [ 'textures', 10 ],

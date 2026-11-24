@@ -19,6 +19,24 @@ void main()
 }
 )";
 
+// Layer composites draw an already-cropped viewport. SFML supplies its
+// pixel-to-texture transform, including the render texture's vertical flip.
+inline constexpr const char* kLayerCompositeVertexShader = R"(
+void main()
+{
+    gl_Position = vec4(gl_Vertex.xy, 0.0, 1.0);
+    gl_TexCoord[0] = gl_TextureMatrix[0] * gl_MultiTexCoord0;
+}
+)";
+
+inline constexpr const char* kLayerCompositeFragmentShader = R"(
+uniform sampler2D texture;
+void main()
+{
+    gl_FragColor = texture2D(texture, gl_TexCoord[0].xy);
+}
+)";
+
 // Read four stored texels and interpolate explicitly. The source uses nearest
 // sampling so software OpenGL cannot perturb its texel-center conversions.
 inline constexpr const char* kBilinearSampling = R"(

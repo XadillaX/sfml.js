@@ -87,12 +87,15 @@ void RenderInterfaceSFML::SetWindow(sf::RenderWindow* window) {
       color_filter_shader_.loadFromMemory(kPostprocessVertexShader,
                                           kColorFilterFragmentShader) &&
       post_copy_shader_.loadFromMemory(
-          kPostprocessVertexShader, post_copy_program);
+          kPostprocessVertexShader, post_copy_program) &&
+      layer_composite_shader_.loadFromMemory(kLayerCompositeVertexShader,
+                                             kLayerCompositeFragmentShader);
   if (!shaders_ready_) {
     throw std::runtime_error("Failed to compile required RmlUi shaders");
   }
   manual_post_sampling_ = manual_sampling;
   geometry_texture_shader_.setUniform("texture", sf::Shader::CurrentTexture);
+  layer_composite_shader_.setUniform("texture", sf::Shader::CurrentTexture);
   window_ = window;
   stencil_available_ = window->getSettings().stencilBits >= 8;
 }

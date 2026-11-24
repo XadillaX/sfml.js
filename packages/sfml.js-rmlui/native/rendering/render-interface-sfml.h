@@ -185,6 +185,9 @@ class RenderInterfaceSFML final : public Rml::RenderInterface {
   sf::RenderTexture* LayerTarget(Rml::LayerHandle layer);
   void RestoreFrameState() noexcept;
 
+  void DrawLayerComposite(const sf::Texture& source,
+                          sf::RenderTarget* target,
+                          sf::RenderStates states);
   sf::RenderTexture* PostTarget(int index);
   void EnsurePostTargets(sf::Vector2u size);
   void BlitFullscreen(const sf::Texture& source,
@@ -273,6 +276,7 @@ class RenderInterfaceSFML final : public Rml::RenderInterface {
   sf::Shader mask_shader_;
   sf::Shader color_filter_shader_;
   sf::Shader post_copy_shader_;
+  sf::Shader layer_composite_shader_;
   // Apple's software texture interpolation is unstable across reused targets.
   bool manual_post_sampling_{false};
   bool shaders_ready_{false};

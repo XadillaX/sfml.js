@@ -15,8 +15,10 @@ namespace {
 
 using Renderer = sfmlrmlui::RenderInterfaceSFML;
 
-Rml::CompiledGeometryHandle Quad(Renderer* renderer, float size) {
-  const Rml::ColourbPremultiplied red(255, 0, 0, 255);
+Rml::CompiledGeometryHandle Quad(
+    Renderer* renderer,
+    float size,
+    Rml::ColourbPremultiplied red = {255, 0, 0, 255}) {
   const std::array<Rml::Vertex, 4> vertices{{
       {{0.f, 0.f}, red, {0.f, 0.f}},
       {{size, 0.f}, red, {1.f, 0.f}},
@@ -140,6 +142,46 @@ void WriteScissorAndTransformAreSnapshots(sf::RenderWindow* window) {
   renderer.ReleaseGeometry(fill);
 }
 
+void ScissoredCompositeKeepsBothTriangles(sf::RenderWindow* window) {
+  Renderer renderer;
+  renderer.SetWindow(window);
+  const auto fill = Quad(&renderer, 58.f, {128, 0, 0, 128});
+  const auto mask = Quad(&renderer, 91.f);
+  const auto scissor = Rml::Rectanglei::FromPositionSize({27, 17}, {70, 92});
+  for (const auto mode : {Rml::BlendMode::Blend, Rml::BlendMode::Replace}) {
+    window->clear(sf::Color::Blue);
+    renderer.EnableScissorRegion(false);
+    renderer.EnableClipMask(false);
+    const auto layer = renderer.PushLayer();
+    renderer.RenderGeometry(fill, {18.f, 13.f}, 0);
+    renderer.RenderToClipMask(Rml::ClipMaskOperation::Set, mask, {13.f, 7.f});
+    renderer.SetScissorRegion(scissor);
+    renderer.EnableScissorRegion(true);
+    renderer.EnableClipMask(true);
+    renderer.CompositeLayers(layer, 0, mode, {});
+    renderer.PopLayer();
+
+    const auto image = Capture(window);
+    for (unsigned y = 0; y < image.getSize().y; ++y) {
+      for (unsigned x = 0; x < image.getSize().x; ++x) {
+        const bool inside = x >= 27 && x < 97 && y >= 17 && y < 98;
+        const bool red = inside && x < 76 && y < 71;
+        const bool replace = inside && mode == Rml::BlendMode::Replace;
+        const auto pixel = image.getPixel({x, y});
+        const auto expected_blue = replace ? 0 : (red ? 127 : 255);
+        if (pixel.r != (red ? 128 : 0) || pixel.g != 0 ||
+            pixel.b != expected_blue) {
+          std::cerr << "Wrong scissored layer composite at " << x << "," << y
+                    << " for replace=" << replace << "\n";
+          assert(false);
+        }
+      }
+    }
+  }
+  renderer.ReleaseGeometry(fill);
+  renderer.ReleaseGeometry(mask);
+}
+
 void InvalidIndicesFailWithoutPartialGeometry(sf::RenderWindow* window) {
   sfmlrmlui::DataDiagnostics diagnostics;
   diagnostics.active = true;
@@ -189,7 +231,7 @@ void DeepIntersectionsHaveBoundedNormalization(sf::RenderWindow* window) {
 int main() {
   sf::ContextSettings settings;
   settings.stencilBits = 8;
-  sf::RenderWindow window(sf::VideoMode({160, 120}),
+  sf::RenderWindow window(sf::VideoMode({161, 121}),
                           "Native SFML contracts",
                           sf::Style::Default,
                           sf::State::Windowed,
@@ -202,6 +244,8 @@ int main() {
   std::cout << "PASS native-disabled-definition-frame-layer-pool-reuse\n";
   WriteScissorAndTransformAreSnapshots(&window);
   std::cout << "PASS native-mask-write-scissor-transform-snapshots\n";
+  ScissoredCompositeKeepsBothTriangles(&window);
+  std::cout << "PASS native-scissored-layer-composite-exact-pixels\n";
   InvalidIndicesFailWithoutPartialGeometry(&window);
   std::cout << "PASS native-geometry-invalid-index-transaction\n";
   DeepIntersectionsHaveBoundedNormalization(&window);
